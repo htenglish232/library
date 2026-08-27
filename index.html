@@ -1,8 +1,1321 @@
-<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>HT English Learning Library</title><style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f4f7fb;color:#172033}header{background:linear-gradient(135deg,#087f8c,#0b5f8a);color:white;padding:42px 20px}.wrap{max-width:1050px;margin:auto}h1{margin:0 0 8px;font-size:clamp(28px,5vw,48px)}header p{margin:0;opacity:.9}.search{margin-top:24px;width:100%;padding:15px 18px;border:0;border-radius:14px;font-size:16px}main{padding:28px 20px 60px}.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}.tabs button{border:0;background:white;padding:11px 18px;border-radius:999px;cursor:pointer;box-shadow:0 4px 15px #0001;font-weight:700}.tabs button.active{background:#087f8c;color:#fff}.grade{display:none}.grade.active{display:block}h2{font-size:28px}.unit{background:white;border-radius:16px;margin:12px 0;box-shadow:0 6px 22px #15223b12;overflow:hidden}.unit-head{width:100%;display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border:0;background:white;font-size:19px;font-weight:800;cursor:pointer;text-align:left}.unit-head small{font-size:13px;color:#667085}.lessons{display:none;padding:0 16px 16px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}.unit.open .lessons{display:grid}.lesson{display:flex;justify-content:space-between;align-items:center;text-decoration:none;color:#172033;border:1px solid #e6ebf2;border-radius:12px;padding:14px;background:#fbfdff}.lesson:hover{border-color:#087f8c;transform:translateY(-1px)}.lesson b{color:#087f8c;font-size:13px}footer{text-align:center;padding:25px;color:#667085}@media(max-width:600px){header{padding-top:30px}.unit-head{padding:16px}}
-</style></head><body><header><div class="wrap"><h1>HT English Center</h1><p>Hệ thống học liệu điện tử dành cho học sinh</p><input id="search" class="search" placeholder="Tìm Grade, Unit hoặc bài học..." oninput="filterLessons()"></div></header><main class="wrap"><div class="tabs"><button onclick="showGrade(6,this)" class="active">Grade 6</button><button onclick="showGrade(7,this)" class="">Grade 7</button><button onclick="showGrade(8,this)" class="">Grade 8</button></div><div class="grade" data-grade="6"><h2>Grade 6</h2><section class="unit" data-search="grade 6 unit 1"><button class="unit-head" type="button" onclick="toggleUnit(this)"><span>Unit 1</span><small>4 lessons</small></button><div class="lessons"><a class="lesson" href="grade-6/unit-1/lesson-1.html"><span>Getting Started</span><b>Open →</b></a><a class="lesson" href="grade-6/unit-1/lesson-2.html"><span>A Closer Look 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-6/unit-1/lesson-3.html"><span>Communication &amp; Skills / Review</span><b>Open →</b></a><a class="lesson" href="grade-6/unit-1/lesson-4.html"><span>Looking Back &amp; Project</span><b>Open →</b></a></div></section><section class="unit" data-search="grade 6 unit 2"><button class="unit-head" type="button" onclick="toggleUnit(this)"><span>Unit 2</span><small>4 lessons</small></button><div class="lessons"><a class="lesson" href="grade-6/unit-2/lesson-1.html"><span>Getting Started</span><b>Open →</b></a><a class="lesson" href="grade-6/unit-2/lesson-2.html"><span>A Closer Look 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-6/unit-2/lesson-3.html"><span>Communication &amp; Skills / Review</span><b>Open →</b></a><a class="lesson" href="grade-6/unit-2/lesson-4.html"><span>Looking Back &amp; Project</span><b>Open →</b></a></div></section><section class="unit" data-search="grade 6 unit 3"><button class="unit-head" type="button" onclick="toggleUnit(this)"><span>Unit 3</span><small>4 lessons</small></button><div class="lessons"><a class="lesson" href="grade-6/unit-3/lesson-1.html"><span>Getting Started</span><b>Open →</b></a><a class="lesson" href="grade-6/unit-3/lesson-2.html"><span>A Closer Look 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-6/unit-3/lesson-3.html"><span>Skills 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-6/unit-3/lesson-4.html"><span>Communication &amp; Skills / Review</span><b>Open →</b></a></div></section><section class="unit" data-search="grade 6 unit 4"><button class="unit-head" type="button" onclick="toggleUnit(this)"><span>Unit 4</span><small>4 lessons</small></button><div class="lessons"><a class="lesson" href="grade-6/unit-4/lesson-1.html"><span>Getting Started</span><b>Open →</b></a><a class="lesson" href="grade-6/unit-4/lesson-2.html"><span>A Closer Look 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-6/unit-4/lesson-3.html"><span>Skills 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-6/unit-4/lesson-4.html"><span>Communication &amp; Skills / Review</span><b>Open →</b></a></div></section><section class="unit" data-search="grade 6 unit 5"><button class="unit-head" type="button" onclick="toggleUnit(this)"><span>Unit 5</span><small>4 lessons</small></button><div class="lessons"><a class="lesson" href="grade-6/unit-5/lesson-1.html"><span>Getting Started</span><b>Open →</b></a><a class="lesson" href="grade-6/unit-5/lesson-2.html"><span>A Closer Look 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-6/unit-5/lesson-3.html"><span>Skills 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-6/unit-5/lesson-4.html"><span>Communication &amp; Skills / Review</span><b>Open →</b></a></div></section><section class="unit" data-search="grade 6 unit 6"><button class="unit-head" type="button" onclick="toggleUnit(this)"><span>Unit 6</span><small>4 lessons</small></button><div class="lessons"><a class="lesson" href="grade-6/unit-6/lesson-1.html"><span>Getting Started</span><b>Open →</b></a><a class="lesson" href="grade-6/unit-6/lesson-2.html"><span>A Closer Look 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-6/unit-6/lesson-3.html"><span>Skills 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-6/unit-6/lesson-4.html"><span>Communication &amp; Skills / Review</span><b>Open →</b></a></div></section></div><div class="grade" data-grade="7"><h2>Grade 7</h2><section class="unit" data-search="grade 7 unit 1"><button class="unit-head" type="button" onclick="toggleUnit(this)"><span>Unit 1</span><small>5 lessons</small></button><div class="lessons"><a class="lesson" href="grade-7/unit-1/lesson-1.html"><span>Getting Started</span><b>Open →</b></a><a class="lesson" href="grade-7/unit-1/lesson-2.html"><span>A Closer Look 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-7/unit-1/lesson-3.html"><span>Communication</span><b>Open →</b></a><a class="lesson" href="grade-7/unit-1/lesson-4.html"><span>Skills 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-7/unit-1/lesson-5.html"><span>Looking Back &amp; Project</span><b>Open →</b></a></div></section><section class="unit" data-search="grade 7 unit 2"><button class="unit-head" type="button" onclick="toggleUnit(this)"><span>Unit 2</span><small>4 lessons</small></button><div class="lessons"><a class="lesson" href="grade-7/unit-2/lesson-1.html"><span>Getting Started</span><b>Open →</b></a><a class="lesson" href="grade-7/unit-2/lesson-2.html"><span>A Closer Look 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-7/unit-2/lesson-3.html"><span>Communication &amp; Skills / Review</span><b>Open →</b></a><a class="lesson" href="grade-7/unit-2/lesson-4.html"><span>Looking Back &amp; Project</span><b>Open →</b></a></div></section><section class="unit" data-search="grade 7 unit 3"><button class="unit-head" type="button" onclick="toggleUnit(this)"><span>Unit 3</span><small>5 lessons</small></button><div class="lessons"><a class="lesson" href="grade-7/unit-3/lesson-1.html"><span>Getting Started</span><b>Open →</b></a><a class="lesson" href="grade-7/unit-3/lesson-2.html"><span>A Closer Look 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-7/unit-3/lesson-3.html"><span>Communication</span><b>Open →</b></a><a class="lesson" href="grade-7/unit-3/lesson-4.html"><span>Skills 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-7/unit-3/lesson-5.html"><span>Looking Back &amp; Project</span><b>Open →</b></a></div></section><section class="unit" data-search="grade 7 unit 4"><button class="unit-head" type="button" onclick="toggleUnit(this)"><span>Unit 4</span><small>4 lessons</small></button><div class="lessons"><a class="lesson" href="grade-7/unit-4/lesson-1.html"><span>Getting Started</span><b>Open →</b></a><a class="lesson" href="grade-7/unit-4/lesson-2.html"><span>A Closer Look 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-7/unit-4/lesson-3.html"><span>Skills 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-7/unit-4/lesson-4.html"><span>Communication &amp; Skills / Review</span><b>Open →</b></a></div></section><section class="unit" data-search="grade 7 unit 5"><button class="unit-head" type="button" onclick="toggleUnit(this)"><span>Unit 5</span><small>4 lessons</small></button><div class="lessons"><a class="lesson" href="grade-7/unit-5/lesson-1.html"><span>Getting Started</span><b>Open →</b></a><a class="lesson" href="grade-7/unit-5/lesson-2.html"><span>A Closer Look 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-7/unit-5/lesson-3.html"><span>Skills 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-7/unit-5/lesson-4.html"><span>Communication &amp; Skills / Review</span><b>Open →</b></a></div></section><section class="unit" data-search="grade 7 unit 6"><button class="unit-head" type="button" onclick="toggleUnit(this)"><span>Unit 6</span><small>4 lessons</small></button><div class="lessons"><a class="lesson" href="grade-7/unit-6/lesson-1.html"><span>Getting Started</span><b>Open →</b></a><a class="lesson" href="grade-7/unit-6/lesson-2.html"><span>A Closer Look 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-7/unit-6/lesson-3.html"><span>Skills 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-7/unit-6/lesson-4.html"><span>Communication &amp; Skills / Review</span><b>Open →</b></a></div></section></div><div class="grade" data-grade="8"><h2>Grade 8</h2><section class="unit" data-search="grade 8 unit 1"><button class="unit-head" type="button" onclick="toggleUnit(this)"><span>Unit 1</span><small>5 lessons</small></button><div class="lessons"><a class="lesson" href="grade-8/unit-1/lesson-1.html"><span>Getting Started</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-1/lesson-2.html"><span>A Closer Look 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-1/lesson-3.html"><span>Communication</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-1/lesson-4.html"><span>Skills 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-1/lesson-5.html"><span>Looking Back &amp; Project</span><b>Open →</b></a></div></section><section class="unit" data-search="grade 8 unit 2"><button class="unit-head" type="button" onclick="toggleUnit(this)"><span>Unit 2</span><small>5 lessons</small></button><div class="lessons"><a class="lesson" href="grade-8/unit-2/lesson-1.html"><span>Getting Started</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-2/lesson-2.html"><span>A Closer Look 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-2/lesson-3.html"><span>Communication</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-2/lesson-4.html"><span>Skills 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-2/lesson-5.html"><span>Looking Back &amp; Project</span><b>Open →</b></a></div></section><section class="unit" data-search="grade 8 unit 3"><button class="unit-head" type="button" onclick="toggleUnit(this)"><span>Unit 3</span><small>5 lessons</small></button><div class="lessons"><a class="lesson" href="grade-8/unit-3/lesson-1.html"><span>Getting Started</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-3/lesson-2.html"><span>A Closer Look 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-3/lesson-3.html"><span>Communication</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-3/lesson-4.html"><span>Skills 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-3/lesson-5.html"><span>Looking Back &amp; Project</span><b>Open →</b></a></div></section><section class="unit" data-search="grade 8 unit 4"><button class="unit-head" type="button" onclick="toggleUnit(this)"><span>Unit 4</span><small>5 lessons</small></button><div class="lessons"><a class="lesson" href="grade-8/unit-4/lesson-1.html"><span>Getting Started</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-4/lesson-2.html"><span>A Closer Look 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-4/lesson-3.html"><span>Communication</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-4/lesson-4.html"><span>Skills 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-4/lesson-5.html"><span>Looking Back &amp; Project</span><b>Open →</b></a></div></section><section class="unit" data-search="grade 8 unit 5"><button class="unit-head" type="button" onclick="toggleUnit(this)"><span>Unit 5</span><small>5 lessons</small></button><div class="lessons"><a class="lesson" href="grade-8/unit-5/lesson-1.html"><span>Getting Started</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-5/lesson-2.html"><span>A Closer Look 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-5/lesson-3.html"><span>Communication</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-5/lesson-4.html"><span>Skills 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-5/lesson-5.html"><span>Looking Back &amp; Project</span><b>Open →</b></a></div></section><section class="unit" data-search="grade 8 unit 6"><button class="unit-head" type="button" onclick="toggleUnit(this)"><span>Unit 6</span><small>5 lessons</small></button><div class="lessons"><a class="lesson" href="grade-8/unit-6/lesson-1.html"><span>Getting Started</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-6/lesson-2.html"><span>A Closer Look 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-6/lesson-3.html"><span>Communication</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-6/lesson-4.html"><span>Skills 1 &amp; 2</span><b>Open →</b></a><a class="lesson" href="grade-8/unit-6/lesson-5.html"><span>Looking Back &amp; Project</span><b>Open →</b></a></div></section></div></main><footer>© 2026 HT English Center</footer><script>
-function showGrade(g,b){document.querySelectorAll('.grade').forEach(x=>x.classList.toggle('active',x.dataset.grade==g));document.querySelectorAll('.tabs button').forEach(x=>x.classList.remove('active'));b.classList.add('active')}
-function toggleUnit(b){b.parentElement.classList.toggle('open')}
-function filterLessons(){let q=document.getElementById('search').value.toLowerCase().trim();document.querySelectorAll('.grade').forEach(g=>g.style.display=q?'block':'');document.querySelectorAll('.unit').forEach(u=>{let matches=[...u.querySelectorAll('.lesson')].filter(a=>a.textContent.toLowerCase().includes(q)||u.dataset.search.includes(q));u.style.display=(!q||matches.length)?'block':'none';if(q&&matches.length)u.classList.add('open');[...u.querySelectorAll('.lesson')].forEach(a=>a.style.display=(!q||a.textContent.toLowerCase().includes(q)||u.dataset.search.includes(q))?'flex':'none')})}
-document.querySelector('.grade').classList.add('active');
-</script></body></html>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HT English - Phiếu bài tập điện tử Grade 4–8</title>
+
+<style>
+:root{
+    --blue:#0b63ce;
+    --navy:#082b5c;
+    --sky:#eaf4ff;
+    --text:#17324d;
+    --muted:#678;
+    --shadow:0 12px 30px rgba(8,43,92,.12);
+}
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Helvetica,sans-serif;
+    background:linear-gradient(180deg,#f7fbff,#edf6ff);
+    color:var(--text);
+}
+
+header{
+    background:linear-gradient(135deg,var(--navy),var(--blue));
+    color:#fff;
+    padding:22px 20px;
+    position:sticky;
+    top:0;
+    z-index:10;
+    box-shadow:0 6px 18px rgba(0,0,0,.15);
+}
+
+.top{
+    max-width:1180px;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    gap:16px;
+    justify-content:space-between;
+    flex-wrap:wrap;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.logo{
+    width:54px;
+    height:54px;
+    border-radius:16px;
+    background:#fff;
+    color:var(--blue);
+    display:grid;
+    place-items:center;
+    font-weight:800;
+    font-size:20px;
+}
+
+h1{
+    font-size:24px;
+    margin:0;
+}
+
+.sub{
+    font-size:13px;
+    opacity:.85;
+    margin-top:3px;
+}
+
+.search{
+    flex:1;
+    max-width:430px;
+    min-width:230px;
+}
+
+.search input{
+    width:100%;
+    padding:13px 16px;
+    border:0;
+    border-radius:14px;
+    font-size:15px;
+    outline:none;
+}
+
+.hero{
+    max-width:1180px;
+    margin:28px auto 18px;
+    padding:0 20px;
+}
+
+.hero-box{
+    background:#fff;
+    border-radius:24px;
+    padding:28px;
+    box-shadow:var(--shadow);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+}
+
+.hero h2{
+    margin:0 0 8px;
+    font-size:30px;
+    color:var(--navy);
+}
+
+.hero p{
+    margin:0;
+    color:var(--muted);
+    line-height:1.6;
+}
+
+.stats{
+    white-space:nowrap;
+    background:var(--sky);
+    padding:14px 18px;
+    border-radius:16px;
+    font-weight:700;
+    color:var(--blue);
+}
+
+main{
+    max-width:1180px;
+    margin:auto;
+    padding:0 20px 50px;
+}
+
+.grade-tabs{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin:20px 0;
+}
+
+.tab{
+    border:0;
+    background:#fff;
+    color:var(--navy);
+    padding:12px 18px;
+    border-radius:999px;
+    cursor:pointer;
+    font-weight:700;
+    box-shadow:0 5px 14px rgba(8,43,92,.08);
+}
+
+.tab.active{
+    background:var(--blue);
+    color:#fff;
+}
+
+.grade-section{
+    display:none;
+}
+
+.grade-section.active{
+    display:block;
+}
+
+.unit{
+    background:#fff;
+    border-radius:20px;
+    margin-bottom:18px;
+    box-shadow:var(--shadow);
+    overflow:hidden;
+}
+
+.unit-head{
+    padding:18px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:linear-gradient(90deg,#fff,#f1f7ff);
+}
+
+.unit-head h3{
+    margin:0;
+    color:var(--navy);
+}
+
+.badge{
+    background:var(--sky);
+    color:var(--blue);
+    padding:7px 10px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:700;
+}
+
+.lessons{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:12px;
+    padding:0 20px 20px;
+}
+
+.lesson{
+    display:block;
+    text-decoration:none;
+    color:var(--text);
+    border:1px solid #dceaff;
+    border-radius:15px;
+    padding:15px;
+    background:#fbfdff;
+    transition:.2s;
+}
+
+.lesson:hover{
+    transform:translateY(-2px);
+    border-color:#8fc2ff;
+    box-shadow:0 8px 18px rgba(11,99,206,.12);
+}
+
+.lesson strong{
+    display:block;
+    margin-bottom:6px;
+    color:var(--navy);
+}
+
+.lesson small{
+    color:var(--muted);
+}
+
+.empty{
+    display:none;
+    text-align:center;
+    padding:40px;
+    background:#fff;
+    border-radius:20px;
+}
+
+footer{
+    text-align:center;
+    color:var(--muted);
+    padding:25px;
+}
+
+@media(max-width:700px){
+
+    header{
+        position:static;
+    }
+
+    .hero-box{
+        display:block;
+    }
+
+    .stats{
+        display:inline-block;
+        margin-top:16px;
+    }
+
+    .hero h2{
+        font-size:24px;
+    }
+
+    .lessons{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="top">
+
+<div class="brand">
+
+<div class="logo">
+HT
+</div>
+
+<div>
+
+<h1>HT English Center</h1>
+
+<div class="sub">
+Phiếu bài tập điện tử 2026
+</div>
+
+</div>
+
+</div>
+
+<div class="search">
+
+<input
+id="search"
+type="search"
+placeholder="Tìm khối, chuyên đề hoặc bài học..."
+>
+
+</div>
+
+</div>
+
+</header>
+
+
+<section class="hero">
+
+<div class="hero-box">
+
+<div>
+
+<h2>
+Kho phiếu bài tập tiếng Anh trực tuyến
+</h2>
+
+<p>
+Chọn khối lớp, chuyên đề và bài học để bắt đầu.
+Giao diện được tối ưu để học sinh sử dụng trên điện thoại,
+máy tính bảng và máy tính.
+</p>
+
+</div>
+
+<div class="stats" id="stats"></div>
+
+</div>
+
+</section>
+
+
+<main>
+
+<div class="grade-tabs" id="tabs"></div>
+
+<div id="content"></div>
+
+<div class="empty" id="empty">
+Không tìm thấy bài học phù hợp.
+</div>
+
+</main>
+
+
+<footer>
+© 2026 HT English Center
+</footer>
+
+
+<script>
+
+const DATA = [
+
+/* =========================
+   GRADE 4
+========================= */
+
+{
+grade:"Grade 4",
+
+units:[
+
+{
+name:"September 1",
+
+lessons:[
+
+{
+title:"Regular Plural Nouns",
+href:"Grade 4/September 1/unit_01.html"
+},
+
+{
+title:"Irregular Plural Nouns",
+href:"Grade 4/September 1/unit_02.html"
+},
+
+{
+title:"Countable & Uncountable Nouns",
+href:"Grade 4/September 1/unit_03.html"
+},
+
+{
+title:"A / An / Some + Noun",
+href:"Grade 4/September 1/unit_04.html"
+},
+
+{
+title:"Possessive Adjectives",
+href:"Grade 4/September 1/unit_05.html"
+},
+
+{
+title:"Possessive Pronouns",
+href:"Grade 4/September 1/unit_06.html"
+},
+
+{
+title:"Object Pronouns (Singular)",
+href:"Grade 4/September 1/unit_07.html"
+},
+
+{
+title:"Object Pronouns – Exercises",
+href:"Grade 4/September 1/unit_08.html"
+},
+
+{
+title:"Present Simple – Exercises",
+href:"Grade 4/September 1/unit_09.html"
+},
+
+{
+title:"Present Simple – Practice",
+href:"Grade 4/September 1/unit_10.html"
+},
+
+{
+title:"Present Simple – Yes/No Questions",
+href:"Grade 4/September 1/unit_11.html"
+},
+
+{
+title:"Present Simple – What Questions",
+href:"Grade 4/September 1/unit_12.html"
+}
+
+]
+
+}
+
+]
+
+},
+
+
+/* =========================
+   GRADE 5
+========================= */
+
+{
+grade:"Grade 5",
+
+units:[
+
+{
+name:"Grammar Practice",
+
+lessons:[
+
+{
+title:"Articles",
+href:"Grade 5/unit_01_articles.html"
+},
+
+{
+title:"Some / Any",
+href:"Grade 5/unit_02_some_any_interactive_worksheet.html"
+},
+
+{
+title:"Many / Much / A Lot Of",
+href:"Grade 5/unit_3_MANY  MUCH  A LOT OF.html"
+},
+
+{
+title:"Past Simple – Be Verbs (Affirmatives)",
+href:"Grade 5/unit_04_past_simple_be_verbs_html.html"
+},
+
+{
+title:"Past Simple – Be Verbs (Negatives)",
+href:"Grade 5/unit_05_past_simple_be_verbs_negatives.html"
+},
+
+{
+title:"Past Simple – Be Verbs (Yes/No Questions)",
+href:"Grade 5/unit_6_past_simple_be_verbs_questions.html"
+},
+
+{
+title:"Past Simple – Be Verbs (Wh- Questions)",
+href:"Grade 5/unit_07_past_simple_be_v_wh_questions.html"
+},
+
+{
+title:"Past Simple – Regular Verbs (Affirmatives)",
+href:"Grade 5/unit_08_past_simple_regular_verbs.html"
+},
+
+{
+title:"Past Simple – Irregular Verbs",
+href:"Grade 5/unit_09_past_simple_irregular_verbs_worksheet.html"
+},
+
+{
+title:"Past Simple – Verbs (Negatives)",
+href:"Grade 5/unit_10_past_simple_negatives.html"
+},
+
+{
+title:"Past Simple – Yes/No Questions",
+href:"Grade 5/unit_11_past_simple_V_Yes_No_Questions.html"
+},
+
+{
+title:"Past Simple – What Questions",
+href:"Grade 5/unit_12_past_simple_verbs_what_questions.html"
+}
+
+]
+
+}
+
+]
+
+},
+
+
+/* =========================
+   GRADE 6
+========================= */
+
+{
+grade:"Grade 6",
+
+units:[
+
+{
+name:"Unit 1",
+
+lessons:[
+
+{
+title:"Getting Started",
+href:"Grade 6_He_thong_de_dien_tu/Unit 1/1, HT_English_Unit_1_Getting_Started_Embedded_Audio.html"
+},
+
+{
+title:"A Closer Look 1 & 2",
+href:"Grade 6_He_thong_de_dien_tu/Unit 1/2, HT_English_Closer_Look_1_2_Embedded_Audio.html"
+},
+
+{
+title:"Communication & Skills 1–2",
+href:"Grade 6_He_thong_de_dien_tu/Unit 1/3. HT_English_Communication_Skills1_2_Embedded_Audio.html"
+},
+
+{
+title:"Looking Back & Project",
+href:"Grade 6_He_thong_de_dien_tu/Unit 1/4_Looking_back_and_project_3_embedded_audio.html"
+}
+
+]
+
+},
+
+{
+name:"Unit 2",
+
+lessons:[
+
+{
+title:"Getting Started",
+href:"Grade 6_He_thong_de_dien_tu/Unit 2/1_Getting_Started_embedded_audio.html"
+},
+
+{
+title:"A Closer Look 1 & 2",
+href:"Grade 6_He_thong_de_dien_tu/Unit 2/2_Closer_Look_1_and_2_Embedded_Audio.html"
+},
+
+{
+title:"Communication & Skills 1–2",
+href:"Grade 6_He_thong_de_dien_tu/Unit 2/3_Communication_Skills1_2_embedded_audio.html"
+},
+
+{
+title:"Looking Back & Project",
+href:"Grade 6_He_thong_de_dien_tu/Unit 2/4_Looking_back_project_embedded_audio.html"
+}
+
+]
+
+},
+
+{
+name:"Unit 3",
+
+lessons:[
+
+{
+title:"Getting Started",
+href:"Grade 6_He_thong_de_dien_tu/Unit 3/1_Getting_Started_4_embedded_audio.html"
+},
+
+{
+title:"A Closer Look 1 & 2",
+href:"Grade 6_He_thong_de_dien_tu/Unit 3/2_Closer_look_1_and_2_embedded_audio(3).html"
+},
+
+{
+title:"Skills 1 & 2",
+href:"Grade 6_He_thong_de_dien_tu/Unit 3/3_skills_1_and_2_embedded_audio(2).html"
+},
+
+{
+title:"Communication, Looking Back & Project",
+href:"Grade 6_He_thong_de_dien_tu/Unit 3/4_Communication_Looking_back_project_Embedded_Audio(1).html"
+}
+
+]
+
+},
+
+{
+name:"Unit 4",
+
+lessons:[
+
+{
+title:"Getting Started",
+href:"Grade 6_He_thong_de_dien_tu/Unit 4/1, Getting started Grade_6_Unit_4_Embedded_Audio.html"
+},
+
+{
+title:"A Closer Look 1 & 2",
+href:"Grade 6_He_thong_de_dien_tu/Unit 4/2, A closer look 1 and 2 Grade_6_Unit_4_A_Closer_Look_1_2_Embedded_Audio(2).html"
+},
+
+{
+title:"Skills 1 & 2",
+href:"Grade 6_He_thong_de_dien_tu/Unit 4/3_skills_1_and_2_embedded_audio.html"
+},
+
+{
+title:"Communication, Looking Back & Project",
+href:"Grade 6_He_thong_de_dien_tu/Unit 4/4, Grade_6_Unit_4_Communication_Looking_Back_Project_Embedded_Audio.html"
+}
+
+]
+
+},
+
+{
+name:"Unit 5",
+
+lessons:[
+
+{
+title:"Getting Started",
+href:"Grade 6_He_thong_de_dien_tu/Unit 5/1_Getting_Started_Embedded_Audio.html"
+},
+
+{
+title:"A Closer Look 1 & 2",
+href:"Grade 6_He_thong_de_dien_tu/Unit 5/2_A_closer_look_1_and_2_embedded_audio.html"
+},
+
+{
+title:"Skills 1 & 2",
+href:"Grade 6_He_thong_de_dien_tu/Unit 5/3_Skills_1_and_2_Embedded_Audio.html"
+},
+
+{
+title:"Communication, Looking Back & Project",
+href:"Grade 6_He_thong_de_dien_tu/Unit 5/4_Communication_looking_back_project_embedded_audio.html"
+}
+
+]
+
+},
+
+{
+name:"Unit 6",
+
+lessons:[
+
+{
+title:"Getting Started",
+href:"Grade 6_He_thong_de_dien_tu/Unit 6/1_Getting_Started_Embedded_Audio(3).html"
+},
+
+{
+title:"A Closer Look 1 & 2",
+href:"Grade 6_He_thong_de_dien_tu/Unit 6/2_Closer_Look_1_and_2_embedded_audio.html"
+},
+
+{
+title:"Skills 1 & 2",
+href:"Grade 6_He_thong_de_dien_tu/Unit 6/3_Skill_1_and_2_embedded_audio(3) (1).html"
+},
+
+{
+title:"Communication, Looking Back & Project",
+href:"Grade 6_He_thong_de_dien_tu/Unit 6/4_Communication_Looking_Back_Project_Embedded_Audio.html"
+}
+
+]
+
+}
+
+]
+
+},
+
+
+/* =========================
+   GRADE 7
+========================= */
+
+{
+grade:"Grade 7",
+
+units:[
+
+{
+name:"Unit 1",
+lessons:[
+
+{
+title:"Getting Started",
+href:"Grade 7_He_thong_de_dien_tu/Unit 1/1_Grade_7_Unit_1_Getting_Started_Embedded_Audio.html"
+},
+
+{
+title:"A Closer Look 1 & 2",
+href:"Grade 7_He_thong_de_dien_tu/Unit 1/2_Closer_Look_1_and_2_Embedded_Audio(5).html"
+},
+
+{
+title:"Communication",
+href:"Grade 7_He_thong_de_dien_tu/Unit 1/3_Unit_1_Communication_Embedded_Audio.html"
+},
+
+{
+title:"Skills 1 & 2",
+href:"Grade 7_He_thong_de_dien_tu/Unit 1/4_Skill_1_and_2_Embedded_Audio.html"
+},
+
+{
+title:"Looking Back & Project",
+href:"Grade 7_He_thong_de_dien_tu/Unit 1/5_Grade_7_Unit_1_Looking_Back_Project_Embedded_Audio.html"
+}
+
+]
+
+},
+
+{
+name:"Unit 2",
+lessons:[
+
+{
+title:"Getting Started",
+href:"Grade 7_He_thong_de_dien_tu/Unit 2/1_Getting_Started_Embedded_Audio (2).html"
+},
+
+{
+title:"A Closer Look 1 & 2",
+href:"Grade 7_He_thong_de_dien_tu/Unit 2/2_Grade_7_Unit_2_Closer_Look_1_2_Embedded_Audio(1).html"
+},
+
+{
+title:"Communication & Skills",
+href:"Grade 7_He_thong_de_dien_tu/Unit 2/3_Communication_and_Skills_Embedded_Audio.html"
+},
+
+{
+title:"Looking Back & Project",
+href:"Grade 7_He_thong_de_dien_tu/Unit 2/4_Looking_back_and_project_embedded_audio.html"
+}
+
+]
+
+},
+
+{
+name:"Unit 3",
+lessons:[
+
+{
+title:"Getting Started",
+href:"Grade 7_He_thong_de_dien_tu/Unit 3/1_Getting_Started_Embedded_Audio (2).html"
+},
+
+{
+title:"A Closer Look 1 & 2",
+href:"Grade 7_He_thong_de_dien_tu/Unit 3/2_Closer_Look_1_and_2_Embedded_Audio (1).html"
+},
+
+{
+title:"Communication",
+href:"Grade 7_He_thong_de_dien_tu/Unit 3/3_Communication_embedded_audio.html"
+},
+
+{
+title:"Skills 1 & 2",
+href:"Grade 7_He_thong_de_dien_tu/Unit 3/4_Skill_1_and_2_Embedded_Audio(1).html"
+},
+
+{
+title:"Looking Back & Project",
+href:"Grade 7_He_thong_de_dien_tu/Unit 3/5_Looking_Back_Project_Embedded_Audio.html"
+}
+
+]
+
+},
+
+{
+name:"Unit 4",
+lessons:[
+
+{
+title:"Getting Started",
+href:"Grade 7_He_thong_de_dien_tu/Unit 4/1_Getting_Started_embedded_audio(6).html"
+},
+
+{
+title:"A Closer Look 1 & 2",
+href:"Grade 7_He_thong_de_dien_tu/Unit 4/2_Closer_Look_1_and_2_Embedded_Audio (1).html"
+},
+
+{
+title:"Skills 1 & 2",
+href:"Grade 7_He_thong_de_dien_tu/Unit 4/3_Skill_1_and_2_Embedded_Audio.html"
+},
+
+{
+title:"Communication, Looking Back & Project",
+href:"Grade 7_He_thong_de_dien_tu/Unit 4/4_Communication_Looking_Back_Project_Embedded_Audio(6).html"
+}
+
+]
+
+},
+
+{
+name:"Unit 5",
+lessons:[
+
+{
+title:"Getting Started",
+href:"Grade 7_He_thong_de_dien_tu/Unit 5/1_Getting_Started_Embedded_Audio (1).html"
+},
+
+{
+title:"A Closer Look 1 & 2",
+href:"Grade 7_He_thong_de_dien_tu/Unit 5/2_Closer_Look_1_and_2_Embedded_Audio(8).html"
+},
+
+{
+title:"Skills 1 & 2",
+href:"Grade 7_He_thong_de_dien_tu/Unit 5/3_Skill_1_and_2_Embedded_Audio(5).html"
+},
+
+{
+title:"Communication, Looking Back & Project",
+href:"Grade 7_He_thong_de_dien_tu/Unit 5/4_Communication_Looking_Back_Project_Embedded_Audio (1).html"
+}
+
+]
+
+},
+
+{
+name:"Unit 6",
+lessons:[
+
+{
+title:"Getting Started",
+href:"Grade 7_He_thong_de_dien_tu/Unit 6/1_Getting_Started_Embedded_Audio (1).html"
+},
+
+{
+title:"A Closer Look 1 & 2",
+href:"Grade 7_He_thong_de_dien_tu/Unit 6/2_Closer_Look_1_and_2_Embedded_Audio(9).html"
+},
+
+{
+title:"Skills 1 & 2",
+href:"Grade 7_He_thong_de_dien_tu/Unit 6/3. Skill 1 and 2 - Embedded Audio.html"
+},
+
+{
+title:"Communication, Looking Back & Project",
+href:"Grade 7_He_thong_de_dien_tu/Unit 6/4_Grade_7_Unit_6_Communication_Looking_Back_Project_Embedded_Audio.html"
+}
+
+]
+
+}
+
+]
+
+},
+
+
+/* =========================
+   GRADE 8
+========================= */
+
+{
+grade:"Grade 8",
+
+units:[
+
+{
+name:"Unit 1",
+lessons:[
+
+{
+title:"Getting Started",
+href:"Grade 8_He_thong_de_dien_tu/Unit 1/1_Unit_1_Getting_Started_Embedded_Audio.html"
+},
+
+{
+title:"A Closer Look 1 & 2",
+href:"Grade 8_He_thong_de_dien_tu/Unit 1/2_Grade_8_Unit_1_Closer_Look_1_2_Embedded_Audio.html"
+},
+
+{
+title:"Communication",
+href:"Grade 8_He_thong_de_dien_tu/Unit 1/3_Unit_1_Communication_Embedded_Audio.html"
+},
+
+{
+title:"Skills 1 & 2",
+href:"Grade 8_He_thong_de_dien_tu/Unit 1/4_Skills_1_and_2_Embedded_Audio.html"
+},
+
+{
+title:"Looking Back & Project",
+href:"Grade 8_He_thong_de_dien_tu/Unit 1/5_Unit_1_Looking_Back_and_Project_Embedded_Audio.html"
+}
+
+]
+
+},
+
+{
+name:"Unit 2",
+lessons:[
+
+{
+title:"Getting Started",
+href:"Grade 8_He_thong_de_dien_tu/Unit 2/1_Getting_Started_Embedded_Audio(9).html"
+},
+
+{
+title:"A Closer Look 1 & 2",
+href:"Grade 8_He_thong_de_dien_tu/Unit 2/2_A_closer_look_1_and_2_Embedded_Audio(2).html"
+},
+
+{
+title:"Communication",
+href:"Grade 8_He_thong_de_dien_tu/Unit 2/3_Communication_Embedded_Audio(2).html"
+},
+
+{
+title:"Skills 1 & 2",
+href:"Grade 8_He_thong_de_dien_tu/Unit 2/4_Skills 1 and 2.html"
+},
+
+{
+title:"Looking Back & Project",
+href:"Grade 8_He_thong_de_dien_tu/Unit 2/5_Looking_Back_and_Project_Embedded_Audio.html"
+}
+
+]
+
+},
+
+{
+name:"Unit 3",
+lessons:[
+
+{
+title:"Getting Started",
+href:"Grade 8_He_thong_de_dien_tu/Unit 3/1_Getting_Started_1_Embedded_Audio_FIXED.html"
+},
+
+{
+title:"A Closer Look 1 & 2",
+href:"Grade 8_He_thong_de_dien_tu/Unit 3/2_Closer_Look_1_and_2_Embedded_Audio_Fixed.html"
+},
+
+{
+title:"Communication",
+href:"Grade 8_He_thong_de_dien_tu/Unit 3/3_Communication_Embedded_Audio.html"
+},
+
+{
+title:"Skills 1 & 2",
+href:"Grade 8_He_thong_de_dien_tu/Unit 3/4_Skills_1_and_2_Embedded_Audio_FIXED.html"
+},
+
+{
+title:"Looking Back & Project",
+href:"Grade 8_He_thong_de_dien_tu/Unit 3/5_Looking_Back_and_Project_Embedded_Audio(1).html"
+}
+
+]
+
+},
+
+{
+name:"Unit 4",
+lessons:[
+
+{
+title:"Getting Started",
+href:"Grade 8_He_thong_de_dien_tu/Unit 4/1_Getting_Started_Embedded_Audio (1).html"
+},
+
+{
+title:"A Closer Look 1 & 2",
+href:"Grade 8_He_thong_de_dien_tu/Unit 4/2_Closer_Look_1_and_2_Embedded_Audio(11).html"
+},
+
+{
+title:"Communication",
+href:"Grade 8_He_thong_de_dien_tu/Unit 4/3_Communication_Embedded_Audio(4).html"
+},
+
+{
+title:"Skills 1 & 2",
+href:"Grade 8_He_thong_de_dien_tu/Unit 4/4. Skills 1 and 2.html"
+},
+
+{
+title:"Looking Back & Project",
+href:"Grade 8_He_thong_de_dien_tu/Unit 4/5_Looking_Back_Project_Embedded_Audio(1).html"
+}
+
+]
+
+},
+
+{
+name:"Unit 5",
+lessons:[
+
+{
+title:"Getting Started",
+href:"Grade 8_He_thong_de_dien_tu/Unit 5/1_Getting_Started_Embedded_Audio(13).html"
+},
+
+{
+title:"A Closer Look 1 & 2",
+href:"Grade 8_He_thong_de_dien_tu/Unit 5/2_A_Closer_Look_1_2_Embedded_Audio.html"
+},
+
+{
+title:"Communication",
+href:"Grade 8_He_thong_de_dien_tu/Unit 5/3_Communication_Embedded_Audio_Fixed.html"
+},
+
+{
+title:"Skills 1 & 2",
+href:"Grade 8_He_thong_de_dien_tu/Unit 5/4. Skills 1 and 2_Embedded_Audio.html"
+},
+
+{
+title:"Looking Back & Project",
+href:"Grade 8_He_thong_de_dien_tu/Unit 5/5_Looking_back_and_project_Embedded_Audio(3).html"
+}
+
+]
+
+},
+
+{
+name:"Unit 6",
+lessons:[
+
+{
+title:"Getting Started",
+href:"Grade 8_He_thong_de_dien_tu/Unit 6/1_Getting_Started_Embedded_Audio_FIXED.html"
+},
+
+{
+title:"A Closer Look 1 & 2",
+href:"Grade 8_He_thong_de_dien_tu/Unit 6/2_A_Closer_Look_1_2_Embedded_Audio(1).html"
+},
+
+{
+title:"Communication",
+href:"Grade 8_He_thong_de_dien_tu/Unit 6/3_Communication_Embedded_Audio(6).html"
+},
+
+{
+title:"Skills 1 & 2",
+href:"Grade 8_He_thong_de_dien_tu/Unit 6/4_Skills_1_and_2_Embedded_Audio(5).html"
+},
+
+{
+title:"Looking Back & Project",
+href:"Grade 8_He_thong_de_dien_tu/Unit 6/5_Looking_Back_Project_Embedded_Audio(2).html"
+}
+
+]
+
+}
+
+]
+
+}
+
+];
+
+
+/* =========================
+   HỆ THỐNG HIỂN THỊ
+========================= */
+
+const tabs = document.getElementById("tabs");
+const content = document.getElementById("content");
+const search = document.getElementById("search");
+const empty = document.getElementById("empty");
+
+let active = DATA[0]?.grade || "";
+
+
+/* ĐẾM TỔNG SỐ BÀI */
+
+const total = DATA.reduce(
+
+(n,g) =>
+n + g.units.reduce(
+(m,u) => m + u.lessons.length,
+0
+),
+
+0
+
+);
+
+document.getElementById("stats").textContent =
+`${DATA.length} khối • ${total} bài học`;
+
+
+/* =========================
+   RENDER
+========================= */
+
+function render(q=""){
+
+tabs.innerHTML="";
+content.innerHTML="";
+
+let visible=0;
+
+
+DATA.forEach(g=>{
+
+
+/* TAB GRADE */
+
+const b=document.createElement("button");
+
+b.className=
+"tab " +
+(g.grade===active ? "active" : "");
+
+b.textContent=g.grade;
+
+
+b.onclick=()=>{
+
+active=g.grade;
+
+render(search.value);
+
+};
+
+
+tabs.appendChild(b);
+
+
+
+/* SECTION */
+
+const sec=document.createElement("section");
+
+sec.className=
+"grade-section " +
+(g.grade===active ? "active" : "");
+
+
+
+g.units.forEach(u=>{
+
+
+const lessons=u.lessons.filter(l=>
+
+(
+g.grade+" "+
+u.name+" "+
+l.title
+)
+
+.toLowerCase()
+
+.includes(q.toLowerCase())
+
+);
+
+
+if(!lessons.length)return;
+
+
+visible+=lessons.length;
+
+
+/* UNIT BOX */
+
+const box=document.createElement("div");
+
+box.className="unit";
+
+
+box.innerHTML=`
+
+<div class="unit-head">
+
+<h3>${u.name}</h3>
+
+<span class="badge">
+${lessons.length} bài
+</span>
+
+</div>
+
+<div class="lessons"></div>
+
+`;
+
+
+const list=
+box.querySelector(".lessons");
+
+
+
+/* LESSON */
+
+lessons.forEach((l,i)=>{
+
+
+const a=document.createElement("a");
+
+a.className="lesson";
+
+
+/*
+encodeURI giúp xử lý tên thư mục
+có dấu cách khi chạy trên GitHub Pages
+*/
+
+a.href=encodeURI(l.href);
+
+
+a.innerHTML=`
+
+<strong>
+${i+1}. ${l.title}
+</strong>
+
+<small>
+Mở bài học →
+</small>
+
+`;
+
+
+list.appendChild(a);
+
+});
+
+
+sec.appendChild(box);
+
+
+});
+
+
+content.appendChild(sec);
+
+
+});
+
+
+empty.style.display=
+visible ? "none" : "block";
+
+}
+
+
+/* SEARCH */
+
+search.addEventListener(
+"input",
+e => render(e.target.value.trim())
+);
+
+
+/* START */
+
+render();
+
+</script>
+
+</body>
+</html>
