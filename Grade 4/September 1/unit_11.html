@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 11: Present Simple (Yes / No Questions)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --secondary: #4cc9f0;
+            --accent: #f72585;
+            --accent-yellow: #ffd166;
+            --success: #06d6a0;
+            --error: #ef476f;
+            --bg: #f4f7fe;
+            --card-bg: #ffffff;
+            --text-main: #2b2d42;
+            --text-muted: #6c757d;
+            --border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 20px 10px 60px;
+        }
+
+        .container {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: linear-gradient(135deg, #4361ee, #7209b7);
+            color: white;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(67, 97, 238, 0.25);
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .badge-unit {
+            display: inline-block;
+            background: var(--accent-yellow);
+            color: #333;
+            font-weight: 800;
+            padding: 5px 15px;
+            border-radius: 50px;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 18px;
+            padding: 24px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border);
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            margin-bottom: 18px;
+            border-bottom: 2px dashed var(--border);
+            padding-bottom: 10px;
+        }
+
+        .section-title .badge {
+            background: var(--accent);
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .grammar-box {
+            background: #eef2ff;
+            border-left: 5px solid var(--primary);
+            padding: 18px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .grammar-box p {
+            margin-bottom: 8px;
+        }
+
+        .formula-box {
+            background: #ffffff;
+            border: 2px dashed var(--primary);
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            font-weight: 800;
+            color: var(--primary-dark);
+            text-align: center;
+            font-size: 1.05rem;
+        }
+
+        .grammar-table-wrapper {
+            overflow-x: auto;
+            margin-top: 15px;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--border);
+        }
+
+        .grammar-table th {
+            background: var(--primary);
+            color: white;
+            padding: 12px 15px;
+            text-align: center;
+            font-weight: 800;
+            font-size: 1.05rem;
+        }
+
+        .grammar-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            font-size: 0.98rem;
+            vertical-align: middle;
+        }
+
+        .grammar-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .btn-speak {
+            background: #e0e7ff;
+            color: var(--primary);
+            border: none;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+            margin-left: 6px;
+            vertical-align: middle;
+            flex-shrink: 0;
+        }
+
+        .btn-speak:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .btn-speak:active {
+            transform: scale(0.95);
+        }
+
+        .exercise-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 16px;
+        }
+
+        .ex-item {
+            background: #f8fafc;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .ex-item-inline {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+            line-height: 2.2;
+        }
+
+        .num-label {
+            font-weight: 800;
+            color: var(--primary);
+            min-width: 24px;
+        }
+
+        input[type="text"] {
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 6px 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1e293b;
+            outline: none;
+            transition: all 0.2s;
+            background: white;
+            width: 120px;
+        }
+
+        input[type="text"]:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        input[type="text"].full-width {
+            width: 100%;
+            max-width: 550px;
+        }
+
+        input[type="text"].correct {
+            border-color: var(--success);
+            background-color: #ecfdf5;
+            color: #065f46;
+        }
+
+        input[type="text"].incorrect {
+            border-color: var(--error);
+            background-color: #fff1f2;
+            color: #9f1239;
+        }
+
+        .feedback-text {
+            font-size: 0.88rem;
+            font-weight: 700;
+            display: none;
+            margin-top: 4px;
+        }
+
+        .feedback-text.show-correct {
+            color: var(--success);
+            display: block;
+        }
+
+        .feedback-text.show-incorrect {
+            color: var(--error);
+            display: block;
+        }
+
+        .word-bank {
+            background: #f1f5f9;
+            border: 2px dashed #cbd5e1;
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            font-weight: 700;
+            color: #334155;
+        }
+
+        .word-tag {
+            background: white;
+            padding: 5px 14px;
+            border-radius: 20px;
+            border: 1px solid #cbd5e1;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
+
+        .img-tag {
+            font-size: 1.8rem;
+            background: #fff;
+            padding: 8px 14px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.04);
+            margin-right: 6px;
+        }
+
+        .actions-bar {
+            position: sticky;
+            bottom: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            z-index: 100;
+            border: 1px solid rgba(0,0,0,0.08);
+            margin-top: 30px;
+        }
+
+        .btn {
+            border: none;
+            padding: 12px 28px;
+            font-size: 1.05rem;
+            font-weight: 800;
+            border-radius: 30px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+        }
+
+        .btn-check {
+            background: linear-gradient(135deg, #06d6a0, #059669);
+            color: white;
+            box-shadow: 0 4px 12px rgba(6, 214, 160, 0.3);
+        }
+
+        .btn-show {
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            color: white;
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);
+        }
+
+        .btn-reset {
+            background: #e2e8f0;
+            color: #475569;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.95;
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .score-board {
+            text-align: center;
+            padding: 15px;
+            background: #ecfdf5;
+            border: 2px solid #a7f3d0;
+            border-radius: 12px;
+            margin-top: 20px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #065f46;
+            display: none;
+        }
+
+        .scramble-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+
+        .scramble-word {
+            background: #e0e7ff;
+            color: var(--primary-dark);
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            border: 1px solid #c7d2fe;
+        }
+
+        @media (max-width: 768px) {
+            .exercise-grid {
+                grid-template-columns: 1fr;
+            }
+            .actions-bar {
+                flex-direction: column;
+                border-radius: 20px;
+                padding: 12px;
+            }
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="badge-unit">UNIT 11</div>
+        <h1>Present Simple (Yes / No Questions)</h1>
+        <p>Thì hiện tại đơn trong câu nghi vấn &bull; Luyện đọc phát âm &amp; Làm bài tập tương tác</p>
+    </header>
+
+    <div class="card">
+        <div class="section-title">
+            <span class="badge">📖</span>
+            <h2>GRAMMAR POINT: Thì hiện tại đơn trong câu nghi vấn</h2>
+        </div>
+        <div class="grammar-box">
+            <p><strong>1. Cấu trúc câu hỏi:</strong></p>
+            <p>• Trong câu nghi vấn ở thì hiện tại đơn, nếu chủ ngữ là <strong>'I, You, We, They'</strong> hoặc <strong>danh từ số nhiều</strong> thì thêm <strong>'Do'</strong> vào đầu câu:</p>
+            <div class="formula-box">Do + Chủ ngữ (I / You / We / They / N-số nhiều) + Động từ nguyên thể...?</div>
+            
+            <p>• Nếu chủ ngữ là <strong>'He, She, It'</strong> hoặc <strong>danh từ số ít</strong> thì thêm <strong>'Does'</strong> vào đầu câu:</p>
+            <div class="formula-box">Does + Chủ ngữ (He / She / It / N-số ít) + Động từ nguyên thể...?</div>
+
+            <p style="margin-top:12px;"><strong>2. Cách trả lời:</strong></p>
+            <p>• Nếu đồng tình: <strong style="color:var(--success);">Yes, Chủ ngữ + do/does.</strong></p>
+            <p>• Nếu không đồng tình: <strong style="color:var(--error);">No, Chủ ngữ + don't/doesn't.</strong></p>
+            
+            <p style="margin-top:10px; color:var(--primary); font-weight:700;">👉 <em>Bấm vào biểu tượng loa <strong>🔊</strong> bên cạnh các mẫu câu trong bảng để nghe phát âm chuẩn nhé!</em></p>
+        </div>
+
+        <div class="grammar-table-wrapper">
+            <table class="grammar-table">
+                <thead>
+                    <tr>
+                        <th style="width:35%;">Question (Câu hỏi)</th>
+                        <th style="width:65%;">Answer (Câu trả lời)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div style="display:flex; align-items:center; justify-content:space-between;">
+                                <span><strong>Do</strong> I / you / we / they <strong>sleep?</strong><br><small style="color:#666;">(Tôi/ Bạn/ Chúng tôi/ Họ có ngủ không?)</small></span>
+                                <button class="btn-speak" onclick="speak('Do you sleep?')">🔊</button>
+                            </div>
+                        </td>
+                        <td>
+                            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+                                <span><strong style="color:var(--success);">Yes,</strong> I / you / we / they <strong>do.</strong> <small style="color:#666;">(Có, có ngủ.)</small></span>
+                                <button class="btn-speak" onclick="speak('Yes, I do.')">🔊</button>
+                            </div>
+                            <div style="display:flex; align-items:center; justify-content:space-between;">
+                                <span><strong style="color:var(--error);">No,</strong> I / you / we / they <strong>don't.</strong> <small style="color:#666;">(Không, không ngủ.)</small></span>
+                                <button class="btn-speak" onclick="speak('No, I don\'t.')">🔊</button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="display:flex; align-items:center; justify-content:space-between;">
+                                <span><strong>Does</strong> he / she / it <strong>sleep?</strong><br><small style="color:#666;">(Anh ấy/ Cô ấy/ Nó có ngủ không?)</small></span>
+                                <button class="btn-speak" onclick="speak('Does he sleep?')">🔊</button>
+                            </div>
+                        </td>
+                        <td>
+                            <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:6px;">
+                                <span><strong style="color:var(--success);">Yes,</strong> he / she / it <strong>does.</strong> <small style="color:#666;">(Có, có ngủ.)</small></span>
+                                <button class="btn-speak" onclick="speak('Yes, he does.')">🔊</button>
+                            </div>
+                            <div style="display:flex; align-items:center; justify-content:space-between;">
+                                <span><strong style="color:var(--error);">No,</strong> he / she / it <strong>doesn't.</strong> <small style="color:#666;">(Không, không ngủ.)</small></span>
+                                <button class="btn-speak" onclick="speak('No, he doesn\'t.')">🔊</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="section-title">
+            <span class="badge">A</span>
+            <h2>Read and write. (Đọc và điền Do / Does và từ trả lời ngắn thích hợp)</h2>
+        </div>
+        <div class="exercise-grid">
+            <!-- 1 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">1.</span>
+                    <input type="text" data-ans="Do" value="Do" style="width:70px;">
+                    <span>you study English?</span>
+                    <button class="btn-speak" onclick="speak('Do you study English? Yes, I do.')">🔊</button>
+                </div>
+                <div class="ex-item-inline" style="padding-left: 28px;">
+                    <span>Yes, I</span>
+                    <input type="text" data-ans="do" value="do" style="width:80px;">
+                    <span>.</span>
+                </div>
+                <div class="feedback-text">Đáp án: Do - do</div>
+            </div>
+
+            <!-- 2 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">2.</span>
+                    <input type="text" data-ans="Does" placeholder="Do/Does" style="width:85px;">
+                    <span>he drink juice?</span>
+                    <button class="btn-speak" onclick="speak('Does he drink juice? No, he doesn\'t.')">🔊</button>
+                </div>
+                <div class="ex-item-inline" style="padding-left: 28px;">
+                    <span>No, he</span>
+                    <input type="text" data-ans="doesn't" placeholder="trả lời..." style="width:90px;">
+                    <span>.</span>
+                </div>
+                <div class="feedback-text">Đáp án: Does - doesn't</div>
+            </div>
+
+            <!-- 3 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">3.</span>
+                    <input type="text" data-ans="Does" placeholder="Do/Does" style="width:85px;">
+                    <span>she eat breakfast?</span>
+                    <button class="btn-speak" onclick="speak('Does she eat breakfast? Yes, she does.')">🔊</button>
+                </div>
+                <div class="ex-item-inline" style="padding-left: 28px;">
+                    <span>Yes, she</span>
+                    <input type="text" data-ans="does" placeholder="trả lời..." style="width:80px;">
+                    <span>.</span>
+                </div>
+                <div class="feedback-text">Đáp án: Does - does</div>
+            </div>
+
+            <!-- 4 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">4.</span>
+                    <input type="text" data-ans="Do" placeholder="Do/Does" style="width:85px;">
+                    <span>they play soccer?</span>
+                    <button class="btn-speak" onclick="speak('Do they play soccer? No, they don\'t.')">🔊</button>
+                </div>
+                <div class="ex-item-inline" style="padding-left: 28px;">
+                    <span>No, they</span>
+                    <input type="text" data-ans="don't" placeholder="trả lời..." style="width:80px;">
+                    <span>.</span>
+                </div>
+                <div class="feedback-text">Đáp án: Do - don't</div>
+            </div>
+
+            <!-- 5 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">5.</span>
+                    <input type="text" data-ans="Does" placeholder="Do/Does" style="width:85px;">
+                    <span>it climb a tree?</span>
+                    <button class="btn-speak" onclick="speak('Does it climb a tree? No, it doesn\'t.')">🔊</button>
+                </div>
+                <div class="ex-item-inline" style="padding-left: 28px;">
+                    <span>No, it</span>
+                    <input type="text" data-ans="doesn't" placeholder="trả lời..." style="width:90px;">
+                    <span>.</span>
+                </div>
+                <div class="feedback-text">Đáp án: Does - doesn't</div>
+            </div>
+
+            <!-- 6 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">6.</span>
+                    <input type="text" data-ans="Do" placeholder="Do/Does" style="width:85px;">
+                    <span>we listen to music?</span>
+                    <button class="btn-speak" onclick="speak('Do we listen to music? Yes, you do.')">🔊</button>
+                </div>
+                <div class="ex-item-inline" style="padding-left: 28px;">
+                    <span>Yes, you</span>
+                    <input type="text" data-ans="do" placeholder="trả lời..." style="width:80px;">
+                    <span>.</span>
+                </div>
+                <div class="feedback-text">Đáp án: Do - do</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="section-title">
+            <span class="badge">B</span>
+            <h2>Read and write. (Đọc từ gợi ý và điền hoàn chỉnh câu hỏi)</h2>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+            <!-- 1 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">1.</span>
+                    <span class="word-tag">teach <button class="btn-speak" onclick="speak('teach')">🔊</button></span>
+                    <input type="text" data-ans="Does" value="Does" style="width:75px;">
+                    <span>he</span>
+                    <input type="text" data-ans="teach" value="teach" style="width:90px;">
+                    <span>English?</span>
+                    <button class="btn-speak" onclick="speak('Does he teach English?')">🔊</button>
+                </div>
+                <div class="feedback-text">Đáp án: Does - teach</div>
+            </div>
+
+            <!-- 2 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">2.</span>
+                    <span class="word-tag">sleep <button class="btn-speak" onclick="speak('sleep')">🔊</button></span>
+                    <input type="text" data-ans="Does" placeholder="Do/Does" style="width:85px;">
+                    <span>it</span>
+                    <input type="text" data-ans="sleep" placeholder="động từ" style="width:90px;">
+                    <span>at night?</span>
+                    <button class="btn-speak" onclick="speak('Does it sleep at night?')">🔊</button>
+                </div>
+                <div class="feedback-text">Đáp án: Does - sleep</div>
+            </div>
+
+            <!-- 3 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">3.</span>
+                    <span class="word-tag">play <button class="btn-speak" onclick="speak('play')">🔊</button></span>
+                    <input type="text" data-ans="Do" placeholder="Do/Does" style="width:85px;">
+                    <span>the children</span>
+                    <input type="text" data-ans="play" placeholder="động từ" style="width:90px;">
+                    <span>soccer?</span>
+                    <button class="btn-speak" onclick="speak('Do the children play soccer?')">🔊</button>
+                </div>
+                <div class="feedback-text">Đáp án: Do - play</div>
+            </div>
+
+            <!-- 4 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">4.</span>
+                    <span class="word-tag">cry <button class="btn-speak" onclick="speak('cry')">🔊</button></span>
+                    <input type="text" data-ans="Do" placeholder="Do/Does" style="width:85px;">
+                    <span>they</span>
+                    <input type="text" data-ans="cry" placeholder="động từ" style="width:90px;">
+                    <span>at night?</span>
+                    <button class="btn-speak" onclick="speak('Do they cry at night?')">🔊</button>
+                </div>
+                <div class="feedback-text">Đáp án: Do - cry</div>
+            </div>
+
+            <!-- 5 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">5.</span>
+                    <span class="word-tag">read <button class="btn-speak" onclick="speak('read')">🔊</button></span>
+                    <input type="text" data-ans="Does" placeholder="Do/Does" style="width:85px;">
+                    <span>she</span>
+                    <input type="text" data-ans="read" placeholder="động từ" style="width:90px;">
+                    <span>comic books?</span>
+                    <button class="btn-speak" onclick="speak('Does she read comic books?')">🔊</button>
+                </div>
+                <div class="feedback-text">Đáp án: Does - read</div>
+            </div>
+
+            <!-- 6 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">6.</span>
+                    <span class="word-tag">go <button class="btn-speak" onclick="speak('go')">🔊</button></span>
+                    <input type="text" data-ans="Do" placeholder="Do/Does" style="width:85px;">
+                    <span>Ben and Ken</span>
+                    <input type="text" data-ans="go" placeholder="động từ" style="width:90px;">
+                    <span>to school?</span>
+                    <button class="btn-speak" onclick="speak('Do Ben and Ken go to school?')">🔊</button>
+                </div>
+                <div class="feedback-text">Đáp án: Do - go</div>
+            </div>
+
+            <!-- 7 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">7.</span>
+                    <span class="word-tag">watch <button class="btn-speak" onclick="speak('watch')">🔊</button></span>
+                    <input type="text" data-ans="Does" placeholder="Do/Does" style="width:85px;">
+                    <span>your sister</span>
+                    <input type="text" data-ans="watch" placeholder="động từ" style="width:90px;">
+                    <span>TV?</span>
+                    <button class="btn-speak" onclick="speak('Does your sister watch TV?')">🔊</button>
+                </div>
+                <div class="feedback-text">Đáp án: Does - watch</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="section-title">
+            <span class="badge">C</span>
+            <h2>Look and write. (Nhìn hình và chọn từ thích hợp để hoàn thành)</h2>
+        </div>
+
+        <div class="word-bank">
+            <span class="word-tag">drive <button class="btn-speak" onclick="speak('drive')">🔊</button></span>
+            <span class="word-tag">cook <button class="btn-speak" onclick="speak('cook')">🔊</button></span>
+            <span class="word-tag">ride <button class="btn-speak" onclick="speak('ride')">🔊</button></span>
+            <span class="word-tag" style="text-decoration:line-through; opacity:0.6;">teach <button class="btn-speak" onclick="speak('teach')">🔊</button></span>
+        </div>
+
+        <div class="exercise-grid">
+            <!-- 1 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">1.</span>
+                    <span class="img-tag">👩‍🏫</span>
+                    <input type="text" data-ans="Do" value="Do" style="width:60px;">
+                    <span>you</span>
+                    <input type="text" data-ans="teach" value="teach" style="width:80px;">
+                    <span>math?</span>
+                    <button class="btn-speak" onclick="speak('Do you teach math? Yes, I do.')">🔊</button>
+                </div>
+                <div class="ex-item-inline" style="padding-left:28px;">
+                    <span>Yes, I</span>
+                    <input type="text" data-ans="do" value="do" style="width:70px;">
+                    <span>.</span>
+                </div>
+                <div class="feedback-text">Đáp án: Do - teach | do</div>
+            </div>
+
+            <!-- 2 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">2.</span>
+                    <span class="img-tag">🧹</span>
+                    <input type="text" data-ans="Does" placeholder="Do/Does" style="width:85px;">
+                    <span>she</span>
+                    <input type="text" data-ans="cook" placeholder="động từ..." style="width:85px;">
+                    <span>dinner?</span>
+                    <button class="btn-speak" onclick="speak('Does she cook dinner? No, she doesn\'t.')">🔊</button>
+                </div>
+                <div class="ex-item-inline" style="padding-left:28px;">
+                    <input type="text" data-ans="No" placeholder="Yes/No" style="width:65px;">
+                    <span>,</span>
+                    <input type="text" data-ans="she" placeholder="chủ ngữ" style="width:70px;">
+                    <input type="text" data-ans="doesn't" placeholder="trả lời..." style="width:90px;">
+                    <span>.</span>
+                </div>
+                <div class="feedback-text">Đáp án: Does - cook | No, she doesn't</div>
+            </div>
+
+            <!-- 3 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">3.</span>
+                    <span class="img-tag">💻</span>
+                    <input type="text" data-ans="Do" placeholder="Do/Does" style="width:85px;">
+                    <span>they</span>
+                    <input type="text" data-ans="ride" placeholder="động từ..." style="width:85px;">
+                    <span>bikes?</span>
+                    <button class="btn-speak" onclick="speak('Do they ride bikes? No, they don\'t.')">🔊</button>
+                </div>
+                <div class="ex-item-inline" style="padding-left:28px;">
+                    <input type="text" data-ans="No" placeholder="Yes/No" style="width:65px;">
+                    <span>,</span>
+                    <input type="text" data-ans="they" placeholder="chủ ngữ" style="width:70px;">
+                    <input type="text" data-ans="don't" placeholder="trả lời..." style="width:80px;">
+                    <span>.</span>
+                </div>
+                <div class="feedback-text">Đáp án: Do - ride | No, they don't</div>
+            </div>
+
+            <!-- 4 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">4.</span>
+                    <span class="img-tag">🚗</span>
+                    <input type="text" data-ans="Does" placeholder="Do/Does" style="width:85px;">
+                    <span>he</span>
+                    <input type="text" data-ans="drive" placeholder="động từ..." style="width:85px;">
+                    <span>a car?</span>
+                    <button class="btn-speak" onclick="speak('Does he drive a car? Yes, he does.')">🔊</button>
+                </div>
+                <div class="ex-item-inline" style="padding-left:28px;">
+                    <input type="text" data-ans="Yes" placeholder="Yes/No" style="width:65px;">
+                    <span>,</span>
+                    <input type="text" data-ans="he" placeholder="chủ ngữ" style="width:70px;">
+                    <input type="text" data-ans="does" placeholder="trả lời..." style="width:80px;">
+                    <span>.</span>
+                </div>
+                <div class="feedback-text">Đáp án: Does - drive | Yes, he does</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="section-title">
+            <span class="badge">D</span>
+            <h2>Read and unscramble. (Sắp xếp các từ thành câu hỏi hoàn chỉnh)</h2>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+            <!-- 1 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">1.</span>
+                    <div class="scramble-box">
+                        <span class="scramble-word">play</span>
+                        <span class="scramble-word">you</span>
+                        <span class="scramble-word">the violin?</span>
+                        <span class="scramble-word">Do</span>
+                    </div>
+                    <button class="btn-speak" onclick="speak('Do you play the violin?')">🔊</button>
+                </div>
+                <div class="ex-item-inline">
+                    <span style="color:var(--primary); font-weight:800;">➔</span>
+                    <input type="text" class="full-width" data-ans="Do you play the violin?" value="Do you play the violin?">
+                </div>
+                <div class="feedback-text">Đáp án: Do you play the violin?</div>
+            </div>
+
+            <!-- 2 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">2.</span>
+                    <div class="scramble-box">
+                        <span class="scramble-word">she</span>
+                        <span class="scramble-word">Does</span>
+                        <span class="scramble-word">English?</span>
+                        <span class="scramble-word">study</span>
+                    </div>
+                    <button class="btn-speak" onclick="speak('Does she study English?')">🔊</button>
+                </div>
+                <div class="ex-item-inline">
+                    <span style="color:var(--primary); font-weight:800;">➔</span>
+                    <input type="text" class="full-width" data-ans="Does she study English?" placeholder="Viết lại câu...">
+                </div>
+                <div class="feedback-text">Đáp án: Does she study English?</div>
+            </div>
+
+            <!-- 3 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">3.</span>
+                    <div class="scramble-box">
+                        <span class="scramble-word">TV</span>
+                        <span class="scramble-word">Do</span>
+                        <span class="scramble-word">watch</span>
+                        <span class="scramble-word">they</span>
+                    </div>
+                    <button class="btn-speak" onclick="speak('Do they watch TV?')">🔊</button>
+                </div>
+                <div class="ex-item-inline">
+                    <span style="color:var(--primary); font-weight:800;">➔</span>
+                    <input type="text" class="full-width" data-ans="Do they watch TV?" placeholder="Viết lại câu...">
+                </div>
+                <div class="feedback-text">Đáp án: Do they watch TV?</div>
+            </div>
+
+            <!-- 4 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">4.</span>
+                    <div class="scramble-box">
+                        <span class="scramble-word">Does</span>
+                        <span class="scramble-word">a tree?</span>
+                        <span class="scramble-word">climb</span>
+                        <span class="scramble-word">the monkey</span>
+                    </div>
+                    <button class="btn-speak" onclick="speak('Does the monkey climb a tree?')">🔊</button>
+                </div>
+                <div class="ex-item-inline">
+                    <span style="color:var(--primary); font-weight:800;">➔</span>
+                    <input type="text" class="full-width" data-ans="Does the monkey climb a tree?" placeholder="Viết lại câu...">
+                </div>
+                <div class="feedback-text">Đáp án: Does the monkey climb a tree?</div>
+            </div>
+
+            <!-- 5 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">5.</span>
+                    <div class="scramble-box">
+                        <span class="scramble-word">fly</span>
+                        <span class="scramble-word">he</span>
+                        <span class="scramble-word">a kite?</span>
+                        <span class="scramble-word">Does</span>
+                    </div>
+                    <button class="btn-speak" onclick="speak('Does he fly a kite?')">🔊</button>
+                </div>
+                <div class="ex-item-inline">
+                    <span style="color:var(--primary); font-weight:800;">➔</span>
+                    <input type="text" class="full-width" data-ans="Does he fly a kite?" placeholder="Viết lại câu...">
+                </div>
+                <div class="feedback-text">Đáp án: Does he fly a kite?</div>
+            </div>
+
+            <!-- 6 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">6.</span>
+                    <div class="scramble-box">
+                        <span class="scramble-word">your parents</span>
+                        <span class="scramble-word">Do</span>
+                        <span class="scramble-word">breakfast?</span>
+                        <span class="scramble-word">eat</span>
+                    </div>
+                    <button class="btn-speak" onclick="speak('Do your parents eat breakfast?')">🔊</button>
+                </div>
+                <div class="ex-item-inline">
+                    <span style="color:var(--primary); font-weight:800;">➔</span>
+                    <input type="text" class="full-width" data-ans="Do your parents eat breakfast?" placeholder="Viết lại câu...">
+                </div>
+                <div class="feedback-text">Đáp án: Do your parents eat breakfast?</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="section-title">
+            <span class="badge">E</span>
+            <h2>Read and correct. (Tìm lỗi sai và viết lại câu đúng ngữ pháp)</h2>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+            <!-- 1 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">1.</span>
+                    <span style="font-weight:700; color:var(--error); text-decoration:line-through;">Does they go to the park?</span>
+                    <button class="btn-speak" onclick="speak('Do they go to the park?')">🔊</button>
+                </div>
+                <div class="ex-item-inline">
+                    <span style="color:var(--primary); font-weight:800;">➔</span>
+                    <input type="text" class="full-width" data-ans="Do they go to the park?" value="Do they go to the park?">
+                </div>
+                <div class="feedback-text">Đáp án: Do they go to the park?</div>
+            </div>
+
+            <!-- 2 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">2.</span>
+                    <span style="font-weight:700; color:var(--error); text-decoration:line-through;">Do you reads storybooks?</span>
+                    <button class="btn-speak" onclick="speak('Do you read storybooks?')">🔊</button>
+                </div>
+                <div class="ex-item-inline">
+                    <span style="color:var(--primary); font-weight:800;">➔</span>
+                    <input type="text" class="full-width" data-ans="Do you read storybooks?" placeholder="Sửa câu đúng...">
+                </div>
+                <div class="feedback-text">Đáp án: Do you read storybooks?</div>
+            </div>
+
+            <!-- 3 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">3.</span>
+                    <span style="font-weight:700; color:var(--error); text-decoration:line-through;">Does he drives a car?</span>
+                    <button class="btn-speak" onclick="speak('Does he drive a car?')">🔊</button>
+                </div>
+                <div class="ex-item-inline">
+                    <span style="color:var(--primary); font-weight:800;">➔</span>
+                    <input type="text" class="full-width" data-ans="Does he drive a car?" placeholder="Sửa câu đúng...">
+                </div>
+                <div class="feedback-text">Đáp án: Does he drive a car?</div>
+            </div>
+
+            <!-- 4 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">4.</span>
+                    <span style="font-weight:700; color:var(--error); text-decoration:line-through;">Does Tom washes his feet?</span>
+                    <button class="btn-speak" onclick="speak('Does Tom wash his feet?')">🔊</button>
+                </div>
+                <div class="ex-item-inline">
+                    <span style="color:var(--primary); font-weight:800;">➔</span>
+                    <input type="text" class="full-width" data-ans="Does Tom wash his feet?" placeholder="Sửa câu đúng...">
+                </div>
+                <div class="feedback-text">Đáp án: Does Tom wash his feet?</div>
+            </div>
+
+            <!-- 5 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">5.</span>
+                    <span style="font-weight:700; color:var(--error); text-decoration:line-through;">Do the owl sleep at night?</span>
+                    <button class="btn-speak" onclick="speak('Does the owl sleep at night?')">🔊</button>
+                </div>
+                <div class="ex-item-inline">
+                    <span style="color:var(--primary); font-weight:800;">➔</span>
+                    <input type="text" class="full-width" data-ans="Does the owl sleep at night?" placeholder="Sửa câu đúng...">
+                </div>
+                <div class="feedback-text">Đáp án: Does the owl sleep at night?</div>
+            </div>
+
+            <!-- 6 -->
+            <div class="ex-item">
+                <div class="ex-item-inline">
+                    <span class="num-label">6.</span>
+                    <span style="font-weight:700; color:var(--error); text-decoration:line-through;">Does your parents watch TV?</span>
+                    <button class="btn-speak" onclick="speak('Do your parents watch TV?')">🔊</button>
+                </div>
+                <div class="ex-item-inline">
+                    <span style="color:var(--primary); font-weight:800;">➔</span>
+                    <input type="text" class="full-width" data-ans="Do your parents watch TV?" placeholder="Sửa câu đúng...">
+                </div>
+                <div class="feedback-text">Đáp án: Do your parents watch TV?</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="actions-bar">
+        <button class="btn btn-check" onclick="checkAllAnswers()">✅ Chấm điểm / Nộp bài</button>
+        <button class="btn btn-show" onclick="showAnswers()">💡 Hiện đáp án</button>
+        <button class="btn btn-reset" onclick="resetForm()">🔄 Làm lại</button>
+    </div>
+
+    <div id="scoreBoard" class="score-board"></div>
+</div>
+
+<script>
+    // Speech synthesis function to speak english text
+    function speak(text) {
+        if ('speechSynthesis' in window) {
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.85; // Natural tempo for English learners
+            utterance.pitch = 1.0;
+            window.speechSynthesis.speak(utterance);
+        } else {
+            console.warn("Speech synthesis is not supported in this browser environment.");
+        }
+    }
+
+    // String normalization helper for flexible comparison
+    function normalize(str) {
+        return str.trim().toLowerCase().replace(/\s+/g, ' ').replace(/[.,!?]/g, '');
+    }
+
+    // Grade student answers
+    function checkAllAnswers() {
+        const inputs = document.querySelectorAll('input[type="text"]');
+        let total = inputs.length;
+        let correctCount = 0;
+
+        inputs.forEach(input => {
+            const userVal = normalize(input.value);
+            const expectedVal = normalize(input.getAttribute('data-ans') || '');
+            const feedback = input.closest('.ex-item')?.querySelector('.feedback-text');
+
+            if (userVal === expectedVal && userVal !== '') {
+                input.classList.remove('incorrect');
+                input.classList.add('correct');
+                correctCount++;
+                if (feedback) {
+                    feedback.className = 'feedback-text show-correct';
+                    feedback.textContent = '✓ Chính xác!';
+                }
+            } else {
+                input.classList.remove('correct');
+                input.classList.add('incorrect');
+                if (feedback) {
+                    feedback.className = 'feedback-text show-incorrect';
+                    feedback.textContent = '✗ Đáp án đúng: ' + input.getAttribute('data-ans');
+                }
+            }
+        });
+
+        const scoreBoard = document.getElementById('scoreBoard');
+        scoreBoard.style.display = 'block';
+        const percentage = Math.round((correctCount / total) * 100);
+        scoreBoard.innerHTML = `🎉 Bạn đã hoàn thành đúng <strong>${correctCount} / ${total}</strong> ô (${percentage}%)!`;
+        scoreBoard.scrollIntoView({ behavior: 'smooth' });
+
+        if (percentage >= 80) {
+            speak('Great job! Excellent work on present simple questions!');
+        } else {
+            speak('Good effort! Keep practicing!');
+        }
+    }
+
+    // Show all answers
+    function showAnswers() {
+        const inputs = document.querySelectorAll('input[type="text"]');
+        inputs.forEach(input => {
+            input.value = input.getAttribute('data-ans');
+            input.classList.remove('incorrect');
+            input.classList.add('correct');
+            
+            const feedback = input.closest('.ex-item')?.querySelector('.feedback-text');
+            if (feedback) {
+                feedback.className = 'feedback-text show-correct';
+                feedback.textContent = '✓ Đáp án: ' + input.getAttribute('data-ans');
+            }
+        });
+    }
+
+    // Reset form
+    function resetForm() {
+        const inputs = document.querySelectorAll('input[type="text"]');
+        inputs.forEach(input => {
+            input.classList.remove('correct', 'incorrect');
+            
+            // Clear inputs except sample item 1
+            const numLabel = input.closest('.ex-item')?.querySelector('.num-label')?.textContent;
+            if (numLabel !== '1.') {
+                input.value = '';
+            }
+
+            const feedback = input.closest('.ex-item')?.querySelector('.feedback-text');
+            if (feedback) {
+                feedback.className = 'feedback-text';
+                feedback.style.display = 'none';
+            }
+        });
+
+        const scoreBoard = document.getElementById('scoreBoard');
+        scoreBoard.style.display = 'none';
+    }
+</script>
+
+</body>
+</html>

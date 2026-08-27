@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit 08: Object Pronouns (Plural) - Bài Tập Tiếng Anh Interactive</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: #f0f4f8;
+    }
+    .custom-shadow {
+      box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.08), 0 5px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    .audio-btn {
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .audio-btn:hover {
+      transform: scale(1.1);
+    }
+    .audio-btn:active {
+      transform: scale(0.95);
+    }
+    .unscramble-chip {
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.2s ease;
+    }
+    .unscramble-chip:hover {
+      transform: translateY(-2px);
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-16 text-slate-800">
+
+  <header class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <span class="bg-indigo-600 text-white text-xs font-black px-2.5 py-1 rounded-full uppercase tracking-wider">Unit 08</span>
+        <h1 class="text-xl sm:text-2xl font-black text-indigo-950">Object Pronouns <span class="text-indigo-600 text-lg font-bold">(Plural)</span></h1>
+      </div>
+      <div class="flex items-center gap-4">
+        <div class="hidden sm:flex items-center gap-1.5 bg-amber-50 border border-amber-200 px-3 py-1 rounded-full text-amber-800 font-bold text-sm">
+          <span>🏆 Điểm số:</span>
+          <span id="score-counter" class="text-amber-600 text-base">0</span><span>/ 27</span>
+        </div>
+        <button onclick="checkAllAnswers()" class="bg-emerald-500 hover:bg-emerald-600 active:scale-95 text-white font-bold px-4 py-2 rounded-xl shadow-md transition-all flex items-center gap-1.5 text-sm sm:text-base">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+          Nộp Bài
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto px-4 pt-6 space-y-8">
+
+    <section class="bg-gradient-to-br from-indigo-900 to-indigo-800 text-white rounded-2xl p-5 sm:p-7 custom-shadow relative overflow-hidden">
+      <div class="absolute -right-8 -bottom-8 opacity-10 text-white">
+        <svg class="w-64 h-64" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+      </div>
+      
+      <div class="relative z-10">
+        <div class="flex items-center gap-2 mb-3">
+          <span class="bg-amber-400 text-slate-900 font-black px-2.5 py-0.5 rounded text-xs uppercase tracking-wider">Grammar Point</span>
+          <h2 class="text-xl sm:text-2xl font-black text-amber-300">Đại từ tân ngữ (Số nhiều)</h2>
+        </div>
+
+        <p class="text-indigo-100 leading-relaxed text-sm sm:text-base mb-4">
+          • Đại từ tân ngữ đứng <strong>sau động từ hoặc giới từ</strong> để làm tân ngữ trong câu (nhận tác động của hành động).<br>
+          • Đại từ nhân xưng số nhiều chỉ <strong>2 người hoặc 2 vật trở lên</strong>.
+        </p>
+
+        <!-- Pronoun Table -->
+        <div class="bg-white/10 backdrop-blur-md rounded-xl p-3 sm:p-4 border border-white/20">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-sm">
+            <div class="bg-white/10 p-3 rounded-lg flex items-center justify-between">
+              <div>
+                <span class="text-indigo-200 text-xs block">Subject Pronoun</span>
+                <span class="font-bold text-lg">we</span> <span class="text-indigo-200 text-xs">(chúng tôi)</span>
+              </div>
+              <svg class="w-5 h-5 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              <div class="text-right">
+                <span class="text-amber-300 text-xs block">Object Pronoun</span>
+                <div class="flex items-center gap-1 justify-end">
+                  <span class="font-bold text-lg text-amber-300">us</span>
+                  <button onclick="speak('us')" class="audio-btn p-1 bg-amber-400/20 hover:bg-amber-400/40 rounded-full text-amber-300" title="Nghe 'us'">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white/10 p-3 rounded-lg flex items-center justify-between">
+              <div>
+                <span class="text-indigo-200 text-xs block">Subject Pronoun</span>
+                <span class="font-bold text-lg">you</span> <span class="text-indigo-200 text-xs">(các bạn)</span>
+              </div>
+              <svg class="w-5 h-5 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              <div class="text-right">
+                <span class="text-amber-300 text-xs block">Object Pronoun</span>
+                <div class="flex items-center gap-1 justify-end">
+                  <span class="font-bold text-lg text-amber-300">you</span>
+                  <button onclick="speak('you')" class="audio-btn p-1 bg-amber-400/20 hover:bg-amber-400/40 rounded-full text-amber-300" title="Nghe 'you'">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-white/10 p-3 rounded-lg flex items-center justify-between">
+              <div>
+                <span class="text-indigo-200 text-xs block">Subject Pronoun</span>
+                <span class="font-bold text-lg">they</span> <span class="text-indigo-200 text-xs">(họ / chúng)</span>
+              </div>
+              <svg class="w-5 h-5 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+              <div class="text-right">
+                <span class="text-amber-300 text-xs block">Object Pronoun</span>
+                <div class="flex items-center gap-1 justify-end">
+                  <span class="font-bold text-lg text-amber-300">them</span>
+                  <button onclick="speak('them')" class="audio-btn p-1 bg-amber-400/20 hover:bg-amber-400/40 rounded-full text-amber-300" title="Nghe 'them'">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Examples -->
+          <div class="mt-4 pt-3 border-t border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs sm:text-sm">
+            <div class="flex items-center justify-between bg-black/20 px-3 py-2 rounded-lg">
+              <span><strong>Tom likes us.</strong> (Tom thích chúng tôi.)</span>
+              <button onclick="speak('Tom likes us')" class="audio-btn p-1 bg-white/10 hover:bg-white/20 rounded-full ml-1" title="Nghe câu mẫu">🔊</button>
+            </div>
+            <div class="flex items-center justify-between bg-black/20 px-3 py-2 rounded-lg">
+              <span><strong>Tom likes you.</strong> (Tom thích các bạn.)</span>
+              <button onclick="speak('Tom likes you')" class="audio-btn p-1 bg-white/10 hover:bg-white/20 rounded-full ml-1" title="Nghe câu mẫu">🔊</button>
+            </div>
+            <div class="flex items-center justify-between bg-black/20 px-3 py-2 rounded-lg">
+              <span><strong>Tom likes them.</strong> (Tom thích họ.)</span>
+              <button onclick="speak('Tom likes them')" class="audio-btn p-1 bg-white/10 hover:bg-white/20 rounded-full ml-1" title="Nghe câu mẫu">🔊</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white rounded-2xl p-5 sm:p-7 custom-shadow border border-slate-100">
+      <div class="flex items-center justify-between mb-5 border-b pb-3">
+        <div class="flex items-center gap-3">
+          <span class="bg-indigo-100 text-indigo-700 font-black w-8 h-8 rounded-xl flex items-center justify-center text-lg">A</span>
+          <h3 class="text-lg sm:text-xl font-black text-slate-800">Read, check, and write.</h3>
+        </div>
+        <span class="text-xs text-slate-500 font-semibold">(Chọn từ đúng và điền vào chỗ trống)</span>
+      </div>
+
+      <div class="space-y-4" id="section-a-list">
+        <!-- Q1 -->
+        <div class="p-4 rounded-xl bg-slate-50 hover:bg-indigo-50/40 transition-colors border border-slate-200/80" data-q="a1">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2 text-base sm:text-lg font-semibold">
+              <span class="text-indigo-600 font-bold">1</span>
+              <span>The dog likes</span>
+              <input type="text" readonly id="a1-input" class="w-24 text-center border-b-2 border-indigo-500 bg-white font-bold text-indigo-700 px-2 py-0.5 rounded shadow-sm focus:outline-none" placeholder="...">
+              <span>.</span>
+              <button onclick="speak('The dog likes ' + (document.getElementById('a1-input').value || 'them'))" class="audio-btn p-1.5 bg-indigo-100 text-indigo-700 hover:bg-indigo-200 rounded-full ml-1" title="Nghe câu">🔊</button>
+            </div>
+            <div class="flex items-center gap-3">
+              <label class="flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-lg border hover:border-indigo-400 transition-all text-sm font-bold">
+                <input type="radio" name="a1-opt" value="they" onchange="selectAOption('a1', 'they')" class="accent-indigo-600">
+                <span>they</span>
+                <button type="button" onclick="speak('they')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+              </label>
+              <label class="flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-lg border hover:border-indigo-400 transition-all text-sm font-bold">
+                <input type="radio" name="a1-opt" value="them" onchange="selectAOption('a1', 'them')" class="accent-indigo-600">
+                <span>them</span>
+                <button type="button" onclick="speak('them')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+              </label>
+              <label class="flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-lg border hover:border-indigo-400 transition-all text-sm font-bold">
+                <input type="radio" name="a1-opt" value="their" onchange="selectAOption('a1', 'their')" class="accent-indigo-600">
+                <span>their</span>
+                <button type="button" onclick="speak('their')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+              </label>
+            </div>
+          </div>
+          <div id="a1-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="p-4 rounded-xl bg-slate-50 hover:bg-indigo-50/40 transition-colors border border-slate-200/80" data-q="a2">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2 text-base sm:text-lg font-semibold">
+              <span class="text-indigo-600 font-bold">2</span>
+              <span>Our grandparents love</span>
+              <input type="text" readonly id="a2-input" class="w-24 text-center border-b-2 border-indigo-500 bg-white font-bold text-indigo-700 px-2 py-0.5 rounded shadow-sm focus:outline-none" placeholder="...">
+              <span>.</span>
+              <button onclick="speak('Our grandparents love ' + (document.getElementById('a2-input').value || 'us'))" class="audio-btn p-1.5 bg-indigo-100 text-indigo-700 hover:bg-indigo-200 rounded-full ml-1" title="Nghe câu">🔊</button>
+            </div>
+            <div class="flex items-center gap-3">
+              <label class="flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-lg border hover:border-indigo-400 transition-all text-sm font-bold">
+                <input type="radio" name="a2-opt" value="we" onchange="selectAOption('a2', 'we')" class="accent-indigo-600">
+                <span>we</span>
+                <button type="button" onclick="speak('we')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+              </label>
+              <label class="flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-lg border hover:border-indigo-400 transition-all text-sm font-bold">
+                <input type="radio" name="a2-opt" value="our" onchange="selectAOption('a2', 'our')" class="accent-indigo-600">
+                <span>our</span>
+                <button type="button" onclick="speak('our')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+              </label>
+              <label class="flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-lg border hover:border-indigo-400 transition-all text-sm font-bold">
+                <input type="radio" name="a2-opt" value="us" onchange="selectAOption('a2', 'us')" class="accent-indigo-600">
+                <span>us</span>
+                <button type="button" onclick="speak('us')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+              </label>
+            </div>
+          </div>
+          <div id="a2-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="p-4 rounded-xl bg-slate-50 hover:bg-indigo-50/40 transition-colors border border-slate-200/80" data-q="a3">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2 text-base sm:text-lg font-semibold">
+              <span class="text-indigo-600 font-bold">3</span>
+              <span>They know</span>
+              <input type="text" readonly id="a3-input" class="w-24 text-center border-b-2 border-indigo-500 bg-white font-bold text-indigo-700 px-2 py-0.5 rounded shadow-sm focus:outline-none" placeholder="...">
+              <span>.</span>
+              <button onclick="speak('They know ' + (document.getElementById('a3-input').value || 'you'))" class="audio-btn p-1.5 bg-indigo-100 text-indigo-700 hover:bg-indigo-200 rounded-full ml-1" title="Nghe câu">🔊</button>
+            </div>
+            <div class="flex items-center gap-3">
+              <label class="flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-lg border hover:border-indigo-400 transition-all text-sm font-bold">
+                <input type="radio" name="a3-opt" value="you" onchange="selectAOption('a3', 'you')" class="accent-indigo-600">
+                <span>you</span>
+                <button type="button" onclick="speak('you')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+              </label>
+              <label class="flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-lg border hover:border-indigo-400 transition-all text-sm font-bold">
+                <input type="radio" name="a3-opt" value="your" onchange="selectAOption('a3', 'your')" class="accent-indigo-600">
+                <span>your</span>
+                <button type="button" onclick="speak('your')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+              </label>
+              <label class="flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-lg border hover:border-indigo-400 transition-all text-sm font-bold">
+                <input type="radio" name="a3-opt" value="you're" onchange="selectAOption('a3', 'you\'re')" class="accent-indigo-600">
+                <span>you're</span>
+                <button type="button" onclick="speak('you\'re')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+              </label>
+            </div>
+          </div>
+          <div id="a3-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="p-4 rounded-xl bg-slate-50 hover:bg-indigo-50/40 transition-colors border border-slate-200/80" data-q="a4">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2 text-base sm:text-lg font-semibold">
+              <span class="text-indigo-600 font-bold">4</span>
+              <span>Amy doesn't eat</span>
+              <input type="text" readonly id="a4-input" class="w-24 text-center border-b-2 border-indigo-500 bg-white font-bold text-indigo-700 px-2 py-0.5 rounded shadow-sm focus:outline-none" placeholder="...">
+              <span>.</span>
+              <button onclick="speak('Amy does not eat ' + (document.getElementById('a4-input').value || 'them'))" class="audio-btn p-1.5 bg-indigo-100 text-indigo-700 hover:bg-indigo-200 rounded-full ml-1" title="Nghe câu">🔊</button>
+            </div>
+            <div class="flex items-center gap-3">
+              <label class="flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-lg border hover:border-indigo-400 transition-all text-sm font-bold">
+                <input type="radio" name="a4-opt" value="they" onchange="selectAOption('a4', 'they')" class="accent-indigo-600">
+                <span>they</span>
+                <button type="button" onclick="speak('they')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+              </label>
+              <label class="flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-lg border hover:border-indigo-400 transition-all text-sm font-bold">
+                <input type="radio" name="a4-opt" value="them" onchange="selectAOption('a4', 'them')" class="accent-indigo-600">
+                <span>them</span>
+                <button type="button" onclick="speak('them')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+              </label>
+              <label class="flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-lg border hover:border-indigo-400 transition-all text-sm font-bold">
+                <input type="radio" name="a4-opt" value="their" onchange="selectAOption('a4', 'their')" class="accent-indigo-600">
+                <span>their</span>
+                <button type="button" onclick="speak('their')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+              </label>
+            </div>
+          </div>
+          <div id="a4-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="p-4 rounded-xl bg-slate-50 hover:bg-indigo-50/40 transition-colors border border-slate-200/80" data-q="a5">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2 text-base sm:text-lg font-semibold">
+              <span class="text-indigo-600 font-bold">5</span>
+              <span>Mr. Brown teaches</span>
+              <input type="text" readonly id="a5-input" class="w-24 text-center border-b-2 border-indigo-500 bg-white font-bold text-indigo-700 px-2 py-0.5 rounded shadow-sm focus:outline-none" placeholder="...">
+              <span>.</span>
+              <button onclick="speak('Mr. Brown teaches ' + (document.getElementById('a5-input').value || 'us'))" class="audio-btn p-1.5 bg-indigo-100 text-indigo-700 hover:bg-indigo-200 rounded-full ml-1" title="Nghe câu">🔊</button>
+            </div>
+            <div class="flex items-center gap-3">
+              <label class="flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-lg border hover:border-indigo-400 transition-all text-sm font-bold">
+                <input type="radio" name="a5-opt" value="us" onchange="selectAOption('a5', 'us')" class="accent-indigo-600">
+                <span>us</span>
+                <button type="button" onclick="speak('us')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+              </label>
+              <label class="flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-lg border hover:border-indigo-400 transition-all text-sm font-bold">
+                <input type="radio" name="a5-opt" value="we" onchange="selectAOption('a5', 'we')" class="accent-indigo-600">
+                <span>we</span>
+                <button type="button" onclick="speak('we')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+              </label>
+              <label class="flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-lg border hover:border-indigo-400 transition-all text-sm font-bold">
+                <input type="radio" name="a5-opt" value="our" onchange="selectAOption('a5', 'our')" class="accent-indigo-600">
+                <span>our</span>
+                <button type="button" onclick="speak('our')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+              </label>
+            </div>
+          </div>
+          <div id="a5-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="p-4 rounded-xl bg-slate-50 hover:bg-indigo-50/40 transition-colors border border-slate-200/80" data-q="a6">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2 text-base sm:text-lg font-semibold">
+              <span class="text-indigo-600 font-bold">6</span>
+              <span>Your friends help</span>
+              <input type="text" readonly id="a6-input" class="w-24 text-center border-b-2 border-indigo-500 bg-white font-bold text-indigo-700 px-2 py-0.5 rounded shadow-sm focus:outline-none" placeholder="...">
+              <span>.</span>
+              <button onclick="speak('Your friends help ' + (document.getElementById('a6-input').value || 'you'))" class="audio-btn p-1.5 bg-indigo-100 text-indigo-700 hover:bg-indigo-200 rounded-full ml-1" title="Nghe câu">🔊</button>
+            </div>
+            <div class="flex items-center gap-3">
+              <label class="flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-lg border hover:border-indigo-400 transition-all text-sm font-bold">
+                <input type="radio" name="a6-opt" value="your" onchange="selectAOption('a6', 'your')" class="accent-indigo-600">
+                <span>your</span>
+                <button type="button" onclick="speak('your')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+              </label>
+              <label class="flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-lg border hover:border-indigo-400 transition-all text-sm font-bold">
+                <input type="radio" name="a6-opt" value="you" onchange="selectAOption('a6', 'you')" class="accent-indigo-600">
+                <span>you</span>
+                <button type="button" onclick="speak('you')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+              </label>
+              <label class="flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-lg border hover:border-indigo-400 transition-all text-sm font-bold">
+                <input type="radio" name="a6-opt" value="you're" onchange="selectAOption('a6', 'you\'re')" class="accent-indigo-600">
+                <span>you're</span>
+                <button type="button" onclick="speak('you\'re')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+              </label>
+            </div>
+          </div>
+          <div id="a6-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+
+        <!-- Q7 -->
+        <div class="p-4 rounded-xl bg-slate-50 hover:bg-indigo-50/40 transition-colors border border-slate-200/80" data-q="a7">
+          <div class="flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-2 text-base sm:text-lg font-semibold">
+              <span class="text-indigo-600 font-bold">7</span>
+              <span>We don't like</span>
+              <input type="text" readonly id="a7-input" class="w-24 text-center border-b-2 border-indigo-500 bg-white font-bold text-indigo-700 px-2 py-0.5 rounded shadow-sm focus:outline-none" placeholder="...">
+              <span>.</span>
+              <button onclick="speak('We do not like ' + (document.getElementById('a7-input').value || 'them'))" class="audio-btn p-1.5 bg-indigo-100 text-indigo-700 hover:bg-indigo-200 rounded-full ml-1" title="Nghe câu">🔊</button>
+            </div>
+            <div class="flex items-center gap-3">
+              <label class="flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-lg border hover:border-indigo-400 transition-all text-sm font-bold">
+                <input type="radio" name="a7-opt" value="they" onchange="selectAOption('a7', 'they')" class="accent-indigo-600">
+                <span>they</span>
+                <button type="button" onclick="speak('they')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+              </label>
+              <label class="flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-lg border hover:border-indigo-400 transition-all text-sm font-bold">
+                <input type="radio" name="a7-opt" value="their" onchange="selectAOption('a7', 'their')" class="accent-indigo-600">
+                <span>their</span>
+                <button type="button" onclick="speak('their')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+              </label>
+              <label class="flex items-center gap-1.5 cursor-pointer bg-white px-3 py-1.5 rounded-lg border hover:border-indigo-400 transition-all text-sm font-bold">
+                <input type="radio" name="a7-opt" value="them" onchange="selectAOption('a7', 'them')" class="accent-indigo-600">
+                <span>them</span>
+                <button type="button" onclick="speak('them')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+              </label>
+            </div>
+          </div>
+          <div id="a7-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white rounded-2xl p-5 sm:p-7 custom-shadow border border-slate-100">
+      <div class="flex items-center justify-between mb-5 border-b pb-3">
+        <div class="flex items-center gap-3">
+          <span class="bg-indigo-100 text-indigo-700 font-black w-8 h-8 rounded-xl flex items-center justify-center text-lg">B</span>
+          <h3 class="text-lg sm:text-xl font-black text-slate-800">Read, write, and match.</h3>
+        </div>
+        <span class="text-xs text-slate-500 font-semibold">(Thay thế từ gạch chân bằng Đại từ Tân ngữ & Ghép bức hình đúng)</span>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Question Column -->
+        <div class="lg:col-span-7 space-y-4">
+
+          <!-- B1 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <div class="text-sm font-bold text-slate-600 mb-1 flex items-center gap-2">
+              <span>1. The puppies like <u class="text-indigo-600">you and Tom</u>.</span>
+              <button onclick="speak('The puppies like you and Tom')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+            </div>
+            <div class="flex items-center gap-2 text-base font-bold text-slate-800">
+              <span class="text-indigo-600">➔</span>
+              <span>They like</span>
+              <input type="text" id="b1-text" class="w-24 text-center border-b-2 border-indigo-500 bg-white font-bold text-indigo-700 px-2 py-0.5 rounded shadow-sm focus:outline-none" placeholder="...">
+              <span>.</span>
+              <button onclick="speak('They like ' + (document.getElementById('b1-text').value || 'you'))" class="audio-btn p-1 bg-indigo-100 text-indigo-700 rounded-full text-xs">🔊</button>
+            </div>
+            <div class="mt-2 flex items-center gap-2">
+              <label class="text-xs font-bold text-slate-500">Nối với hình:</label>
+              <select id="b1-match" class="text-xs font-bold bg-white border border-slate-300 rounded-lg px-2 py-1 focus:ring-2 focus:ring-indigo-500">
+                <option value="">-- Chọn hình --</option>
+                <option value="A">Hình A (Cô bé ăn Sandwich)</option>
+                <option value="B">Hình B (Bố mẹ bế con)</option>
+                <option value="C">Hình C (Mẹ ôm các con)</option>
+                <option value="D">Hình D (Chó & các bạn nhỏ)</option>
+                <option value="E">Hình E (Kỳ nhông & cô gái)</option>
+              </select>
+            </div>
+            <div id="b1-feedback" class="mt-2 text-xs font-bold hidden"></div>
+          </div>
+
+          <!-- B2 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <div class="text-sm font-bold text-slate-600 mb-1 flex items-center gap-2">
+              <span>2. The girl doesn't like <u class="text-indigo-600">the iguanas</u>.</span>
+              <button onclick="speak('The girl does not like the iguanas')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+            </div>
+            <div class="flex items-center gap-2 text-base font-bold text-slate-800">
+              <span class="text-indigo-600">➔</span>
+              <span>She doesn't like</span>
+              <input type="text" id="b2-text" class="w-24 text-center border-b-2 border-indigo-500 bg-white font-bold text-indigo-700 px-2 py-0.5 rounded shadow-sm focus:outline-none" placeholder="...">
+              <span>.</span>
+              <button onclick="speak('She does not like ' + (document.getElementById('b2-text').value || 'them'))" class="audio-btn p-1 bg-indigo-100 text-indigo-700 rounded-full text-xs">🔊</button>
+            </div>
+            <div class="mt-2 flex items-center gap-2">
+              <label class="text-xs font-bold text-slate-500">Nối với hình:</label>
+              <select id="b2-match" class="text-xs font-bold bg-white border border-slate-300 rounded-lg px-2 py-1 focus:ring-2 focus:ring-indigo-500">
+                <option value="">-- Chọn hình --</option>
+                <option value="A">Hình A (Cô bé ăn Sandwich)</option>
+                <option value="B">Hình B (Bố mẹ bế con)</option>
+                <option value="C">Hình C (Mẹ ôm các con)</option>
+                <option value="D">Hình D (Chó & các bạn nhỏ)</option>
+                <option value="E">Hình E (Kỳ nhông & cô gái)</option>
+              </select>
+            </div>
+            <div id="b2-feedback" class="mt-2 text-xs font-bold hidden"></div>
+          </div>
+
+          <!-- B3 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <div class="text-sm font-bold text-slate-600 mb-1 flex items-center gap-2">
+              <span>3. Your father loves <u class="text-indigo-600">you and your brother</u>.</span>
+              <button onclick="speak('Your father loves you and your brother')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+            </div>
+            <div class="flex items-center gap-2 text-base font-bold text-slate-800">
+              <span class="text-indigo-600">➔</span>
+              <span>He loves</span>
+              <input type="text" id="b3-text" class="w-24 text-center border-b-2 border-indigo-500 bg-white font-bold text-indigo-700 px-2 py-0.5 rounded shadow-sm focus:outline-none" placeholder="...">
+              <span>.</span>
+              <button onclick="speak('He loves ' + (document.getElementById('b3-text').value || 'you'))" class="audio-btn p-1 bg-indigo-100 text-indigo-700 rounded-full text-xs">🔊</button>
+            </div>
+            <div class="mt-2 flex items-center gap-2">
+              <label class="text-xs font-bold text-slate-500">Nối với hình:</label>
+              <select id="b3-match" class="text-xs font-bold bg-white border border-slate-300 rounded-lg px-2 py-1 focus:ring-2 focus:ring-indigo-500">
+                <option value="">-- Chọn hình --</option>
+                <option value="A">Hình A (Cô bé ăn Sandwich)</option>
+                <option value="B">Hình B (Bố mẹ bế con)</option>
+                <option value="C">Hình C (Mẹ ôm các con)</option>
+                <option value="D">Hình D (Chó & các bạn nhỏ)</option>
+                <option value="E">Hình E (Kỳ nhông & cô gái)</option>
+              </select>
+            </div>
+            <div id="b3-feedback" class="mt-2 text-xs font-bold hidden"></div>
+          </div>
+
+          <!-- B4 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <div class="text-sm font-bold text-slate-600 mb-1 flex items-center gap-2">
+              <span>4. Our mother loves <u class="text-indigo-600">my sister and me</u>.</span>
+              <button onclick="speak('Our mother loves my sister and me')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+            </div>
+            <div class="flex items-center gap-2 text-base font-bold text-slate-800">
+              <span class="text-indigo-600">➔</span>
+              <span>She loves</span>
+              <input type="text" id="b4-text" class="w-24 text-center border-b-2 border-indigo-500 bg-white font-bold text-indigo-700 px-2 py-0.5 rounded shadow-sm focus:outline-none" placeholder="...">
+              <span>.</span>
+              <button onclick="speak('She loves ' + (document.getElementById('b4-text').value || 'us'))" class="audio-btn p-1 bg-indigo-100 text-indigo-700 rounded-full text-xs">🔊</button>
+            </div>
+            <div class="mt-2 flex items-center gap-2">
+              <label class="text-xs font-bold text-slate-500">Nối với hình:</label>
+              <select id="b4-match" class="text-xs font-bold bg-white border border-slate-300 rounded-lg px-2 py-1 focus:ring-2 focus:ring-indigo-500">
+                <option value="">-- Chọn hình --</option>
+                <option value="A">Hình A (Cô bé ăn Sandwich)</option>
+                <option value="B">Hình B (Bố mẹ bế con)</option>
+                <option value="C">Hình C (Mẹ ôm các con)</option>
+                <option value="D">Hình D (Chó & các bạn nhỏ)</option>
+                <option value="E">Hình E (Kỳ nhông & cô gái)</option>
+              </select>
+            </div>
+            <div id="b4-feedback" class="mt-2 text-xs font-bold hidden"></div>
+          </div>
+
+          <!-- B5 -->
+          <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+            <div class="text-sm font-bold text-slate-600 mb-1 flex items-center gap-2">
+              <span>5. Amy eats <u class="text-indigo-600">the sandwiches</u>.</span>
+              <button onclick="speak('Amy eats the sandwiches')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+            </div>
+            <div class="flex items-center gap-2 text-base font-bold text-slate-800">
+              <span class="text-indigo-600">➔</span>
+              <span>She eats</span>
+              <input type="text" id="b5-text" class="w-24 text-center border-b-2 border-indigo-500 bg-white font-bold text-indigo-700 px-2 py-0.5 rounded shadow-sm focus:outline-none" placeholder="...">
+              <span>.</span>
+              <button onclick="speak('She eats ' + (document.getElementById('b5-text').value || 'them'))" class="audio-btn p-1 bg-indigo-100 text-indigo-700 rounded-full text-xs">🔊</button>
+            </div>
+            <div class="mt-2 flex items-center gap-2">
+              <label class="text-xs font-bold text-slate-500">Nối với hình:</label>
+              <select id="b5-match" class="text-xs font-bold bg-white border border-slate-300 rounded-lg px-2 py-1 focus:ring-2 focus:ring-indigo-500">
+                <option value="">-- Chọn hình --</option>
+                <option value="A">Hình A (Cô bé ăn Sandwich)</option>
+                <option value="B">Hình B (Bố mẹ bế con)</option>
+                <option value="C">Hình C (Mẹ ôm các con)</option>
+                <option value="D">Hình D (Chó & các bạn nhỏ)</option>
+                <option value="E">Hình E (Kỳ nhông & cô gái)</option>
+              </select>
+            </div>
+            <div id="b5-feedback" class="mt-2 text-xs font-bold hidden"></div>
+          </div>
+
+        </div>
+
+        <!-- Visual Images Cards Column -->
+        <div class="lg:col-span-5 bg-indigo-50/60 p-4 rounded-xl border border-indigo-100 space-y-3">
+          <h4 class="text-xs font-extrabold uppercase text-indigo-700 tracking-wider text-center mb-1">Các bức hình tương ứng</h4>
+          
+          <div class="bg-white p-2.5 rounded-lg border border-indigo-100 shadow-sm flex items-center gap-3">
+            <span class="w-7 h-7 rounded-full bg-indigo-600 text-white font-black flex items-center justify-center text-xs shrink-0">A</span>
+            <div class="text-2xl shrink-0">🥪👧</div>
+            <div class="text-xs font-bold text-slate-700">Hình A: Cô bé Amy đang ăn bánh Sandwich (sandwiches)</div>
+          </div>
+
+          <div class="bg-white p-2.5 rounded-lg border border-indigo-100 shadow-sm flex items-center gap-3">
+            <span class="w-7 h-7 rounded-full bg-indigo-600 text-white font-black flex items-center justify-center text-xs shrink-0">B</span>
+            <div class="text-2xl shrink-0">👨‍👩‍👦</div>
+            <div class="text-xs font-bold text-slate-700">Hình B: Bố yêu thương hai con (you and your brother)</div>
+          </div>
+
+          <div class="bg-white p-2.5 rounded-lg border border-indigo-100 shadow-sm flex items-center gap-3">
+            <span class="w-7 h-7 rounded-full bg-indigo-600 text-white font-black flex items-center justify-center text-xs shrink-0">C</span>
+            <div class="text-2xl shrink-0">👩‍👧‍👦</div>
+            <div class="text-xs font-bold text-slate-700">Hình C: Mẹ ôm 2 chị em (my sister and me)</div>
+          </div>
+
+          <div class="bg-white p-2.5 rounded-lg border border-indigo-100 shadow-sm flex items-center gap-3">
+            <span class="w-7 h-7 rounded-full bg-indigo-600 text-white font-black flex items-center justify-center text-xs shrink-0">D</span>
+            <div class="text-2xl shrink-0">🐶👦👧</div>
+            <div class="text-xs font-bold text-slate-700">Hình D: Các chú cún thích bạn và Tom (you and Tom)</div>
+          </div>
+
+          <div class="bg-white p-2.5 rounded-lg border border-indigo-100 shadow-sm flex items-center gap-3">
+            <span class="w-7 h-7 rounded-full bg-indigo-600 text-white font-black flex items-center justify-center text-xs shrink-0">E</span>
+            <div class="text-2xl shrink-0">🦎👧</div>
+            <div class="text-xs font-bold text-slate-700">Hình E: Cô gái không thích những con kỳ nhông (iguanas)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white rounded-2xl p-5 sm:p-7 custom-shadow border border-slate-100">
+      <div class="flex items-center justify-between mb-5 border-b pb-3">
+        <div class="flex items-center gap-3">
+          <span class="bg-indigo-100 text-indigo-700 font-black w-8 h-8 rounded-xl flex items-center justify-center text-lg">C</span>
+          <h3 class="text-lg sm:text-xl font-black text-slate-800">Read and change.</h3>
+        </div>
+        <span class="text-xs text-slate-500 font-semibold">(Viết lại câu thay từ gạch chân bằng đại từ thích hợp)</span>
+      </div>
+
+      <div class="space-y-4">
+        <!-- C1 -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <div class="font-bold text-slate-700 text-sm sm:text-base">
+              1. They have <u class="text-indigo-600">flowers</u>.
+              <button onclick="speak('They have flowers')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600 ml-1">🔊</button>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 text-base font-bold text-slate-800">
+            <span class="text-indigo-600">➔</span>
+            <span>They have</span>
+            <input type="text" id="c1-input" class="w-32 text-center border-b-2 border-indigo-500 bg-white font-bold text-indigo-700 px-2 py-0.5 rounded shadow-sm focus:outline-none" placeholder="...">
+            <span>.</span>
+            <button onclick="speak('They have ' + (document.getElementById('c1-input').value || 'them'))" class="audio-btn p-1 bg-indigo-100 text-indigo-700 rounded-full text-xs">🔊</button>
+          </div>
+          <div id="c1-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+
+        <!-- C2 -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <div class="font-bold text-slate-700 text-sm sm:text-base">
+              2. Come and see <u class="text-indigo-600">Dad, Mom, and me</u>.
+              <button onclick="speak('Come and see Dad, Mom, and me')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600 ml-1">🔊</button>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 text-base font-bold text-slate-800">
+            <span class="text-indigo-600">➔</span>
+            <span>Come and see</span>
+            <input type="text" id="c2-input" class="w-32 text-center border-b-2 border-indigo-500 bg-white font-bold text-indigo-700 px-2 py-0.5 rounded shadow-sm focus:outline-none" placeholder="...">
+            <span>.</span>
+            <button onclick="speak('Come and see ' + (document.getElementById('c2-input').value || 'us'))" class="audio-btn p-1 bg-indigo-100 text-indigo-700 rounded-full text-xs">🔊</button>
+          </div>
+          <div id="c2-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+
+        <!-- C3 -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <div class="font-bold text-slate-700 text-sm sm:text-base">
+              3. We like <u class="text-indigo-600">you and your sister</u>.
+              <button onclick="speak('We like you and your sister')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600 ml-1">🔊</button>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 text-base font-bold text-slate-800">
+            <span class="text-indigo-600">➔</span>
+            <span>We like</span>
+            <input type="text" id="c3-input" class="w-32 text-center border-b-2 border-indigo-500 bg-white font-bold text-indigo-700 px-2 py-0.5 rounded shadow-sm focus:outline-none" placeholder="...">
+            <span>.</span>
+            <button onclick="speak('We like ' + (document.getElementById('c3-input').value || 'you'))" class="audio-btn p-1 bg-indigo-100 text-indigo-700 rounded-full text-xs">🔊</button>
+          </div>
+          <div id="c3-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+
+        <!-- C4 -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <div class="font-bold text-slate-700 text-sm sm:text-base">
+              4. Thank you for <u class="text-indigo-600">the shoes</u>.
+              <button onclick="speak('Thank you for the shoes')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600 ml-1">🔊</button>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 text-base font-bold text-slate-800">
+            <span class="text-indigo-600">➔</span>
+            <span>Thank you for</span>
+            <input type="text" id="c4-input" class="w-32 text-center border-b-2 border-indigo-500 bg-white font-bold text-indigo-700 px-2 py-0.5 rounded shadow-sm focus:outline-none" placeholder="...">
+            <span>.</span>
+            <button onclick="speak('Thank you for ' + (document.getElementById('c4-input').value || 'them'))" class="audio-btn p-1 bg-indigo-100 text-indigo-700 rounded-full text-xs">🔊</button>
+          </div>
+          <div id="c4-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+
+        <!-- C5 -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <div class="font-bold text-slate-700 text-sm sm:text-base">
+              5. He teaches <u class="text-indigo-600">my friend and me</u>.
+              <button onclick="speak('He teaches my friend and me')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600 ml-1">🔊</button>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 text-base font-bold text-slate-800">
+            <span class="text-indigo-600">➔</span>
+            <span>He teaches</span>
+            <input type="text" id="c5-input" class="w-32 text-center border-b-2 border-indigo-500 bg-white font-bold text-indigo-700 px-2 py-0.5 rounded shadow-sm focus:outline-none" placeholder="...">
+            <span>.</span>
+            <button onclick="speak('He teaches ' + (document.getElementById('c5-input').value || 'us'))" class="audio-btn p-1 bg-indigo-100 text-indigo-700 rounded-full text-xs">🔊</button>
+          </div>
+          <div id="c5-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+
+        <!-- C6 -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <div class="font-bold text-slate-700 text-sm sm:text-base">
+              6. The cats don't like <u class="text-indigo-600">you and Lisa</u>.
+              <button onclick="speak('The cats do not like you and Lisa')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600 ml-1">🔊</button>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 text-base font-bold text-slate-800">
+            <span class="text-indigo-600">➔</span>
+            <span>The cats don't like</span>
+            <input type="text" id="c6-input" class="w-32 text-center border-b-2 border-indigo-500 bg-white font-bold text-indigo-700 px-2 py-0.5 rounded shadow-sm focus:outline-none" placeholder="...">
+            <span>.</span>
+            <button onclick="speak('The cats do not like ' + (document.getElementById('c6-input').value || 'you'))" class="audio-btn p-1 bg-indigo-100 text-indigo-700 rounded-full text-xs">🔊</button>
+          </div>
+          <div id="c6-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white rounded-2xl p-5 sm:p-7 custom-shadow border border-slate-100">
+      <div class="flex items-center justify-between mb-5 border-b pb-3">
+        <div class="flex items-center gap-3">
+          <span class="bg-indigo-100 text-indigo-700 font-black w-8 h-8 rounded-xl flex items-center justify-center text-lg">D</span>
+          <h3 class="text-lg sm:text-xl font-black text-slate-800">Read and unscramble.</h3>
+        </div>
+        <span class="text-xs text-slate-500 font-semibold">(Sắp xếp các khối từ thành câu hoàn chỉnh)</span>
+      </div>
+
+      <div class="space-y-5" id="unscramble-container">
+        <!-- Q1 Example -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200" data-unscramble="d1">
+          <div class="text-xs font-bold text-slate-500 mb-2">1. Nhấp chọn các từ theo thứ tự đúng:</div>
+          <div id="d1-pool" class="flex flex-wrap gap-2 mb-3"></div>
+          <div class="flex items-center gap-2">
+            <span class="text-indigo-600 font-bold">➔</span>
+            <div id="d1-answer" class="min-h-[42px] flex-1 border-2 border-dashed border-indigo-300 rounded-xl bg-white p-2 flex flex-wrap gap-2 items-center"></div>
+            <button onclick="resetUnscramble('d1')" class="text-xs bg-slate-200 hover:bg-slate-300 font-bold px-2.5 py-2 rounded-lg">Đặt lại</button>
+            <button onclick="speakUnscramble('d1')" class="audio-btn p-2 bg-indigo-100 text-indigo-700 rounded-lg text-sm">🔊</button>
+          </div>
+          <div id="d1-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200" data-unscramble="d2">
+          <div class="text-xs font-bold text-slate-500 mb-2">2. Nhấp chọn các từ theo thứ tự đúng:</div>
+          <div id="d2-pool" class="flex flex-wrap gap-2 mb-3"></div>
+          <div class="flex items-center gap-2">
+            <span class="text-indigo-600 font-bold">➔</span>
+            <div id="d2-answer" class="min-h-[42px] flex-1 border-2 border-dashed border-indigo-300 rounded-xl bg-white p-2 flex flex-wrap gap-2 items-center"></div>
+            <button onclick="resetUnscramble('d2')" class="text-xs bg-slate-200 hover:bg-slate-300 font-bold px-2.5 py-2 rounded-lg">Đặt lại</button>
+            <button onclick="speakUnscramble('d2')" class="audio-btn p-2 bg-indigo-100 text-indigo-700 rounded-lg text-sm">🔊</button>
+          </div>
+          <div id="d2-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200" data-unscramble="d3">
+          <div class="text-xs font-bold text-slate-500 mb-2">3. Nhấp chọn các từ theo thứ tự đúng:</div>
+          <div id="d3-pool" class="flex flex-wrap gap-2 mb-3"></div>
+          <div class="flex items-center gap-2">
+            <span class="text-indigo-600 font-bold">➔</span>
+            <div id="d3-answer" class="min-h-[42px] flex-1 border-2 border-dashed border-indigo-300 rounded-xl bg-white p-2 flex flex-wrap gap-2 items-center"></div>
+            <button onclick="resetUnscramble('d3')" class="text-xs bg-slate-200 hover:bg-slate-300 font-bold px-2.5 py-2 rounded-lg">Đặt lại</button>
+            <button onclick="speakUnscramble('d3')" class="audio-btn p-2 bg-indigo-100 text-indigo-700 rounded-lg text-sm">🔊</button>
+          </div>
+          <div id="d3-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200" data-unscramble="d4">
+          <div class="text-xs font-bold text-slate-500 mb-2">4. Nhấp chọn các từ theo thứ tự đúng:</div>
+          <div id="d4-pool" class="flex flex-wrap gap-2 mb-3"></div>
+          <div class="flex items-center gap-2">
+            <span class="text-indigo-600 font-bold">➔</span>
+            <div id="d4-answer" class="min-h-[42px] flex-1 border-2 border-dashed border-indigo-300 rounded-xl bg-white p-2 flex flex-wrap gap-2 items-center"></div>
+            <button onclick="resetUnscramble('d4')" class="text-xs bg-slate-200 hover:bg-slate-300 font-bold px-2.5 py-2 rounded-lg">Đặt lại</button>
+            <button onclick="speakUnscramble('d4')" class="audio-btn p-2 bg-indigo-100 text-indigo-700 rounded-lg text-sm">🔊</button>
+          </div>
+          <div id="d4-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200" data-unscramble="d5">
+          <div class="text-xs font-bold text-slate-500 mb-2">5. Nhấp chọn các từ theo thứ tự đúng:</div>
+          <div id="d5-pool" class="flex flex-wrap gap-2 mb-3"></div>
+          <div class="flex items-center gap-2">
+            <span class="text-indigo-600 font-bold">➔</span>
+            <div id="d5-answer" class="min-h-[42px] flex-1 border-2 border-dashed border-indigo-300 rounded-xl bg-white p-2 flex flex-wrap gap-2 items-center"></div>
+            <button onclick="resetUnscramble('d5')" class="text-xs bg-slate-200 hover:bg-slate-300 font-bold px-2.5 py-2 rounded-lg">Đặt lại</button>
+            <button onclick="speakUnscramble('d5')" class="audio-btn p-2 bg-indigo-100 text-indigo-700 rounded-lg text-sm">🔊</button>
+          </div>
+          <div id="d5-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200" data-unscramble="d6">
+          <div class="text-xs font-bold text-slate-500 mb-2">6. Nhấp chọn các từ theo thứ tự đúng:</div>
+          <div id="d6-pool" class="flex flex-wrap gap-2 mb-3"></div>
+          <div class="flex items-center gap-2">
+            <span class="text-indigo-600 font-bold">➔</span>
+            <div id="d6-answer" class="min-h-[42px] flex-1 border-2 border-dashed border-indigo-300 rounded-xl bg-white p-2 flex flex-wrap gap-2 items-center"></div>
+            <button onclick="resetUnscramble('d6')" class="text-xs bg-slate-200 hover:bg-slate-300 font-bold px-2.5 py-2 rounded-lg">Đặt lại</button>
+            <button onclick="speakUnscramble('d6')" class="audio-btn p-2 bg-indigo-100 text-indigo-700 rounded-lg text-sm">🔊</button>
+          </div>
+          <div id="d6-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="bg-white rounded-2xl p-5 sm:p-7 custom-shadow border border-slate-100">
+      <div class="flex items-center justify-between mb-5 border-b pb-3">
+        <div class="flex items-center gap-3">
+          <span class="bg-indigo-100 text-indigo-700 font-black w-8 h-8 rounded-xl flex items-center justify-center text-lg">E</span>
+          <h3 class="text-lg sm:text-xl font-black text-slate-800">Read and correct.</h3>
+        </div>
+        <span class="text-xs text-slate-500 font-semibold">(Sửa lỗi sai trong các câu sau)</span>
+      </div>
+
+      <div class="space-y-4">
+        <!-- E1 -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="font-bold text-red-600 text-sm sm:text-base mb-2 flex items-center gap-2">
+            <span>1. ❌ I like your very much.</span>
+            <button onclick="speak('I like your very much')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-emerald-600 font-bold">➔</span>
+            <input type="text" id="e1-input" class="flex-1 border border-slate-300 rounded-xl px-3 py-2 font-bold text-slate-800 focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm" placeholder="Viết lại câu đúng...">
+            <button onclick="speak(document.getElementById('e1-input').value || 'I like you very much.')" class="audio-btn p-2 bg-indigo-100 text-indigo-700 rounded-xl text-sm">🔊</button>
+          </div>
+          <div id="e1-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+
+        <!-- E2 -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="font-bold text-red-600 text-sm sm:text-base mb-2 flex items-center gap-2">
+            <span>2. ❌ Our teacher loves we.</span>
+            <button onclick="speak('Our teacher loves we')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-emerald-600 font-bold">➔</span>
+            <input type="text" id="e2-input" class="flex-1 border border-slate-300 rounded-xl px-3 py-2 font-bold text-slate-800 focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm" placeholder="Viết lại câu đúng...">
+            <button onclick="speak(document.getElementById('e2-input').value || 'Our teacher loves us.')" class="audio-btn p-2 bg-indigo-100 text-indigo-700 rounded-xl text-sm">🔊</button>
+          </div>
+          <div id="e2-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+
+        <!-- E3 -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="font-bold text-red-600 text-sm sm:text-base mb-2 flex items-center gap-2">
+            <span>3. ❌ The twins don't know your.</span>
+            <button onclick="speak('The twins do not know your')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-emerald-600 font-bold">➔</span>
+            <input type="text" id="e3-input" class="flex-1 border border-slate-300 rounded-xl px-3 py-2 font-bold text-slate-800 focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm" placeholder="Viết lại câu đúng...">
+            <button onclick="speak(document.getElementById('e3-input').value || 'The twins do not know you.')" class="audio-btn p-2 bg-indigo-100 text-indigo-700 rounded-xl text-sm">🔊</button>
+          </div>
+          <div id="e3-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+
+        <!-- E4 -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="font-bold text-red-600 text-sm sm:text-base mb-2 flex items-center gap-2">
+            <span>4. ❌ The boy doesn't want their.</span>
+            <button onclick="speak('The boy does not want their')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-emerald-600 font-bold">➔</span>
+            <input type="text" id="e4-input" class="flex-1 border border-slate-300 rounded-xl px-3 py-2 font-bold text-slate-800 focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm" placeholder="Viết lại câu đúng...">
+            <button onclick="speak(document.getElementById('e4-input').value || 'The boy does not want them.')" class="audio-btn p-2 bg-indigo-100 text-indigo-700 rounded-xl text-sm">🔊</button>
+          </div>
+          <div id="e4-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+
+        <!-- E5 -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="font-bold text-red-600 text-sm sm:text-base mb-2 flex items-center gap-2">
+            <span>5. ❌ I don't have they.</span>
+            <button onclick="speak('I do not have they')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-emerald-600 font-bold">➔</span>
+            <input type="text" id="e5-input" class="flex-1 border border-slate-300 rounded-xl px-3 py-2 font-bold text-slate-800 focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm" placeholder="Viết lại câu đúng...">
+            <button onclick="speak(document.getElementById('e5-input').value || 'I do not have them.')" class="audio-btn p-2 bg-indigo-100 text-indigo-700 rounded-xl text-sm">🔊</button>
+          </div>
+          <div id="e5-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+
+        <!-- E6 -->
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="font-bold text-red-600 text-sm sm:text-base mb-2 flex items-center gap-2">
+            <span>6. ❌ They don't like our.</span>
+            <button onclick="speak('They do not like our')" class="audio-btn text-xs text-slate-400 hover:text-indigo-600">🔊</button>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-emerald-600 font-bold">➔</span>
+            <input type="text" id="e6-input" class="flex-1 border border-slate-300 rounded-xl px-3 py-2 font-bold text-slate-800 focus:ring-2 focus:ring-indigo-500 focus:outline-none text-sm" placeholder="Viết lại câu đúng...">
+            <button onclick="speak(document.getElementById('e6-input').value || 'They do not like us.')" class="audio-btn p-2 bg-indigo-100 text-indigo-700 rounded-xl text-sm">🔊</button>
+          </div>
+          <div id="e6-feedback" class="mt-2 text-xs font-bold hidden"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Submit Bottom Bar -->
+    <div class="flex justify-center pt-4 pb-8">
+      <button onclick="checkAllAnswers()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-black text-lg px-8 py-3.5 rounded-2xl shadow-xl transition-all active:scale-95 flex items-center gap-2">
+        <span>🎯 Nộp Bài & Xem Kết Quả</span>
+      </button>
+    </div>
+
+  </main>
+
+  <!-- Modal Result -->
+  <div id="result-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full text-center shadow-2xl relative animate-bounce-in">
+      <div id="modal-icon" class="text-6xl mb-3">🎉</div>
+      <h3 class="text-2xl font-black text-slate-800 mb-1" id="modal-title">Kết Quả Bài Làm</h3>
+      <p class="text-slate-500 text-sm mb-4">Unit 08 - Object Pronouns (Plural)</p>
+
+      <div class="bg-indigo-50 border border-indigo-100 rounded-2xl p-4 mb-6">
+        <div class="text-xs uppercase tracking-wider text-indigo-600 font-bold">Số câu đúng</div>
+        <div class="text-4xl font-black text-indigo-900 my-1"><span id="final-score">0</span> / 27</div>
+        <div class="text-xs font-semibold text-slate-600" id="final-message">Tuyệt vời! Bạn đã hoàn thành xuất sắc!</div>
+      </div>
+
+      <div class="flex gap-3">
+        <button onclick="closeModal()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold py-3 rounded-xl transition-all">Xem Lại Bài</button>
+        <button onclick="resetAll(); closeModal();" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 rounded-xl transition-all">Làm Lại Bài</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // --- Text To Speech Engine ---
+    function speak(text) {
+      if (!text || text.trim() === '') return;
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel(); // Stop current speech
+        const utterance = new SpeechSynthesisUtterance(text.trim());
+        utterance.lang = 'en-US';
+        utterance.rate = 0.85; // slightly slower for language learners
+        utterance.pitch = 1.0;
+        window.speechSynthesis.speak(utterance);
+      } else {
+        console.warn("Speech synthesis not supported in this browser.");
+      }
+    }
+
+    // --- Section A Radio Selection Handler ---
+    function selectAOption(qId, val) {
+      const input = document.getElementById(qId + '-input');
+      if (input) {
+        input.value = val;
+      }
+    }
+
+    // --- Unscramble Game Logic (Section D) ---
+    const unscrambleData = {
+      d1: { words: ['The boy', 'wants', 'them.'], answer: ['The boy', 'wants', 'them.'] },
+      d2: { words: ['know', 'us.', 'Your parents'], answer: ['Your parents', 'know', 'us.'] },
+      d3: { words: ['helps', 'you.', 'Mrs. Brown'], answer: ['Mrs. Brown', 'helps', 'you.'] },
+      d4: { words: ['don\'t', 'They', 'you.', 'like'], answer: ['They', 'don\'t', 'like', 'you.'] },
+      d5: { words: ['like', 'The cat', 'us.', 'doesn\'t'], answer: ['The cat', 'doesn\'t', 'like', 'us.'] },
+      d6: { words: ['The students', 'don\'t', 'them.', 'have'], answer: ['The students', 'don\'t', 'have', 'them.'] }
+    };
+
+    const userUnscramble = {
+      d1: [], d2: [], d3: [], d4: [], d5: [], d6: []
+    };
+
+    function initUnscramble() {
+      Object.keys(unscrambleData).forEach(qId => {
+        renderUnscramble(qId);
+      });
+    }
+
+    function renderUnscramble(qId) {
+      const data = unscrambleData[qId];
+      const poolContainer = document.getElementById(qId + '-pool');
+      const answerContainer = document.getElementById(qId + '-answer');
+      
+      if (!poolContainer || !answerContainer) return;
+
+      poolContainer.innerHTML = '';
+      answerContainer.innerHTML = '';
+
+      // Words left in pool
+      data.words.forEach((word, idx) => {
+        const isUsed = userUnscramble[qId].includes(idx);
+        if (!isUsed) {
+          const chip = document.createElement('button');
+          chip.className = 'unscramble-chip bg-indigo-100 hover:bg-indigo-200 text-indigo-900 border border-indigo-200 px-3 py-1.5 rounded-xl font-bold text-sm shadow-sm';
+          chip.textContent = word;
+          chip.onclick = () => {
+            userUnscramble[qId].push(idx);
+            renderUnscramble(qId);
+          };
+          poolContainer.appendChild(chip);
+        }
+      });
+
+      // Words in answer area
+      userUnscramble[qId].forEach((wordIdx) => {
+        const chip = document.createElement('button');
+        chip.className = 'unscramble-chip bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold px-3 py-1.5 rounded-xl text-sm shadow';
+        chip.textContent = data.words[wordIdx];
+        chip.onclick = () => {
+          userUnscramble[qId] = userUnscramble[qId].filter(i => i !== wordIdx);
+          renderUnscramble(qId);
+        };
+        answerContainer.appendChild(chip);
+      });
+    }
+
+    function resetUnscramble(qId) {
+      userUnscramble[qId] = [];
+      renderUnscramble(qId);
+      const fb = document.getElementById(qId + '-feedback');
+      if (fb) fb.classList.add('hidden');
+    }
+
+    function speakUnscramble(qId) {
+      const words = userUnscramble[qId].map(idx => unscrambleData[qId].words[idx]);
+      if (words.length > 0) {
+        speak(words.join(' '));
+      } else {
+        speak(unscrambleData[qId].answer.join(' '));
+      }
+    }
+
+    // Initialize Unscramble on load
+    window.addEventListener('DOMContentLoaded', () => {
+      initUnscramble();
+    });
+
+    // --- Answer Checker Logic ---
+    function checkAllAnswers() {
+      let score = 0;
+      const totalQuestions = 27;
+
+      // Section A (7 questions)
+      const correctA = { a1: 'them', a2: 'us', a3: 'you', a4: 'them', a5: 'us', a6: 'you', a7: 'them' };
+      Object.keys(correctA).forEach(q => {
+        const input = document.getElementById(q + '-input');
+        const feedback = document.getElementById(q + '-feedback');
+        if (input && feedback) {
+          const userVal = input.value.trim().toLowerCase();
+          if (userVal === correctA[q]) {
+            score++;
+            feedback.className = 'mt-2 text-xs font-bold text-emerald-600 flex items-center gap-1';
+            feedback.innerHTML = '✓ Đúng rồi!';
+          } else {
+            feedback.className = 'mt-2 text-xs font-bold text-red-500 flex items-center gap-1';
+            feedback.innerHTML = `✕ Chưa đúng! Đáp án đúng: <strong>${correctA[q]}</strong>`;
+          }
+          feedback.classList.remove('hidden');
+        }
+      });
+
+      // Section B (5 text + 5 match = 10 points)
+      const correctB = {
+        b1: { text: 'you', match: 'D' },
+        b2: { text: 'them', match: 'E' },
+        b3: { text: 'you', match: 'B' },
+        b4: { text: 'us', match: 'C' },
+        b5: { text: 'them', match: 'A' }
+      };
+
+      Object.keys(correctB).forEach(q => {
+        const textInput = document.getElementById(q + '-text');
+        const matchInput = document.getElementById(q + '-match');
+        const feedback = document.getElementById(q + '-feedback');
+
+        let textCorrect = false;
+        let matchCorrect = false;
+
+        if (textInput && textInput.value.trim().toLowerCase() === correctB[q].text) {
+          score++;
+          textCorrect = true;
+        }
+
+        if (matchInput && matchInput.value === correctB[q].match) {
+          score++;
+          matchCorrect = true;
+        }
+
+        if (feedback) {
+          if (textCorrect && matchCorrect) {
+            feedback.className = 'mt-2 text-xs font-bold text-emerald-600';
+            feedback.innerHTML = '✓ Từ & hình ghép đều chính xác!';
+          } else {
+            feedback.className = 'mt-2 text-xs font-bold text-red-500';
+            feedback.innerHTML = `✕ Từ đúng: <strong>${correctB[q].text}</strong> | Hình đúng: <strong>Hình ${correctB[q].match}</strong>`;
+          }
+          feedback.classList.remove('hidden');
+        }
+      });
+
+      // Section C (6 questions)
+      const correctC = {
+        c1: 'them',
+        c2: 'us',
+        c3: 'you',
+        c4: 'them',
+        c5: 'us',
+        c6: 'you'
+      };
+
+      Object.keys(correctC).forEach(q => {
+        const input = document.getElementById(q + '-input');
+        const feedback = document.getElementById(q + '-feedback');
+        if (input && feedback) {
+          const val = input.value.trim().toLowerCase().replace('.', '');
+          if (val === correctC[q]) {
+            score++;
+            feedback.className = 'mt-2 text-xs font-bold text-emerald-600';
+            feedback.innerHTML = '✓ Đúng rồi!';
+          } else {
+            feedback.className = 'mt-2 text-xs font-bold text-red-500';
+            feedback.innerHTML = `✕ Chưa đúng! Đáp án đúng: <strong>${correctC[q]}</strong>`;
+          }
+          feedback.classList.remove('hidden');
+        }
+      });
+
+      // Section D (6 questions)
+      Object.keys(unscrambleData).forEach(q => {
+        const feedback = document.getElementById(q + '-feedback');
+        const userWords = userUnscramble[q].map(i => unscrambleData[q].words[i]);
+        const targetStr = unscrambleData[q].answer.join(' ').toLowerCase();
+        const userStr = userWords.join(' ').toLowerCase();
+
+        if (feedback) {
+          if (userStr === targetStr) {
+            score++;
+            feedback.className = 'mt-2 text-xs font-bold text-emerald-600';
+            feedback.innerHTML = '✓ Ghép câu hoàn toàn chính xác!';
+          } else {
+            feedback.className = 'mt-2 text-xs font-bold text-red-500';
+            feedback.innerHTML = `✕ Chưa đúng! Câu chuẩn: <strong>${unscrambleData[q].answer.join(' ')}</strong>`;
+          }
+          feedback.classList.remove('hidden');
+        }
+      });
+
+      // Section E (6 questions)
+      const correctE = {
+        e1: ["i like you very much.", "i like you very much"],
+        e2: ["our teacher loves us.", "our teacher loves us"],
+        e3: ["the twins don't know you.", "the twins don't know you", "the twins do not know you.", "the twins do not know you"],
+        e4: ["the boy doesn't want them.", "the boy doesn't want them", "the boy does not want them.", "the boy does not want them"],
+        e5: ["i don't have them.", "i don't have them", "i do not have them.", "i do not have them"],
+        e6: ["they don't like us.", "they don't like us", "they do not like us.", "they do not like us"]
+      };
+
+      Object.keys(correctE).forEach(q => {
+        const input = document.getElementById(q + '-input');
+        const feedback = document.getElementById(q + '-feedback');
+        if (input && feedback) {
+          const val = input.value.trim().toLowerCase();
+          if (correctE[q].includes(val)) {
+            score++;
+            feedback.className = 'mt-2 text-xs font-bold text-emerald-600';
+            feedback.innerHTML = '✓ Câu đã sửa chính xác!';
+          } else {
+            feedback.className = 'mt-2 text-xs font-bold text-red-500';
+            feedback.innerHTML = `✕ Chưa đúng! Gợi ý: <strong>${correctE[q][0]}</strong>`;
+          }
+          feedback.classList.remove('hidden');
+        }
+      });
+
+      // Update Top Score counter
+      document.getElementById('score-counter').textContent = score;
+
+      // Show Modal Result
+      document.getElementById('final-score').textContent = score;
+      const modalTitle = document.getElementById('modal-title');
+      const modalIcon = document.getElementById('modal-icon');
+      const modalMsg = document.getElementById('final-message');
+
+      if (score === totalQuestions) {
+        modalIcon.textContent = '🌟🌟🌟';
+        modalTitle.textContent = 'Xuất Sắc Tuyệt Đối!';
+        modalMsg.textContent = 'Bạn đã đạt điểm tối đa 27/27! Kỹ năng Grammar của bạn thật đáng kinh ngạc!';
+        triggerConfetti();
+      } else if (score >= 20) {
+        modalIcon.textContent = '🎉';
+        modalTitle.textContent = 'Làm Bài Rất Tốt!';
+        modalMsg.textContent = 'Bạn đã làm đúng đa số các câu hỏi. Hãy xem lại những câu làm chưa đúng nhé!';
+        triggerConfetti();
+      } else {
+        modalIcon.textContent = '💪';
+        modalTitle.textContent = 'Hãy Cố Gắng Thêm!';
+        modalMsg.textContent = 'Bạn đã làm xong bài! Hãy đọc lại phần Grammar Point và làm lại nhé!';
+      }
+
+      document.getElementById('result-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('result-modal').classList.add('hidden');
+    }
+
+    function triggerConfetti() {
+      if (typeof confetti === 'function') {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      }
+    }
+
+    function resetAll() {
+      // Clear all inputs and selects
+      document.querySelectorAll('input[type="text"]').forEach(i => i.value = '');
+      document.querySelectorAll('input[type="radio"]').forEach(i => i.checked = false);
+      document.querySelectorAll('select').forEach(s => s.value = '');
+
+      // Hide all feedback divs
+      document.querySelectorAll('[id$="-feedback"]').forEach(f => f.classList.add('hidden'));
+
+      // Reset unscramble
+      Object.keys(unscrambleData).forEach(q => resetUnscramble(q));
+
+      // Reset score
+      document.getElementById('score-counter').textContent = '0';
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 03: Countable & Uncountable Nouns - Practice</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f4f7fe;
+        }
+        .font-heading {
+            font-family: 'Fredoka', cursive;
+        }
+        .speaker-btn {
+            transition: transform 0.15s ease, color 0.2s ease;
+        }
+        .speaker-btn:hover {
+            transform: scale(1.15);
+        }
+        .speaker-btn:active {
+            transform: scale(0.9);
+        }
+        .speaking-pulse {
+            animation: pulse-ring 1s infinite;
+        }
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.5); }
+            70% { box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen pb-16">
+
+    <!-- TOP HEADER -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-indigo-100 shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center space-x-3">
+                <span class="bg-teal-600 text-white font-heading px-3 py-1 rounded-xl text-lg font-bold shadow-sm">
+                    UNIT 03
+                </span>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-bold text-slate-800 font-heading tracking-wide flex items-center gap-2">
+                        Countable & Uncountable Nouns
+                        <button onclick="speak('Countable and Uncountable Nouns')" class="speaker-btn text-teal-600 hover:text-teal-800 text-lg" title="Nghe tiêu đề">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </button>
+                    </h1>
+                    <p class="text-xs text-slate-500">Danh từ đếm được và Danh từ không đếm được</p>
+                </div>
+            </div>
+
+            <!-- Score & Progress -->
+            <div class="flex items-center space-x-4">
+                <div class="bg-amber-50 border border-amber-200 px-3.5 py-1.5 rounded-xl flex items-center space-x-2">
+                    <i class="fa-solid fa-star text-amber-500 text-lg"></i>
+                    <span class="text-sm font-bold text-amber-800"><span id="score-display">0</span> / 100</span>
+                </div>
+                <button onclick="checkAllAnswers()" class="bg-teal-600 hover:bg-teal-700 text-white font-bold px-4 py-2 rounded-xl shadow-md transition flex items-center space-x-2 text-sm">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>Nộp Bài & Chấm Điểm</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-6xl mx-auto px-4 pt-6 space-y-8">
+
+        <!-- GRAMMAR POINT CARD -->
+        <section class="bg-gradient-to-r from-teal-500 via-emerald-500 to-indigo-600 p-1 rounded-3xl shadow-lg">
+            <div class="bg-white rounded-[22px] p-5 md:p-6">
+                <div class="flex items-center justify-between mb-4 border-b border-slate-100 pb-3">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-2xl bg-teal-100 text-teal-600 flex items-center justify-center text-xl font-bold">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold text-slate-800 font-heading">GRAMMAR POINT (Lý Thuyết Trọng Tâm)</h2>
+                            <p class="text-xs text-slate-500">Bấm loa <i class="fa-solid fa-volume-high text-teal-500"></i> để nghe phát âm từng từ vựng và ví dụ</p>
+                        </div>
+                    </div>
+                    <button onclick="speak('Grammar point. Countable and Uncountable Nouns.')" class="speaker-btn bg-teal-50 text-teal-600 p-2 rounded-xl text-sm font-semibold hover:bg-teal-100 flex items-center gap-2">
+                        <i class="fa-solid fa-volume-high"></i>
+                        <span class="hidden sm:inline">Luyện nghe lý thuyết</span>
+                    </button>
+                </div>
+
+                <!-- Explanation Rules -->
+                <div class="space-y-2 mb-6 text-sm text-slate-700 leading-relaxed bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                    <p>• Trong tiếng Anh, danh từ bao gồm <strong>danh từ đếm được</strong> và <strong>danh từ không đếm được</strong>.</p>
+                    <p>• <strong>Danh từ đếm được</strong> bao gồm dạng số ít và dạng số nhiều. Số ít dùng mạo từ <code class="bg-teal-100 text-teal-800 px-1.5 py-0.5 rounded font-bold">a / an</code> hoặc <code class="bg-teal-100 text-teal-800 px-1.5 py-0.5 rounded font-bold">one</code>. Số nhiều dùng số đếm phía trước.</p>
+                    <p>• <strong>Danh từ không đếm được</strong> KHÔNG phân biệt số ít hay số nhiều nên không có dạng số nhiều. Do đó, <strong>không bao giờ</strong> sử dụng danh từ không đếm được với <code class="bg-rose-100 text-rose-800 px-1.5 py-0.5 rounded font-bold">a / an</code> hoặc số đếm phía trước.</p>
+                </div>
+
+                <!-- Table -->
+                <div class="overflow-x-auto">
+                    <table class="w-full text-sm text-left border-collapse rounded-2xl overflow-hidden border border-slate-200">
+                        <thead class="bg-slate-100 text-slate-700 font-heading font-semibold text-center">
+                            <tr>
+                                <th colspan="2" class="p-3 border-b border-r border-slate-200 bg-teal-50 text-teal-800">Countable Nouns (Danh từ đếm được)</th>
+                                <th class="p-3 border-b border-slate-200 bg-amber-50 text-amber-800">Uncountable Nouns (Không đếm được)</th>
+                            </tr>
+                            <tr class="bg-slate-50 border-b border-slate-200 text-slate-600 text-xs">
+                                <th class="p-2 border-r border-slate-200 w-1/3">Singular (Số ít)</th>
+                                <th class="p-2 border-r border-slate-200 w-1/3">Plural (Số nhiều)</th>
+                                <th class="p-2 w-1/3">No a / an / numbers (Không dùng a/an/số đếm)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 bg-white">
+                            <tr>
+                                <td class="p-3 border-r border-slate-200 space-y-1">
+                                    <div class="flex items-center justify-between hover:bg-slate-50 p-1 rounded-lg">
+                                        <span>an elephant (một con voi)</span>
+                                        <button onclick="speak('an elephant')" class="speaker-btn text-teal-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                                    </div>
+                                    <div class="flex items-center justify-between hover:bg-slate-50 p-1 rounded-lg">
+                                        <span>a box (một cái hộp)</span>
+                                        <button onclick="speak('a box')" class="speaker-btn text-teal-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                                    </div>
+                                    <div class="flex items-center justify-between hover:bg-slate-50 p-1 rounded-lg">
+                                        <span>one wolf (một con sói)</span>
+                                        <button onclick="speak('one wolf')" class="speaker-btn text-teal-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                                    </div>
+                                </td>
+                                <td class="p-3 border-r border-slate-200 space-y-1">
+                                    <div class="flex items-center justify-between hover:bg-slate-50 p-1 rounded-lg">
+                                        <span>two elephants (hai con voi)</span>
+                                        <button onclick="speak('two elephants')" class="speaker-btn text-teal-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                                    </div>
+                                    <div class="flex items-center justify-between hover:bg-slate-50 p-1 rounded-lg">
+                                        <span>five boxes (năm cái hộp)</span>
+                                        <button onclick="speak('five boxes')" class="speaker-btn text-teal-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                                    </div>
+                                    <div class="flex items-center justify-between hover:bg-slate-50 p-1 rounded-lg">
+                                        <span>two wolves (hai con sói)</span>
+                                        <button onclick="speak('two wolves')" class="speaker-btn text-teal-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                                    </div>
+                                </td>
+                                <td class="p-3 space-y-1 bg-amber-50/20">
+                                    <div class="flex items-center justify-between hover:bg-slate-50 p-1 rounded-lg">
+                                        <span><span class="line-through text-rose-500 font-bold">an</span> ice cream (kem)</span>
+                                        <button onclick="speak('ice cream')" class="speaker-btn text-amber-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                                    </div>
+                                    <div class="flex items-center justify-between hover:bg-slate-50 p-1 rounded-lg">
+                                        <span><span class="line-through text-rose-500 font-bold">a</span> water (nước)</span>
+                                        <button onclick="speak('water')" class="speaker-btn text-amber-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                                    </div>
+                                    <div class="flex items-center justify-between hover:bg-slate-50 p-1 rounded-lg">
+                                        <span><span class="line-through text-rose-500 font-bold">one</span> cheese (phô mai)</span>
+                                        <button onclick="speak('cheese')" class="speaker-btn text-amber-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                                    </div>
+                                    <div class="flex items-center justify-between hover:bg-slate-50 p-1 rounded-lg">
+                                        <span><span class="line-through text-rose-500 font-bold">two</span> sugars (đường)</span>
+                                        <button onclick="speak('sugar')" class="speaker-btn text-amber-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION A: WRITE C OR UC -->
+        <section class="bg-white rounded-3xl p-6 shadow-md border border-slate-100">
+            <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-100">
+                <div class="flex items-center space-x-3">
+                    <span class="w-9 h-9 bg-teal-600 text-white rounded-2xl flex items-center justify-center font-heading font-bold text-lg shadow">A</span>
+                    <h2 class="text-xl font-bold font-heading text-slate-800">Write <span class="text-teal-600">C</span> for countable nouns and <span class="text-amber-600">UC</span> for uncountable nouns.</h2>
+                </div>
+                <button onclick="speak('Section A. Write C for countable nouns and UC for uncountable nouns.')" class="speaker-btn text-teal-600 hover:bg-teal-50 p-2 rounded-xl text-sm">
+                    <i class="fa-solid fa-volume-high text-lg"></i>
+                </button>
+            </div>
+            <p class="text-slate-600 text-sm mb-6">Điền <strong class="text-teal-600">C</strong> (đếm được) hoặc <strong class="text-amber-600">UC</strong> (không đếm được) vào ô trống tương ứng.</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Item 1 (Example) -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex items-center space-x-3 justify-between">
+                    <div class="flex items-center space-x-2">
+                        <span class="font-bold text-teal-600">1.</span>
+                        <span class="text-2xl">🧀</span>
+                        <input type="text" value="UC" disabled class="w-14 bg-slate-200 border border-slate-300 rounded-xl px-2 py-1 text-center font-bold text-amber-700 shadow-inner">
+                        <span class="font-bold text-slate-800">cheese</span>
+                    </div>
+                    <button onclick="speak('cheese')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high"></i></button>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex items-center space-x-3 justify-between">
+                    <div class="flex items-center space-x-2">
+                        <span class="font-bold text-teal-600">2.</span>
+                        <span class="text-2xl">🍃</span>
+                        <input type="text" id="secA_2" placeholder="C / UC" class="w-16 bg-white border border-slate-300 rounded-xl px-2 py-1 text-center font-bold uppercase focus:ring-2 focus:ring-teal-400 focus:outline-none">
+                        <span class="font-bold text-slate-800">leaves</span>
+                    </div>
+                    <button onclick="speak('leaves')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high"></i></button>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex items-center space-x-3 justify-between">
+                    <div class="flex items-center space-x-2">
+                        <span class="font-bold text-teal-600">3.</span>
+                        <span class="text-2xl">🎹</span>
+                        <input type="text" id="secA_3" placeholder="C / UC" class="w-16 bg-white border border-slate-300 rounded-xl px-2 py-1 text-center font-bold uppercase focus:ring-2 focus:ring-teal-400 focus:outline-none">
+                        <span class="font-bold text-slate-800">pianos</span>
+                    </div>
+                    <button onclick="speak('pianos')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high"></i></button>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex items-center space-x-3 justify-between">
+                    <div class="flex items-center space-x-2">
+                        <span class="font-bold text-teal-600">4.</span>
+                        <span class="text-2xl">💵</span>
+                        <input type="text" id="secA_4" placeholder="C / UC" class="w-16 bg-white border border-slate-300 rounded-xl px-2 py-1 text-center font-bold uppercase focus:ring-2 focus:ring-teal-400 focus:outline-none">
+                        <span class="font-bold text-slate-800">money</span>
+                    </div>
+                    <button onclick="speak('money')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high"></i></button>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex items-center space-x-3 justify-between">
+                    <div class="flex items-center space-x-2">
+                        <span class="font-bold text-teal-600">5.</span>
+                        <span class="text-2xl">💧</span>
+                        <input type="text" id="secA_5" placeholder="C / UC" class="w-16 bg-white border border-slate-300 rounded-xl px-2 py-1 text-center font-bold uppercase focus:ring-2 focus:ring-teal-400 focus:outline-none">
+                        <span class="font-bold text-slate-800">water</span>
+                    </div>
+                    <button onclick="speak('water')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high"></i></button>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex items-center space-x-3 justify-between">
+                    <div class="flex items-center space-x-2">
+                        <span class="font-bold text-teal-600">6.</span>
+                        <span class="text-2xl">✏️</span>
+                        <input type="text" id="secA_6" placeholder="C / UC" class="w-16 bg-white border border-slate-300 rounded-xl px-2 py-1 text-center font-bold uppercase focus:ring-2 focus:ring-teal-400 focus:outline-none">
+                        <span class="font-bold text-slate-800">pencils</span>
+                    </div>
+                    <button onclick="speak('pencils')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high"></i></button>
+                </div>
+
+                <!-- Item 7 -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex items-center space-x-3 justify-between">
+                    <div class="flex items-center space-x-2">
+                        <span class="font-bold text-teal-600">7.</span>
+                        <span class="text-2xl">🧂</span>
+                        <input type="text" id="secA_7" placeholder="C / UC" class="w-16 bg-white border border-slate-300 rounded-xl px-2 py-1 text-center font-bold uppercase focus:ring-2 focus:ring-teal-400 focus:outline-none">
+                        <span class="font-bold text-slate-800">salt</span>
+                    </div>
+                    <button onclick="speak('salt')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high"></i></button>
+                </div>
+
+                <!-- Item 8 -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex items-center space-x-3 justify-between">
+                    <div class="flex items-center space-x-2">
+                        <span class="font-bold text-teal-600">8.</span>
+                        <span class="text-2xl">🍪</span>
+                        <input type="text" id="secA_8" placeholder="C / UC" class="w-16 bg-white border border-slate-300 rounded-xl px-2 py-1 text-center font-bold uppercase focus:ring-2 focus:ring-teal-400 focus:outline-none">
+                        <span class="font-bold text-slate-800">cookies</span>
+                    </div>
+                    <button onclick="speak('cookies')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high"></i></button>
+                </div>
+            </div>
+
+            <div id="feedback-secA" class="mt-4 hidden p-3 rounded-xl text-sm font-semibold"></div>
+        </section>
+
+        <!-- SECTION B: LOOK AND CIRCLE -->
+        <section class="bg-white rounded-3xl p-6 shadow-md border border-slate-100">
+            <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-100">
+                <div class="flex items-center space-x-3">
+                    <span class="w-9 h-9 bg-teal-600 text-white rounded-2xl flex items-center justify-center font-heading font-bold text-lg shadow">B</span>
+                    <h2 class="text-xl font-bold font-heading text-slate-800">Look and circle.</h2>
+                </div>
+                <button onclick="speak('Section B. Look and circle.')" class="speaker-btn text-teal-600 hover:bg-teal-50 p-2 rounded-xl text-sm">
+                    <i class="fa-solid fa-volume-high text-lg"></i>
+                </button>
+            </div>
+            <p class="text-slate-600 text-sm mb-6">Quan sát bức hình và chọn định lượng thích hợp (<code class="bg-slate-100 px-1 py-0.5 rounded font-bold">a / an / số đếm / X</code>).</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Item 1 (Example) -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex flex-col items-center justify-between text-center space-y-3">
+                    <div class="text-4xl py-2">🥖</div>
+                    <div class="flex items-center justify-center gap-2">
+                        <span class="px-2 py-1 rounded-lg text-slate-400 font-semibold text-sm">a</span>
+                        <span class="px-2 py-1 rounded-lg text-slate-400 font-semibold text-sm">an</span>
+                        <span class="px-3 py-1 rounded-xl bg-teal-600 text-white font-bold text-sm shadow">X</span>
+                    </div>
+                    <div class="flex items-center justify-center gap-2 font-bold text-slate-800">
+                        <span>bread</span>
+                        <button onclick="speak('bread')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex flex-col items-center justify-between text-center space-y-3">
+                    <div class="text-4xl py-2">📦📦📦</div>
+                    <div class="flex items-center justify-center gap-2" id="secB_opts_2">
+                        <button type="button" onclick="selectB(2, 'a')" class="secB-btn-2 px-3 py-1 rounded-xl bg-white border border-slate-300 font-bold text-sm hover:bg-teal-50">a</button>
+                        <button type="button" onclick="selectB(2, 'three')" class="secB-btn-2 px-3 py-1 rounded-xl bg-white border border-slate-300 font-bold text-sm hover:bg-teal-50">three</button>
+                        <button type="button" onclick="selectB(2, 'X')" class="secB-btn-2 px-3 py-1 rounded-xl bg-white border border-slate-300 font-bold text-sm hover:bg-teal-50">X</button>
+                    </div>
+                    <div class="flex items-center justify-center gap-2 font-bold text-slate-800">
+                        <span>boxes</span>
+                        <button onclick="speak('boxes')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex flex-col items-center justify-between text-center space-y-3">
+                    <div class="text-4xl py-2">🍹🍹</div>
+                    <div class="flex items-center justify-center gap-2" id="secB_opts_3">
+                        <button type="button" onclick="selectB(3, 'a')" class="secB-btn-3 px-3 py-1 rounded-xl bg-white border border-slate-300 font-bold text-sm hover:bg-teal-50">a</button>
+                        <button type="button" onclick="selectB(3, 'two')" class="secB-btn-3 px-3 py-1 rounded-xl bg-white border border-slate-300 font-bold text-sm hover:bg-teal-50">two</button>
+                        <button type="button" onclick="selectB(3, 'X')" class="secB-btn-3 px-3 py-1 rounded-xl bg-white border border-slate-300 font-bold text-sm hover:bg-teal-50">X</button>
+                    </div>
+                    <div class="flex items-center justify-center gap-2 font-bold text-slate-800">
+                        <span>juice</span>
+                        <button onclick="speak('juice')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex flex-col items-center justify-between text-center space-y-3">
+                    <div class="text-4xl py-2">☂️</div>
+                    <div class="flex items-center justify-center gap-2" id="secB_opts_4">
+                        <button type="button" onclick="selectB(4, 'a')" class="secB-btn-4 px-3 py-1 rounded-xl bg-white border border-slate-300 font-bold text-sm hover:bg-teal-50">a</button>
+                        <button type="button" onclick="selectB(4, 'an')" class="secB-btn-4 px-3 py-1 rounded-xl bg-white border border-slate-300 font-bold text-sm hover:bg-teal-50">an</button>
+                        <button type="button" onclick="selectB(4, 'X')" class="secB-btn-4 px-3 py-1 rounded-xl bg-white border border-slate-300 font-bold text-sm hover:bg-teal-50">X</button>
+                    </div>
+                    <div class="flex items-center justify-center gap-2 font-bold text-slate-800">
+                        <span>umbrella</span>
+                        <button onclick="speak('umbrella')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex flex-col items-center justify-between text-center space-y-3">
+                    <div class="text-4xl py-2">🍫</div>
+                    <div class="flex items-center justify-center gap-2" id="secB_opts_5">
+                        <button type="button" onclick="selectB(5, 'four')" class="secB-btn-5 px-3 py-1 rounded-xl bg-white border border-slate-300 font-bold text-sm hover:bg-teal-50">four</button>
+                        <button type="button" onclick="selectB(5, 'an')" class="secB-btn-5 px-3 py-1 rounded-xl bg-white border border-slate-300 font-bold text-sm hover:bg-teal-50">an</button>
+                        <button type="button" onclick="selectB(5, 'X')" class="secB-btn-5 px-3 py-1 rounded-xl bg-white border border-slate-300 font-bold text-sm hover:bg-teal-50">X</button>
+                    </div>
+                    <div class="flex items-center justify-center gap-2 font-bold text-slate-800">
+                        <span>chocolate</span>
+                        <button onclick="speak('chocolate')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex flex-col items-center justify-between text-center space-y-3">
+                    <div class="text-4xl py-2">🐟🐟🐟🐟</div>
+                    <div class="flex items-center justify-center gap-2" id="secB_opts_6">
+                        <button type="button" onclick="selectB(6, 'a')" class="secB-btn-6 px-3 py-1 rounded-xl bg-white border border-slate-300 font-bold text-sm hover:bg-teal-50">a</button>
+                        <button type="button" onclick="selectB(6, 'four')" class="secB-btn-6 px-3 py-1 rounded-xl bg-white border border-slate-300 font-bold text-sm hover:bg-teal-50">four</button>
+                        <button type="button" onclick="selectB(6, 'X')" class="secB-btn-6 px-3 py-1 rounded-xl bg-white border border-slate-300 font-bold text-sm hover:bg-teal-50">X</button>
+                    </div>
+                    <div class="flex items-center justify-center gap-2 font-bold text-slate-800">
+                        <span>fish</span>
+                        <button onclick="speak('fish')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="feedback-secB" class="mt-4 hidden p-3 rounded-xl text-sm font-semibold"></div>
+        </section>
+
+        <!-- SECTION C: READ AND WRITE -->
+        <section class="bg-white rounded-3xl p-6 shadow-md border border-slate-100">
+            <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-100">
+                <div class="flex items-center space-x-3">
+                    <span class="w-9 h-9 bg-teal-600 text-white rounded-2xl flex items-center justify-center font-heading font-bold text-lg shadow">C</span>
+                    <h2 class="text-xl font-bold font-heading text-slate-800">Read and write.</h2>
+                </div>
+                <button onclick="speak('Section C. Read and write.')" class="speaker-btn text-teal-600 hover:bg-teal-50 p-2 rounded-xl text-sm">
+                    <i class="fa-solid fa-volume-high text-lg"></i>
+                </button>
+            </div>
+            <p class="text-slate-600 text-sm mb-4">Sử dụng từ vựng trong khung để viết thành câu hoàn chỉnh theo 3 nhóm danh từ.</p>
+
+            <!-- Word Bank -->
+            <div class="bg-teal-50/60 p-4 rounded-2xl border border-teal-100 mb-6">
+                <div class="text-xs font-bold uppercase tracking-wider text-teal-700 mb-2">Ngân Hàng Từ Vựng (Bấm loa để nghe):</div>
+                <div class="flex flex-wrap gap-2 text-sm font-bold">
+                    <span class="px-3 py-1 bg-slate-200 text-slate-500 rounded-xl line-through border border-slate-300 flex items-center gap-1">milk <button onclick="speak('milk')" class="speaker-btn text-slate-400"><i class="fa-solid fa-volume-high text-xs"></i></button></span>
+                    <span class="px-3 py-1 bg-slate-200 text-slate-500 rounded-xl line-through border border-slate-300 flex items-center gap-1">cookie <button onclick="speak('cookie')" class="speaker-btn text-slate-400"><i class="fa-solid fa-volume-high text-xs"></i></button></span>
+                    <span class="px-3 py-1 bg-white text-teal-900 rounded-xl border border-teal-200 shadow-sm flex items-center gap-1">homework <button onclick="speak('homework')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high text-xs"></i></button></span>
+                    <span class="px-3 py-1 bg-white text-teal-900 rounded-xl border border-teal-200 shadow-sm flex items-center gap-1">juice <button onclick="speak('juice')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high text-xs"></i></button></span>
+                    <span class="px-3 py-1 bg-white text-teal-900 rounded-xl border border-teal-200 shadow-sm flex items-center gap-1">knife <button onclick="speak('knife')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high text-xs"></i></button></span>
+                    <span class="px-3 py-1 bg-white text-teal-900 rounded-xl border border-teal-200 shadow-sm flex items-center gap-1">bread <button onclick="speak('bread')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high text-xs"></i></button></span>
+                    <span class="px-3 py-1 bg-white text-teal-900 rounded-xl border border-teal-200 shadow-sm flex items-center gap-1">umbrella <button onclick="speak('umbrella')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high text-xs"></i></button></span>
+                    <span class="px-3 py-1 bg-white text-teal-900 rounded-xl border border-teal-200 shadow-sm flex items-center gap-1">puppy <button onclick="speak('puppy')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high text-xs"></i></button></span>
+                </div>
+            </div>
+
+            <!-- Table of 3 Columns -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Countable Singular -->
+                <div class="bg-blue-50/50 border border-blue-200 rounded-2xl p-4 flex flex-col space-y-3">
+                    <div class="bg-blue-600 text-white font-bold font-heading text-center py-1.5 rounded-xl text-base shadow-sm">
+                        Countable - Singular
+                    </div>
+                    <div class="text-xs text-blue-700 font-semibold text-center mb-1">Mẫu: "It is a / an [noun]"</div>
+                    
+                    <div class="p-2 bg-slate-100 rounded-xl text-sm font-semibold text-slate-500 border border-slate-200 flex items-center justify-between">
+                        <span>It is a cookie. (Mẫu)</span>
+                        <button onclick="speak('It is a cookie')" class="speaker-btn text-slate-400"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                    </div>
+                    <input type="text" id="secC_sing_1" placeholder="Viết câu (vd: It is a...)..." class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                    <input type="text" id="secC_sing_2" placeholder="Viết câu..." class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                    <input type="text" id="secC_sing_3" placeholder="Viết câu..." class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:ring-2 focus:ring-blue-400 focus:outline-none">
+                </div>
+
+                <!-- Countable Plural -->
+                <div class="bg-emerald-50/50 border border-emerald-200 rounded-2xl p-4 flex flex-col space-y-3">
+                    <div class="bg-emerald-600 text-white font-bold font-heading text-center py-1.5 rounded-xl text-base shadow-sm">
+                        Countable - Plural
+                    </div>
+                    <div class="text-xs text-emerald-700 font-semibold text-center mb-1">Mẫu: "They are [nouns]"</div>
+                    
+                    <div class="p-2 bg-slate-100 rounded-xl text-sm font-semibold text-slate-500 border border-slate-200 flex items-center justify-between">
+                        <span>They are cookies. (Mẫu)</span>
+                        <button onclick="speak('They are cookies')" class="speaker-btn text-slate-400"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                    </div>
+                    <input type="text" id="secC_plur_1" placeholder="Viết câu (vd: They are...)..." class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none">
+                    <input type="text" id="secC_plur_2" placeholder="Viết câu..." class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none">
+                    <input type="text" id="secC_plur_3" placeholder="Viết câu..." class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:ring-2 focus:ring-emerald-400 focus:outline-none">
+                </div>
+
+                <!-- Uncountable -->
+                <div class="bg-amber-50/50 border border-amber-200 rounded-2xl p-4 flex flex-col space-y-3">
+                    <div class="bg-amber-600 text-white font-bold font-heading text-center py-1.5 rounded-xl text-base shadow-sm">
+                        Uncountable Nouns
+                    </div>
+                    <div class="text-xs text-amber-700 font-semibold text-center mb-1">Mẫu: "It is [noun]"</div>
+                    
+                    <div class="p-2 bg-slate-100 rounded-xl text-sm font-semibold text-slate-500 border border-slate-200 flex items-center justify-between">
+                        <span>It is milk. (Mẫu)</span>
+                        <button onclick="speak('It is milk')" class="speaker-btn text-slate-400"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                    </div>
+                    <input type="text" id="secC_unc_1" placeholder="Viết câu (vd: It is...)..." class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:ring-2 focus:ring-amber-400 focus:outline-none">
+                    <input type="text" id="secC_unc_2" placeholder="Viết câu..." class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:ring-2 focus:ring-amber-400 focus:outline-none">
+                    <input type="text" id="secC_unc_3" placeholder="Viết câu..." class="w-full bg-white border border-slate-300 rounded-xl px-3 py-2 text-sm font-medium focus:ring-2 focus:ring-amber-400 focus:outline-none">
+                </div>
+            </div>
+
+            <div id="feedback-secC" class="mt-4 hidden p-3 rounded-xl text-sm font-semibold"></div>
+        </section>
+
+        <!-- SECTION D: LOOK AND WRITE -->
+        <section class="bg-white rounded-3xl p-6 shadow-md border border-slate-100">
+            <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-100">
+                <div class="flex items-center space-x-3">
+                    <span class="w-9 h-9 bg-teal-600 text-white rounded-2xl flex items-center justify-center font-heading font-bold text-lg shadow">D</span>
+                    <h2 class="text-xl font-bold font-heading text-slate-800">Look and write.</h2>
+                </div>
+                <button onclick="speak('Section D. Look and write.')" class="speaker-btn text-teal-600 hover:bg-teal-50 p-2 rounded-xl text-sm">
+                    <i class="fa-solid fa-volume-high text-lg"></i>
+                </button>
+            </div>
+            <p class="text-slate-600 text-sm mb-4">Nhìn hình và hoàn thành câu hỏi, câu trả lời thích hợp.</p>
+
+            <!-- Word Bank D -->
+            <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200 mb-6 flex flex-wrap items-center justify-center gap-3 text-sm font-bold">
+                <span class="text-xs text-slate-500 uppercase tracking-wider font-semibold">Từ gợi ý:</span>
+                <span class="px-3 py-1 bg-white border border-slate-200 rounded-xl shadow-sm text-teal-700 flex items-center gap-1">butter <button onclick="speak('butter')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high text-xs"></i></button></span>
+                <span class="px-3 py-1 bg-white border border-slate-200 rounded-xl shadow-sm text-teal-700 flex items-center gap-1">apple <button onclick="speak('apple')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high text-xs"></i></button></span>
+                <span class="px-3 py-1 bg-white border border-slate-200 rounded-xl shadow-sm text-teal-700 flex items-center gap-1">wolf <button onclick="speak('wolf')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high text-xs"></i></button></span>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Item 1 (Example) -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-teal-600">1. 🍑🍑🍑🍑🍑</span>
+                        <button onclick="speak('Are they peaches? Yes, they are.')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high"></i></button>
+                    </div>
+                    <div class="text-sm space-y-1.5 font-medium">
+                        <p><span class="underline font-bold text-slate-700">Are</span> <span class="underline font-bold text-slate-700">they</span> peaches?</p>
+                        <p>Yes, <span class="underline font-bold text-teal-600">they</span> <span class="underline font-bold text-teal-600">are</span>.</p>
+                        <span class="text-xs text-slate-400">(Mẫu)</span>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-teal-600">2. 🍨</span>
+                        <button onclick="speak('Is it ice cream? Yes, it is.')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high"></i></button>
+                    </div>
+                    <div class="text-sm space-y-2 font-medium">
+                        <div class="flex items-center gap-1">
+                            <input type="text" id="secD_q_2_1" placeholder="..." class="w-16 bg-white border border-slate-300 rounded-lg px-2 py-1 font-bold text-center">
+                            <input type="text" id="secD_q_2_2" placeholder="..." class="w-16 bg-white border border-slate-300 rounded-lg px-2 py-1 font-bold text-center">
+                            <span>ice cream?</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <span>Yes,</span>
+                            <input type="text" id="secD_a_2" placeholder="it is..." class="flex-1 bg-white border border-slate-300 rounded-lg px-2 py-1 font-bold">.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-teal-600">3. 📖</span>
+                        <button onclick="speak('Is it a book? Yes, it is.')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high"></i></button>
+                    </div>
+                    <div class="text-sm space-y-2 font-medium">
+                        <div class="flex items-center gap-1">
+                            <input type="text" id="secD_q_3_1" placeholder="..." class="w-12 bg-white border border-slate-300 rounded-lg px-1.5 py-1 font-bold text-center">
+                            <input type="text" id="secD_q_3_2" placeholder="..." class="w-12 bg-white border border-slate-300 rounded-lg px-1.5 py-1 font-bold text-center">
+                            <input type="text" id="secD_q_3_3" placeholder="..." class="w-12 bg-white border border-slate-300 rounded-lg px-1.5 py-1 font-bold text-center">
+                            <span>book?</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <span>Yes,</span>
+                            <input type="text" id="secD_a_3" placeholder="it is..." class="flex-1 bg-white border border-slate-300 rounded-lg px-2 py-1 font-bold">.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-teal-600">4. 🍎</span>
+                        <button onclick="speak('Is it an egg? No, it isn\'t. It is an apple.')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high"></i></button>
+                    </div>
+                    <div class="text-sm space-y-2 font-medium">
+                        <div class="flex items-center gap-1">
+                            <input type="text" id="secD_q_4_1" placeholder="..." class="w-12 bg-white border border-slate-300 rounded-lg px-1.5 py-1 font-bold text-center">
+                            <input type="text" id="secD_q_4_2" placeholder="..." class="w-12 bg-white border border-slate-300 rounded-lg px-1.5 py-1 font-bold text-center">
+                            <input type="text" id="secD_q_4_3" placeholder="..." class="w-12 bg-white border border-slate-300 rounded-lg px-1.5 py-1 font-bold text-center">
+                            <span>egg?</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <span>No,</span>
+                            <input type="text" id="secD_a1_4" placeholder="it isn't..." class="flex-1 bg-white border border-slate-300 rounded-lg px-2 py-1 font-bold">.
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <span>It is</span>
+                            <input type="text" id="secD_a2_4" placeholder="an apple..." class="flex-1 bg-white border border-slate-300 rounded-lg px-2 py-1 font-bold">.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-teal-600">5. 🧈</span>
+                        <button onclick="speak('Is it cheese? No, it isn\'t. It is butter.')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high"></i></button>
+                    </div>
+                    <div class="text-sm space-y-2 font-medium">
+                        <div class="flex items-center gap-1">
+                            <input type="text" id="secD_q_5_1" placeholder="..." class="w-16 bg-white border border-slate-300 rounded-lg px-2 py-1 font-bold text-center">
+                            <input type="text" id="secD_q_5_2" placeholder="..." class="w-16 bg-white border border-slate-300 rounded-lg px-2 py-1 font-bold text-center">
+                            <span>cheese?</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <span>No,</span>
+                            <input type="text" id="secD_a1_5" placeholder="it isn't..." class="flex-1 bg-white border border-slate-300 rounded-lg px-2 py-1 font-bold">.
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <span>It is</span>
+                            <input type="text" id="secD_a2_5" placeholder="butter..." class="flex-1 bg-white border border-slate-300 rounded-lg px-2 py-1 font-bold">.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-3">
+                    <div class="flex items-center justify-between">
+                        <span class="font-bold text-teal-600">6. 🐺🐺🐺🐺</span>
+                        <button onclick="speak('Are they foxes? No, they aren\'t. They are wolves.')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high"></i></button>
+                    </div>
+                    <div class="text-sm space-y-2 font-medium">
+                        <div class="flex items-center gap-1">
+                            <input type="text" id="secD_q_6_1" placeholder="..." class="w-16 bg-white border border-slate-300 rounded-lg px-2 py-1 font-bold text-center">
+                            <input type="text" id="secD_q_6_2" placeholder="..." class="w-16 bg-white border border-slate-300 rounded-lg px-2 py-1 font-bold text-center">
+                            <span>foxes?</span>
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <span>No,</span>
+                            <input type="text" id="secD_a1_6" placeholder="they aren't..." class="flex-1 bg-white border border-slate-300 rounded-lg px-2 py-1 font-bold">.
+                        </div>
+                        <div class="flex items-center gap-1">
+                            <span>They are</span>
+                            <input type="text" id="secD_a2_6" placeholder="wolves..." class="flex-1 bg-white border border-slate-300 rounded-lg px-2 py-1 font-bold">.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="feedback-secD" class="mt-4 hidden p-3 rounded-xl text-sm font-semibold"></div>
+        </section>
+
+        <!-- SECTION E: READ AND CORRECT -->
+        <section class="bg-white rounded-3xl p-6 shadow-md border border-slate-100">
+            <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-100">
+                <div class="flex items-center space-x-3">
+                    <span class="w-9 h-9 bg-teal-600 text-white rounded-2xl flex items-center justify-center font-heading font-bold text-lg shadow">E</span>
+                    <h2 class="text-xl font-bold font-heading text-slate-800">Read and correct.</h2>
+                </div>
+                <button onclick="speak('Section E. Read and correct.')" class="speaker-btn text-teal-600 hover:bg-teal-50 p-2 rounded-xl text-sm">
+                    <i class="fa-solid fa-volume-high text-lg"></i>
+                </button>
+            </div>
+            <p class="text-slate-600 text-sm mb-6">Phát hiện lỗi sai trong câu và viết lại câu chuẩn xác.</p>
+
+            <div class="space-y-4">
+                <!-- Item 1 (Example) -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm font-semibold text-rose-600">1. "They are orange." (Sai)</span>
+                        <button onclick="speak('They are orange. Incorrect. They are oranges.')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high"></i></button>
+                    </div>
+                    <div class="flex items-center space-x-2 text-sm md:text-base font-bold text-emerald-700">
+                        <span>➔</span>
+                        <span class="bg-white border border-slate-200 px-3 py-1 rounded-xl shadow-sm">They are oranges.</span>
+                        <span class="text-xs text-slate-400 font-normal ml-2">(Mẫu)</span>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm font-semibold text-rose-600">2. "It is an ice cream." (Sai)</span>
+                        <button onclick="speak('It is an ice cream.')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high"></i></button>
+                    </div>
+                    <div class="flex items-center space-x-2 text-sm md:text-base font-semibold">
+                        <span>➔</span>
+                        <input type="text" id="secE_2" placeholder="Viết lại câu đúng..." class="w-full bg-white border border-slate-300 rounded-xl px-3 py-1.5 font-bold text-slate-800 focus:ring-2 focus:ring-teal-400 focus:outline-none">
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm font-semibold text-rose-600">3. "It is a money." (Sai)</span>
+                        <button onclick="speak('It is a money.')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high"></i></button>
+                    </div>
+                    <div class="flex items-center space-x-2 text-sm md:text-base font-semibold">
+                        <span>➔</span>
+                        <input type="text" id="secE_3" placeholder="Viết lại câu đúng..." class="w-full bg-white border border-slate-300 rounded-xl px-3 py-1.5 font-bold text-slate-800 focus:ring-2 focus:ring-teal-400 focus:outline-none">
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm font-semibold text-rose-600">4. "It is a umbrella." (Sai)</span>
+                        <button onclick="speak('It is a umbrella.')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high"></i></button>
+                    </div>
+                    <div class="flex items-center space-x-2 text-sm md:text-base font-semibold">
+                        <span>➔</span>
+                        <input type="text" id="secE_4" placeholder="Viết lại câu đúng..." class="w-full bg-white border border-slate-300 rounded-xl px-3 py-1.5 font-bold text-slate-800 focus:ring-2 focus:ring-teal-400 focus:outline-none">
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm font-semibold text-rose-600">5. "Is it cookie?" (Sai)</span>
+                        <button onclick="speak('Is it cookie?')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high"></i></button>
+                    </div>
+                    <div class="flex items-center space-x-2 text-sm md:text-base font-semibold">
+                        <span>➔</span>
+                        <input type="text" id="secE_5" placeholder="Viết lại câu đúng..." class="w-full bg-white border border-slate-300 rounded-xl px-3 py-1.5 font-bold text-slate-800 focus:ring-2 focus:ring-teal-400 focus:outline-none">
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-sm font-semibold text-rose-600">6. "Is it an orange juice?" (Sai)</span>
+                        <button onclick="speak('Is it an orange juice?')" class="speaker-btn text-teal-600"><i class="fa-solid fa-volume-high"></i></button>
+                    </div>
+                    <div class="flex items-center space-x-2 text-sm md:text-base font-semibold">
+                        <span>➔</span>
+                        <input type="text" id="secE_6" placeholder="Viết lại câu đúng..." class="w-full bg-white border border-slate-300 rounded-xl px-3 py-1.5 font-bold text-slate-800 focus:ring-2 focus:ring-teal-400 focus:outline-none">
+                    </div>
+                </div>
+            </div>
+
+            <div id="feedback-secE" class="mt-4 hidden p-3 rounded-xl text-sm font-semibold"></div>
+        </section>
+
+        <!-- SUBMIT & RESET BUTTONS -->
+        <div class="flex flex-wrap items-center justify-center gap-4 pt-4">
+            <button onclick="checkAllAnswers()" class="bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-heading font-bold text-lg px-8 py-3.5 rounded-2xl shadow-lg transition transform hover:-translate-y-0.5 active:translate-y-0 flex items-center space-x-3">
+                <i class="fa-solid fa-award text-xl"></i>
+                <span>Chấm Điểm Toàn Bộ Bài Tập</span>
+            </button>
+            <button onclick="resetForm()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 font-heading font-bold text-base px-6 py-3.5 rounded-2xl transition flex items-center space-x-2">
+                <i class="fa-solid fa-rotate-right"></i>
+                <span>Làm Lại Từ Đầu</span>
+            </button>
+        </div>
+
+    </main>
+
+    <script>
+        // --- SPEECH SYNTHESIS (TTS) ---
+        function speak(text) {
+            if ('speechSynthesis' in window) {
+                window.speechSynthesis.cancel();
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'en-US';
+                utterance.rate = 0.85;
+
+                if (event && event.currentTarget) {
+                    const btn = event.currentTarget;
+                    btn.classList.add('text-amber-500', 'speaking-pulse');
+                    utterance.onend = () => {
+                        btn.classList.remove('text-amber-500', 'speaking-pulse');
+                    };
+                }
+                window.speechSynthesis.speak(utterance);
+            }
+        }
+
+        // --- SECTION B BUTTON SELECTION ---
+        const selectedB = { 2: null, 3: null, 4: null, 5: null, 6: null };
+
+        function selectB(itemNum, optionVal) {
+            selectedB[itemNum] = optionVal;
+            const buttons = document.querySelectorAll(`.secB-btn-${itemNum}`);
+            buttons.forEach(btn => {
+                if (btn.textContent.trim() === optionVal) {
+                    btn.className = `secB-btn-${itemNum} px-3 py-1 rounded-xl bg-teal-600 text-white font-bold text-sm shadow`;
+                } else {
+                    btn.className = `secB-btn-${itemNum} px-3 py-1 rounded-xl bg-white border border-slate-300 font-bold text-sm hover:bg-teal-50`;
+                }
+            });
+        }
+
+        // Helper to normalize input text
+        function clean(val) {
+            return (val || '').trim().toLowerCase().replace(/\s+/g, ' ').replace(/[.,!?]$/, '');
+        }
+
+        // --- ANSWER VALIDATION AND SCORING ---
+        function checkAllAnswers() {
+            let totalPoints = 0;
+            let maxPoints = 0;
+
+            // SECTION A:
+            // 2: C (leaves), 3: C (pianos), 4: UC (money), 5: UC (water), 6: C (pencils), 7: UC (salt), 8: C (cookies)
+            const ansA = { secA_2: 'c', secA_3: 'c', secA_4: 'uc', secA_5: 'uc', secA_6: 'c', secA_7: 'uc', secA_8: 'c' };
+            let countA = 0;
+            for (let id in ansA) {
+                const elem = document.getElementById(id);
+                const val = clean(elem.value);
+                if (val === ansA[id]) {
+                    elem.classList.remove('border-red-500', 'bg-red-50');
+                    elem.classList.add('border-emerald-500', 'bg-emerald-50');
+                    countA++;
+                } else {
+                    elem.classList.remove('border-emerald-500', 'bg-emerald-50');
+                    elem.classList.add('border-red-500', 'bg-red-50');
+                }
+            }
+            totalPoints += countA * 3; // 21 pts max
+            maxPoints += 21;
+            showFeedback('feedback-secA', countA === 7, `Phần A: Đúng ${countA}/7 mục (C / UC)!`);
+
+            // SECTION B:
+            // 2: three, 3: X, 4: an, 5: X, 6: four
+            const ansB = { 2: 'three', 3: 'X', 4: 'an', 5: 'X', 6: 'four' };
+            let countB = 0;
+            for (let item in ansB) {
+                const isCorrect = selectedB[item] === ansB[item];
+                const container = document.getElementById(`secB_opts_${item}`);
+                if (isCorrect) {
+                    countB++;
+                    container.classList.remove('p-1', 'bg-red-100', 'rounded-xl');
+                    container.classList.add('p-1', 'bg-emerald-100', 'rounded-xl');
+                } else if (selectedB[item] !== null) {
+                    container.classList.remove('p-1', 'bg-emerald-100', 'rounded-xl');
+                    container.classList.add('p-1', 'bg-red-100', 'rounded-xl');
+                }
+            }
+            totalPoints += countB * 4; // 20 pts max
+            maxPoints += 20;
+            showFeedback('feedback-secB', countB === 5, `Phần B: Chọn đúng ${countB}/5 câu!`);
+
+            // SECTION C:
+            // Singular: "it is a knife", "it is an umbrella", "it is a puppy"
+            // Plural: "they are knives", "they are umbrellas", "they are puppies"
+            // Uncountable: "it is homework", "it is juice", "it is bread"
+            const expSing = ["it is a knife", "it is an umbrella", "it is a puppy"];
+            const expPlur = ["they are knives", "they are umbrellas", "they are puppies"];
+            const expUnc = ["it is homework", "it is juice", "it is bread"];
+
+            function validateGroup(ids, expectedSet) {
+                let cnt = 0;
+                ids.forEach(id => {
+                    const el = document.getElementById(id);
+                    const val = clean(el.value);
+                    if (expectedSet.includes(val)) {
+                        el.classList.remove('border-red-500', 'bg-red-50');
+                        el.classList.add('border-emerald-500', 'bg-emerald-50');
+                        cnt++;
+                    } else if (val !== '') {
+                        el.classList.remove('border-emerald-500', 'bg-emerald-50');
+                        el.classList.add('border-red-500', 'bg-red-50');
+                    }
+                });
+                return cnt;
+            }
+
+            const c1 = validateGroup(['secC_sing_1', 'secC_sing_2', 'secC_sing_3'], expSing);
+            const c2 = validateGroup(['secC_plur_1', 'secC_plur_2', 'secC_plur_3'], expPlur);
+            const c3 = validateGroup(['secC_unc_1', 'secC_unc_2', 'secC_unc_3'], expUnc);
+            const totalC = c1 + c2 + c3;
+            totalPoints += totalC * 2.5; // 22.5 pts max
+            maxPoints += 22.5;
+            showFeedback('feedback-secC', totalC === 9, `Phần C: Đúng ${totalC}/9 câu thành phần!`);
+
+            // SECTION D:
+            // 2: Q: "is it", A: "it is"
+            // 3: Q: "is it a", A: "it is"
+            // 4: Q: "is it an", A1: "it isn't" / "it is not", A2: "an apple"
+            // 5: Q: "is it", A1: "it isn't" / "it is not", A2: "butter"
+            // 6: Q: "are they", A1: "they aren't" / "they are not", A2: "wolves"
+            const dRules = [
+                { id: 'secD_q_2_1', expected: ['is'] }, { id: 'secD_q_2_2', expected: ['it'] }, { id: 'secD_a_2', expected: ['it is'] },
+                { id: 'secD_q_3_1', expected: ['is'] }, { id: 'secD_q_3_2', expected: ['it'] }, { id: 'secD_q_3_3', expected: ['a'] }, { id: 'secD_a_3', expected: ['it is'] },
+                { id: 'secD_q_4_1', expected: ['is'] }, { id: 'secD_q_4_2', expected: ['it'] }, { id: 'secD_q_4_3', expected: ['an'] }, 
+                { id: 'secD_a1_4', expected: ["it isn't", "it is not"] }, { id: 'secD_a2_4', expected: ['an apple'] },
+                { id: 'secD_q_5_1', expected: ['is'] }, { id: 'secD_q_5_2', expected: ['it'] }, 
+                { id: 'secD_a1_5', expected: ["it isn't", "it is not"] }, { id: 'secD_a2_5', expected: ['butter'] },
+                { id: 'secD_q_6_1', expected: ['are'] }, { id: 'secD_q_6_2', expected: ['they'] }, 
+                { id: 'secD_a1_6', expected: ["they aren't", "they are not"] }, { id: 'secD_a2_6', expected: ['wolves'] }
+            ];
+
+            let countD = 0;
+            dRules.forEach(rule => {
+                const el = document.getElementById(rule.id);
+                const val = clean(el.value);
+                if (rule.expected.includes(val)) {
+                    el.classList.remove('border-red-500', 'bg-red-50');
+                    el.classList.add('border-emerald-500', 'bg-emerald-50');
+                    countD++;
+                } else if (val !== '') {
+                    el.classList.remove('border-emerald-500', 'bg-emerald-50');
+                    el.classList.add('border-red-500', 'bg-red-50');
+                }
+            });
+            totalPoints += (countD / dRules.length) * 20; // 20 pts max
+            maxPoints += 20;
+            showFeedback('feedback-secD', countD === dRules.length, `Phần D: Điền đúng ${countD}/${dRules.length} ô trống!`);
+
+            // SECTION E:
+            // 2: "It is ice cream."
+            // 3: "It is money."
+            // 4: "It is an umbrella."
+            // 5: "Is it a cookie?"
+            // 6: "Is it orange juice?"
+            const eAns = [
+                { id: 'secE_2', expected: ['it is ice cream'] },
+                { id: 'secE_3', expected: ['it is money'] },
+                { id: 'secE_4', expected: ['it is an umbrella'] },
+                { id: 'secE_5', expected: ['is it a cookie'] },
+                { id: 'secE_6', expected: ['is it orange juice'] }
+            ];
+
+            let countE = 0;
+            eAns.forEach(item => {
+                const el = document.getElementById(item.id);
+                const val = clean(el.value);
+                if (item.expected.includes(val)) {
+                    el.classList.remove('border-red-500', 'bg-red-50');
+                    el.classList.add('border-emerald-500', 'bg-emerald-50');
+                    countE++;
+                } else if (val !== '') {
+                    el.classList.remove('border-emerald-500', 'bg-emerald-50');
+                    el.classList.add('border-red-500', 'bg-red-50');
+                }
+            });
+            totalPoints += countE * 3.3; // 16.5 pts max
+            maxPoints += 16.5;
+            showFeedback('feedback-secE', countE === 5, `Phần E: Sửa đúng ${countE}/5 câu sai!`);
+
+            // FINAL SCORE
+            const finalScore = Math.min(100, Math.round((totalPoints / maxPoints) * 100));
+            document.getElementById('score-display').textContent = finalScore;
+
+            if (finalScore >= 80) {
+                confetti({ particleCount: 120, spread: 70, origin: { y: 0.6 } });
+                speak(`Excellent! You scored ${finalScore} points out of 100!`);
+            } else {
+                speak(`You scored ${finalScore} points. Keep trying!`);
+            }
+        }
+
+        function showFeedback(elementId, isPerfect, text) {
+            const el = document.getElementById(elementId);
+            if (!el) return;
+            el.classList.remove('hidden', 'bg-emerald-100', 'text-emerald-800', 'bg-amber-100', 'text-amber-800');
+            if (isPerfect) {
+                el.classList.add('bg-emerald-100', 'text-emerald-800');
+            } else {
+                el.classList.add('bg-amber-100', 'text-amber-800');
+            }
+            el.innerHTML = `<i class="fa-solid ${isPerfect ? 'fa-circle-check text-emerald-600' : 'fa-triangle-exclamation text-amber-600'} mr-2"></i> ${text}`;
+        }
+
+        // RESET FORM
+        function resetForm() {
+            document.querySelectorAll('input[type="text"]').forEach(input => {
+                if (!input.disabled) {
+                    input.value = '';
+                    input.className = input.className.replace(/border-(emerald|red)-500/g, 'border-slate-300').replace(/bg-(emerald|red)-50/g, 'bg-white');
+                }
+            });
+
+            for (let k in selectedB) {
+                selectedB[k] = null;
+                const container = document.getElementById(`secB_opts_${k}`);
+                if (container) container.classList.remove('p-1', 'bg-emerald-100', 'bg-red-100', 'rounded-xl');
+                document.querySelectorAll(`.secB-btn-${k}`).forEach(btn => {
+                    btn.className = `secB-btn-${k} px-3 py-1 rounded-xl bg-white border border-slate-300 font-bold text-sm hover:bg-teal-50`;
+                });
+            }
+
+            document.querySelectorAll('[id^="feedback-sec"]').forEach(el => el.classList.add('hidden'));
+            document.getElementById('score-display').textContent = '0';
+        }
+    </script>
+</body>
+</html>
