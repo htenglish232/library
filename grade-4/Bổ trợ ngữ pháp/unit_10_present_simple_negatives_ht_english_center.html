@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 10: Present Simple (Negatives) - HT English Center</title>
+
+    <!-- Google Fonts: Noto Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-color: #0284c7;
+            --primary-hover: #0369a1;
+            --primary-light: #e0f2fe;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --correct-color: #16a34a;
+            --correct-bg: #f0fdf4;
+            --correct-border: #bbf7d0;
+            --incorrect-color: #dc2626;
+            --incorrect-bg: #fef2f2;
+            --incorrect-border: #fecaca;
+            --accent-yellow: #f59e0b;
+            --border-radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Noto Sans", Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 16px;
+        }
+
+        .container {
+            max-width: 860px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            padding: 24px;
+        }
+
+        /* Header section */
+        header {
+            text-align: center;
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+
+        .center-brand {
+            display: inline-block;
+            background: var(--primary-color);
+            color: #ffffff;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+        }
+
+        .center-phone {
+            font-size: 13px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            font-size: 24px;
+            margin-top: 10px;
+            font-weight: 700;
+        }
+
+        .unit-subtitle {
+            font-size: 15px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        /* Grammar Box */
+        .grammar-card {
+            background: var(--primary-light);
+            border-left: 5px solid var(--primary-color);
+            border-radius: 8px;
+            padding: 16px;
+            margin-bottom: 28px;
+        }
+
+        .grammar-card h2 {
+            font-size: 17px;
+            color: var(--primary-hover);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .grammar-rules {
+            font-size: 14px;
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+
+        .grammar-rules li {
+            margin-left: 20px;
+            margin-bottom: 4px;
+        }
+
+        .grammar-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            font-size: 13px;
+        }
+
+        .grammar-table th, .grammar-table td {
+            border: 1px solid #cbd5e1;
+            padding: 8px 12px;
+            text-align: center;
+        }
+
+        .grammar-table th {
+            background: #f1f5f9;
+            color: var(--primary-hover);
+        }
+
+        /* Section Styling */
+        .section-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-bottom: 24px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        .section-header {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-badge {
+            background: var(--primary-color);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        /* Question items */
+        .question-item {
+            padding: 14px;
+            border-radius: 8px;
+            background: #f8fafc;
+            margin-bottom: 12px;
+            border: 1px solid #f1f5f9;
+            transition: all 0.2s ease;
+        }
+
+        .question-item.correct {
+            background-color: var(--correct-bg);
+            border-color: var(--correct-border);
+        }
+
+        .question-item.incorrect {
+            background-color: var(--incorrect-bg);
+            border-color: var(--incorrect-border);
+        }
+
+        .question-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .example-tag {
+            font-size: 11px;
+            background: #94a3b8;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 400;
+        }
+
+        .tts-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+
+        .tts-btn:hover {
+            background: #e2e8f0;
+        }
+
+        /* Inputs and Selects */
+        input[type="text"], select {
+            font-family: "Noto Sans", Arial, sans-serif;
+            font-size: 15px;
+            padding: 8px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        input[type="text"]:focus, select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+        }
+
+        input[type="text"]:disabled, select:disabled {
+            background-color: #f1f5f9;
+            color: #475569;
+            cursor: not-allowed;
+        }
+
+        /* Specific Exercise Layouts */
+        .inline-input {
+            width: 140px;
+            display: inline-block;
+        }
+
+        .full-input {
+            width: 100%;
+            max-width: 500px;
+            margin-top: 4px;
+        }
+
+        .pair-inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .pair-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        /* Word Order - Interactive Click Mode */
+        .word-bank {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 8px;
+            min-height: 42px;
+            padding: 6px;
+            background: #e2e8f0;
+            border-radius: 8px;
+        }
+
+        .answer-target {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            min-height: 46px;
+            padding: 6px;
+            background: #ffffff;
+            border: 2px dashed #cbd5e1;
+            border-radius: 8px;
+            align-items: center;
+        }
+
+        .word-btn {
+            background: #ffffff;
+            border: 1px solid #94a3b8;
+            border-radius: 6px;
+            padding: 6px 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+            transition: all 0.15s ease;
+        }
+
+        .word-btn:hover:not(:disabled) {
+            background: var(--primary-light);
+            border-color: var(--primary-color);
+            color: var(--primary-hover);
+        }
+
+        .word-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Feedback Display */
+        .feedback-box {
+            margin-top: 8px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 13.5px;
+            display: none;
+        }
+
+        .question-item.correct .feedback-box {
+            display: block;
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .question-item.incorrect .feedback-box {
+            display: block;
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        /* Footer Action Controls */
+        .actions-bar {
+            text-align: center;
+            margin-top: 32px;
+            padding-top: 20px;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .btn-submit, .btn-reset {
+            font-size: 16px;
+            font-weight: 700;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: var(--shadow);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-submit {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .btn-submit:hover {
+            background: var(--primary-hover);
+            transform: translateY(-1px);
+        }
+
+        .btn-reset {
+            background: #64748b;
+            color: white;
+        }
+
+        .btn-reset:hover {
+            background: #475569;
+            transform: translateY(-1px);
+        }
+
+        /* Results Banner */
+        .result-card {
+            display: none;
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+            margin-bottom: 24px;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .result-score {
+            font-size: 32px;
+            font-weight: 700;
+            margin: 8px 0;
+        }
+
+        .result-comment {
+            font-size: 16px;
+            opacity: 0.95;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive design */
+        @media (max-width: 600px) {
+            .container {
+                padding: 14px;
+            }
+            .question-text {
+                font-size: 14px;
+            }
+            .inline-input {
+                width: 100%;
+            }
+            .full-input {
+                width: 100%;
+            }
+            .grammar-table {
+                font-size: 11px;
+            }
+            .btn-submit, .btn-reset {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <header>
+        <div class="center-brand">HT ENGLISH CENTER</div>
+        <div class="center-phone">📞 Hotline / SĐT: 0962240866</div>
+        <h1>UNIT 10: PRESENT SIMPLE (NEGATIVES)</h1>
+        <div class="unit-subtitle">Phiếu bài tập điện tử - Thì Hiện tại đơn trong câu phủ định</div>
+    </header>
+
+    <!-- Result Banner (Hidden initially) -->
+    <div id="resultCard" class="result-card">
+        <h2>KẾT QUẢ BÀI LÀM ✅</h2>
+        <div class="result-score" id="scoreText">0 / 0 ⭐</div>
+        <div class="result-comment" id="commentText">Cố gắng lên em nhé!</div>
+    </div>
+
+    <!-- Grammar Point Card -->
+    <div class="grammar-card">
+        <h2>💡 GRAMMAR POINT: Câu phủ định thì Hiện tại đơn</h2>
+        <ul class="grammar-rules">
+            <li>Dùng khi nói về sự thật hiển nhiên, thói quen hoặc hành động lặp đi lặp lại.</li>
+            <li>Với <strong>I, You, We, They</strong> hoặc <em>danh từ số nhiều</em>: dùng <strong>don't (= do not)</strong> + động từ nguyên thể.</li>
+            <li>Với <strong>He, She, It</strong> hoặc <em>danh từ số ít</em>: dùng <strong>doesn't (= does not)</strong> + động từ nguyên thể.</li>
+        </ul>
+        <table class="grammar-table">
+            <thead>
+                <tr>
+                    <th>Chủ ngữ</th>
+                    <th>Trợ động từ phủ định</th>
+                    <th>Động từ (Nguyên thể)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>I / You / We / They</td>
+                    <td><strong>don't</strong></td>
+                    <td>drink, wash, study, have, go</td>
+                </tr>
+                <tr>
+                    <td>He / She / It</td>
+                    <td><strong>doesn't</strong></td>
+                    <td>drink, wash, study, have, go</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- EXERCISE FORM -->
+    <form id="worksheetForm" onsubmit="return false;">
+
+        <!-- SECTION A -->
+        <div class="section-card">
+            <div class="section-header">
+                <span class="section-badge">A</span>
+                <span>Read and write <i>don't</i> or <i>doesn't</i>.</span>
+            </div>
+
+            <!-- Q1 Example -->
+            <div class="question-item">
+                <div class="question-text">
+                    <span>1. I play. ➔ I <strong style="color:var(--primary-color);">don't</strong> play.</span>
+                    <span class="example-tag">Ví dụ</span>
+                    <button type="button" class="tts-btn" onclick="speakText('I play. I don\'t play.')">🔊</button>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question-item" id="item_a2">
+                <div class="question-text">
+                    <span>2. He eats. ➔ He</span>
+                    <select id="a2_input">
+                        <option value="">-- chọn --</option>
+                        <option value="don't">don't</option>
+                        <option value="do not">do not</option>
+                        <option value="doesn't">doesn't</option>
+                        <option value="does not">does not</option>
+                    </select>
+                    <span>eat.</span>
+                    <button type="button" class="tts-btn" onclick="speakText('He eats.')">🔊</button>
+                </div>
+                <div class="feedback-box" id="feedback_a2"></div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question-item" id="item_a3">
+                <div class="question-text">
+                    <span>3. You cry. ➔ You</span>
+                    <select id="a3_input">
+                        <option value="">-- chọn --</option>
+                        <option value="don't">don't</option>
+                        <option value="do not">do not</option>
+                        <option value="doesn't">doesn't</option>
+                        <option value="does not">does not</option>
+                    </select>
+                    <span>cry.</span>
+                    <button type="button" class="tts-btn" onclick="speakText('You cry.')">🔊</button>
+                </div>
+                <div class="feedback-box" id="feedback_a3"></div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question-item" id="item_a4">
+                <div class="question-text">
+                    <span>4. She watches. ➔ She</span>
+                    <select id="a4_input">
+                        <option value="">-- chọn --</option>
+                        <option value="don't">don't</option>
+                        <option value="do not">do not</option>
+                        <option value="doesn't">doesn't</option>
+                        <option value="does not">does not</option>
+                    </select>
+                    <span>watch.</span>
+                    <button type="button" class="tts-btn" onclick="speakText('She watches.')">🔊</button>
+                </div>
+                <div class="feedback-box" id="feedback_a4"></div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question-item" id="item_a5">
+                <div class="question-text">
+                    <span>5. It runs. ➔ It</span>
+                    <select id="a5_input">
+                        <option value="">-- chọn --</option>
+                        <option value="don't">don't</option>
+                        <option value="do not">do not</option>
+                        <option value="doesn't">doesn't</option>
+                        <option value="does not">does not</option>
+                    </select>
+                    <span>run.</span>
+                    <button type="button" class="tts-btn" onclick="speakText('It runs.')">🔊</button>
+                </div>
+                <div class="feedback-box" id="feedback_a5"></div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="question-item" id="item_a6">
+                <div class="question-text">
+                    <span>6. We study. ➔ We</span>
+                    <select id="a6_input">
+                        <option value="">-- chọn --</option>
+                        <option value="don't">don't</option>
+                        <option value="do not">do not</option>
+                        <option value="doesn't">doesn't</option>
+                        <option value="does not">does not</option>
+                    </select>
+                    <span>study.</span>
+                    <button type="button" class="tts-btn" onclick="speakText('We study.')">🔊</button>
+                </div>
+                <div class="feedback-box" id="feedback_a6"></div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="question-item" id="item_a7">
+                <div class="question-text">
+                    <span>7. They go. ➔ They</span>
+                    <select id="a7_input">
+                        <option value="">-- chọn --</option>
+                        <option value="don't">don't</option>
+                        <option value="do not">do not</option>
+                        <option value="doesn't">doesn't</option>
+                        <option value="does not">does not</option>
+                    </select>
+                    <span>go.</span>
+                    <button type="button" class="tts-btn" onclick="speakText('They go.')">🔊</button>
+                </div>
+                <div class="feedback-box" id="feedback_a7"></div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="question-item" id="item_a8">
+                <div class="question-text">
+                    <span>8. It flies. ➔ It</span>
+                    <select id="a8_input">
+                        <option value="">-- chọn --</option>
+                        <option value="don't">don't</option>
+                        <option value="do not">do not</option>
+                        <option value="doesn't">doesn't</option>
+                        <option value="does not">does not</option>
+                    </select>
+                    <span>fly.</span>
+                    <button type="button" class="tts-btn" onclick="speakText('It flies.')">🔊</button>
+                </div>
+                <div class="feedback-box" id="feedback_a8"></div>
+            </div>
+        </div>
+
+        <!-- SECTION B -->
+        <div class="section-card">
+            <div class="section-header">
+                <span class="section-badge">B</span>
+                <span>Look and write.</span>
+            </div>
+
+            <!-- Q1 Example -->
+            <div class="question-item">
+                <div class="question-text">
+                    <span>1. (play) She <u>plays</u> the piano. / She <u>doesn't play</u> the flute.</span>
+                    <span class="example-tag">Ví dụ</span>
+                    <button type="button" class="tts-btn" onclick="speakText('the piano')">🔊</button>
+                    <button type="button" class="tts-btn" onclick="speakText('the flute')">🔊</button>
+                </div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question-item" id="item_b2">
+                <div class="question-text">
+                    <span>2. (drink)</span>
+                    <button type="button" class="tts-btn" onclick="speakText('milk')">🔊</button>
+                    <button type="button" class="tts-btn" onclick="speakText('coffee')">🔊</button>
+                </div>
+                <div class="pair-inputs">
+                    <div class="pair-row">
+                        <span>He</span>
+                        <input type="text" id="b2_1" class="inline-input" placeholder="nhập từ...">
+                        <span>milk.</span>
+                    </div>
+                    <div class="pair-row">
+                        <span>He</span>
+                        <input type="text" id="b2_2" class="inline-input" placeholder="nhập từ..." style="width:170px;">
+                        <span>coffee.</span>
+                    </div>
+                </div>
+                <div class="feedback-box" id="feedback_b2"></div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question-item" id="item_b3">
+                <div class="question-text">
+                    <span>3. (go)</span>
+                    <button type="button" class="tts-btn" onclick="speakText('art class')">🔊</button>
+                    <button type="button" class="tts-btn" onclick="speakText('the park')">🔊</button>
+                </div>
+                <div class="pair-inputs">
+                    <div class="pair-row">
+                        <span>You</span>
+                        <input type="text" id="b3_1" class="inline-input" placeholder="nhập từ...">
+                        <span>to an art class.</span>
+                    </div>
+                    <div class="pair-row">
+                        <span>You</span>
+                        <input type="text" id="b3_2" class="inline-input" placeholder="nhập từ..." style="width:170px;">
+                        <span>to the park.</span>
+                    </div>
+                </div>
+                <div class="feedback-box" id="feedback_b3"></div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question-item" id="item_b4">
+                <div class="question-text">
+                    <span>4. (have)</span>
+                    <button type="button" class="tts-btn" onclick="speakText('a fish')">🔊</button>
+                    <button type="button" class="tts-btn" onclick="speakText('a soccer ball')">🔊</button>
+                </div>
+                <div class="pair-inputs">
+                    <div class="pair-row">
+                        <span>It</span>
+                        <input type="text" id="b4_1" class="inline-input" placeholder="nhập từ...">
+                        <span>a fish.</span>
+                    </div>
+                    <div class="pair-row">
+                        <span>It</span>
+                        <input type="text" id="b4_2" class="inline-input" placeholder="nhập từ..." style="width:170px;">
+                        <span>a soccer ball.</span>
+                    </div>
+                </div>
+                <div class="feedback-box" id="feedback_b4"></div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question-item" id="item_b5">
+                <div class="question-text">
+                    <span>5. (wash)</span>
+                    <button type="button" class="tts-btn" onclick="speakText('their faces')">🔊</button>
+                    <button type="button" class="tts-btn" onclick="speakText('their feet')">🔊</button>
+                </div>
+                <div class="pair-inputs">
+                    <div class="pair-row">
+                        <span>They</span>
+                        <input type="text" id="b5_1" class="inline-input" placeholder="nhập từ...">
+                        <span>their faces.</span>
+                    </div>
+                    <div class="pair-row">
+                        <span>They</span>
+                        <input type="text" id="b5_2" class="inline-input" placeholder="nhập từ..." style="width:170px;">
+                        <span>their feet.</span>
+                    </div>
+                </div>
+                <div class="feedback-box" id="feedback_b5"></div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="question-item" id="item_b6">
+                <div class="question-text">
+                    <span>6. (study)</span>
+                    <button type="button" class="tts-btn" onclick="speakText('Chinese')">🔊</button>
+                    <button type="button" class="tts-btn" onclick="speakText('English')">🔊</button>
+                </div>
+                <div class="pair-inputs">
+                    <div class="pair-row">
+                        <span>I</span>
+                        <input type="text" id="b6_1" class="inline-input" placeholder="nhập từ...">
+                        <span>Chinese.</span>
+                    </div>
+                    <div class="pair-row">
+                        <span>I</span>
+                        <input type="text" id="b6_2" class="inline-input" placeholder="nhập từ..." style="width:170px;">
+                        <span>English.</span>
+                    </div>
+                </div>
+                <div class="feedback-box" id="feedback_b6"></div>
+            </div>
+        </div>
+
+        <!-- SECTION C -->
+        <div class="section-card">
+            <div class="section-header">
+                <span class="section-badge">C</span>
+                <span>Read and write.</span>
+            </div>
+
+            <!-- Q1 Example -->
+            <div class="question-item">
+                <div class="question-text">
+                    <span>1. He / not / fly a kite</span>
+                    <span class="example-tag">Ví dụ</span>
+                    <button type="button" class="tts-btn" onclick="speakText('fly a kite')">🔊</button>
+                </div>
+                <div>➔ <strong>He doesn't fly a kite.</strong></div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question-item" id="item_c2">
+                <div class="question-text">
+                    <span>2. She / not / ride a bike</span>
+                    <button type="button" class="tts-btn" onclick="speakText('ride a bike')">🔊</button>
+                </div>
+                <input type="text" id="c2_input" class="full-input" placeholder="Viết câu phủ định hoàn chỉnh...">
+                <div class="feedback-box" id="feedback_c2"></div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question-item" id="item_c3">
+                <div class="question-text">
+                    <span>3. My parents / not / watch TV</span>
+                    <button type="button" class="tts-btn" onclick="speakText('watch TV')">🔊</button>
+                </div>
+                <input type="text" id="c3_input" class="full-input" placeholder="Viết câu phủ định hoàn chỉnh...">
+                <div class="feedback-box" id="feedback_c3"></div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question-item" id="item_c4">
+                <div class="question-text">
+                    <span>4. The cat / not / sleep</span>
+                    <button type="button" class="tts-btn" onclick="speakText('sleep')">🔊</button>
+                </div>
+                <input type="text" id="c4_input" class="full-input" placeholder="Viết câu phủ định hoàn chỉnh...">
+                <div class="feedback-box" id="feedback_c4"></div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question-item" id="item_c5">
+                <div class="question-text">
+                    <span>5. You / not / play tennis</span>
+                    <button type="button" class="tts-btn" onclick="speakText('play tennis')">🔊</button>
+                </div>
+                <input type="text" id="c5_input" class="full-input" placeholder="Viết câu phủ định hoàn chỉnh...">
+                <div class="feedback-box" id="feedback_c5"></div>
+            </div>
+        </div>
+
+        <!-- SECTION D: WORD ORDER -->
+        <div class="section-card">
+            <div class="section-header">
+                <span class="section-badge">D</span>
+                <span>Read and unscramble.</span>
+            </div>
+            <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;" id="wordOrderInstruction">
+                Sắp xếp các từ thành câu hoàn chỉnh.
+            </div>
+
+            <!-- Q1 Example -->
+            <div class="question-item">
+                <div class="question-text">
+                    <span>1. study / They / don't / French</span>
+                    <span class="example-tag">Ví dụ</span>
+                </div>
+                <div>➔ <strong>They don't study French.</strong></div>
+            </div>
+
+            <!-- Dynamic Container for Q2-Q6 Word Order -->
+            <div id="wordOrderContainer"></div>
+        </div>
+
+        <!-- SECTION E -->
+        <div class="section-card">
+            <div class="section-header">
+                <span class="section-badge">E</span>
+                <span>Read and correct.</span>
+            </div>
+
+            <!-- Q1 Example -->
+            <div class="question-item">
+                <div class="question-text">
+                    <span>1. I doesn't read comic books.</span>
+                    <span class="example-tag">Ví dụ</span>
+                    <button type="button" class="tts-btn" onclick="speakText('comic books')">🔊</button>
+                </div>
+                <div>➔ <strong>I don't read comic books.</strong></div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question-item" id="item_e2">
+                <div class="question-text">
+                    <span>2. You don't listens to music.</span>
+                    <button type="button" class="tts-btn" onclick="speakText('listens to music')">🔊</button>
+                </div>
+                <input type="text" id="e2_input" class="full-input" placeholder="Viết lại câu đúng...">
+                <div class="feedback-box" id="feedback_e2"></div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question-item" id="item_e3">
+                <div class="question-text">
+                    <span>3. We doesn't play soccer.</span>
+                    <button type="button" class="tts-btn" onclick="speakText('soccer')">🔊</button>
+                </div>
+                <input type="text" id="e3_input" class="full-input" placeholder="Viết lại câu đúng...">
+                <div class="feedback-box" id="feedback_e3"></div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question-item" id="item_e4">
+                <div class="question-text">
+                    <span>4. Lisa don't have a brother.</span>
+                    <button type="button" class="tts-btn" onclick="speakText('brother')">🔊</button>
+                </div>
+                <input type="text" id="e4_input" class="full-input" placeholder="Viết lại câu đúng...">
+                <div class="feedback-box" id="feedback_e4"></div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question-item" id="item_e5">
+                <div class="question-text">
+                    <span>5. We don't goes to the park.</span>
+                    <button type="button" class="tts-btn" onclick="speakText('the park')">🔊</button>
+                </div>
+                <input type="text" id="e5_input" class="full-input" placeholder="Viết lại câu đúng...">
+                <div class="feedback-box" id="feedback_e5"></div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="question-item" id="item_e6">
+                <div class="question-text">
+                    <span>6. The giraffe don't eat carrots.</span>
+                    <button type="button" class="tts-btn" onclick="speakText('giraffe')">🔊</button>
+                </div>
+                <input type="text" id="e6_input" class="full-input" placeholder="Viết lại câu đúng...">
+                <div class="feedback-box" id="feedback_e6"></div>
+            </div>
+
+        </div>
+
+        <!-- Submit & Reset Action Buttons -->
+        <div class="actions-bar">
+            <button type="button" id="btnSubmit" class="btn-submit" onclick="submitWorksheet()">NỘP BÀI / SUBMIT ✅</button>
+            <button type="button" id="btnReset" class="btn-reset" onclick="resetWorksheet()" style="display:none;">🔄 LÀM LẠI</button>
+        </div>
+
+    </form>
+</div>
+
+<!-- JAVASCRIPT LOGIC -->
+<script>
+    // Global worksheet state
+    let submitted = false;
+
+    // MANDATORY RULE: Randomize Word Order mode ONCE for the whole worksheet
+    const wordOrderMode = Math.random() < 0.5 ? "click" : "type";
+
+    // Section D Word Order Questions Master Data
+    const wordOrderQuestions = [
+        {
+            id: "d2",
+            num: 2,
+            words: ["doesn't", "a car", "He", "drive"],
+            correctAnswer: ["He doesn't drive a car.", "He does not drive a car."],
+            displayAnswer: "He doesn't drive a car. / He does not drive a car.",
+            explanation: "Chủ ngữ 'He' đi với 'doesn't' (hoặc 'does not') + động từ nguyên thể 'drive'."
+        },
+        {
+            id: "d3",
+            num: 3,
+            words: ["My parents", "coffee", "don't", "drink"],
+            correctAnswer: ["My parents don't drink coffee.", "My parents do not drink coffee."],
+            displayAnswer: "My parents don't drink coffee. / My parents do not drink coffee.",
+            explanation: "Chủ ngữ số nhiều 'My parents' đi với 'don't' (hoặc 'do not') + động từ nguyên thể 'drink'."
+        },
+        {
+            id: "d4",
+            num: 4,
+            words: ["He", "clean", "his room", "doesn't"],
+            correctAnswer: ["He doesn't clean his room.", "He does not clean his room."],
+            displayAnswer: "He doesn't clean his room. / He does not clean his room.",
+            explanation: "Chủ ngữ 'He' đi với 'doesn't' (hoặc 'does not') + động từ nguyên thể 'clean'."
+        },
+        {
+            id: "d5",
+            num: 5,
+            words: ["at night", "doesn't", "bark", "The dog"],
+            correctAnswer: ["The dog doesn't bark at night.", "The dog does not bark at night."],
+            displayAnswer: "The dog doesn't bark at night. / The dog does not bark at night.",
+            explanation: "Chủ ngữ số ít 'The dog' đi với 'doesn't' (hoặc 'does not') + động từ nguyên thể 'bark'."
+        },
+        {
+            id: "d6",
+            num: 6,
+            words: ["play", "We", "basketball", "don't"],
+            correctAnswer: ["We don't play basketball.", "We do not play basketball."],
+            displayAnswer: "We don't play basketball. / We do not play basketball.",
+            explanation: "Chủ ngữ 'We' đi với 'don't' (hoặc 'do not') + động từ nguyên thể 'play'."
+        }
+    ];
+
+    // User selection state for CLICK mode
+    let userSelections = {};
+
+    // Helper: Fisher-Yates Shuffle
+    function shuffleArray(array) {
+        let arr = [...array];
+        for (let i = arr.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+        }
+        return arr;
+    }
+
+    // TTS Text-to-Speech Function
+    function speakText(text) {
+        if (!('speechSynthesis' in window)) {
+            alert("Trình duyệt không hỗ trợ phát âm.");
+            return;
+        }
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.85;
+        window.speechSynthesis.speak(utterance);
+    }
+
+    function renderWordOrderSection() {
+        const container = document.getElementById("wordOrderContainer");
+        const instruction = document.getElementById("wordOrderInstruction");
+
+        if (wordOrderMode === "click") {
+            instruction.innerText = "Bấm chọn các từ theo đúng thứ tự để tạo thành câu hoàn chỉnh.";
+        } else {
+            instruction.innerText = "Tự nhập câu hoàn chỉnh vào ô bên dưới dựa trên các từ cho sẵn.";
+        }
+
+        container.innerHTML = "";
+
+        wordOrderQuestions.forEach(q => {
+            const qDiv = document.createElement("div");
+            qDiv.className = "question-item";
+            qDiv.id = `item_${q.id}`;
+
+            let html = `<div class="question-text">
+                <span>${q.num}. `;
+
+            if (wordOrderMode === "click") {
+                html += `Bấm chọn từ:</span></div>`;
+                
+                let shuffled = shuffleArray(q.words);
+                if (shuffled.join(" ").toLowerCase() === q.correctAnswer[0].replace('.', '').toLowerCase()) {
+                    shuffled.reverse();
+                }
+
+                userSelections[q.id] = {
+                    bank: shuffled,
+                    selected: []
+                };
+
+                html += `<div class="word-bank" id="bank_${q.id}"></div>`;
+                html += `<div class="answer-target" id="target_${q.id}"></div>`;
+            } else {
+                html += `${q.words.join(" / ")}</span></div>`;
+                html += `<input type="text" id="${q.id}_input" class="full-input" placeholder="Tự nhập câu hoàn chỉnh...">`;
+            }
+
+            html += `<div class="feedback-box" id="feedback_${q.id}"></div>`;
+            qDiv.innerHTML = html;
+            container.appendChild(qDiv);
+
+            if (wordOrderMode === "click") {
+                updateWordOrderUI(q.id);
+            }
+        });
+    }
+
+    function updateWordOrderUI(qId) {
+        const bankContainer = document.getElementById(`bank_${qId}`);
+        const targetContainer = document.getElementById(`target_${qId}`);
+        if (!bankContainer || !targetContainer) return;
+
+        const state = userSelections[qId];
+
+        bankContainer.innerHTML = "";
+        state.bank.forEach((word, idx) => {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "word-btn";
+            btn.innerText = word;
+            btn.disabled = submitted;
+            btn.onclick = () => selectWord(qId, idx);
+            bankContainer.appendChild(btn);
+        });
+
+        targetContainer.innerHTML = "";
+        if (state.selected.length === 0) {
+            targetContainer.innerHTML = `<span style="color:#94a3b8; font-size:13px;">Chạm vào từ bên trên để xếp câu vào đây...</span>`;
+        } else {
+            state.selected.forEach((word, idx) => {
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "word-btn";
+                btn.innerText = word;
+                btn.disabled = submitted;
+                btn.onclick = () => deselectWord(qId, idx);
+                targetContainer.appendChild(btn);
+            });
+        }
+    }
+
+    function selectWord(qId, bankIdx) {
+        if (submitted) return;
+        const state = userSelections[qId];
+        const word = state.bank.splice(bankIdx, 1)[0];
+        state.selected.push(word);
+        updateWordOrderUI(qId);
+    }
+
+    function deselectWord(qId, selectedIdx) {
+        if (submitted) return;
+        const state = userSelections[qId];
+        const word = state.selected.splice(selectedIdx, 1)[0];
+        state.bank.push(word);
+        updateWordOrderUI(qId);
+    }
+
+    // Helper for input string normalization
+    function normalizeString(str) {
+        if (!str) return "";
+        return str
+            .trim()
+            .toLowerCase()
+            .replace(/\s+/g, ' ')
+            .replace(/\s+([.,!?])/g, '$1')
+            .replace(/[.]/g, '');
+    }
+
+    // Helper to match input against a single answer or array of accepted answers
+    function checkAnswerMatch(userVal, targetAns) {
+        const normUser = normalizeString(userVal);
+        if (Array.isArray(targetAns)) {
+            return targetAns.some(ans => normalizeString(ans) === normUser);
+        }
+        return normalizeString(targetAns) === normUser;
+    }
+
+    // MAIN GRADING FUNCTION
+    function submitWorksheet() {
+        if (submitted) return;
+
+        let score = 0;
+        let totalQuestions = 0;
+
+        // SECTION A GRADING
+        const secA_Answers = {
+            a2: { ans: ["doesn't", "does not"], display: "doesn't / does not", exp: "Chủ ngữ 'He' đi với 'doesn't' hoặc 'does not'." },
+            a3: { ans: ["don't", "do not"], display: "don't / do not", exp: "Chủ ngữ 'You' đi với 'don't' hoặc 'do not'." },
+            a4: { ans: ["doesn't", "does not"], display: "doesn't / does not", exp: "Chủ ngữ 'She' đi với 'doesn't' hoặc 'does not'." },
+            a5: { ans: ["doesn't", "does not"], display: "doesn't / does not", exp: "Chủ ngữ 'It' đi với 'doesn't' hoặc 'does not'." },
+            a6: { ans: ["don't", "do not"], display: "don't / do not", exp: "Chủ ngữ 'We' đi với 'don't' hoặc 'do not'." },
+            a7: { ans: ["don't", "do not"], display: "don't / do not", exp: "Chủ ngữ 'They' đi với 'don't' hoặc 'do not'." },
+            a8: { ans: ["doesn't", "does not"], display: "doesn't / does not", exp: "Chủ ngữ 'It' đi với 'doesn't' hoặc 'does not'." }
+        };
+
+        for (let key in secA_Answers) {
+            totalQuestions++;
+            const inputVal = document.getElementById(`${key}_input`).value;
+            const item = document.getElementById(`item_${key}`);
+            const fb = document.getElementById(`feedback_${key}`);
+
+            if (checkAnswerMatch(inputVal, secA_Answers[key].ans)) {
+                score++;
+                item.className = "question-item correct";
+                fb.innerHTML = `✅ <strong>Chính xác!</strong>`;
+            } else {
+                item.className = "question-item incorrect";
+                fb.innerHTML = `❌ <strong>Em chọn:</strong> ${inputVal || "chưa chọn"}<br>
+                                ✅ <strong>Đáp án đúng:</strong> ${secA_Answers[key].display}<br>
+                                💡 <em>Giải thích:</em> ${secA_Answers[key].exp}`;
+            }
+        }
+
+        // SECTION B GRADING
+        const secB_Answers = {
+            b2: { p1: ["drinks"], p2: ["doesn't drink", "does not drink"], d1: "drinks", d2: "doesn't drink (hoặc does not drink)", exp: "He drinks milk. / He doesn't drink coffee." },
+            b3: { p1: ["go"], p2: ["don't go", "do not go"], d1: "go", d2: "don't go (hoặc do not go)", exp: "You go to an art class. / You don't go to the park." },
+            b4: { p1: ["has"], p2: ["doesn't have", "does not have"], d1: "has", d2: "doesn't have (hoặc does not have)", exp: "It has a fish. / It doesn't have a soccer ball." },
+            b5: { p1: ["wash"], p2: ["don't wash", "do not wash"], d1: "wash", d2: "don't wash (hoặc do not wash)", exp: "They wash their faces. / They don't wash their feet." },
+            b6: { p1: ["study"], p2: ["don't study", "do not study"], d1: "study", d2: "don't study (hoặc do not study)", exp: "I study Chinese. / I don't study English." }
+        };
+
+        for (let key in secB_Answers) {
+            totalQuestions++;
+            const v1 = document.getElementById(`${key}_1`).value;
+            const v2 = document.getElementById(`${key}_2`).value;
+
+            const item = document.getElementById(`item_${key}`);
+            const fb = document.getElementById(`feedback_${key}`);
+
+            const isCorrect = checkAnswerMatch(v1, secB_Answers[key].p1) && checkAnswerMatch(v2, secB_Answers[key].p2);
+
+            if (isCorrect) {
+                score++;
+                item.className = "question-item correct";
+                fb.innerHTML = `✅ <strong>Chính xác!</strong>`;
+            } else {
+                item.className = "question-item incorrect";
+                fb.innerHTML = `❌ <strong>Em điền:</strong> ${v1 || "..."} / ${v2 || "..."}<br>
+                                ✅ <strong>Đáp án đúng:</strong> ${secB_Answers[key].d1} / ${secB_Answers[key].d2}<br>
+                                💡 <em>Mẫu câu đúng:</em> ${secB_Answers[key].exp}`;
+            }
+        }
+
+        // SECTION C GRADING
+        const secC_Answers = {
+            c2: { ans: ["She doesn't ride a bike.", "She does not ride a bike."], display: "She doesn't ride a bike. (hoặc She does not ride a bike.)", exp: "Chủ ngữ 'She' + doesn't / does not + ride a bike." },
+            c3: { ans: ["My parents don't watch TV.", "My parents do not watch TV."], display: "My parents don't watch TV. (hoặc My parents do not watch TV.)", exp: "Chủ ngữ số nhiều 'My parents' + don't / do not + watch TV." },
+            c4: { ans: ["The cat doesn't sleep.", "The cat does not sleep."], display: "The cat doesn't sleep. (hoặc The cat does not sleep.)", exp: "Chủ ngữ số ít 'The cat' + doesn't / does not + sleep." },
+            c5: { ans: ["You don't play tennis.", "You do not play tennis."], display: "You don't play tennis. (hoặc You do not play tennis.)", exp: "Chủ ngữ 'You' + don't / do not + play tennis." }
+        };
+
+        for (let key in secC_Answers) {
+            totalQuestions++;
+            const userText = document.getElementById(`${key}_input`).value;
+
+            const item = document.getElementById(`item_${key}`);
+            const fb = document.getElementById(`feedback_${key}`);
+
+            if (checkAnswerMatch(userText, secC_Answers[key].ans)) {
+                score++;
+                item.className = "question-item correct";
+                fb.innerHTML = `✅ <strong>Chính xác!</strong>`;
+            } else {
+                item.className = "question-item incorrect";
+                fb.innerHTML = `❌ <strong>Em viết:</strong> ${userText || "chưa nhập"}<br>
+                                ✅ <strong>Đáp án đúng:</strong> ${secC_Answers[key].display}<br>
+                                💡 <em>Cấu trúc:</em> ${secC_Answers[key].exp}`;
+            }
+        }
+
+        // SECTION D GRADING
+        wordOrderQuestions.forEach(q => {
+            totalQuestions++;
+            let userAnsText = "";
+
+            if (wordOrderMode === "click") {
+                userAnsText = userSelections[q.id].selected.join(" ");
+            } else {
+                userAnsText = document.getElementById(`${q.id}_input`).value;
+            }
+
+            const item = document.getElementById(`item_${q.id}`);
+            const fb = document.getElementById(`feedback_${q.id}`);
+
+            if (checkAnswerMatch(userAnsText, q.correctAnswer)) {
+                score++;
+                item.className = "question-item correct";
+                fb.innerHTML = `✅ <strong>Chính xác!</strong>`;
+            } else {
+                item.className = "question-item incorrect";
+                const display = q.displayAnswer || (Array.isArray(q.correctAnswer) ? q.correctAnswer.join(" / ") : q.correctAnswer);
+                fb.innerHTML = `❌ <strong>Câu của em:</strong> ${userAnsText || "chưa nhập"}<br>
+                                ✅ <strong>Đáp án đúng:</strong> ${display}<br>
+                                💡 <em>Giải thích:</em> ${q.explanation}`;
+            }
+        });
+
+        // SECTION E GRADING
+        const secE_Answers = {
+            e2: { ans: ["You don't listen to music.", "You do not listen to music."], display: "You don't listen to music. (hoặc You do not listen to music.)", exp: "Sau 'don't' / 'do not' phải dùng động từ nguyên thể 'listen' (không thêm 's')." },
+            e3: { ans: ["We don't play soccer.", "We do not play soccer."], display: "We don't play soccer. (hoặc We do not play soccer.)", exp: "Chủ ngữ 'We' phải dùng 'don't' / 'do not', không dùng 'doesn't'." },
+            e4: { ans: ["Lisa doesn't have a brother.", "Lisa does not have a brother."], display: "Lisa doesn't have a brother. (hoặc Lisa does not have a brother.)", exp: "Chủ ngữ số ít 'Lisa' phải dùng 'doesn't' / 'does not', không dùng 'don't'." },
+            e5: { ans: ["We don't go to the park.", "We do not go to the park."], display: "We don't go to the park. (hoặc We do not go to the park.)", exp: "Sau 'don't' / 'do not' dùng động từ nguyên thể 'go' (không dùng 'goes')." },
+            e6: { ans: ["The giraffe doesn't eat carrots.", "The giraffe does not eat carrots."], display: "The giraffe doesn't eat carrots. (hoặc The giraffe does not eat carrots.)", exp: "Chủ ngữ số ít 'The giraffe' đi với 'doesn't' / 'does not'." }
+        };
+
+        for (let key in secE_Answers) {
+            totalQuestions++;
+            const userText = document.getElementById(`${key}_input`).value;
+
+            const item = document.getElementById(`item_${key}`);
+            const fb = document.getElementById(`feedback_${key}`);
+
+            if (checkAnswerMatch(userText, secE_Answers[key].ans)) {
+                score++;
+                item.className = "question-item correct";
+                fb.innerHTML = `✅ <strong>Chính xác!</strong>`;
+            } else {
+                item.className = "question-item incorrect";
+                fb.innerHTML = `❌ <strong>Em viết:</strong> ${userText || "chưa nhập"}<br>
+                                ✅ <strong>Đáp án đúng:</strong> ${secE_Answers[key].display}<br>
+                                💡 <em>Giải thích:</em> ${secE_Answers[key].exp}`;
+            }
+        }
+
+        // Set worksheet state to submitted & LOCK interface
+        submitted = true;
+        lockWorksheet();
+
+        // Show Score Card Banner
+        const resultCard = document.getElementById("resultCard");
+        const scoreText = document.getElementById("scoreText");
+        const commentText = document.getElementById("commentText");
+
+        resultCard.style.display = "block";
+        scoreText.innerText = `${score} / ${totalQuestions} ⭐`;
+
+        const percentage = (score / totalQuestions) * 100;
+        if (percentage === 100) {
+            commentText.innerText = "Xuất sắc! Em đã làm đúng tất cả các câu! 🌟🎉";
+        } else if (percentage >= 80) {
+            commentText.innerText = "Giỏi lắm! Em nắm bài rất tốt! 👏";
+        } else if (percentage >= 50) {
+            commentText.innerText = "Khá tốt! Hãy xem kỹ lại các câu chưa đúng nhé! 👍";
+        } else {
+            commentText.innerText = "Em cần ôn tập lại kiến thức bài này và thử làm lại nhé! 💪";
+        }
+
+        resultCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function lockWorksheet() {
+        const inputs = document.querySelectorAll("input, select");
+        inputs.forEach(el => el.disabled = true);
+
+        wordOrderQuestions.forEach(q => {
+            if (wordOrderMode === "click") {
+                updateWordOrderUI(q.id);
+            }
+        });
+
+        document.getElementById("btnSubmit").style.display = "none";
+        document.getElementById("btnReset").style.display = "inline-flex";
+    }
+
+    function resetWorksheet() {
+        submitted = false;
+
+        document.getElementById("resultCard").style.display = "none";
+
+        ["a2","a3","a4","a5","a6","a7","a8"].forEach(id => {
+            const el = document.getElementById(`${id}_input`);
+            if (el) el.value = "";
+        });
+
+        ["b2","b3","b4","b5","b6"].forEach(id => {
+            const p1 = document.getElementById(`${id}_1`);
+            const p2 = document.getElementById(`${id}_2`);
+            if (p1) p1.value = "";
+            if (p2) p2.value = "";
+        });
+
+        ["c2","c3","c4","c5"].forEach(id => {
+            const el = document.getElementById(`${id}_input`);
+            if (el) el.value = "";
+        });
+
+        wordOrderQuestions.forEach(q => {
+            if (wordOrderMode === "click") {
+                let shuffled = shuffleArray(q.words);
+                const targetText = Array.isArray(q.correctAnswer) ? q.correctAnswer[0] : q.correctAnswer;
+                if (shuffled.join(" ").toLowerCase() === targetText.replace('.', '').toLowerCase()) {
+                    shuffled.reverse();
+                }
+                userSelections[q.id] = {
+                    bank: shuffled,
+                    selected: []
+                };
+                updateWordOrderUI(q.id);
+            } else {
+                const el = document.getElementById(`${q.id}_input`);
+                if (el) el.value = "";
+            }
+        });
+
+        ["e2","e3","e4","e5","e6"].forEach(id => {
+            const el = document.getElementById(`${id}_input`);
+            if (el) el.value = "";
+        });
+
+        const inputs = document.querySelectorAll("input, select");
+        inputs.forEach(el => el.disabled = false);
+
+        const questionItems = document.querySelectorAll(".question-item");
+        questionItems.forEach(item => {
+            item.className = "question-item";
+        });
+
+        const feedbackBoxes = document.querySelectorAll(".feedback-box");
+        feedbackBoxes.forEach(fb => {
+            fb.style.display = "none";
+            fb.innerHTML = "";
+        });
+
+        document.getElementById("btnSubmit").style.display = "inline-flex";
+        document.getElementById("btnReset").style.display = "none";
+
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+        renderWordOrderSection();
+    });
+</script>
+
+</body>
+</html>
