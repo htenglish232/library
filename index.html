@@ -3,1319 +3,615 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>HT English - Phiếu bài tập điện tử Grade 4–8</title>
-
 <style>
-:root{
-    --blue:#0b63ce;
-    --navy:#082b5c;
-    --sky:#eaf4ff;
-    --text:#17324d;
-    --muted:#678;
-    --shadow:0 12px 30px rgba(8,43,92,.12);
-}
-
-*{
-    box-sizing:border-box;
-}
-
-body{
-    margin:0;
-    font-family:Arial,Helvetica,sans-serif;
-    background:linear-gradient(180deg,#f7fbff,#edf6ff);
-    color:var(--text);
-}
-
-header{
-    background:linear-gradient(135deg,var(--navy),var(--blue));
-    color:#fff;
-    padding:22px 20px;
-    position:sticky;
-    top:0;
-    z-index:10;
-    box-shadow:0 6px 18px rgba(0,0,0,.15);
-}
-
-.top{
-    max-width:1180px;
-    margin:auto;
-    display:flex;
-    align-items:center;
-    gap:16px;
-    justify-content:space-between;
-    flex-wrap:wrap;
-}
-
-.brand{
-    display:flex;
-    align-items:center;
-    gap:12px;
-}
-
-.logo{
-    width:54px;
-    height:54px;
-    border-radius:16px;
-    background:#fff;
-    color:var(--blue);
-    display:grid;
-    place-items:center;
-    font-weight:800;
-    font-size:20px;
-}
-
-h1{
-    font-size:24px;
-    margin:0;
-}
-
-.sub{
-    font-size:13px;
-    opacity:.85;
-    margin-top:3px;
-}
-
-.search{
-    flex:1;
-    max-width:430px;
-    min-width:230px;
-}
-
-.search input{
-    width:100%;
-    padding:13px 16px;
-    border:0;
-    border-radius:14px;
-    font-size:15px;
-    outline:none;
-}
-
-.hero{
-    max-width:1180px;
-    margin:28px auto 18px;
-    padding:0 20px;
-}
-
-.hero-box{
-    background:#fff;
-    border-radius:24px;
-    padding:28px;
-    box-shadow:var(--shadow);
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    gap:20px;
-}
-
-.hero h2{
-    margin:0 0 8px;
-    font-size:30px;
-    color:var(--navy);
-}
-
-.hero p{
-    margin:0;
-    color:var(--muted);
-    line-height:1.6;
-}
-
-.stats{
-    white-space:nowrap;
-    background:var(--sky);
-    padding:14px 18px;
-    border-radius:16px;
-    font-weight:700;
-    color:var(--blue);
-}
-
-main{
-    max-width:1180px;
-    margin:auto;
-    padding:0 20px 50px;
-}
-
-.grade-tabs{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    margin:20px 0;
-}
-
-.tab{
-    border:0;
-    background:#fff;
-    color:var(--navy);
-    padding:12px 18px;
-    border-radius:999px;
-    cursor:pointer;
-    font-weight:700;
-    box-shadow:0 5px 14px rgba(8,43,92,.08);
-}
-
-.tab.active{
-    background:var(--blue);
-    color:#fff;
-}
-
-.grade-section{
-    display:none;
-}
-
-.grade-section.active{
-    display:block;
-}
-
-.unit{
-    background:#fff;
-    border-radius:20px;
-    margin-bottom:18px;
-    box-shadow:var(--shadow);
-    overflow:hidden;
-}
-
-.unit-head{
-    padding:18px 20px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    background:linear-gradient(90deg,#fff,#f1f7ff);
-}
-
-.unit-head h3{
-    margin:0;
-    color:var(--navy);
-}
-
-.badge{
-    background:var(--sky);
-    color:var(--blue);
-    padding:7px 10px;
-    border-radius:999px;
-    font-size:13px;
-    font-weight:700;
-}
-
-.lessons{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-    gap:12px;
-    padding:0 20px 20px;
-}
-
-.lesson{
-    display:block;
-    text-decoration:none;
-    color:var(--text);
-    border:1px solid #dceaff;
-    border-radius:15px;
-    padding:15px;
-    background:#fbfdff;
-    transition:.2s;
-}
-
-.lesson:hover{
-    transform:translateY(-2px);
-    border-color:#8fc2ff;
-    box-shadow:0 8px 18px rgba(11,99,206,.12);
-}
-
-.lesson strong{
-    display:block;
-    margin-bottom:6px;
-    color:var(--navy);
-}
-
-.lesson small{
-    color:var(--muted);
-}
-
-.empty{
-    display:none;
-    text-align:center;
-    padding:40px;
-    background:#fff;
-    border-radius:20px;
-}
-
-footer{
-    text-align:center;
-    color:var(--muted);
-    padding:25px;
-}
-
-@media(max-width:700px){
-
-    header{
-        position:static;
-    }
-
-    .hero-box{
-        display:block;
-    }
-
-    .stats{
-        display:inline-block;
-        margin-top:16px;
-    }
-
-    .hero h2{
-        font-size:24px;
-    }
-
-    .lessons{
-        grid-template-columns:1fr;
-    }
-}
+:root{--blue:#0b63ce;--navy:#082b5c;--sky:#eaf4ff;--text:#17324d;--muted:#678;--shadow:0 12px 30px rgba(8,43,92,.12)}
+*{box-sizing:border-box} body{margin:0;font-family:Arial,Helvetica,sans-serif;background:linear-gradient(180deg,#f7fbff,#edf6ff);color:var(--text)}
+header{background:linear-gradient(135deg,var(--navy),var(--blue));color:#fff;padding:22px 20px;position:sticky;top:0;z-index:10;box-shadow:0 6px 18px rgba(0,0,0,.15)}
+.top,main,.hero{max-width:1180px;margin:auto} .top{display:flex;align-items:center;gap:16px;justify-content:space-between;flex-wrap:wrap} .brand{display:flex;align-items:center;gap:12px} .logo{width:54px;height:54px;border-radius:16px;background:#fff;color:var(--blue);display:grid;place-items:center;font-weight:800;font-size:20px} h1{font-size:24px;margin:0} .sub{font-size:13px;opacity:.85;margin-top:3px}
+.search{flex:1;max-width:430px;min-width:230px} .search input{width:100%;padding:13px 16px;border:0;border-radius:14px;font-size:15px;outline:none}
+.hero{padding:28px 20px 18px} .hero-box{background:#fff;border-radius:24px;padding:28px;box-shadow:var(--shadow);display:flex;justify-content:space-between;align-items:center;gap:20px} .hero h2{margin:0 0 8px;font-size:30px;color:var(--navy)} .hero p{margin:0;color:var(--muted);line-height:1.6} .stats{white-space:nowrap;background:var(--sky);padding:14px 18px;border-radius:16px;font-weight:700;color:var(--blue)}
+main{padding:0 20px 50px} .grade-tabs{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0} .tab{border:0;background:#fff;color:var(--navy);padding:12px 18px;border-radius:999px;cursor:pointer;font-weight:700;box-shadow:0 5px 14px rgba(8,43,92,.08)} .tab.active{background:var(--blue);color:#fff} .grade-section{display:none} .grade-section.active{display:block} .unit{background:#fff;border-radius:20px;margin-bottom:18px;box-shadow:var(--shadow);overflow:hidden} .unit-head{padding:18px 20px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(90deg,#fff,#f1f7ff)} .unit-head h3{margin:0;color:var(--navy)} .badge{background:var(--sky);color:var(--blue);padding:7px 10px;border-radius:999px;font-size:13px;font-weight:700} .lessons{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;padding:0 20px 20px} .lesson{display:block;text-decoration:none;color:var(--text);border:1px solid #dceaff;border-radius:15px;padding:15px;background:#fbfdff;transition:.2s} .lesson:hover{transform:translateY(-2px);border-color:#8fc2ff;box-shadow:0 8px 18px rgba(11,99,206,.12)} .lesson strong{display:block;color:var(--navy)} .lesson small{display:none}.folder{background:#fff;border-radius:20px;margin-bottom:18px;box-shadow:var(--shadow);overflow:hidden}.folder-head,.unit-head{cursor:pointer;user-select:none}.folder-head{padding:19px 20px;display:flex;align-items:center;justify-content:space-between;background:linear-gradient(90deg,#fff,#eef6ff)}.folder-title{display:flex;align-items:center;gap:11px}.folder-icon{font-size:23px}.folder-head h3{margin:0;color:var(--navy)}.folder-body{display:none;padding:14px 18px 18px}.folder.open>.folder-body{display:block}.folder.open>.folder-head .chev,.unit.open>.unit-head .chev{transform:rotate(90deg)}.chev{display:inline-block;transition:.2s;font-weight:800;color:var(--blue)}.nested-unit{border:1px solid #dceaff;border-radius:16px;margin:10px 0;overflow:hidden;background:#fbfdff}.nested-unit .unit-head{padding:15px 16px}.nested-unit .lessons{display:none;padding:0 14px 14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}.nested-unit.open .lessons{display:grid}.grammar-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}.grammar-list .lesson{display:flex;align-items:center;gap:10px}.grammar-list .lesson:before{content:"📄";font-size:18px}.empty{display:none;text-align:center;padding:40px;background:#fff;border-radius:20px} footer{text-align:center;color:var(--muted);padding:25px} @media(max-width:700px){header{position:static}.hero-box{display:block}.stats{display:inline-block;margin-top:16px}.hero h2{font-size:24px}.lessons{grid-template-columns:1fr}}
 </style>
-
-</head>
-
-<body>
-
-<header>
-
-<div class="top">
-
-<div class="brand">
-
-<div class="logo">
-HT
-</div>
-
-<div>
-
-<h1>HT English Center</h1>
-
-<div class="sub">
-Phiếu bài tập điện tử 2026
-</div>
-
-</div>
-
-</div>
-
-<div class="search">
-
-<input
-id="search"
-type="search"
-placeholder="Tìm khối, chuyên đề hoặc bài học..."
->
-
-</div>
-
-</div>
-
-</header>
-
-
-<section class="hero">
-
-<div class="hero-box">
-
-<div>
-
-<h2>
-Kho phiếu bài tập tiếng Anh trực tuyến
-</h2>
-
-<p>
-Chọn khối lớp, chuyên đề và bài học để bắt đầu.
-Giao diện được tối ưu để học sinh sử dụng trên điện thoại,
-máy tính bảng và máy tính.
-</p>
-
-</div>
-
-<div class="stats" id="stats"></div>
-
-</div>
-
-</section>
-
-
-<main>
-
-<div class="grade-tabs" id="tabs"></div>
-
-<div id="content"></div>
-
-<div class="empty" id="empty">
-Không tìm thấy bài học phù hợp.
-</div>
-
-</main>
-
-
-<footer>
-© 2026 HT English Center
-</footer>
-
-
+</head><body>
+<header><div class="top"><div class="brand"><div class="logo">HT</div><div><h1>HT English Center</h1><div class="sub">Phiếu bài tập điện tử 2026</div></div></div><div class="search"><input id="search" type="search" placeholder="Tìm khối, chuyên đề hoặc bài học..."></div></div></header>
+<section class="hero"><div class="hero-box"><div><h2>Kho phiếu bài tập tiếng Anh trực tuyến</h2><p>Chọn khối lớp, chuyên đề và bài học để bắt đầu. Toàn bộ đường dẫn được tạo theo đúng cấu trúc file hiện có.</p></div><div class="stats" id="stats"></div></div></section>
+<main><div class="grade-tabs" id="tabs"></div><div id="content"></div><div class="empty" id="empty">Không tìm thấy bài học phù hợp.</div></main><footer>© 2026 HT English Center</footer>
 <script>
-
 const DATA = [
-
-/* =========================
-   GRADE 4
-========================= */
-
-{
-grade:"Grade 4",
-
-units:[
-
-{
-name:"September 1",
-
-lessons:[
-
-{
-title:"Regular Plural Nouns",
-href:"Grade 4/unit_01_regular_plural_nouns_html.html"
-},
-
-{
-title:"Irregular Plural Nouns",
-href:"Grade 4/Unit_2_irregular_plural_nouns.html"
-},
-
-{
-title:"Countable & Uncountable Nouns",
-href:"Grade 4/unit_3_COUNTABLE_UNCOUNTABLE_NOUNS.html"
-},
-
-{
-title:"A / An / Some + Noun",
-href:"Grade 4/unit_04_a_an_some.html"
-},
-
-{
-title:"Possessive Adjectives",
-href:"Grade 4/unit_05_possessive_adjectives_worksheet.html"
-},
-
-{
-title:"Possessive Pronouns",
-href:"Grade 4/unit_06_possessive_pronouns.html"
-},
-
-{
-title:"Object Pronouns (Singular)",
-href:"Grade 4/unit_07_object_pronouns_worksheet.html"
-},
-
-{
-title:"Object Pronouns – Exercises",
-href:"Grade 4/unit_08_object_pronouns_plural.html"
-},
-
-{
-title:"Present Simple – Exercises",
-href:"Grade 4/unit_09_present_simple_affirmative.html"
-},
-
-{
-title:"Present Simple – Practice",
-href:"Grade 4/unit_10_present_simple_negatives_ht_english_center.html"
-},
-
-{
-title:"Present Simple – Yes/No Questions",
-href:"Grade 4/unit_11_present_simple_yes_no_question_worksheet.html"
-},
-
-{
-title:"Present Simple – What Questions",
-href:"Grade 4/unit12_present_simple_what_questions_html.html"
-}
-
-]
-
-}
-
-]
-
-},
-
-
-/* =========================
-   GRADE 5
-========================= */
-
-{
-grade:"Grade 5",
-
-units:[
-
-{
-name:"Grammar Practice",
-
-lessons:[
-
-{
-title:"Articles",
-href:"Grade 5/unit_01_articles.html"
-},
-
-{
-title:"Some / Any",
-href:"Grade 5/unit_02_some_any_interactive_worksheet.html"
-},
-
-{
-title:"Many / Much / A Lot Of",
-href:"Grade 5/unit_3_MANY  MUCH  A LOT OF.html"
-},
-
-{
-title:"Past Simple – Be Verbs (Affirmatives)",
-href:"Grade 5/unit_04_past_simple_be_verbs_html.html"
-},
-
-{
-title:"Past Simple – Be Verbs (Negatives)",
-href:"Grade 5/unit_05_past_simple_be_verbs_negatives.html"
-},
-
-{
-title:"Past Simple – Be Verbs (Yes/No Questions)",
-href:"Grade 5/unit_6_past_simple_be_verbs_questions.html"
-},
-
-{
-title:"Past Simple – Be Verbs (Wh- Questions)",
-href:"Grade 5/unit_07_past_simple_be_v_wh_questions.html"
-},
-
-{
-title:"Past Simple – Regular Verbs (Affirmatives)",
-href:"Grade 5/unit_08_past_simple_regular_verbs.html"
-},
-
-{
-title:"Past Simple – Irregular Verbs",
-href:"Grade 5/unit_09_past_simple_irregular_verbs_worksheet.html"
-},
-
-{
-title:"Past Simple – Verbs (Negatives)",
-href:"Grade 5/unit_10_past_simple_negatives.html"
-},
-
-{
-title:"Past Simple – Yes/No Questions",
-href:"Grade 5/unit_11_past_simple_V_Yes_No_Questions.html"
-},
-
-{
-title:"Past Simple – What Questions",
-href:"Grade 5/unit_12_past_simple_verbs_what_questions.html"
-}
-
-]
-
-}
-
-]
-
-},
-
-
-/* =========================
-   GRADE 6
-========================= */
-
-{
-grade:"Grade 6",
-
-units:[
-
-{
-name:"Unit 1",
-
-lessons:[
-
-{
-title:"Getting Started",
-href:"grade-6/unit-1/lesson-1.html"
-},
-
-{
-title:"A Closer Look 1 & 2",
-href:"grade-6/unit-1/lesson-2.html"
-},
-
-{
-title:"Communication & Skills 1–2",
-href:"grade-6/unit-1/lesson-3.html"
-},
-
-{
-title:"Looking Back & Project",
-href:"grade-6/unit-1/lesson-4.html"
-}
-
-]
-
-},
-
-{
-name:"Unit 2",
-
-lessons:[
-
-{
-title:"Getting Started",
-href:"grade-6/unit-2/lesson-1.html"
-},
-
-{
-title:"A Closer Look 1 & 2",
-href:"grade-6/unit-2/lesson-2.html"
-},
-
-{
-title:"Communication & Skills 1–2",
-href:"grade-6/unit-2/lesson-3.html"
-},
-
-{
-title:"Looking Back & Project",
-href:"grade-6/unit-2/lesson-4.html"
-}
-
-]
-
-},
-
-{
-name:"Unit 3",
-
-lessons:[
-
-{
-title:"Getting Started",
-href:"grade-6/unit-3/lesson-1.html"
-},
-
-{
-title:"A Closer Look 1 & 2",
-href:"grade-6/unit-3/lesson-2.html"
-},
-
-{
-title:"Skills 1 & 2",
-href:"grade-6/unit-3/lesson-3.html"
-},
-
-{
-title:"Communication, Looking Back & Project",
-href:"grade-6/unit-3/lesson-4.html"
-}
-
-]
-
-},
-
-{
-name:"Unit 4",
-
-lessons:[
-
-{
-title:"Getting Started",
-href:"grade-6/unit-4/lesson-1.html"
-},
-
-{
-title:"A Closer Look 1 & 2",
-href:"grade-6/unit-4/lesson-2.html"
-},
-
-{
-title:"Skills 1 & 2",
-href:"grade-6/unit-4/lesson-3.html"
-},
-
-{
-title:"Communication, Looking Back & Project",
-href:"grade-6/unit-4/lesson-4.html"
-}
-
-]
-
-},
-
-{
-name:"Unit 5",
-
-lessons:[
-
-{
-title:"Getting Started",
-href:"grade-6/unit-5/lesson-1.html"
-},
-
-{
-title:"A Closer Look 1 & 2",
-href:"grade-6/unit-5/lesson-2.html"
-},
-
-{
-title:"Skills 1 & 2",
-href:"grade-6/unit-5/lesson-3.html"
-},
-
-{
-title:"Communication, Looking Back & Project",
-href:"grade-6/unit-5/lesson-4.html"
-}
-
-]
-
-},
-
-{
-name:"Unit 6",
-
-lessons:[
-
-{
-title:"Getting Started",
-href:"grade-6/unit-6/lesson-1.html"
-},
-
-{
-title:"A Closer Look 1 & 2",
-href:"grade-6/unit-6/lesson-2.html"
-},
-
-{
-title:"Skills 1 & 2",
-href:"grade-6/unit-6/lesson-3.html"
-},
-
-{
-title:"Communication, Looking Back & Project",
-href:"grade-6/unit-6/lesson-4.html"
-}
-
-]
-
-}
-
-]
-
-},
-
-
-/* =========================
-   GRADE 7
-========================= */
-
-{
-grade:"Grade 7",
-
-units:[
-
-{
-name:"Unit 1",
-lessons:[
-
-{
-title:"Getting Started",
-href:"grade-7/unit-1/lesson-1.html"
-},
-
-{
-title:"A Closer Look 1 & 2",
-href:"grade-7/unit-1/lesson-2.html"
-},
-
-{
-title:"Communication",
-href:"grade-7/unit-1/lesson-3.html"
-},
-
-{
-title:"Skills 1 & 2",
-href:"grade-7/unit-1/lesson-4.html"
-},
-
-{
-title:"Looking Back & Project",
-href:"grade-7/unit-1/lesson-5.html"
-}
-
-]
-
-},
-
-{
-name:"Unit 2",
-lessons:[
-
-{
-title:"Getting Started",
-href:"grade-7/unit-2/lesson-1.html"
-},
-
-{
-title:"A Closer Look 1 & 2",
-href:"grade-7/unit-2/lesson-2.html"
-},
-
-{
-title:"Communication & Skills",
-href:"grade-7/unit-2/lesson-3.html"
-},
-
-{
-title:"Looking Back & Project",
-href:"grade-7/unit-2/lesson-4.html"
-}
-
-]
-
-},
-
-{
-name:"Unit 3",
-lessons:[
-
-{
-title:"Getting Started",
-href:"grade-7/unit-3/lesson-1.html"
-},
-
-{
-title:"A Closer Look 1 & 2",
-href:"grade-7/unit-3/lesson-2.html"
-},
-
-{
-title:"Communication",
-href:"grade-7/unit-3/lesson-3.html"
-},
-
-{
-title:"Skills 1 & 2",
-href:"grade-7/unit-3/lesson-4.html"
-},
-
-{
-title:"Looking Back & Project",
-href:"grade-7/unit-3/lesson-5.html"
-}
-
-]
-
-},
-
-{
-name:"Unit 4",
-lessons:[
-
-{
-title:"Getting Started",
-href:"grade-7/unit-4/lesson-1.html"
-},
-
-{
-title:"A Closer Look 1 & 2",
-href:"grade-7/unit-4/lesson-2.html"
-},
-
-{
-title:"Skills 1 & 2",
-href:"grade-7/unit-4/lesson-3.html"
-},
-
-{
-title:"Communication, Looking Back & Project",
-href:"grade-7/unit-4/lesson-4.html"
-}
-
-]
-
-},
-
-{
-name:"Unit 5",
-lessons:[
-
-{
-title:"Getting Started",
-href:"grade-7/unit-5/lesson-1.html"
-},
-
-{
-title:"A Closer Look 1 & 2",
-href:"grade-7/unit-5/lesson-2.html"
-},
-
-{
-title:"Skills 1 & 2",
-href:"grade-7/unit-5/lesson-3.html"
-},
-
-{
-title:"Communication, Looking Back & Project",
-href:"grade-7/unit-5/lesson-4.html"
-}
-
-]
-
-},
-
-{
-name:"Unit 6",
-lessons:[
-
-{
-title:"Getting Started",
-href:"grade-7/unit-6/lesson-1.html"
-},
-
-{
-title:"A Closer Look 1 & 2",
-href:"grade-7/unit-6/lesson-2.html"
-},
-
-{
-title:"Skills 1 & 2",
-href:"grade-7/unit-6/lesson-3.html"
-},
-
-{
-title:"Communication, Looking Back & Project",
-href:"grade-7/unit-6/lesson-4.html"
-}
-
-]
-
-}
-
-]
-
-},
-
-
-/* =========================
-   GRADE 8
-========================= */
-
-{
-grade:"Grade 8",
-
-units:[
-
-{
-name:"Unit 1",
-lessons:[
-
-{
-title:"Getting Started",
-href:"grade-8/unit-1/lesson-1.html"
-},
-
-{
-title:"A Closer Look 1 & 2",
-href:"grade-8/unit-1/lesson-2.html"
-},
-
-{
-title:"Communication",
-href:"grade-8/unit-1/lesson-3.html"
-},
-
-{
-title:"Skills 1 & 2",
-href:"grade-8/unit-1/lesson-4.html"
-},
-
-{
-title:"Looking Back & Project",
-href:"grade-8/unit-1/lesson-5.html"
-}
-
-]
-
-},
-
-{
-name:"Unit 2",
-lessons:[
-
-{
-title:"Getting Started",
-href:"grade-8/unit-2/lesson-1.html"
-},
-
-{
-title:"A Closer Look 1 & 2",
-href:"grade-8/unit-2/lesson-2.html"
-},
-
-{
-title:"Communication",
-href:"grade-8/unit-2/lesson-3.html"
-},
-
-{
-title:"Skills 1 & 2",
-href:"grade-8/unit-2/lesson-4.html"
-},
-
-{
-title:"Looking Back & Project",
-href:"grade-8/unit-2/lesson-5.html"
-}
-
-]
-
-},
-
-{
-name:"Unit 3",
-lessons:[
-
-{
-title:"Getting Started",
-href:"grade-8/unit-3/lesson-1.html"
-},
-
-{
-title:"A Closer Look 1 & 2",
-href:"grade-8/unit-3/lesson-2.html"
-},
-
-{
-title:"Communication",
-href:"grade-8/unit-3/lesson-3.html"
-},
-
-{
-title:"Skills 1 & 2",
-href:"grade-8/unit-3/lesson-4.html"
-},
-
-{
-title:"Looking Back & Project",
-href:"grade-8/unit-3/lesson-5.html"
-}
-
-]
-
-},
-
-{
-name:"Unit 4",
-lessons:[
-
-{
-title:"Getting Started",
-href:"grade-8/unit-4/lesson-1.html"
-},
-
-{
-title:"A Closer Look 1 & 2",
-href:"grade-8/unit-4/lesson-2.html"
-},
-
-{
-title:"Communication",
-href:"grade-8/unit-4/lesson-3.html"
-},
-
-{
-title:"Skills 1 & 2",
-href:"grade-8/unit-4/lesson-4.html"
-},
-
-{
-title:"Looking Back & Project",
-href:"grade-8/unit-4/lesson-5.html"
-}
-
-]
-
-},
-
-{
-name:"Unit 5",
-lessons:[
-
-{
-title:"Getting Started",
-href:"grade-8/unit-5/lesson-1.html"
-},
-
-{
-title:"A Closer Look 1 & 2",
-href:"grade-8/unit-5/lesson-2.html"
-},
-
-{
-title:"Communication",
-href:"grade-8/unit-5/lesson-3.html"
-},
-
-{
-title:"Skills 1 & 2",
-href:"grade-8/unit-5/lesson-4.html"
-},
-
-{
-title:"Looking Back & Project",
-href:"grade-8/unit-5/lesson-5.html"
-}
-
-]
-
-},
-
-{
-name:"Unit 6",
-lessons:[
-
-{
-title:"Getting Started",
-href:"grade-8/unit-6/lesson-1.html"
-},
-
-{
-title:"A Closer Look 1 & 2",
-href:"grade-8/unit-6/lesson-2.html"
-},
-
-{
-title:"Communication",
-href:"grade-8/unit-6/lesson-3.html"
-},
-
-{
-title:"Skills 1 & 2",
-href:"grade-8/unit-6/lesson-4.html"
-},
-
-{
-title:"Looking Back & Project",
-href:"grade-8/unit-6/lesson-5.html"
-}
-
-]
-
-}
-
-]
-
-}
-
+  {
+    "grade": "Grade 4",
+    "units": [
+      {
+        "name": "Bổ trợ ngữ pháp",
+        "lessons": [
+          {
+            "title": "Unit 12 Present Simple What Questions",
+            "href": "grade-4/Bổ trợ ngữ pháp/unit12_present_simple_what_questions_html.html"
+          },
+          {
+            "title": "Unit 1 Regular Plural Nouns",
+            "href": "grade-4/Bổ trợ ngữ pháp/unit_01_regular_plural_nouns_html.html"
+          },
+          {
+            "title": "Unit 4 A, An, Some",
+            "href": "grade-4/Bổ trợ ngữ pháp/unit_04_a_an_some.html"
+          },
+          {
+            "title": "Unit 5 Possessive Adjectives",
+            "href": "grade-4/Bổ trợ ngữ pháp/unit_05_possessive_adjectives_worksheet.html"
+          },
+          {
+            "title": "Unit 6 Possessive Pronouns",
+            "href": "grade-4/Bổ trợ ngữ pháp/unit_06_possessive_pronouns.html"
+          },
+          {
+            "title": "Unit 7 Object Pronouns",
+            "href": "grade-4/Bổ trợ ngữ pháp/unit_07_object_pronouns_worksheet.html"
+          },
+          {
+            "title": "Unit 8 Object Pronouns – Plural",
+            "href": "grade-4/Bổ trợ ngữ pháp/unit_08_object_pronouns_plural.html"
+          },
+          {
+            "title": "Unit 9 Present Simple – Affirmative",
+            "href": "grade-4/Bổ trợ ngữ pháp/unit_09_present_simple_affirmative.html"
+          },
+          {
+            "title": "Unit 10 Present Simple – Negatives",
+            "href": "grade-4/Bổ trợ ngữ pháp/unit_10_present_simple_negatives_ht_english_center.html"
+          },
+          {
+            "title": "Unit 11 Present Simple – Yes/No Questions",
+            "href": "grade-4/Bổ trợ ngữ pháp/unit_11_present_simple_yes_no_question_worksheet.html"
+          },
+          {
+            "title": "Unit 2 Irregular Plural Nouns",
+            "href": "grade-4/Bổ trợ ngữ pháp/Unit_2_irregular_plural_nouns.html"
+          },
+          {
+            "title": "Unit 3 Countable & Uncountable Nouns",
+            "href": "grade-4/Bổ trợ ngữ pháp/unit_3_COUNTABLE_UNCOUNTABLE_NOUNS.html"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "grade": "Grade 5",
+    "units": [
+      {
+        "name": "Bổ trợ ngữ pháp",
+        "lessons": [
+          {
+            "title": "Unit 1 Articles",
+            "href": "grade-5/Bổ trợ ngữ pháp/unit_01_articles.html"
+          },
+          {
+            "title": "Unit 2 Some & Any",
+            "href": "grade-5/Bổ trợ ngữ pháp/unit_02_some_any_interactive_worksheet.html"
+          },
+          {
+            "title": "Unit 4 Past Simple – Be Verbs",
+            "href": "grade-5/Bổ trợ ngữ pháp/unit_04_past_simple_be_verbs_html.html"
+          },
+          {
+            "title": "Unit 5 Past Simple – Be Verbs: Negatives",
+            "href": "grade-5/Bổ trợ ngữ pháp/unit_05_past_simple_be_verbs_negatives.html"
+          },
+          {
+            "title": "Unit 7 Past Simple – Be Verbs: Wh- Questions",
+            "href": "grade-5/Bổ trợ ngữ pháp/unit_07_past_simple_be_v_wh_questions.html"
+          },
+          {
+            "title": "Unit 8 Past Simple – Regular Verbs",
+            "href": "grade-5/Bổ trợ ngữ pháp/unit_08_past_simple_regular_verbs.html"
+          },
+          {
+            "title": "Unit 9 Past Simple – Irregular Verbs",
+            "href": "grade-5/Bổ trợ ngữ pháp/unit_09_past_simple_irregular_verbs_worksheet.html"
+          },
+          {
+            "title": "Unit 10 Past Simple – Negatives",
+            "href": "grade-5/Bổ trợ ngữ pháp/unit_10_past_simple_negatives.html"
+          },
+          {
+            "title": "Unit 11 Past Simple – Yes/No Questions",
+            "href": "grade-5/Bổ trợ ngữ pháp/unit_11_past_simple_V_Yes_No_Questions.html"
+          },
+          {
+            "title": "Unit 12 Past Simple – What Questions",
+            "href": "grade-5/Bổ trợ ngữ pháp/unit_12_past_simple_verbs_what_questions.html"
+          },
+          {
+            "title": "Unit 3 Many, Much & A Lot Of",
+            "href": "grade-5/Bổ trợ ngữ pháp/unit_3_MANY  MUCH  A LOT OF.html"
+          },
+          {
+            "title": "Unit 6 Past Simple – Be Verbs: Questions",
+            "href": "grade-5/Bổ trợ ngữ pháp/unit_6_past_simple_be_verbs_questions.html"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "grade": "Grade 6",
+    "units": [
+      {
+        "name": "September 1 · Unit 1",
+        "lessons": [
+          {
+            "title": "Getting Started",
+            "href": "grade-6/September 1/unit-1/lesson-1.html"
+          },
+          {
+            "title": "A Closer Look 1 & 2",
+            "href": "grade-6/September 1/unit-1/lesson-2.html"
+          },
+          {
+            "title": "Communication & Skills 1–2",
+            "href": "grade-6/September 1/unit-1/lesson-3.html"
+          },
+          {
+            "title": "Looking Back & Project",
+            "href": "grade-6/September 1/unit-1/lesson-4.html"
+          }
+        ]
+      },
+      {
+        "name": "September 1 · Unit 2",
+        "lessons": [
+          {
+            "title": "Getting Started",
+            "href": "grade-6/September 1/unit-2/lesson-1.html"
+          },
+          {
+            "title": "A Closer Look 1 & 2",
+            "href": "grade-6/September 1/unit-2/lesson-2.html"
+          },
+          {
+            "title": "Communication & Skills 1–2",
+            "href": "grade-6/September 1/unit-2/lesson-3.html"
+          },
+          {
+            "title": "Looking Back & Project",
+            "href": "grade-6/September 1/unit-2/lesson-4.html"
+          }
+        ]
+      },
+      {
+        "name": "September 1 · Unit 3",
+        "lessons": [
+          {
+            "title": "Getting Started",
+            "href": "grade-6/September 1/unit-3/lesson-1.html"
+          },
+          {
+            "title": "A Closer Look 1 & 2",
+            "href": "grade-6/September 1/unit-3/lesson-2.html"
+          },
+          {
+            "title": "Skills 1 & 2",
+            "href": "grade-6/September 1/unit-3/lesson-3.html"
+          },
+          {
+            "title": "Communication, Looking Back & Project",
+            "href": "grade-6/September 1/unit-3/lesson-4.html"
+          }
+        ]
+      },
+      {
+        "name": "September 1 · Unit 4",
+        "lessons": [
+          {
+            "title": "Getting Started",
+            "href": "grade-6/September 1/unit-4/lesson-1.html"
+          },
+          {
+            "title": "A Closer Look 1 & 2",
+            "href": "grade-6/September 1/unit-4/lesson-2.html"
+          },
+          {
+            "title": "Skills 1 & 2",
+            "href": "grade-6/September 1/unit-4/lesson-3.html"
+          },
+          {
+            "title": "Communication, Looking Back & Project",
+            "href": "grade-6/September 1/unit-4/lesson-4.html"
+          }
+        ]
+      },
+      {
+        "name": "September 1 · Unit 5",
+        "lessons": [
+          {
+            "title": "Getting Started",
+            "href": "grade-6/September 1/unit-5/lesson-1.html"
+          },
+          {
+            "title": "A Closer Look 1 & 2",
+            "href": "grade-6/September 1/unit-5/lesson-2.html"
+          },
+          {
+            "title": "Skills 1 & 2",
+            "href": "grade-6/September 1/unit-5/lesson-3.html"
+          },
+          {
+            "title": "Communication, Looking Back & Project",
+            "href": "grade-6/September 1/unit-5/lesson-4.html"
+          }
+        ]
+      },
+      {
+        "name": "September 1 · Unit 6",
+        "lessons": [
+          {
+            "title": "Getting Started",
+            "href": "grade-6/September 1/unit-6/lesson-1.html"
+          },
+          {
+            "title": "A Closer Look 1 & 2",
+            "href": "grade-6/September 1/unit-6/lesson-2.html"
+          },
+          {
+            "title": "Skills 1 & 2",
+            "href": "grade-6/September 1/unit-6/lesson-3.html"
+          },
+          {
+            "title": "Communication, Looking Back & Project",
+            "href": "grade-6/September 1/unit-6/lesson-4.html"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "grade": "Grade 7",
+    "units": [
+      {
+        "name": "September 1 · Unit 1",
+        "lessons": [
+          {
+            "title": "Getting Started",
+            "href": "grade-7/September 1/unit-1/lesson-1.html"
+          },
+          {
+            "title": "A Closer Look 1 & 2",
+            "href": "grade-7/September 1/unit-1/lesson-2.html"
+          },
+          {
+            "title": "Communication",
+            "href": "grade-7/September 1/unit-1/lesson-3.html"
+          },
+          {
+            "title": "Skills 1 & 2",
+            "href": "grade-7/September 1/unit-1/lesson-4.html"
+          },
+          {
+            "title": "Looking Back & Project",
+            "href": "grade-7/September 1/unit-1/lesson-5.html"
+          }
+        ]
+      },
+      {
+        "name": "September 1 · Unit 2",
+        "lessons": [
+          {
+            "title": "Getting Started",
+            "href": "grade-7/September 1/unit-2/lesson-1.html"
+          },
+          {
+            "title": "A Closer Look 1 & 2",
+            "href": "grade-7/September 1/unit-2/lesson-2.html"
+          },
+          {
+            "title": "Communication & Skills",
+            "href": "grade-7/September 1/unit-2/lesson-3.html"
+          },
+          {
+            "title": "Looking Back & Project",
+            "href": "grade-7/September 1/unit-2/lesson-4.html"
+          }
+        ]
+      },
+      {
+        "name": "September 1 · Unit 3",
+        "lessons": [
+          {
+            "title": "Getting Started",
+            "href": "grade-7/September 1/unit-3/lesson-1.html"
+          },
+          {
+            "title": "A Closer Look 1 & 2",
+            "href": "grade-7/September 1/unit-3/lesson-2.html"
+          },
+          {
+            "title": "Communication",
+            "href": "grade-7/September 1/unit-3/lesson-3.html"
+          },
+          {
+            "title": "Skills 1 & 2",
+            "href": "grade-7/September 1/unit-3/lesson-4.html"
+          },
+          {
+            "title": "Looking Back & Project",
+            "href": "grade-7/September 1/unit-3/lesson-5.html"
+          }
+        ]
+      },
+      {
+        "name": "September 1 · Unit 4",
+        "lessons": [
+          {
+            "title": "Getting Started",
+            "href": "grade-7/September 1/unit-4/lesson-1.html"
+          },
+          {
+            "title": "A Closer Look 1 & 2",
+            "href": "grade-7/September 1/unit-4/lesson-2.html"
+          },
+          {
+            "title": "Skills 1 & 2",
+            "href": "grade-7/September 1/unit-4/lesson-3.html"
+          },
+          {
+            "title": "Communication, Looking Back & Project",
+            "href": "grade-7/September 1/unit-4/lesson-4.html"
+          }
+        ]
+      },
+      {
+        "name": "September 1 · Unit 5",
+        "lessons": [
+          {
+            "title": "Getting Started",
+            "href": "grade-7/September 1/unit-5/lesson-1.html"
+          },
+          {
+            "title": "A Closer Look 1 & 2",
+            "href": "grade-7/September 1/unit-5/lesson-2.html"
+          },
+          {
+            "title": "Skills 1 & 2",
+            "href": "grade-7/September 1/unit-5/lesson-3.html"
+          },
+          {
+            "title": "Communication, Looking Back & Project",
+            "href": "grade-7/September 1/unit-5/lesson-4.html"
+          }
+        ]
+      },
+      {
+        "name": "September 1 · Unit 6",
+        "lessons": [
+          {
+            "title": "Getting Started",
+            "href": "grade-7/September 1/unit-6/lesson-1.html"
+          },
+          {
+            "title": "A Closer Look 1 & 2",
+            "href": "grade-7/September 1/unit-6/lesson-2.html"
+          },
+          {
+            "title": "Skills 1 & 2",
+            "href": "grade-7/September 1/unit-6/lesson-3.html"
+          },
+          {
+            "title": "Communication, Looking Back & Project",
+            "href": "grade-7/September 1/unit-6/lesson-4.html"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "grade": "Grade 8",
+    "units": [
+      {
+        "name": "September 1 · Unit 1",
+        "lessons": [
+          {
+            "title": "Getting Started",
+            "href": "grade-8/September 1/unit-1/lesson-1.html"
+          },
+          {
+            "title": "A Closer Look 1 & 2",
+            "href": "grade-8/September 1/unit-1/lesson-2.html"
+          },
+          {
+            "title": "Communication",
+            "href": "grade-8/September 1/unit-1/lesson-3.html"
+          },
+          {
+            "title": "Skills 1 & 2",
+            "href": "grade-8/September 1/unit-1/lesson-4.html"
+          },
+          {
+            "title": "Looking Back & Project",
+            "href": "grade-8/September 1/unit-1/lesson-5.html"
+          }
+        ]
+      },
+      {
+        "name": "September 1 · Unit 2",
+        "lessons": [
+          {
+            "title": "Getting Started",
+            "href": "grade-8/September 1/unit-2/lesson-1.html"
+          },
+          {
+            "title": "A Closer Look 1 & 2",
+            "href": "grade-8/September 1/unit-2/lesson-2.html"
+          },
+          {
+            "title": "Communication",
+            "href": "grade-8/September 1/unit-2/lesson-3.html"
+          },
+          {
+            "title": "Skills 1 & 2",
+            "href": "grade-8/September 1/unit-2/lesson-4.html"
+          },
+          {
+            "title": "Looking Back & Project",
+            "href": "grade-8/September 1/unit-2/lesson-5.html"
+          }
+        ]
+      },
+      {
+        "name": "September 1 · Unit 3",
+        "lessons": [
+          {
+            "title": "Getting Started",
+            "href": "grade-8/September 1/unit-3/lesson-1.html"
+          },
+          {
+            "title": "A Closer Look 1 & 2",
+            "href": "grade-8/September 1/unit-3/lesson-2.html"
+          },
+          {
+            "title": "Communication",
+            "href": "grade-8/September 1/unit-3/lesson-3.html"
+          },
+          {
+            "title": "Skills 1 & 2",
+            "href": "grade-8/September 1/unit-3/lesson-4.html"
+          },
+          {
+            "title": "Looking Back & Project",
+            "href": "grade-8/September 1/unit-3/lesson-5.html"
+          }
+        ]
+      },
+      {
+        "name": "September 1 · Unit 4",
+        "lessons": [
+          {
+            "title": "Getting Started",
+            "href": "grade-8/September 1/unit-4/lesson-1.html"
+          },
+          {
+            "title": "A Closer Look 1 & 2",
+            "href": "grade-8/September 1/unit-4/lesson-2.html"
+          },
+          {
+            "title": "Communication",
+            "href": "grade-8/September 1/unit-4/lesson-3.html"
+          },
+          {
+            "title": "Skills 1 & 2",
+            "href": "grade-8/September 1/unit-4/lesson-4.html"
+          },
+          {
+            "title": "Looking Back & Project",
+            "href": "grade-8/September 1/unit-4/lesson-5.html"
+          }
+        ]
+      },
+      {
+        "name": "September 1 · Unit 5",
+        "lessons": [
+          {
+            "title": "Getting Started",
+            "href": "grade-8/September 1/unit-5/lesson-1.html"
+          },
+          {
+            "title": "A Closer Look 1 & 2",
+            "href": "grade-8/September 1/unit-5/lesson-2.html"
+          },
+          {
+            "title": "Communication",
+            "href": "grade-8/September 1/unit-5/lesson-3.html"
+          },
+          {
+            "title": "Skills 1 & 2",
+            "href": "grade-8/September 1/unit-5/lesson-4.html"
+          },
+          {
+            "title": "Looking Back & Project",
+            "href": "grade-8/September 1/unit-5/lesson-5.html"
+          }
+        ]
+      },
+      {
+        "name": "September 1 · Unit 6",
+        "lessons": [
+          {
+            "title": "Getting Started",
+            "href": "grade-8/September 1/unit-6/lesson-1.html"
+          },
+          {
+            "title": "A Closer Look 1 & 2",
+            "href": "grade-8/September 1/unit-6/lesson-2.html"
+          },
+          {
+            "title": "Communication",
+            "href": "grade-8/September 1/unit-6/lesson-3.html"
+          },
+          {
+            "title": "Skills 1 & 2",
+            "href": "grade-8/September 1/unit-6/lesson-4.html"
+          },
+          {
+            "title": "Looking Back & Project",
+            "href": "grade-8/September 1/unit-6/lesson-5.html"
+          }
+        ]
+      }
+    ]
+  }
 ];
-
-
-/* =========================
-   HỆ THỐNG HIỂN THỊ
-========================= */
-
-const tabs = document.getElementById("tabs");
-const content = document.getElementById("content");
-const search = document.getElementById("search");
-const empty = document.getElementById("empty");
-
-let active = DATA[0]?.grade || "";
-
-
-/* ĐẾM TỔNG SỐ BÀI */
-
-const total = DATA.reduce(
-
-(n,g) =>
-n + g.units.reduce(
-(m,u) => m + u.lessons.length,
-0
-),
-
-0
-
-);
-
-document.getElementById("stats").textContent =
-`${DATA.length} khối • ${total} bài học`;
-
-
-/* =========================
-   RENDER
-========================= */
-
-function render(q=""){
-
-tabs.innerHTML="";
-content.innerHTML="";
-
-let visible=0;
-
-
-DATA.forEach(g=>{
-
-
-/* TAB GRADE */
-
-const b=document.createElement("button");
-
-b.className=
-"tab " +
-(g.grade===active ? "active" : "");
-
-b.textContent=g.grade;
-
-
-b.onclick=()=>{
-
-active=g.grade;
-
-render(search.value);
-
-};
-
-
-tabs.appendChild(b);
-
-
-
-/* SECTION */
-
-const sec=document.createElement("section");
-
-sec.className=
-"grade-section " +
-(g.grade===active ? "active" : "");
-
-
-
-g.units.forEach(u=>{
-
-
-const lessons=u.lessons.filter(l=>
-
-(
-g.grade+" "+
-u.name+" "+
-l.title
-)
-
-.toLowerCase()
-
-.includes(q.toLowerCase())
-
-);
-
-
-if(!lessons.length)return;
-
-
-visible+=lessons.length;
-
-
-/* UNIT BOX */
-
-const box=document.createElement("div");
-
-box.className="unit";
-
-
-box.innerHTML=`
-
-<div class="unit-head">
-
-<h3>${u.name}</h3>
-
-<span class="badge">
-${lessons.length} bài
-</span>
-
-</div>
-
-<div class="lessons"></div>
-
-`;
-
-
-const list=
-box.querySelector(".lessons");
-
-
-
-/* LESSON */
-
-lessons.forEach((l,i)=>{
-
-
-const a=document.createElement("a");
-
-a.className="lesson";
-
-
-/*
-Tự động xử lý đường dẫn tương đối
-khi chạy bằng GitHub Pages
-*/
-
-a.href = new URL(l.href, window.location.href).href;
-
-
-a.innerHTML=`
-
-<strong>
-${i+1}. ${l.title}
-</strong>
-
-<small>
-Mở bài học →
-</small>
-
-`;
-
-
-list.appendChild(a);
-
-});
-
-
-sec.appendChild(box);
-
-
-});
-
-
-content.appendChild(sec);
-
-
-});
-
-
-empty.style.display=
-visible ? "none" : "block";
-
+const tabs=document.getElementById('tabs'), content=document.getElementById('content'), search=document.getElementById('search'), empty=document.getElementById('empty'), stats=document.getElementById('stats');
+let current=0;
+const total=DATA.reduce((n,g)=>n+g.units.reduce((m,u)=>m+u.lessons.length,0),0); stats.textContent=`${total} bài học`;
+function toggle(el){ el.classList.toggle('open'); }
+function unitNumber(u){ const m=u.name.match(/Unit\s+(\d+)/i); return m?Number(m[1]):999; }
+function render(q=''){
+ tabs.innerHTML=''; content.innerHTML=''; let found=false;
+ DATA.forEach((g,gi)=>{
+   const b=document.createElement('button'); b.className='tab'+(gi===current?' active':''); b.textContent=g.grade;
+   b.onclick=()=>{current=gi;render(search.value)}; tabs.appendChild(b);
+   const sec=document.createElement('section'); sec.className='grade-section'+(gi===current?' active':'');
+   if(gi!==current){ content.appendChild(sec); return; }
+   const needle=q.toLowerCase();
+
+   if(g.grade==='Grade 4' || g.grade==='Grade 5'){
+     const all=g.units.flatMap(u=>u.lessons).filter(l=>!q || (g.grade+' Bổ trợ ngữ pháp '+l.title).toLowerCase().includes(needle));
+     if(all.length){
+       found=true;
+       all.sort((a,b)=>{const na=Number((a.title.match(/Unit\s+(\d+)/i)||[])[1]||999), nb=Number((b.title.match(/Unit\s+(\d+)/i)||[])[1]||999); return na-nb;});
+       const folder=document.createElement('div'); folder.className='folder'+(q?' open':'');
+       folder.innerHTML=`<div class="folder-head"><div class="folder-title"><span class="folder-icon">📁</span><h3>Bổ trợ ngữ pháp</h3></div><div><span class="badge">${all.length} bài</span> <span class="chev">›</span></div></div><div class="folder-body"><div class="grammar-list"></div></div>`;
+       folder.querySelector('.folder-head').onclick=()=>toggle(folder);
+       const list=folder.querySelector('.grammar-list');
+       all.forEach(l=>{ const a=document.createElement('a'); a.className='lesson'; a.href=l.href; a.innerHTML=`<strong>${l.title}</strong>`; list.appendChild(a); });
+       sec.appendChild(folder);
+     }
+   } else {
+     const matchingUnits=g.units.map(u=>({u,lessons:u.lessons.filter((l,li)=>!q || (g.grade+' September 1 '+u.name+' '+l.title+' '+(li+1)).toLowerCase().includes(needle))})).filter(x=>x.lessons.length);
+     if(matchingUnits.length){
+       found=true;
+       matchingUnits.sort((a,b)=>unitNumber(a.u)-unitNumber(b.u));
+       const folder=document.createElement('div'); folder.className='folder'+(q?' open':'');
+       const lessonCount=matchingUnits.reduce((n,x)=>n+x.lessons.length,0);
+       folder.innerHTML=`<div class="folder-head"><div class="folder-title"><span class="folder-icon">📁</span><h3>September 1</h3></div><div><span class="badge">${matchingUnits.length} Unit</span> <span class="chev">›</span></div></div><div class="folder-body"></div>`;
+       folder.querySelector('.folder-head').onclick=()=>toggle(folder);
+       const body=folder.querySelector('.folder-body');
+       matchingUnits.forEach(({u,lessons})=>{
+         const num=(u.name.match(/Unit\s+(\d+)/i)||[])[1]||'';
+         const box=document.createElement('div'); box.className='unit nested-unit'+(q?' open':'');
+         box.innerHTML=`<div class="unit-head"><h3>Unit ${num}</h3><div><span class="badge">${lessons.length} bài</span> <span class="chev">›</span></div></div>`;
+         box.querySelector('.unit-head').onclick=()=>toggle(box);
+         const grid=document.createElement('div'); grid.className='lessons';
+         lessons.forEach(l=>{ const originalIndex=u.lessons.indexOf(l); const a=document.createElement('a'); a.className='lesson'; a.href=l.href; a.innerHTML=`<strong>${originalIndex+1}. ${l.title}</strong>`; grid.appendChild(a); });
+         box.appendChild(grid); body.appendChild(box);
+       });
+       sec.appendChild(folder);
+     }
+   }
+   content.appendChild(sec);
+ });
+ empty.style.display=found?'none':'block';
 }
-
-
-/* SEARCH */
-
-search.addEventListener(
-"input",
-e => render(e.target.value.trim())
-);
-
-
-/* START */
-
-render();
-
-</script>
-
-</body>
-</html>
+search.addEventListener('input',()=>render(search.value.trim())); render();
+</script></body></html>
