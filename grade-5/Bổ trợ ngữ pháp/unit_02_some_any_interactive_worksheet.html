@@ -1,0 +1,838 @@
+<!-- Chosen Palette: Warm Neutral with Deep Royal Blue and Slate Blue Accents -->
+<!-- Application Structure Plan:
+     1. Header & Center Info: HT English Center contact details & Unit Title.
+     2. Score Summary Banner (Hidden until submission): Displays score out of 44, star rating, and motivational feedback.
+     3. Grammar Focus Box: Interactive summary of "Some" vs "Any" rules with audio clips for example phrases.
+     4. Exercise Sections A-E:
+        - Part A: Look and circle (Radio choice with audio per option).
+        - Part B: Read and write 'some' or 'any' (Fill in blanks with inline audio for target nouns).
+        - Part C: Complete sentences using 'some' or 'any' with Vietnamese translation prompts and word bank.
+        - Part D: Read and unscramble (Interactive sentence builder / text input).
+        - Part E: Read and correct (Sentence rewrite text inputs).
+     5. Action Controls: Submit button that locks all inputs and generates Vietnamese explanations, and Reset button to re-try.
+-->
+<!-- Visualization & Content Choices:
+     - Grammar Table -> Formatted HTML Table with audio -> Goal: Inform & Review -> Method: Interactive audio triggers -> Justification: Clear baseline structure before exercises.
+     - Part A (Look & Circle) -> Radio input buttons with audio -> Goal: Choice recognition -> Method: Dual audio buttons on options only (preventing answer leakage).
+     - Part B (Fill in blanks) -> HTML Text Inputs -> Goal: Contextual grammar choice -> Method: Clean input with audio for nouns.
+     - Part C (Complete sentences) -> Vocabulary Badges + Text Inputs + Vietnamese translation text -> Goal: Sentence completion based on Vietnamese meanings -> Method: Clean input with word bank context.
+     - Part D (Unscramble) -> Text Inputs with draggable/clickable hint tags -> Goal: Syntax formation -> Method: Clear word block visual indicators.
+     - Part E (Error Correction) -> Text Inputs -> Goal: Accuracy & Correction -> Method: Vietnamese step-by-step grammatical reasoning shown after submit.
+     Libraries: Tailwind CSS (CDN), Web Speech API for native browser TTS. NO SVG or Mermaid JS used.
+-->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit 02: Some / Any - HT English Center</title>
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Font: Noto Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      font-family: "Noto Sans", Arial, sans-serif !important;
+    }
+    body {
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    .btn-audio {
+      background-color: #e0f2fe;
+      border: 1px solid #7dd3fc;
+      color: #0369a1;
+      border-radius: 9999px;
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.875rem;
+      transition: all 0.2s ease-in-out;
+      margin-left: 4px;
+      margin-right: 4px;
+      vertical-align: middle;
+    }
+    .btn-audio:hover {
+      background-color: #bae6fd;
+      transform: scale(1.08);
+    }
+    .explanation-box {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+    .explanation-box.correct {
+      background-color: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      color: #14532d;
+    }
+    .explanation-box.incorrect {
+      background-color: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #7f1d1d;
+    }
+    input:disabled {
+      background-color: #f1f5f9 !important;
+      cursor: not-allowed;
+      opacity: 0.85;
+    }
+    .disabled-label {
+      cursor: not-allowed !important;
+      opacity: 0.8 !important;
+    }
+  </style>
+</head>
+<body class="py-6 px-3 md:px-6">
+
+  <div class="max-w-4xl mx-auto">
+
+    <!-- HEADER / CENTER INFO -->
+    <header class="bg-gradient-to-r from-blue-900 to-blue-700 text-white p-6 rounded-2xl shadow-lg text-center mb-6 relative">
+      <div class="inline-block bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full text-sm font-semibold tracking-wide mb-3">
+        HT English Center • Hotline: 0962240866
+      </div>
+      <h1 class="text-2xl md:text-3xl font-bold mb-1">UNIT 02: SOME / ANY</h1>
+      <p class="text-blue-100 text-sm md:text-base">Phiếu bài tập điện tử - Ngữ pháp & Luyện tập tương tác</p>
+    </header>
+
+    <!-- SCORE RESULT CARD (Hidden by default) -->
+    <div id="scoreCard" class="hidden bg-white border-4 border-blue-600 rounded-2xl p-6 text-center mb-6 shadow-xl transform transition-all">
+      <div class="text-gray-500 font-semibold text-sm md:text-base mb-1">KẾT QUẢ BÀI LÀM / YOUR RESULT</div>
+      <div id="scoreNumber" class="text-4xl md:text-5xl font-extrabold text-blue-700 my-2">0 / 44</div>
+      <div id="scoreStars" class="text-2xl mb-2">⭐⭐⭐⭐⭐</div>
+      <div id="scoreFeedback" class="text-gray-800 font-bold text-base md:text-lg">Em hãy xem chi tiết phần nhận xét và chữa bài bên dưới nhé!</div>
+    </div>
+
+    <!-- GRAMMAR FOCUS SUMMARY -->
+    <section class="bg-white border-2 border-blue-200 rounded-2xl p-5 mb-6 shadow-sm">
+      <div class="flex items-center gap-2 text-blue-900 font-bold text-lg mb-3">
+        <span>💡 TÓM TẮT NGỮ PHÁP (GRAMMAR POINT)</span>
+        <button type="button" class="btn-audio" onclick="speakText('Grammar point: Some and Any')" title="Nghe tiêu đề">🔊</button>
+      </div>
+      <div class="text-sm md:text-base space-y-2 text-gray-700">
+        <p>• <b>'Some'</b> và <b>'any'</b> mang nghĩa <i>"một số, một chút"</i>.</p>
+        <p>• Được dùng trước <b>danh từ đếm được số nhiều</b> hoặc <b>danh từ không đếm được</b>.</p>
+        <p>• <b>'Some'</b> dùng trong câu <b>khẳng định (+)</b>. <b>'Any'</b> dùng trong câu <b>phủ định (-)</b> và <b>nghi vấn (?)</b>.</p>
+      </div>
+
+      <!-- Grammar Table -->
+      <div class="overflow-x-auto mt-4">
+        <table class="w-full text-xs md:text-sm text-left border-collapse border border-gray-300">
+          <thead>
+            <tr class="bg-blue-100 text-blue-900 font-bold">
+              <th class="p-2 border border-gray-300">Loại câu</th>
+              <th class="p-2 border border-gray-300">Some/Any + Countable Noun</th>
+              <th class="p-2 border border-gray-300">Some/Any + Uncountable Noun</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <tr>
+              <td class="p-2 border font-semibold bg-gray-50">Affirmative<br><span class="text-xs text-gray-500 font-normal">(Khẳng định)</span></td>
+              <td class="p-2 border">I have <b>some</b> apples. <button type="button" class="btn-audio" onclick="speakText('I have some apples.')">🔊</button></td>
+              <td class="p-2 border">I have <b>some</b> bread. <button type="button" class="btn-audio" onclick="speakText('I have some bread.')">🔊</button></td>
+            </tr>
+            <tr>
+              <td class="p-2 border font-semibold bg-gray-50">Negative<br><span class="text-xs text-gray-500 font-normal">(Phủ định)</span></td>
+              <td class="p-2 border">I don't have <b>any</b> apples. <button type="button" class="btn-audio" onclick="speakText('I don\'t have any apples.')">🔊</button></td>
+              <td class="p-2 border">I don't have <b>any</b> bread. <button type="button" class="btn-audio" onclick="speakText('I don\'t have any bread.')">🔊</button></td>
+            </tr>
+            <tr>
+              <td class="p-2 border font-semibold bg-gray-50">Question<br><span class="text-xs text-gray-500 font-normal">(Nghi vấn)</span></td>
+              <td class="p-2 border">Do you have <b>any</b> apples? <button type="button" class="btn-audio" onclick="speakText('Do you have any apples?')">🔊</button></td>
+              <td class="p-2 border">Do you have <b>any</b> bread? <button type="button" class="btn-audio" onclick="speakText('Do you have any bread?')">🔊</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- WORKSHEET FORM -->
+    <form id="worksheetForm" onsubmit="event.preventDefault();">
+
+      <!-- EXERCISE A -->
+      <section class="bg-white rounded-2xl p-5 mb-6 shadow-md border border-gray-200">
+        <div class="flex items-center gap-3 pb-3 mb-4 border-b-2 border-blue-100">
+          <span class="bg-blue-700 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg">A</span>
+          <h2 class="text-blue-900 font-bold text-base md:text-lg">Look and circle. (Xem hình và chọn từ đúng)</h2>
+        </div>
+
+        <!-- Question A1 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold flex flex-wrap items-center gap-2">
+            <span>1. 🥛 There is</span>
+            <div class="inline-flex items-center gap-2 bg-white px-2 py-1 rounded-lg border border-gray-300">
+              <label class="cursor-pointer inline-flex items-center gap-1 hover:text-blue-600">
+                <input type="radio" name="qa1" value="some" class="w-4 h-4 text-blue-600"> some
+              </label>
+              <button type="button" class="btn-audio" onclick="speakText('some')">🔊</button>
+              <span class="text-gray-400">/</span>
+              <label class="cursor-pointer inline-flex items-center gap-1 hover:text-blue-600">
+                <input type="radio" name="qa1" value="any" class="w-4 h-4 text-blue-600"> any
+              </label>
+              <button type="button" class="btn-audio" onclick="speakText('any')">🔊</button>
+            </div>
+            <span>water.</span>
+          </div>
+          <div id="expl-a1" class="explanation-box"></div>
+        </div>
+
+        <!-- Question A2 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold flex flex-wrap items-center gap-2">
+            <span>2. 💐 There aren't</span>
+            <div class="inline-flex items-center gap-2 bg-white px-2 py-1 rounded-lg border border-gray-300">
+              <label class="cursor-pointer inline-flex items-center gap-1 hover:text-blue-600">
+                <input type="radio" name="qa2" value="some" class="w-4 h-4 text-blue-600"> some
+              </label>
+              <button type="button" class="btn-audio" onclick="speakText('some')">🔊</button>
+              <span class="text-gray-400">/</span>
+              <label class="cursor-pointer inline-flex items-center gap-1 hover:text-blue-600">
+                <input type="radio" name="qa2" value="any" class="w-4 h-4 text-blue-600"> any
+              </label>
+              <button type="button" class="btn-audio" onclick="speakText('any')">🔊</button>
+            </div>
+            <span>flowers.</span>
+          </div>
+          <div id="expl-a2" class="explanation-box"></div>
+        </div>
+
+        <!-- Question A3 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold flex flex-wrap items-center gap-2">
+            <span>3. 🧸 Do you have</span>
+            <div class="inline-flex items-center gap-2 bg-white px-2 py-1 rounded-lg border border-gray-300">
+              <label class="cursor-pointer inline-flex items-center gap-1 hover:text-blue-600">
+                <input type="radio" name="qa3" value="some" class="w-4 h-4 text-blue-600"> some
+              </label>
+              <button type="button" class="btn-audio" onclick="speakText('some')">🔊</button>
+              <span class="text-gray-400">/</span>
+              <label class="cursor-pointer inline-flex items-center gap-1 hover:text-blue-600">
+                <input type="radio" name="qa3" value="any" class="w-4 h-4 text-blue-600"> any
+              </label>
+              <button type="button" class="btn-audio" onclick="speakText('any')">🔊</button>
+            </div>
+            <span>toys? - Yes, we do.</span>
+          </div>
+          <div id="expl-a3" class="explanation-box"></div>
+        </div>
+      </section>
+
+      <!-- EXERCISE B -->
+      <section class="bg-white rounded-2xl p-5 mb-6 shadow-md border border-gray-200">
+        <div class="flex items-center gap-3 pb-3 mb-4 border-b-2 border-blue-100">
+          <span class="bg-blue-700 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg">B</span>
+          <h2 class="text-blue-900 font-bold text-base md:text-lg">Read and write 'some' or 'any'. (Điền 'some' hoặc 'any')</h2>
+        </div>
+
+        <!-- Question B1 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold leading-relaxed">
+            1. Is there <input type="text" id="qb1_1" class="border-2 border-gray-300 rounded px-2 py-1 w-24 text-center focus:border-blue-500 outline-none" placeholder="some/any"> chocolate?
+            <button type="button" class="btn-audio" onclick="speakText('chocolate')">🔊</button><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Yes, there is <input type="text" id="qb1_2" class="border-2 border-gray-300 rounded px-2 py-1 w-24 text-center focus:border-blue-500 outline-none" placeholder="some/any"> chocolate.
+          </div>
+          <div id="expl-b1" class="explanation-box"></div>
+        </div>
+
+        <!-- Question B2 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold leading-relaxed">
+            2. Do you have <input type="text" id="qb2_1" class="border-2 border-gray-300 rounded px-2 py-1 w-24 text-center focus:border-blue-500 outline-none" placeholder="some/any"> pens?
+            <button type="button" class="btn-audio" onclick="speakText('pens')">🔊</button><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;No, I don't have <input type="text" id="qb2_2" class="border-2 border-gray-300 rounded px-2 py-1 w-24 text-center focus:border-blue-500 outline-none" placeholder="some/any"> pens. But I have <input type="text" id="qb2_3" class="border-2 border-gray-300 rounded px-2 py-1 w-24 text-center focus:border-blue-500 outline-none" placeholder="some/any"> pencils.
+            <button type="button" class="btn-audio" onclick="speakText('pencils')">🔊</button>
+          </div>
+          <div id="expl-b2" class="explanation-box"></div>
+        </div>
+
+        <!-- Question B3 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold leading-relaxed">
+            3. Does she have <input type="text" id="qb3_1" class="border-2 border-gray-300 rounded px-2 py-1 w-24 text-center focus:border-blue-500 outline-none" placeholder="some/any"> milk?
+            <button type="button" class="btn-audio" onclick="speakText('milk')">🔊</button><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;No, she doesn't have <input type="text" id="qb3_2" class="border-2 border-gray-300 rounded px-2 py-1 w-24 text-center focus:border-blue-500 outline-none" placeholder="some/any"> milk. But she has <input type="text" id="qb3_3" class="border-2 border-gray-300 rounded px-2 py-1 w-24 text-center focus:border-blue-500 outline-none" placeholder="some/any"> yogurt.
+            <button type="button" class="btn-audio" onclick="speakText('yogurt')">🔊</button>
+          </div>
+          <div id="expl-b3" class="explanation-box"></div>
+        </div>
+
+        <!-- Question B4 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold leading-relaxed">
+            4. Are there <input type="text" id="qb4_1" class="border-2 border-gray-300 rounded px-2 py-1 w-24 text-center focus:border-blue-500 outline-none" placeholder="some/any"> toys?
+            <button type="button" class="btn-audio" onclick="speakText('toys')">🔊</button><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Yes, there are <input type="text" id="qb4_2" class="border-2 border-gray-300 rounded px-2 py-1 w-24 text-center focus:border-blue-500 outline-none" placeholder="some/any"> toys.
+          </div>
+          <div id="expl-b4" class="explanation-box"></div>
+        </div>
+
+        <!-- Question B5 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold leading-relaxed">
+            5. Is there <input type="text" id="qb5_1" class="border-2 border-gray-300 rounded px-2 py-1 w-24 text-center focus:border-blue-500 outline-none" placeholder="some/any"> cake?
+            <button type="button" class="btn-audio" onclick="speakText('cake')">🔊</button><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;No, there isn't <input type="text" id="qb5_2" class="border-2 border-gray-300 rounded px-2 py-1 w-24 text-center focus:border-blue-500 outline-none" placeholder="some/any"> cake. But there is <input type="text" id="qb5_3" class="border-2 border-gray-300 rounded px-2 py-1 w-24 text-center focus:border-blue-500 outline-none" placeholder="some/any"> pie.
+            <button type="button" class="btn-audio" onclick="speakText('pie')">🔊</button>
+          </div>
+          <div id="expl-b5" class="explanation-box"></div>
+        </div>
+      </section>
+
+      <!-- EXERCISE C -->
+      <section class="bg-white rounded-2xl p-5 mb-6 shadow-md border border-gray-200">
+        <div class="flex items-center gap-3 pb-3 mb-4 border-b-2 border-blue-100">
+          <span class="bg-blue-700 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg">C</span>
+          <h2 class="text-blue-900 font-bold text-base md:text-lg">Read and write using 'some' or 'any'. (Điền 'some' / 'any' và tên món ăn)</h2>
+        </div>
+
+        <!-- Word Bank Box -->
+        <div class="bg-slate-100 border-2 border-dashed border-gray-300 rounded-xl p-3 mb-5 text-center flex flex-wrap justify-center gap-2">
+          <span class="text-xs font-bold text-gray-500 w-full mb-1">Từ gợi ý (Word Bank):</span>
+          <span class="bg-white px-3 py-1 rounded-full border text-sm font-semibold shadow-sm inline-flex items-center gap-1">milk <button type="button" class="btn-audio" onclick="speakText('milk')">🔊</button></span>
+          <span class="bg-white px-3 py-1 rounded-full border text-sm font-semibold shadow-sm inline-flex items-center gap-1">apples <button type="button" class="btn-audio" onclick="speakText('apples')">🔊</button></span>
+          <span class="bg-white px-3 py-1 rounded-full border text-sm font-semibold shadow-sm inline-flex items-center gap-1">cheese <button type="button" class="btn-audio" onclick="speakText('cheese')">🔊</button></span>
+          <span class="bg-white px-3 py-1 rounded-full border text-sm font-semibold shadow-sm inline-flex items-center gap-1">donuts <button type="button" class="btn-audio" onclick="speakText('donuts')">🔊</button></span>
+          <span class="bg-white px-3 py-1 rounded-full border text-sm font-semibold shadow-sm inline-flex items-center gap-1">bread <button type="button" class="btn-audio" onclick="speakText('bread')">🔊</button></span>
+          <span class="bg-white px-3 py-1 rounded-full border text-sm font-semibold shadow-sm inline-flex items-center gap-1">grapes <button type="button" class="btn-audio" onclick="speakText('grapes')">🔊</button></span>
+          <span class="bg-white px-3 py-1 rounded-full border text-sm font-semibold shadow-sm inline-flex items-center gap-1">ice cream <button type="button" class="btn-audio" onclick="speakText('ice cream')">🔊</button></span>
+          <span class="bg-white px-3 py-1 rounded-full border text-sm font-semibold shadow-sm inline-flex items-center gap-1">crackers <button type="button" class="btn-audio" onclick="speakText('crackers')">🔊</button></span>
+        </div>
+
+        <!-- Question C1 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold leading-relaxed">
+            1. He has <input type="text" id="qc1_1" class="border-2 border-gray-300 rounded px-2 py-1 w-24 text-center focus:border-blue-500 outline-none" placeholder="some/any"> <input type="text" id="qc1_2" class="border-2 border-gray-300 rounded px-2 py-1 w-28 text-center focus:border-blue-500 outline-none" placeholder="tên món">.
+            <div class="text-sm font-normal text-blue-800 italic mt-1">👉 Dịch: Cậu ấy có một vài quả táo.</div>
+          </div>
+          <div id="expl-c1" class="explanation-box"></div>
+        </div>
+
+        <!-- Question C2 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold leading-relaxed">
+            2. He doesn't have <input type="text" id="qc2_1" class="border-2 border-gray-300 rounded px-2 py-1 w-24 text-center focus:border-blue-500 outline-none" placeholder="some/any"> <input type="text" id="qc2_2" class="border-2 border-gray-300 rounded px-2 py-1 w-28 text-center focus:border-blue-500 outline-none" placeholder="tên món">.
+            <div class="text-sm font-normal text-blue-800 italic mt-1">👉 Dịch: Cậu ấy không có chút sữa nào.</div>
+          </div>
+          <div id="expl-c2" class="explanation-box"></div>
+        </div>
+
+        <!-- Question C3 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold leading-relaxed">
+            3. He has <input type="text" id="qc3_1" class="border-2 border-gray-300 rounded px-2 py-1 w-24 text-center focus:border-blue-500 outline-none" placeholder="some/any"> <input type="text" id="qc3_2" class="border-2 border-gray-300 rounded px-2 py-1 w-28 text-center focus:border-blue-500 outline-none" placeholder="tên món">.
+            <div class="text-sm font-normal text-blue-800 italic mt-1">👉 Dịch: Cậu ấy có một vài quả nho.</div>
+          </div>
+          <div id="expl-c3" class="explanation-box"></div>
+        </div>
+
+        <!-- Question C4 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold leading-relaxed">
+            4. Does he have <input type="text" id="qc4_1" class="border-2 border-gray-300 rounded px-2 py-1 w-24 text-center focus:border-blue-500 outline-none" placeholder="some/any"> <input type="text" id="qc4_2" class="border-2 border-gray-300 rounded px-2 py-1 w-28 text-center focus:border-blue-500 outline-none" placeholder="tên món">? No, he doesn't.
+            <div class="text-sm font-normal text-blue-800 italic mt-1">👉 Dịch: Cậu ấy có chút bánh mì nào không? - Không, cậu ấy không có.</div>
+          </div>
+          <div id="expl-c4" class="explanation-box"></div>
+        </div>
+
+        <!-- Question C5 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold leading-relaxed">
+            5. They have <input type="text" id="qc5_1" class="border-2 border-gray-300 rounded px-2 py-1 w-24 text-center focus:border-blue-500 outline-none" placeholder="some/any"> <input type="text" id="qc5_2" class="border-2 border-gray-300 rounded px-2 py-1 w-28 text-center focus:border-blue-500 outline-none" placeholder="tên món">.
+            <div class="text-sm font-normal text-blue-800 italic mt-1">👉 Dịch: Họ có một chút bánh mì.</div>
+          </div>
+          <div id="expl-c5" class="explanation-box"></div>
+        </div>
+
+        <!-- Question C6 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold leading-relaxed">
+            6. They don't have <input type="text" id="qc6_1" class="border-2 border-gray-300 rounded px-2 py-1 w-24 text-center focus:border-blue-500 outline-none" placeholder="some/any"> <input type="text" id="qc6_2" class="border-2 border-gray-300 rounded px-2 py-1 w-28 text-center focus:border-blue-500 outline-none" placeholder="tên món">.
+            <div class="text-sm font-normal text-blue-800 italic mt-1">👉 Dịch: Họ không có chiếc bánh rán donut nào.</div>
+          </div>
+          <div id="expl-c6" class="explanation-box"></div>
+        </div>
+
+        <!-- Question C7 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold leading-relaxed">
+            7. They have <input type="text" id="qc7_1" class="border-2 border-gray-300 rounded px-2 py-1 w-24 text-center focus:border-blue-500 outline-none" placeholder="some/any"> <input type="text" id="qc7_2" class="border-2 border-gray-300 rounded px-2 py-1 w-28 text-center focus:border-blue-500 outline-none" placeholder="tên món">.
+            <div class="text-sm font-normal text-blue-800 italic mt-1">👉 Dịch: Họ có một chút phô mai.</div>
+          </div>
+          <div id="expl-c7" class="explanation-box"></div>
+        </div>
+
+        <!-- Question C8 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold leading-relaxed">
+            8. Do they have <input type="text" id="qc8_1" class="border-2 border-gray-300 rounded px-2 py-1 w-24 text-center focus:border-blue-500 outline-none" placeholder="some/any"> <input type="text" id="qc8_2" class="border-2 border-gray-300 rounded px-2 py-1 w-28 text-center focus:border-blue-500 outline-none" placeholder="tên món">? No, they don't.
+            <div class="text-sm font-normal text-blue-800 italic mt-1">👉 Dịch: Họ có chút bánh quy giòn nào không? - Không, họ không có.</div>
+          </div>
+          <div id="expl-c8" class="explanation-box"></div>
+        </div>
+      </section>
+
+      <!-- EXERCISE D -->
+      <section class="bg-white rounded-2xl p-5 mb-6 shadow-md border border-gray-200">
+        <div class="flex items-center gap-3 pb-3 mb-4 border-b-2 border-blue-100">
+          <span class="bg-blue-700 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg">D</span>
+          <h2 class="text-blue-900 font-bold text-base md:text-lg">Read and unscramble. (Sắp xếp từ thành câu hoàn chỉnh)</h2>
+        </div>
+
+        <!-- Question D1 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold mb-2">
+            1. 🧩 <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">notebooks.</span> <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">don't</span> <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">any</span> <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">I</span> <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">have</span>
+          </div>
+          <input type="text" id="qd1" class="border-2 border-gray-300 rounded-lg px-3 py-2 w-full focus:border-blue-500 outline-none text-base" placeholder="Nhập câu hoàn chỉnh vào đây...">
+          <div id="expl-d1" class="explanation-box"></div>
+        </div>
+
+        <!-- Question D2 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold mb-2">
+            2. 🧩 <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">any</span> <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">there</span> <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">pencils?</span> <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">Are</span>
+          </div>
+          <input type="text" id="qd2" class="border-2 border-gray-300 rounded-lg px-3 py-2 w-full focus:border-blue-500 outline-none text-base" placeholder="Nhập câu hoàn chỉnh vào đây...">
+          <div id="expl-d2" class="explanation-box"></div>
+        </div>
+
+        <!-- Question D3 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold mb-2">
+            3. 🧩 <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">doesn't</span> <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">have</span> <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">butter.</span> <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">any</span> <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">He</span>
+          </div>
+          <input type="text" id="qd3" class="border-2 border-gray-300 rounded-lg px-3 py-2 w-full focus:border-blue-500 outline-none text-base" placeholder="Nhập câu hoàn chỉnh vào đây...">
+          <div id="expl-d3" class="explanation-box"></div>
+        </div>
+
+        <!-- Question D4 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold mb-2">
+            4. 🧩 <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">juice?</span> <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">is</span> <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">there</span> <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">any</span>
+          </div>
+          <input type="text" id="qd4" class="border-2 border-gray-300 rounded-lg px-3 py-2 w-full focus:border-blue-500 outline-none text-base" placeholder="Nhập câu hoàn chỉnh vào đây...">
+          <div id="expl-d4" class="explanation-box"></div>
+        </div>
+
+        <!-- Question D5 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold mb-2">
+            5. 🧩 <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">They</span> <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">bread</span> <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">some</span> <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">have</span>
+          </div>
+          <input type="text" id="qd5" class="border-2 border-gray-300 rounded-lg px-3 py-2 w-full focus:border-blue-500 outline-none text-base" placeholder="Nhập câu hoàn chỉnh vào đây...">
+          <div id="expl-d5" class="explanation-box"></div>
+        </div>
+
+        <!-- Question D6 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold mb-2">
+            6. 🧩 <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">hot dogs.</span> <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">There</span> <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">are</span> <span class="bg-gray-200 px-2 py-1 rounded border text-xs md:text-sm">some</span>
+          </div>
+          <input type="text" id="qd6" class="border-2 border-gray-300 rounded-lg px-3 py-2 w-full focus:border-blue-500 outline-none text-base" placeholder="Nhập câu hoàn chỉnh vào đây...">
+          <div id="expl-d6" class="explanation-box"></div>
+        </div>
+      </section>
+
+      <!-- EXERCISE E -->
+      <section class="bg-white rounded-2xl p-5 mb-6 shadow-md border border-gray-200">
+        <div class="flex items-center gap-3 pb-3 mb-4 border-b-2 border-blue-100">
+          <span class="bg-blue-700 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-lg">E</span>
+          <h2 class="text-blue-900 font-bold text-base md:text-lg">Read and correct. (Sửa lỗi sai trong câu)</h2>
+        </div>
+
+        <!-- Question E1 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold mb-2 text-red-600">
+            1. ❌ There aren't any money.
+          </div>
+          <input type="text" id="qe1" class="border-2 border-gray-300 rounded-lg px-3 py-2 w-full focus:border-blue-500 outline-none text-base" placeholder="Viết lại câu đúng vào đây...">
+          <div id="expl-e1" class="explanation-box"></div>
+        </div>
+
+        <!-- Question E2 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold mb-2 text-red-600">
+            2. ❌ There are some eraser.
+          </div>
+          <input type="text" id="qe2" class="border-2 border-gray-300 rounded-lg px-3 py-2 w-full focus:border-blue-500 outline-none text-base" placeholder="Viết lại câu đúng vào đây...">
+          <div id="expl-e2" class="explanation-box"></div>
+        </div>
+
+        <!-- Question E3 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold mb-2 text-red-600">
+            3. ❌ Does he have some rulers?
+          </div>
+          <input type="text" id="qe3" class="border-2 border-gray-300 rounded-lg px-3 py-2 w-full focus:border-blue-500 outline-none text-base" placeholder="Viết lại câu đúng vào đây...">
+          <div id="expl-e3" class="explanation-box"></div>
+        </div>
+
+        <!-- Question E4 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold mb-2 text-red-600">
+            4. ❌ I have any rice.
+          </div>
+          <input type="text" id="qe4" class="border-2 border-gray-300 rounded-lg px-3 py-2 w-full focus:border-blue-500 outline-none text-base" placeholder="Viết lại câu đúng vào đây...">
+          <div id="expl-e4" class="explanation-box"></div>
+        </div>
+
+        <!-- Question E5 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold mb-2 text-red-600">
+            5. ❌ There aren't some cars.
+          </div>
+          <input type="text" id="qe5" class="border-2 border-gray-300 rounded-lg px-3 py-2 w-full focus:border-blue-500 outline-none text-base" placeholder="Viết lại câu đúng vào đây...">
+          <div id="expl-e5" class="explanation-box"></div>
+        </div>
+
+        <!-- Question E6 -->
+        <div class="bg-slate-50 rounded-xl p-4 mb-4 border border-gray-200">
+          <div class="text-base font-semibold mb-2 text-red-600">
+            6. ❌ Is there any cheeses?
+          </div>
+          <input type="text" id="qe6" class="border-2 border-gray-300 rounded-lg px-3 py-2 w-full focus:border-blue-500 outline-none text-base" placeholder="Viết lại câu đúng vào đây...">
+          <div id="expl-e6" class="explanation-box"></div>
+        </div>
+      </section>
+
+      <!-- ACTION BUTTONS AREA -->
+      <div class="text-center my-8">
+        <button type="button" id="btnSubmit" onclick="submitWorksheet()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg px-10 py-3.5 rounded-full shadow-lg transition transform hover:-translate-y-0.5">
+          NỘP BÀI / SUBMIT 📝
+        </button>
+        <button type="button" id="btnReset" onclick="resetWorksheet()" class="hidden bg-gray-600 hover:bg-gray-700 text-white font-bold text-base px-8 py-3 rounded-full shadow transition">
+          🔄 LÀM LẠI BÀI TẬP
+        </button>
+      </div>
+
+    </form>
+
+    <!-- FOOTER -->
+    <footer class="text-center text-gray-500 text-sm border-t border-gray-200 pt-6 mt-8 mb-4">
+      <p class="font-bold text-gray-700">HT English Center • Hotline: 0962240866</p>
+      <p class="text-xs mt-1">Chương trình luyện tập tiếng Anh tương tác chuẩn kiến thức SGK & Giáo trình</p>
+    </footer>
+
+  </div>
+
+  <script>
+    // State management
+    let submitted = false;
+
+    // Isolated Speech Synthesis Function (Does NOT leak answers!)
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.85;
+        window.speechSynthesis.speak(utterance);
+      } else {
+        alert('Trình duyệt của bạn không hỗ trợ tính năng đọc phát âm.');
+      }
+    }
+
+    // Helper text normalization function
+    function cleanText(str) {
+      if (!str) return '';
+      return str.trim().toLowerCase().replace(/[’']/g, "'").replace(/\s+/g, ' ').replace(/[.,!?]$/, '');
+    }
+
+    // SUBMISSION & AUTOMATED EVALUATION LOGIC
+    function submitWorksheet() {
+      if (submitted) return;
+      submitted = true;
+
+      let score = 0;
+      const totalPossibleScore = 44;
+
+      // --- PART A ---
+      const a1Val = document.querySelector('input[name="qa1"]:checked')?.value;
+      if (a1Val === 'some') {
+        score++;
+        showExplanation('expl-a1', true, 'Em chọn chính xác! "water" là danh từ không đếm được và câu này là câu khẳng định (+) nên ta dùng <b>some</b>.');
+      } else {
+        showExplanation('expl-a1', false, 'Đáp án đúng: <b>some</b>.<br><i>Giải thích:</i> "water" là danh từ không đếm được trong câu khẳng định (+), ta dùng <b>some</b>.');
+      }
+
+      const a2Val = document.querySelector('input[name="qa2"]:checked')?.value;
+      if (a2Val === 'any') {
+        score++;
+        showExplanation('expl-a2', true, 'Em chọn chính xác! "aren\'t" là câu phủ định (-) nên ta dùng <b>any</b>.');
+      } else {
+        showExplanation('expl-a2', false, 'Đáp án đúng: <b>any</b>.<br><i>Giải thích:</i> Vế câu có dạng phủ định "aren\'t", do đó phải dùng <b>any</b>.');
+      }
+
+      const a3Val = document.querySelector('input[name="qa3"]:checked')?.value;
+      if (a3Val === 'any') {
+        score++;
+        showExplanation('expl-a3', true, 'Em chọn chính xác! Đây là câu hỏi nghi vấn (Do you have...?) nên phải dùng <b>any</b>.');
+      } else {
+        showExplanation('expl-a3', false, 'Đáp án đúng: <b>any</b>.<br><i>Giải thích:</i> Trong câu hỏi nghi vấn (Do you have...?), ta dùng <b>any</b>.');
+      }
+
+      // --- PART B ---
+      const b1_1 = cleanText(document.getElementById('qb1_1').value);
+      const b1_2 = cleanText(document.getElementById('qb1_2').value);
+      if (b1_1 === 'any') score++;
+      if (b1_2 === 'some') score++;
+      showExplanation('expl-b1', (b1_1 === 'any' && b1_2 === 'some'),
+        `Đáp án đúng: 1. <b>any</b> | 2. <b>some</b><br><i>Giải thích:</i> Câu hỏi nghi vấn dùng <b>any</b> (Is there any chocolate?). Câu trả lời khẳng định dùng <b>some</b> (Yes, there is some chocolate).`
+      );
+
+      const b2_1 = cleanText(document.getElementById('qb2_1').value);
+      const b2_2 = cleanText(document.getElementById('qb2_2').value);
+      const b2_3 = cleanText(document.getElementById('qb2_3').value);
+      if (b2_1 === 'any') score++;
+      if (b2_2 === 'any') score++;
+      if (b2_3 === 'some') score++;
+      showExplanation('expl-b2', (b2_1 === 'any' && b2_2 === 'any' && b2_3 === 'some'),
+        `Đáp án đúng: 1. <b>any</b> | 2. <b>any</b> | 3. <b>some</b><br><i>Giải thích:</i> Câu hỏi nghi vấn và câu phủ định (don't have) dùng <b>any</b>. Câu khẳng định (I have) dùng <b>some</b>.`
+      );
+
+      const b3_1 = cleanText(document.getElementById('qb3_1').value);
+      const b3_2 = cleanText(document.getElementById('qb3_2').value);
+      const b3_3 = cleanText(document.getElementById('qb3_3').value);
+      if (b3_1 === 'any') score++;
+      if (b3_2 === 'any') score++;
+      if (b3_3 === 'some') score++;
+      showExplanation('expl-b3', (b3_1 === 'any' && b3_2 === 'any' && b3_3 === 'some'),
+        `Đáp án đúng: 1. <b>any</b> | 2. <b>any</b> | 3. <b>some</b><br><i>Giải thích:</i> Câu hỏi nghi vấn (Does she have...?) và câu phủ định (doesn't have) dùng <b>any</b>. Câu khẳng định (she has) dùng <b>some</b>.`
+      );
+
+      const b4_1 = cleanText(document.getElementById('qb4_1').value);
+      const b4_2 = cleanText(document.getElementById('qb4_2').value);
+      if (b4_1 === 'any') score++;
+      if (b4_2 === 'some') score++;
+      showExplanation('expl-b4', (b4_1 === 'any' && b4_2 === 'some'),
+        `Đáp án đúng: 1. <b>any</b> | 2. <b>some</b><br><i>Giải thích:</i> Câu hỏi nghi vấn dùng <b>any</b> (Are there any toys?). Câu trả lời khẳng định dùng <b>some</b> (there are some toys).`
+      );
+
+      const b5_1 = cleanText(document.getElementById('qb5_1').value);
+      const b5_2 = cleanText(document.getElementById('qb5_2').value);
+      const b5_3 = cleanText(document.getElementById('qb5_3').value);
+      if (b5_1 === 'any') score++;
+      if (b5_2 === 'any') score++;
+      if (b5_3 === 'some') score++;
+      showExplanation('expl-b5', (b5_1 === 'any' && b5_2 === 'any' && b5_3 === 'some'),
+        `Đáp án đúng: 1. <b>any</b> | 2. <b>any</b> | 3. <b>some</b><br><i>Giải thích:</i> Câu hỏi và câu phủ định (isn't) dùng <b>any</b>. Câu khẳng định (there is) dùng <b>some</b>.`
+      );
+
+      // --- PART C ---
+      const c1_1 = cleanText(document.getElementById('qc1_1').value);
+      const c1_2 = cleanText(document.getElementById('qc1_2').value);
+      if (c1_1 === 'some') score++;
+      if (c1_2 === 'apples') score++;
+      showExplanation('expl-c1', (c1_1 === 'some' && c1_2 === 'apples'), `Đáp án đúng: <b>some apples</b>.<br><i>Giải thích:</i> Câu khẳng định (+) -> dùng <b>some</b> đi với danh từ số nhiều <b>apples</b>.`);
+
+      const c2_1 = cleanText(document.getElementById('qc2_1').value);
+      const c2_2 = cleanText(document.getElementById('qc2_2').value);
+      if (c2_1 === 'any') score++;
+      if (c2_2 === 'milk') score++;
+      showExplanation('expl-c2', (c2_1 === 'any' && c2_2 === 'milk'), `Đáp án đúng: <b>any milk</b>.<br><i>Giải thích:</i> Câu phủ định (-) "doesn't have" -> dùng <b>any</b> đi với danh từ không đếm được <b>milk</b>.`);
+
+      const c3_1 = cleanText(document.getElementById('qc3_1').value);
+      const c3_2 = cleanText(document.getElementById('qc3_2').value);
+      if (c3_1 === 'some') score++;
+      if (c3_2 === 'grapes') score++;
+      showExplanation('expl-c3', (c3_1 === 'some' && c3_2 === 'grapes'), `Đáp án đúng: <b>some grapes</b>.<br><i>Giải thích:</i> Câu khẳng định (+) -> dùng <b>some</b> đi với danh từ số nhiều <b>grapes</b>.`);
+
+      const c4_1 = cleanText(document.getElementById('qc4_1').value);
+      const c4_2 = cleanText(document.getElementById('qc4_2').value);
+      if (c4_1 === 'any') score++;
+      if (c4_2 === 'bread') score++;
+      showExplanation('expl-c4', (c4_1 === 'any' && c4_2 === 'bread'), `Đáp án đúng: <b>any bread</b>.<br><i>Giải thích:</i> Câu hỏi nghi vấn (?) "Does he have...?" -> dùng <b>any</b> đi với danh từ <b>bread</b>.`);
+
+      const c5_1 = cleanText(document.getElementById('qc5_1').value);
+      const c5_2 = cleanText(document.getElementById('qc5_2').value);
+      if (c5_1 === 'some') score++;
+      if (c5_2 === 'bread') score++;
+      showExplanation('expl-c5', (c5_1 === 'some' && c5_2 === 'bread'), `Đáp án đúng: <b>some bread</b>.<br><i>Giải thích:</i> Câu khẳng định (+) -> dùng <b>some</b> đi với danh từ không đếm được <b>bread</b>.`);
+
+      const c6_1 = cleanText(document.getElementById('qc6_1').value);
+      const c6_2 = cleanText(document.getElementById('qc6_2').value);
+      if (c6_1 === 'any') score++;
+      if (c6_2 === 'donuts') score++;
+      showExplanation('expl-c6', (c6_1 === 'any' && c6_2 === 'donuts'), `Đáp án đúng: <b>any donuts</b>.<br><i>Giải thích:</i> Câu phủ định (-) "don't have" -> dùng <b>any</b> đi với danh từ số nhiều <b>donuts</b>.`);
+
+      const c7_1 = cleanText(document.getElementById('qc7_1').value);
+      const c7_2 = cleanText(document.getElementById('qc7_2').value);
+      if (c7_1 === 'some') score++;
+      if (c7_2 === 'cheese') score++;
+      showExplanation('expl-c7', (c7_1 === 'some' && c7_2 === 'cheese'), `Đáp án đúng: <b>some cheese</b>.<br><i>Giải thích:</i> Câu khẳng định (+) -> dùng <b>some</b> đi với danh từ không đếm được <b>cheese</b>.`);
+
+      const c8_1 = cleanText(document.getElementById('qc8_1').value);
+      const c8_2 = cleanText(document.getElementById('qc8_2').value);
+      if (c8_1 === 'any') score++;
+      if (c8_2 === 'crackers') score++;
+      showExplanation('expl-c8', (c8_1 === 'any' && c8_2 === 'crackers'), `Đáp án đúng: <b>any crackers</b>.<br><i>Giải thích:</i> Câu hỏi nghi vấn (?) "Do they have...?" -> dùng <b>any</b> đi với danh từ số nhiều <b>crackers</b>.`);
+
+      // --- PART D ---
+      const d1 = cleanText(document.getElementById('qd1').value);
+      const d1Correct = (d1 === "i don't have any notebooks" || d1 === "i dont have any notebooks");
+      if (d1Correct) score++;
+      showExplanation('expl-d1', d1Correct, `Đáp án đúng: <b>I don't have any notebooks.</b><br><i>Cấu trúc:</i> S + don't have + any + N(số nhiều).`);
+
+      const d2 = cleanText(document.getElementById('qd2').value);
+      const d2Correct = (d2 === "are there any pencils");
+      if (d2Correct) score++;
+      showExplanation('expl-d2', d2Correct, `Đáp án đúng: <b>Are there any pencils?</b><br><i>Cấu trúc:</i> Are there + any + N(số nhiều)?`);
+
+      const d3 = cleanText(document.getElementById('qd3').value);
+      const d3Correct = (d3 === "he doesn't have any butter" || d3 === "he doesnt have any butter");
+      if (d3Correct) score++;
+      showExplanation('expl-d3', d3Correct, `Đáp án đúng: <b>He doesn't have any butter.</b><br><i>Cấu trúc:</i> He + doesn't have + any + N(không đếm được).`);
+
+      const d4 = cleanText(document.getElementById('qd4').value);
+      const d4Correct = (d4 === "is there any juice");
+      if (d4Correct) score++;
+      showExplanation('expl-d4', d4Correct, `Đáp án đúng: <b>Is there any juice?</b><br><i>Cấu trúc:</i> Is there + any + N(không đếm được)?`);
+
+      const d5 = cleanText(document.getElementById('qd5').value);
+      const d5Correct = (d5 === "they have some bread");
+      if (d5Correct) score++;
+      showExplanation('expl-d5', d5Correct, `Đáp án đúng: <b>They have some bread.</b><br><i>Cấu trúc:</i> S + have + some + N(không đếm được).`);
+
+      const d6 = cleanText(document.getElementById('qd6').value);
+      const d6Correct = (d6 === "there are some hot dogs");
+      if (d6Correct) score++;
+      showExplanation('expl-d6', d6Correct, `Đáp án đúng: <b>There are some hot dogs.</b><br><i>Cấu trúc:</i> There are + some + N(số nhiều).`);
+
+      // --- PART E ---
+      const e1 = cleanText(document.getElementById('qe1').value);
+      const e1Correct = (e1 === "there isn't any money" || e1 === "there is not any money" || e1 === "there isnt any money");
+      if (e1Correct) score++;
+      showExplanation('expl-e1', e1Correct, `Đáp án đúng: <b>There isn't any money.</b><br><i>Giải thích:</i> "money" là danh từ không đếm được nên phải dùng động từ to be số ít "isn't" thay vì "aren't".`);
+
+      const e2 = cleanText(document.getElementById('qe2').value);
+      const e2Correct = (e2 === "there are some erasers");
+      if (e2Correct) score++;
+      showExplanation('expl-e2', e2Correct, `Đáp án đúng: <b>There are some erasers.</b><br><i>Giải thích:</i> "There are some" đi với danh từ đếm được số nhiều, nên "eraser" phải thêm 's' -> <b>erasers</b>.`);
+
+      const e3 = cleanText(document.getElementById('qe3').value);
+      const e3Correct = (e3 === "does he have any rulers");
+      if (e3Correct) score++;
+      showExplanation('expl-e3', e3Correct, `Đáp án đúng: <b>Does he have any rulers?</b><br><i>Giải thích:</i> Trong câu hỏi nghi vấn (Does he have...?), phải dùng <b>any</b> chứ không dùng "some".`);
+
+      const e4 = cleanText(document.getElementById('qe4').value);
+      const e4Correct = (e4 === "i have some rice");
+      if (e4Correct) score++;
+      showExplanation('expl-e4', e4Correct, `Đáp án đúng: <b>I have some rice.</b><br><i>Giải thích:</i> Trong câu khẳng định (+), ta dùng <b>some</b> chứ không dùng "any".`);
+
+      const e5 = cleanText(document.getElementById('qe5').value);
+      const e5Correct = (e5 === "there aren't any cars" || e5 === "there are not any cars" || e5 === "there arent any cars");
+      if (e5Correct) score++;
+      showExplanation('expl-e5', e5Correct, `Đáp án đúng: <b>There aren't any cars.</b><br><i>Giải thích:</i> Trong câu phủ định (-), ta phải dùng <b>any</b> chứ không dùng "some".`);
+
+      const e6 = cleanText(document.getElementById('qe6').value);
+      const e6Correct = (e6 === "is there any cheese");
+      if (e6Correct) score++;
+      showExplanation('expl-e6', e6Correct, `Đáp án đúng: <b>Is there any cheese?</b><br><i>Giải thích:</i> "cheese" là danh từ không đếm được, luôn ở dạng số ít, không thêm 's'.`);
+
+      // --- DISPLAY RESULT SCORE CARD ---
+      const scoreCard = document.getElementById('scoreCard');
+      const scoreNumber = document.getElementById('scoreNumber');
+      const scoreStars = document.getElementById('scoreStars');
+      const scoreFeedback = document.getElementById('scoreFeedback');
+
+      scoreNumber.innerText = `${score} / ${totalPossibleScore}`;
+      
+      const percentage = (score / totalPossibleScore) * 100;
+      if (percentage === 100) {
+        scoreStars.innerText = '⭐⭐⭐⭐⭐';
+        scoreFeedback.innerText = 'Xuất sắc! Em đã làm đúng 100% tất cả các câu!';
+      } else if (percentage >= 80) {
+        scoreStars.innerText = '⭐⭐⭐⭐';
+        scoreFeedback.innerText = 'Rất tốt! Em đã nắm rất vững kiến thức Some & Any!';
+      } else if (percentage >= 50) {
+        scoreStars.innerText = '⭐⭐⭐';
+        scoreFeedback.innerText = 'Khá tốt! Em hãy xem lại các câu chưa chính xác bên dưới để rút kinh nghiệm nhé!';
+      } else {
+        scoreStars.innerText = '⭐⭐';
+        scoreFeedback.innerText = 'Em cần ôn tập thêm tóm tắt lý thuyết bài Some / Any và bấm LÀM LẠI để thử sức nhé!';
+      }
+
+      scoreCard.classList.remove('hidden');
+      scoreCard.scrollIntoView({ behavior: 'smooth' });
+
+      // Lock all inputs to prevent modifying answers after submit
+      lockForm();
+
+      // Toggle action buttons
+      document.getElementById('btnSubmit').classList.add('hidden');
+      document.getElementById('btnReset').classList.remove('hidden');
+    }
+
+    // Helper to display Vietnamese explanations
+    function showExplanation(elementId, isCorrect, htmlContent) {
+      const el = document.getElementById(elementId);
+      el.style.display = 'block';
+      if (isCorrect) {
+        el.className = 'explanation-box correct';
+        el.innerHTML = `✅ <b>Chính xác!</b><br>` + htmlContent;
+      } else {
+        el.className = 'explanation-box incorrect';
+        el.innerHTML = `❌ ` + htmlContent;
+      }
+    }
+
+    // Lock form inputs
+    function lockForm() {
+      const inputs = document.querySelectorAll('#worksheetForm input');
+      inputs.forEach(input => {
+        input.disabled = true;
+        if (input.type === 'radio' && input.checked) {
+          input.parentElement.classList.add('disabled-label');
+        }
+      });
+    }
+
+    // Reset worksheet to clean initial state
+    function resetWorksheet() {
+      submitted = false;
+
+      // Unlock and clear inputs
+      const inputs = document.querySelectorAll('#worksheetForm input');
+      inputs.forEach(input => {
+        input.disabled = false;
+        if (input.type === 'radio' || input.type === 'checkbox') {
+          input.checked = false;
+          input.parentElement.classList.remove('disabled-label');
+        } else if (input.type === 'text') {
+          input.value = '';
+        }
+      });
+
+      // Hide all explanation boxes
+      const expls = document.querySelectorAll('.explanation-box');
+      expls.forEach(el => {
+        el.style.display = 'none';
+        el.innerHTML = '';
+      });
+
+      // Hide score summary card
+      document.getElementById('scoreCard').classList.add('hidden');
+
+      // Toggle action buttons back
+      document.getElementById('btnSubmit').classList.remove('hidden');
+      document.getElementById('btnReset').classList.add('hidden');
+
+      // Scroll smoothly back to header
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
