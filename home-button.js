@@ -9,7 +9,7 @@
   var button = document.createElement("a");
   button.id = "ht-home-button";
   button.href = new URL("index.html", script.src).href;
-  button.textContent = "🏠 Về trang chủ";
+  button.textContent = script.getAttribute("data-home-label") || "🏠 Về trang chủ";
   button.setAttribute("aria-label", "Về trang chủ");
 
   Object.assign(button.style, {
