@@ -1,0 +1,992 @@
+<!-- Chosen Palette: Slate Warm Neutral (#f8fafc) with Indigo/Navy Accent (#1e3a8a / #2563eb), Emerald Correct Highlights (#059669), and Soft Amber Status Indicators -->
+<!-- Application Structure Plan:
+     1. Landscape Sheet Layout Header: Top status bar displaying HT English branding, student info inputs (Full Name, Class, Date), Live Progress Counter (0/20 completed), and quick Action Buttons.
+     2. Reference Grammar Sheet (Header Block): Compact reference table summarizing 'What' (actions) vs 'Who' (people) in Present Continuous Wh- questions.
+     3. Unified Interactive Worksheet Document (Parts A-E all visible in a single seamless sheet layout):
+        - Part A: Read and write (Select 'What' or 'Who').
+        - Part B: Reference Table Lookup & Answer Input (Diana, Tom & Sue, Mr. Johnson, Monkey, You).
+        - Part C: Question Completion based on contextual answers.
+        - Part D: Sentence Unscramble directly inside the worksheet using interactive clickable word chips.
+        - Part E: Error detection and rewriting (6 questions).
+     4. Gated Performance Analytics Section ("Làm xong mới báo cáo"):
+        - Locked state before submission with clear indicator.
+        - Automatically unlocks, reveals Chart.js Radar visualization, and scrolls into focus upon grading.
+     5. Automatic Grading Engine & Vietnamese Feedback: Checks completeness, validates alternative answers, locks inputs, provides TTS audio pronunciation, and offers full restart.
+-->
+<!-- Visualization & Content Choices:
+     - Worksheet Sheet Design -> Wide Document Layout with Tailwind Grid (2-column on desktop for optimal space usage) -> Enables viewing all 20 questions in a natural document format.
+     - Unscramble Exercise -> Clickable word chips directly embedded into Part D -> Provides tactile interaction inside the sheet.
+     - Mastery Breakdown -> Chart.js Radar Chart -> Locked initially; animates and renders only after submission.
+     - Audio Pronunciation -> Web Speech API (window.speechSynthesis) with custom 'en-US' voice handler -> Integrated next to each item.
+     - Confirmation: NO SVG graphics used. NO Mermaid JS used.
+-->
+<!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HT English Center - Phiếu Bài Tập Unit 16: Present Continuous Wh- Questions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            background-color: #f1f5f9;
+            color: #0f172a;
+        }
+        .sheet-container {
+            max-width: 1280px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 360px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .word-chip {
+            transition: all 0.15s ease-in-out;
+            cursor: pointer;
+            user-select: none;
+        }
+        .word-chip:hover:not(.disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px -2px rgba(0, 0, 0, 0.12);
+        }
+        .correct-card {
+            border-color: #10b981 !important;
+            background-color: #f0fdf4 !important;
+        }
+        .wrong-card {
+            border-color: #f43f5e !important;
+            background-color: #fff1f2 !important;
+        }
+        .unanswered-card {
+            border-color: #f59e0b !important;
+            background-color: #fffbeb !important;
+            animation: pulseBg 1.5s infinite alternate;
+        }
+        @keyframes pulseBg {
+            from { background-color: #ffffff; }
+            to { background-color: #fef3c7; }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col pb-12">
+
+    <!-- Top Navigation & Sticky Status Bar -->
+    <header class="bg-blue-900 text-white shadow-md sticky top-0 z-40">
+        <div class="sheet-container px-4 py-3 flex flex-col md:flex-row items-center justify-between gap-3">
+            <div class="flex items-center space-x-3">
+                <span class="bg-blue-600 text-white font-black text-xs px-3 py-1.5 rounded-md tracking-wider uppercase shadow-sm">HT English</span>
+                <div>
+                    <h1 class="font-bold text-base sm:text-lg leading-tight">Unit 16: Present Continuous (Wh- Questions)</h1>
+                    <p class="text-xs text-blue-200">Hotline: 0962240866 • Hệ Thống Phiếu Bài Tập Ngang Tự Động Chấm</p>
+                </div>
+            </div>
+            
+            <!-- Realtime Metrics & Action Button -->
+            <div class="flex items-center gap-3">
+                <div class="flex items-center gap-3 bg-blue-950/90 px-4 py-1.5 rounded-xl border border-blue-700/50 text-xs font-semibold">
+                    <div class="text-center pr-2 border-r border-blue-800">
+                        <span class="block text-gray-400 text-[9px] uppercase tracking-wider">Tiến Độ</span>
+                        <span id="statCompleted" class="text-amber-400 font-bold text-sm">0/20</span>
+                    </div>
+                    <div class="text-center pr-2 border-r border-blue-800">
+                        <span class="block text-gray-400 text-[9px] uppercase tracking-wider">Điểm Số</span>
+                        <span id="statScore" class="text-emerald-400 font-bold text-sm">--</span>
+                    </div>
+                    <div class="text-center">
+                        <span class="block text-gray-400 text-[9px] uppercase tracking-wider">Trạng Thái</span>
+                        <span id="statStatus" class="text-blue-300 font-bold text-sm">Đang Làm</span>
+                    </div>
+                </div>
+
+                <button onclick="scrollToSubmit()" class="hidden sm:inline-flex bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-bold px-4 py-2 rounded-lg shadow transition items-center gap-1">
+                    <span>🚀</span> Nộp Bài
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Sheet Canvas -->
+    <main class="sheet-container w-full px-3 sm:px-6 pt-6 flex-grow space-y-6">
+
+        <!-- Result Banner (Shows upon submission) -->
+        <div id="scoreBanner" class="hidden bg-gradient-to-r from-blue-900 via-indigo-900 to-blue-950 text-white rounded-2xl p-6 shadow-xl border border-blue-700 text-center animate-fade-in space-y-2">
+            <div class="inline-block bg-emerald-500 text-white text-xs font-black uppercase px-3 py-1 rounded-full mb-1">Kết Quả Hoàn Thành</div>
+            <h2 class="text-2xl sm:text-3xl font-black" id="scoreBannerTitle">Xuất Sắc! Bạn Đã Hoàn Thành Bài Tập 🎉</h2>
+            <div class="text-3xl sm:text-4xl font-extrabold text-amber-300 my-1" id="scoreBannerDetail">0 / 20 Câu Đúng (0 Điểm)</div>
+            <p class="text-blue-200 text-xs sm:text-sm max-w-2xl mx-auto">
+                Báo cáo phân tích năng lực chi tiết và lời giải cụ thể bằng tiếng Việt đã được mở khóa ở phía dưới.
+            </p>
+        </div>
+
+        <!-- PRINTABLE LANDSCAPE WORKSHEET CONTAINER -->
+        <div class="bg-white rounded-2xl shadow-sm border border-slate-300 p-4 sm:p-8 space-y-6">
+            
+            <!-- Student Info Header Block -->
+            <div class="border-b-2 border-blue-900 pb-4 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+                <div>
+                    <span class="text-xs font-bold text-blue-700 uppercase tracking-widest block mb-1">Phiếu Bài Tập Tiếng Anh Cực Cấu Trúc</span>
+                    <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900">UNIT 16: PRESENT CONTINUOUS (WH- QUESTIONS)</h2>
+                    <p class="text-xs text-slate-500">Toàn bộ 20 câu hỏi được trình bày trên cùng một trang phiếu. Hãy điền/ghép đáp án cho từng phần.</p>
+                </div>
+                <div class="w-full md:w-auto grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs bg-slate-50 p-3 rounded-xl border border-slate-200">
+                    <div>
+                        <span class="text-slate-400 block text-[10px] uppercase font-bold">Họ và Tên</span>
+                        <input type="text" id="studentName" placeholder="Nhập tên học sinh..." class="bg-white border rounded px-2 py-1 font-semibold text-slate-800 w-full focus:outline-blue-600">
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block text-[10px] uppercase font-bold">Lớp Học</span>
+                        <input type="text" id="studentClass" placeholder="Ví dụ: 4A1..." class="bg-white border rounded px-2 py-1 font-semibold text-slate-800 w-full focus:outline-blue-600">
+                    </div>
+                    <div>
+                        <span class="text-slate-400 block text-[10px] uppercase font-bold">Ngày Làm</span>
+                        <input type="text" id="studentDate" value="28/08/2026" class="bg-white border rounded px-2 py-1 font-semibold text-slate-800 w-full focus:outline-blue-600">
+                    </div>
+                </div>
+            </div>
+
+            <!-- GRAMMAR REFERENCE BOX -->
+            <div class="bg-blue-50/80 border border-blue-200 rounded-xl p-4 space-y-3">
+                <div class="flex items-center justify-between border-b border-blue-200/60 pb-2">
+                    <h3 class="font-bold text-blue-900 text-sm sm:text-base flex items-center gap-2">
+                        <span>📘</span> Bảng Tóm Tắt Ngữ Pháp Trọng Tâm
+                    </h3>
+                    <button onclick="speakText('Present Continuous Wh- Questions Summary')" class="text-xs bg-white hover:bg-blue-100 text-blue-800 font-semibold px-2.5 py-1 rounded border border-blue-300">
+                        🔊 Nghe phát âm
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <div class="bg-white p-3 rounded-lg border border-blue-100 space-y-1">
+                        <div class="font-bold text-blue-900">1. Hỏi Hành Động (WHAT)</div>
+                        <div class="font-mono text-blue-700 font-bold bg-blue-50 p-1.5 rounded">What + am/is/are + S + V-ing?</div>
+                        <div class="text-slate-600 italic">➜ What is she doing? She is sleeping.</div>
+                    </div>
+                    <div class="bg-white p-3 rounded-lg border border-indigo-100 space-y-1">
+                        <div class="font-bold text-indigo-900">2. Hỏi Con Người (WHO)</div>
+                        <div class="font-mono text-indigo-700 font-bold bg-indigo-50 p-1.5 rounded">Who + is + V-ing (+ Object)?</div>
+                        <div class="text-slate-600 italic">➜ Who is driving a car? Dad is driving a car.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXERCISE GRID: PART A & PART B LANDSCAPE COLUMNS -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                <!-- PART A -->
+                <div class="space-y-4">
+                    <div class="bg-slate-100 p-3 rounded-xl border border-slate-200 flex items-center justify-between">
+                        <div>
+                            <h3 class="font-extrabold text-blue-900 text-sm sm:text-base">Part A. Read and write</h3>
+                            <p class="text-xs text-slate-500">Điền từ để hỏi <strong class="text-blue-700">What</strong> hoặc <strong class="text-blue-700">Who</strong> thích hợp.</p>
+                        </div>
+                        <span class="bg-blue-200 text-blue-900 text-[11px] font-bold px-2.5 py-1 rounded-full">Câu 1 - 3</span>
+                    </div>
+
+                    <!-- Q1 -->
+                    <div class="question-card p-4 rounded-xl border border-slate-200 bg-white space-y-2 transition" id="card_q1">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <div class="flex items-center gap-2">
+                                <span class="bg-blue-600 text-white text-xs font-extrabold px-2 py-0.5 rounded">Câu 1</span>
+                                <span class="font-medium text-xs sm:text-sm text-slate-800">_____ is driving a car? ➜ Dad is driving a car.</span>
+                            </div>
+                            <button onclick="speakText('is driving a car? Dad is driving a car.')" class="text-xs text-blue-600 font-bold hover:underline">🔊 Nghe</button>
+                        </div>
+                        <select id="q1" onchange="onUserInteraction('q1')" class="w-full p-2 text-xs sm:text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                            <option value="">-- Chọn What hoặc Who --</option>
+                            <option value="What">What</option>
+                            <option value="Who">Who</option>
+                        </select>
+                        <div id="fb_q1" class="text-xs p-2.5 rounded-lg hidden"></div>
+                    </div>
+
+                    <!-- Q2 -->
+                    <div class="question-card p-4 rounded-xl border border-slate-200 bg-white space-y-2 transition" id="card_q2">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <div class="flex items-center gap-2">
+                                <span class="bg-blue-600 text-white text-xs font-extrabold px-2 py-0.5 rounded">Câu 2</span>
+                                <span class="font-medium text-xs sm:text-sm text-slate-800">_____ are they doing? ➜ They are running.</span>
+                            </div>
+                            <button onclick="speakText('are they doing? They are running.')" class="text-xs text-blue-600 font-bold hover:underline">🔊 Nghe</button>
+                        </div>
+                        <select id="q2" onchange="onUserInteraction('q2')" class="w-full p-2 text-xs sm:text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                            <option value="">-- Chọn What hoặc Who --</option>
+                            <option value="What">What</option>
+                            <option value="Who">Who</option>
+                        </select>
+                        <div id="fb_q2" class="text-xs p-2.5 rounded-lg hidden"></div>
+                    </div>
+
+                    <!-- Q3 -->
+                    <div class="question-card p-4 rounded-xl border border-slate-200 bg-white space-y-2 transition" id="card_q3">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <div class="flex items-center gap-2">
+                                <span class="bg-blue-600 text-white text-xs font-extrabold px-2 py-0.5 rounded">Câu 3</span>
+                                <span class="font-medium text-xs sm:text-sm text-slate-800">_____ is riding a bike? ➜ Amy is riding a bike.</span>
+                            </div>
+                            <button onclick="speakText('is riding a bike? Amy is riding a bike.')" class="text-xs text-blue-600 font-bold hover:underline">🔊 Nghe</button>
+                        </div>
+                        <select id="q3" onchange="onUserInteraction('q3')" class="w-full p-2 text-xs sm:text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                            <option value="">-- Chọn What hoặc Who --</option>
+                            <option value="What">What</option>
+                            <option value="Who">Who</option>
+                        </select>
+                        <div id="fb_q3" class="text-xs p-2.5 rounded-lg hidden"></div>
+                    </div>
+                </div>
+
+                <!-- PART B -->
+                <div class="space-y-4">
+                    <div class="bg-slate-100 p-3 rounded-xl border border-slate-200 flex items-center justify-between">
+                        <div>
+                            <h3 class="font-extrabold text-blue-900 text-sm sm:text-base">Part B. Look and write</h3>
+                            <p class="text-xs text-slate-500">Tra cứu bảng thông tin bên dưới và trả lời câu hỏi.</p>
+                        </div>
+                        <span class="bg-blue-200 text-blue-900 text-[11px] font-bold px-2.5 py-1 rounded-full">Câu 4 - 7</span>
+                    </div>
+
+                    <!-- Reference Table -->
+                    <div class="overflow-x-auto rounded-xl border border-slate-200">
+                        <table class="w-full text-xs text-center">
+                            <thead class="bg-slate-200 text-slate-800 font-bold">
+                                <tr>
+                                    <th class="p-2 text-left bg-slate-300">Tên / Nhận vật</th>
+                                    <th class="p-2">climb</th>
+                                    <th class="p-2">walk</th>
+                                    <th class="p-2">swim</th>
+                                    <th class="p-2">write</th>
+                                    <th class="p-2">sing</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200">
+                                <tr class="hover:bg-blue-50/50">
+                                    <td class="p-2 text-left font-bold bg-slate-100">Diana</td>
+                                    <td></td><td></td><td></td><td></td><td class="text-emerald-600 font-black text-sm">✓</td>
+                                </tr>
+                                <tr class="hover:bg-blue-50/50">
+                                    <td class="p-2 text-left font-bold bg-slate-100">Tom and Sue</td>
+                                    <td></td><td class="text-emerald-600 font-black text-sm">✓</td><td></td><td></td><td></td>
+                                </tr>
+                                <tr class="hover:bg-blue-50/50">
+                                    <td class="p-2 text-left font-bold bg-slate-100">Mr. Johnson</td>
+                                    <td></td><td></td><td></td><td class="text-emerald-600 font-black text-sm">✓</td><td></td>
+                                </tr>
+                                <tr class="hover:bg-blue-50/50">
+                                    <td class="p-2 text-left font-bold bg-slate-100">The monkey</td>
+                                    <td class="text-emerald-600 font-black text-sm">✓</td><td></td><td></td><td></td><td></td>
+                                </tr>
+                                <tr class="hover:bg-blue-50/50">
+                                    <td class="p-2 text-left font-bold bg-slate-100">You</td>
+                                    <td></td><td></td><td class="text-emerald-600 font-black text-sm">✓</td><td></td><td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Q4 -->
+                    <div class="question-card p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5 transition" id="card_q4">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="bg-blue-600 text-white text-xs font-extrabold px-2 py-0.5 rounded">Câu 4</span>
+                            <span class="font-medium text-xs sm:text-sm text-slate-800">What are you doing?</span>
+                            <button onclick="speakText('What are you doing?')" class="text-xs text-blue-600 font-bold hover:underline">🔊 Nghe</button>
+                        </div>
+                        <input type="text" id="q4" oninput="onUserInteraction('q4')" placeholder="Nhập câu trả lời..." class="w-full p-2 text-xs sm:text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                        <div id="fb_q4" class="text-xs p-2.5 rounded-lg hidden"></div>
+                    </div>
+
+                    <!-- Q5 -->
+                    <div class="question-card p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5 transition" id="card_q5">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="bg-blue-600 text-white text-xs font-extrabold px-2 py-0.5 rounded">Câu 5</span>
+                            <span class="font-medium text-xs sm:text-sm text-slate-800">What are Tom and Sue doing?</span>
+                            <button onclick="speakText('What are Tom and Sue doing?')" class="text-xs text-blue-600 font-bold hover:underline">🔊 Nghe</button>
+                        </div>
+                        <input type="text" id="q5" oninput="onUserInteraction('q5')" placeholder="Nhập câu trả lời..." class="w-full p-2 text-xs sm:text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                        <div id="fb_q5" class="text-xs p-2.5 rounded-lg hidden"></div>
+                    </div>
+
+                    <!-- Q6 -->
+                    <div class="question-card p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5 transition" id="card_q6">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="bg-blue-600 text-white text-xs font-extrabold px-2 py-0.5 rounded">Câu 6</span>
+                            <span class="font-medium text-xs sm:text-sm text-slate-800">Who is writing?</span>
+                            <button onclick="speakText('Who is writing?')" class="text-xs text-blue-600 font-bold hover:underline">🔊 Nghe</button>
+                        </div>
+                        <input type="text" id="q6" oninput="onUserInteraction('q6')" placeholder="Nhập câu trả lời..." class="w-full p-2 text-xs sm:text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                        <div id="fb_q6" class="text-xs p-2.5 rounded-lg hidden"></div>
+                    </div>
+
+                    <!-- Q7 -->
+                    <div class="question-card p-3.5 rounded-xl border border-slate-200 bg-white space-y-1.5 transition" id="card_q7">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="bg-blue-600 text-white text-xs font-extrabold px-2 py-0.5 rounded">Câu 7</span>
+                            <span class="font-medium text-xs sm:text-sm text-slate-800">Who is climbing?</span>
+                            <button onclick="speakText('Who is climbing?')" class="text-xs text-blue-600 font-bold hover:underline">🔊 Nghe</button>
+                        </div>
+                        <input type="text" id="q7" oninput="onUserInteraction('q7')" placeholder="Nhập câu trả lời..." class="w-full p-2 text-xs sm:text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                        <div id="fb_q7" class="text-xs p-2.5 rounded-lg hidden"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- EXERCISE GRID: PART C & PART D (INTERACTIVE UNSCRAMBLE WORKSHEET INTEGRATED) -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 pt-4 border-t border-slate-200">
+
+                <!-- PART C -->
+                <div class="space-y-4">
+                    <div class="bg-slate-100 p-3 rounded-xl border border-slate-200 flex items-center justify-between">
+                        <div>
+                            <h3 class="font-extrabold text-blue-900 text-sm sm:text-base">Part C. Look and write questions</h3>
+                            <p class="text-xs text-slate-500">Điền phần còn thiếu vào câu hỏi dựa theo vế trả lời.</p>
+                        </div>
+                        <span class="bg-blue-200 text-blue-900 text-[11px] font-bold px-2.5 py-1 rounded-full">Câu 8 - 10</span>
+                    </div>
+
+                    <!-- Q8 -->
+                    <div class="question-card p-4 rounded-xl border border-slate-200 bg-white space-y-2 transition" id="card_q8">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="bg-blue-600 text-white text-xs font-extrabold px-2 py-0.5 rounded">Câu 8</span>
+                            <span class="font-medium text-xs sm:text-sm text-slate-800">What ____________________? ➜ They are working.</span>
+                            <button onclick="speakText('They are working.')" class="text-xs text-blue-600 font-bold hover:underline">🔊 Nghe</button>
+                        </div>
+                        <input type="text" id="q8" oninput="onUserInteraction('q8')" placeholder="Điền vế còn thiếu..." class="w-full p-2 text-xs sm:text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                        <div id="fb_q8" class="text-xs p-2.5 rounded-lg hidden"></div>
+                    </div>
+
+                    <!-- Q9 -->
+                    <div class="question-card p-4 rounded-xl border border-slate-200 bg-white space-y-2 transition" id="card_q9">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="bg-blue-600 text-white text-xs font-extrabold px-2 py-0.5 rounded">Câu 9</span>
+                            <span class="font-medium text-xs sm:text-sm text-slate-800">Who ____________________? ➜ Kate is swimming.</span>
+                            <button onclick="speakText('Kate is swimming.')" class="text-xs text-blue-600 font-bold hover:underline">🔊 Nghe</button>
+                        </div>
+                        <input type="text" id="q9" oninput="onUserInteraction('q9')" placeholder="Điền vế còn thiếu..." class="w-full p-2 text-xs sm:text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                        <div id="fb_q9" class="text-xs p-2.5 rounded-lg hidden"></div>
+                    </div>
+
+                    <!-- Q10 -->
+                    <div class="question-card p-4 rounded-xl border border-slate-200 bg-white space-y-2 transition" id="card_q10">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="bg-blue-600 text-white text-xs font-extrabold px-2 py-0.5 rounded">Câu 10</span>
+                            <span class="font-medium text-xs sm:text-sm text-slate-800">What ____________________? ➜ We are riding bikes.</span>
+                            <button onclick="speakText('We are riding bikes.')" class="text-xs text-blue-600 font-bold hover:underline">🔊 Nghe</button>
+                        </div>
+                        <input type="text" id="q10" oninput="onUserInteraction('q10')" placeholder="Điền vế còn thiếu..." class="w-full p-2 text-xs sm:text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                        <div id="fb_q10" class="text-xs p-2.5 rounded-lg hidden"></div>
+                    </div>
+                </div>
+
+                <!-- PART D: INTEGRATED INTERACTIVE UNSCRAMBLE EXERCISE -->
+                <div class="space-y-4">
+                    <div class="bg-slate-100 p-3 rounded-xl border border-slate-200 flex items-center justify-between">
+                        <div>
+                            <h3 class="font-extrabold text-blue-900 text-sm sm:text-base">Part D. Read and unscramble (Bài Tập Ghép Câu)</h3>
+                            <p class="text-xs text-slate-500">Bấm chọn các thẻ từ để ghép thành câu hoàn chỉnh đúng cấu trúc.</p>
+                        </div>
+                        <span class="bg-blue-200 text-blue-900 text-[11px] font-bold px-2.5 py-1 rounded-full">Câu 11 - 14</span>
+                    </div>
+
+                    <!-- Q11 -->
+                    <div class="question-card p-3.5 rounded-xl border border-slate-200 bg-white space-y-2 transition" id="card_q11">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="bg-blue-600 text-white text-xs font-extrabold px-2 py-0.5 rounded">Câu 11</span>
+                            <span class="font-semibold text-xs text-slate-500">Các từ: an email? / Who / writing / is</span>
+                        </div>
+                        <div id="wo_container_q11"></div>
+                        <div id="fb_q11" class="text-xs p-2.5 rounded-lg hidden"></div>
+                    </div>
+
+                    <!-- Q12 -->
+                    <div class="question-card p-3.5 rounded-xl border border-slate-200 bg-white space-y-2 transition" id="card_q12">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="bg-blue-600 text-white text-xs font-extrabold px-2 py-0.5 rounded">Câu 12</span>
+                            <span class="font-semibold text-xs text-slate-500">Các từ: the cat / is / doing? / What</span>
+                        </div>
+                        <div id="wo_container_q12"></div>
+                        <div id="fb_q12" class="text-xs p-2.5 rounded-lg hidden"></div>
+                    </div>
+
+                    <!-- Q13 -->
+                    <div class="question-card p-3.5 rounded-xl border border-slate-200 bg-white space-y-2 transition" id="card_q13">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="bg-blue-600 text-white text-xs font-extrabold px-2 py-0.5 rounded">Câu 13</span>
+                            <span class="font-semibold text-xs text-slate-500">Các từ: is / driving / Who / a car?</span>
+                        </div>
+                        <div id="wo_container_q13"></div>
+                        <div id="fb_q13" class="text-xs p-2.5 rounded-lg hidden"></div>
+                    </div>
+
+                    <!-- Q14 -->
+                    <div class="question-card p-3.5 rounded-xl border border-slate-200 bg-white space-y-2 transition" id="card_q14">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="bg-blue-600 text-white text-xs font-extrabold px-2 py-0.5 rounded">Câu 14</span>
+                            <span class="font-semibold text-xs text-slate-500">Các từ: your parents / doing? / are / What</span>
+                        </div>
+                        <div id="wo_container_q14"></div>
+                        <div id="fb_q14" class="text-xs p-2.5 rounded-lg hidden"></div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- PART E: FULL-WIDTH BOTTOM SECTION -->
+            <div class="space-y-4 pt-4 border-t border-slate-200">
+                <div class="bg-slate-100 p-3 rounded-xl border border-slate-200 flex items-center justify-between">
+                    <div>
+                        <h3 class="font-extrabold text-blue-900 text-sm sm:text-base">Part E. Read and correct (Sửa Lỗi Sai Trong Câu)</h3>
+                        <p class="text-xs text-slate-500">Phát hiện lỗi sai ngữ pháp trong câu và viết lại toàn bộ câu đúng.</p>
+                    </div>
+                    <span class="bg-blue-200 text-blue-900 text-[11px] font-bold px-2.5 py-1 rounded-full">Câu 15 - 20</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <!-- Q15 -->
+                    <div class="question-card p-4 rounded-xl border border-slate-200 bg-white space-y-2 transition" id="card_q15">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="bg-blue-600 text-white text-xs font-extrabold px-2 py-0.5 rounded">Câu 15</span>
+                            <span class="font-medium text-xs sm:text-sm text-slate-800">Sửa câu sai: <em>"What is she do?"</em></span>
+                            <button onclick="speakText('What is she do?')" class="text-xs text-blue-600 font-bold hover:underline">🔊 Nghe</button>
+                        </div>
+                        <input type="text" id="q15" oninput="onUserInteraction('q15')" placeholder="Viết lại câu đúng..." class="w-full p-2 text-xs sm:text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                        <div id="fb_q15" class="text-xs p-2.5 rounded-lg hidden"></div>
+                    </div>
+
+                    <!-- Q16 -->
+                    <div class="question-card p-4 rounded-xl border border-slate-200 bg-white space-y-2 transition" id="card_q16">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="bg-blue-600 text-white text-xs font-extrabold px-2 py-0.5 rounded">Câu 16</span>
+                            <span class="font-medium text-xs sm:text-sm text-slate-800">Sửa câu sai: <em>"She studying is."</em></span>
+                            <button onclick="speakText('She studying is.')" class="text-xs text-blue-600 font-bold hover:underline">🔊 Nghe</button>
+                        </div>
+                        <input type="text" id="q16" oninput="onUserInteraction('q16')" placeholder="Viết lại câu đúng..." class="w-full p-2 text-xs sm:text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                        <div id="fb_q16" class="text-xs p-2.5 rounded-lg hidden"></div>
+                    </div>
+
+                    <!-- Q17 -->
+                    <div class="question-card p-4 rounded-xl border border-slate-200 bg-white space-y-2 transition" id="card_q17">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="bg-blue-600 text-white text-xs font-extrabold px-2 py-0.5 rounded">Câu 17</span>
+                            <span class="font-medium text-xs sm:text-sm text-slate-800">Sửa câu sai: <em>"What is watching TV?"</em></span>
+                            <button onclick="speakText('What is watching TV?')" class="text-xs text-blue-600 font-bold hover:underline">🔊 Nghe</button>
+                        </div>
+                        <input type="text" id="q17" oninput="onUserInteraction('q17')" placeholder="Viết lại câu đúng..." class="w-full p-2 text-xs sm:text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                        <div id="fb_q17" class="text-xs p-2.5 rounded-lg hidden"></div>
+                    </div>
+
+                    <!-- Q18 -->
+                    <div class="question-card p-4 rounded-xl border border-slate-200 bg-white space-y-2 transition" id="card_q18">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="bg-blue-600 text-white text-xs font-extrabold px-2 py-0.5 rounded">Câu 18</span>
+                            <span class="font-medium text-xs sm:text-sm text-slate-800">Sửa câu sai: <em>"Linda watching TV."</em></span>
+                            <button onclick="speakText('Linda watching TV.')" class="text-xs text-blue-600 font-bold hover:underline">🔊 Nghe</button>
+                        </div>
+                        <input type="text" id="q18" oninput="onUserInteraction('q18')" placeholder="Viết lại câu đúng..." class="w-full p-2 text-xs sm:text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                        <div id="fb_q18" class="text-xs p-2.5 rounded-lg hidden"></div>
+                    </div>
+
+                    <!-- Q19 -->
+                    <div class="question-card p-4 rounded-xl border border-slate-200 bg-white space-y-2 transition" id="card_q19">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="bg-blue-600 text-white text-xs font-extrabold px-2 py-0.5 rounded">Câu 19</span>
+                            <span class="font-medium text-xs sm:text-sm text-slate-800">Sửa câu sai: <em>"Who is listen to music?"</em></span>
+                            <button onclick="speakText('Who is listen to music?')" class="text-xs text-blue-600 font-bold hover:underline">🔊 Nghe</button>
+                        </div>
+                        <input type="text" id="q19" oninput="onUserInteraction('q19')" placeholder="Viết lại câu đúng..." class="w-full p-2 text-xs sm:text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                        <div id="fb_q19" class="text-xs p-2.5 rounded-lg hidden"></div>
+                    </div>
+
+                    <!-- Q20 -->
+                    <div class="question-card p-4 rounded-xl border border-slate-200 bg-white space-y-2 transition" id="card_q20">
+                        <div class="flex items-center justify-between flex-wrap gap-2">
+                            <span class="bg-blue-600 text-white text-xs font-extrabold px-2 py-0.5 rounded">Câu 20</span>
+                            <span class="font-medium text-xs sm:text-sm text-slate-800">Sửa câu sai: <em>"Tom are listening to music."</em></span>
+                            <button onclick="speakText('Tom are listening to music.')" class="text-xs text-blue-600 font-bold hover:underline">🔊 Nghe</button>
+                        </div>
+                        <input type="text" id="q20" oninput="onUserInteraction('q20')" placeholder="Viết lại câu đúng..." class="w-full p-2 text-xs sm:text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                        <div id="fb_q20" class="text-xs p-2.5 rounded-lg hidden"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SUBMIT & RESET BUTTON BAR -->
+            <div id="submitBar" class="pt-8 border-t-2 border-slate-200 flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button id="btnSubmit" onclick="handleSubmit()" class="w-full sm:w-auto px-10 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-black text-base rounded-full shadow-lg hover:shadow-xl transition transform active:scale-95 flex items-center justify-center gap-2">
+                    <span>🚀</span> NỘP BÀI VÀ CHẤM ĐIỂM
+                </button>
+                <button id="btnReset" onclick="handleReset()" class="hidden w-full sm:w-auto px-10 py-3.5 bg-slate-700 hover:bg-slate-800 text-white font-black text-base rounded-full shadow-lg hover:shadow-xl transition transform active:scale-95 flex items-center justify-center gap-2">
+                    <span>🔄</span> LÀM LẠI PHIẾU BÀI TẬP
+                </button>
+            </div>
+
+        </div>
+
+        <!-- GATED PERFORMANCE ANALYTICS SECTION ("LÀM XONG MỚI HIỂN THỊ") -->
+        <div id="analyticsSection" class="bg-white rounded-2xl shadow-sm border border-slate-300 p-6 sm:p-8 space-y-6">
+            
+            <!-- Locked Notice Placeholder before completion -->
+            <div id="analyticsLocked" class="text-center py-10 space-y-3">
+                <div class="text-4xl">🔒</div>
+                <h3 class="text-lg font-bold text-slate-700">Báo Cáo Phân Tích Năng Lực Đang Khóa</h3>
+                <p class="text-xs text-slate-500 max-w-md mx-auto">
+                    Hãy hoàn thành đầy đủ 20 câu hỏi trên phiếu bài tập và bấm nút <strong class="text-blue-700">NỘP BÀI</strong>. Biểu đồ đánh giá kỹ năng sẽ tự động hiển thị tại đây!
+                </p>
+            </div>
+
+            <!-- Unlocked Analytics Content -->
+            <div id="analyticsUnlocked" class="hidden space-y-6 animate-fade-in">
+                <div class="border-b border-slate-200 pb-4 flex items-center justify-between">
+                    <div>
+                        <h3 class="text-xl font-extrabold text-blue-900 flex items-center gap-2">
+                            <span>📊</span> Báo Cáo Đánh Giá Năng Lực Học Sinh
+                        </h3>
+                        <p class="text-xs text-slate-500">Biểu đồ Radar phân tích mức độ thông thạo qua 5 dạng bài ngữ pháp Present Continuous.</p>
+                    </div>
+                    <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full">Đã Đánh Giá</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <!-- Responsive Chart Container -->
+                    <div class="chart-container">
+                        <canvas id="skillsChart"></canvas>
+                    </div>
+
+                    <!-- Breakdown Detail List -->
+                    <div class="space-y-2.5 bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <h4 class="font-bold text-slate-800 text-xs uppercase tracking-wider">Mức Độ Thành Thạo Theo Kỹ Năng:</h4>
+                        <ul class="text-xs space-y-2 text-slate-700">
+                            <li class="flex items-center justify-between bg-white p-2.5 rounded-lg border border-slate-200">
+                                <span class="font-medium">1. Phân biệt What / Who (Part A)</span>
+                                <span id="skillScore-a" class="font-extrabold text-blue-700">--</span>
+                            </li>
+                            <li class="flex items-center justify-between bg-white p-2.5 rounded-lg border border-slate-200">
+                                <span class="font-medium">2. Trả lời theo bảng thông tin (Part B)</span>
+                                <span id="skillScore-b" class="font-extrabold text-blue-700">--</span>
+                            </li>
+                            <li class="flex items-center justify-between bg-white p-2.5 rounded-lg border border-slate-200">
+                                <span class="font-medium">3. Điền cấu trúc câu hỏi Wh- (Part C)</span>
+                                <span id="skillScore-c" class="font-extrabold text-blue-700">--</span>
+                            </li>
+                            <li class="flex items-center justify-between bg-white p-2.5 rounded-lg border border-slate-200">
+                                <span class="font-medium">4. Bài tập Ghép từ thành câu (Part D)</span>
+                                <span id="skillScore-d" class="font-extrabold text-blue-700">--</span>
+                            </li>
+                            <li class="flex items-center justify-between bg-white p-2.5 rounded-lg border border-slate-200">
+                                <span class="font-medium">5. Phát hiện & Sửa lỗi sai (Part E)</span>
+                                <span id="skillScore-e" class="font-extrabold text-blue-700">--</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="sheet-container text-center text-xs text-slate-500 pt-6">
+        HT English Center • Hotline: 0962240866 • Phiếu Bài Tập Điện Tử Tự Động Chấm Thông Minh
+    </footer>
+
+    <!-- Unanswered Questions Warning Modal -->
+    <div id="modalWarning" class="fixed inset-0 bg-slate-900/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl p-6 max-w-md w-full shadow-2xl text-center space-y-4 animate-fade-in">
+            <div class="text-3xl">⚠️</div>
+            <h3 class="text-lg font-extrabold text-amber-700">Chưa Hoàn Thành Hết Bài Tập</h3>
+            <p id="modalWarningText" class="text-xs text-slate-600">Bạn còn câu chưa điền đáp án. Bạn muốn làm tiếp hay nộp bài luôn?</p>
+            <div class="flex flex-col gap-2 pt-2">
+                <button onclick="closeModalAndContinue()" class="w-full py-2.5 bg-blue-600 text-white font-bold text-xs rounded-lg shadow">Tiếp Tục Làm Bài</button>
+                <button onclick="confirmSubmitAnyway()" class="w-full py-2.5 bg-slate-100 hover:bg-rose-50 text-rose-600 font-bold text-xs rounded-lg border border-rose-200">Nộp Bài Ngay</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Application Engine Script -->
+    <script>
+        /* =========================================================
+           DATA & QUESTION DEFINITIONS
+           ========================================================= */
+        const TOTAL_QUESTIONS = 20;
+        let submitted = false;
+        let skillsChartInstance = null;
+
+        const QUESTIONS = {
+            q1: { type: "select", canonical: "Who", accepted: ["Who", "who"], section: "a", explanation: "Câu trả lời chỉ người ('Dad') ➜ Dùng từ để hỏi 'Who'." },
+            q2: { type: "select", canonical: "What", accepted: ["What", "what"], section: "a", explanation: "Câu trả lời chỉ hành động ('They are running') ➜ Dùng từ để hỏi 'What'." },
+            q3: { type: "select", canonical: "Who", accepted: ["Who", "who"], section: "a", explanation: "Câu trả lời chỉ người ('Amy') ➜ Dùng từ để hỏi 'Who'." },
+            q4: { type: "text", canonical: "I am swimming.", accepted: ["I am swimming.", "I am swimming", "I'm swimming.", "I'm swimming"], section: "b", explanation: "Trong bảng, dòng 'You' đánh dấu ở cột 'swim' ➜ 'I am swimming.'" },
+            q5: { type: "text", canonical: "They are walking.", accepted: ["They are walking.", "They are walking", "They're walking.", "They're walking", "Tom and Sue are walking.", "Tom and Sue are walking"], section: "b", explanation: "Trong bảng, 'Tom and Sue' đánh dấu ở cột 'walk' ➜ 'They are walking.'" },
+            q6: { type: "text", canonical: "Mr. Johnson is writing.", accepted: ["Mr. Johnson is writing.", "Mr. Johnson is writing", "Mr Johnson is writing.", "He is writing.", "He's writing."], section: "b", explanation: "Trong bảng, 'Mr. Johnson' đánh dấu ở cột 'write' ➜ 'Mr. Johnson is writing.'" },
+            q7: { type: "text", canonical: "The monkey is climbing.", accepted: ["The monkey is climbing.", "The monkey is climbing", "It is climbing.", "It's climbing."], section: "b", explanation: "Trong bảng, 'The monkey' đánh dấu ở cột 'climb' ➜ 'The monkey is climbing.'" },
+            q8: { type: "text", canonical: "are they doing", accepted: ["are they doing", "are they doing?", "are the seven dwarfs doing", "are the seven dwarfs doing?"], section: "c", explanation: "Câu trả lời là 'They are working' ➜ Câu hỏi: 'What are they doing?'" },
+            q9: { type: "text", canonical: "is swimming", accepted: ["is swimming", "is swimming?"], section: "c", explanation: "Câu trả lời là 'Kate is swimming' ➜ Câu hỏi: 'Who is swimming?'" },
+            q10: { type: "text", canonical: "are you doing", accepted: ["are you doing", "are you doing?"], section: "c", explanation: "Câu trả lời là 'We are riding bikes' ➜ Câu hỏi: 'What are you doing?'" },
+            q11: { type: "wo", words: ["an email?", "Who", "writing", "is"], canonical: "Who is writing an email?", accepted: ["Who is writing an email?", "Who is writing an email"], section: "d", explanation: "Cấu trúc Who: Who + is + V-ing + tân ngữ? ➜ 'Who is writing an email?'" },
+            q12: { type: "wo", words: ["the cat", "is", "doing?", "What"], canonical: "What is the cat doing?", accepted: ["What is the cat doing?", "What is the cat doing"], section: "d", explanation: "Cấu trúc What: What + is + S + doing? ➜ 'What is the cat doing?'" },
+            q13: { type: "wo", words: ["is", "driving", "Who", "a car?"], canonical: "Who is driving a car?", accepted: ["Who is driving a car?", "Who is driving a car"], section: "d", explanation: "Cấu trúc Who: Who + is + V-ing + tân ngữ? ➜ 'Who is driving a car?'" },
+            q14: { type: "wo", words: ["your parents", "doing?", "are", "What"], canonical: "What are your parents doing?", accepted: ["What are your parents doing?", "What are your parents doing"], section: "d", explanation: "Cấu trúc What: What + are + S (số nhiều) + doing? ➜ 'What are your parents doing?'" },
+            q15: { type: "text", canonical: "What is she doing?", accepted: ["What is she doing?", "What is she doing"], section: "e", explanation: "Động từ 'do' sau 'What is she' phải chuyển thành 'doing' ➜ 'What is she doing?'" },
+            q16: { type: "text", canonical: "She is studying.", accepted: ["She is studying.", "She is studying", "She's studying.", "She's studying"], section: "e", explanation: "Động từ to be 'is' phải đứng trước V-ing 'studying' ➜ 'She is studying.'" },
+            q17: { type: "text", canonical: "Who is watching TV?", accepted: ["Who is watching TV?", "Who is watching TV"], section: "e", explanation: "Hỏi người làm hành động phải dùng từ 'Who', không dùng 'What' ➜ 'Who is watching TV?'" },
+            q18: { type: "text", canonical: "Linda is watching TV.", accepted: ["Linda is watching TV.", "Linda is watching TV"], section: "e", explanation: "Thiếu động từ to be 'is' sau chủ ngữ 'Linda' ➜ 'Linda is watching TV.'" },
+            q19: { type: "text", canonical: "Who is listening to music?", accepted: ["Who is listening to music?", "Who is listening to music"], section: "e", explanation: "Động từ sau 'Who is' phải thêm đuôi -ing ➜ 'Who is listening to music?'" },
+            q20: { type: "text", canonical: "Tom is listening to music.", accepted: ["Tom is listening to music.", "Tom is listening to music"], section: "e", explanation: "Chủ ngữ 'Tom' là số ít nên dùng 'is', không dùng 'are' ➜ 'Tom is listening to music.'" }
+        };
+
+        const wordOrderState = {
+            q11: { selected: [], pool: [] },
+            q12: { selected: [], pool: [] },
+            q13: { selected: [], pool: [] },
+            q14: { selected: [], pool: [] }
+        };
+
+        /* =========================================================
+           TTS & UTILITY FUNCTIONS
+           ========================================================= */
+        function speakText(text) {
+            if (!('speechSynthesis' in window)) return;
+            window.speechSynthesis.cancel();
+            const u = new SpeechSynthesisUtterance(text);
+            u.lang = 'en-US';
+            u.rate = 0.9;
+            window.speechSynthesis.speak(u);
+        }
+
+        function scrollToSubmit() {
+            document.getElementById('submitBar').scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        /* =========================================================
+           INTERACTIVE UNSCRAMBLE COMPONENT (PART D)
+           ========================================================= */
+        function initWordOrder() {
+            ["q11", "q12", "q13", "q14"].forEach(id => {
+                const item = QUESTIONS[id];
+                let shuffled = [...item.words].sort(() => Math.random() - 0.5);
+                wordOrderState[id] = {
+                    pool: shuffled.map((w, idx) => ({ id: `${id}_${idx}`, text: w })),
+                    selected: []
+                };
+                renderClickWordOrder(id);
+            });
+        }
+
+        function renderClickWordOrder(qId) {
+            const container = document.getElementById(`wo_container_${qId}`);
+            if (!container) return;
+            const state = wordOrderState[qId];
+
+            let html = `
+                <div class="space-y-1">
+                    <span class="text-[9px] uppercase font-bold text-slate-400">Câu của bạn:</span>
+                    <div class="min-h-[40px] p-2 bg-slate-50 border border-slate-300 rounded-lg flex flex-wrap gap-2 items-center">
+            `;
+
+            if (state.selected.length === 0) {
+                html += `<span class="text-xs text-slate-400 italic">(Bấm chọn các từ bên dưới)</span>`;
+            } else {
+                state.selected.forEach((item, idx) => {
+                    html += `<button type="button" onclick="unselectWord('${qId}', ${idx})" class="word-chip bg-blue-600 text-white font-bold text-xs px-2.5 py-1 rounded-full ${submitted ? 'disabled opacity-80' : ''}">${item.text}</button>`;
+                });
+            }
+
+            html += `
+                    </div>
+                    <span class="text-[9px] uppercase font-bold text-slate-400 block pt-1">Kho từ:</span>
+                    <div class="flex flex-wrap gap-1.5">
+            `;
+
+            state.pool.forEach(item => {
+                const isChosen = state.selected.some(s => s.id === item.id);
+                if (!isChosen) {
+                    html += `<button type="button" onclick="selectWord('${qId}', '${item.id}')" class="word-chip bg-white border border-slate-300 text-slate-800 font-bold text-xs px-2.5 py-1 rounded-full hover:border-blue-500 ${submitted ? 'disabled opacity-80' : ''}">${item.text}</button>`;
+                }
+            });
+
+            html += `</div></div>`;
+            container.innerHTML = html;
+        }
+
+        function selectWord(qId, wordId) {
+            if (submitted) return;
+            const target = wordOrderState[qId].pool.find(p => p.id === wordId);
+            if (target) {
+                wordOrderState[qId].selected.push(target);
+                renderClickWordOrder(qId);
+                onUserInteraction(qId);
+            }
+        }
+
+        function unselectWord(qId, idx) {
+            if (submitted) return;
+            wordOrderState[qId].selected.splice(idx, 1);
+            renderClickWordOrder(qId);
+            onUserInteraction(qId);
+        }
+
+        /* =========================================================
+           INPUT TRACKING & PROGRESS
+           ========================================================= */
+        function normalize(str) {
+            if (!str) return "";
+            let s = str.toString().trim().replace(/’/g, "'").toLowerCase();
+            s = s.replace(/\bi'm\b/g, "i am")
+                 .replace(/\bthey're\b/g, "they are")
+                 .replace(/\bhe's\b/g, "he is")
+                 .replace(/\bshe's\b/g, "she is")
+                 .replace(/\bit's\b/g, "it is")
+                 .replace(/\s+/g, " ")
+                 .replace(/[.]/g, "");
+            return s.trim();
+        }
+
+        function getUserAnswer(qId) {
+            const item = QUESTIONS[qId];
+            if (item.type === "wo") {
+                return wordOrderState[qId].selected.map(w => w.text).join(" ");
+            }
+            const el = document.getElementById(qId);
+            return el ? el.value.trim() : "";
+        }
+
+        function isAnswered(qId) {
+            const item = QUESTIONS[qId];
+            if (item.type === "wo") {
+                return wordOrderState[qId].selected.length === item.words.length;
+            }
+            return getUserAnswer(qId).length > 0;
+        }
+
+        function onUserInteraction(qId) {
+            const card = document.getElementById(`card_${qId}`);
+            if (card) card.classList.remove('unanswered-card');
+            updateTopProgress();
+        }
+
+        function updateTopProgress() {
+            let count = 0;
+            for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                if (isAnswered(`q${i}`)) count++;
+            }
+            document.getElementById('statCompleted').innerText = `${count}/${TOTAL_QUESTIONS}`;
+        }
+
+        /* =========================================================
+           SUBMISSION & GRADING SYSTEM
+           ========================================================= */
+        function handleSubmit() {
+            if (submitted) return;
+            let unanswered = [];
+            for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                if (!isAnswered(`q${i}`)) unanswered.push(`q${i}`);
+            }
+
+            if (unanswered.length > 0) {
+                document.getElementById('modalWarningText').innerText = `Bạn còn ${unanswered.length} câu chưa hoàn thành. Bạn có muốn tiếp tục điền hay nộp bài luôn?`;
+                document.getElementById('modalWarning').classList.remove('hidden');
+                return;
+            }
+            executeGrading();
+        }
+
+        function closeModalAndContinue() {
+            document.getElementById('modalWarning').classList.add('hidden');
+            for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                if (!isAnswered(`q${i}`)) {
+                    const card = document.getElementById(`card_q${i}`);
+                    if (card) {
+                        card.classList.add('unanswered-card');
+                        card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }
+                    break;
+                }
+            }
+        }
+
+        function confirmSubmitAnyway() {
+            document.getElementById('modalWarning').classList.add('hidden');
+            executeGrading();
+        }
+
+        function executeGrading() {
+            submitted = true;
+            let correctCount = 0;
+            const sectionStats = { a: { c: 0, t: 3 }, b: { c: 0, t: 4 }, c: { c: 0, t: 3 }, d: { c: 0, t: 4 }, e: { c: 0, t: 6 } };
+
+            for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                const qId = `q${i}`;
+                const item = QUESTIONS[qId];
+                const rawAns = getUserAnswer(qId);
+                const normAns = normalize(rawAns);
+
+                const isCorrect = item.accepted.some(a => normalize(a) === normAns);
+                const card = document.getElementById(`card_${qId}`);
+                const fb = document.getElementById(`fb_${qId}`);
+
+                card.classList.remove('unanswered-card');
+
+                if (isCorrect) {
+                    correctCount++;
+                    sectionStats[item.section].c++;
+                    card.classList.add('correct-card');
+                    fb.className = "text-xs p-2.5 rounded-lg bg-emerald-100 text-emerald-950 border border-emerald-300 block space-y-1";
+                    fb.innerHTML = `<div>✅ <strong>Chính xác!</strong></div><div class="text-slate-600">${item.explanation}</div>`;
+                } else {
+                    card.classList.add('wrong-card');
+                    fb.className = "text-xs p-2.5 rounded-lg bg-rose-100 text-rose-950 border border-rose-300 block space-y-1";
+                    fb.innerHTML = `
+                        <div>❌ <strong>Câu trả lời của bạn:</strong> ${rawAns || "<em>Chưa làm</em>"}</div>
+                        <div>💡 <strong>Đáp án đúng:</strong> <span class="font-bold text-blue-900">${item.canonical}</span></div>
+                        <div class="text-slate-600">${item.explanation}</div>
+                    `;
+                }
+
+                // Lock selects and inputs
+                if (item.type === "select" || item.type === "text") {
+                    const el = document.getElementById(qId);
+                    if (el) el.disabled = true;
+                }
+            }
+
+            // Lock word order
+            ["q11", "q12", "q13", "q14"].forEach(id => renderClickWordOrder(id));
+
+            // Banner Display
+            const finalScore = correctCount * 5;
+            document.getElementById('scoreBanner').classList.remove('hidden');
+            document.getElementById('scoreBannerDetail').innerText = `${correctCount} / ${TOTAL_QUESTIONS} Câu Đúng (${finalScore} Điểm)`;
+            document.getElementById('statScore').innerText = `${finalScore}/100`;
+            document.getElementById('statStatus').innerText = "Đã Nộp";
+
+            document.getElementById('btnSubmit').classList.add('hidden');
+            document.getElementById('btnReset').classList.remove('hidden');
+
+            // UNLOCK & RENDER PERFORMANCE ANALYTICS SECTION
+            document.getElementById('analyticsLocked').classList.add('hidden');
+            document.getElementById('analyticsUnlocked').classList.remove('hidden');
+
+            document.getElementById('skillScore-a').innerText = `${sectionStats.a.c}/${sectionStats.a.t} (${Math.round(sectionStats.a.c/sectionStats.a.t*100)}%)`;
+            document.getElementById('skillScore-b').innerText = `${sectionStats.b.c}/${sectionStats.b.t} (${Math.round(sectionStats.b.c/sectionStats.b.t*100)}%)`;
+            document.getElementById('skillScore-c').innerText = `${sectionStats.c.c}/${sectionStats.c.t} (${Math.round(sectionStats.c.c/sectionStats.c.t*100)}%)`;
+            document.getElementById('skillScore-d').innerText = `${sectionStats.d.c}/${sectionStats.d.t} (${Math.round(sectionStats.d.c/sectionStats.d.t*100)}%)`;
+            document.getElementById('skillScore-e').innerText = `${sectionStats.e.c}/${sectionStats.e.t} (${Math.round(sectionStats.e.c/sectionStats.e.t*100)}%)`;
+
+            renderChart(sectionStats);
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function handleReset() {
+            submitted = false;
+            for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                const qId = `q${i}`;
+                const item = QUESTIONS[qId];
+                const card = document.getElementById(`card_${qId}`);
+                if (card) card.className = "question-card p-4 rounded-xl border border-slate-200 bg-white space-y-2 transition";
+
+                const fb = document.getElementById(`fb_${qId}`);
+                if (fb) {
+                    fb.className = "text-xs p-2.5 rounded-lg hidden";
+                    fb.innerHTML = "";
+                }
+
+                if (item.type === "select" || item.type === "text") {
+                    const el = document.getElementById(qId);
+                    if (el) {
+                        el.value = "";
+                        el.disabled = false;
+                    }
+                }
+            }
+
+            initWordOrder();
+            document.getElementById('scoreBanner').classList.add('hidden');
+            document.getElementById('btnSubmit').classList.remove('hidden');
+            document.getElementById('btnReset').classList.add('hidden');
+            document.getElementById('statScore').innerText = "--";
+            document.getElementById('statStatus').innerText = "Đang Làm";
+
+            // Re-lock Analytics section
+            document.getElementById('analyticsUnlocked').classList.add('hidden');
+            document.getElementById('analyticsLocked').classList.remove('hidden');
+
+            updateTopProgress();
+        }
+
+        /* =========================================================
+           CHART.JS RADAR RENDERING
+           ========================================================= */
+        function renderChart(sectionStats) {
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            if (skillsChartInstance) skillsChartInstance.destroy();
+
+            const scores = [
+                Math.round((sectionStats.a.c / sectionStats.a.t) * 100),
+                Math.round((sectionStats.b.c / sectionStats.b.t) * 100),
+                Math.round((sectionStats.c.c / sectionStats.c.t) * 100),
+                Math.round((sectionStats.d.c / sectionStats.d.t) * 100),
+                Math.round((sectionStats.e.c / sectionStats.e.t) * 100)
+            ];
+
+            skillsChartInstance = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Phân Biệt What/Who', 'Tra Bảng Trả Lời', 'Điền Cấu Trúc Wh-', 'Bài Tập Ghép Câu', 'Sửa Lỗi Sai'],
+                    datasets: [{
+                        label: 'Mức Độ Thành Thạo (%)',
+                        data: scores,
+                        backgroundColor: 'rgba(37, 99, 235, 0.25)',
+                        borderColor: '#2563eb',
+                        borderWidth: 2.5,
+                        pointBackgroundColor: '#1e3a8a',
+                        pointHoverRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: '#cbd5e1' },
+                            suggestedMin: 0,
+                            suggestedMax: 100,
+                            ticks: { stepSize: 20, font: { size: 10, weight: '600' } }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
+
+        // Initialize on DOM Ready
+        window.addEventListener('DOMContentLoaded', () => {
+            initWordOrder();
+        });
+    </script>
+</body>
+</html>

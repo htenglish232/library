@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit 24: What ...! How ...! - HT English Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary-blue: #1e40af;
+      --primary-light: #3b82f6;
+      --accent-blue: #dbeafe;
+      --bg-gradient: linear-gradient(135deg, #f0f7ff 0%, #e0f2fe 100%);
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --correct-bg: #ecfdf5;
+      --correct-border: #10b981;
+      --wrong-bg: #fef2f2;
+      --wrong-border: #ef4444;
+      --unanswered-border: #f59e0b;
+      --unanswered-bg: #fffbeb;
+      --border-radius: 16px;
+      --box-shadow: 0 10px 25px -5px rgba(30, 64, 175, 0.08), 0 8px 10px -6px rgba(30, 64, 175, 0.04);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Noto Sans", Arial, sans-serif;
+    }
+
+    body {
+      background: var(--bg-gradient);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 16px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      padding-bottom: 60px;
+    }
+
+    .header-card {
+      background: #ffffff;
+      border-radius: var(--border-radius);
+      padding: 24px 20px;
+      box-shadow: var(--box-shadow);
+      border-top: 6px solid var(--primary-blue);
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .center-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: var(--primary-blue);
+      padding: 6px 16px;
+      border-radius: 9999px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .main-title {
+      color: var(--primary-blue);
+      font-size: 1.85rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 6px;
+    }
+
+    .sub-title {
+      font-size: 1.1rem;
+      color: #475569;
+      font-weight: 600;
+    }
+
+    .grammar-point-card {
+      background: #ffffff;
+      border-radius: var(--border-radius);
+      padding: 20px;
+      box-shadow: var(--box-shadow);
+      margin-bottom: 24px;
+      border-left: 5px solid #0284c7;
+    }
+
+    .grammar-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #0369a1;
+      margin-bottom: 12px;
+    }
+
+    .grammar-content {
+      background: #f8fafc;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      color: #334155;
+    }
+
+    .grammar-formula {
+      background: #e0f2fe;
+      border-left: 3px solid #0284c7;
+      padding: 8px 12px;
+      margin: 8px 0;
+      border-radius: 0 8px 8px 0;
+      font-weight: 700;
+      color: #0c4a6e;
+    }
+
+    .exercise-section {
+      background: #ffffff;
+      border-radius: var(--border-radius);
+      padding: 24px 20px;
+      box-shadow: var(--box-shadow);
+      margin-bottom: 24px;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary-blue);
+      border-bottom: 2px solid #f1f5f9;
+      padding-bottom: 12px;
+      margin-bottom: 20px;
+    }
+
+    .section-badge {
+      background: var(--primary-blue);
+      color: #ffffff;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 800;
+    }
+
+    .question-card {
+      background: #f8fafc;
+      border: 2px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 18px;
+      transition: border-color 0.2s, background-color 0.2s;
+    }
+
+    .question-card.highlight-unanswered {
+      border-color: var(--unanswered-border);
+      background-color: var(--unanswered-bg);
+    }
+
+    .question-card.is-correct {
+      background-color: var(--correct-bg);
+      border-color: var(--correct-border);
+    }
+
+    .question-card.is-wrong {
+      background-color: var(--wrong-bg);
+      border-color: var(--wrong-border);
+    }
+
+    .q-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .q-num {
+      font-weight: 700;
+      color: var(--primary-blue);
+      font-size: 1rem;
+    }
+
+    .btn-speaker {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: all 0.2s;
+      flex-shrink: 0;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .btn-speaker:hover {
+      background: #eff6ff;
+      border-color: var(--primary-light);
+      transform: scale(1.06);
+    }
+
+    .btn-speaker:active {
+      transform: scale(0.95);
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 540px) {
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .option-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #ffffff;
+      padding: 12px 14px;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 1.05rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .option-label:hover {
+      border-color: var(--primary-light);
+      background: #eff6ff;
+    }
+
+    .option-label input[type="radio"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary-blue);
+      cursor: pointer;
+    }
+
+    .text-input-field {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: 1.05rem;
+      border: 2px solid #cbd5e1;
+      border-radius: 10px;
+      background: #ffffff;
+      color: var(--text-main);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .text-input-field:focus {
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
+
+    .word-bank-box {
+      background: #eff6ff;
+      border: 2px dashed #93c5fd;
+      border-radius: 12px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .word-bank-tag {
+      background: #ffffff;
+      border: 1px solid #bfdbfe;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 700;
+      color: var(--primary-blue);
+      font-size: 0.95rem;
+    }
+
+    .word-pool-container {
+      background: #f1f5f9;
+      border: 2px dashed #cbd5e1;
+      border-radius: 12px;
+      padding: 12px;
+      min-height: 52px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+
+    .word-answer-container {
+      background: #ffffff;
+      border: 2px solid var(--primary-light);
+      border-radius: 12px;
+      padding: 12px;
+      min-height: 54px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .clickable-word {
+      background: #ffffff;
+      border: 2px solid #94a3b8;
+      border-radius: 8px;
+      padding: 6px 14px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+      color: #0f172a;
+      box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+    }
+
+    .clickable-word:hover {
+      background: #e0f2fe;
+      border-color: var(--primary-light);
+      transform: translateY(-2px);
+    }
+
+    .clickable-word.selected-word {
+      background: #dbeafe;
+      border-color: var(--primary-blue);
+      color: var(--primary-blue);
+    }
+
+    .correction-box {
+      margin-top: 14px;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+    }
+
+    .feedback-user-ans {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .feedback-correct-ans {
+      font-weight: 700;
+      color: #047857;
+      margin-bottom: 6px;
+    }
+
+    .feedback-explanation {
+      color: #334155;
+      font-size: 0.9rem;
+      background: #f8fafc;
+      padding: 8px 12px;
+      border-radius: 6px;
+      border-left: 3px solid #3b82f6;
+    }
+
+    .action-bar {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .btn-submit {
+      background: var(--primary-blue);
+      color: #ffffff;
+      border: none;
+      border-radius: 14px;
+      padding: 16px 40px;
+      font-size: 1.25rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 10px 20px -5px rgba(30, 64, 175, 0.4);
+      transition: all 0.2s;
+      width: 100%;
+      max-width: 360px;
+    }
+
+    .btn-submit:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+      box-shadow: 0 14px 24px -5px rgba(30, 64, 175, 0.5);
+    }
+
+    .btn-submit:active {
+      transform: translateY(0);
+    }
+
+    .btn-retry {
+      background: #0d9488;
+      color: #ffffff;
+      border: none;
+      border-radius: 14px;
+      padding: 16px 40px;
+      font-size: 1.25rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 10px 20px -5px rgba(13, 148, 136, 0.4);
+      transition: all 0.2s;
+      width: 100%;
+      max-width: 360px;
+      display: none;
+    }
+
+    .btn-retry:hover {
+      background: #0f766e;
+      transform: translateY(-2px);
+    }
+
+    .score-banner {
+      display: none;
+      background: #ffffff;
+      border-radius: var(--border-radius);
+      padding: 24px;
+      text-align: center;
+      margin-bottom: 24px;
+      box-shadow: var(--box-shadow);
+      border: 3px solid var(--primary-blue);
+      animation: fadeInScale 0.3s ease-out;
+    }
+
+    .score-banner h2 {
+      color: var(--primary-blue);
+      font-size: 1.6rem;
+      margin-bottom: 8px;
+    }
+
+    .score-points {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #ea580c;
+      margin: 8px 0;
+    }
+
+    .score-message {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border-radius: 20px;
+      max-width: 440px;
+      width: 100%;
+      padding: 28px 24px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      text-align: center;
+      animation: modalPop 0.25s ease-out;
+    }
+
+    .modal-icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+    }
+
+    .modal-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #b45309;
+      margin-bottom: 8px;
+    }
+
+    .modal-text {
+      font-size: 1rem;
+      color: #334155;
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .btn-modal-continue {
+      background: var(--primary-blue);
+      color: #ffffff;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 20px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .btn-modal-continue:hover {
+      background: #1d4ed8;
+    }
+
+    .btn-modal-confirm-submit {
+      background: #ffffff;
+      color: #dc2626;
+      border: 2px solid #dc2626;
+      border-radius: 12px;
+      padding: 12px 20px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-modal-confirm-submit:hover {
+      background: #fee2e2;
+    }
+
+    .footer-signature {
+      text-align: center;
+      margin-top: 30px;
+      padding: 16px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .footer-signature strong {
+      color: var(--primary-blue);
+    }
+
+    @keyframes fadeInScale {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes modalPop {
+      from { opacity: 0; transform: translateY(20px) scale(0.95); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <!-- Header Card -->
+    <header class="header-card">
+      <div class="center-badge">
+        <span>🏫 HT English Center</span>
+        <span>•</span>
+        <span>📞 0962240866</span>
+      </div>
+      <h1 class="main-title">UNIT 24: What ...! How ...!</h1>
+      <p class="sub-title">Phiếu Bài Tập Tự Động Chấm Điểm &amp; Luyện Phát Âm</p>
+    </header>
+
+    <!-- Grammar Point Card -->
+    <div class="grammar-point-card">
+      <div class="grammar-header">
+        <span>📘 GRAMMAR POINT: Câu cảm thán</span>
+      </div>
+      <div class="grammar-content">
+        <p>• Câu cảm thán dùng để <strong>bày tỏ cảm xúc</strong> như ngạc nhiên, vui mừng...</p>
+        <p>• Bắt đầu bằng <strong>'What'</strong> và <strong>'How'</strong>, mang nghĩa: <em>"thật là ... biết bao!"</em></p>
+        
+        <div class="grammar-formula">
+          1. What + a / an + tính từ + danh từ số ít + (S + V)!
+        </div>
+        <p><em>Ví dụ: What a beautiful girl (she is)! / What an ugly boy (he is)!</em></p>
+
+        <div class="grammar-formula">
+          2. What + tính từ + danh từ số nhiều + (S + V)! (Không dùng a/an)
+        </div>
+        <p><em>Ví dụ: What pretty flowers (they are)! / What tall boys (they are)!</em></p>
+
+        <div class="grammar-formula">
+          3. How + tính từ + (S + V)!
+        </div>
+        <p><em>Ví dụ: How expensive (it is)! / How smart (she is)! / How sweet (they are)!</em></p>
+      </div>
+    </div>
+
+    <!-- Score Banner (shown upon submission) -->
+    <div id="scoreBanner" class="score-banner">
+      <h2>🎉 KẾT QUẢ BÀI LÀM</h2>
+      <div id="scorePoints" class="score-points">0 / 26 ⭐</div>
+      <div id="scoreMessage" class="score-message">Đã hoàn thành phiếu bài tập!</div>
+    </div>
+
+    <!-- FORM START -->
+    <form id="worksheetForm" onsubmit="return false;">
+
+      <section class="exercise-section">
+        <div class="section-title">
+          <div class="section-badge">A</div>
+          <div>Read, circle, and choose: <em>What</em> or <em>How</em></div>
+        </div>
+
+        <!-- Question 1 -->
+        <div class="question-card" id="card_q1">
+          <div class="q-header">
+            <span class="q-num">1. Chọn từ thích hợp:</span>
+            <button type="button" class="btn-speaker" data-speak="a beautiful flower" title="Nghe cụm từ">🔊</button>
+          </div>
+          <p style="font-size: 1.1rem; margin-bottom: 10px;">_______ a beautiful flower!</p>
+          <div class="options-grid">
+            <label class="option-label">
+              <input type="radio" name="q1" value="What"> What
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q1" value="How"> How
+            </label>
+          </div>
+          <div class="correction-box" id="corr_q1" style="display: none;"></div>
+        </div>
+
+        <!-- Question 2 -->
+        <div class="question-card" id="card_q2">
+          <div class="q-header">
+            <span class="q-num">2. Chọn từ thích hợp:</span>
+            <button type="button" class="btn-speaker" data-speak="interesting" title="Nghe từ">🔊</button>
+          </div>
+          <p style="font-size: 1.1rem; margin-bottom: 10px;">_______ interesting!</p>
+          <div class="options-grid">
+            <label class="option-label">
+              <input type="radio" name="q2" value="What"> What
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q2" value="How"> How
+            </label>
+          </div>
+          <div class="correction-box" id="corr_q2" style="display: none;"></div>
+        </div>
+
+        <!-- Question 3 -->
+        <div class="question-card" id="card_q3">
+          <div class="q-header">
+            <span class="q-num">3. Chọn từ thích hợp:</span>
+            <button type="button" class="btn-speaker" data-speak="tall buildings" title="Nghe cụm từ">🔊</button>
+          </div>
+          <p style="font-size: 1.1rem; margin-bottom: 10px;">_______ tall buildings!</p>
+          <div class="options-grid">
+            <label class="option-label">
+              <input type="radio" name="q3" value="What"> What
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q3" value="How"> How
+            </label>
+          </div>
+          <div class="correction-box" id="corr_q3" style="display: none;"></div>
+        </div>
+
+        <!-- Question 4 -->
+        <div class="question-card" id="card_q4">
+          <div class="q-header">
+            <span class="q-num">4. Chọn từ thích hợp:</span>
+            <button type="button" class="btn-speaker" data-speak="fast" title="Nghe từ">🔊</button>
+          </div>
+          <p style="font-size: 1.1rem; margin-bottom: 10px;">_______ fast!</p>
+          <div class="options-grid">
+            <label class="option-label">
+              <input type="radio" name="q4" value="What"> What
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q4" value="How"> How
+            </label>
+          </div>
+          <div class="correction-box" id="corr_q4" style="display: none;"></div>
+        </div>
+
+        <!-- Question 5 -->
+        <div class="question-card" id="card_q5">
+          <div class="q-header">
+            <span class="q-num">5. Chọn từ thích hợp:</span>
+            <button type="button" class="btn-speaker" data-speak="an ugly frog" title="Nghe cụm từ">🔊</button>
+          </div>
+          <p style="font-size: 1.1rem; margin-bottom: 10px;">_______ an ugly frog!</p>
+          <div class="options-grid">
+            <label class="option-label">
+              <input type="radio" name="q5" value="What"> What
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q5" value="How"> How
+            </label>
+          </div>
+          <div class="correction-box" id="corr_q5" style="display: none;"></div>
+        </div>
+
+        <!-- Question 6 -->
+        <div class="question-card" id="card_q6">
+          <div class="q-header">
+            <span class="q-num">6. Chọn từ thích hợp:</span>
+            <button type="button" class="btn-speaker" data-speak="handsome" title="Nghe từ">🔊</button>
+          </div>
+          <p style="font-size: 1.1rem; margin-bottom: 10px;">_______ handsome!</p>
+          <div class="options-grid">
+            <label class="option-label">
+              <input type="radio" name="q6" value="What"> What
+            </label>
+            <label class="option-label">
+              <input type="radio" name="q6" value="How"> How
+            </label>
+          </div>
+          <div class="correction-box" id="corr_q6" style="display: none;"></div>
+        </div>
+      </section>
+
+      <section class="exercise-section">
+        <div class="section-title">
+          <div class="section-badge">B</div>
+          <div>Look and write (Dùng 8 từ gợi ý trong khung)</div>
+        </div>
+
+        <div class="word-bank-box">
+          <span style="font-weight: 700; color: #1e3a8a;">Word Bank:</span>
+          <span class="word-bank-tag">cute</span>
+          <span class="word-bank-tag">beautiful</span>
+          <span class="word-bank-tag">strong</span>
+          <span class="word-bank-tag">big</span>
+          <span class="word-bank-tag">smart</span>
+          <span class="word-bank-tag">dirty</span>
+          <span class="word-bank-tag">fast</span>
+          <span class="word-bank-tag">expensive</span>
+        </div>
+
+        <!-- Item 1: Flower -->
+        <div class="question-card" id="card_q7">
+          <div class="q-header">
+            <span class="q-num">7. Bông hoa (flower):</span>
+            <button type="button" class="btn-speaker" data-speak="flower" title="Nghe từ">🔊</button>
+          </div>
+          <p style="margin-bottom: 8px;">What a <input type="text" class="text-input-field" id="input_q7" placeholder="Nhập tính từ..." style="width: 170px; display: inline-block;"> flower it is! = How _______ it is!</p>
+          <div class="correction-box" id="corr_q7" style="display: none;"></div>
+        </div>
+
+        <!-- Item 2: Train -->
+        <div class="question-card" id="card_q8">
+          <div class="q-header">
+            <span class="q-num">8. Tàu cao tốc (train):</span>
+            <button type="button" class="btn-speaker" data-speak="train" title="Nghe từ">🔊</button>
+          </div>
+          <p style="margin-bottom: 8px;">What a <input type="text" class="text-input-field" id="input_q8" placeholder="Nhập tính từ..." style="width: 170px; display: inline-block;"> train it is! = How _______ it is!</p>
+          <div class="correction-box" id="corr_q8" style="display: none;"></div>
+        </div>
+
+        <!-- Item 3: Boys -->
+        <div class="question-card" id="card_q9">
+          <div class="q-header">
+            <span class="q-num">9. Những cậu bé khỏe mạnh (boys):</span>
+            <button type="button" class="btn-speaker" data-speak="boys" title="Nghe từ">🔊</button>
+          </div>
+          <p style="margin-bottom: 8px;">What <input type="text" class="text-input-field" id="input_q9" placeholder="Nhập tính từ..." style="width: 170px; display: inline-block;"> boys they are! = How _______ they are!</p>
+          <div class="correction-box" id="corr_q9" style="display: none;"></div>
+        </div>
+
+        <!-- Item 4: Camera -->
+        <div class="question-card" id="card_q10">
+          <div class="q-header">
+            <span class="q-num">10. Máy ảnh đắt tiền ($1,000 camera):</span>
+            <button type="button" class="btn-speaker" data-speak="camera" title="Nghe từ">🔊</button>
+          </div>
+          <p style="margin-bottom: 8px;">What an <input type="text" class="text-input-field" id="input_q10" placeholder="Nhập tính từ..." style="width: 170px; display: inline-block;"> camera it is! = How _______ it is!</p>
+          <div class="correction-box" id="corr_q10" style="display: none;"></div>
+        </div>
+
+        <!-- Item 5: Girl -->
+        <div class="question-card" id="card_q11">
+          <div class="q-header">
+            <span class="q-num">11. Bé gái dễ thương (girl):</span>
+            <button type="button" class="btn-speaker" data-speak="girl" title="Nghe từ">🔊</button>
+          </div>
+          <p style="margin-bottom: 8px;">What a <input type="text" class="text-input-field" id="input_q11" placeholder="Nhập tính từ..." style="width: 170px; display: inline-block;"> girl she is! = How _______ she is!</p>
+          <div class="correction-box" id="corr_q11" style="display: none;"></div>
+        </div>
+
+        <!-- Item 6: Students -->
+        <div class="question-card" id="card_q12">
+          <div class="q-header">
+            <span class="q-num">12. Các học sinh thông minh (students):</span>
+            <button type="button" class="btn-speaker" data-speak="students" title="Nghe từ">🔊</button>
+          </div>
+          <p style="margin-bottom: 8px;">What <input type="text" class="text-input-field" id="input_q12" placeholder="Nhập tính từ..." style="width: 170px; display: inline-block;"> students they are! = How _______ they are!</p>
+          <div class="correction-box" id="corr_q12" style="display: none;"></div>
+        </div>
+
+        <!-- Item 7: House -->
+        <div class="question-card" id="card_q13">
+          <div class="q-header">
+            <span class="q-num">13. Ngôi nhà to lớn (house):</span>
+            <button type="button" class="btn-speaker" data-speak="house" title="Nghe từ">🔊</button>
+          </div>
+          <p style="margin-bottom: 8px;">What a <input type="text" class="text-input-field" id="input_q13" placeholder="Nhập tính từ..." style="width: 170px; display: inline-block;"> house it is! = How _______ it is!</p>
+          <div class="correction-box" id="corr_q13" style="display: none;"></div>
+        </div>
+
+        <!-- Item 8: Shoes -->
+        <div class="question-card" id="card_q14">
+          <div class="q-header">
+            <span class="q-num">14. Đôi giày bẩn (shoes):</span>
+            <button type="button" class="btn-speaker" data-speak="shoes" title="Nghe từ">🔊</button>
+          </div>
+          <p style="margin-bottom: 8px;">What <input type="text" class="text-input-field" id="input_q14" placeholder="Nhập tính từ..." style="width: 170px; display: inline-block;"> shoes they are! = How _______ they are!</p>
+          <div class="correction-box" id="corr_q14" style="display: none;"></div>
+        </div>
+      </section>
+
+      <section class="exercise-section">
+        <div class="section-title">
+          <div class="section-badge">C</div>
+          <div>Look and write: Chuyển sang câu cảm thán</div>
+        </div>
+
+        <!-- Question 15 -->
+        <div class="question-card" id="card_q15">
+          <div class="q-header">
+            <span class="q-num">15. Viết câu cảm thán với "What":</span>
+            <button type="button" class="btn-speaker" data-speak="She is a cute girl." title="Nghe câu gốc">🔊</button>
+          </div>
+          <p style="margin-bottom: 8px; font-weight: 600;">Câu gốc: She is a cute girl.</p>
+          <input type="text" class="text-input-field" id="input_q15" placeholder="Nhập câu cảm thán bắt đầu bằng What...">
+          <div class="correction-box" id="corr_q15" style="display: none;"></div>
+        </div>
+
+        <!-- Question 16 -->
+        <div class="question-card" id="card_q16">
+          <div class="q-header">
+            <span class="q-num">16. Viết câu cảm thán với "What":</span>
+            <button type="button" class="btn-speaker" data-speak="It is an ugly frog." title="Nghe câu gốc">🔊</button>
+          </div>
+          <p style="margin-bottom: 8px; font-weight: 600;">Câu gốc: It is an ugly frog.</p>
+          <input type="text" class="text-input-field" id="input_q16" placeholder="Nhập câu cảm thán bắt đầu bằng What...">
+          <div class="correction-box" id="corr_q16" style="display: none;"></div>
+        </div>
+
+        <!-- Question 17 -->
+        <div class="question-card" id="card_q17">
+          <div class="q-header">
+            <span class="q-num">17. Viết câu cảm thán với "How":</span>
+            <button type="button" class="btn-speaker" data-speak="They are big." title="Nghe câu gốc">🔊</button>
+          </div>
+          <p style="margin-bottom: 8px; font-weight: 600;">Câu gốc: They are big.</p>
+          <input type="text" class="text-input-field" id="input_q17" placeholder="Nhập câu cảm thán bắt đầu bằng How...">
+          <div class="correction-box" id="corr_q17" style="display: none;"></div>
+        </div>
+      </section>
+
+      <section class="exercise-section">
+        <div class="section-title">
+          <div class="section-badge">D</div>
+          <div>Read and correct: Sửa lỗi sai để thành câu đúng</div>
+        </div>
+
+        <!-- Question 18 -->
+        <div class="question-card" id="card_q18">
+          <div class="q-header">
+            <span class="q-num">18. Sửa câu:</span>
+            <button type="button" class="btn-speaker" data-speak="What an beautiful flower!" title="Nghe câu">🔊</button>
+          </div>
+          <p style="margin-bottom: 8px; font-weight: 600; color: #dc2626;">Câu sai: What an beautiful flower!</p>
+          <input type="text" class="text-input-field" id="input_q18" placeholder="Viết lại câu đúng...">
+          <div class="correction-box" id="corr_q18" style="display: none;"></div>
+        </div>
+
+        <!-- Question 19 -->
+        <div class="question-card" id="card_q19">
+          <div class="q-header">
+            <span class="q-num">19. Sửa câu:</span>
+            <button type="button" class="btn-speaker" data-speak="How an interesting game!" title="Nghe câu">🔊</button>
+          </div>
+          <p style="margin-bottom: 8px; font-weight: 600; color: #dc2626;">Câu sai: How an interesting game!</p>
+          <input type="text" class="text-input-field" id="input_q19" placeholder="Viết lại câu đúng...">
+          <div class="correction-box" id="corr_q19" style="display: none;"></div>
+        </div>
+
+        <!-- Question 20 -->
+        <div class="question-card" id="card_q20">
+          <div class="q-header">
+            <span class="q-num">20. Sửa câu:</span>
+            <button type="button" class="btn-speaker" data-speak="What cheap they are!" title="Nghe câu">🔊</button>
+          </div>
+          <p style="margin-bottom: 8px; font-weight: 600; color: #dc2626;">Câu sai: What cheap they are!</p>
+          <input type="text" class="text-input-field" id="input_q20" placeholder="Viết lại câu đúng...">
+          <div class="correction-box" id="corr_q20" style="display: none;"></div>
+        </div>
+
+        <!-- Question 21 -->
+        <div class="question-card" id="card_q21">
+          <div class="q-header">
+            <span class="q-num">21. Sửa câu:</span>
+            <button type="button" class="btn-speaker" data-speak="How tall buildings!" title="Nghe câu">🔊</button>
+          </div>
+          <p style="margin-bottom: 8px; font-weight: 600; color: #dc2626;">Câu sai: How tall buildings!</p>
+          <input type="text" class="text-input-field" id="input_q21" placeholder="Viết lại câu đúng...">
+          <div class="correction-box" id="corr_q21" style="display: none;"></div>
+        </div>
+
+        <!-- Question 22 -->
+        <div class="question-card" id="card_q22">
+          <div class="q-header">
+            <span class="q-num">22. Sửa câu:</span>
+            <button type="button" class="btn-speaker" data-speak="What old an house!" title="Nghe câu">🔊</button>
+          </div>
+          <p style="margin-bottom: 8px; font-weight: 600; color: #dc2626;">Câu sai: What old an house!</p>
+          <input type="text" class="text-input-field" id="input_q22" placeholder="Viết lại câu đúng...">
+          <div class="correction-box" id="corr_q22" style="display: none;"></div>
+        </div>
+      </section>
+
+      <section class="exercise-section">
+        <div class="section-title">
+          <div class="section-badge">E</div>
+          <div id="wordOrderSectionHeader">Word Order: Sắp xếp thành câu hoàn chỉnh</div>
+        </div>
+
+        <!-- Question 23 -->
+        <div class="question-card" id="card_q23">
+          <div class="q-header">
+            <span class="q-num">23. Sắp xếp câu:</span>
+            <button type="button" class="btn-speaker" data-speak="pretty flowers" title="Nghe cụm từ">🔊</button>
+          </div>
+          <div id="wo_container_q23"></div>
+          <div class="correction-box" id="corr_q23" style="display: none;"></div>
+        </div>
+
+        <!-- Question 24 -->
+        <div class="question-card" id="card_q24">
+          <div class="q-header">
+            <span class="q-num">24. Sắp xếp câu:</span>
+            <button type="button" class="btn-speaker" data-speak="expensive" title="Nghe từ">🔊</button>
+          </div>
+          <div id="wo_container_q24"></div>
+          <div class="correction-box" id="corr_q24" style="display: none;"></div>
+        </div>
+
+        <!-- Question 25 -->
+        <div class="question-card" id="card_q25">
+          <div class="q-header">
+            <span class="q-num">25. Sắp xếp câu:</span>
+            <button type="button" class="btn-speaker" data-speak="ugly boy" title="Nghe cụm từ">🔊</button>
+          </div>
+          <div id="wo_container_q25"></div>
+          <div class="correction-box" id="corr_q25" style="display: none;"></div>
+        </div>
+
+        <!-- Question 26 -->
+        <div class="question-card" id="card_q26">
+          <div class="q-header">
+            <span class="q-num">26. Sắp xếp câu:</span>
+            <button type="button" class="btn-speaker" data-speak="nice hat" title="Nghe cụm từ">🔊</button>
+          </div>
+          <div id="wo_container_q26"></div>
+          <div class="correction-box" id="corr_q26" style="display: none;"></div>
+        </div>
+      </section>
+
+      <div class="action-bar">
+        <button type="button" class="btn-submit" id="btnSubmit">📝 NỘP BÀI / SUBMIT</button>
+        <button type="button" class="btn-retry" id="btnRetry">🔄 LÀM LẠI</button>
+      </div>
+    </form>
+
+    <!-- Footer Signature -->
+    <footer class="footer-signature">
+      <p>Bản quyền phiếu bài tập © <strong>HT English Center</strong> - Hotline: <strong>0962240866</strong></p>
+    </footer>
+  </div>
+
+  <!-- Warning Modal for Unanswered questions -->
+  <div class="modal-backdrop" id="warningModal">
+    <div class="modal-card">
+      <div class="modal-icon">⚠️</div>
+      <h3 class="modal-title">CHƯA LÀM XONG</h3>
+      <p class="modal-text" id="warningModalText">
+        Em vẫn còn <strong>0</strong> câu chưa trả lời.<br>
+        Em muốn tiếp tục làm bài hay vẫn gửi bài?
+      </p>
+      <div class="modal-actions">
+        <button type="button" class="btn-modal-continue" id="btnModalContinue">TIẾP TỤC LÀM</button>
+        <button type="button" class="btn-modal-confirm-submit" id="btnModalSubmitAnyway">GỬI BÀI</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ==========================================================================
+       SINGLE SOURCE OF TRUTH (Answer Keys and Data)
+       Total questions: exactly 26 items (q1 - q26)
+       ========================================================================== */
+    const TOTAL_QUESTIONS = 26;
+    let submitted = false;
+
+    // Randomize Word Order mode ONCE for the entire worksheet (50% click chips vs 50% type input)
+    const wordOrderMode = Math.random() < 0.5 ? "click" : "type";
+
+    const QUESTIONS_DATA = {
+      // Part A: Choose What or How (q1 - q6)
+      q1: {
+        id: "q1",
+        type: "radio",
+        correctAnswer: "What",
+        explanation: "Ta dùng 'What' vì phía sau có cụm danh từ số ít 'a beautiful flower'."
+      },
+      q2: {
+        id: "q2",
+        type: "radio",
+        correctAnswer: "How",
+        explanation: "Ta dùng 'How' vì theo sau trực tiếp là một tính từ 'interesting'."
+      },
+      q3: {
+        id: "q3",
+        type: "radio",
+        correctAnswer: "What",
+        explanation: "Ta dùng 'What' vì phía sau là cụm danh từ số nhiều 'tall buildings'."
+      },
+      q4: {
+        id: "q4",
+        type: "radio",
+        correctAnswer: "How",
+        explanation: "Ta dùng 'How' vì theo sau trực tiếp là một tính từ 'fast'."
+      },
+      q5: {
+        id: "q5",
+        type: "radio",
+        correctAnswer: "What",
+        explanation: "Ta dùng 'What' vì phía sau có cụm danh từ số ít 'an ugly frog'."
+      },
+      q6: {
+        id: "q6",
+        type: "radio",
+        correctAnswer: "How",
+        explanation: "Ta dùng 'How' vì theo sau trực tiếp là một tính từ 'handsome'."
+      },
+
+      // Part B: Look and write (q7 - q14)
+      q7: {
+        id: "q7",
+        type: "text",
+        canonicalAnswer: "beautiful",
+        acceptedAnswers: ["beautiful"],
+        explanation: "Dùng tính từ 'beautiful' (đẹp) miêu tả bông hoa."
+      },
+      q8: {
+        id: "q8",
+        type: "text",
+        canonicalAnswer: "fast",
+        acceptedAnswers: ["fast"],
+        explanation: "Dùng tính từ 'fast' (nhanh) miêu tả tàu cao tốc."
+      },
+      q9: {
+        id: "q9",
+        type: "text",
+        canonicalAnswer: "strong",
+        acceptedAnswers: ["strong"],
+        explanation: "Dùng tính từ 'strong' (khỏe mạnh) miêu tả các cậu bé."
+      },
+      q10: {
+        id: "q10",
+        type: "text",
+        canonicalAnswer: "expensive",
+        acceptedAnswers: ["expensive"],
+        explanation: "Dùng tính từ 'expensive' (đắt) sau mạo từ an miêu tả máy ảnh."
+      },
+      q11: {
+        id: "q11",
+        type: "text",
+        canonicalAnswer: "cute",
+        acceptedAnswers: ["cute"],
+        explanation: "Dùng tính từ 'cute' (dễ thương) miêu tả bé gái."
+      },
+      q12: {
+        id: "q12",
+        type: "text",
+        canonicalAnswer: "smart",
+        acceptedAnswers: ["smart"],
+        explanation: "Dùng tính từ 'smart' (thông minh) miêu tả các học sinh."
+      },
+      q13: {
+        id: "q13",
+        type: "text",
+        canonicalAnswer: "big",
+        acceptedAnswers: ["big"],
+        explanation: "Dùng tính từ 'big' (to lớn) miêu tả ngôi nhà."
+      },
+      q14: {
+        id: "q14",
+        type: "text",
+        canonicalAnswer: "dirty",
+        acceptedAnswers: ["dirty"],
+        explanation: "Dùng tính từ 'dirty' (bẩn) miêu tả đôi giày."
+      },
+
+      // Part C: Rewrite into Exclamations (q15 - q17)
+      q15: {
+        id: "q15",
+        type: "text",
+        canonicalAnswer: "What a cute girl!",
+        acceptedAnswers: ["What a cute girl!", "What a cute girl she is!", "What a cute girl she is"],
+        explanation: "Cấu trúc với danh từ số ít 'girl': What + a + cute + girl!"
+      },
+      q16: {
+        id: "q16",
+        type: "text",
+        canonicalAnswer: "What an ugly frog!",
+        acceptedAnswers: ["What an ugly frog!", "What an ugly frog it is!", "What an ugly frog it is"],
+        explanation: "Cấu trúc với danh từ số ít bắt đầu bằng nguyên âm u: What + an + ugly + frog!"
+      },
+      q17: {
+        id: "q17",
+        type: "text",
+        canonicalAnswer: "How big!",
+        acceptedAnswers: ["How big!", "How big they are!", "How big they are"],
+        explanation: "Cấu trúc cảm thán với How: How + tính từ (big)!"
+      },
+
+      // Part D: Read and correct (q18 - q22)
+      q18: {
+        id: "q18",
+        type: "text",
+        canonicalAnswer: "What a beautiful flower!",
+        acceptedAnswers: ["What a beautiful flower!", "What a beautiful flower"],
+        explanation: "'beautiful' bắt đầu bằng phụ âm nên dùng 'a' thay vì 'an': What a beautiful flower!"
+      },
+      q19: {
+        id: "q19",
+        type: "text",
+        canonicalAnswer: "What an interesting game!",
+        acceptedAnswers: ["What an interesting game!", "What an interesting game", "How interesting!"],
+        explanation: "Có danh từ 'game' nên dùng 'What an interesting game!' thay vì dùng 'How an...'."
+      },
+      q20: {
+        id: "q20",
+        type: "text",
+        canonicalAnswer: "How cheap they are!",
+        acceptedAnswers: ["How cheap they are!", "How cheap they are"],
+        explanation: "'cheap' là tính từ đứng độc lập trước S+V nên dùng 'How': How cheap they are!"
+      },
+      q21: {
+        id: "q21",
+        type: "text",
+        canonicalAnswer: "What tall buildings!",
+        acceptedAnswers: ["What tall buildings!", "What tall buildings they are!", "What tall buildings they are"],
+        explanation: "'buildings' là danh từ số nhiều nên dùng 'What' (không dùng How hoặc a/an): What tall buildings!"
+      },
+      q22: {
+        id: "q22",
+        type: "text",
+        canonicalAnswer: "What an old house!",
+        acceptedAnswers: ["What an old house!", "What an old house it is!", "What an old house it is"],
+        explanation: "Thứ tự từ đúng là mạo từ đứng trước tính từ 'old': What an old house!"
+      },
+
+      // Part E: Word Order (q23 - q26)
+      q23: {
+        id: "q23",
+        type: "wordOrder",
+        words: ["What", "pretty", "flowers", "they", "are", "!"],
+        canonicalAnswer: "What pretty flowers they are!",
+        acceptedAnswers: ["What pretty flowers they are!", "What pretty flowers they are"],
+        explanation: "Cấu trúc cảm thán với danh từ số nhiều: What + adj (pretty) + plural noun (flowers) + they are!"
+      },
+      q24: {
+        id: "q24",
+        type: "wordOrder",
+        words: ["How", "expensive", "it", "is", "!"],
+        canonicalAnswer: "How expensive it is!",
+        acceptedAnswers: ["How expensive it is!", "How expensive it is"],
+        explanation: "Cấu trúc cảm thán với How: How + adj (expensive) + it is!"
+      },
+      q25: {
+        id: "q25",
+        type: "wordOrder",
+        words: ["What", "an", "ugly", "boy", "he", "is", "!"],
+        canonicalAnswer: "What an ugly boy he is!",
+        acceptedAnswers: ["What an ugly boy he is!", "What an ugly boy he is"],
+        explanation: "Cấu trúc cảm thán: What + an + ugly + boy + he is!"
+      },
+      q26: {
+        id: "q26",
+        type: "wordOrder",
+        words: ["What", "a", "nice", "hat", "it", "is", "!"],
+        canonicalAnswer: "What a nice hat it is!",
+        acceptedAnswers: ["What a nice hat it is!", "What a nice hat it is"],
+        explanation: "Cấu trúc cảm thán: What + a + nice + hat + it is!"
+      }
+    };
+
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.88;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    document.querySelectorAll('.btn-speaker').forEach(button => {
+      button.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const textToSpeak = button.getAttribute('data-speak');
+        if (textToSpeak) {
+          speakText(textToSpeak);
+        }
+      });
+    });
+
+    function normalizeContractions(str) {
+      return str
+        .replace(/’/g, "'")
+        .replace(/\baren\'t\b/gi, "are not")
+        .replace(/\bisn\'t\b/gi, "is not")
+        .replace(/\bdon\'t\b/gi, "do not")
+        .replace(/\bdoesn\'t\b/gi, "does not")
+        .replace(/\bdidn\'t\b/gi, "did not")
+        .replace(/\bcan\'t\b/gi, "cannot")
+        .replace(/\bwon\'t\b/gi, "will not")
+        .replace(/\bwasn\'t\b/gi, "was not")
+        .replace(/\bweren\'t\b/gi, "were not");
+    }
+
+    function normalizeString(str) {
+      if (!str) return "";
+      let clean = str.trim().toLowerCase();
+      clean = normalizeContractions(clean);
+      clean = clean.replace(/[.,!?;:]/g, ""); // Ignore ending punctuation for flexible typing
+      clean = clean.replace(/\s+/g, " ").trim();
+      return clean;
+    }
+
+    function shuffleArray(arr) {
+      const array = [...arr];
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+      }
+      return array;
+    }
+
+    const wordOrderState = {};
+
+    function initWordOrderSection() {
+      const sectionHeader = document.getElementById('wordOrderSectionHeader');
+      if (wordOrderMode === 'click') {
+        sectionHeader.innerHTML = 'Word Order: Bấm chọn từ theo đúng thứ tự <em>(Chế độ bấm chọn)</em>';
+      } else {
+        sectionHeader.innerHTML = 'Word Order: Tự viết lại câu hoàn chỉnh bằng bàn phím <em>(Chế độ tự viết)</em>';
+      }
+
+      ['q23', 'q24', 'q25', 'q26'].forEach(qid => {
+        const qData = QUESTIONS_DATA[qid];
+        const container = document.getElementById(`wo_container_${qid}`);
+        container.innerHTML = '';
+
+        if (wordOrderMode === 'click') {
+          wordOrderState[qid] = {
+            selected: []
+          };
+
+          let shuffled = shuffleArray(qData.words);
+          if (shuffled.join(' ') === qData.words.join(' ')) {
+            shuffled = shuffled.reverse();
+          }
+
+          const poolDiv = document.createElement('div');
+          poolDiv.className = 'word-pool-container';
+          poolDiv.id = `pool_${qid}`;
+
+          const ansDiv = document.createElement('div');
+          ansDiv.className = 'word-answer-container';
+          ansDiv.id = `ans_${qid}`;
+          ansDiv.innerHTML = '<span style="color: #94a3b8; font-size: 0.95rem;">Bấm các từ phía trên theo thứ tự để ghép câu...</span>';
+
+          shuffled.forEach((w, idx) => {
+            const wordBtn = document.createElement('button');
+            wordBtn.type = 'button';
+            wordBtn.className = 'clickable-word';
+            wordBtn.textContent = w;
+            wordBtn.dataset.word = w;
+            wordBtn.dataset.id = `${qid}_w_${idx}`;
+            
+            wordBtn.addEventListener('click', () => {
+              if (submitted) return;
+              handleWordClick(qid, wordBtn, poolDiv, ansDiv);
+            });
+
+            poolDiv.appendChild(wordBtn);
+          });
+
+          container.appendChild(poolDiv);
+          container.appendChild(ansDiv);
+
+        } else {
+          // Type mode
+          const scrambledHint = shuffleArray(qData.words).join('  /  ');
+          const hintP = document.createElement('p');
+          hintP.style.cssText = 'color: #1e40af; font-weight: 700; margin-bottom: 8px; font-size: 1.05rem; background: #eff6ff; padding: 6px 12px; border-radius: 8px; display: inline-block;';
+          hintP.textContent = scrambledHint;
+
+          const inputField = document.createElement('input');
+          inputField.type = 'text';
+          inputField.className = 'text-input-field';
+          inputField.id = `input_${qid}`;
+          inputField.placeholder = 'Nhập câu hoàn chỉnh vào đây...';
+
+          container.appendChild(hintP);
+          container.appendChild(inputField);
+        }
+      });
+    }
+
+    function handleWordClick(qid, btn, poolDiv, ansDiv) {
+      if (btn.parentElement === poolDiv) {
+        // Move to answer box
+        poolDiv.removeChild(btn);
+        btn.classList.add('selected-word');
+        ansDiv.appendChild(btn);
+        wordOrderState[qid].selected.push(btn);
+      } else {
+        // Move back to pool
+        ansDiv.removeChild(btn);
+        btn.classList.remove('selected-word');
+        poolDiv.appendChild(btn);
+        wordOrderState[qid].selected = wordOrderState[qid].selected.filter(b => b !== btn);
+      }
+
+      // Update placeholder
+      const placeholder = ansDiv.querySelector('span');
+      if (wordOrderState[qid].selected.length > 0) {
+        if (placeholder) placeholder.style.display = 'none';
+      } else {
+        if (placeholder) {
+          placeholder.style.display = 'inline';
+        } else {
+          const span = document.createElement('span');
+          span.style.cssText = 'color: #94a3b8; font-size: 0.95rem;';
+          span.textContent = 'Bấm các từ phía trên theo thứ tự để ghép câu...';
+          ansDiv.appendChild(span);
+        }
+      }
+    }
+
+    function getUserAnswer(qid) {
+      const qData = QUESTIONS_DATA[qid];
+      if (qData.type === 'radio') {
+        const checked = document.querySelector(`input[name="${qid}"]:checked`);
+        return checked ? checked.value : "";
+      } else if (qData.type === 'text') {
+        const inp = document.getElementById(`input_${qid}`);
+        return inp ? inp.value.trim() : "";
+      } else if (qData.type === 'wordOrder') {
+        if (wordOrderMode === 'click') {
+          const selectedBtns = wordOrderState[qid] ? wordOrderState[qid].selected : [];
+          if (selectedBtns.length === 0) return "";
+          return selectedBtns.map(b => b.dataset.word).join(' ');
+        } else {
+          const inp = document.getElementById(`input_${qid}`);
+          return inp ? inp.value.trim() : "";
+        }
+      }
+      return "";
+    }
+
+    function checkUnanswered() {
+      const unanswered = [];
+      for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+        const qid = `q${i}`;
+        const ans = getUserAnswer(qid);
+        if (!ans || ans.trim() === "") {
+          unanswered.push(qid);
+        }
+      }
+      return unanswered;
+    }
+
+    function gradeWorksheet() {
+      submitted = true;
+      let correctCount = 0;
+
+      for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+        const qid = `q${i}`;
+        const qData = QUESTIONS_DATA[qid];
+        const userAns = getUserAnswer(qid);
+        const card = document.getElementById(`card_${qid}`);
+        const corrBox = document.getElementById(`corr_${qid}`);
+
+        let isCorrect = false;
+
+        if (userAns !== "") {
+          if (qData.type === 'radio') {
+            if (userAns.toLowerCase() === qData.correctAnswer.toLowerCase()) {
+              isCorrect = true;
+            }
+          } else {
+            // Text or Word Order
+            const normUser = normalizeString(userAns);
+            const acceptedNorms = (qData.acceptedAnswers || [qData.canonicalAnswer]).map(a => normalizeString(a));
+            if (acceptedNorms.includes(normUser)) {
+              isCorrect = true;
+            }
+          }
+        }
+
+        if (isCorrect) {
+          correctCount++;
+          card.classList.add('is-correct');
+          card.classList.remove('is-wrong', 'highlight-unanswered');
+        } else {
+          card.classList.add('is-wrong');
+          card.classList.remove('is-correct', 'highlight-unanswered');
+        }
+
+        // Display Vietnamese Correction
+        corrBox.style.display = 'block';
+        const displayUser = userAns === "" ? "Chưa làm" : userAns;
+        const canonical = qData.correctAnswer || qData.canonicalAnswer;
+
+        corrBox.innerHTML = `
+          <div class="feedback-user-ans">
+            Em chọn / trả lời: <span style="color: ${isCorrect ? '#059669' : '#dc2626'}">${displayUser}</span> ${isCorrect ? '✅' : '❌'}
+          </div>
+          ${!isCorrect ? `<div class="feedback-correct-ans">Đáp án đúng: <span>${canonical}</span> ✅</div>` : ''}
+          <div class="feedback-explanation">💡 <strong>Giải thích:</strong> ${qData.explanation}</div>
+        `;
+      }
+
+      // Lock all controls
+      lockAllInputs();
+
+      // Show Score Banner
+      const scoreBanner = document.getElementById('scoreBanner');
+      const scorePoints = document.getElementById('scorePoints');
+      const scoreMessage = document.getElementById('scoreMessage');
+
+      scorePoints.textContent = `${correctCount} / ${TOTAL_QUESTIONS} ⭐`;
+      
+      const percentage = (correctCount / TOTAL_QUESTIONS) * 100;
+      if (percentage === 100) {
+        scoreMessage.textContent = '🌟 Xuất sắc! Em đã làm đúng tất cả các câu!';
+      } else if (percentage >= 80) {
+        scoreMessage.textContent = '👏 Rất tốt! Em nắm bài rất vững!';
+      } else if (percentage >= 50) {
+        scoreMessage.textContent = '👍 Khá tốt! Hãy xem lại phần chữa bài để rút kinh nghiệm nhé.';
+      } else {
+        scoreMessage.textContent = '💪 Cố gắng lên nhé! Em hãy đọc kỹ phần giải thích và thử làm lại bài.';
+      }
+
+      scoreBanner.style.display = 'block';
+      scoreBanner.scrollIntoView({ behavior: 'smooth' });
+
+      // Switch submit button to retry
+      document.getElementById('btnSubmit').style.display = 'none';
+      document.getElementById('btnRetry').style.display = 'inline-block';
+    }
+
+    function lockAllInputs() {
+      // Radios
+      document.querySelectorAll('input[type="radio"]').forEach(r => r.disabled = true);
+      // Text inputs
+      document.querySelectorAll('.text-input-field').forEach(inp => inp.disabled = true);
+      // Word order clickable buttons
+      document.querySelectorAll('.clickable-word').forEach(btn => {
+        btn.disabled = true;
+        btn.style.cursor = 'not-allowed';
+      });
+    }
+
+    const btnSubmit = document.getElementById('btnSubmit');
+    const btnRetry = document.getElementById('btnRetry');
+    const warningModal = document.getElementById('warningModal');
+    const warningModalText = document.getElementById('warningModalText');
+    const btnModalContinue = document.getElementById('btnModalContinue');
+    const btnModalSubmitAnyway = document.getElementById('btnModalSubmitAnyway');
+
+    btnSubmit.addEventListener('click', () => {
+      if (submitted) return;
+
+      const unansweredList = checkUnanswered();
+
+      if (unansweredList.length > 0) {
+        document.querySelectorAll('.question-card').forEach(c => c.classList.remove('highlight-unanswered'));
+        unansweredList.forEach(qid => {
+          document.getElementById(`card_${qid}`)?.classList.add('highlight-unanswered');
+        });
+
+        warningModalText.innerHTML = `Em vẫn còn <strong>${unansweredList.length}</strong> câu chưa trả lời.<br>Em muốn tiếp tục làm bài hay vẫn gửi bài?`;
+        warningModal.style.display = 'flex';
+      } else {
+        gradeWorksheet();
+      }
+    });
+
+    btnModalContinue.addEventListener('click', () => {
+      warningModal.style.display = 'none';
+      const unansweredList = checkUnanswered();
+      if (unansweredList.length > 0) {
+        const firstUnansweredCard = document.getElementById(`card_${unansweredList[0]}`);
+        if (firstUnansweredCard) {
+          firstUnansweredCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }
+    });
+
+    btnModalSubmitAnyway.addEventListener('click', () => {
+      warningModal.style.display = 'none';
+      gradeWorksheet();
+    });
+
+    btnRetry.addEventListener('click', () => {
+      submitted = false;
+
+      // Clear all radio buttons
+      document.querySelectorAll('input[type="radio"]').forEach(r => {
+        r.checked = false;
+        r.disabled = false;
+      });
+
+      // Clear text inputs
+      document.querySelectorAll('.text-input-field').forEach(inp => {
+        inp.value = '';
+        inp.disabled = false;
+      });
+
+      // Clear card statuses and feedback
+      document.querySelectorAll('.question-card').forEach(card => {
+        card.classList.remove('is-correct', 'is-wrong', 'highlight-unanswered');
+      });
+
+      document.querySelectorAll('.correction-box').forEach(box => {
+        box.style.display = 'none';
+        box.innerHTML = '';
+      });
+
+      // Hide score banner
+      document.getElementById('scoreBanner').style.display = 'none';
+
+      // Reset Word Order UI while maintaining the same mode
+      initWordOrderSection();
+
+      // Switch buttons
+      btnSubmit.style.display = 'inline-block';
+      btnRetry.style.display = 'none';
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Initialize worksheet on load
+    initWordOrderSection();
+  </script>
+</body>
+</html>

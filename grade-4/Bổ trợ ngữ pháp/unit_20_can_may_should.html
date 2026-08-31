@@ -1,0 +1,1600 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unit 20: Can / May / Should - HT English Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #1d4ed8;
+      --primary-hover: #1e40af;
+      --primary-light: #eff6ff;
+      --primary-border: #93c5fd;
+      --secondary: #0284c7;
+      --success: #16a34a;
+      --success-bg: #f0fdf4;
+      --success-border: #86efac;
+      --danger: #dc2626;
+      --danger-bg: #fef2f2;
+      --danger-border: #fca5a5;
+      --warning: #d97706;
+      --warning-bg: #fffbeb;
+      --neutral-dark: #1e293b;
+      --neutral-mid: #475569;
+      --neutral-light: #f8fafc;
+      --border-color: #cbd5e1;
+      --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+      --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+      --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Noto Sans", Arial, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: #f1f5f9;
+      color: var(--neutral-dark);
+      line-height: 1.6;
+      padding: 16px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      background: #ffffff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      padding: 24px 28px;
+      margin-bottom: 40px;
+    }
+
+    .header {
+      text-align: center;
+      padding-bottom: 20px;
+      border-bottom: 2px dashed var(--primary-border);
+      margin-bottom: 24px;
+    }
+
+    .brand-tag {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 6px 16px;
+      border-radius: 20px;
+      border: 1px solid var(--primary-border);
+      margin-bottom: 8px;
+    }
+
+    .header h1 {
+      font-size: 1.85rem;
+      color: #1e3a8a;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .header p {
+      color: var(--neutral-mid);
+      font-size: 1rem;
+    }
+
+    .grammar-card {
+      background: #f8faff;
+      border: 1px solid var(--primary-border);
+      border-left: 5px solid var(--primary);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+      margin-bottom: 28px;
+    }
+
+    .grammar-card h3 {
+      color: var(--primary);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.15rem;
+    }
+
+    .grammar-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      background: #ffffff;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .grammar-table th, .grammar-table td {
+      border: 1px solid #e2e8f0;
+      padding: 10px 12px;
+      font-size: 0.92rem;
+      text-align: left;
+    }
+
+    .grammar-table th {
+      background: #e0f2fe;
+      color: #0369a1;
+      font-weight: 600;
+    }
+
+    .section-block {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius);
+      padding: 20px;
+      margin-bottom: 24px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #1e40af;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid #f1f5f9;
+      padding-bottom: 8px;
+    }
+
+    .word-bank {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      background: #f1f5f9;
+      padding: 12px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 16px;
+      border: 1px dashed #cbd5e1;
+      justify-content: center;
+    }
+
+    .word-chip {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      padding: 4px 12px;
+      border-radius: 16px;
+      font-weight: 600;
+      color: var(--neutral-dark);
+      font-size: 0.9rem;
+    }
+
+    .question-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      margin-bottom: 14px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .question-card.unanswered-highlight {
+      border-color: #f59e0b !important;
+      background-color: #fffbeb !important;
+    }
+
+    .question-card.correct {
+      border-color: var(--success) !important;
+      background-color: var(--success-bg) !important;
+    }
+
+    .question-card.incorrect {
+      border-color: var(--danger) !important;
+      background-color: var(--danger-bg) !important;
+    }
+
+    .q-text {
+      font-size: 1.05rem;
+      font-weight: 500;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .q-num {
+      font-weight: 700;
+      color: var(--primary);
+      min-width: 28px;
+    }
+
+    .speaker-btn {
+      background: #e0e7ff;
+      border: 1px solid #c7d2fe;
+      color: #3730a3;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: transform 0.15s, background 0.15s;
+      margin-left: 6px;
+      vertical-align: middle;
+      flex-shrink: 0;
+    }
+
+    .speaker-btn:hover {
+      background: #c7d2fe;
+      transform: scale(1.08);
+    }
+
+    .speaker-btn:active {
+      transform: scale(0.95);
+    }
+
+    .styled-input {
+      padding: 8px 12px;
+      font-size: 1rem;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: #ffffff;
+      color: var(--neutral-dark);
+      width: 100%;
+      max-width: 380px;
+    }
+
+    .styled-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+    }
+
+    .styled-input.short-input {
+      max-width: 140px;
+      display: inline-block;
+      margin: 0 4px;
+    }
+
+    .styled-select {
+      padding: 8px 12px;
+      font-size: 1rem;
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      background: #ffffff;
+      color: var(--neutral-dark);
+      outline: none;
+      cursor: pointer;
+      min-width: 110px;
+    }
+
+    .styled-select:focus {
+      border-color: var(--primary);
+    }
+
+    .word-pool {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px;
+      background: #f8fafc;
+      border: 1px dashed var(--border-color);
+      border-radius: var(--radius-sm);
+      min-height: 48px;
+      margin-bottom: 10px;
+    }
+
+    .word-dropzone {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 10px;
+      background: #ffffff;
+      border: 2px solid #bfdbfe;
+      border-radius: var(--radius-sm);
+      min-height: 52px;
+      align-items: center;
+    }
+
+    .interactive-word {
+      background: #ffffff;
+      border: 1.5px solid var(--primary-border);
+      color: var(--primary);
+      font-weight: 600;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+      font-size: 0.95rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .interactive-word:hover {
+      background: var(--primary-light);
+      border-color: var(--primary);
+    }
+
+    .interactive-word.in-slot {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary-hover);
+    }
+
+    .explanation-box {
+      display: none;
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .explanation-box.show {
+      display: block;
+    }
+
+    .explanation-box.correct-box {
+      background: #f0fdf4;
+      border-left: 4px solid var(--success);
+      color: #14532d;
+    }
+
+    .explanation-box.incorrect-box {
+      background: #fef2f2;
+      border-left: 4px solid var(--danger);
+      color: #7f1d1d;
+    }
+
+    .exp-label {
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .actions-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      margin-top: 32px;
+      padding-top: 20px;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .btn-submit {
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 1.2rem;
+      font-weight: 700;
+      padding: 14px 40px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      transition: background 0.2s, transform 0.1s;
+      min-width: 240px;
+    }
+
+    .btn-submit:hover {
+      background: var(--primary-hover);
+      transform: translateY(-2px);
+    }
+
+    .btn-retry {
+      display: none;
+      background: #0284c7;
+      color: #ffffff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 12px 36px;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: var(--shadow-md);
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn-retry:hover {
+      background: #0369a1;
+      transform: translateY(-2px);
+    }
+
+    .score-board {
+      display: none;
+      background: #f8fafc;
+      border: 2px solid var(--primary-border);
+      border-radius: var(--radius);
+      padding: 20px;
+      text-align: center;
+      width: 100%;
+      margin-bottom: 24px;
+      animation: fadeIn 0.4s ease-out;
+    }
+
+    .score-board.show {
+      display: block;
+    }
+
+    .score-title {
+      font-size: 1.3rem;
+      color: #1e3a8a;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .score-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    .score-msg {
+      font-size: 1.05rem;
+      color: var(--neutral-mid);
+      margin-top: 6px;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.6);
+      backdrop-filter: blur(2px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 1000;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      border-radius: var(--radius);
+      padding: 24px;
+      max-width: 440px;
+      width: 100%;
+      box-shadow: var(--shadow-lg);
+      text-align: center;
+      animation: popIn 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .modal-title {
+      color: #b45309;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .modal-text {
+      color: var(--neutral-dark);
+      font-size: 1.05rem;
+      margin-bottom: 20px;
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn-continue {
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 12px 20px;
+      border: none;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+    }
+
+    .btn-continue:hover {
+      background: var(--primary-hover);
+    }
+
+    .btn-force-submit {
+      background: #ffffff;
+      color: var(--danger);
+      border: 1.5px solid var(--danger);
+      font-weight: 600;
+      font-size: 0.98rem;
+      padding: 10px 20px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+    }
+
+    .btn-force-submit:hover {
+      background: var(--danger-bg);
+    }
+
+    .footer-info {
+      text-align: center;
+      margin-top: 30px;
+      color: #64748b;
+      font-size: 0.9rem;
+      border-top: 1px solid #e2e8f0;
+      padding-top: 16px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 16px 14px;
+      }
+      .header h1 {
+        font-size: 1.45rem;
+      }
+      .styled-input {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <div class="brand-tag">HT English Center • Hotline: 0962240866</div>
+    <h1>UNIT 20: CAN / MAY / SHOULD</h1>
+    <p>Phiếu Bài Tập Điện Tử - Modal Verbs (Trợ Động Từ Khuyết Thiếu)</p>
+  </div>
+
+  <!-- Score Board Component -->
+  <div id="scoreBoard" class="score-board">
+    <div class="score-title">🎉 KẾT QUẢ BÀI LÀM CỦA EM</div>
+    <div id="scoreNumber" class="score-number">0 / 32</div>
+    <div id="scoreMsg" class="score-msg">Tuyệt vời! Em hãy xem lại phần chữa bài bên dưới nhé.</div>
+  </div>
+
+  <!-- Grammar Review Card -->
+  <div class="grammar-card">
+    <h3>📌 GRAMMAR POINT (Kiến thức trọng tâm)</h3>
+    <p>• Trợ động từ đứng trước động từ chính để bổ sung nghĩa: <strong>khả năng</strong>, <strong>cho phép</strong>, <strong>khuyên nhủ</strong>. Sau trợ động từ luôn là <strong>động từ nguyên thể</strong>.</p>
+    <p>• Phủ định: thêm <em>not</em> sau trợ động từ (<em>cannot = can't</em>; <em>should not = shouldn't</em>; riêng <em>may not</em> không viết tắt).</p>
+    <table class="grammar-table">
+      <thead>
+        <tr>
+          <th>Trợ động từ</th>
+          <th>Chức năng</th>
+          <th>Ví dụ mẫu</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Can</strong></td>
+          <td>Ability (Khả năng)</td>
+          <td>I can dance. / I can't dance. / Can you dance?</td>
+        </tr>
+        <tr>
+          <td><strong>Can / May</strong></td>
+          <td>Permission (Cho phép / Xin phép)</td>
+          <td>You can (may) watch TV. / Can (May) I come in?</td>
+        </tr>
+        <tr>
+          <td><strong>Should</strong></td>
+          <td>Advice (Lời khuyên)</td>
+          <td>You should brush your teeth. / You shouldn't watch TV.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <form id="quizForm" onsubmit="return false;">
+
+    <div class="section-block" id="sectionA">
+      <div class="section-title">
+        <span>A. Write <em>Can</em> for ability and <em>May</em> for permission</span>
+      </div>
+
+      <!-- Q1 -->
+      <div class="question-card" id="card_q1">
+        <div class="q-text">
+          <span class="q-num">1.</span>
+          <select class="styled-select" id="q1" onchange="markTouched('q1')">
+            <option value="">-- Chọn --</option>
+            <option value="Can">Can</option>
+            <option value="May">May</option>
+          </select>
+          <span>the birds fly?</span>
+          <button type="button" class="speaker-btn" onclick="speakText('Can the birds fly?')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q1"></div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="question-card" id="card_q2">
+        <div class="q-text">
+          <span class="q-num">2.</span>
+          <select class="styled-select" id="q2" onchange="markTouched('q2')">
+            <option value="">-- Chọn --</option>
+            <option value="Can">Can</option>
+            <option value="May">May</option>
+          </select>
+          <span>I drink some milk?</span>
+          <button type="button" class="speaker-btn" onclick="speakText('May I drink some milk?')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q2"></div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="question-card" id="card_q3">
+        <div class="q-text">
+          <span class="q-num">3.</span>
+          <select class="styled-select" id="q3" onchange="markTouched('q3')">
+            <option value="">-- Chọn --</option>
+            <option value="Can">Can</option>
+            <option value="May">May</option>
+          </select>
+          <span>you speak English?</span>
+          <button type="button" class="speaker-btn" onclick="speakText('Can you speak English?')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q3"></div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="question-card" id="card_q4">
+        <div class="q-text">
+          <span class="q-num">4.</span>
+          <select class="styled-select" id="q4" onchange="markTouched('q4')">
+            <option value="">-- Chọn --</option>
+            <option value="Can">Can</option>
+            <option value="May">May</option>
+          </select>
+          <span>the frog jump high?</span>
+          <button type="button" class="speaker-btn" onclick="speakText('Can the frog jump high?')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q4"></div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="question-card" id="card_q5">
+        <div class="q-text">
+          <span class="q-num">5.</span>
+          <select class="styled-select" id="q5" onchange="markTouched('q5')">
+            <option value="">-- Chọn --</option>
+            <option value="Can">Can</option>
+            <option value="May">May</option>
+          </select>
+          <span>I turn off the radio?</span>
+          <button type="button" class="speaker-btn" onclick="speakText('May I turn off the radio?')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q5"></div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="question-card" id="card_q6">
+        <div class="q-text">
+          <span class="q-num">6.</span>
+          <select class="styled-select" id="q6" onchange="markTouched('q6')">
+            <option value="">-- Chọn --</option>
+            <option value="Can">Can</option>
+            <option value="May">May</option>
+          </select>
+          <span>I use your computer?</span>
+          <button type="button" class="speaker-btn" onclick="speakText('May I use your computer?')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q6"></div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="question-card" id="card_q7">
+        <div class="q-text">
+          <span class="q-num">7.</span>
+          <select class="styled-select" id="q7" onchange="markTouched('q7')">
+            <option value="">-- Chọn --</option>
+            <option value="Can">Can</option>
+            <option value="May">May</option>
+          </select>
+          <span>I borrow your book?</span>
+          <button type="button" class="speaker-btn" onclick="speakText('May I borrow your book?')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q7"></div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="question-card" id="card_q8">
+        <div class="q-text">
+          <span class="q-num">8.</span>
+          <select class="styled-select" id="q8" onchange="markTouched('q8')">
+            <option value="">-- Chọn --</option>
+            <option value="Can">Can</option>
+            <option value="May">May</option>
+          </select>
+          <span>the chicken fly?</span>
+          <button type="button" class="speaker-btn" onclick="speakText('Can the chicken fly?')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q8"></div>
+      </div>
+    </div>
+
+    <div class="section-block" id="sectionB">
+      <div class="section-title">
+        <span>B. Read and write <em>should</em> or <em>shouldn't</em> + verb</span>
+      </div>
+      <div class="word-bank">
+        <span class="word-chip">brush</span>
+        <span class="word-chip">watch</span>
+        <span class="word-chip">do</span>
+        <span class="word-chip">bring</span>
+        <span class="word-chip">play</span>
+        <span class="word-chip">see</span>
+      </div>
+
+      <!-- Q9 -->
+      <div class="question-card" id="card_q9">
+        <div class="q-text">
+          <span class="q-num">1.</span>
+          <span>I have a cold. I</span>
+          <input type="text" class="styled-input short-input" id="q9" placeholder="should see" autocomplete="off" oninput="markTouched('q9')" />
+          <span>a doctor.</span>
+          <button type="button" class="speaker-btn" onclick="speakText('I have a cold. I should see a doctor.')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q9"></div>
+      </div>
+
+      <!-- Q10 -->
+      <div class="question-card" id="card_q10">
+        <div class="q-text">
+          <span class="q-num">2.</span>
+          <span>We</span>
+          <input type="text" class="styled-input short-input" id="q10" placeholder="..." autocomplete="off" oninput="markTouched('q10')" />
+          <span>too much TV.</span>
+          <button type="button" class="speaker-btn" onclick="speakText('too much TV')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q10"></div>
+      </div>
+
+      <!-- Q11 -->
+      <div class="question-card" id="card_q11">
+        <div class="q-text">
+          <span class="q-num">3.</span>
+          <span>She</span>
+          <input type="text" class="styled-input short-input" id="q11" placeholder="..." autocomplete="off" oninput="markTouched('q11')" />
+          <span>her teeth.</span>
+          <button type="button" class="speaker-btn" onclick="speakText('her teeth')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q11"></div>
+      </div>
+
+      <!-- Q12 -->
+      <div class="question-card" id="card_q12">
+        <div class="q-text">
+          <span class="q-num">4.</span>
+          <span>It is rainy. You</span>
+          <input type="text" class="styled-input short-input" id="q12" placeholder="..." autocomplete="off" oninput="markTouched('q12')" />
+          <span>your umbrella.</span>
+          <button type="button" class="speaker-btn" onclick="speakText('It is rainy. You should bring your umbrella.')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q12"></div>
+      </div>
+
+      <!-- Q13 -->
+      <div class="question-card" id="card_q13">
+        <div class="q-text">
+          <span class="q-num">5.</span>
+          <span>You</span>
+          <input type="text" class="styled-input short-input" id="q13" placeholder="..." autocomplete="off" oninput="markTouched('q13')" />
+          <span>the piano at night.</span>
+          <button type="button" class="speaker-btn" onclick="speakText('the piano at night')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q13"></div>
+      </div>
+
+      <!-- Q14 -->
+      <div class="question-card" id="card_q14">
+        <div class="q-text">
+          <span class="q-num">6.</span>
+          <span>You</span>
+          <input type="text" class="styled-input short-input" id="q14" placeholder="..." autocomplete="off" oninput="markTouched('q14')" />
+          <span>your homework.</span>
+          <button type="button" class="speaker-btn" onclick="speakText('your homework')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q14"></div>
+      </div>
+    </div>
+
+    <div class="section-block" id="sectionC">
+      <div class="section-title">
+        <span>C. Look and write (Quan sát tình huống và hoàn thành câu)</span>
+      </div>
+
+      <!-- Q15 -->
+      <div class="question-card" id="card_q15">
+        <div class="q-text">
+          <span class="q-num">1.</span>
+          <span>Can the frog fly? ➔ </span>
+          <input type="text" class="styled-input" id="q15" placeholder="Ví dụ: No, it can't." autocomplete="off" oninput="markTouched('q15')" />
+          <span>It can jump.</span>
+          <button type="button" class="speaker-btn" onclick="speakText('Can the frog fly? It can jump.')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q15"></div>
+      </div>
+
+      <!-- Q16 -->
+      <div class="question-card" id="card_q16">
+        <div class="q-text">
+          <span class="q-num">2.</span>
+          <span>May I borrow your book? ➔ </span>
+          <input type="text" class="styled-input" id="q16" placeholder="..." autocomplete="off" oninput="markTouched('q16')" />
+          <span>Here you are.</span>
+          <button type="button" class="speaker-btn" onclick="speakText('May I borrow your book? Here you are.')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q16"></div>
+      </div>
+
+      <!-- Q17 -->
+      <div class="question-card" id="card_q17">
+        <div class="q-text">
+          <span class="q-num">3.</span>
+          <span>Can I open the window? ➔ </span>
+          <input type="text" class="styled-input" id="q17" placeholder="..." autocomplete="off" oninput="markTouched('q17')" />
+          <span>It is hot.</span>
+          <button type="button" class="speaker-btn" onclick="speakText('Can I open the window? It is hot.')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q17"></div>
+      </div>
+
+      <!-- Q18 -->
+      <div class="question-card" id="card_q18">
+        <div class="q-text">
+          <span class="q-num">4.</span>
+          <span>May I sit down? (Ghế vừa mới sơn) ➔ </span>
+          <input type="text" class="styled-input" id="q18" placeholder="..." autocomplete="off" oninput="markTouched('q18')" />
+          <span>It is wet.</span>
+          <button type="button" class="speaker-btn" onclick="speakText('May I sit down? It is wet.')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q18"></div>
+      </div>
+
+      <!-- Q19 -->
+      <div class="question-card" id="card_q19">
+        <div class="q-text">
+          <span class="q-num">5.</span>
+          <span>Your room is messy. You </span>
+          <input type="text" class="styled-input short-input" id="q19" placeholder="..." autocomplete="off" oninput="markTouched('q19')" />
+          <span>clean your room.</span>
+          <button type="button" class="speaker-btn" onclick="speakText('Your room is messy. clean your room.')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q19"></div>
+      </div>
+
+      <!-- Q20 -->
+      <div class="question-card" id="card_q20">
+        <div class="q-text">
+          <span class="q-num">6.</span>
+          <span>Everyone is sleeping. You </span>
+          <input type="text" class="styled-input short-input" id="q20" placeholder="..." autocomplete="off" oninput="markTouched('q20')" />
+          <span>play the piano.</span>
+          <button type="button" class="speaker-btn" onclick="speakText('Everyone is sleeping. play the piano.')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q20"></div>
+      </div>
+    </div>
+
+    <div class="section-block" id="sectionD">
+      <div class="section-title">
+        <span>D. Read and unscramble (Sắp xếp từ thành câu đúng)</span>
+      </div>
+      <div id="wordOrderNotice" style="font-size: 0.95rem; color: #475569; margin-bottom: 12px; font-style: italic;"></div>
+      
+      <div id="wordOrderContainer">
+        <!-- Injected dynamically via JS based on the unified randomized mode (Click or Type) -->
+      </div>
+    </div>
+
+    <div class="section-block" id="sectionE">
+      <div class="section-title">
+        <span>E. Read and correct (Sửa lỗi sai trong câu)</span>
+      </div>
+
+      <!-- Q27 -->
+      <div class="question-card" id="card_q27">
+        <div class="q-text">
+          <span class="q-num">1.</span>
+          <span>The frog can't flies. ➔ </span>
+          <input type="text" class="styled-input" id="q27" placeholder="The frog can't fly." autocomplete="off" oninput="markTouched('q27')" />
+          <button type="button" class="speaker-btn" onclick="speakText('The frog can\'t fly.')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q27"></div>
+      </div>
+
+      <!-- Q28 -->
+      <div class="question-card" id="card_q28">
+        <div class="q-text">
+          <span class="q-num">2.</span>
+          <span>May I borrows your eraser? ➔ </span>
+          <input type="text" class="styled-input" id="q28" placeholder="Nhập câu đúng..." autocomplete="off" oninput="markTouched('q28')" />
+          <button type="button" class="speaker-btn" onclick="speakText('May I borrows your eraser?')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q28"></div>
+      </div>
+
+      <!-- Q29 -->
+      <div class="question-card" id="card_q29">
+        <div class="q-text">
+          <span class="q-num">3.</span>
+          <span>Can I drinks some water? ➔ </span>
+          <input type="text" class="styled-input" id="q29" placeholder="Nhập câu đúng..." autocomplete="off" oninput="markTouched('q29')" />
+          <button type="button" class="speaker-btn" onclick="speakText('Can I drinks some water?')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q29"></div>
+      </div>
+
+      <!-- Q30 -->
+      <div class="question-card" id="card_q30">
+        <div class="q-text">
+          <span class="q-num">4.</span>
+          <span>No, you <u>mayn't</u>. ➔ </span>
+          <input type="text" class="styled-input" id="q30" placeholder="Nhập câu đúng..." autocomplete="off" oninput="markTouched('q30')" />
+          <button type="button" class="speaker-btn" onclick="speakText('No, you may not.')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q30"></div>
+      </div>
+
+      <!-- Q31 -->
+      <div class="question-card" id="card_q31">
+        <div class="q-text">
+          <span class="q-num">5.</span>
+          <span>You should brushes your teeth. ➔ </span>
+          <input type="text" class="styled-input" id="q31" placeholder="Nhập câu đúng..." autocomplete="off" oninput="markTouched('q31')" />
+          <button type="button" class="speaker-btn" onclick="speakText('You should brushes your teeth.')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q31"></div>
+      </div>
+
+      <!-- Q32 -->
+      <div class="question-card" id="card_q32">
+        <div class="q-text">
+          <span class="q-num">6.</span>
+          <span>You not should watch TV. ➔ </span>
+          <input type="text" class="styled-input" id="q32" placeholder="Nhập câu đúng..." autocomplete="off" oninput="markTouched('q32')" />
+          <button type="button" class="speaker-btn" onclick="speakText('You not should watch TV.')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_q32"></div>
+      </div>
+    </div>
+
+    <div class="actions-container">
+      <button type="button" id="btnSubmit" class="btn-submit" onclick="handleSubmitClick()">NỘP BÀI / SUBMIT</button>
+      <button type="button" id="btnRetry" class="btn-retry" onclick="resetWorksheet()">🔄 LÀM LẠI</button>
+    </div>
+  </form>
+
+  <div class="footer-info">
+    <strong>HT English Center</strong> • Số điện thoại: <strong>0962240866</strong><br>
+    Phiếu ôn tập chuyên đề Tiếng Anh tiểu học & THCS
+  </div>
+</div>
+
+<div id="unansweredModal" class="modal-overlay">
+  <div class="modal-box">
+    <div class="modal-title">⚠️ CHƯA LÀM XONG</div>
+    <div class="modal-text">
+      Em vẫn còn <strong id="unansweredCount" style="color: #dc2626; font-size: 1.2rem;">0</strong> câu chưa trả lời.<br>
+      Em muốn tiếp tục làm bài hay vẫn gửi bài?
+    </div>
+    <div class="modal-actions">
+      <button type="button" class="btn-continue" onclick="closeUnansweredModalAndFocus()">TIẾP TỤC LÀM</button>
+      <button type="button" class="btn-force-submit" onclick="confirmForceSubmit()">GỬI BÀI</button>
+    </div>
+  </div>
+</div>
+
+<script>
+  let submitted = false;
+  const TOTAL_QUESTIONS = 32;
+
+  // Single Random Choice for entire sheet's Word Order mode (Click or Type)
+  const wordOrderMode = Math.random() < 0.5 ? "click" : "type";
+
+  // Single Source of Truth for all questions and answer keys
+  const questionsData = {
+    // Section A
+    q1: {
+      type: "select",
+      correct: "Can",
+      explanation: "Ta dùng 'Can' để hỏi về khả năng (Ability) của loài chim có thể bay hay không."
+    },
+    q2: {
+      type: "select",
+      correct: "May",
+      explanation: "Ta dùng 'May' khi muốn xin phép (Permission) được uống sữa: 'May I drink some milk?'."
+    },
+    q3: {
+      type: "select",
+      correct: "Can",
+      explanation: "Ta dùng 'Can' để hỏi về khả năng nói tiếng Anh (Ability): 'Can you speak English?'."
+    },
+    q4: {
+      type: "select",
+      correct: "Can",
+      explanation: "Ta dùng 'Can' để hỏi về khả năng nhảy cao của ếch (Ability): 'Can the frog jump high?'."
+    },
+    q5: {
+      type: "select",
+      correct: "May",
+      explanation: "Ta dùng 'May' để xin phép tắt đài radio (Permission): 'May I turn off the radio?'."
+    },
+    q6: {
+      type: "select",
+      correct: "May",
+      explanation: "Ta dùng 'May' để xin phép sử dụng máy tính (Permission): 'May I use your computer?'."
+    },
+    q7: {
+      type: "select",
+      correct: "May",
+      explanation: "Ta dùng 'May' để xin phép mượn sách (Permission): 'May I borrow your book?'."
+    },
+    q8: {
+      type: "select",
+      correct: "Can",
+      explanation: "Ta dùng 'Can' để hỏi về khả năng bay của con gà (Ability): 'Can the chicken fly?'."
+    },
+
+    // Section B
+    q9: {
+      type: "text",
+      canonical: "should see",
+      accepted: ["should see"],
+      explanation: "I have a cold (Tôi bị cảm cúm). Lời khuyên nên đi khám bác sĩ: 'I should see a doctor'."
+    },
+    q10: {
+      type: "text",
+      canonical: "shouldn't watch",
+      accepted: ["shouldn't watch", "should not watch"],
+      explanation: "Không nên xem TV quá nhiều: 'We shouldn't watch too much TV' (hoặc 'should not watch')."
+    },
+    q11: {
+      type: "text",
+      canonical: "should brush",
+      accepted: ["should brush"],
+      explanation: "Cô ấy nên đánh răng: 'She should brush her teeth'."
+    },
+    q12: {
+      type: "text",
+      canonical: "should bring",
+      accepted: ["should bring"],
+      explanation: "Trời đang mưa, bạn nên mang theo ô: 'You should bring your umbrella'."
+    },
+    q13: {
+      type: "text",
+      canonical: "shouldn't play",
+      accepted: ["shouldn't play", "should not play"],
+      explanation: "Không nên chơi piano vào ban đêm: 'You shouldn't play the piano at night'."
+    },
+    q14: {
+      type: "text",
+      canonical: "should do",
+      accepted: ["should do"],
+      explanation: "Bạn nên làm bài tập về nhà: 'You should do your homework'."
+    },
+
+    // Section C
+    q15: {
+      type: "text",
+      canonical: "No, it can't.",
+      accepted: ["no it cant", "no, it cant", "no, it can't", "no it cannot", "no, it cannot", "no, it can't.", "no, it cannot."],
+      explanation: "Câu hỏi 'Can the frog fly?' ➔ Trả lời phủ định: 'No, it can't.' (hoặc 'No, it cannot.')."
+    },
+    q16: {
+      type: "text",
+      canonical: "Yes, you may.",
+      accepted: ["yes you may", "yes, you may", "yes, you may.", "yes you can", "yes, you can", "yes, you can."],
+      explanation: "Xin phép 'May I borrow your book?' kèm theo 'Here you are' ➔ Trả lời đồng ý: 'Yes, you may.' (hoặc 'Yes, you can.')."
+    },
+    q17: {
+      type: "text",
+      canonical: "Yes, you can.",
+      accepted: ["yes you can", "yes, you can", "yes, you can.", "yes you may", "yes, you may", "yes, you may."],
+      explanation: "'Can I open the window? It is hot.' ➔ Đồng ý cho mở cửa: 'Yes, you can.' (hoặc 'Yes, you may.')."
+    },
+    q18: {
+      type: "text",
+      canonical: "No, you may not.",
+      accepted: ["no you may not", "no, you may not", "no, you may not.", "no you cant", "no, you can't", "no, you cannot", "no, you can't."],
+      explanation: "Ghế vừa sơn còn ướt 'It is wet' ➔ Từ chối: 'No, you may not.' (hoặc 'No, you can't.'). Chú ý: 'may not' không viết tắt."
+    },
+    q19: {
+      type: "text",
+      canonical: "should",
+      accepted: ["should"],
+      explanation: "Phòng bừa bộn ➔ Lời khuyên nên dọn phòng: 'You should clean your room.'"
+    },
+    q20: {
+      type: "text",
+      canonical: "shouldn't",
+      accepted: ["shouldn't", "should not"],
+      explanation: "Mọi người đang ngủ ➔ Không nên đánh đàn piano: 'You shouldn't play the piano.'"
+    },
+
+    // Section D (Word Order items)
+    q21: {
+      type: "wordorder",
+      canonical: "May I open the window?",
+      accepted: ["May I open the window?", "may i open the window?"],
+      tokens: ["I", "the window?", "May", "open"],
+      shuffled: ["the window?", "I", "open", "May"],
+      explanation: "Cấu trúc câu hỏi xin phép: May + I + V(nguyên thể) + ...? ➔ 'May I open the window?'"
+    },
+    q22: {
+      type: "wordorder",
+      canonical: "You should wash your hands.",
+      accepted: ["You should wash your hands.", "you should wash your hands."],
+      tokens: ["your hands.", "should", "You", "wash"],
+      shuffled: ["should", "your hands.", "wash", "You"],
+      explanation: "Cấu trúc câu khuyên nhủ: S + should + V(nguyên thể) + ... ➔ 'You should wash your hands.'"
+    },
+    q23: {
+      type: "wordorder",
+      canonical: "She can't play the piano.",
+      accepted: ["She can't play the piano.", "She cannot play the piano.", "she can't play the piano."],
+      tokens: ["She", "the piano.", "can't", "play"],
+      shuffled: ["the piano.", "play", "She", "can't"],
+      explanation: "Cấu trúc câu phủ định khả năng: S + can't + V(nguyên thể) + ... ➔ 'She can't play the piano.'"
+    },
+    q24: {
+      type: "wordorder",
+      canonical: "You may not sit down.",
+      accepted: ["You may not sit down.", "you may not sit down."],
+      tokens: ["sit down.", "You", "not", "may"],
+      shuffled: ["not", "sit down.", "may", "You"],
+      explanation: "Cấu trúc câu không cho phép: S + may not + V(nguyên thể) + ... ➔ 'You may not sit down.'"
+    },
+    q25: {
+      type: "wordorder",
+      canonical: "Can I borrow your book?",
+      accepted: ["Can I borrow your book?", "can i borrow your book?"],
+      tokens: ["Can", "your book?", "I", "borrow"],
+      shuffled: ["your book?", "borrow", "Can", "I"],
+      explanation: "Cấu trúc câu hỏi xin phép với Can: Can + I + V(nguyên thể) + ...? ➔ 'Can I borrow your book?'"
+    },
+    q26: {
+      type: "wordorder",
+      canonical: "You shouldn't eat junk food.",
+      accepted: ["You shouldn't eat junk food.", "You should not eat junk food.", "you shouldn't eat junk food."],
+      tokens: ["junk food.", "eat", "You", "shouldn't"],
+      shuffled: ["eat", "junk food.", "shouldn't", "You"],
+      explanation: "Cấu trúc lời khuyên không nên: S + shouldn't + V(nguyên thể) + ... ➔ 'You shouldn't eat junk food.'"
+    },
+
+    // Section E
+    q27: {
+      type: "text",
+      canonical: "The frog can't fly.",
+      accepted: ["The frog can't fly.", "The frog cannot fly.", "the frog can't fly.", "the frog cannot fly."],
+      explanation: "Sau trợ động từ can't luôn dùng động từ nguyên thể 'fly' (bỏ 's'): 'The frog can't fly.'"
+    },
+    q28: {
+      type: "text",
+      canonical: "May I borrow your eraser?",
+      accepted: ["May I borrow your eraser?", "may i borrow your eraser?", "May I borrow your eraser", "may i borrow your eraser"],
+      explanation: "Sau May dùng động từ nguyên thể 'borrow' (không thêm 's'): 'May I borrow your eraser?'"
+    },
+    q29: {
+      type: "text",
+      canonical: "Can I drink some water?",
+      accepted: ["Can I drink some water?", "can i drink some water?", "Can I drink some water", "can i drink some water"],
+      explanation: "Sau Can dùng động từ nguyên thể 'drink' (không thêm 's'): 'Can I drink some water?'"
+    },
+    q30: {
+      type: "text",
+      canonical: "No, you may not.",
+      accepted: ["No, you may not.", "no, you may not", "no you may not", "No, you can't.", "No, you can't", "no, you can't"],
+      explanation: "Trợ động từ 'may not' KHÔNG có dạng viết tắt 'mayn't'. Câu đúng là 'No, you may not.' (hoặc 'No, you can't.')."
+    },
+    q31: {
+      type: "text",
+      canonical: "You should brush your teeth.",
+      accepted: ["You should brush your teeth.", "you should brush your teeth.", "You should brush your teeth", "you should brush your teeth"],
+      explanation: "Sau should dùng động từ nguyên thể 'brush' (không thêm 'es'): 'You should brush your teeth.'"
+    },
+    q32: {
+      type: "text",
+      canonical: "You shouldn't watch TV.",
+      accepted: ["You shouldn't watch TV.", "You should not watch TV.", "you shouldn't watch tv.", "you should not watch tv.", "You shouldn't watch TV", "You should not watch TV"],
+      explanation: "Dạng phủ định đúng của should là 'shouldn't' hoặc 'should not' (không dùng 'not should'): 'You shouldn't watch TV.'"
+    }
+  };
+
+  // User state storage for word order selections
+  const userWordOrderClicks = {
+    q21: [],
+    q22: [],
+    q23: [],
+    q24: [],
+    q25: [],
+    q26: []
+  };
+
+  function speakText(text) {
+    if (!('speechSynthesis' in window)) {
+      return;
+    }
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.85;
+    window.speechSynthesis.speak(utterance);
+  }
+
+  function normalizeString(str) {
+    if (!str) return "";
+    let s = str.trim().toLowerCase();
+    // Normalize curved apostrophes
+    s = s.replace(/’/g, "'");
+    // Normalize spaces
+    s = s.replace(/\s+/g, " ");
+    // Remove space before punctuation
+    s = s.replace(/\s+([?.!,])/g, "$1");
+    // Standardize common contractions
+    s = s.replace(/\bcan not\b/g, "cannot");
+    s = s.replace(/\bcan\'t\b/g, "cannot");
+    s = s.replace(/\bshould not\b/g, "shouldn't");
+    s = s.replace(/\baren\'t\b/g, "are not");
+    s = s.replace(/\bisn\'t\b/g, "is not");
+    s = s.replace(/\bdon\'t\b/g, "do not");
+    s = s.replace(/\bdoesn\'t\b/g, "does not");
+    // Remove trailing period for flexible matching if not critical
+    s = s.replace(/\.$/, "");
+    return s.trim();
+  }
+
+  function initWordOrderSection() {
+    const container = document.getElementById("wordOrderContainer");
+    const notice = document.getElementById("wordOrderNotice");
+    container.innerHTML = "";
+
+    if (wordOrderMode === "click") {
+      notice.innerHTML = "💡 <em>Hình thức: Bấm chọn từng từ theo thứ tự để ghép thành câu. Bấm lại vào từ đã chọn để hủy.</em>";
+    } else {
+      notice.innerHTML = "💡 <em>Hình thức: Nhìn các từ đã xáo trộn và tự nhập câu hoàn chỉnh vào ô bên dưới.</em>";
+    }
+
+    const qKeys = ["q21", "q22", "q23", "q24", "q25", "q26"];
+    const numbers = [1, 2, 3, 4, 5, 6];
+
+    qKeys.forEach((key, idx) => {
+      const q = questionsData[key];
+      const card = document.createElement("div");
+      card.className = "question-card";
+      card.id = `card_${key}`;
+
+      let html = `
+        <div class="q-text">
+          <span class="q-num">${numbers[idx]}.</span>
+          <div style="flex:1;">
+      `;
+
+      if (wordOrderMode === "click") {
+        html += `
+          <div class="word-pool" id="pool_${key}">
+            ${q.shuffled.map((token, tIdx) => `
+              <button type="button" class="interactive-word" id="token_${key}_${tIdx}" onclick="handleWordClick('${key}', ${tIdx}, '${token.replace(/'/g, "\\'")}')">${token}</button>
+            `).join('')}
+          </div>
+          <div class="word-dropzone" id="dropzone_${key}" style="margin-top:6px;">
+            <span style="color:#94a3b8; font-size:0.9rem;" id="dropzone_placeholder_${key}">Bấm chọn từ ở trên...</span>
+          </div>
+        `;
+      } else {
+        html += `
+          <div class="word-bank" style="margin-bottom:8px; justify-content:flex-start;">
+            ${q.shuffled.map(t => `<span class="word-chip">${t}</span>`).join('')}
+          </div>
+          <input type="text" class="styled-input" id="${key}" placeholder="Nhập câu hoàn chỉnh..." autocomplete="off" oninput="markTouched('${key}')" />
+        `;
+      }
+
+      html += `
+          </div>
+          <button type="button" class="speaker-btn" onclick="speakText('${q.canonical.replace(/'/g, "\\'")}')">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp_${key}"></div>
+      `;
+
+      card.innerHTML = html;
+      container.appendChild(card);
+    });
+  }
+
+  function handleWordClick(qKey, tokenIdx, tokenText) {
+    if (submitted) return;
+
+    const tokenBtn = document.getElementById(`token_${qKey}_${tokenIdx}`);
+    const dropzone = document.getElementById(`dropzone_${qKey}`);
+    const placeholder = document.getElementById(`dropzone_placeholder_${qKey}`);
+
+    const existingIndex = userWordOrderClicks[qKey].findIndex(item => item.tokenIdx === tokenIdx);
+
+    if (existingIndex > -1) {
+      // Return token back to pool
+      userWordOrderClicks[qKey].splice(existingIndex, 1);
+      tokenBtn.style.display = "inline-block";
+    } else {
+      // Add token to answer zone
+      userWordOrderClicks[qKey].push({ tokenIdx, text: tokenText });
+      tokenBtn.style.display = "none";
+    }
+
+    renderDropzone(qKey);
+    markTouched(qKey);
+  }
+
+  function renderDropzone(qKey) {
+    const dropzone = document.getElementById(`dropzone_${qKey}`);
+    const placeholder = document.getElementById(`dropzone_placeholder_${qKey}`);
+    const selected = userWordOrderClicks[qKey];
+
+    if (selected.length === 0) {
+      dropzone.innerHTML = `<span style="color:#94a3b8; font-size:0.9rem;" id="dropzone_placeholder_${qKey}">Bấm chọn từ ở trên...</span>`;
+    } else {
+      dropzone.innerHTML = "";
+      selected.forEach((item, pos) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "interactive-word in-slot";
+        btn.textContent = item.text;
+        btn.onclick = () => {
+          if (!submitted) {
+            handleWordClick(qKey, item.tokenIdx, item.text);
+          }
+        };
+        dropzone.appendChild(btn);
+      });
+    }
+  }
+
+  function markTouched(qKey) {
+    const card = document.getElementById(`card_${qKey}`);
+    if (card) {
+      card.classList.remove("unanswered-highlight");
+    }
+  }
+
+  function getUserAnswer(qKey) {
+    const q = questionsData[qKey];
+    if (q.type === "select") {
+      const el = document.getElementById(qKey);
+      return el ? el.value.trim() : "";
+    } else if (q.type === "text") {
+      const el = document.getElementById(qKey);
+      return el ? el.value.trim() : "";
+    } else if (q.type === "wordorder") {
+      if (wordOrderMode === "click") {
+        return userWordOrderClicks[qKey].map(item => item.text).join(" ").trim();
+      } else {
+        const el = document.getElementById(qKey);
+        return el ? el.value.trim() : "";
+      }
+    }
+    return "";
+  }
+
+  function getUnansweredList() {
+    const unanswered = [];
+    for (let key in questionsData) {
+      const ans = getUserAnswer(key);
+      if (!ans || ans === "") {
+        unanswered.push(key);
+      }
+    }
+    return unanswered;
+  }
+
+  function handleSubmitClick() {
+    if (submitted) return;
+
+    const unansweredList = getUnansweredList();
+    if (unansweredList.length > 0) {
+      document.getElementById("unansweredCount").textContent = unansweredList.length;
+      document.getElementById("unansweredModal").classList.add("active");
+    } else {
+      processSubmission();
+    }
+  }
+
+  function closeUnansweredModalAndFocus() {
+    document.getElementById("unansweredModal").classList.remove("active");
+    const unansweredList = getUnansweredList();
+    if (unansweredList.length > 0) {
+      const firstId = unansweredList[0];
+      const card = document.getElementById(`card_${firstId}`);
+      if (card) {
+        unansweredList.forEach(id => {
+          const c = document.getElementById(`card_${id}`);
+          if (c) c.classList.add("unanswered-highlight");
+        });
+        card.scrollIntoView({ behavior: "smooth", block: "center" });
+        const inputEl = document.getElementById(firstId);
+        if (inputEl && inputEl.focus) inputEl.focus();
+      }
+    }
+  }
+
+  function confirmForceSubmit() {
+    document.getElementById("unansweredModal").classList.remove("active");
+    processSubmission();
+  }
+
+  function processSubmission() {
+    submitted = true;
+    let correctCount = 0;
+
+    for (let key in questionsData) {
+      const q = questionsData[key];
+      const userAns = getUserAnswer(key);
+      const card = document.getElementById(`card_${key}`);
+      const expBox = document.getElementById(`exp_${key}`);
+      let isCorrect = false;
+
+      if (q.type === "select") {
+        if (userAns === q.correct) {
+          isCorrect = true;
+        }
+      } else if (q.type === "text" || q.type === "wordorder") {
+        const normUser = normalizeString(userAns);
+        const normCanon = normalizeString(q.canonical);
+        const normAccepted = (q.accepted || []).map(a => normalizeString(a));
+
+        if (normUser !== "" && (normUser === normCanon || normAccepted.includes(normUser))) {
+          isCorrect = true;
+        }
+      }
+
+      if (card) {
+        card.classList.remove("unanswered-highlight");
+        if (isCorrect) {
+          correctCount++;
+          card.classList.add("correct");
+        } else {
+          card.classList.add("incorrect");
+        }
+      }
+
+      // Display Explanation in Vietnamese
+      if (expBox) {
+        expBox.className = "explanation-box show " + (isCorrect ? "correct-box" : "incorrect-box");
+        const displayUser = userAns === "" ? "<em>(Chưa trả lời)</em>" : userAns;
+        const expectedDisplay = q.correct || q.canonical;
+
+        if (isCorrect) {
+          expBox.innerHTML = `
+            <div class="exp-label">✅ Chính xác!</div>
+            <div><strong>Đáp án:</strong> ${expectedDisplay}</div>
+            <div style="margin-top:4px; font-size:0.9rem; color:#166534;">${q.explanation}</div>
+          `;
+        } else {
+          expBox.innerHTML = `
+            <div class="exp-label">❌ Chưa chính xác</div>
+            <div><strong>Em đã chọn/nhập:</strong> ${displayUser}</div>
+            <div><strong>Đáp án đúng:</strong> <span style="color:#16a34a; font-weight:700;">${expectedDisplay}</span></div>
+            <div style="margin-top:4px; font-size:0.9rem; color:#991b1b;"><strong>Giải thích:</strong> ${q.explanation}</div>
+          `;
+        }
+      }
+    }
+
+    // Disable all inputs, selects and interactive buttons
+    lockAllWorksheetInputs();
+
+    // Show Score
+    const scoreBoard = document.getElementById("scoreBoard");
+    const scoreNumber = document.getElementById("scoreNumber");
+    const scoreMsg = document.getElementById("scoreMsg");
+
+    scoreNumber.textContent = `${correctCount} / ${TOTAL_QUESTIONS}`;
+    const percentage = Math.round((correctCount / TOTAL_QUESTIONS) * 100);
+
+    if (percentage === 100) {
+      scoreMsg.textContent = "🌟 Xuất sắc! Em đã đạt điểm tuyệt đối 100%. Rất đáng khen ngợi!";
+    } else if (percentage >= 80) {
+      scoreMsg.textContent = "👏 Làm bài rất tốt! Em hãy đọc kỹ phần chữa bên dưới để nhớ bài hơn nhé.";
+    } else if (percentage >= 50) {
+      scoreMsg.textContent = "💪 Khá tốt! Hãy chú ý các lưu ý ngữ pháp của trợ động từ và làm lại để đạt điểm cao hơn nhé.";
+    } else {
+      scoreMsg.textContent = "📖 Cố gắng lên nhé! Em hãy đọc kỹ phần giải thích chi tiết và bấm LÀM LẠI để luyện tập nhé.";
+    }
+
+    scoreBoard.classList.add("show");
+    scoreBoard.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    // Hide Submit Button and Show Retry Button
+    document.getElementById("btnSubmit").style.display = "none";
+    document.getElementById("btnRetry").style.display = "inline-block";
+  }
+
+  function lockAllWorksheetInputs() {
+    const inputs = document.querySelectorAll("input, select");
+    inputs.forEach(el => {
+      el.disabled = true;
+    });
+
+    const wordButtons = document.querySelectorAll(".interactive-word");
+    wordButtons.forEach(b => {
+      b.disabled = true;
+      b.style.cursor = "default";
+      b.style.opacity = "0.75";
+    });
+  }
+
+  function resetWorksheet() {
+    submitted = false;
+
+    // Reset standard inputs & selects
+    const inputs = document.querySelectorAll("input, select");
+    inputs.forEach(el => {
+      el.disabled = false;
+      el.value = "";
+    });
+
+    // Reset word order selections
+    for (let k in userWordOrderClicks) {
+      userWordOrderClicks[k] = [];
+    }
+
+    // Re-render Word Order items while keeping the exact same mode
+    initWordOrderSection();
+
+    // Reset card classes and hide explanation boxes
+    for (let key in questionsData) {
+      const card = document.getElementById(`card_${key}`);
+      const expBox = document.getElementById(`exp_${key}`);
+      if (card) {
+        card.className = "question-card";
+      }
+      if (expBox) {
+        expBox.className = "explanation-box";
+        expBox.innerHTML = "";
+      }
+    }
+
+    // Hide score board
+    const scoreBoard = document.getElementById("scoreBoard");
+    scoreBoard.classList.remove("show");
+
+    // Toggle Buttons back
+    document.getElementById("btnSubmit").style.display = "inline-block";
+    document.getElementById("btnRetry").style.display = "none";
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  // Initialize Word Order component on page load
+  window.addEventListener("DOMContentLoaded", () => {
+    initWordOrderSection();
+  });
+</script>
+
+</body>
+</html>
