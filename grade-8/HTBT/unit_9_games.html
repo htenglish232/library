@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HT English - Unit 9: The Past Continuous Tense Arcade</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700;800&family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: #fdfbf7;
+    }
+    h1, h2, h3, h4, .font-heading {
+      font-family: 'Quicksand', sans-serif;
+    }
+    .candy-card {
+      border-radius: 1.5rem;
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .candy-card:hover {
+      transform: translateY(-4px);
+    }
+    .pulse-btn:hover {
+      transform: scale(1.05);
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    .floating-mascot {
+      animation: float 3s ease-in-out infinite;
+    }
+  </style>
+</head>
+<body class="text-slate-800 min-h-screen flex flex-col">
+
+  <!-- HEADER / BRANDING -->
+  <header class="bg-gradient-to-r from-blue-700 via-indigo-700 to-sky-600 text-white shadow-xl sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 sm:py-4 flex flex-col md:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-3 text-center md:text-left">
+        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-white/20 backdrop-blur rounded-2xl flex items-center justify-center text-amber-300 text-2xl sm:text-3xl shadow-inner border border-white/30">
+          <i class="fa-solid fa-cloud-bolt"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2 justify-center md:justify-start">
+            <span class="text-xs bg-amber-400 text-slate-900 font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">English 8 Global Success</span>
+            <span class="text-xs bg-sky-400/30 text-white font-semibold px-2 py-0.5 rounded-full border border-sky-300/40">Unit 9: Natural Disasters</span>
+          </div>
+          <h1 class="text-xl sm:text-2xl font-extrabold tracking-wide text-white drop-shadow">TRUNG TÂM TIẾNG ANH HT ENGLISH – MS. LILY</h1>
+          <p class="text-xs sm:text-sm text-sky-100 font-medium">
+            <i class="fa-solid fa-location-dot text-amber-300 mr-1"></i>Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình | 
+            <i class="fa-solid fa-phone text-amber-300 mr-1 ml-1"></i>Hotline: <a href="tel:0963422940" class="hover:underline font-bold text-amber-200">0963.422.940</a> - <a href="tel:0962240866" class="hover:underline font-bold text-amber-200">0962.240.866</a>
+          </p>
+        </div>
+      </div>
+
+      <!-- Quick Audio Setting & Score -->
+      <div class="flex items-center gap-3 bg-white/10 backdrop-blur px-4 py-2 rounded-2xl border border-white/20">
+        <button onclick="playSampleVoice()" title="Thử giọng Nữ Anh - Mỹ" class="px-3 py-1.5 bg-amber-400 hover:bg-amber-300 text-slate-900 font-bold rounded-xl text-xs flex items-center gap-1.5 transition shadow">
+          <i class="fa-solid fa-volume-high"></i> Giọng Nữ US (🔊)
+        </button>
+        <div class="text-right">
+          <div class="text-[11px] text-sky-200 font-semibold uppercase">Tổng Điểm</div>
+          <div id="top-total-score" class="text-xl sm:text-2xl font-black text-amber-300 leading-none">0</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION BAR -->
+  <nav class="bg-white border-b border-slate-200 shadow-sm sticky top-[73px] sm:top-[85px] z-40">
+    <div class="max-w-6xl mx-auto px-2 sm:px-4 py-2 flex items-center justify-start sm:justify-center gap-1.5 sm:gap-2 overflow-x-auto text-xs sm:text-sm font-bold">
+      <button onclick="switchTab('handbook')" id="tab-btn-handbook" class="tab-btn px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 flex items-center gap-1.5 whitespace-nowrap transition">
+        <i class="fa-solid fa-book-open text-blue-600"></i> Bí Kíp Vàng (Handbook)
+      </button>
+      <button onclick="switchTab('game1')" id="tab-btn-game1" class="tab-btn px-3 py-2 rounded-xl bg-blue-50 text-blue-700 border-2 border-blue-600 flex items-center gap-1.5 whitespace-nowrap transition">
+        <i class="fa-solid fa-car-side text-rose-500"></i> Game 1: Đua Xe Vượt Bão
+      </button>
+      <button onclick="switchTab('game2')" id="tab-btn-game2" class="tab-btn px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 flex items-center gap-1.5 whitespace-nowrap transition">
+        <i class="fa-solid fa-burst text-amber-500"></i> Game 2: Bắn Bóng Chen Ngang
+      </button>
+      <button onclick="switchTab('game3')" id="tab-btn-game3" class="tab-btn px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 flex items-center gap-1.5 whitespace-nowrap transition">
+        <i class="fa-solid fa-tornado text-teal-600"></i> Game 3: Thợ Săn When & While
+      </button>
+      <button onclick="switchTab('game4')" id="tab-btn-game4" class="tab-btn px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 flex items-center gap-1.5 whitespace-nowrap transition">
+        <i class="fa-solid fa-magnifying-glass text-indigo-600"></i> Game 4: Bắt Lỗi Bẫy Ngữ Pháp
+      </button>
+      <button onclick="switchTab('game5')" id="tab-btn-game5" class="tab-btn px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 flex items-center gap-1.5 whitespace-nowrap transition">
+        <i class="fa-solid fa-cubes text-emerald-600"></i> Game 5: Kiến Trúc Sư Cứu Trợ
+      </button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="flex-grow max-w-6xl w-full mx-auto px-3 sm:px-4 py-6">
+
+    <!-- ==================== TAB 0: STUDY HANDBOOK ==================== -->
+    <section id="view-handbook" class="tab-view hidden space-y-6">
+      <div class="bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-600 text-white p-6 rounded-3xl shadow-lg flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="space-y-2">
+          <span class="bg-amber-400 text-slate-900 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">Cẩm Nang Ngữ Pháp Lớp 8</span>
+          <h2 class="text-2xl sm:text-3xl font-black">UNIT 9: THE PAST CONTINUOUS TENSE</h2>
+          <p class="text-sky-100 text-sm sm:text-base max-w-2xl">
+            Thì Quá khứ tiếp diễn dùng để miêu tả hành động đang xảy ra tại một thời điểm xác định trong quá khứ hoặc một hành động đang diễn ra thì có hành động khác chen ngang.
+          </p>
+        </div>
+        <button onclick="speakText('Unit 9: The Past Continuous Tense. We use the past continuous to describe an action that was happening at a particular time in the past, or a past action that was happening when another action interrupted it.')" class="px-5 py-3 bg-white text-blue-800 font-extrabold rounded-2xl hover:bg-amber-300 hover:text-slate-900 shadow-md transition flex items-center gap-2 whitespace-nowrap">
+          <i class="fa-solid fa-volume-high text-xl text-rose-500"></i> Nghe Tóm Tắt (US Voice)
+        </button>
+      </div>
+
+      <!-- Handbook Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Box 1: Cấu trúc -->
+        <div class="bg-white p-6 rounded-3xl border-2 border-blue-100 shadow-md space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-bold text-blue-900 flex items-center gap-2">
+              <span class="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-black">1</span>
+              Cấu Trúc (Structure)
+            </h3>
+            <button onclick="speakText('Subject plus was or were plus verb ing. Subject I, she, he, it uses was. Subject you, we, they uses were.')" class="text-blue-600 hover:text-blue-800 text-sm font-bold flex items-center gap-1">
+              <i class="fa-solid fa-volume-high"></i> Nghe
+            </button>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs sm:text-sm border-collapse">
+              <thead>
+                <tr class="bg-blue-50 text-blue-900 font-extrabold border-b border-blue-200">
+                  <th class="py-2.5 px-3">Dạng câu</th>
+                  <th class="py-2.5 px-3">I / He / She / It / N số ít</th>
+                  <th class="py-2.5 px-3">You / We / They / N số nhiều</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 font-semibold text-slate-700">
+                <tr>
+                  <td class="py-2.5 px-3 font-bold text-emerald-600">(+) Khẳng định</td>
+                  <td class="py-2.5 px-3">S + <span class="text-blue-700 font-black">was</span> + V-ing</td>
+                  <td class="py-2.5 px-3">S + <span class="text-indigo-700 font-black">were</span> + V-ing</td>
+                </tr>
+                <tr class="bg-slate-50/50">
+                  <td class="py-2.5 px-3 font-bold text-rose-600">(-) Phủ định</td>
+                  <td class="py-2.5 px-3">S + <span class="text-blue-700 font-black">wasn't</span> + V-ing</td>
+                  <td class="py-2.5 px-3">S + <span class="text-indigo-700 font-black">weren't</span> + V-ing</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 px-3 font-bold text-amber-600">(?) Nghi vấn</td>
+                  <td class="py-2.5 px-3"><span class="text-blue-700 font-black">Was</span> + S + V-ing?</td>
+                  <td class="py-2.5 px-3"><span class="text-indigo-700 font-black">Were</span> + S + V-ing?</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="bg-blue-50/80 p-3.5 rounded-2xl border border-blue-200 text-xs text-blue-950 space-y-1">
+            <p class="font-bold"><i class="fa-solid fa-lightbulb text-amber-500 mr-1"></i>Ví dụ chuẩn SGK:</p>
+            <p>• I <strong>was having</strong> dinner at 6 p.m. yesterday. 
+              <button onclick="speakText('I was having dinner at 6 p.m. yesterday.')" class="text-blue-600 font-bold ml-1 hover:underline"><i class="fa-solid fa-volume-high"></i></button>
+            </p>
+            <p>• <strong>Were you having</strong> dinner at 6 p.m. yesterday? - Yes, I was.
+              <button onclick="speakText('Were you having dinner at 6 p.m. yesterday? - Yes, I was.')" class="text-blue-600 font-bold ml-1 hover:underline"><i class="fa-solid fa-volume-high"></i></button>
+            </p>
+          </div>
+        </div>
+
+        <!-- Box 2: Phối hợp thì & When / While -->
+        <div class="bg-white p-6 rounded-3xl border-2 border-indigo-100 shadow-md space-y-4">
+          <div class="flex items-center justify-between">
+            <h3 class="text-lg font-bold text-indigo-900 flex items-center gap-2">
+              <span class="w-8 h-8 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center font-black">2</span>
+              Cách Dùng & Phối Hợp When / While
+            </h3>
+            <button onclick="speakText('Past continuous for an action happening in the past. Past simple for an action that interrupted it. We can use when or while before past continuous, but only when before past simple.')" class="text-indigo-600 hover:text-indigo-800 text-sm font-bold flex items-center gap-1">
+              <i class="fa-solid fa-volume-high"></i> Nghe
+            </button>
+          </div>
+          <div class="space-y-3 text-xs sm:text-sm text-slate-700">
+            <div class="p-3 bg-amber-50 rounded-2xl border border-amber-200">
+              <span class="font-bold text-amber-900 block mb-1">⚡ Quy Tắc Vàng 1: Hành động đang diễn ra vs. Hành động chen ngang:</span>
+              <ul class="list-disc list-inside space-y-1 text-slate-700">
+                <li><strong>Hành động đang diễn ra (dài hơn):</strong> Chia thì <strong>Quá khứ tiếp diễn</strong> (was / were + V-ing).</li>
+                <li><strong>Hành động chen ngang (ngắn hơn, làm gián đoạn):</strong> Chia thì <strong>Quá khứ đơn</strong> (V2 / V-ed).</li>
+              </ul>
+            </div>
+            <div class="p-3 bg-rose-50 rounded-2xl border border-rose-200">
+              <span class="font-bold text-rose-900 block mb-1">⚠️ Quy Tắc Vàng 2 (CỰC KỲ QUAN TRỌNG TỪ SGK TRANG 95):</span>
+              <ul class="list-disc list-inside space-y-1 text-slate-700">
+                <li>Ta có thể dùng <strong>when</strong> hoặc <strong>while</strong> trước thì Quá khứ tiếp diễn: <em>When / While we were watching TV, we felt the earthquake.</em></li>
+                <li>Ta <strong>CHỈ DÙNG when</strong> trước thì Quá khứ đơn: <em>We were watching TV <strong>when</strong> we felt the earthquake.</em> (KHÔNG dùng: while we felt ❌)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 1: GAME 1 (ĐUA XE VƯỢT BÃO) ==================== -->
+    <section id="view-game1" class="tab-view space-y-6">
+      <!-- Game Banner -->
+      <div class="bg-gradient-to-r from-rose-500 via-pink-500 to-amber-500 text-white p-5 sm:p-6 rounded-3xl shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="space-y-1 text-center sm:text-left">
+          <div class="inline-flex items-center gap-2 bg-white/20 px-3 py-0.5 rounded-full text-xs font-extrabold uppercase">
+            <i class="fa-solid fa-flag-checkered"></i> 20 Câu Hỏi Khẳng Định / Phủ Định / Nghi Vấn
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black">GAME 1: ĐUA XE VƯỢT BÃO (STORM RACER)</h2>
+          <p class="text-rose-100 text-xs sm:text-sm">Chọn đúng dạng <strong>was / were + V-ing</strong> tại thời điểm xác định trong quá khứ để xe cứu trợ phóng nhanh về đích an toàn!</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="text-center bg-white/20 backdrop-blur px-4 py-2 rounded-2xl">
+            <span class="text-[11px] uppercase font-bold block text-rose-100">Câu Hỏi</span>
+            <span id="g1-progress" class="text-xl font-black text-white">1 / 20</span>
+          </div>
+          <div class="text-center bg-white/20 backdrop-blur px-4 py-2 rounded-2xl">
+            <span class="text-[11px] uppercase font-bold block text-rose-100">Điểm Game 1</span>
+            <span id="g1-score" class="text-xl font-black text-amber-300">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Racing Track Visual -->
+      <div class="bg-white p-4 rounded-3xl border-2 border-rose-100 shadow-sm">
+        <div class="flex items-center justify-between text-xs font-bold text-slate-500 mb-2 px-1">
+          <span><i class="fa-solid fa-house-chimney text-blue-600 mr-1"></i>Trạm Cứu Hộ</span>
+          <span><i class="fa-solid fa-campground text-emerald-600 mr-1"></i>Vùng Bão Lũ An Toàn</span>
+        </div>
+        <div class="w-full bg-slate-100 h-6 rounded-full overflow-hidden relative p-0.5 border border-slate-200">
+          <div id="g1-track-bar" class="bg-gradient-to-r from-rose-500 to-amber-400 h-full rounded-full transition-all duration-500 flex items-center justify-end pr-1" style="width: 5%;">
+            <span class="text-xs">🏎️💨</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question Card Container -->
+      <div id="g1-card" class="bg-white p-6 sm:p-8 rounded-3xl border-2 border-slate-100 shadow-xl space-y-6">
+        <!-- Injected via JS -->
+      </div>
+    </section>
+
+    <!-- ==================== TAB 2: GAME 2 (BẮN BÓNG CHEN NGANG) ==================== -->
+    <section id="view-game2" class="tab-view hidden space-y-6">
+      <div class="bg-gradient-to-r from-amber-500 via-orange-500 to-rose-500 text-white p-5 sm:p-6 rounded-3xl shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="space-y-1 text-center sm:text-left">
+          <div class="inline-flex items-center gap-2 bg-white/20 px-3 py-0.5 rounded-full text-xs font-extrabold uppercase">
+            <i class="fa-solid fa-bolt"></i> Phối Hợp Thì Quá Khứ Tiếp Diễn & Quá Khứ Đơn
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black">GAME 2: BẮN BÓNG CHEN NGANG (INTERRUPTION ARENA)</h2>
+          <p class="text-amber-100 text-xs sm:text-sm">Phân biệt chính xác: Hành động nào đang diễn ra (Past Continuous) và hành động nào chen ngang làm gián đoạn (Past Simple)!</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="text-center bg-white/20 backdrop-blur px-4 py-2 rounded-2xl">
+            <span class="text-[11px] uppercase font-bold block text-amber-100">Câu Hỏi</span>
+            <span id="g2-progress" class="text-xl font-black text-white">1 / 20</span>
+          </div>
+          <div class="text-center bg-white/20 backdrop-blur px-4 py-2 rounded-2xl">
+            <span class="text-[11px] uppercase font-bold block text-amber-100">Điểm Game 2</span>
+            <span id="g2-score" class="text-xl font-black text-yellow-300">0</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="g2-card" class="bg-white p-6 sm:p-8 rounded-3xl border-2 border-slate-100 shadow-xl space-y-6">
+        <!-- Injected via JS -->
+      </div>
+    </section>
+
+    <!-- ==================== TAB 3: GAME 3 (THỢ SĂN WHEN & WHILE) ==================== -->
+    <section id="view-game3" class="tab-view hidden space-y-6">
+      <div class="bg-gradient-to-r from-teal-600 via-emerald-600 to-sky-600 text-white p-5 sm:p-6 rounded-3xl shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="space-y-1 text-center sm:text-left">
+          <div class="inline-flex items-center gap-2 bg-white/20 px-3 py-0.5 rounded-full text-xs font-extrabold uppercase">
+            <i class="fa-solid fa-tornado"></i> Quy Tắc Vàng Liên Từ When vs. While
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black">GAME 3: THỢ SĂN WHEN & WHILE (TORNADO HUNTER)</h2>
+          <p class="text-teal-100 text-xs sm:text-sm">Ghi nhớ quy tắc SGK: *when* hoặc *while* đi trước thì Tiếp Diễn, nhưng **CHỈ DÙNG *when* trước thì Quá Khứ Đơn**!</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="text-center bg-white/20 backdrop-blur px-4 py-2 rounded-2xl">
+            <span class="text-[11px] uppercase font-bold block text-teal-100">Câu Hỏi</span>
+            <span id="g3-progress" class="text-xl font-black text-white">1 / 20</span>
+          </div>
+          <div class="text-center bg-white/20 backdrop-blur px-4 py-2 rounded-2xl">
+            <span class="text-[11px] uppercase font-bold block text-teal-100">Điểm Game 3</span>
+            <span id="g3-score" class="text-xl font-black text-amber-300">0</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="g3-card" class="bg-white p-6 sm:p-8 rounded-3xl border-2 border-slate-100 shadow-xl space-y-6">
+        <!-- Injected via JS -->
+      </div>
+    </section>
+
+    <!-- ==================== TAB 4: GAME 4 (BẮT LỖI BẪY NGỮ PHÁP) ==================== -->
+    <section id="view-game4" class="tab-view hidden space-y-6">
+      <div class="bg-gradient-to-r from-indigo-700 via-purple-700 to-pink-600 text-white p-5 sm:p-6 rounded-3xl shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="space-y-1 text-center sm:text-left">
+          <div class="inline-flex items-center gap-2 bg-white/20 px-3 py-0.5 rounded-full text-xs font-extrabold uppercase">
+            <i class="fa-solid fa-shield-virus"></i> Bắt Lỗi Sai Thường Gặp
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black">GAME 4: BẮT BẪY NGỮ PHÁP (RESCUE DETECTIVE)</h2>
+          <p class="text-purple-100 text-xs sm:text-sm">Tìm và sửa các lỗi sai kinh điển: nhầm was/were, sai thì khi có when/while, lỗi chính tả V-ing trong các đề thi THCS!</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="text-center bg-white/20 backdrop-blur px-4 py-2 rounded-2xl">
+            <span class="text-[11px] uppercase font-bold block text-purple-100">Câu Hỏi</span>
+            <span id="g4-progress" class="text-xl font-black text-white">1 / 20</span>
+          </div>
+          <div class="text-center bg-white/20 backdrop-blur px-4 py-2 rounded-2xl">
+            <span class="text-[11px] uppercase font-bold block text-purple-100">Điểm Game 4</span>
+            <span id="g4-score" class="text-xl font-black text-amber-300">0</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="g4-card" class="bg-white p-6 sm:p-8 rounded-3xl border-2 border-slate-100 shadow-xl space-y-6">
+        <!-- Injected via JS -->
+      </div>
+    </section>
+
+    <!-- ==================== TAB 5: GAME 5 (KIẾN TRÚC SƯ GHÉP CÂU) ==================== -->
+    <section id="view-game5" class="tab-view hidden space-y-6">
+      <div class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 text-white p-5 sm:p-6 rounded-3xl shadow-lg flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="space-y-1 text-center sm:text-left">
+          <div class="inline-flex items-center gap-2 bg-white/20 px-3 py-0.5 rounded-full text-xs font-extrabold uppercase">
+            <i class="fa-solid fa-puzzle-piece"></i> Thao Tác 1-Chạm Xếp Câu
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black">GAME 5: KIẾN TRÚC SƯ CỨU TRỢ (SENTENCE ARCHITECT)</h2>
+          <p class="text-emerald-100 text-xs sm:text-sm">Nhấn chọn thẻ từ xáo trộn để ghép thành câu hoàn chỉnh chuẩn thì quá khứ tiếp diễn và dấu phẩy mà không cần gõ bàn phím!</p>
+        </div>
+        <div class="flex items-center gap-3">
+          <div class="text-center bg-white/20 backdrop-blur px-4 py-2 rounded-2xl">
+            <span class="text-[11px] uppercase font-bold block text-emerald-100">Câu Hỏi</span>
+            <span id="g5-progress" class="text-xl font-black text-white">1 / 20</span>
+          </div>
+          <div class="text-center bg-white/20 backdrop-blur px-4 py-2 rounded-2xl">
+            <span class="text-[11px] uppercase font-bold block text-emerald-100">Điểm Game 5</span>
+            <span id="g5-score" class="text-xl font-black text-amber-300">0</span>
+          </div>
+        </div>
+      </div>
+
+      <div id="g5-card" class="bg-white p-6 sm:p-8 rounded-3xl border-2 border-slate-100 shadow-xl space-y-6">
+        <!-- Injected via JS -->
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-300 py-6 border-t border-slate-800 mt-auto text-xs sm:text-sm">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+      <div>
+        <div class="text-white font-extrabold text-base tracking-wide flex items-center justify-center md:justify-start gap-2">
+          <i class="fa-solid fa-graduation-cap text-amber-400"></i> TRUNG TÂM TIẾNG ANH HT ENGLISH – MS. LILY
+        </div>
+        <p class="text-slate-400 mt-1">Chuyên luyện thi & bồi dưỡng Tiếng Anh THCS chất lượng cao theo chuẩn SGK Global Success.</p>
+      </div>
+      <div class="text-slate-400 space-y-0.5">
+        <p><i class="fa-solid fa-location-dot text-rose-400 mr-1.5"></i>Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình</p>
+        <p><i class="fa-solid fa-phone text-emerald-400 mr-1.5"></i>Hotline: 0963.422.940 – 0962.240.866</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT LOGIC & 100 QUESTIONS DATA -->
+  <script>
+    // ==========================================
+    // AUDIO ENGINE (US FEMALE SPEECH SYNTHESIS)
+    // ==========================================
+    let cachedVoice = null;
+    function getUSFemaleVoice() {
+      if (!('speechSynthesis' in window)) return null;
+      const voices = window.speechSynthesis.getVoices();
+      // Look for US Female voices
+      const preferred = voices.find(v => 
+        (v.lang === 'en-US' || v.lang === 'en_US') && 
+        (v.name.includes('Female') || v.name.includes('Samantha') || v.name.includes('Jenny') || v.name.includes('Zira') || v.name.includes('Google US English') || v.name.includes('Natural'))
+      );
+      if (preferred) return preferred;
+      const anyUS = voices.find(v => v.lang.startsWith('en-US') || v.lang.startsWith('en_US'));
+      return anyUS || voices.find(v => v.lang.startsWith('en')) || null;
+    }
+
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = () => {
+        cachedVoice = getUSFemaleVoice();
+      };
+    }
+
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) {
+        alert("Trình duyệt không hỗ trợ Web Speech API.");
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const cleanText = text.replace(/[*_~`]/g, '').trim();
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      if (!cachedVoice) cachedVoice = getUSFemaleVoice();
+      if (cachedVoice) utterance.voice = cachedVoice;
+      utterance.lang = 'en-US';
+      utterance.rate = 0.88; // clear pedagogical pace
+      utterance.pitch = 1.05; // slightly higher pitch for female feel
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function playSampleVoice() {
+      speakText("Welcome to HT English with Ms. Lily! Let's practice the past continuous tense for Unit 9 Natural Disasters!");
+    }
+
+    // ==========================================
+    // SOUND EFFECTS (WEB AUDIO API)
+    // ==========================================
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    function playBeep(freq, type, duration) {
+      try {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {
+        // silent fail
+      }
+    }
+    function playCorrectSound() {
+      playBeep(523.25, 'sine', 0.12); // C5
+      setTimeout(() => playBeep(659.25, 'sine', 0.2), 120); // E5
+      setTimeout(() => playBeep(783.99, 'sine', 0.3), 240); // G5
+    }
+    function playWrongSound() {
+      playBeep(220, 'triangle', 0.18);
+      setTimeout(() => playBeep(180, 'sawtooth', 0.25), 150);
+    }
+
+    // ==========================================
+    // DATA: 100 HIGH-QUALITY QUESTIONS
+    // ==========================================
+
+    // GAME 1: 20 CÂU FORM AT SPECIFIC PAST TIME (AFFIRMATIVE, NEGATIVE, QUESTIONS)
+    const game1Data = [
+      {
+        q: "They ______ the flood victims at 10 o'clock last night.",
+        options: ["were helping", "was helping", "helped", "are helping"],
+        ans: 0,
+        exp: "Chủ ngữ 'They' (số nhiều) đi với 'were + V-ing'. Có thời điểm xác định trong quá khứ 'at 10 o'clock last night' nên chia thì Quá khứ tiếp diễn.",
+        formula: "S (số nhiều: They) + were + V-ing"
+      },
+      {
+        q: "At 9 a.m. yesterday, Mr. Brown ______ the news about the volcano on TV.",
+        options: ["watched", "was watching", "were watching", "watches"],
+        ans: 1,
+        exp: "Chủ ngữ 'Mr. Brown' là danh từ số ít (ngôi thứ 3) đi với 'was + V-ing'. Thời điểm cụ thể trong quá khứ: 'At 9 a.m. yesterday'.",
+        formula: "S (số ít) + was + V-ing"
+      },
+      {
+        q: "It ______ when the rescue team arrived in the flooded village.",
+        options: ["wasn't raining", "weren't raining", "isn't raining", "didn't rain"],
+        ans: 0,
+        exp: "Chủ ngữ 'It' đi với 'was not / wasn't + V-ing' để diễn tả thời tiết đang không diễn ra.",
+        formula: "S (It) + wasn't + V-ing"
+      },
+      {
+        q: "- What ______ you ______ at 8 o'clock yesterday evening? - I was sleeping.",
+        options: ["were / doing", "did / do", "was / doing", "are / doing"],
+        ans: 0,
+        exp: "Câu hỏi với 'you' ở thì Quá khứ tiếp diễn tại thời điểm xác định 'at 8 o'clock yesterday evening' dùng cấu trúc: Wh- + were + you + V-ing?",
+        formula: "Wh- + were + you + V-ing?"
+      },
+      {
+        q: "My grandparents ______ tea at 4 p.m. yesterday when the storm warning sounded.",
+        options: ["were drinking", "was drinking", "drank", "are drinking"],
+        ans: 0,
+        exp: "'My grandparents' là danh từ số nhiều (ông bà) nên dùng trợ động từ 'were + drinking'.",
+        formula: "S (số nhiều) + were + V-ing"
+      },
+      {
+        q: "Lan ______ a book about natural disasters at 9:30 last night.",
+        options: ["was reading", "were reading", "read", "reads"],
+        ans: 0,
+        exp: "Chủ ngữ 'Lan' (ngôi thứ 3 số ít) đi với 'was + V-ing'. 'at 9:30 last night' là thời điểm xác định trong quá khứ.",
+        formula: "S (Lan) + was + V-ing"
+      },
+      {
+        q: "The rescue workers ______ emergency kits to local people at this time last Sunday.",
+        options: ["were distributing", "was distributing", "distributed", "are distributing"],
+        ans: 0,
+        exp: "'The rescue workers' là danh từ số nhiều (các nhân viên cứu hộ) -> dùng 'were + V-ing'. 'at this time last Sunday' là dấu hiệu rõ rệt của Quá khứ tiếp diễn.",
+        formula: "S (Plural N) + were + distributing"
+      },
+      {
+        q: "______ he ______ the safety instructions at 7 p.m. yesterday?",
+        options: ["Was / listening to", "Were / listening to", "Did / listen to", "Is / listening to"],
+        ans: 0,
+        exp: "Câu hỏi Yes/No với chủ ngữ 'he' ở thì Quá khứ tiếp diễn bắt đầu bằng 'Was + he + V-ing?'.",
+        formula: "Was + he + V-ing...?"
+      },
+      {
+        q: "The children ______ outside at noon yesterday because of the heavy rain.",
+        options: ["weren't playing", "wasn't playing", "aren't playing", "didn't play"],
+        ans: 0,
+        exp: "'The children' là danh từ số nhiều bất quy tắc (tập hợp các đứa trẻ), thể phủ định dùng 'weren't + V-ing'.",
+        formula: "S (The children) + weren't + V-ing"
+      },
+      {
+        q: "At 3 o'clock yesterday afternoon, the volunteers ______ clean water to the victims.",
+        options: ["were delivering", "was delivering", "delivered", "are delivering"],
+        ans: 0,
+        exp: "Chủ ngữ 'the volunteers' (những người tình nguyện - số nhiều) đi với 'were delivering'.",
+        formula: "S (số nhiều) + were + delivering"
+      },
+      {
+        q: "I ______ photos of the tornado damage at 6 a.m. this morning.",
+        options: ["was taking", "were taking", "took", "am taking"],
+        ans: 0,
+        exp: "Chủ ngữ 'I' trong thì Quá khứ tiếp diễn luôn đi với trợ động từ 'was' (I was taking).",
+        formula: "I + was + V-ing"
+      },
+      {
+        q: "- ______ you ______ dinner at 7 o'clock yesterday evening? - Yes, I was.",
+        options: ["Were / having", "Was / having", "Did / have", "Are / having"],
+        ans: 0,
+        exp: "Câu hỏi trực tiếp với 'you' dùng 'Were you having...?' và câu trả lời ngắn là 'Yes, I was.'",
+        formula: "Were + you + having...?"
+      },
+      {
+        q: "Tom's mother ______ food supplies when the heavy storm hit the town yesterday.",
+        options: ["was preparing", "were preparing", "prepared", "is preparing"],
+        ans: 0,
+        exp: "'Tom's mother' là chủ ngữ số ít nên dùng 'was preparing'.",
+        formula: "S (số ít) + was + preparing"
+      },
+      {
+        q: "At 11 p.m. last night, all of us ______ in our temporary shelter.",
+        options: ["were sleeping", "was sleeping", "slept", "are sleeping"],
+        ans: 0,
+        exp: "'All of us' (tất cả chúng tôi - số nhiều) đi với 'were sleeping' tại thời điểm cụ thể 'At 11 p.m. last night'.",
+        formula: "All of us + were + sleeping"
+      },
+      {
+        q: "The doctor ______ the injured villagers at 4 o'clock yesterday afternoon.",
+        options: ["was examining", "were examining", "examined", "is examining"],
+        ans: 0,
+        exp: "'The doctor' là danh từ số ít -> dùng 'was examining'.",
+        formula: "S (The doctor) + was + examining"
+      },
+      {
+        q: "- Were the students doing their homework at 8 p.m. yesterday? - No, ______.",
+        options: ["they weren't", "they wasn't", "they didn't", "they aren't"],
+        ans: 0,
+        exp: "Chủ ngữ 'the students' thay thế bằng đại từ 'they', câu trả lời phủ định ngắn là 'No, they weren't.'",
+        formula: "No, they weren't."
+      },
+      {
+        q: "A strong wind ______ through our coastal town all night yesterday.",
+        options: ["was blowing", "were blowing", "blew", "is blowing"],
+        ans: 0,
+        exp: "'A strong wind' (một cơn gió mạnh - danh từ số ít) đi với 'was blowing'.",
+        formula: "S (số ít) + was + blowing"
+      },
+      {
+        q: "What ______ the firefighters ______ at 5 p.m. yesterday?",
+        options: ["were / doing", "was / doing", "did / do", "are / doing"],
+        ans: 0,
+        exp: "'The firefighters' (lính cứu hỏa - số nhiều) đi với 'were ... doing'.",
+        formula: "Wh- + were + S (số nhiều) + doing?"
+      },
+      {
+        q: "The villagers ______ sandbags along the river bank at 8 a.m. yesterday.",
+        options: ["were piling", "was piling", "piled", "are piling"],
+        ans: 0,
+        exp: "'The villagers' (dân làng - số nhiều) dùng 'were piling' để gia cố bờ sông ngăn lũ.",
+        formula: "S (số nhiều) + were + piling"
+      },
+      {
+        q: "My sister ______ the clothes when the power went out last night.",
+        options: ["was ironing", "were ironing", "ironed", "irons"],
+        ans: 0,
+        exp: "'My sister' (ngôi thứ 3 số ít) đi với 'was ironing' để diễn tả hành động đang diễn ra.",
+        formula: "S (My sister) + was + ironing"
+      }
+    ];
+
+    // GAME 2: 20 CÂU PHỐI HỢP THÌ (HÀNH ĐỘNG ĐANG DIỄN RA & HÀNH ĐỘNG CHEN NGANG)
+    const game2Data = [
+      {
+        q: "While they ______ near the river, the flash flood came suddenly.",
+        options: ["were camping", "camped", "are camping", "camp"],
+        ans: 0,
+        exp: "Hành động cắm trại bên bờ sông là hành động đang diễn ra kéo dài ('were camping'), cơn lũ quét ập đến bất ngờ là hành động chen ngang ('came').",
+        formula: "While + S + were + V-ing (đang xảy ra), S + V2/ed (chen ngang)"
+      },
+      {
+        q: "What were you doing when the volcano ______?",
+        options: ["erupted", "was erupting", "were erupting", "erupts"],
+        ans: 0,
+        exp: "Bạn đang làm gì (hành động đang diễn ra: were you doing) THÌ núi lửa phun trào (hành động chen ngang ở thì Quá khứ đơn: 'erupted').",
+        formula: "Past Continuous + when + Past Simple (V2/ed)"
+      },
+      {
+        q: "When we were watching TV in the living room, we ______ the earthquake.",
+        options: ["felt", "were feeling", "feel", "was feeling"],
+        ans: 0,
+        exp: "Hành động đang xem TV là hành động đang diễn ra; hành động cảm nhận thấy cơn rung chấn động đất chen ngang chia thì Quá khứ đơn ('felt').",
+        formula: "When + Past Continuous, S + Past Simple"
+      },
+      {
+        q: "The rescue boat arrived while the residents ______ on the rooftops.",
+        options: ["were waiting", "waited", "are waiting", "was waiting"],
+        ans: 0,
+        exp: "Thuyền cứu hộ tới (hành động ngắn: arrived) TRONG KHI người dân đang đợi trên mái nhà (hành động kéo dài: 'were waiting').",
+        formula: "Past Simple + while + Past Continuous"
+      },
+      {
+        q: "He ______ his leg when he was escaping from the collapsing building.",
+        options: ["broke", "was breaking", "were breaking", "breaks"],
+        ans: 0,
+        exp: "Bị gãy chân là sự việc xảy ra chen ngang đột ngột ('broke' - Quá khứ đơn) khi đang thoát hiểm ('was escaping').",
+        formula: "Past Simple (chen ngang) + when + Past Continuous (đang diễn ra)"
+      },
+      {
+        q: "While the tornado was approaching, the siren ______ loudly.",
+        options: ["sounded", "was sounding", "sound", "sounds"],
+        ans: 0,
+        exp: "Khi lốc xoáy đang đến gần (was approaching), còi báo động vang lên (sounded - hành động chen ngang).",
+        formula: "While + Past Continuous, S + Past Simple"
+      },
+      {
+        q: "They were packing emergency supplies when the electricity ______ off.",
+        options: ["went", "was going", "goes", "has gone"],
+        ans: 0,
+        exp: "Mất điện là hành động đột ngột cắt ngang quá trình đang thu dọn đồ đạc -> chia Quá khứ đơn 'went'.",
+        formula: "Past Continuous + when + Past Simple"
+      },
+      {
+        q: "Lan was talking on the phone when the earthquake ______.",
+        options: ["happened", "was happening", "happens", "is happening"],
+        ans: 0,
+        exp: "Lan đang nói chuyện điện thoại (was talking) thì trận động đất xảy ra (happened - chen ngang).",
+        formula: "S + was V-ing + when + S + V2/ed"
+      },
+      {
+        q: "While she ______ in the field, the tornado struck our village.",
+        options: ["was working", "worked", "is working", "works"],
+        ans: 0,
+        exp: "Hành động đang làm việc trên đồng là hành động đang diễn ra kéo dài ('was working'), cơn lốc xoáy quét qua là hành động xen vào ('struck').",
+        formula: "While + S (she) + was working, S + V2"
+      },
+      {
+        q: "The firefighters ______ the trapped boy while the house was burning furiously.",
+        options: ["rescued", "were rescuing", "rescue", "are rescuing"],
+        ans: 0,
+        exp: "Cứu được cậu bé thoát ra là hành động hoàn tất xen vào (rescued) trong bối cảnh ngôi nhà đang cháy dữ dội (was burning).",
+        formula: "Past Simple + while + Past Continuous"
+      },
+      {
+        q: "I ______ for the bus when the heavy rainstorm started.",
+        options: ["was waiting", "waited", "am waiting", "wait"],
+        ans: 0,
+        exp: "Tôi đang đứng đợi xe buýt (hành động đang diễn ra kéo dài: was waiting) thì cơn bão mưa to bắt đầu đổ xuống (started).",
+        formula: "I + was waiting + when + S + V2/ed"
+      },
+      {
+        q: "When the landslide occurred, the driver ______ the lorry slowly along the pass.",
+        options: ["was driving", "drove", "is driving", "drives"],
+        ans: 0,
+        exp: "Khi vụ sạt lở đất xảy ra (occurred - chen ngang), người tài xế đang điều khiển xe tải chậm rãi (was driving - đang diễn ra).",
+        formula: "When + Past Simple, S + was driving"
+      },
+      {
+        q: "The flood barrier ______ while the river water was rising rapidly.",
+        options: ["broke", "was breaking", "break", "is breaking"],
+        ans: 0,
+        exp: "Đê chắn lũ bị vỡ (hành động đột ngột: broke) trong khi nước sông đang dâng cao nhanh chóng (was rising).",
+        formula: "Past Simple (broke) + while + Past Continuous"
+      },
+      {
+        q: "We were having a picnic by the stream when we ______ the emergency warning on the radio.",
+        options: ["heard", "were hearing", "hear", "hears"],
+        ans: 0,
+        exp: "Hành động nghe thấy bản tin cảnh báo khẩn cấp là hành động chen ngang tức thì, chia Quá khứ đơn ('heard'). Động từ giác quan 'hear' không chia tiếp diễn trong ngữ cảnh này.",
+        formula: "Past Continuous + when + heard (Past Simple)"
+      },
+      {
+        q: "While the volcano was spewing ash into the sky, the residents ______ the area.",
+        options: ["evacuated", "were evacuating", "evacuate", "evacuates"],
+        ans: 0,
+        exp: "Người dân đã nhanh chóng sơ tán (hành động quyết định chen ngang/hoàn tất: evacuated) trong khi núi lửa đang phun tro bụi.",
+        formula: "While + Past Continuous, S + evacuated"
+      },
+      {
+        q: "What ______ you doing when you felt the tremor of the earthquake?",
+        options: ["were", "was", "did", "are"],
+        ans: 0,
+        exp: "Câu hỏi hành động đang diễn ra với chủ ngữ 'you' dùng trợ động từ 'were' (were you doing).",
+        formula: "What + were + you + doing + when...?"
+      },
+      {
+        q: "The boy fell and ______ his arm while he was running away from the floodwater.",
+        options: ["hurt", "was hurting", "hurts", "is hurting"],
+        ans: 0,
+        exp: "Ngã và bị đau tay là 2 hành động liên tiếp chen ngang (fell and hurt) trong lúc đang chạy trốn nước lũ (was running).",
+        formula: "fell and hurt (Past Simple) + while + was running"
+      },
+      {
+        q: "When my father came home with supplies, my mother ______ an emergency kit.",
+        options: ["was preparing", "prepared", "prepares", "is preparing"],
+        ans: 0,
+        exp: "Khi bố tôi về nhà mang theo lương thực (came - chen ngang), mẹ tôi đang chuẩn bị bộ đồ khẩn cấp (was preparing - đang diễn ra).",
+        formula: "When + Past Simple, S + was preparing"
+      },
+      {
+        q: "The roof of their house blew off while the family ______ in the basement.",
+        options: ["was sheltering", "sheltered", "shelter", "is sheltering"],
+        ans: 0,
+        exp: "Mái nhà bị thổi bay (blew off - chen ngang) trong khi cả gia đình đang trú ẩn dưới tầng hầm (was sheltering).",
+        formula: "Past Simple + while + was sheltering"
+      },
+      {
+        q: "Someone shouted for help while the rescue team ______ through the mud.",
+        options: ["was wading", "waded", "wades", "is wading"],
+        ans: 0,
+        exp: "Ai đó hét lên kêu cứu (shouted - chen ngang) trong khi đội cứu hộ đang lội qua lớp bùn lầy (was wading - đang diễn ra).",
+        formula: "Past Simple + while + was wading"
+      }
+    ];
+
+    // GAME 3: 20 CÂU LÀM CHỦ LIÊN TỪ WHEN & WHILE (QUY TẮC SGK TRANG 95)
+    const game3Data = [
+      {
+        q: "We were having dinner ______ the earthquake suddenly struck.",
+        options: ["when", "while", "as long as", "until"],
+        ans: 0,
+        exp: "Theo quy tắc SGK trang 95: Ta CHỈ ĐƯỢC DÙNG 'when' trước mệnh đề thì Quá khứ đơn chỉ hành động chen ngang (struck). Tuyệt đối không dùng 'while' trước quá khứ đơn.",
+        formula: "Past Continuous + WHEN + Past Simple"
+      },
+      {
+        q: "______ they were camping near the river, the flood came suddenly.",
+        options: ["While", "During", "Since", "Until"],
+        ans: 0,
+        exp: "Trước mệnh đề Quá khứ tiếp diễn (were camping) ta dùng 'While' (hoặc 'When'). Ở đây 'While' là liên từ chính xác nhất mở đầu mệnh đề thời gian kéo dài.",
+        formula: "WHILE / WHEN + Past Continuous, Past Simple"
+      },
+      {
+        q: "It was raining heavily ______ the rescue helicopter landed safely.",
+        options: ["when", "while", "whereas", "as well as"],
+        ans: 0,
+        exp: "Mệnh đề phía sau là Quá khứ đơn 'the helicopter landed' -> Bắt buộc dùng 'when'.",
+        formula: "Past Continuous + WHEN + Past Simple"
+      },
+      {
+        q: "______ I was watching the news about the volcanic eruption, the lights went out.",
+        options: ["When / While", "Since", "Unless", "Because"],
+        ans: 0,
+        exp: "SGK Ghi chú: Chúng ta có thể dùng cả 'When' hoặc 'While' trước thì Quá khứ tiếp diễn (When / While I was watching...).",
+        formula: "WHEN / WHILE + Past Continuous"
+      },
+      {
+        q: "The tornado destroyed the barn ______ the farmer was driving his cattle to the shed.",
+        options: ["while", "before that", "during", "so"],
+        ans: 0,
+        exp: "Vế sau là hành động đang diễn ra kéo dài ('was driving' - Quá khứ tiếp diễn) -> dùng liên từ 'while' (hoặc 'when').",
+        formula: "Past Simple + WHILE + Past Continuous"
+      },
+      {
+        q: "My sister was drawing a picture ______ the storm sirens began to sound.",
+        options: ["when", "while", "after that", "whereas"],
+        ans: 0,
+        exp: "Vế sau 'began to sound' là Quá khứ đơn chỉ hành động chen ngang -> CHỈ ĐƯỢC DÙNG 'when'.",
+        formula: "Past Continuous + WHEN + Past Simple (began)"
+      },
+      {
+        q: "______ the emergency team was helping the victims, a second tremor occurred.",
+        options: ["While", "During", "Although", "Until"],
+        ans: 0,
+        exp: "Mệnh đề trạng ngữ chỉ hành động đang diễn ra 'was helping' đi với liên từ 'While'.",
+        formula: "WHILE + Past Continuous"
+      },
+      {
+        q: "They were sleeping in their tents ______ the volcano erupted in the middle of the night.",
+        options: ["when", "while", "because", "as soon"],
+        ans: 0,
+        exp: "Hành động núi lửa phun trào (erupted) là hành động chen ngang ở Quá khứ đơn -> Chỉ dùng 'when'.",
+        formula: "Past Continuous + WHEN + Past Simple"
+      },
+      {
+        q: "______ Nam was reading a book, his father was watching the weather forecast on TV.",
+        options: ["While", "When ever", "Before", "Unless"],
+        ans: 0,
+        exp: "Diễn tả hai hành động song song cùng đang diễn ra trong quá khứ (Nam was reading ... his father was watching) -> Dùng 'While'.",
+        formula: "WHILE + Past Continuous, Past Continuous"
+      },
+      {
+        q: "The dam broke ______ the heavy monsoon was raging over the northern provinces.",
+        options: ["while", "during", "since", "unless"],
+        ans: 0,
+        exp: "Đập bị vỡ (broke) trong khi cơn mưa bão nhiệt đới đang hoành hành (was raging) -> dùng liên từ 'while'.",
+        formula: "Past Simple + WHILE + Past Continuous"
+      },
+      {
+        q: "I was cooking dinner in the kitchen ______ I heard a loud explosion outside.",
+        options: ["when", "while", "although", "so that"],
+        ans: 0,
+        exp: "Nghe tiếng nổ lớn (heard) là hành động chen ngang ở Quá khứ đơn -> Bắt buộc dùng 'when'.",
+        formula: "Past Continuous + WHEN + Past Simple"
+      },
+      {
+        q: "______ the victims were waiting on the roof, the flood water kept rising.",
+        options: ["While", "Despite", "During", "Because of"],
+        ans: 0,
+        exp: "Trước mệnh đề 'were waiting' (Quá khứ tiếp diễn) dùng liên từ 'While'.",
+        formula: "WHILE + S + were waiting"
+      },
+      {
+        q: "We were hiking in the national park ______ the forest fire broke out.",
+        options: ["when", "while", "during", "as soon"],
+        ans: 0,
+        exp: "Đám cháy rừng bùng phát (broke out) là hành động chen ngang đột ngột -> Dùng 'when'.",
+        formula: "Past Continuous + WHEN + Past Simple"
+      },
+      {
+        q: "Which conjunction can be used before BOTH Past Continuous and Past Simple?",
+        options: ["When", "While", "During", "Both when and while"],
+        ans: 0,
+        exp: "Theo SGK trang 95: 'When' có thể dùng trước cả Quá khứ tiếp diễn lẫn Quá khứ đơn. Còn 'While' chỉ dùng trước Quá khứ tiếp diễn.",
+        formula: "Note: 'When' dùng trước cả 2 thì; 'While' chỉ trước Tiếp diễn."
+      },
+      {
+        q: "______ we were packing our bags to evacuate, the local authorities knocked on our door.",
+        options: ["While", "During", "Since", "Until"],
+        ans: 0,
+        exp: "Hành động đang thu dọn đồ (were packing) là quá khứ tiếp diễn -> Dùng 'While'.",
+        formula: "WHILE + Past Continuous"
+      },
+      {
+        q: "The lights flickered and went out ______ the wind was blowing fiercely.",
+        options: ["while", "when ever", "before", "till"],
+        ans: 0,
+        exp: "Đèn chập chờn rồi tắt (went out) TRONG KHI gió đang rít gào dữ dội (was blowing) -> dùng 'while'.",
+        formula: "Past Simple + WHILE + Past Continuous"
+      },
+      {
+        q: "Lan lost her mobile phone ______ she was running to the evacuation shelter.",
+        options: ["while", "during", "since", "until"],
+        ans: 0,
+        exp: "Làm rơi điện thoại (lost) xảy ra trong lúc đang chạy sơ tán (was running) -> dùng 'while'.",
+        formula: "Past Simple + WHILE + Past Continuous"
+      },
+      {
+        q: "The rescue helicopter was circling above ______ it spotted the survivors waving a flag.",
+        options: ["when", "while", "during", "so that"],
+        ans: 0,
+        exp: "Trực thăng đang bay lượn (was circling) THÌ phát hiện người sống sót (spotted - chen ngang ở Quá khứ đơn) -> Dùng 'when'.",
+        formula: "Past Continuous + WHEN + Past Simple"
+      },
+      {
+        q: "______ my mother was watering the plants, my father was checking the roof before the typhoon.",
+        options: ["While", "Although", "Despite", "Until"],
+        ans: 0,
+        exp: "Hai hành động song song cùng diễn ra trong quá khứ -> Dùng 'While' (Trong khi mẹ tôi đang tưới cây thì bố tôi đang kiểm tra mái nhà).",
+        formula: "WHILE + Past Continuous, Past Continuous"
+      },
+      {
+        q: "The tremor stopped ______ the rescue workers were trying to lift the heavy concrete beam.",
+        options: ["while", "during", "before that", "since"],
+        ans: 0,
+        exp: "Cơn rung chấn dừng lại (stopped) trong lúc đội cứu hộ đang nỗ lực nâng dầm bê tông (were trying) -> dùng 'while'.",
+        formula: "Past Simple + WHILE + Past Continuous"
+      }
+    ];
+
+    // GAME 4: 20 CÂU BẮT LỖI SAI BẪY NGỮ PHÁP (ERROR DETECTIVE)
+    const game4Data = [
+      {
+        q: "Identify the INCORRECT part: 'They [was helping] (A) the flood victims [at 10 o'clock] (B) [last night] (C) [in the village] (D).'",
+        options: ["was helping -> were helping", "at 10 o'clock -> in 10 o'clock", "last night -> yesterday night", "in the village -> at the village"],
+        ans: 0,
+        exp: "Chủ ngữ 'They' là số nhiều nên phải dùng 'were helping', không được dùng 'was helping'.",
+        formula: "They + WERE + V-ing (không dùng was)"
+      },
+      {
+        q: "Identify the INCORRECT part: 'We were watching TV [while] (A) we [felt] (B) the [strong] (C) earthquake [yesterday] (D).'",
+        options: ["while -> when", "felt -> were feeling", "strong -> strongly", "yesterday -> ago"],
+        ans: 0,
+        exp: "Quy tắc SGK trang 95: Không được dùng 'while' trước thì Quá khứ đơn chỉ hành động chen ngang (felt). Phải sửa thành 'when'.",
+        formula: "CHỈ DÙNG 'when' trước Quá khứ đơn (felt)"
+      },
+      {
+        q: "Identify the INCORRECT part: 'While the boy [was runing] (A) to the shelter, [he] (B) tripped and [hurt] (C) his [ankle] (D).'",
+        options: ["was runing -> was running", "he -> she", "hurt -> was hurting", "ankle -> ankles"],
+        ans: 0,
+        exp: "Lỗi chính tả nhân đôi phụ âm: Động từ 1 âm tiết kết thúc bằng 1 phụ âm trước là 1 nguyên âm 'run' -> phải gấp đôi 'n' thành 'running'.",
+        formula: "run -> running (gấp đôi phụ âm n)"
+      },
+      {
+        q: "Identify the INCORRECT part: 'What [did you do] (A) [at 9 o'clock] (B) [yesterday morning] (C) when the tsunami warning [sounded] (D)?'",
+        options: ["did you do -> were you doing", "at 9 o'clock -> on 9 o'clock", "yesterday morning -> morning yesterday", "sounded -> was sounding"],
+        ans: 0,
+        exp: "Tại thời điểm xác định trong quá khứ 'at 9 o'clock yesterday morning', câu hỏi phải chia ở thì Quá khứ tiếp diễn: 'were you doing'.",
+        formula: "What were you doing at + giờ quá khứ?"
+      },
+      {
+        q: "Identify the INCORRECT part: 'Lan and Mai [was drawing] (A) posters [about natural disasters] (B) [at this time] (C) [last Friday] (D).'",
+        options: ["was drawing -> were drawing", "about -> on", "at this time -> in this time", "last Friday -> past Friday"],
+        ans: 0,
+        exp: "'Lan and Mai' là chủ ngữ số nhiều (2 người) nên phải dùng 'were drawing'.",
+        formula: "S and S (số nhiều) + were + V-ing"
+      },
+      {
+        q: "Identify the INCORRECT part: 'It [wasn't snow] (A) [when] (B) the rescue team [left] (C) the headquarters [this morning] (D).'",
+        options: ["wasn't snow -> wasn't snowing", "when -> while", "left -> was leaving", "this morning -> at this morning"],
+        ans: 0,
+        exp: "Sau 'wasn't' động từ phải thêm đuôi -ing ('wasn't snowing') để diễn đạt hành động đang không xảy ra.",
+        formula: "wasn't + V-ing (snowing)"
+      },
+      {
+        q: "Identify the INCORRECT part: 'While the volcano [erupted] (A) ash, people [were evacuating] (B) their homes [as fast as] (C) [possible] (D).'",
+        options: ["erupted -> was erupting", "were evacuating -> evacuated", "as fast as -> so fast that", "possible -> possibly"],
+        ans: 0,
+        exp: "Sau liên từ 'While' diễn tả hành động kéo dài đang diễn ra phải dùng Quá khứ tiếp diễn 'was erupting'.",
+        formula: "While + S + was erupting"
+      },
+      {
+        q: "Identify the INCORRECT part: 'The volunteers [were donate] (A) food and warm clothes [to the victims] (B) [at 3 p.m.] (C) [yesterday] (D).'",
+        options: ["were donate -> were donating", "to the victims -> for the victims", "at 3 p.m. -> on 3 p.m.", "yesterday -> ago"],
+        ans: 0,
+        exp: "Cấu trúc Quá khứ tiếp diễn là 'were + V-ing' -> sửa thành 'were donating'.",
+        formula: "were + V-ing (donating)"
+      },
+      {
+        q: "Identify the INCORRECT part: 'We [were having] (A) dinner when my uncle [was calling] (B) to [warn] (C) us about the [tornado] (D).'",
+        options: ["was calling -> called", "were having -> had", "warn -> warning", "tornado -> tornados"],
+        ans: 0,
+        exp: "Hành động chú tôi gọi điện là hành động đột ngột chen ngang bữa cơm -> phải chia Quá khứ đơn 'called' (không chia was calling).",
+        formula: "when + S + V2/ed (called: hành động chen ngang)"
+      },
+      {
+        q: "Identify the INCORRECT part: 'The trees [was falling] (A) down [while] (B) the fierce typhoon [was blowing] (C) [across the island] (D).'",
+        options: ["was falling -> were falling", "while -> when", "was blowing -> blew", "across -> through"],
+        ans: 0,
+        exp: "'The trees' là danh từ số nhiều (những cái cây) -> phải dùng 'were falling'.",
+        formula: "Plural N (The trees) + were falling"
+      },
+      {
+        q: "Identify the INCORRECT part: 'A strong earthquake [was happening] (A) [in Japan] (B) [last month] (C) and destroyed [many houses] (D).'",
+        options: ["was happening -> happened", "in Japan -> on Japan", "last month -> ago month", "many houses -> much houses"],
+        ans: 0,
+        exp: "'Last month' là sự việc đã xảy ra và kết thúc hoàn toàn trong quá khứ (không có giờ cụ thể hoặc hành động xen vào) -> chỉ dùng Quá khứ đơn 'happened'.",
+        formula: "Hành động hoàn tất trong quá khứ (last month) -> Past Simple (happened)"
+      },
+      {
+        q: "Identify the INCORRECT part: 'The siren sounded [while] (A) the students [did] (B) their science [experiment] (C) [in the lab] (D).'",
+        options: ["did -> were doing", "while -> when", "sounded -> was sounding", "in the lab -> at lab"],
+        ans: 0,
+        exp: "Sau 'while' chỉ hành động đang diễn ra của học sinh -> phải chia Quá khứ tiếp diễn 'were doing'.",
+        formula: "while + S + were doing"
+      },
+      {
+        q: "Identify the INCORRECT part: 'Tom [moved] (A) quickly [to a safe place] (B) after he [was running] (C) out of his [house] (D).'",
+        options: ["was running -> ran", "moved -> was moving", "to a safe place -> in safe place", "house -> home"],
+        ans: 0,
+        exp: "Theo bài tập 2 câu 4 SGK trang 95: Sau liên từ 'After' diễn tả chuỗi hành động nối tiếp nhau trong quá khứ -> dùng Quá khứ đơn 'ran'.",
+        formula: "After + S + Past Simple (ran), S + Past Simple (moved)"
+      },
+      {
+        q: "Identify the INCORRECT part: 'I [wasn't read] (A) a newspaper [at 9 a.m.] (B) yesterday, but I [was watching] (C) the news [about the tornado] (D).'",
+        options: ["wasn't read -> wasn't reading", "at 9 a.m. -> on 9 a.m.", "was watching -> watched", "about -> on"],
+        ans: 0,
+        exp: "Bài tập 2 câu 5 SGK trang 95: 'at 9 a.m. yesterday' là giờ xác định -> phủ định phải dùng 'wasn't reading'.",
+        formula: "wasn't + V-ing (reading)"
+      },
+      {
+        q: "Identify the INCORRECT part: 'The doctor [were examining] (A) the victims [when] (B) the second [landslide] (C) [blocked] (D) the road.'",
+        options: ["were examining -> was examining", "when -> while", "landslide -> landslides", "blocked -> was blocking"],
+        ans: 0,
+        exp: "'The doctor' là danh từ số ít (một bác sĩ) -> phải dùng 'was examining'.",
+        formula: "S (số ít) + was examining"
+      },
+      {
+        q: "Identify the INCORRECT part: 'While the rescue boat [was come] (A), the trapped people [were waving] (B) white towels [for help] (C) [from the roof] (D).'",
+        options: ["was come -> was coming", "were waving -> waved", "for help -> to help", "from -> on"],
+        ans: 0,
+        exp: "Cấu trúc Quá khứ tiếp diễn là was/were + V-ing -> sửa 'was come' thành 'was coming'.",
+        formula: "was + V-ing (coming)"
+      },
+      {
+        q: "Identify the INCORRECT part: 'Were you [play] (A) football [at 5 o'clock] (B) [yesterday afternoon] (C) [with Mark] (D)?'",
+        options: ["play -> playing", "at 5 o'clock -> in 5 o'clock", "yesterday afternoon -> afternoon yesterday", "with -> by"],
+        ans: 0,
+        exp: "Trong câu nghi vấn Quá khứ tiếp diễn: 'Were + you + V-ing?' -> sửa 'play' thành 'playing'.",
+        formula: "Were you playing...?"
+      },
+      {
+        q: "Identify the INCORRECT part: 'My mother [was make] (A) paper flowers [when] (B) the news [about the flood] (C) [was broadcast] (D).'",
+        options: ["was make -> was making", "when -> while", "about -> of", "was broadcast -> broadcasted"],
+        ans: 0,
+        exp: "Bỏ đuôi -e trước khi thêm -ing: 'make' -> 'making' (không viết was make).",
+        formula: "make -> making (bỏ 'e' thêm 'ing')"
+      },
+      {
+        q: "Identify the INCORRECT part: 'They [donated] (A) money to help [the earthquake victims] (B) [at 8 a.m.] (C) [yesterday morning] (D).'",
+        options: ["donated -> were donating", "the earthquake victims -> earthquake victim", "at 8 a.m. -> in 8 a.m.", "yesterday morning -> last morning"],
+        ans: 0,
+        exp: "Có thời điểm cụ thể 'at 8 a.m. yesterday morning' nên động từ phải chia Quá khứ tiếp diễn 'were donating'.",
+        formula: "At + giờ cụ thể + quá khứ -> Past Continuous"
+      },
+      {
+        q: "Identify the INCORRECT part: 'The flood water [were rising] (A) very fast [while] (B) the villagers [were evacuating] (C) their [cattle] (D).'",
+        options: ["were rising -> was rising", "while -> when", "were evacuating -> evacuated", "cattle -> cattles"],
+        ans: 0,
+        exp: "'The flood water' (nước lũ) là danh từ không đếm được, đóng vai trò như danh từ số ít -> dùng 'was rising'.",
+        formula: "Uncountable N (water) + was + V-ing"
+      }
+    ];
+
+    // GAME 5: 20 CÂU KIẾN TRÚC SƯ GHÉP CÂU (SENTENCE ARCHITECT - 1-CHẠM KHÔNG SẮP SẴN)
+    const game5Data = [
+      {
+        target: "They were helping the flood victims at 10 o'clock last night.",
+        words: ["They", "were", "helping", "the", "flood", "victims", "at", "10", "o'clock", "last", "night."],
+        meaning: "Họ đang giúp đỡ các nạn nhân lũ lụt lúc 10 giờ tối qua."
+      },
+      {
+        target: "When we were watching TV, we felt the earthquake.",
+        words: ["When", "we", "were", "watching", "TV,", "we", "felt", "the", "earthquake."],
+        meaning: "Khi chúng tôi đang xem TV thì chúng tôi cảm nhận được trận động đất."
+      },
+      {
+        target: "While she was working in the field, the tornado came.",
+        words: ["While", "she", "was", "working", "in", "the", "field,", "the", "tornado", "came."],
+        meaning: "Trong khi cô ấy đang làm việc trên đồng thì cơn lốc xoáy ập đến."
+      },
+      {
+        target: "What were you doing when the volcano erupted?",
+        words: ["What", "were", "you", "doing", "when", "the", "volcano", "erupted?"],
+        meaning: "Bạn đang làm gì khi ngọn núi lửa phun trào?"
+      },
+      {
+        target: "I was sleeping in my bed when the tremor started.",
+        words: ["I", "was", "sleeping", "in", "my", "bed", "when", "the", "tremor", "started."],
+        meaning: "Tôi đang ngủ trên giường thì cơn rung chấn bắt đầu."
+      },
+      {
+        target: "While they were camping near the river, the flood came suddenly.",
+        words: ["While", "they", "were", "camping", "near", "the", "river,", "the", "flood", "came", "suddenly."],
+        meaning: "Trong khi họ đang cắm trại gần bờ sông thì lũ ập đến bất ngờ."
+      },
+      {
+        target: "It was not snowing when I left home this afternoon.",
+        words: ["It", "was", "not", "snowing", "when", "I", "left", "home", "this", "afternoon."],
+        meaning: "Trời đang không có tuyết rơi khi tôi rời nhà chiều nay."
+      },
+      {
+        target: "Were you playing football at 5 o'clock yesterday afternoon?",
+        words: ["Were", "you", "playing", "football", "at", "5", "o'clock", "yesterday", "afternoon?"],
+        meaning: "Bạn có đang chơi bóng đá lúc 5 giờ chiều hôm qua không?"
+      },
+      {
+        target: "The rescue team arrived while the residents were waiting on the roof.",
+        words: ["The", "rescue", "team", "arrived", "while", "the", "residents", "were", "waiting", "on", "the", "roof."],
+        meaning: "Đội cứu hộ đã đến trong khi người dân đang chờ đợi trên mái nhà."
+      },
+      {
+        target: "My brother was doing homework at 8 o'clock yesterday evening.",
+        words: ["My", "brother", "was", "doing", "homework", "at", "8", "o'clock", "yesterday", "evening."],
+        meaning: "Anh trai tôi đang làm bài tập về nhà lúc 8 giờ tối hôm qua."
+      },
+      {
+        target: "We were watching the news about a volcanic eruption yesterday.",
+        words: ["We", "were", "watching", "the", "news", "about", "a", "volcanic", "eruption", "yesterday."],
+        meaning: "Chúng tôi đang xem tin tức về một vụ phun trào núi lửa hôm qua."
+      },
+      {
+        target: "The boy broke his leg while he was escaping from the flood.",
+        words: ["The", "boy", "broke", "his", "leg", "while", "he", "was", "escaping", "from", "the", "flood."],
+        meaning: "Cậu bé bị gãy chân trong khi đang chạy thoát khỏi dòng nước lũ."
+      },
+      {
+        target: "Lan was talking on the phone when the earthquake happened.",
+        words: ["Lan", "was", "talking", "on", "the", "phone", "when", "the", "earthquake", "happened."],
+        meaning: "Lan đang nói chuyện điện thoại thì trận động đất xảy ra."
+      },
+      {
+        target: "The firefighters were rescuing people when the building collapsed.",
+        words: ["The", "firefighters", "were", "rescuing", "people", "when", "the", "building", "collapsed."],
+        meaning: "Các lính cứu hỏa đang giải cứu mọi người thì tòa nhà sụp đổ."
+      },
+      {
+        target: "They were delivering clean water to the victims at 4 p.m. yesterday.",
+        words: ["They", "were", "delivering", "clean", "water", "to", "the", "victims", "at", "4", "p.m.", "yesterday."],
+        meaning: "Họ đang phân phát nước sạch cho các nạn nhân lúc 4 giờ chiều qua."
+      },
+      {
+        target: "While the wind was blowing fiercely, the roof flew off.",
+        words: ["While", "the", "wind", "was", "blowing", "fiercely,", "the", "roof", "flew", "off."],
+        meaning: "Trong khi gió đang gầm rú dữ dội thì mái nhà bị bay mất."
+      },
+      {
+        target: "I was not reading a newspaper at 9 a.m. yesterday.",
+        words: ["I", "was", "not", "reading", "a", "newspaper", "at", "9", "a.m.", "yesterday."],
+        meaning: "Tôi không đọc báo vào lúc 9 giờ sáng ngày hôm qua."
+      },
+      {
+        target: "Were they sheltering in the basement when the storm hit?",
+        words: ["Were", "they", "sheltering", "in", "the", "basement", "when", "the", "storm", "hit?"],
+        meaning: "Họ có đang trú ẩn dưới tầng hầm khi cơn bão đổ bộ không?"
+      },
+      {
+        target: "The volunteers were preparing meals for the evacuees all afternoon.",
+        words: ["The", "volunteers", "were", "preparing", "meals", "for", "the", "evacuees", "all", "afternoon."],
+        meaning: "Các tình nguyện viên đã nấu các bữa ăn cho người sơ tán suốt cả buổi chiều."
+      },
+      {
+        target: "When the tsunami alarm sounded, everybody ran to high ground.",
+        words: ["When", "the", "tsunami", "alarm", "sounded,", "everybody", "ran", "to", "high", "ground."],
+        meaning: "Khi chuông báo sóng thần vang lên, mọi người đều chạy lên vùng đất cao."
+      }
+    ];
+
+    // ==========================================
+    // GAME STATE TRACKER
+    // ==========================================
+    const state = {
+      g1: { idx: 0, score: 0, answered: false },
+      g2: { idx: 0, score: 0, answered: false },
+      g3: { idx: 0, score: 0, answered: false },
+      g4: { idx: 0, score: 0, answered: false },
+      g5: { idx: 0, score: 0, userWords: [], shuffled: [] }
+    };
+
+    function updateTotalScore() {
+      const total = state.g1.score + state.g2.score + state.g3.score + state.g4.score + state.g5.score;
+      document.getElementById('top-total-score').innerText = total;
+    }
+
+    // ==========================================
+    // TAB NAVIGATION
+    // ==========================================
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-view').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-blue-50', 'text-blue-700', 'border-2', 'border-blue-600');
+        btn.classList.add('text-slate-600');
+      });
+
+      const activeView = document.getElementById('view-' + tabId);
+      const activeBtn = document.getElementById('tab-btn-' + tabId);
+      if (activeView) activeView.classList.remove('hidden');
+      if (activeBtn) {
+        activeBtn.classList.add('bg-blue-50', 'text-blue-700', 'border-2', 'border-blue-600');
+        activeBtn.classList.remove('text-slate-600');
+      }
+
+      // Initial renders
+      if (tabId === 'game1') renderG1();
+      if (tabId === 'game2') renderG2();
+      if (tabId === 'game3') renderG3();
+      if (tabId === 'game4') renderG4();
+      if (tabId === 'game5') renderG5();
+    }
+
+    // ==========================================
+    // GAME 1 RENDERER (STORM RACER)
+    // ==========================================
+    function renderG1() {
+      const cur = game1Data[state.g1.idx];
+      const card = document.getElementById('g1-card');
+      document.getElementById('g1-progress').innerText = `${state.g1.idx + 1} / 20`;
+      document.getElementById('g1-score').innerText = state.g1.score;
+      
+      const pct = ((state.g1.idx + 1) / 20) * 100;
+      document.getElementById('g1-track-bar').style.width = Math.max(5, pct) + '%';
+
+      let optionsHtml = '';
+      cur.options.forEach((opt, i) => {
+        optionsHtml += `
+          <button onclick="checkG1(${i})" id="g1-opt-${i}" class="candy-card p-4 rounded-2xl border-2 border-slate-200 hover:border-rose-400 hover:bg-rose-50/50 text-left font-bold text-slate-700 flex items-center justify-between text-sm sm:text-base group transition">
+            <span class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-xl bg-slate-100 group-hover:bg-rose-500 group-hover:text-white flex items-center justify-center text-xs font-black transition">${String.fromCharCode(65 + i)}</span>
+              <span>${opt}</span>
+            </span>
+            <button type="button" onclick="event.stopPropagation(); speakText('${opt}')" class="text-slate-400 hover:text-rose-600 px-2 py-1" title="Nghe phương án">
+              <i class="fa-solid fa-volume-high text-sm"></i>
+            </button>
+          </button>
+        `;
+      });
+
+      card.innerHTML = `
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-extrabold px-3 py-1 bg-rose-100 text-rose-700 rounded-full uppercase">Câu ${state.g1.idx + 1}: Form at Specific Past Time</span>
+            <button onclick="speakText('${cur.q.replace(/_+/g, 'blank')}')" class="px-3 py-1.5 bg-rose-50 hover:bg-rose-100 text-rose-700 font-bold rounded-xl text-xs flex items-center gap-1.5 transition">
+              <i class="fa-solid fa-volume-high"></i> Nghe Câu Hỏi
+            </button>
+          </div>
+          <h3 class="text-lg sm:text-xl font-black text-slate-800 leading-snug">
+            ${cur.q}
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            ${optionsHtml}
+          </div>
+          <div id="g1-feedback" class="hidden mt-4 p-4 rounded-2xl text-sm leading-relaxed space-y-2"></div>
+        </div>
+      `;
+      state.g1.answered = false;
+    }
+
+    function checkG1(selected) {
+      if (state.g1.answered) return;
+      state.g1.answered = true;
+      const cur = game1Data[state.g1.idx];
+      const fb = document.getElementById('g1-feedback');
+      fb.classList.remove('hidden');
+
+      // disable other buttons
+      for (let i = 0; i < cur.options.length; i++) {
+        const btn = document.getElementById(`g1-opt-${i}`);
+        btn.onclick = null;
+        if (i === cur.ans) {
+          btn.classList.remove('border-slate-200');
+          btn.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-900');
+        } else if (i === selected) {
+          btn.classList.remove('border-slate-200');
+          btn.classList.add('border-rose-500', 'bg-rose-50', 'text-rose-900');
+        }
+      }
+
+      const isCorrect = (selected === cur.ans);
+      if (isCorrect) {
+        playCorrectSound();
+        state.g1.score += 10;
+        updateTotalScore();
+        document.getElementById('g1-score').innerText = state.g1.score;
+        fb.className = 'mt-4 p-4 rounded-2xl text-sm leading-relaxed bg-emerald-50 border-2 border-emerald-200 text-emerald-900 space-y-2';
+        fb.innerHTML = `
+          <div class="font-extrabold text-base flex items-center gap-2 text-emerald-700">
+            <i class="fa-solid fa-circle-check text-xl"></i> Chính Xác! Xuất Sắc! (+10 Điểm)
+          </div>
+          <p><strong>Cấu trúc ngữ pháp:</strong> <span class="text-blue-800 font-bold">${cur.formula}</span></p>
+          <p><strong>Giải thích:</strong> ${cur.exp}</p>
+          <div class="pt-2 flex items-center gap-3">
+            <button onclick="speakText('${cur.q.replace(/_+/g, cur.options[cur.ans])}')" class="px-3 py-1.5 bg-emerald-600 text-white rounded-xl font-bold text-xs hover:bg-emerald-700 flex items-center gap-1.5">
+              <i class="fa-solid fa-volume-high"></i> Nghe Câu Hoàn Chỉnh
+            </button>
+            <button onclick="nextG1()" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold rounded-xl text-xs ml-auto shadow transition flex items-center gap-1.5">
+              Câu Kế Tiếp <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        `;
+      } else {
+        playWrongSound();
+        fb.className = 'mt-4 p-4 rounded-2xl text-sm leading-relaxed bg-rose-50 border-2 border-rose-200 text-rose-900 space-y-2';
+        fb.innerHTML = `
+          <div class="font-extrabold text-base flex items-center gap-2 text-rose-700">
+            <i class="fa-solid fa-circle-xmark text-xl"></i> Chưa Chính Xác Rồi!
+          </div>
+          <p><strong>Đáp án đúng:</strong> <span class="font-black text-emerald-700">${cur.options[cur.ans]}</span></p>
+          <p><strong>Cấu trúc ngữ pháp:</strong> <span class="text-blue-800 font-bold">${cur.formula}</span></p>
+          <p><strong>Giải thích:</strong> ${cur.exp}</p>
+          <div class="pt-2 flex items-center gap-3">
+            <button onclick="speakText('${cur.q.replace(/_+/g, cur.options[cur.ans])}')" class="px-3 py-1.5 bg-rose-600 text-white rounded-xl font-bold text-xs hover:bg-rose-700 flex items-center gap-1.5">
+              <i class="fa-solid fa-volume-high"></i> Nghe Câu Đúng
+            </button>
+            <button onclick="nextG1()" class="px-5 py-2 bg-rose-600 hover:bg-rose-700 text-white font-extrabold rounded-xl text-xs ml-auto shadow transition flex items-center gap-1.5">
+              Câu Kế Tiếp <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        `;
+      }
+    }
+
+    function nextG1() {
+      if (state.g1.idx < game1Data.length - 1) {
+        state.g1.idx++;
+        renderG1();
+      } else {
+        showCompletionModal("Game 1: Đua Xe Vượt Bão", state.g1.score, 200, () => {
+          state.g1.idx = 0;
+          state.g1.score = 0;
+          switchTab('game2');
+        });
+      }
+    }
+
+    // ==========================================
+    // GAME 2 RENDERER (INTERRUPTION ARENA)
+    // ==========================================
+    function renderG2() {
+      const cur = game2Data[state.g2.idx];
+      const card = document.getElementById('g2-card');
+      document.getElementById('g2-progress').innerText = `${state.g2.idx + 1} / 20`;
+      document.getElementById('g2-score').innerText = state.g2.score;
+
+      let optionsHtml = '';
+      cur.options.forEach((opt, i) => {
+        optionsHtml += `
+          <button onclick="checkG2(${i})" id="g2-opt-${i}" class="candy-card p-4 rounded-2xl border-2 border-slate-200 hover:border-amber-400 hover:bg-amber-50/50 text-left font-bold text-slate-700 flex items-center justify-between text-sm sm:text-base group transition">
+            <span class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-xl bg-slate-100 group-hover:bg-amber-500 group-hover:text-white flex items-center justify-center text-xs font-black transition">${String.fromCharCode(65 + i)}</span>
+              <span>${opt}</span>
+            </span>
+            <button type="button" onclick="event.stopPropagation(); speakText('${opt}')" class="text-slate-400 hover:text-amber-600 px-2 py-1">
+              <i class="fa-solid fa-volume-high text-sm"></i>
+            </button>
+          </button>
+        `;
+      });
+
+      card.innerHTML = `
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-extrabold px-3 py-1 bg-amber-100 text-amber-800 rounded-full uppercase">Câu ${state.g2.idx + 1}: Phối Hợp Thì Quá Khứ Tiếp Diễn & Quá Khứ Đơn</span>
+            <button onclick="speakText('${cur.q.replace(/_+/g, 'blank')}')" class="px-3 py-1.5 bg-amber-50 hover:bg-amber-100 text-amber-800 font-bold rounded-xl text-xs flex items-center gap-1.5 transition">
+              <i class="fa-solid fa-volume-high"></i> Nghe Đề Bài
+            </button>
+          </div>
+          <h3 class="text-lg sm:text-xl font-black text-slate-800 leading-snug">
+            ${cur.q}
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            ${optionsHtml}
+          </div>
+          <div id="g2-feedback" class="hidden mt-4 p-4 rounded-2xl text-sm leading-relaxed space-y-2"></div>
+        </div>
+      `;
+      state.g2.answered = false;
+    }
+
+    function checkG2(selected) {
+      if (state.g2.answered) return;
+      state.g2.answered = true;
+      const cur = game2Data[state.g2.idx];
+      const fb = document.getElementById('g2-feedback');
+      fb.classList.remove('hidden');
+
+      for (let i = 0; i < cur.options.length; i++) {
+        const btn = document.getElementById(`g2-opt-${i}`);
+        btn.onclick = null;
+        if (i === cur.ans) {
+          btn.classList.remove('border-slate-200');
+          btn.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-900');
+        } else if (i === selected) {
+          btn.classList.remove('border-slate-200');
+          btn.classList.add('border-rose-500', 'bg-rose-50', 'text-rose-900');
+        }
+      }
+
+      const isCorrect = (selected === cur.ans);
+      if (isCorrect) {
+        playCorrectSound();
+        state.g2.score += 10;
+        updateTotalScore();
+        document.getElementById('g2-score').innerText = state.g2.score;
+        fb.className = 'mt-4 p-4 rounded-2xl text-sm leading-relaxed bg-emerald-50 border-2 border-emerald-200 text-emerald-900 space-y-2';
+        fb.innerHTML = `
+          <div class="font-extrabold text-base flex items-center gap-2 text-emerald-700">
+            <i class="fa-solid fa-circle-check text-xl"></i> Quá Đỉnh! Bắn Trúng Mục Tiêu! (+10 Điểm)
+          </div>
+          <p><strong>Cấu trúc phối hợp:</strong> <span class="text-indigo-800 font-bold">${cur.formula}</span></p>
+          <p><strong>Giải thích:</strong> ${cur.exp}</p>
+          <div class="pt-2 flex items-center gap-3">
+            <button onclick="speakText('${cur.q.replace(/_+/g, cur.options[cur.ans])}')" class="px-3 py-1.5 bg-emerald-600 text-white rounded-xl font-bold text-xs hover:bg-emerald-700 flex items-center gap-1.5">
+              <i class="fa-solid fa-volume-high"></i> Nghe Câu Hoàn Chỉnh
+            </button>
+            <button onclick="nextG2()" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold rounded-xl text-xs ml-auto shadow transition flex items-center gap-1.5">
+              Câu Kế Tiếp <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        `;
+      } else {
+        playWrongSound();
+        fb.className = 'mt-4 p-4 rounded-2xl text-sm leading-relaxed bg-rose-50 border-2 border-rose-200 text-rose-900 space-y-2';
+        fb.innerHTML = `
+          <div class="font-extrabold text-base flex items-center gap-2 text-rose-700">
+            <i class="fa-solid fa-circle-xmark text-xl"></i> Tiếc Quá, Sai Mất Rồi!
+          </div>
+          <p><strong>Đáp án đúng:</strong> <span class="font-black text-emerald-700">${cur.options[cur.ans]}</span></p>
+          <p><strong>Cấu trúc phối hợp:</strong> <span class="text-indigo-800 font-bold">${cur.formula}</span></p>
+          <p><strong>Giải thích:</strong> ${cur.exp}</p>
+          <div class="pt-2 flex items-center gap-3">
+            <button onclick="speakText('${cur.q.replace(/_+/g, cur.options[cur.ans])}')" class="px-3 py-1.5 bg-rose-600 text-white rounded-xl font-bold text-xs hover:bg-rose-700 flex items-center gap-1.5">
+              <i class="fa-solid fa-volume-high"></i> Nghe Câu Đúng
+            </button>
+            <button onclick="nextG2()" class="px-5 py-2 bg-rose-600 hover:bg-rose-700 text-white font-extrabold rounded-xl text-xs ml-auto shadow transition flex items-center gap-1.5">
+              Câu Kế Tiếp <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        `;
+      }
+    }
+
+    function nextG2() {
+      if (state.g2.idx < game2Data.length - 1) {
+        state.g2.idx++;
+        renderG2();
+      } else {
+        showCompletionModal("Game 2: Bắn Bóng Chen Ngang", state.g2.score, 200, () => {
+          state.g2.idx = 0;
+          state.g2.score = 0;
+          switchTab('game3');
+        });
+      }
+    }
+
+    // ==========================================
+    // GAME 3 RENDERER (TORNADO HUNTER: WHEN & WHILE)
+    // ==========================================
+    function renderG3() {
+      const cur = game3Data[state.g3.idx];
+      const card = document.getElementById('g3-card');
+      document.getElementById('g3-progress').innerText = `${state.g3.idx + 1} / 20`;
+      document.getElementById('g3-score').innerText = state.g3.score;
+
+      let optionsHtml = '';
+      cur.options.forEach((opt, i) => {
+        optionsHtml += `
+          <button onclick="checkG3(${i})" id="g3-opt-${i}" class="candy-card p-4 rounded-2xl border-2 border-slate-200 hover:border-teal-400 hover:bg-teal-50/50 text-left font-bold text-slate-700 flex items-center justify-between text-sm sm:text-base group transition">
+            <span class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-xl bg-slate-100 group-hover:bg-teal-600 group-hover:text-white flex items-center justify-center text-xs font-black transition">${String.fromCharCode(65 + i)}</span>
+              <span>${opt}</span>
+            </span>
+            <button type="button" onclick="event.stopPropagation(); speakText('${opt}')" class="text-slate-400 hover:text-teal-700 px-2 py-1">
+              <i class="fa-solid fa-volume-high text-sm"></i>
+            </button>
+          </button>
+        `;
+      });
+
+      card.innerHTML = `
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-extrabold px-3 py-1 bg-teal-100 text-teal-800 rounded-full uppercase">Câu ${state.g3.idx + 1}: Quy Tắc Vàng When vs. While</span>
+            <button onclick="speakText('${cur.q.replace(/_+/g, 'blank')}')" class="px-3 py-1.5 bg-teal-50 hover:bg-teal-100 text-teal-800 font-bold rounded-xl text-xs flex items-center gap-1.5 transition">
+              <i class="fa-solid fa-volume-high"></i> Nghe Đề Bài
+            </button>
+          </div>
+          <h3 class="text-lg sm:text-xl font-black text-slate-800 leading-snug">
+            ${cur.q}
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            ${optionsHtml}
+          </div>
+          <div id="g3-feedback" class="hidden mt-4 p-4 rounded-2xl text-sm leading-relaxed space-y-2"></div>
+        </div>
+      `;
+      state.g3.answered = false;
+    }
+
+    function checkG3(selected) {
+      if (state.g3.answered) return;
+      state.g3.answered = true;
+      const cur = game3Data[state.g3.idx];
+      const fb = document.getElementById('g3-feedback');
+      fb.classList.remove('hidden');
+
+      for (let i = 0; i < cur.options.length; i++) {
+        const btn = document.getElementById(`g3-opt-${i}`);
+        btn.onclick = null;
+        if (i === cur.ans) {
+          btn.classList.remove('border-slate-200');
+          btn.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-900');
+        } else if (i === selected) {
+          btn.classList.remove('border-slate-200');
+          btn.classList.add('border-rose-500', 'bg-rose-50', 'text-rose-900');
+        }
+      }
+
+      const isCorrect = (selected === cur.ans);
+      if (isCorrect) {
+        playCorrectSound();
+        state.g3.score += 10;
+        updateTotalScore();
+        document.getElementById('g3-score').innerText = state.g3.score;
+        fb.className = 'mt-4 p-4 rounded-2xl text-sm leading-relaxed bg-emerald-50 border-2 border-emerald-200 text-emerald-900 space-y-2';
+        fb.innerHTML = `
+          <div class="font-extrabold text-base flex items-center gap-2 text-emerald-700">
+            <i class="fa-solid fa-circle-check text-xl"></i> Quá Chuẩn Xác! (+10 Điểm)
+          </div>
+          <p><strong>Quy tắc áp dụng:</strong> <span class="text-teal-800 font-bold">${cur.formula}</span></p>
+          <p><strong>Giải thích chi tiết:</strong> ${cur.exp}</p>
+          <div class="pt-2 flex items-center gap-3">
+            <button onclick="speakText('${cur.q.replace(/_+/g, cur.options[cur.ans])}')" class="px-3 py-1.5 bg-emerald-600 text-white rounded-xl font-bold text-xs hover:bg-emerald-700 flex items-center gap-1.5">
+              <i class="fa-solid fa-volume-high"></i> Nghe Câu Chuẩn
+            </button>
+            <button onclick="nextG3()" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold rounded-xl text-xs ml-auto shadow transition flex items-center gap-1.5">
+              Câu Kế Tiếp <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        `;
+      } else {
+        playWrongSound();
+        fb.className = 'mt-4 p-4 rounded-2xl text-sm leading-relaxed bg-rose-50 border-2 border-rose-200 text-rose-900 space-y-2';
+        fb.innerHTML = `
+          <div class="font-extrabold text-base flex items-center gap-2 text-rose-700">
+            <i class="fa-solid fa-circle-xmark text-xl"></i> Bạn Cần Chú Ý Quy Tắc Khi Chọn!
+          </div>
+          <p><strong>Đáp án đúng:</strong> <span class="font-black text-emerald-700">${cur.options[cur.ans]}</span></p>
+          <p><strong>Quy tắc áp dụng:</strong> <span class="text-teal-800 font-bold">${cur.formula}</span></p>
+          <p><strong>Giải thích chi tiết:</strong> ${cur.exp}</p>
+          <div class="pt-2 flex items-center gap-3">
+            <button onclick="speakText('${cur.q.replace(/_+/g, cur.options[cur.ans])}')" class="px-3 py-1.5 bg-rose-600 text-white rounded-xl font-bold text-xs hover:bg-rose-700 flex items-center gap-1.5">
+              <i class="fa-solid fa-volume-high"></i> Nghe Câu Đúng
+            </button>
+            <button onclick="nextG3()" class="px-5 py-2 bg-rose-600 hover:bg-rose-700 text-white font-extrabold rounded-xl text-xs ml-auto shadow transition flex items-center gap-1.5">
+              Câu Kế Tiếp <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        `;
+      }
+    }
+
+    function nextG3() {
+      if (state.g3.idx < game3Data.length - 1) {
+        state.g3.idx++;
+        renderG3();
+      } else {
+        showCompletionModal("Game 3: Thợ Săn When & While", state.g3.score, 200, () => {
+          state.g3.idx = 0;
+          state.g3.score = 0;
+          switchTab('game4');
+        });
+      }
+    }
+
+    // ==========================================
+    // GAME 4 RENDERER (ERROR DETECTIVE)
+    // ==========================================
+    function renderG4() {
+      const cur = game4Data[state.g4.idx];
+      const card = document.getElementById('g4-card');
+      document.getElementById('g4-progress').innerText = `${state.g4.idx + 1} / 20`;
+      document.getElementById('g4-score').innerText = state.g4.score;
+
+      let optionsHtml = '';
+      cur.options.forEach((opt, i) => {
+        optionsHtml += `
+          <button onclick="checkG4(${i})" id="g4-opt-${i}" class="candy-card p-4 rounded-2xl border-2 border-slate-200 hover:border-purple-400 hover:bg-purple-50/50 text-left font-bold text-slate-700 flex items-center justify-between text-sm sm:text-base group transition">
+            <span class="flex items-center gap-3">
+              <span class="w-8 h-8 rounded-xl bg-slate-100 group-hover:bg-purple-600 group-hover:text-white flex items-center justify-center text-xs font-black transition">${String.fromCharCode(65 + i)}</span>
+              <span>${opt}</span>
+            </span>
+            <button type="button" onclick="event.stopPropagation(); speakText('${opt.replace('->', 'should be')}')" class="text-slate-400 hover:text-purple-700 px-2 py-1">
+              <i class="fa-solid fa-volume-high text-sm"></i>
+            </button>
+          </button>
+        `;
+      });
+
+      card.innerHTML = `
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-extrabold px-3 py-1 bg-purple-100 text-purple-800 rounded-full uppercase">Câu ${state.g4.idx + 1}: Tìm & Sửa Lỗi Sai Ngữ Pháp</span>
+            <button onclick="speakText('${cur.q.replace(/\[|\]|\([A-D]\)/g, '')}')" class="px-3 py-1.5 bg-purple-50 hover:bg-purple-100 text-purple-800 font-bold rounded-xl text-xs flex items-center gap-1.5 transition">
+              <i class="fa-solid fa-volume-high"></i> Nghe Câu Gốc
+            </button>
+          </div>
+          <h3 class="text-lg sm:text-xl font-black text-slate-800 leading-snug">
+            ${cur.q}
+          </h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+            ${optionsHtml}
+          </div>
+          <div id="g4-feedback" class="hidden mt-4 p-4 rounded-2xl text-sm leading-relaxed space-y-2"></div>
+        </div>
+      `;
+      state.g4.answered = false;
+    }
+
+    function checkG4(selected) {
+      if (state.g4.answered) return;
+      state.g4.answered = true;
+      const cur = game4Data[state.g4.idx];
+      const fb = document.getElementById('g4-feedback');
+      fb.classList.remove('hidden');
+
+      for (let i = 0; i < cur.options.length; i++) {
+        const btn = document.getElementById(`g4-opt-${i}`);
+        btn.onclick = null;
+        if (i === cur.ans) {
+          btn.classList.remove('border-slate-200');
+          btn.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-900');
+        } else if (i === selected) {
+          btn.classList.remove('border-slate-200');
+          btn.classList.add('border-rose-500', 'bg-rose-50', 'text-rose-900');
+        }
+      }
+
+      const isCorrect = (selected === cur.ans);
+      if (isCorrect) {
+        playCorrectSound();
+        state.g4.score += 10;
+        updateTotalScore();
+        document.getElementById('g4-score').innerText = state.g4.score;
+        fb.className = 'mt-4 p-4 rounded-2xl text-sm leading-relaxed bg-emerald-50 border-2 border-emerald-200 text-emerald-900 space-y-2';
+        fb.innerHTML = `
+          <div class="font-extrabold text-base flex items-center gap-2 text-emerald-700">
+            <i class="fa-solid fa-circle-check text-xl"></i> Bắt Bẫy Xuất Sắc! Thám Tử Tài Ba! (+10 Điểm)
+          </div>
+          <p><strong>Quy tắc sửa lỗi:</strong> <span class="text-purple-900 font-bold">${cur.formula}</span></p>
+          <p><strong>Giải thích:</strong> ${cur.exp}</p>
+          <div class="pt-2 flex items-center gap-3">
+            <button onclick="speakText('${cur.options[cur.ans].split('->')[1].trim()}')" class="px-3 py-1.5 bg-emerald-600 text-white rounded-xl font-bold text-xs hover:bg-emerald-700 flex items-center gap-1.5">
+              <i class="fa-solid fa-volume-high"></i> Nghe Phần Sửa Lại
+            </button>
+            <button onclick="nextG4()" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold rounded-xl text-xs ml-auto shadow transition flex items-center gap-1.5">
+              Câu Kế Tiếp <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        `;
+      } else {
+        playWrongSound();
+        fb.className = 'mt-4 p-4 rounded-2xl text-sm leading-relaxed bg-rose-50 border-2 border-rose-200 text-rose-900 space-y-2';
+        fb.innerHTML = `
+          <div class="font-extrabold text-base flex items-center gap-2 text-rose-700">
+            <i class="fa-solid fa-circle-xmark text-xl"></i> Chưa Bắt Đúng Lỗi Sai Rồi!
+          </div>
+          <p><strong>Lỗi sai và cách sửa:</strong> <span class="font-black text-emerald-700">${cur.options[cur.ans]}</span></p>
+          <p><strong>Quy tắc sửa lỗi:</strong> <span class="text-purple-900 font-bold">${cur.formula}</span></p>
+          <p><strong>Giải thích:</strong> ${cur.exp}</p>
+          <div class="pt-2 flex items-center gap-3">
+            <button onclick="speakText('${cur.options[cur.ans].split('->')[1].trim()}')" class="px-3 py-1.5 bg-rose-600 text-white rounded-xl font-bold text-xs hover:bg-rose-700 flex items-center gap-1.5">
+              <i class="fa-solid fa-volume-high"></i> Nghe Phần Sửa Lại
+            </button>
+            <button onclick="nextG4()" class="px-5 py-2 bg-rose-600 hover:bg-rose-700 text-white font-extrabold rounded-xl text-xs ml-auto shadow transition flex items-center gap-1.5">
+              Câu Kế Tiếp <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        `;
+      }
+    }
+
+    function nextG4() {
+      if (state.g4.idx < game4Data.length - 1) {
+        state.g4.idx++;
+        renderG4();
+      } else {
+        showCompletionModal("Game 4: Bắt Lỗi Bẫy Ngữ Pháp", state.g4.score, 200, () => {
+          state.g4.idx = 0;
+          state.g4.score = 0;
+          switchTab('game5');
+        });
+      }
+    }
+
+    // ==========================================
+    // GAME 5 RENDERER (SENTENCE ARCHITECT: SMART SCRAMBLE 1-TAP)
+    // ==========================================
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      // Ensure it's not identical to original
+      if (copy.join(' ') === arr.join(' ') && copy.length > 2) {
+        [copy[0], copy[1]] = [copy[1], copy[0]];
+      }
+      return copy;
+    }
+
+    function renderG5() {
+      const cur = game5Data[state.g5.idx];
+      const card = document.getElementById('g5-card');
+      document.getElementById('g5-progress').innerText = `${state.g5.idx + 1} / 20`;
+      document.getElementById('g5-score').innerText = state.g5.score;
+
+      // Initialize shuffled tokens with unique IDs
+      state.g5.shuffled = shuffleArray(cur.words).map((w, idx) => ({ id: 'w_' + idx, text: w, used: false }));
+      state.g5.userWords = [];
+
+      updateG5UI();
+    }
+
+    function updateG5UI() {
+      const cur = game5Data[state.g5.idx];
+      const card = document.getElementById('g5-card');
+
+      let targetSlotsHtml = '';
+      if (state.g5.userWords.length === 0) {
+        targetSlotsHtml = `<div class="text-slate-400 italic text-sm py-4">Nhấn các thẻ từ bên dưới để xếp câu tại đây...</div>`;
+      } else {
+        state.g5.userWords.forEach((item, pos) => {
+          targetSlotsHtml += `
+            <button onclick="removeWordG5(${pos})" class="bg-emerald-600 text-white font-extrabold px-3.5 py-2 rounded-xl text-sm shadow hover:bg-rose-500 transition transform active:scale-95 flex items-center gap-1.5">
+              <span>${item.text}</span>
+              <i class="fa-solid fa-xmark text-xs opacity-70"></i>
+            </button>
+          `;
+        });
+      }
+
+      let sourcePoolHtml = '';
+      state.g5.shuffled.forEach((item) => {
+        if (!item.used) {
+          sourcePoolHtml += `
+            <button onclick="pickWordG5('${item.id}')" class="bg-white border-2 border-slate-300 text-slate-800 font-bold px-3.5 py-2 rounded-xl text-sm shadow-sm hover:border-emerald-500 hover:bg-emerald-50 transition transform active:scale-95">
+              ${item.text}
+            </button>
+          `;
+        } else {
+          sourcePoolHtml += `
+            <span class="bg-slate-100 border-2 border-slate-200 text-slate-300 font-bold px-3.5 py-2 rounded-xl text-sm opacity-40 cursor-not-allowed">
+              ${item.text}
+            </span>
+          `;
+        }
+      });
+
+      card.innerHTML = `
+        <div class="space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-extrabold px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full uppercase">Câu ${state.g5.idx + 1}: Xếp Câu 1-Chạm</span>
+            <button onclick="speakText('${cur.target}')" class="px-3 py-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-800 font-bold rounded-xl text-xs flex items-center gap-1.5 transition" title="Nghe câu hoàn chỉnh">
+              <i class="fa-solid fa-volume-high"></i> Nghe Câu Mẫu (🔊)
+            </button>
+          </div>
+
+          <div class="bg-amber-50/80 p-3.5 rounded-2xl border border-amber-200 text-slate-700 text-sm flex items-center gap-2">
+            <i class="fa-solid fa-language text-amber-600 text-lg"></i>
+            <span><strong>Nghĩa của câu:</strong> ${cur.meaning}</span>
+          </div>
+
+          <!-- Answer Drop Zone -->
+          <div class="bg-slate-50 p-4 rounded-2xl border-2 border-dashed border-emerald-300 min-h-[70px] flex flex-wrap gap-2 items-center">
+            ${targetSlotsHtml}
+          </div>
+
+          <!-- Word Bank (Shuffled) -->
+          <div class="pt-2">
+            <div class="text-xs font-extrabold uppercase text-slate-400 mb-2">Kho thẻ từ xáo trộn (Chạm để chọn):</div>
+            <div class="flex flex-wrap gap-2">
+              ${sourcePoolHtml}
+            </div>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="pt-4 flex flex-wrap items-center justify-between gap-3 border-t border-slate-100">
+            <button onclick="resetG5Current()" class="px-4 py-2 rounded-xl border border-slate-300 text-slate-600 hover:bg-slate-100 font-bold text-xs flex items-center gap-1.5 transition">
+              <i class="fa-solid fa-arrow-rotate-left"></i> Xếp Lại
+            </button>
+            <button onclick="checkG5Answer()" class="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-black rounded-xl text-sm shadow-md transition flex items-center gap-2">
+              <i class="fa-solid fa-check"></i> Kiểm Tra Đáp Án
+            </button>
+          </div>
+
+          <div id="g5-feedback" class="hidden mt-4 p-4 rounded-2xl text-sm leading-relaxed space-y-2"></div>
+        </div>
+      `;
+    }
+
+    function pickWordG5(id) {
+      const item = state.g5.shuffled.find(w => w.id === id);
+      if (!item || item.used) return;
+      item.used = true;
+      state.g5.userWords.push(item);
+      playBeep(440, 'sine', 0.06);
+      updateG5UI();
+    }
+
+    function removeWordG5(pos) {
+      const removed = state.g5.userWords.splice(pos, 1)[0];
+      if (removed) {
+        removed.used = false;
+        playBeep(350, 'sine', 0.06);
+        updateG5UI();
+      }
+    }
+
+    function resetG5Current() {
+      const cur = game5Data[state.g5.idx];
+      state.g5.shuffled.forEach(w => w.used = false);
+      state.g5.userWords = [];
+      updateG5UI();
+    }
+
+    function checkG5Answer() {
+      const cur = game5Data[state.g5.idx];
+      const userSentence = state.g5.userWords.map(w => w.text).join(' ');
+      const fb = document.getElementById('g5-feedback');
+      fb.classList.remove('hidden');
+
+      const isCorrect = (userSentence.trim() === cur.target.trim());
+      if (isCorrect) {
+        playCorrectSound();
+        state.g5.score += 10;
+        updateTotalScore();
+        document.getElementById('g5-score').innerText = state.g5.score;
+
+        fb.className = 'mt-4 p-4 rounded-2xl text-sm leading-relaxed bg-emerald-50 border-2 border-emerald-200 text-emerald-900 space-y-2';
+        fb.innerHTML = `
+          <div class="font-extrabold text-base flex items-center gap-2 text-emerald-700">
+            <i class="fa-solid fa-circle-check text-xl"></i> Ghép Câu Hoàn Hảo! (+10 Điểm)
+          </div>
+          <p><strong>Câu đúng:</strong> <span class="text-blue-900 font-bold">${cur.target}</span></p>
+          <div class="pt-2 flex items-center gap-3">
+            <button onclick="speakText('${cur.target}')" class="px-3 py-1.5 bg-emerald-600 text-white rounded-xl font-bold text-xs hover:bg-emerald-700 flex items-center gap-1.5">
+              <i class="fa-solid fa-volume-high"></i> Nghe Lại (US Voice)
+            </button>
+            <button onclick="nextG5()" class="px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold rounded-xl text-xs ml-auto shadow transition flex items-center gap-1.5">
+              Câu Kế Tiếp <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        `;
+      } else {
+        playWrongSound();
+        fb.className = 'mt-4 p-4 rounded-2xl text-sm leading-relaxed bg-rose-50 border-2 border-rose-200 text-rose-900 space-y-2';
+        fb.innerHTML = `
+          <div class="font-extrabold text-base flex items-center gap-2 text-rose-700">
+            <i class="fa-solid fa-circle-xmark text-xl"></i> Thứ Tự Từ Hoặc Dấu Phẩy Chưa Đúng!
+          </div>
+          <p><strong>Thứ tự chuẩn xác:</strong> <span class="font-black text-emerald-800">${cur.target}</span></p>
+          <div class="pt-2 flex items-center gap-3">
+            <button onclick="speakText('${cur.target}')" class="px-3 py-1.5 bg-rose-600 text-white rounded-xl font-bold text-xs hover:bg-rose-700 flex items-center gap-1.5">
+              <i class="fa-solid fa-volume-high"></i> Nghe Câu Chuẩn
+            </button>
+            <button onclick="nextG5()" class="px-5 py-2 bg-rose-600 hover:bg-rose-700 text-white font-extrabold rounded-xl text-xs ml-auto shadow transition flex items-center gap-1.5">
+              Câu Kế Tiếp <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        `;
+      }
+    }
+
+    function nextG5() {
+      if (state.g5.idx < game5Data.length - 1) {
+        state.g5.idx++;
+        renderG5();
+      } else {
+        showCompletionModal("Game 5: Kiến Trúc Sư Cứu Trợ", state.g5.score, 200, () => {
+          showMasterSummary();
+        });
+      }
+    }
+
+    // ==========================================
+    // MODAL & SUMMARY CELEBRATION
+    // ==========================================
+    function showCompletionModal(gameName, score, maxScore, callback) {
+      const modal = document.createElement('div');
+      modal.className = 'fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4';
+      const pct = Math.round((score / maxScore) * 100);
+
+      modal.innerHTML = `
+        <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl text-center space-y-4 border-4 border-amber-300 animate-bounce-short">
+          <div class="w-20 h-20 mx-auto bg-amber-100 rounded-full flex items-center justify-center text-4xl text-amber-500 shadow-inner">
+            <i class="fa-solid fa-trophy"></i>
+          </div>
+          <h3 class="text-2xl font-black text-slate-800">HOÀN THÀNH XUẤT SẮC!</h3>
+          <p class="text-sm font-semibold text-slate-500">${gameName}</p>
+          <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 space-y-1">
+            <div class="text-3xl font-black text-blue-700">${score} / ${maxScore}</div>
+            <div class="text-xs font-bold text-slate-500">Độ chính xác: ${pct}%</div>
+          </div>
+          <p class="text-xs text-slate-600">Cô Lily chúc mừng em đã hoàn thành tốt 20 câu hỏi trọng tâm!</p>
+          <button id="modal-next-btn" class="w-full py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-black rounded-2xl shadow-lg transition">
+            Chuyển Sang Game Tiếp Theo <i class="fa-solid fa-arrow-right ml-1"></i>
+          </button>
+        </div>
+      `;
+      document.body.appendChild(modal);
+      document.getElementById('modal-next-btn').onclick = () => {
+        modal.remove();
+        if (callback) callback();
+      };
+      playCorrectSound();
+    }
+
+    function showMasterSummary() {
+      const grandTotal = state.g1.score + state.g2.score + state.g3.score + state.g4.score + state.g5.score;
+      const modal = document.createElement('div');
+      modal.className = 'fixed inset-0 bg-black/70 backdrop-blur-md z-50 flex items-center justify-center p-4';
+
+      modal.innerHTML = `
+        <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl text-center space-y-5 border-4 border-emerald-400">
+          <div class="w-24 h-24 mx-auto bg-gradient-to-tr from-amber-400 to-yellow-300 rounded-3xl flex items-center justify-center text-5xl text-white shadow-lg">
+            <i class="fa-solid fa-crown"></i>
+          </div>
+          <div class="space-y-1">
+            <span class="text-xs bg-emerald-100 text-emerald-800 font-extrabold px-3 py-1 rounded-full uppercase">Đại Kiện Tướng Ngữ Pháp</span>
+            <h2 class="text-2xl sm:text-3xl font-black text-slate-800">TỔNG KẾT 100 CÂU HỎI UNIT 9</h2>
+            <p class="text-xs sm:text-sm text-slate-600">Trung tâm Tiếng Anh HT English – Ms. Lily</p>
+          </div>
+          <div class="bg-gradient-to-r from-blue-50 to-indigo-50 p-4 rounded-2xl border border-blue-200">
+            <div class="text-4xl font-black text-blue-800 leading-tight">${grandTotal} / 1000</div>
+            <div class="text-xs font-extrabold text-slate-500 uppercase mt-1">Tổng điểm tích lũy cả 5 Game</div>
+          </div>
+          <div class="grid grid-cols-5 gap-2 text-[11px] font-bold text-slate-600">
+            <div class="bg-slate-100 p-2 rounded-xl">G1: ${state.g1.score}</div>
+            <div class="bg-slate-100 p-2 rounded-xl">G2: ${state.g2.score}</div>
+            <div class="bg-slate-100 p-2 rounded-xl">G3: ${state.g3.score}</div>
+            <div class="bg-slate-100 p-2 rounded-xl">G4: ${state.g4.score}</div>
+            <div class="bg-slate-100 p-2 rounded-xl">G5: ${state.g5.score}</div>
+          </div>
+          <button onclick="location.reload()" class="w-full py-3 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white font-black rounded-2xl shadow-lg transition">
+            <i class="fa-solid fa-rotate-right mr-1"></i> Luyện Tập Lại Từ Đầu
+          </button>
+        </div>
+      `;
+      document.body.appendChild(modal);
+      playCorrectSound();
+    }
+
+    // ==========================================
+    // INITIALIZATION
+    // ==========================================
+    window.addEventListener('DOMContentLoaded', () => {
+      switchTab('game1');
+      updateTotalScore();
+    });
+  </script>
+</body>
+</html>

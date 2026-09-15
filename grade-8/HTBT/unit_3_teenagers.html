@@ -1,0 +1,1840 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HT English - Unit 3 Teenagers: Siêu Đấu Trường Câu Đơn & Câu Ghép</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f0fdf4;
+      background-image: 
+        radial-gradient(at 10% 20%, rgba(254, 205, 211, 0.55) 0px, transparent 50%),
+        radial-gradient(at 90% 10%, rgba(254, 240, 138, 0.6) 0px, transparent 50%),
+        radial-gradient(at 30% 80%, rgba(186, 230, 253, 0.65) 0px, transparent 50%),
+        radial-gradient(at 80% 80%, rgba(221, 214, 254, 0.6) 0px, transparent 50%);
+      color: #1e293b;
+      min-height: 100vh;
+    }
+    .font-fun {
+      font-family: 'Fredoka', 'Plus Jakarta Sans', sans-serif;
+    }
+    .card-candy {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 1.5rem;
+      box-shadow: 0 14px 34px -6px rgba(99, 102, 241, 0.12), 0 4px 12px -2px rgba(0, 0, 0, 0.05);
+      border: 3px solid #ffffff;
+    }
+    .badge-pop {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .btn-candy:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 20px -4px rgba(236, 72, 153, 0.35);
+    }
+    .btn-candy:active {
+      transform: translateY(1px) scale(0.98);
+    }
+    @keyframes bobble {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-7px) rotate(1.5deg); }
+    }
+    .animate-bobble {
+      animation: bobble 3.5s ease-in-out infinite;
+    }
+    @keyframes pulse-gentle {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .pulse-mascot {
+      animation: pulse-gentle 2.4s ease-in-out infinite;
+    }
+    .opt-card {
+      transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+    .opt-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(79, 70, 229, 0.15);
+    }
+  </style>
+</head>
+<body class="p-3 md:p-6 flex flex-col justify-between">
+
+  <!-- TOP HEADER / BRANDING BANNER -->
+  <header class="max-w-6xl mx-auto w-full mb-6 card-candy p-4 md:p-6 border-4 border-amber-300 relative overflow-hidden bg-gradient-to-r from-amber-50 via-pink-50 to-indigo-50">
+    <!-- Playful decorative background shapes -->
+    <div class="absolute -right-8 -bottom-8 w-36 h-36 bg-amber-200/50 rounded-full blur-xl pointer-events-none"></div>
+    <div class="absolute -left-6 -top-6 w-32 h-32 bg-pink-200/50 rounded-full blur-xl pointer-events-none"></div>
+
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 relative z-10">
+      
+      <!-- Brand Logo & School Info -->
+      <div class="flex items-center gap-4 text-center md:text-left flex-col md:flex-row">
+        <!-- Cute Owl & Pencil Mascot SVG -->
+        <div class="w-16 h-16 rounded-3xl bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center text-white shadow-xl shadow-indigo-300/50 border-4 border-white shrink-0 pulse-mascot">
+          <svg class="w-10 h-10" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Smart Owl Mascot -->
+            <circle cx="32" cy="34" r="24" fill="#FDE047" stroke="#CA8A04" stroke-width="2"/>
+            <path d="M18 16L24 24H12L18 16Z" fill="#F97316"/>
+            <path d="M46 16L52 24H40L46 16Z" fill="#F97316"/>
+            <!-- Graduation Cap -->
+            <path d="M16 18L32 10L48 18L32 24L16 18Z" fill="#3B82F6"/>
+            <path d="M24 21V28C24 32.4 32 35 32 35C32 35 40 32.4 40 28V21" stroke="#2563EB" stroke-width="2"/>
+            <!-- Glasses -->
+            <circle cx="24" cy="34" r="9" fill="white" stroke="#334155" stroke-width="2.5"/>
+            <circle cx="40" cy="34" r="9" fill="white" stroke="#334155" stroke-width="2.5"/>
+            <circle cx="25" cy="34" r="4.5" fill="#1E293B"/>
+            <circle cx="41" cy="34" r="4.5" fill="#1E293B"/>
+            <circle cx="23" cy="32" r="1.5" fill="white"/>
+            <circle cx="39" cy="32" r="1.5" fill="white"/>
+            <line x1="33" y1="34" x2="31" y2="34" stroke="#334155" stroke-width="3"/>
+            <!-- Beak -->
+            <path d="M32 38L28 44H36L32 38Z" fill="#EA580C"/>
+            <!-- Cute Blush -->
+            <ellipse cx="16" cy="42" rx="4" ry="2" fill="#F43F5E" opacity="0.6"/>
+            <ellipse cx="48" cy="42" rx="4" ry="2" fill="#F43F5E" opacity="0.6"/>
+          </svg>
+        </div>
+
+        <div>
+          <div class="flex flex-wrap items-center justify-center md:justify-start gap-2">
+            <span class="bg-gradient-to-r from-indigo-500 to-blue-500 text-white text-xs px-3 py-1 rounded-full font-bold shadow-sm font-fun">
+              🌟 TIẾNG ANH 8 GLOBAL SUCCESS
+            </span>
+            <span class="bg-gradient-to-r from-pink-500 to-rose-500 text-white text-xs px-3 py-1 rounded-full font-bold shadow-sm font-fun">
+              🎯 UNIT 3: TEENAGERS
+            </span>
+            <span class="bg-emerald-500 text-white text-[11px] px-2.5 py-0.5 rounded-full font-extrabold flex items-center gap-1">
+              ✨ 100 CÂU HỎI VIP
+            </span>
+          </div>
+
+          <h1 class="text-xl md:text-2xl font-black text-slate-800 tracking-tight mt-1 font-fun">
+            TRUNG TÂM TIẾNG ANH HT ENGLISH — MS. LILY
+          </h1>
+
+          <p class="text-xs md:text-sm text-slate-600 font-medium mt-0.5 flex flex-wrap items-center justify-center md:justify-start gap-x-2 gap-y-1">
+            <span>📍 Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình</span>
+            <span class="text-slate-300">|</span>
+            <span>📞 Hotline: <strong class="text-indigo-600 font-extrabold">0963.422.940</strong> — <strong class="text-pink-600 font-extrabold">0962.240.866</strong></span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Quick Audio Banner Badge -->
+      <div class="flex items-center gap-3 bg-white/90 backdrop-blur px-4 py-2.5 rounded-2xl border-2 border-indigo-200 shadow-sm shrink-0">
+        <div class="w-10 h-10 rounded-xl bg-pink-100 text-pink-600 flex items-center justify-center text-xl font-black animate-bounce">
+          🎙️
+        </div>
+        <div class="text-left text-xs">
+          <div class="font-extrabold text-slate-800 font-fun">US Female Voice 🔊</div>
+          <div class="text-[11px] text-emerald-600 font-bold">Giọng Nữ Anh - Mỹ Tự Động</div>
+        </div>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MAIN NAVIGATION TABS -->
+  <main class="max-w-6xl mx-auto w-full flex-grow">
+    
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 md:gap-3.5 mb-6">
+      <!-- Tab Study -->
+      <button onclick="switchMode('study')" id="tab-study" class="nav-tab py-3.5 px-2.5 rounded-2xl font-fun font-bold text-xs md:text-sm transition-all text-center flex flex-col items-center justify-center gap-1.5 card-candy border-2 border-amber-300 hover:border-amber-500 hover:bg-amber-50 text-slate-700 shadow-sm">
+        <span class="text-2xl filter drop-shadow">📚</span>
+        <span class="leading-tight">Cẩm Nang Ngữ Pháp</span>
+      </button>
+      
+      <!-- Game 1 -->
+      <button onclick="switchMode(0)" id="tab-0" class="nav-tab py-3.5 px-2.5 rounded-2xl font-fun font-bold text-xs md:text-sm transition-all text-center flex flex-col items-center justify-center gap-1.5 card-candy border-2 border-orange-300 hover:border-orange-500 hover:bg-orange-50 text-slate-700 shadow-sm">
+        <span class="text-2xl filter drop-shadow">🏎️</span>
+        <span class="leading-tight">1. Đua Xe FANBOYS</span>
+      </button>
+
+      <!-- Game 2 -->
+      <button onclick="switchMode(1)" id="tab-1" class="nav-tab py-3.5 px-2.5 rounded-2xl font-fun font-bold text-xs md:text-sm transition-all text-center flex flex-col items-center justify-center gap-1.5 card-candy border-2 border-pink-300 hover:border-pink-500 hover:bg-pink-50 text-slate-700 shadow-sm">
+        <span class="text-2xl filter drop-shadow">🎈</span>
+        <span class="leading-tight">2. Bắn Bóng Câu Đơn/Ghép</span>
+      </button>
+
+      <!-- Game 3 -->
+      <button onclick="switchMode(2)" id="tab-2" class="nav-tab py-3.5 px-2.5 rounded-2xl font-fun font-bold text-xs md:text-sm transition-all text-center flex flex-col items-center justify-center gap-1.5 card-candy border-2 border-purple-300 hover:border-purple-500 hover:bg-purple-50 text-slate-700 shadow-sm">
+        <span class="text-2xl filter drop-shadow">🚀</span>
+        <span class="leading-tight">3. Chiến Hạm Trạng Từ</span>
+      </button>
+
+      <!-- Game 4 -->
+      <button onclick="switchMode(3)" id="tab-3" class="nav-tab py-3.5 px-2.5 rounded-2xl font-fun font-bold text-xs md:text-sm transition-all text-center flex flex-col items-center justify-center gap-1.5 card-candy border-2 border-teal-300 hover:border-teal-500 hover:bg-teal-50 text-slate-700 shadow-sm">
+        <span class="text-2xl filter drop-shadow">🔍</span>
+        <span class="leading-tight">4. Thám Tử Bắt Lỗi</span>
+      </button>
+
+      <!-- Game 5 -->
+      <button onclick="switchMode(4)" id="tab-4" class="nav-tab py-3.5 px-2.5 rounded-2xl font-fun font-bold text-xs md:text-sm transition-all text-center flex flex-col items-center justify-center gap-1.5 card-candy border-2 border-blue-300 hover:border-blue-500 hover:bg-blue-50 text-slate-700 shadow-sm">
+        <span class="text-2xl filter drop-shadow">🧩</span>
+        <span class="leading-tight">5. Kiến Trúc Ghép Câu</span>
+      </button>
+    </div>
+
+    <!-- VIEW 1: CẨM NANG NGỮ PHÁP (BRIGHT, COLORFUL & PLAYFUL) -->
+    <div id="view-study" class="hidden card-candy p-6 md:p-8 space-y-6 border-4 border-indigo-200">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between border-b-2 border-indigo-100 pb-5 gap-3">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-amber-400 text-white flex items-center justify-center text-2xl shadow-md animate-bounce">
+            📖
+          </div>
+          <div>
+            <h2 class="text-xl md:text-2xl font-black text-indigo-900 font-fun flex items-center gap-2">
+              BÍ KÍP VÀNG NGỮ PHÁP UNIT 3: CÂU ĐƠN & CÂU GHÉP
+            </h2>
+            <p class="text-xs md:text-sm text-slate-600 font-medium">Bấm vào biểu tượng chiếc loa 🔊 ở từng câu để nghe cô Lily phát âm chuẩn Nữ Anh - Mỹ nhé!</p>
+          </div>
+        </div>
+
+        <button onclick="speakText('A simple sentence has one independent clause. A compound sentence has two or more independent clauses.')" class="px-5 py-2.5 bg-gradient-to-r from-indigo-500 to-pink-500 hover:from-indigo-600 hover:to-pink-600 text-white rounded-2xl text-xs font-bold flex items-center gap-2 shadow-lg shadow-indigo-300/40 btn-candy font-fun">
+          <span>🔊 Nghe Tóm Tắt Quy Tắc</span>
+        </button>
+      </div>
+
+      <!-- Colorful Grammar Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- CARD 1: CÂU ĐƠN (XANH DA TRỜI & XANH LÁ) -->
+        <div class="rounded-3xl p-5 border-3 border-sky-300 bg-gradient-to-br from-sky-50 to-emerald-50 space-y-3 shadow-md relative overflow-hidden">
+          <div class="absolute right-3 top-3 opacity-15 pointer-events-none">
+            <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="flex justify-between items-center">
+            <h3 class="text-base md:text-lg font-black text-sky-800 font-fun flex items-center gap-2">
+              <span class="w-8 h-8 rounded-xl bg-sky-500 text-white flex items-center justify-center text-sm shadow">1</span>
+              Câu Đơn (Simple Sentences)
+            </h3>
+            <button onclick="speakText('Simple sentences have only one independent clause. For example: Mai joined the arts and crafts club.')" class="p-2 bg-white hover:bg-sky-100 rounded-xl text-sky-600 shadow-sm border border-sky-200" title="Nghe giải thích">🔊</button>
+          </div>
+          
+          <div class="bg-white/90 p-3.5 rounded-2xl border border-sky-200 text-xs text-slate-700 leading-relaxed space-y-2">
+            <p>
+              🌟 <strong>Đặc điểm:</strong> Chỉ có <strong>1 mệnh đề độc lập (One independent clause)</strong>, thể hiện một ý trọn vẹn gồm 1 Chủ ngữ và 1 Vị ngữ.
+            </p>
+            <div class="bg-amber-50 p-2.5 rounded-xl border border-amber-200 text-[11px] text-amber-900 flex items-start gap-1.5">
+              <span>💡</span>
+              <span><strong>Lưu ý:</strong> Câu có <em>Chủ ngữ kép</em> (Lan and Hoa) hoặc <em>Vị ngữ kép</em> (cook and wash) thì vẫn là <strong>CÂU ĐƠN</strong> vì chỉ có 1 mệnh đề!</span>
+            </div>
+          </div>
+
+          <!-- Examples with audio -->
+          <div class="space-y-2 text-xs">
+            <div class="bg-white p-2.5 rounded-xl border border-sky-200 flex items-center justify-between text-sky-900 font-bold">
+              <span>• Teenagers face a lot of exam stress.</span>
+              <button onclick="speakText('Teenagers face a lot of exam stress.')" class="text-sky-500 hover:text-sky-700">🔊</button>
+            </div>
+            <div class="bg-white p-2.5 rounded-xl border border-sky-200 flex items-center justify-between text-sky-900 font-bold">
+              <span>• Minh and Lan uploaded photos to their forum.</span>
+              <button onclick="speakText('Minh and Lan uploaded photos to their forum.')" class="text-sky-500 hover:text-sky-700">🔊</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: CÂU GHÉP VỚI FANBOYS (HỒNG SAN HÔ & CAM TƯƠI) -->
+        <div class="rounded-3xl p-5 border-3 border-pink-300 bg-gradient-to-br from-pink-50 to-orange-50 space-y-3 shadow-md relative overflow-hidden">
+          <div class="flex justify-between items-center">
+            <h3 class="text-base md:text-lg font-black text-pink-800 font-fun flex items-center gap-2">
+              <span class="w-8 h-8 rounded-xl bg-pink-500 text-white flex items-center justify-center text-sm shadow">2</span>
+              Câu Ghép Với Liên Từ FANBOYS
+            </h3>
+            <button onclick="speakText('Compound sentences with coordinating conjunctions: For, And, Nor, But, Or, Yet, So. Always put a comma before the conjunction.')" class="p-2 bg-white hover:bg-pink-100 rounded-xl text-pink-600 shadow-sm border border-pink-200">🔊</button>
+          </div>
+
+          <div class="bg-white/90 p-3 rounded-2xl border border-pink-200 text-xs text-slate-700">
+            <strong>Quy tắc bất hủ:</strong> <code>S + V, [FANBOYS] + S + V</code> (Bắt buộc phải có dấu phẩy <strong>,</strong> trước liên từ).
+          </div>
+
+          <!-- Rainbow FANBOYS Pills -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 text-xs font-bold text-center">
+            <div class="bg-rose-100 text-rose-800 p-2 rounded-xl border border-rose-300"><strong>F</strong>or (vì)</div>
+            <div class="bg-amber-100 text-amber-800 p-2 rounded-xl border border-amber-300"><strong>A</strong>nd (và)</div>
+            <div class="bg-emerald-100 text-emerald-800 p-2 rounded-xl border border-emerald-300"><strong>N</strong>or (cũng ko)</div>
+            <div class="bg-sky-100 text-sky-800 p-2 rounded-xl border border-sky-300"><strong>B</strong>ut (nhưng)</div>
+            <div class="bg-indigo-100 text-indigo-800 p-2 rounded-xl border border-indigo-300"><strong>O</strong>r (hoặc)</div>
+            <div class="bg-purple-100 text-purple-800 p-2 rounded-xl border border-purple-300"><strong>Y</strong>et (tuy thế)</div>
+            <div class="bg-pink-200 text-pink-900 p-2 rounded-xl border border-pink-300 col-span-2"><strong>S</strong>o (cho nên, vì vậy)</div>
+          </div>
+
+          <div class="bg-white p-2.5 rounded-xl border border-pink-200 flex items-center justify-between text-xs text-pink-900 font-bold">
+            <span>• Nick felt stressed, so he talked to his counselor.</span>
+            <button onclick="speakText('Nick felt stressed, so he talked to his counselor.')" class="text-pink-500 hover:text-pink-700">🔊</button>
+          </div>
+        </div>
+
+        <!-- CARD 3: TRẠNG TỪ LIÊN KẾT (TÍM NHẠT & VÀNG NẮNG) -->
+        <div class="rounded-3xl p-5 border-3 border-purple-300 bg-gradient-to-br from-purple-50 to-amber-50 space-y-3 shadow-md md:col-span-2">
+          <div class="flex justify-between items-center">
+            <h3 class="text-base md:text-lg font-black text-purple-900 font-fun flex items-center gap-2">
+              <span class="w-8 h-8 rounded-xl bg-purple-500 text-white flex items-center justify-center text-sm shadow">3</span>
+              Trạng Từ Liên Kết (However, Therefore, Otherwise...)
+            </h3>
+            <button onclick="speakText('Conjunctive adverbs like however, therefore, otherwise need a semicolon before and comma after.')" class="p-2 bg-white hover:bg-purple-100 rounded-xl text-purple-600 shadow-sm border border-purple-200">🔊</button>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
+            <div class="bg-white p-3.5 rounded-2xl border-2 border-purple-200 shadow-sm">
+              <div class="font-extrabold text-purple-700 text-sm font-fun flex items-center gap-1">
+                <span>🔄</span> However (Tuy nhiên)
+              </div>
+              <p class="text-slate-600 mt-1">Chỉ sự tương phản, đối lập giữa 2 sự việc.</p>
+              <div class="bg-purple-50 text-purple-900 font-mono text-[11px] p-1.5 rounded-lg mt-2 font-bold">
+                ; however, HOẶC . However,
+              </div>
+            </div>
+
+            <div class="bg-white p-3.5 rounded-2xl border-2 border-amber-200 shadow-sm">
+              <div class="font-extrabold text-amber-600 text-sm font-fun flex items-center gap-1">
+                <span>🎯</span> Therefore (Do đó / Vì vậy)
+              </div>
+              <p class="text-slate-600 mt-1">Chỉ kết quả hợp lý rút ra từ mệnh đề trước.</p>
+              <div class="bg-amber-50 text-amber-900 font-mono text-[11px] p-1.5 rounded-lg mt-2 font-bold">
+                ; therefore, HOẶC . Therefore,
+              </div>
+            </div>
+
+            <div class="bg-white p-3.5 rounded-2xl border-2 border-rose-200 shadow-sm">
+              <div class="font-extrabold text-rose-600 text-sm font-fun flex items-center gap-1">
+                <span>⚠️</span> Otherwise (Nếu không thì)
+              </div>
+              <p class="text-slate-600 mt-1">Cảnh báo hậu quả xấu nếu không làm việc gì.</p>
+              <div class="bg-rose-50 text-rose-900 font-mono text-[11px] p-1.5 rounded-lg mt-2 font-bold">
+                ; otherwise, HOẶC . Otherwise,
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-white p-3 rounded-2xl border border-purple-200 text-xs font-bold text-slate-800 space-y-1.5">
+            <div class="flex items-center justify-between">
+              <span class="text-purple-900">• Lan studied hard; however, she felt nervous before the test.</span>
+              <button onclick="speakText('Lan studied hard; however, she felt nervous before the test.')" class="text-purple-600 hover:text-purple-800">🔊</button>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-rose-900">• You must log off social media; otherwise, you cannot concentrate.</span>
+              <button onclick="speakText('You must log off social media; otherwise, you cannot concentrate.')" class="text-rose-600 hover:text-rose-800">🔊</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- VIEW 2: GAMEPLAY CONTAINER (VIBRANT & GAMIFIED) -->
+    <div id="view-game" class="space-y-5">
+      
+      <!-- Top Scoreboard & Game Header -->
+      <div id="game-header-card" class="card-candy p-4 md:p-5 flex flex-wrap items-center justify-between gap-4 border-3 border-indigo-200 bg-gradient-to-r from-white via-indigo-50 to-pink-50">
+        
+        <div class="flex items-center gap-3.5">
+          <div id="game-badge-icon" class="w-14 h-14 rounded-2xl bg-white shadow-md border-2 border-indigo-200 flex items-center justify-center text-3xl animate-bobble">
+            🏎️
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span id="game-mini-tag" class="bg-indigo-600 text-white text-[10px] px-2 py-0.5 rounded-md font-black tracking-wider uppercase font-fun">GAME 1</span>
+              <span class="text-xs font-extrabold text-pink-600">Unit 3 Teenagers</span>
+            </div>
+            <h2 id="game-title" class="text-base md:text-xl font-black text-slate-800 font-fun">
+              ĐUA XE CAO TỐC: LIÊN TỪ FANBOYS
+            </h2>
+            <p id="game-desc" class="text-xs text-slate-500 font-semibold">
+              Chọn đúng liên từ kết hợp để chiếc xe đua bứt phá về đích!
+            </p>
+          </div>
+        </div>
+
+        <!-- Live Score Badges -->
+        <div class="flex items-center gap-2.5 sm:gap-3.5">
+          <!-- Question Counter -->
+          <div class="bg-white px-3.5 py-2 rounded-2xl border-2 border-indigo-200 text-center shadow-sm">
+            <div class="text-[10px] text-indigo-600 uppercase font-black font-fun">CÂU HỎI</div>
+            <div class="text-sm md:text-base font-black text-slate-800 font-fun">
+              <span id="current-q-num" class="text-indigo-600">1</span> / <span id="total-q-num">20</span>
+            </div>
+          </div>
+
+          <!-- Score -->
+          <div class="bg-white px-3.5 py-2 rounded-2xl border-2 border-amber-300 text-center shadow-sm">
+            <div class="text-[10px] text-amber-600 uppercase font-black font-fun">ĐIỂM SỐ</div>
+            <div id="game-score" class="text-sm md:text-base font-black text-amber-500 font-fun">0</div>
+          </div>
+
+          <!-- Combo Streak -->
+          <div class="bg-white px-3.5 py-2 rounded-2xl border-2 border-rose-300 text-center shadow-sm">
+            <div class="text-[10px] text-rose-500 uppercase font-black font-fun">COMBO 🔥</div>
+            <div id="game-streak" class="text-sm md:text-base font-black text-rose-600 font-fun">0</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Colorful Progress Bar -->
+      <div class="w-full bg-white rounded-full h-3.5 p-0.5 shadow-inner border border-indigo-100 overflow-hidden">
+        <div id="progress-fill" class="bg-gradient-to-r from-pink-500 via-amber-400 to-emerald-400 h-full rounded-full transition-all duration-300" style="width: 5%"></div>
+      </div>
+
+      <!-- Main Question Arena Stage -->
+      <div class="card-candy p-6 md:p-8 relative overflow-hidden min-h-[420px] flex flex-col justify-between border-4 border-indigo-200 bg-white">
+        
+        <!-- Interactive Game Graphic Banner (Dynamically Swapped per Game) -->
+        <div id="stage-banner" class="mb-4 rounded-2xl p-3 bg-gradient-to-r from-orange-100 via-pink-100 to-amber-100 border border-orange-200 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <span class="text-2xl" id="banner-emoji">🏎️💨</span>
+            <span class="text-xs font-bold text-slate-700" id="banner-hint">Quy tắc vàng: Phải có dấu phẩy (,) trước liên từ FANBOYS trong câu ghép!</span>
+          </div>
+          <span class="text-xs bg-white text-orange-600 px-2.5 py-1 rounded-full font-extrabold shadow-sm">Thử Thách</span>
+        </div>
+
+        <!-- Question Header & Audio Trigger -->
+        <div class="space-y-2">
+          <div class="flex items-center justify-between">
+            <span id="question-tag" class="text-xs font-black uppercase tracking-wider bg-indigo-100 text-indigo-700 px-3.5 py-1 rounded-full border border-indigo-200 font-fun">
+              Unit 3 • Câu 1/20
+            </span>
+            <button id="btn-read-question" class="px-3.5 py-1.5 bg-indigo-50 hover:bg-indigo-100 rounded-xl text-xs font-bold text-indigo-600 flex items-center gap-1.5 border border-indigo-200 transition shadow-sm font-fun">
+              <span>🔊 Đọc Câu Hỏi</span>
+            </button>
+          </div>
+
+          <div id="question-text" class="text-lg md:text-2xl font-black text-slate-800 leading-snug pt-1 font-fun">
+            Đang tải câu hỏi...
+          </div>
+          <div id="question-sub" class="text-xs md:text-sm text-slate-500 font-medium italic">
+            Dịch nghĩa ngữ cảnh...
+          </div>
+        </div>
+
+        <!-- 4 Options Grid -->
+        <div id="options-container" class="grid grid-cols-1 md:grid-cols-2 gap-3.5 my-5">
+          <!-- Dynamic options loaded by JS -->
+        </div>
+
+        <!-- Feedback & Explanation Card (Appears after student answers) -->
+        <div id="explanation-box" class="hidden rounded-2xl p-4 md:p-5 border-2 transition-all mt-3">
+          <div class="flex items-start justify-between gap-3">
+            <div class="space-y-1.5 flex-grow">
+              <div id="feedback-status" class="font-black text-base md:text-lg flex items-center gap-2 font-fun"></div>
+              <div id="explanation-text" class="text-xs md:text-sm text-slate-700 leading-relaxed font-medium"></div>
+              <div id="grammar-rule" class="text-xs font-mono text-amber-900 mt-1 bg-amber-50 p-2.5 rounded-xl border border-amber-300 font-bold"></div>
+            </div>
+            <button id="btn-read-exp" class="px-3 py-1.5 bg-white hover:bg-slate-100 rounded-xl text-xs font-bold text-slate-700 flex items-center gap-1 shrink-0 border border-slate-200 shadow-sm font-fun">
+              <span>🔊 Nghe Giải Thích</span>
+            </button>
+          </div>
+
+          <div class="flex justify-end mt-4">
+            <button onclick="nextQuestion()" class="px-6 py-2.5 bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:from-indigo-500 hover:to-pink-500 rounded-2xl font-black text-sm text-white shadow-lg shadow-indigo-300/50 btn-candy font-fun flex items-center gap-2">
+              <span>Câu Kế Tiếp</span>
+              <span>➔</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Celebration Modal Screen (Game Over) -->
+        <div id="game-over-screen" class="hidden absolute inset-0 bg-white/95 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center space-y-5 z-20 rounded-3xl">
+          <div class="text-6xl animate-bounce">🏆</div>
+          <div>
+            <h3 class="text-2xl md:text-3xl font-black text-slate-800 font-fun">XUẤT SẮC HOÀN THÀNH BÀI THI!</h3>
+            <p class="text-sm text-slate-600 mt-1 font-medium" id="game-over-summary">Bạn đã trả lời xuất sắc 20 câu hỏi của vòng này.</p>
+          </div>
+
+          <div class="flex items-center gap-4 sm:gap-6 bg-gradient-to-r from-amber-50 via-pink-50 to-indigo-50 px-6 py-4 rounded-3xl border-3 border-indigo-200 shadow-md">
+            <div>
+              <div class="text-[10px] text-slate-500 font-black uppercase font-fun">Tổng Điểm</div>
+              <div id="final-score" class="text-2xl md:text-3xl font-black text-amber-500 font-fun">0 pts</div>
+            </div>
+            <div class="h-10 w-0.5 bg-indigo-200"></div>
+            <div>
+              <div class="text-[10px] text-slate-500 font-black uppercase font-fun">Độ Chính Xác</div>
+              <div id="final-accuracy" class="text-2xl md:text-3xl font-black text-emerald-500 font-fun">0%</div>
+            </div>
+            <div class="h-10 w-0.5 bg-indigo-200"></div>
+            <div>
+              <div class="text-[10px] text-slate-500 font-black uppercase font-fun">Xếp Hạng</div>
+              <div id="final-rank" class="text-2xl md:text-3xl font-black text-pink-500 font-fun">⭐⭐⭐</div>
+            </div>
+          </div>
+
+          <p id="teacher-note" class="text-xs md:text-sm text-indigo-900 max-w-lg bg-indigo-50 p-4 rounded-2xl border-2 border-indigo-200 font-medium">
+            "Lời nhắn nhủ từ Ms. Lily (HT English)..."
+          </p>
+
+          <div class="flex flex-wrap gap-3 justify-center pt-2">
+            <button onclick="restartCurrentGame()" class="px-5 py-2.5 bg-white hover:bg-slate-100 text-slate-700 font-bold text-sm rounded-2xl border-2 border-slate-300 shadow-sm font-fun">
+              🔄 Chơi Lại Trò Này
+            </button>
+            <button onclick="nextGameMode()" class="px-6 py-2.5 bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-black text-sm rounded-2xl shadow-lg shadow-emerald-200 btn-candy font-fun">
+              🚀 Khám Phá Trò Kế Tiếp ➔
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER BRANDING -->
+  <footer class="max-w-6xl mx-auto w-full mt-6 text-center text-xs text-slate-500 space-y-1">
+    <div class="font-bold text-slate-700">Trung Tâm Ngoại Ngữ HT English — Giáo Trình Tiếng Anh 8 Global Success (Unit 3: Teenagers)</div>
+    <div>Ms. Lily — Hotline: <span class="font-extrabold text-indigo-600">0963.422.940</span> - <span class="font-extrabold text-pink-600">0962.240.866</span> — Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình</div>
+  </footer>
+
+  <script>
+    /* ==========================================================
+       SOUND ENGINE (Web Audio API)
+       ========================================================== */
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    function playSound(type) {
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      const now = audioCtx.currentTime;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      if (type === 'correct') {
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(523.25, now); // C5
+        osc.frequency.setValueAtTime(659.25, now + 0.08); // E5
+        osc.frequency.setValueAtTime(783.99, now + 0.16); // G5
+        gain.gain.setValueAtTime(0.25, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+        osc.start(now);
+        osc.stop(now + 0.35);
+      } else if (type === 'wrong') {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(220, now); // A3
+        osc.frequency.setValueAtTime(180, now + 0.12);
+        gain.gain.setValueAtTime(0.3, now);
+        gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3);
+        osc.start(now);
+        osc.stop(now + 0.3);
+      } else if (type === 'complete') {
+        [523.25, 659.25, 783.99, 1046.5].forEach((freq, i) => {
+          const o = audioCtx.createOscillator();
+          const g = audioCtx.createGain();
+          o.connect(g);
+          g.connect(audioCtx.destination);
+          o.frequency.value = freq;
+          g.gain.setValueAtTime(0.2, now + i * 0.12);
+          g.gain.exponentialRampToValueAtTime(0.001, now + i * 0.12 + 0.4);
+          o.start(now + i * 0.12);
+          o.stop(now + i * 0.12 + 0.4);
+        });
+      }
+    }
+
+    /* ==========================================================
+       TEXT-TO-SPEECH (US FEMALE VOICE ENGINE)
+       ========================================================== */
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      
+      const cleanText = text.replace(/<[^>]*>?/gm, '').replace(/[_]{2,}/g, 'blank');
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.rate = 0.88; // Slow pedagogical rate for teens
+      utterance.pitch = 1.06;
+      utterance.lang = 'en-US';
+
+      const voices = window.speechSynthesis.getVoices();
+      const femaleVoice = voices.find(v => 
+        (v.lang === 'en-US' || v.lang === 'en_US') && 
+        (v.name.includes('Samantha') || v.name.includes('Zira') || v.name.includes('Jenny') || v.name.includes('Female') || v.name.includes('Google US English'))
+      ) || voices.find(v => v.lang.startsWith('en'));
+
+      if (femaleVoice) {
+        utterance.voice = femaleVoice;
+      }
+      window.speechSynthesis.speak(utterance);
+    }
+
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = () => {};
+    }
+
+    /* ==========================================================
+       FULL DATABASE: 5 GAMES x 20 QUESTIONS = 100 QUESTIONS
+       Unit 3: Teenagers (Simple & Compound Sentences)
+       ========================================================== */
+    const GAMES_DATA = [
+      // GAME 1: FANBOYS Co-ordinating Conjunctions (20 questions)
+      {
+        id: 0,
+        title: "GAME 1: ĐUA XE CAO TỐC (LIÊN TỪ FANBOYS)",
+        badge: "🏎️",
+        tag: "GAME 1",
+        desc: "Lựa chọn đúng liên từ kết hợp (for, and, nor, but, or, yet, so) để giúp xe đua bứt tốc!",
+        bannerHint: "Quy tắc vàng: Phải có dấu phẩy (,) trước liên từ FANBOYS trong câu ghép!",
+        bannerEmoji: "🏎️💨",
+        accentColor: "border-orange-300",
+        questions: [
+          {
+            q: "Mai felt stressed about the upcoming exam, ______ she asked her teacher for advice.",
+            sub: "Mai cảm thấy áp lực về kỳ thi sắp tới, [vì vậy] cô ấy đã hỏi xin lời khuyên từ cô giáo.",
+            options: ["A. so", "B. but", "C. for", "D. or"],
+            correct: 0,
+            exp: "Chọn 'so' (vì vậy) để diễn tả mối quan hệ nguyên nhân - kết quả. Vế 1: cảm thấy áp lực, Vế 2: kết quả là xin lời khuyên.",
+            rule: "S + V, so + S + V (Chỉ kết quả)"
+          },
+          {
+            q: "Tom wanted to join the chess club, ______ he was too busy with his school project.",
+            sub: "Tom muốn tham gia câu lạc bộ cờ vua, [nhưng] bạn ấy lại quá bận với dự án trường học.",
+            options: ["A. so", "B. but", "C. and", "D. for"],
+            correct: 1,
+            exp: "Chọn 'but' (nhưng) để thể hiện sự tương phản giữa mong muốn tham gia và việc bị bận rộn.",
+            rule: "S + V, but + S + V (Chỉ sự tương phản)"
+          },
+          {
+            q: "You can post your questions on the class forum, ______ you can talk directly to the club leader.",
+            sub: "Bạn có thể đăng câu hỏi lên diễn đàn lớp, [hoặc] bạn có thể nói chuyện trực tiếp với chủ nhiệm CLB.",
+            options: ["A. and", "B. yet", "C. or", "D. so"],
+            correct: 2,
+            exp: "Chọn 'or' (hoặc) để đưa ra sự lựa chọn giữa 2 phương án giải quyết.",
+            rule: "S + V, or + S + V (Chỉ sự lựa chọn)"
+          },
+          {
+            q: "Lan loves crafting paper flowers, ______ she spends two hours every weekend at the arts club.",
+            sub: "Lan thích làm hoa giấy, [và] cô ấy dành 2 giờ mỗi cuối tuần tại câu lạc bộ nghệ thuật.",
+            options: ["A. and", "B. but", "C. nor", "D. yet"],
+            correct: 0,
+            exp: "Chọn 'and' (và) để bổ sung thêm thông tin về hành động tiếp theo của Lan.",
+            rule: "S + V, and + S + V (Thêm thông tin)"
+          },
+          {
+            q: "Peter didn't check his phone notifications, ______ he missed the announcement about the sports club meeting.",
+            sub: "Peter đã không kiểm tra thông báo điện thoại, [cho nên] bạn ấy đã bỏ lỡ thông báo họp CLB thể thao.",
+            options: ["A. yet", "B. for", "C. but", "D. so"],
+            correct: 3,
+            exp: "Chọn 'so' chỉ kết quả: không kiểm tra thông báo dẫn đến việc bị lỡ cuộc họp.",
+            rule: "S + V, so + S + V (Nguyên nhân -> Kết quả)"
+          },
+          {
+            q: "Minh practiced playing badminton very hard, ______ he lost the final round to his classmate.",
+            sub: "Minh đã luyện tập cầu lông rất chăm chỉ, [nhưng / tuy thế] cậu ấy vẫn thua trận chung kết.",
+            options: ["A. and", "B. yet", "C. so", "D. or"],
+            correct: 1,
+            exp: "Chọn 'yet' (tuy thế mà, nhưng) biểu thị kết quả bất ngờ trái ngược với công sức bỏ ra.",
+            rule: "S + V, yet + S + V (Tương phản bất ngờ)"
+          },
+          {
+            q: "The students were delighted, ______ their team won the school drama competition.",
+            sub: "Các bạn học sinh rất vui mừng, [bởi vì] đội của họ đã chiến thắng cuộc thi kịch của trường.",
+            options: ["A. so", "B. for", "C. but", "D. or"],
+            correct: 1,
+            exp: "Chọn 'for' (bởi vì = because trong văn phong trang trọng). 'For' đứng sau dấu phẩy giải thích lý do.",
+            rule: "S + V, for + S + V (Chỉ nguyên nhân, lý do)"
+          },
+          {
+            q: "Nick doesn't like bullying others, ______ does he allow his friends to tease anyone.",
+            sub: "Nick không thích bắt nạt người khác, [và cậu ấy cũng không] cho phép bạn bè trêu chọc ai.",
+            options: ["A. nor", "B. or", "C. but", "D. so"],
+            correct: 0,
+            exp: "Chọn 'nor' (cũng không). Lưu ý sau 'nor' có hiện tượng đảo ngữ: 'does he allow...'.",
+            rule: "Phủ định, nor + Trợ động từ + S + V"
+          },
+          {
+            q: "You must finish your assignment on time, ______ you will get a low mark from your teacher.",
+            sub: "Bạn phải hoàn thành bài tập đúng giờ, [nếu không thì / hoặc] bạn sẽ bị điểm kém.",
+            options: ["A. and", "B. so", "C. or", "D. yet"],
+            correct: 2,
+            exp: "Chọn 'or' diễn tả hậu quả hoặc lựa chọn khác nếu mệnh đề 1 không thực hiện.",
+            rule: "Mệnh lệnh/Khuyên bảo, or + S + will + V"
+          },
+          {
+            q: "Many teenagers enjoy browsing websites, ______ they should be careful with personal privacy.",
+            sub: "Nhiều thanh thiếu niên thích lướt web, [nhưng] các bạn ấy nên cẩn thận với quyền riêng tư cá nhân.",
+            options: ["A. so", "B. but", "C. and", "D. for"],
+            correct: 1,
+            exp: "Chọn 'but' chỉ sự đối lập giữa sở thích và lời cảnh báo cần cẩn thận.",
+            rule: "S + V, but + S + V (Tương phản)"
+          },
+          {
+            q: "Linh was suffering from peer pressure, ______ she decided to share her feelings with her parents.",
+            sub: "Linh đang phải chịu áp lực từ bạn bè, [vì thế] bạn ấy quyết định tâm sự với bố mẹ.",
+            options: ["A. so", "B. nor", "C. yet", "D. or"],
+            correct: 0,
+            exp: "Chọn 'so' diễn tả hành động hợp lý xuất phát từ trạng thái áp lực đồng trang lứa.",
+            rule: "S + V, so + S + V"
+          },
+          {
+            q: "They uploaded a video of their school dance, ______ it received hundreds of likes within an hour.",
+            sub: "Họ đã đăng tải video điệu nhảy của trường, [và] nó nhận được hàng trăm lượt thích trong vòng một giờ.",
+            options: ["A. and", "B. but", "C. or", "D. nor"],
+            correct: 0,
+            exp: "Chọn 'and' nối hai hành động kế tiếp và tăng thêm thông tin tích cực.",
+            rule: "S + V, and + S + V"
+          },
+          {
+            q: "The coach trained the basketball team patiently, ______ all players showed great improvement.",
+            sub: "Huấn luyện viên đã huấn luyện đội bóng rổ rất kiên nhẫn, [cho nên] tất cả cầu thủ đều tiến bộ vượt bậc.",
+            options: ["A. yet", "B. but", "C. so", "D. for"],
+            correct: 2,
+            exp: "Chọn 'so' biểu thị thành quả tốt đẹp đạt được nhờ công huấn luyện.",
+            rule: "S + V, so + S + V"
+          },
+          {
+            q: "An didn't log on to the forum yesterday, ______ did he reply to any emails.",
+            sub: "Hôm qua An đã không đăng nhập vào diễn đàn, [cũng không] trả lời bất kỳ email nào.",
+            options: ["A. nor", "B. or", "C. but", "D. yet"],
+            correct: 0,
+            exp: "Chọn 'nor' nối mệnh đề phủ định kèm đảo ngữ 'did he reply'.",
+            rule: "Neither/Not..., nor + V(trợ) + S + V"
+          },
+          {
+            q: "We can cycle around the park, ______ we can play badminton in the school yard.",
+            sub: "Chúng mình có thể đạp xe quanh công viên, [hoặc] chúng mình có thể chơi cầu lông trong sân trường.",
+            options: ["A. or", "B. so", "C. for", "D. nor"],
+            correct: 0,
+            exp: "Chọn 'or' đưa ra 2 hoạt động ngoại khóa để lựa chọn.",
+            rule: "S + V, or + S + V"
+          },
+          {
+            q: "She was exhausted after school, ______ she still completed all her math exercises.",
+            sub: "Bạn ấy kiệt sức sau giờ học, [nhưng/tuy vậy] bạn ấy vẫn hoàn thành tất cả bài tập toán.",
+            options: ["A. and", "B. yet", "C. so", "D. or"],
+            correct: 1,
+            exp: "Chọn 'yet' (nhưng/tuy vậy) chỉ sự đối lập đáng khen ngợi giữa sự mệt mỏi và tinh thần học tập.",
+            rule: "S + V, yet + S + V"
+          },
+          {
+            q: "Teenagers need enough sleep, ______ lack of sleep makes them irritable and tired.",
+            sub: "Tuổi teen cần ngủ đủ giấc, [bởi vì] thiếu ngủ khiến các bạn trở nên cáu kỉnh và mệt mỏi.",
+            options: ["A. for", "B. so", "C. but", "D. or"],
+            correct: 0,
+            exp: "Chọn 'for' (= because) giải thích nguyên nhân khoa học phía sau lời khuyên.",
+            rule: "S + V, for + S + V"
+          },
+          {
+            q: "Hoa loves reading books, ______ she goes to the school library every Tuesday afternoon.",
+            sub: "Hoa yêu thích đọc sách, [vì vậy] bạn ấy đến thư viện trường vào mỗi chiều thứ Ba.",
+            options: ["A. but", "B. or", "C. so", "D. nor"],
+            correct: 2,
+            exp: "Chọn 'so' liên kết nguyên nhân (thích đọc sách) dẫn đến thói quen (đến thư viện).",
+            rule: "S + V, so + S + V"
+          },
+          {
+            q: "Nam didn't bring his umbrella, ______ it began to rain heavily on his way home.",
+            sub: "Nam không mang ô, [và] trời bắt đầu đổ mưa rào trên đường bạn ấy về nhà.",
+            options: ["A. and", "B. or", "C. nor", "D. for"],
+            correct: 0,
+            exp: "Chọn 'and' để nối 2 sự kiện xảy ra cùng lúc / tiếp nối.",
+            rule: "S + V, and + S + V"
+          },
+          {
+            q: "You should join the language club, ______ you won't improve your English speaking skill quickly.",
+            sub: "Bạn nên tham gia câu lạc bộ ngoại ngữ, [nếu không thì] bạn sẽ không thể cải thiện kỹ năng nói nhanh được.",
+            options: ["A. so", "B. or", "C. and", "D. yet"],
+            correct: 1,
+            exp: "Chọn 'or' trong ngữ cảnh cảnh báo / điều kiện loại trừ.",
+            rule: "S + should + V, or + S + won't + V"
+          }
+        ]
+      },
+
+      // GAME 2: Balloon Pop (Simple vs Compound Sentences - 20 questions)
+      {
+        id: 1,
+        title: "GAME 2: BẮN BÓNG PHÂN BIỆT (SIMPLE VS COMPOUND)",
+        badge: "🎈",
+        tag: "GAME 2",
+        desc: "Phân biệt nhanh đâu là Câu Đơn (Simple Sentence) và đâu là Câu Ghép (Compound Sentence)!",
+        bannerHint: "Mẹo nhỏ: Chủ ngữ kép (Mai and Lan) hoặc Vị ngữ kép (cook and eat) vẫn là CÂU ĐƠN!",
+        bannerEmoji: "🎈✨",
+        accentColor: "border-pink-300",
+        questions: [
+          {
+            q: "Identify the sentence type: 'Minh and his friends joined the IT club last week.'",
+            sub: "Xác định loại câu: 'Minh và bạn của cậu ấy đã tham gia CLB Tin học tuần trước.'",
+            options: ["A. Simple Sentence (Câu đơn)", "B. Compound Sentence (Câu ghép)", "C. Complex Sentence", "D. Fragment"],
+            correct: 0,
+            exp: "Đây là câu đơn (Simple Sentence) vì chỉ có 1 mệnh đề độc lập với chủ ngữ kép (Minh and his friends) và 1 vị ngữ (joined the IT club...).",
+            rule: "Compound Subject + Verb = Vẫn là Simple Sentence (1 mệnh đề)"
+          },
+          {
+            q: "Identify the sentence type: 'Lan likes drawing, but she didn't attend the art competition.'",
+            sub: "Xác định loại câu: 'Lan thích vẽ, nhưng cô ấy đã không tham dự cuộc thi mỹ thuật.'",
+            options: ["A. Simple Sentence (Câu đơn)", "B. Compound Sentence (Câu ghép)", "C. Complex Sentence", "D. Compound-Complex"],
+            correct: 1,
+            exp: "Đây là câu ghép (Compound Sentence) vì có 2 mệnh đề độc lập nối với nhau bằng liên từ kết hợp ', but'.",
+            rule: "[Clause 1] , but [Clause 2] = Compound Sentence"
+          },
+          {
+            q: "Identify the sentence type: 'Teenagers often feel pressured by high school exams.'",
+            sub: "Xác định: 'Các bạn tuổi teen thường cảm thấy áp lực bởi các kỳ thi ở trường phổ thông.'",
+            options: ["A. Simple Sentence (Câu đơn)", "B. Compound Sentence (Câu ghép)", "C. Complex Sentence", "D. Compound Subject"],
+            correct: 0,
+            exp: "Chỉ gồm 1 chủ ngữ (Teenagers) và 1 động từ chính (feel), tạo thành 1 mệnh đề độc lập duy nhất -> Simple Sentence.",
+            rule: "S + V + O = Simple Sentence"
+          },
+          {
+            q: "Identify the sentence type: 'We checked our notifications, and then we logged out of the forum.'",
+            sub: "Xác định: 'Chúng tôi kiểm tra thông báo, và sau đó chúng tôi đăng xuất khỏi diễn đàn.'",
+            options: ["A. Simple Sentence (Câu đơn)", "B. Compound Sentence (Câu ghép)", "C. Complex Sentence", "D. Passive Sentence"],
+            correct: 1,
+            exp: "Có 2 mệnh đề hoàn chỉnh: 'We checked...' và 'we logged out...', nối bởi ', and' -> Compound Sentence.",
+            rule: "[Clause 1] , and [Clause 2] = Compound Sentence"
+          },
+          {
+            q: "Identify the sentence type: 'The chess coach taught the members new tactics and motivated them.'",
+            sub: "Xác định: 'Huấn luyện viên cờ vua đã dạy các thành viên chiến thuật mới và động viên họ.'",
+            options: ["A. Simple Sentence (Câu đơn)", "B. Compound Sentence (Câu ghép)", "C. Complex Sentence", "D. Compound Clause"],
+            correct: 0,
+            exp: "Câu này có chủ ngữ 'The chess coach' và 2 động từ ghép (taught... and motivated...), nhưng vẫn chỉ có 1 mệnh đề độc lập -> Simple Sentence.",
+            rule: "S + V1 + and + V2 = Compound Predicate (vẫn là Simple Sentence)"
+          },
+          {
+            q: "Identify the sentence type: 'You must focus on your revision, or you will fail the test.'",
+            sub: "Xác định: 'Bạn phải tập trung ôn tập, hoặc bạn sẽ trượt bài kiểm tra.'",
+            options: ["A. Simple Sentence (Câu đơn)", "B. Compound Sentence (Câu ghép)", "C. Complex Sentence", "D. Imperative only"],
+            correct: 1,
+            exp: "Có 2 mệnh đề độc lập nối với nhau bằng ', or' -> Compound Sentence.",
+            rule: "[Clause 1] , or [Clause 2] = Compound Sentence"
+          },
+          {
+            q: "Identify the sentence type: 'Both Mai and her sister are active members of the environmental club.'",
+            sub: "Xác định: 'Cả Mai và chị gái cô ấy đều là thành viên tích cực của CLB môi trường.'",
+            options: ["A. Simple Sentence (Câu đơn)", "B. Compound Sentence (Câu ghép)", "C. Complex Sentence", "D. Dependent Clause"],
+            correct: 0,
+            exp: "Chủ ngữ ghép 'Both Mai and her sister' cùng thực hiện vị ngữ 'are active members...' -> Simple Sentence.",
+            rule: "Both A and B + V = Simple Sentence"
+          },
+          {
+            q: "Identify the sentence type: 'He stayed up late playing video games; therefore, he felt sleepy in class.'",
+            sub: "Xác định: 'Cậu ấy thức khuya chơi điện tử; do đó, cậu ấy cảm thấy buồn ngủ trong lớp.'",
+            options: ["A. Simple Sentence (Câu đơn)", "B. Compound Sentence (Câu ghép)", "C. Complex Sentence", "D. Incomplete sentence"],
+            correct: 1,
+            exp: "2 mệnh đề độc lập nối bằng trạng từ liên kết '; therefore,' -> Compound Sentence.",
+            rule: "[Clause 1] ; therefore, [Clause 2] = Compound Sentence"
+          },
+          {
+            q: "Identify the sentence type: 'Cyberbullying is a serious problem among young students nowadays.'",
+            sub: "Xác định: 'Bắt nạt qua mạng là một vấn nạn nghiêm trọng đối với học sinh ngày nay.'",
+            options: ["A. Simple Sentence (Câu đơn)", "B. Compound Sentence (Câu ghép)", "C. Complex Sentence", "D. Compound Predicate"],
+            correct: 0,
+            exp: "1 chủ ngữ (Cyberbullying) + 1 động từ to be (is) -> Simple Sentence.",
+            rule: "1 Independent clause = Simple Sentence"
+          },
+          {
+            q: "Identify the sentence type: 'Nick was exhausted, yet he continued preparing slides for the club presentation.'",
+            sub: "Xác định: 'Nick rất mệt, nhưng bạn ấy vẫn tiếp tục chuẩn bị trang chiếu cho bài thuyết trình CLB.'",
+            options: ["A. Simple Sentence (Câu đơn)", "B. Compound Sentence (Câu ghép)", "C. Complex Sentence", "D. Simple Predicate"],
+            correct: 1,
+            exp: "2 mệnh đề độc lập nối bằng ', yet' -> Compound Sentence.",
+            rule: "[Clause 1] , yet [Clause 2] = Compound Sentence"
+          },
+          {
+            q: "Identify the sentence type: 'Our school counseling team supports students with mental health issues.'",
+            sub: "Xác định: 'Tổ tư vấn tâm lý trường học của chúng tôi hỗ trợ học sinh có các vấn đề về sức khỏe tinh thần.'",
+            options: ["A. Simple Sentence (Câu đơn)", "B. Compound Sentence (Câu ghép)", "C. Complex Sentence", "D. Compound sentence"],
+            correct: 0,
+            exp: "Chỉ có 1 mệnh đề độc lập duy nhất -> Simple Sentence.",
+            rule: "S + V + O = Simple Sentence"
+          },
+          {
+            q: "Identify the sentence type: 'The students wanted to hold a music show, for they wanted to raise funds.'",
+            sub: "Xác định: 'Các bạn học sinh muốn tổ chức buổi diễn âm nhạc, bởi vì họ muốn gây quỹ.'",
+            options: ["A. Simple Sentence (Câu đơn)", "B. Compound Sentence (Câu ghép)", "C. Complex Sentence", "D. Passive voice"],
+            correct: 1,
+            exp: "Nối 2 mệnh đề bằng liên từ ', for' -> Compound Sentence.",
+            rule: "[Clause 1] , for [Clause 2] = Compound Sentence"
+          },
+          {
+            q: "Identify the sentence type: 'Parents and teachers should listen to teenagers patiently.'",
+            sub: "Xác định: 'Cha mẹ và thầy cô nên kiên nhẫn lắng nghe các bạn tuổi teen.'",
+            options: ["A. Simple Sentence (Câu đơn)", "B. Compound Sentence (Câu ghép)", "C. Complex Sentence", "D. Compound object"],
+            correct: 0,
+            exp: "Chủ ngữ ghép 'Parents and teachers' chỉ có 1 vị ngữ 'should listen...' -> Simple Sentence.",
+            rule: "Compound Subject = Simple Sentence"
+          },
+          {
+            q: "Identify the sentence type: 'Mai loves reading science books, and she also writes articles for the youth magazine.'",
+            sub: "Xác định: 'Mai thích đọc sách khoa học, và bạn ấy cũng viết bài cho tạp chí tuổi trẻ.'",
+            options: ["A. Simple Sentence (Câu đơn)", "B. Compound Sentence (Câu ghép)", "C. Complex Sentence", "D. Simple Sentence with 2 clauses"],
+            correct: 1,
+            exp: "2 mệnh đề độc lập đầy đủ (Mai loves... / she also writes...) nối bởi ', and' -> Compound Sentence.",
+            rule: "[Clause 1] , and [Clause 2] = Compound Sentence"
+          },
+          {
+            q: "Identify the sentence type: 'To overcome stress, teenagers can do physical exercise regularly.'",
+            sub: "Xác định: 'Để vượt qua căng thẳng, tuổi teen có thể tập thể dục đều đặn.'",
+            options: ["A. Simple Sentence (Câu đơn)", "B. Compound Sentence (Câu ghép)", "C. Complex Sentence", "D. Compound Predicate"],
+            correct: 0,
+            exp: "'To overcome stress' chỉ là cụm to-V chỉ mục đích, mệnh đề chính là 'teenagers can do physical exercise regularly' -> Simple Sentence.",
+            rule: "Prepositional/Infinitive phrase + 1 clause = Simple Sentence"
+          },
+          {
+            q: "Identify the sentence type: 'She didn't study hard; however, she passed the entrance test with good luck.'",
+            sub: "Xác định: 'Cô ấy không học chăm chỉ; tuy nhiên, cô ấy đã đỗ kỳ thi tuyển sinh nhờ may mắn.'",
+            options: ["A. Simple Sentence (Câu đơn)", "B. Compound Sentence (Câu ghép)", "C. Complex Sentence", "D. Fragment"],
+            correct: 1,
+            exp: "2 mệnh đề nối bằng '; however,' -> Compound Sentence.",
+            rule: "Semicolon + however + comma = Compound Sentence"
+          },
+          {
+            q: "Identify the sentence type: 'Teenagers can discuss their problems on school social forums.'",
+            sub: "Xác định: 'Tuổi teen có thể thảo luận những vấn đề của mình trên các diễn đàn mạng xã hội của trường.'",
+            options: ["A. Simple Sentence (Câu đơn)", "B. Compound Sentence (Câu ghép)", "C. Complex Sentence", "D. Compound Subject"],
+            correct: 0,
+            exp: "Chỉ gồm 1 mệnh đề độc lập trọn vẹn -> Simple Sentence.",
+            rule: "1 Clause = Simple Sentence"
+          },
+          {
+            q: "Identify the sentence type: 'Neither Tom nor Mark joined the soccer match yesterday.'",
+            sub: "Xác định: 'Cả Tom và Mark đều không tham gia trận bóng đá hôm qua.'",
+            options: ["A. Simple Sentence (Câu đơn)", "B. Compound Sentence (Câu ghép)", "C. Complex Sentence", "D. Compound Sentence with Nor"],
+            correct: 0,
+            exp: "'Neither Tom nor Mark' là liên từ tương quan nối 2 chủ ngữ, toàn câu chỉ có 1 động từ 'joined' -> Simple Sentence.",
+            rule: "Neither... nor joining subjects = Simple Sentence"
+          },
+          {
+            q: "Identify the sentence type: 'Huy was nervous about public speaking, so he joined the debate club.'",
+            sub: "Xác định: 'Huy hồi hộp khi nói trước đám đông, vì vậy bạn ấy đã tham gia CLB tranh biện.'",
+            options: ["A. Simple Sentence (Câu đơn)", "B. Compound Sentence (Câu ghép)", "C. Complex Sentence", "D. Incomplete clause"],
+            correct: 1,
+            exp: "2 mệnh đề nối bằng ', so' -> Compound Sentence.",
+            rule: "[Clause 1] , so [Clause 2] = Compound Sentence"
+          },
+          {
+            q: "Identify the sentence type: 'Taking part in school clubs brings many benefits to students.'",
+            sub: "Xác định: 'Tham gia các câu lạc bộ trường học mang lại nhiều lợi ích cho học sinh.'",
+            options: ["A. Simple Sentence (Câu đơn)", "B. Compound Sentence (Câu ghép)", "C. Complex Sentence", "D. Compound Verb"],
+            correct: 0,
+            exp: "Chủ ngữ là Danh động từ 'Taking part in school clubs' + động từ 'brings' -> Simple Sentence.",
+            rule: "Gerund phrase subject + Verb = Simple Sentence"
+          }
+        ]
+      },
+
+      // GAME 3: Conjunctive Adverbs (However, Therefore, Otherwise...) - 20 questions
+      {
+        id: 2,
+        title: "GAME 3: CHIẾN HẠM TRẠNG TỪ LIÊN KẾT",
+        badge: "🚀",
+        tag: "GAME 3",
+        desc: "Bắn hạ các thiên thạch bằng cách chọn đúng trạng từ liên kết và dấu câu chuẩn mực!",
+        bannerHint: "Công thức: Mệnh đề 1 ; [trạng từ liên kết] , Mệnh đề 2 (Dấu chấm phẩy trước, dấu phẩy sau)",
+        bannerEmoji: "🚀🌌",
+        accentColor: "border-purple-300",
+        questions: [
+          {
+            q: "Minh revised all the lessons carefully; ______, he felt confident during the test.",
+            sub: "Minh đã ôn tập kỹ lưỡng mọi bài học; [do đó], cậu ấy cảm thấy tự tin suốt bài thi.",
+            options: ["A. therefore", "B. however", "C. otherwise", "D. but"],
+            correct: 0,
+            exp: "Chọn 'therefore' (do đó / vì vậy) để biểu thị kết quả hợp lý sau dấu chấm phẩy.",
+            rule: "; therefore, (Chỉ kết quả)"
+          },
+          {
+            q: "Lan wanted to join the drama club; ______, her parents wanted her to focus on English.",
+            sub: "Lan muốn tham gia CLB kịch; [tuy nhiên], bố mẹ lại muốn bạn ấy tập trung học tiếng Anh.",
+            options: ["A. therefore", "B. however", "C. otherwise", "D. so"],
+            correct: 1,
+            exp: "Chọn 'however' (tuy nhiên) thể hiện sự trái ngược giữa mong muốn của Lan và bố mẹ.",
+            rule: "; however, (Chỉ tương phản)"
+          },
+          {
+            q: "You must manage your schedule better; ______, you will suffer from severe exam stress.",
+            sub: "Bạn phải quản lý thời gian biểu tốt hơn; [nếu không thì], bạn sẽ phải chịu căng thẳng thi cử nặng nề.",
+            options: ["A. therefore", "B. moreover", "C. otherwise", "D. however"],
+            correct: 2,
+            exp: "Chọn 'otherwise' (nếu không thì) diễn tả hậu quả nếu không quản lý tốt thời gian.",
+            rule: "; otherwise, (Chỉ hậu quả tiêu cực nếu không làm)"
+          },
+          {
+            q: "Joining school clubs helps students make new friends; ______, it improves their teamwork skills.",
+            sub: "Tham gia CLB trường giúp học sinh kết bạn mới; [hơn nữa], nó còn nâng cao kỹ năng làm việc nhóm.",
+            options: ["A. however", "B. moreover", "C. otherwise", "D. but"],
+            correct: 1,
+            exp: "Chọn 'moreover' (hơn nữa, thêm vào đó) để bổ sung thêm lợi ích tích cực.",
+            rule: "; moreover, (Thêm thông tin bổ sung)"
+          },
+          {
+            q: "Which punctuation is correct for conjunctive adverbs?",
+            sub: "Cách đặt dấu câu nào dưới đây là đúng chuẩn ngữ pháp với trạng từ liên kết?",
+            options: [
+              "A. S + V, however, S + V",
+              "B. S + V; however, S + V",
+              "C. S + V however S + V",
+              "D. S + V; however; S + V"
+            ],
+            correct: 1,
+            exp: "Quy tắc chuẩn: Dấu chấm phẩy (;) đứng trước trạng từ liên kết và dấu phẩy (,) đứng ngay sau nó.",
+            rule: "; however, / ; therefore, / ; otherwise,"
+          },
+          {
+            q: "Nick felt exhausted after soccer practice. ______, he helped his sister with her homework.",
+            sub: "Nick kiệt sức sau buổi tập bóng đá. [Tuy nhiên], cậu ấy vẫn giúp em gái làm bài tập.",
+            options: ["A. Therefore", "B. However", "C. Otherwise", "D. So"],
+            correct: 1,
+            exp: "Khi tách thành câu mới với dấu chấm, dùng 'However,' đầu câu để chỉ sự tương phản.",
+            rule: ". However, + S + V"
+          },
+          {
+            q: "Huy didn't submit his biology project on time; ______, he received a grade penalty.",
+            sub: "Huy đã không nộp dự án sinh học đúng hạn; [vì vậy], cậu ấy bị trừ điểm.",
+            options: ["A. however", "B. therefore", "C. otherwise", "D. moreover"],
+            correct: 1,
+            exp: "Chọn 'therefore' chỉ kết quả tất yếu của việc không nộp bài đúng hạn.",
+            rule: "; therefore, (Hệ quả)"
+          },
+          {
+            q: "Students should not stay up late surfing the net. ______, they should go to bed before 10:30 PM.",
+            sub: "Học sinh không nên thức khuya lướt mạng. [Thay vào đó / Do vậy], họ nên đi ngủ trước 10:30.",
+            options: ["A. Therefore", "B. However", "C. Otherwise", "D. But"],
+            correct: 0,
+            exp: "Chọn 'Therefore' đưa ra hành động đúng đắn rút ra từ lời khuyên phía trước.",
+            rule: ". Therefore, + S + V"
+          },
+          {
+            q: "Set an alarm for tomorrow morning; ______, you will be late for the club meeting.",
+            sub: "Hãy đặt báo thức cho sáng mai; [nếu không], bạn sẽ bị muộn buổi họp câu lạc bộ.",
+            options: ["A. therefore", "B. otherwise", "C. however", "D. moreover"],
+            correct: 1,
+            exp: "Chọn 'otherwise' (nếu không) sau mệnh đề mệnh lệnh.",
+            rule: "Mệnh lệnh; otherwise, S + will + V"
+          },
+          {
+            q: "The team practiced very hard; ______, they won the first prize in the school tournament.",
+            sub: "Cả đội đã tập luyện rất chăm chỉ; [vì thế], họ đã giành giải nhất trong giải đấu trường.",
+            options: ["A. therefore", "B. however", "C. otherwise", "D. yet"],
+            correct: 0,
+            exp: "Chọn 'therefore' chỉ thành quả xứng đáng của sự nỗ lực.",
+            rule: "; therefore, + S + V"
+          },
+          {
+            q: "She is active in social media discussions; ______, she is quite shy in face-to-face communication.",
+            sub: "Cô ấy rất năng nổ thảo luận trên mạng xã hội; [tuy nhiên], cô ấy lại khá bẽn lẽn khi giao tiếp trực tiếp.",
+            options: ["A. therefore", "B. however", "C. otherwise", "D. moreover"],
+            correct: 1,
+            exp: "Chọn 'however' chỉ sự trái ngược thú vị giữa hành vi trên mạng và ngoài đời thực.",
+            rule: "; however, (Tương phản)"
+          },
+          {
+            q: "Be careful when chatting with strangers online; ______, you may put your personal data at risk.",
+            sub: "Hãy cẩn thận khi trò chuyện với người lạ trên mạng; [nếu không thì], bạn có thể đặt dữ liệu cá nhân vào vòng nguy hiểm.",
+            options: ["A. otherwise", "B. therefore", "C. however", "D. moreover"],
+            correct: 0,
+            exp: "Chọn 'otherwise' cảnh báo về rủi ro nếu không cẩn trọng.",
+            rule: "; otherwise, (Cảnh báo rủi ro)"
+          },
+          {
+            q: "Mai enjoys learning foreign languages; ______, she can speak English and French fluently.",
+            sub: "Mai thích học ngoại ngữ; [hơn thế nữa / quả thực], bạn ấy có thể nói trôi chảy cả tiếng Anh và tiếng Pháp.",
+            options: ["A. moreover", "B. however", "C. otherwise", "D. but"],
+            correct: 0,
+            exp: "Chọn 'moreover' để nhấn mạnh và cung cấp thêm dẫn chứng thuyết phục.",
+            rule: "; moreover, (Bổ sung dẫn chứng)"
+          },
+          {
+            q: "He didn't listen to the teacher's instructions; ______, he made many careless mistakes.",
+            sub: "Cậu ấy đã không nghe lời dặn của thầy giáo; [kết quả là / do đó], cậu ấy phạm nhiều lỗi bất cẩn.",
+            options: ["A. therefore", "B. however", "C. otherwise", "D. but"],
+            correct: 0,
+            exp: "Chọn 'therefore' chỉ hậu quả của việc không tập trung lắng nghe.",
+            rule: "; therefore, (Kết quả)"
+          },
+          {
+            q: "The question was extremely tricky; ______, several students managed to solve it.",
+            sub: "Câu hỏi cực kỳ hóc búa; [tuy nhiên], một vài bạn học sinh vẫn giải được.",
+            options: ["A. therefore", "B. however", "C. otherwise", "D. moreover"],
+            correct: 1,
+            exp: "Chọn 'however' thể hiện kết quả bất ngờ trái với độ khó của bài toán.",
+            rule: "; however, (Tương phản)"
+          },
+          {
+            q: "Turn down the volume; ______, you will disturb your grandparents' sleep.",
+            sub: "Vặn nhỏ âm lượng xuống; [nếu không thì], con sẽ làm phiền giấc ngủ của ông bà đấy.",
+            options: ["A. therefore", "B. however", "C. otherwise", "D. so"],
+            correct: 2,
+            exp: "Chọn 'otherwise' chỉ hậu quả tiêu cực nếu không giảm âm lượng.",
+            rule: "; otherwise, (Hậu quả)"
+          },
+          {
+            q: "Mark has high expectations from his parents. ______, he feels pressured before every exam.",
+            sub: "Mark chịu kỳ vọng cao từ cha mẹ. [Do đó], bạn ấy cảm thấy áp lực trước mỗi kỳ thi.",
+            options: ["A. Therefore", "B. However", "C. Otherwise", "D. But"],
+            correct: 0,
+            exp: "Dùng 'Therefore,' đứng đầu câu mới để chỉ kết quả từ kỳ vọng của cha mẹ.",
+            rule: ". Therefore, + S + V"
+          },
+          {
+            q: "Teenagers should participate in outdoor sports; ______, they should limit their screen time.",
+            sub: "Tuổi teen nên tham gia các môn thể thao ngoài trời; [hơn nữa], các bạn cũng nên hạn chế thời gian dùng màn hình.",
+            options: ["A. moreover", "B. however", "C. otherwise", "D. but"],
+            correct: 0,
+            exp: "Chọn 'moreover' để liên kết hai lời khuyên hữu ích cùng hướng.",
+            rule: "; moreover, (Bổ sung lời khuyên)"
+          },
+          {
+            q: "We wanted to organize an outdoor picnic; ______, heavy rain forced us to stay indoors.",
+            sub: "Chúng tôi muốn tổ chức buổi dã ngoại ngoài trời; [tuy nhiên], cơn mưa to đã buộc chúng tôi phải ở trong nhà.",
+            options: ["A. therefore", "B. however", "C. otherwise", "D. so"],
+            correct: 1,
+            exp: "Chọn 'however' chỉ việc kế hoạch bị đảo lộn do thời tiết xấu.",
+            rule: "; however, (Tương phản bất khả kháng)"
+          },
+          {
+            q: "Save your document frequently; ______, you will lose your work if power cuts off.",
+            sub: "Hãy lưu tài liệu thường xuyên; [nếu không], bạn sẽ bị mất bài nếu mất điện.",
+            options: ["A. otherwise", "B. therefore", "C. however", "D. moreover"],
+            correct: 0,
+            exp: "Chọn 'otherwise' biểu thị cảnh báo kỹ thuật số.",
+            rule: "; otherwise, (Cảnh báo)"
+          }
+        ]
+      },
+
+      // GAME 4: Error Detective (Punctuation & Connectors - 20 questions)
+      {
+        id: 3,
+        title: "GAME 4: TRINH THÁM BẮT LỖI DẤU CÂU & LIÊN TỪ",
+        badge: "🔍",
+        tag: "GAME 4",
+        desc: "Làm thám tử tinh mắt phát hiện và sửa các lỗi sai kinh điển về dấu câu và liên từ!",
+        bannerHint: "Cảnh giác: Không dùng dấu phẩy đơn giản nối 2 mệnh đề (lỗi Comma Splice)!",
+        bannerEmoji: "🔍🕵️",
+        accentColor: "border-teal-300",
+        questions: [
+          {
+            q: "Find the error: 'Mai felt stressed [A] so she [B] talked to [C] her school counselor [D].'",
+            sub: "Tìm lỗi sai: Trong câu ghép dùng liên từ FANBOYS, lỗi nằm ở đâu?",
+            options: [
+              "A. stressed so (Thiếu dấu phẩy trước 'so')",
+              "B. she",
+              "C. talked to",
+              "D. counselor"
+            ],
+            correct: 0,
+            exp: "Sai ở 'stressed so'. Trong câu ghép nối bằng FANBOYS, bắt buộc phải có dấu phẩy (,) trước liên từ: '... stressed, so she talked...'.",
+            rule: "S + V, so + S + V (Bắt buộc có dấu phẩy trước FANBOYS)"
+          },
+          {
+            q: "Find the error: 'Nick loves basketball, however he didn't join the school team.'",
+            sub: "Tìm lỗi sai: Dấu câu xung quanh 'however' đã đúng chưa?",
+            options: [
+              "A. basketball, however (Sai dấu phẩy trước however)",
+              "B. he didn't",
+              "C. join",
+              "D. school team"
+            ],
+            correct: 0,
+            exp: "Lỗi Comma Splice! 'However' là trạng từ liên kết, không thể dùng dấu phẩy đơn thuần để nối 2 mệnh đề. Phải sửa thành '; however,' hoặc '. However,'.",
+            rule: "Không dùng: Clause, however Clause (Sai). Đúng: Clause; however, Clause"
+          },
+          {
+            q: "Find the error: 'You must log off your account, therefore someone will read your private messages.'",
+            sub: "Tìm lỗi sai: Dùng trạng từ liên kết chưa hợp lý về mặt ngữ nghĩa.",
+            options: [
+              "A. log off",
+              "B. therefore (Dùng nhầm từ chỉ kết quả thay vì cảnh báo)",
+              "C. someone",
+              "D. private messages"
+            ],
+            correct: 1,
+            exp: "Sai ở 'therefore'. Đây là câu cảnh báo hậu quả tiêu cực nếu không làm, nên phải dùng 'otherwise' (nếu không thì) hoặc 'or'.",
+            rule: "Ngữ cảnh cảnh báo: dùng otherwise / or"
+          },
+          {
+            q: "Find the error: 'Lan and Hoa joined the club, and participated in many activities.'",
+            sub: "Tìm lỗi sai: Đây là câu đơn có vị ngữ kép, dùng dấu phẩy có đúng không?",
+            options: [
+              "A. joined the club, and (Thừa dấu phẩy trong câu đơn vị ngữ kép)",
+              "B. Lan and Hoa",
+              "C. participated in",
+              "D. many activities"
+            ],
+            correct: 0,
+            exp: "Sai ở dấu phẩy! Vế sau 'participated' không có chủ ngữ riêng (vị ngữ kép), đây là câu đơn nên không được đặt dấu phẩy trước 'and'. Sửa: '... joined the club and participated...'.",
+            rule: "S + V1 and V2 (Không có dấu phẩy trước 'and' khi không có chủ ngữ mới)"
+          },
+          {
+            q: "Find the error: 'Tom checked the forum; and he posted a comment.'",
+            sub: "Tìm lỗi sai về dấu câu trước liên từ 'and'.",
+            options: [
+              "A. checked",
+              "B. forum; and (Dùng nhầm dấu chấm phẩy trước 'and')",
+              "C. he posted",
+              "D. a comment"
+            ],
+            correct: 1,
+            exp: "Sai ở 'forum; and'. Trước liên từ kết hợp 'and' ta chỉ dùng dấu phẩy (,), không dùng dấu chấm phẩy (;).",
+            rule: "Dấu phẩy (,) đi với FANBOYS, dấu chấm phẩy (;) đi với Conjunctive Adverbs"
+          },
+          {
+            q: "Find the error: 'Students face peer pressure so, they need empathy from parents.'",
+            sub: "Tìm lỗi sai: Vị trí dấu phẩy với liên từ 'so'.",
+            options: [
+              "A. face peer pressure",
+              "B. pressure so, (Đặt sai vị trí dấu phẩy)",
+              "C. need empathy",
+              "D. from parents"
+            ],
+            correct: 1,
+            exp: "Dấu phẩy phải đứng TRƯỚC 'so' (pressure, so they need), chứ không đứng sau 'so'.",
+            rule: ", so (Đúng) vs so, (Sai trong câu ghép FANBOYS)"
+          },
+          {
+            q: "Find the error: 'He worked hard, he passed the English examination.'",
+            sub: "Tìm lỗi sai: Hai mệnh đề độc lập chỉ ngăn cách bằng dấu phẩy (Comma Splice).",
+            options: [
+              "A. hard, he (Lỗi Comma Splice - thiếu liên từ)",
+              "B. worked",
+              "C. passed",
+              "D. examination"
+            ],
+            correct: 0,
+            exp: "Đây là lỗi Comma Splice (ghép câu tùy tiện bằng dấu phẩy). Bắt buộc phải thêm liên từ như ', so he passed' hoặc dùng '; therefore, he passed'.",
+            rule: "Clause, Clause (Lỗi Comma Splice)"
+          },
+          {
+            q: "Find the error: 'Minh wanted to improve his physical health, so he joined the chess club.'",
+            sub: "Tìm lỗi sai logic từ vựng / ngữ nghĩa trong Unit 3.",
+            options: [
+              "A. wanted to improve",
+              "B. physical health (CLB cờ vua rèn luyện trí tuệ, không phải thể chất)",
+              "C. so he joined",
+              "D. chess club"
+            ],
+            correct: 1,
+            exp: "Sai logic từ vựng Unit 3: Cờ vua rèn luyện trí tuệ (mental power/brain), còn cải thiện thể chất (physical health) phải tham gia CLB thể thao/bóng rổ (sports/basketball club).",
+            rule: "Chess = Mental / Sports = Physical health"
+          },
+          {
+            q: "Find the error: 'She practiced speaking every day; however she still felt shy.'",
+            sub: "Tìm lỗi sai về dấu câu xung quanh trạng từ 'however'.",
+            options: [
+              "A. practiced speaking",
+              "B. every day",
+              "C. ; however she (Thiếu dấu phẩy sau however)",
+              "D. felt shy"
+            ],
+            correct: 2,
+            exp: "Sau 'however' khi đứng sau dấu chấm phẩy bắt buộc phải có dấu phẩy: '; however, she still...'.",
+            rule: "; however, (Bắt buộc có dấu phẩy sau however)"
+          },
+          {
+            q: "Find the error: 'You can browse websites for information, but you can read books in the library.'",
+            sub: "Tìm lỗi sai: Dùng liên từ chưa chuẩn nghĩa (đây là 2 lựa chọn thay thế).",
+            options: [
+              "A. browse websites",
+              "B. , but (Dùng sai liên từ tương phản thay vì lựa chọn)",
+              "C. read books",
+              "D. in the library"
+            ],
+            correct: 1,
+            exp: "Hai vế đưa ra 2 cách tìm kiếm thông tin tương đương nhau (lựa chọn), nên dùng liên từ ', or' chứ không dùng ', but'.",
+            rule: "Đưa ra sự lựa chọn -> Dùng OR"
+          },
+          {
+            q: "Find the error: 'Mai felt tired, for she stayed up late browsing TikTok videos.'",
+            sub: "Xét xem câu này có lỗi sai hay là câu chuẩn?",
+            options: [
+              "A. tired, for",
+              "B. stayed up late",
+              "C. browsing",
+              "D. NO ERROR (Câu chuẩn ngữ pháp 100%)"
+            ],
+            correct: 3,
+            exp: "Câu này hoàn toàn chính xác! ', for' là liên từ FANBOYS mang nghĩa 'bởi vì', đứng sau dấu phẩy giải thích lý do mệt mỏi.",
+            rule: "S + V, for + S + V (Chuẩn ngữ pháp)"
+          },
+          {
+            q: "Find the error: 'He didn't like bullying, nor he teased any classmates.'",
+            sub: "Tìm lỗi sai trong mệnh đề đi sau liên từ 'nor'.",
+            options: [
+              "A. didn't like",
+              "B. nor he teased (Thiếu đảo ngữ sau nor)",
+              "C. any",
+              "D. classmates"
+            ],
+            correct: 1,
+            exp: "Sau liên từ 'nor' trong câu ghép bắt buộc phải đảo trợ động từ lên trước chủ ngữ: 'nor did he tease...'.",
+            rule: "nor + Auxiliary + S + V (Quy tắc đảo ngữ với nor)"
+          },
+          {
+            q: "Find the error: 'The exam was difficult; otherwise, everyone got good marks.'",
+            sub: "Tìm lỗi sai: Chọn nhầm trạng từ liên kết.",
+            options: [
+              "A. difficult",
+              "B. ; otherwise, (Dùng sai từ thay vì dùng however)",
+              "C. everyone",
+              "D. good marks"
+            ],
+            correct: 1,
+            exp: "Đề bài thi khó nhưng mọi người đều đạt điểm tốt là sự tương phản bất ngờ, phải dùng '; however,' chứ không dùng 'otherwise' (nếu không thì).",
+            rule: "Tương phản -> However"
+          },
+          {
+            q: "Find the error: 'Nick was keen on chess, yet, he never attended the club tournaments.'",
+            sub: "Tìm lỗi thừa dấu phẩy quanh liên từ 'yet'.",
+            options: [
+              "A. keen on",
+              "B. , yet, (Thừa dấu phẩy sau yet)",
+              "C. never attended",
+              "D. club tournaments"
+            ],
+            correct: 1,
+            exp: "'Yet' đóng vai trò là liên từ kết hợp FANBOYS thì chỉ cần dấu phẩy ở phía trước: '..., yet he never...', không có dấu phẩy đằng sau 'yet'.",
+            rule: ", yet + S + V (Không có phẩy sau yet)"
+          },
+          {
+            q: "Find the error: 'Teens should limit gaming time; therefore they will have more time for sports.'",
+            sub: "Tìm lỗi dấu câu quanh trạng từ 'therefore'.",
+            options: [
+              "A. should limit",
+              "B. ; therefore they (Thiếu dấu phẩy sau therefore)",
+              "C. have more time",
+              "D. for sports"
+            ],
+            correct: 1,
+            exp: "Thiếu dấu phẩy sau 'therefore'. Đúng chuẩn phải là: '; therefore, they will...'.",
+            rule: "; therefore, (Phải có dấu phẩy sau therefore)"
+          },
+          {
+            q: "Find the error: 'She uploaded her photos, because she wanted to share memories.'",
+            sub: "Tìm lỗi dùng dấu câu trước liên từ phụ thuộc 'because'.",
+            options: [
+              "A. uploaded",
+              "B. photos, because (Không dùng dấu phẩy trước because khi mệnh đề chính đứng trước)",
+              "C. wanted to share",
+              "D. memories"
+            ],
+            correct: 1,
+            exp: "Khác với 'for' trong FANBOYS, liên từ phụ thuộc 'because' khi đứng ở giữa câu thường KHÔNG có dấu phẩy đi trước.",
+            rule: "Main Clause + because + Sub Clause (Không có phẩy)"
+          },
+          {
+            q: "Find the error: 'Huy was nervous about the speech, and he practiced in front of the mirror.'",
+            sub: "Xét câu ghép trên có đúng quy tắc ngữ pháp không?",
+            options: [
+              "A. nervous about",
+              "B. speech, and",
+              "C. practiced in front of",
+              "D. NO ERROR (Câu ghép hoàn toàn chuẩn mực)"
+            ],
+            correct: 3,
+            exp: "Câu hoàn toàn chuẩn mực: có 2 mệnh đề độc lập ngăn cách bởi dấu phẩy và liên từ kết hợp 'and'.",
+            rule: "Clause 1, and Clause 2 (Chuẩn)"
+          },
+          {
+            q: "Find the error: 'Although Mai felt stressed, but she managed to finish the assignment.'",
+            sub: "Lỗi kinh điển dùng đồng thời cả 'Although' và 'but'.",
+            options: [
+              "A. Although Mai",
+              "B. stressed, but (Lỗi thừa liên từ 'but' khi đã có 'Although')",
+              "C. managed to",
+              "D. finish"
+            ],
+            correct: 1,
+            exp: "Lỗi thừa liên từ! Trong tiếng Anh, đã dùng 'Although/Even though' thì KHÔNG được dùng 'but' ở mệnh đề sau. Sửa: bỏ 'but'.",
+            rule: "Đã có Although thì không dùng but"
+          },
+          {
+            q: "Find the error: 'Teenagers need hobbies, otherwise they will get bored.'",
+            sub: "Tìm lỗi dấu câu trước trạng từ liên kết 'otherwise'.",
+            options: [
+              "A. need hobbies",
+              "B. hobbies, otherwise (Sai dấu phẩy trước otherwise - phải là chấm phẩy)",
+              "C. will get",
+              "D. bored"
+            ],
+            correct: 1,
+            exp: "'Otherwise' là trạng từ liên kết, trước nó phải là dấu chấm phẩy (;) và sau nó là dấu phẩy (,): '; otherwise, they will...'.",
+            rule: "; otherwise, (Không dùng dấu phẩy đơn)"
+          },
+          {
+            q: "Find the error: 'The coach praised the team, for they played with great teamwork.'",
+            sub: "Xét câu trên có chuẩn ngữ pháp Unit 3 không?",
+            options: [
+              "A. praised",
+              "B. team, for",
+              "C. played with",
+              "D. NO ERROR (Câu ghép với 'for' chuẩn xác)"
+            ],
+            correct: 3,
+            exp: "Câu hoàn toàn đúng: dùng ', for' giải thích nguyên nhân HLV khen ngợi đội bóng.",
+            rule: "Clause 1, for Clause 2 (Đúng)"
+          }
+        ]
+      },
+
+      // GAME 5: Bridge Builder (Sentence Architecture & Unit 3 Vocab - 20 questions)
+      {
+        id: 4,
+        title: "GAME 5: KIẾN TRÚC SƯ GHÉP CÂU HOÀN HẢO",
+        badge: "🧩",
+        tag: "GAME 5",
+        desc: "Xây cây cầu ngữ pháp hoàn hảo kết hợp nhuần nhuyễn liên từ và từ vựng Unit 3!",
+        bannerHint: "Vận dụng trọn bộ từ vựng: peer pressure, cyberbullying, school forum, upload, log off!",
+        bannerEmoji: "🧩🏗️",
+        accentColor: "border-blue-300",
+        questions: [
+          {
+            q: "Complete the compound sentence: 'Teenagers have to cope with exam stress, ______'",
+            sub: "Hoàn thiện câu ghép: 'Tuổi teen phải đối mặt với áp lực thi cử, [vì vậy họ nên học cách quản lý thời gian].'",
+            options: [
+              "A. so they should learn time-management skills.",
+              "B. but they should learn time-management skills.",
+              "C. or they should learn time-management skills.",
+              "D. for they should learn time-management skills."
+            ],
+            correct: 0,
+            exp: "Vế 2 là giải pháp/kết quả hợp lý từ vế 1, do đó liên từ phù hợp nhất là 'so' (vì vậy).",
+            rule: "Áp lực thi cử -> so they should learn time-management skills"
+          },
+          {
+            q: "Complete the sentence: 'Students should log off social media before bed; ______'",
+            sub: "Hoàn thiện câu: 'Học sinh nên đăng xuất mạng xã hội trước khi ngủ; [nếu không thì họ sẽ không có được giấc ngủ ngon].'",
+            options: [
+              "A. otherwise, they won't get a good night's sleep.",
+              "B. however, they won't get a good night's sleep.",
+              "C. therefore, they won't get a good night's sleep.",
+              "D. moreover, they won't get a good night's sleep."
+            ],
+            correct: 0,
+            exp: "Dùng '; otherwise,' để cảnh báo hậu quả nếu không chịu đăng xuất mạng xã hội trước khi ngủ.",
+            rule: "; otherwise, + S + won't..."
+          },
+          {
+            q: "Which word means 'áp lực từ bạn bè cùng trang lứa' in Unit 3?",
+            sub: "Thuật ngữ từ vựng Unit 3 nào mang nghĩa là 'áp lực đồng trang lứa'?",
+            options: [
+              "A. peer pressure",
+              "B. exam pressure",
+              "C. school forum",
+              "D. parental expectations"
+            ],
+            correct: 0,
+            exp: "'Peer pressure' là cụm từ vựng cốt lõi trong Unit 3 chỉ áp lực từ bạn bè đồng trang lứa.",
+            rule: "peer pressure = áp lực đồng trang lứa"
+          },
+          {
+            q: "Complete the sentence: 'Linh was bullied at school, ______ she bravely reported it to her homeroom teacher.'",
+            sub: "Linh đã bị bắt nạt ở trường, [nhưng / vì thế bạn ấy đã dũng cảm báo cáo] với cô giáo chủ nhiệm.",
+            options: ["A. so", "B. but", "C. or", "D. nor"],
+            correct: 0,
+            exp: "Chọn 'so' thể hiện hành động xử lý đúng đắn của Linh khi bị bắt nạt.",
+            rule: "Vấn đề -> so + hành động giải quyết"
+          },
+          {
+            q: "Complete the sentence: 'Lan joined the school arts and crafts club, ______'",
+            sub: "Lan tham gia câu lạc bộ thủ công mỹ nghệ của trường, [và bạn ấy đã học được cách làm hoa giấy đẹp mắt].'",
+            options: [
+              "A. and she learned how to make beautiful paper flowers.",
+              "B. but she learned how to make beautiful paper flowers.",
+              "C. or she learned how to make beautiful paper flowers.",
+              "D. nor she learned how to make beautiful paper flowers."
+            ],
+            correct: 0,
+            exp: "Chọn 'and' để bổ sung thông tin về kỹ năng Lan học được từ câu lạc bộ.",
+            rule: "Tham gia CLB, and + học được kỹ năng mới"
+          },
+          {
+            q: "Which action describes 'tải hình ảnh lên diễn đàn' in Unit 3?",
+            sub: "Cụm từ vựng nào mang nghĩa 'tải hình ảnh lên diễn đàn'?",
+            options: [
+              "A. upload photos to a forum",
+              "B. browse websites",
+              "C. check notifications",
+              "D. log off the computer"
+            ],
+            correct: 0,
+            exp: "'upload photos to a forum' là cụm từ vựng chuẩn trong SGK Tiếng Anh 8 Unit 3.",
+            rule: "upload + photos/videos + to a website/forum"
+          },
+          {
+            q: "Complete the sentence: 'Minh wanted to be the club leader; ______, members voted for Nam.'",
+            sub: "Minh muốn làm trưởng câu lạc bộ; [tuy nhiên], các thành viên đã bỏ phiếu cho Nam.",
+            options: [
+              "A. however",
+              "B. therefore",
+              "C. otherwise",
+              "D. moreover"
+            ],
+            correct: 0,
+            exp: "Dùng 'however' sau dấu chấm phẩy chỉ sự tương phản giữa mong muốn cá nhân và kết quả bỏ phiếu.",
+            rule: "; however, (Tương phản)"
+          },
+          {
+            q: "Combine into a compound sentence: 'She felt sleepy.' and 'She tried to finish her homework.'",
+            sub: "Kết hợp 2 câu đơn thành câu ghép hợp nghĩa nhất:",
+            options: [
+              "A. She felt sleepy, yet she tried to finish her homework.",
+              "B. She felt sleepy, so she tried to finish her homework.",
+              "C. She felt sleepy, or she tried to finish her homework.",
+              "D. She felt sleepy, for she tried to finish her homework."
+            ],
+            correct: 0,
+            exp: "Dùng ', yet' (nhưng/tuy thế) biểu thị tinh thần cố gắng dù đang rất buồn ngủ.",
+            rule: "Clause 1, yet Clause 2"
+          },
+          {
+            q: "Which club helps students train their brain and strategic thinking?",
+            sub: "Câu lạc bộ nào dưới đây giúp học sinh rèn luyện trí não và tư duy chiến thuật?",
+            options: [
+              "A. The chess club",
+              "B. The sports club",
+              "C. The dance club",
+              "D. The cooking club"
+            ],
+            correct: 0,
+            exp: "Trong Unit 3, 'chess club' (CLB cờ vua) giúp học sinh rèn luyện não bộ và tư duy chiến thuật.",
+            rule: "chess club -> mental skills & concentration"
+          },
+          {
+            q: "Complete the compound sentence: 'You can talk to your counselor, ______ you can call the teen helpline.'",
+            sub: "Bạn có thể nói chuyện với chuyên gia tư vấn, [hoặc] bạn có thể gọi đường dây hỗ trợ tuổi teen.",
+            options: ["A. or", "B. so", "C. but", "D. for"],
+            correct: 0,
+            exp: "Dùng 'or' đưa ra 2 kênh hỗ trợ tâm lý để học sinh lựa chọn.",
+            rule: "Option 1, or Option 2"
+          },
+          {
+            q: "Complete the sentence: 'Tom wanted to attend soccer practice. ______, a severe sprain prevented him.'",
+            sub: "Tom muốn tham gia buổi tập đá bóng. [Tuy nhiên], chấn thương bong gân đã cản trở cậu ấy.",
+            options: ["A. However", "B. Therefore", "C. Otherwise", "D. So"],
+            correct: 0,
+            exp: "Đứng đầu câu mới sau dấu chấm biểu thị sự tương phản -> dùng 'However,'.",
+            rule: ". However, + S + V"
+          },
+          {
+            q: "What does 'check notifications' mean in Unit 3?",
+            sub: "Cụm từ 'check notifications' trong bài có nghĩa là gì?",
+            options: [
+              "A. kiểm tra thông báo trên thiết bị/mạng xã hội",
+              "B. đăng nhập tài khoản",
+              "C. lướt trang web",
+              "D. kết nối bạn bè"
+            ],
+            correct: 0,
+            exp: "'check notifications' = kiểm tra các thông báo (tin nhắn, lượt tương tác, cập nhật mới).",
+            rule: "check notifications = kiểm tra thông báo"
+          },
+          {
+            q: "Complete: 'Mai loves reading youth magazines; ______, she is a member of the school journalism club.'",
+            sub: "Mai rất thích đọc tạp chí tuổi trẻ; [vì vậy / do đó], bạn ấy là thành viên của CLB báo chí trường.",
+            options: ["A. therefore", "B. however", "C. otherwise", "D. but"],
+            correct: 0,
+            exp: "Chọn 'therefore' diễn tả kết quả xuất phát từ sở thích của Mai.",
+            rule: "; therefore, (Chỉ kết quả)"
+          },
+          {
+            q: "Combine using 'and': 'The coach gave clear instructions.' + 'The players followed them closely.'",
+            sub: "Nối 2 câu thành câu ghép chuẩn:",
+            options: [
+              "A. The coach gave clear instructions, and the players followed them closely.",
+              "B. The coach gave clear instructions and the players followed them closely.",
+              "C. The coach gave clear instructions; and the players followed them closely.",
+              "D. The coach gave clear instructions, but the players followed them closely."
+            ],
+            correct: 0,
+            exp: "Câu ghép chuẩn phải có dấu phẩy (,) trước liên từ kết hợp 'and' nối 2 mệnh đề độc lập.",
+            rule: "S1 + V1, and S2 + V2"
+          },
+          {
+            q: "Complete: 'Teenagers must balance studying and relaxing; ______, they will quickly burn out.'",
+            sub: "Tuổi teen phải cân bằng giữa việc học và thư giãn; [nếu không thì], các bạn sẽ nhanh chóng bị kiệt sức.",
+            options: ["A. otherwise", "B. therefore", "C. however", "D. moreover"],
+            correct: 0,
+            exp: "Dùng '; otherwise,' để cảnh báo nguy cơ kiệt sức (burn out) nếu không giữ cân bằng cuộc sống.",
+            rule: "; otherwise, (Cảnh báo hậu quả)"
+          },
+          {
+            q: "Which word means 'bắt nạt qua mạng' in English 8 Unit 3?",
+            sub: "Từ nào chỉ hành vi 'bắt nạt trên mạng internet'?",
+            options: [
+              "A. cyberbullying",
+              "B. peer pressure",
+              "C. school forum",
+              "D. coaching"
+            ],
+            correct: 0,
+            exp: "'cyberbullying' = hành vi bắt nạt, đe dọa, trêu chọc qua mạng internet.",
+            rule: "cyberbullying = bắt nạt qua mạng"
+          },
+          {
+            q: "Complete: 'Mark felt exhausted, ______ he still stayed until the end of the volunteer event.'",
+            sub: "Mark cảm thấy kiệt sức, [nhưng / tuy vậy] cậu ấy vẫn ở lại cho đến hết sự kiện tình nguyện.",
+            options: ["A. yet", "B. so", "C. or", "D. for"],
+            correct: 0,
+            exp: "Dùng ', yet' biểu thị sự tương phản tích cực.",
+            rule: "Clause 1, yet Clause 2"
+          },
+          {
+            q: "Complete: 'Parents should encourage their children; ______, they shouldn't place too much pressure on them.'",
+            sub: "Cha mẹ nên khích lệ con cái; [đồng thời / hơn nữa], họ không nên đặt quá nhiều áp lực lên các con.",
+            options: ["A. moreover", "B. otherwise", "C. however", "D. therefore"],
+            correct: 0,
+            exp: "Dùng '; moreover,' bổ sung thêm quan điểm giáo dục tích cực.",
+            rule: "; moreover, (Bổ sung thêm lời khuyên)"
+          },
+          {
+            q: "Combine: 'Nick did not check the meeting time.' + 'He arrived at the club late.'",
+            sub: "Nối 2 câu thành câu ghép chỉ nguyên nhân - kết quả:",
+            options: [
+              "A. Nick did not check the meeting time, so he arrived at the club late.",
+              "B. Nick did not check the meeting time, but he arrived at the club late.",
+              "C. Nick did not check the meeting time, or he arrived at the club late.",
+              "D. Nick did not check the meeting time, for he arrived at the club late."
+            ],
+            correct: 0,
+            exp: "Vế 1 là nguyên nhân không xem giờ, vế 2 là kết quả bị muộn -> dùng ', so'.",
+            rule: "Cause, so Effect"
+          },
+          {
+            q: "Complete: 'Students can consult their teachers, ______ they can discuss their problems on the forum.'",
+            sub: "Học sinh có thể xin ý kiến thầy cô, [hoặc] các bạn có thể thảo luận khúc mắc trên diễn đàn trường.",
+            options: ["A. or", "B. nor", "C. for", "D. yet"],
+            correct: 0,
+            exp: "Dùng ', or' nối 2 phương án giải tỏa khúc mắc của học sinh.",
+            rule: "S + V, or + S + V"
+          }
+        ]
+      }
+    ];
+
+    /* ==========================================================
+       GAME STATE & UI LOGIC
+       ========================================================== */
+    let currentMode = 0;
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let streak = 0;
+    let correctCount = 0;
+    let answered = false;
+
+    window.addEventListener('DOMContentLoaded', () => {
+      switchMode(0);
+    });
+
+    function switchMode(mode) {
+      currentMode = mode;
+      
+      // Update nav styling
+      document.querySelectorAll('.nav-tab').forEach(tab => {
+        tab.classList.remove('bg-gradient-to-r', 'from-indigo-600', 'to-pink-600', 'text-white', 'border-indigo-600', 'shadow-md');
+        tab.classList.add('text-slate-700', 'bg-white');
+      });
+
+      const activeTabId = mode === 'study' ? 'tab-study' : `tab-${mode}`;
+      const activeTab = document.getElementById(activeTabId);
+      if (activeTab) {
+        activeTab.classList.remove('text-slate-700', 'bg-white');
+        activeTab.classList.add('bg-gradient-to-r', 'from-indigo-600', 'to-pink-600', 'text-white', 'border-indigo-600', 'shadow-md');
+      }
+
+      if (mode === 'study') {
+        document.getElementById('view-study').classList.remove('hidden');
+        document.getElementById('view-game').classList.add('hidden');
+      } else {
+        document.getElementById('view-study').classList.add('hidden');
+        document.getElementById('view-game').classList.remove('hidden');
+        loadGame(mode);
+      }
+    }
+
+    function loadGame(gameId) {
+      const g = GAMES_DATA[gameId];
+      currentQuestionIndex = 0;
+      score = 0;
+      streak = 0;
+      correctCount = 0;
+      answered = false;
+
+      document.getElementById('game-title').innerText = g.title;
+      document.getElementById('game-badge-icon').innerText = g.badge;
+      document.getElementById('game-mini-tag').innerText = g.tag;
+      document.getElementById('game-desc').innerText = g.desc;
+      document.getElementById('banner-hint').innerText = g.bannerHint;
+      document.getElementById('banner-emoji').innerText = g.bannerEmoji;
+      document.getElementById('total-q-num').innerText = g.questions.length;
+      document.getElementById('game-over-screen').classList.add('hidden');
+
+      updateStatsUI();
+      renderQuestion();
+    }
+
+    function updateStatsUI() {
+      const g = GAMES_DATA[currentMode];
+      document.getElementById('current-q-num').innerText = currentQuestionIndex + 1;
+      document.getElementById('game-score').innerText = score;
+      document.getElementById('game-streak').innerText = streak;
+
+      // Progress bar fill
+      const pct = Math.round(((currentQuestionIndex + 1) / g.questions.length) * 100);
+      document.getElementById('progress-fill').style.width = `${pct}%`;
+    }
+
+    function renderQuestion() {
+      answered = false;
+      const g = GAMES_DATA[currentMode];
+      const q = g.questions[currentQuestionIndex];
+
+      document.getElementById('explanation-box').classList.add('hidden');
+      document.getElementById('question-tag').innerText = `Unit 3 • Câu ${currentQuestionIndex + 1}/${g.questions.length}`;
+      document.getElementById('question-text').innerHTML = q.q;
+      document.getElementById('question-sub').innerText = q.sub;
+
+      document.getElementById('btn-read-question').onclick = () => speakText(q.q);
+
+      // Render colorful options
+      const optContainer = document.getElementById('options-container');
+      optContainer.innerHTML = '';
+
+      const letters = ['A', 'B', 'C', 'D'];
+      const bgBadges = ['bg-pink-100 text-pink-600 border-pink-300', 'bg-amber-100 text-amber-700 border-amber-300', 'bg-sky-100 text-sky-700 border-sky-300', 'bg-purple-100 text-purple-700 border-purple-300'];
+
+      q.options.forEach((optText, index) => {
+        const btn = document.createElement('div');
+        btn.className = "opt-card p-4 rounded-2xl font-bold text-sm md:text-base cursor-pointer flex items-center justify-between border-2 bg-slate-50/80 hover:bg-indigo-50/60 border-slate-200 text-slate-800 shadow-sm font-fun";
+        
+        btn.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-xl ${bgBadges[index]} border flex items-center justify-center text-xs font-black shrink-0 shadow-sm font-fun">
+              ${letters[index]}
+            </span>
+            <span class="leading-snug">${optText}</span>
+          </div>
+          <button type="button" class="audio-opt-btn p-2 hover:bg-white rounded-xl text-slate-400 hover:text-indigo-600 transition shrink-0" title="Nghe đáp án">🔊</button>
+        `;
+
+        // Click audio icon separately
+        const audioBtn = btn.querySelector('.audio-opt-btn');
+        audioBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          speakText(optText);
+        });
+
+        // Click whole card to answer
+        btn.addEventListener('click', () => {
+          if (!answered) handleSelectOption(index, btn);
+        });
+
+        optContainer.appendChild(btn);
+      });
+
+      updateStatsUI();
+    }
+
+    function handleSelectOption(selectedIndex, selectedBtn) {
+      answered = true;
+      const g = GAMES_DATA[currentMode];
+      const q = g.questions[currentQuestionIndex];
+      const isCorrect = (selectedIndex === q.correct);
+
+      const allOptionBtns = document.getElementById('options-container').children;
+
+      if (isCorrect) {
+        playSound('correct');
+        selectedBtn.classList.remove('bg-slate-50/80', 'border-slate-200');
+        selectedBtn.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-900', 'ring-2', 'ring-emerald-400');
+        score += 10 + (streak * 2);
+        streak++;
+        correctCount++;
+      } else {
+        playSound('wrong');
+        selectedBtn.classList.remove('bg-slate-50/80', 'border-slate-200');
+        selectedBtn.classList.add('bg-rose-100', 'border-rose-500', 'text-rose-900', 'ring-2', 'ring-rose-400');
+        streak = 0;
+
+        // Highlight correct option in green
+        if (allOptionBtns[q.correct]) {
+          allOptionBtns[q.correct].classList.remove('bg-slate-50/80', 'border-slate-200');
+          allOptionBtns[q.correct].classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-900', 'ring-2', 'ring-emerald-400');
+        }
+      }
+
+      updateStatsUI();
+      showExplanation(isCorrect, q);
+    }
+
+    function showExplanation(isCorrect, q) {
+      const expBox = document.getElementById('explanation-box');
+      const statusEl = document.getElementById('feedback-status');
+      const textEl = document.getElementById('explanation-text');
+      const ruleEl = document.getElementById('grammar-rule');
+
+      expBox.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-300', 'bg-rose-50', 'border-rose-300');
+      
+      if (isCorrect) {
+        expBox.classList.add('bg-emerald-50', 'border-emerald-300');
+        statusEl.innerHTML = `<span class="text-emerald-700">🎉 CHÍNH XÁC XUẤT SẮC! (+10 Điểm)</span>`;
+      } else {
+        expBox.classList.add('bg-rose-50', 'border-rose-300');
+        statusEl.innerHTML = `<span class="text-rose-600">❌ CHƯA CHÍNH XÁC RỒI!</span> <span class="text-xs text-slate-600 font-normal">Đáp án đúng: <strong>${q.options[q.correct]}</strong></span>`;
+      }
+
+      textEl.innerHTML = `<strong>💡 Giải thích chi tiết:</strong> ${q.exp}`;
+      ruleEl.innerHTML = `<strong>📌 Cấu trúc & Quy tắc:</strong> ${q.rule}`;
+
+      document.getElementById('btn-read-exp').onclick = () => {
+        speakText(`Explanation: ${q.exp}. Grammar rule: ${q.rule}`);
+      };
+    }
+
+    function nextQuestion() {
+      const g = GAMES_DATA[currentMode];
+      currentQuestionIndex++;
+
+      if (currentQuestionIndex < g.questions.length) {
+        renderQuestion();
+      } else {
+        finishGame();
+      }
+    }
+
+    function finishGame() {
+      playSound('complete');
+      confetti({
+        particleCount: 120,
+        spread: 80,
+        origin: { y: 0.6 }
+      });
+
+      const g = GAMES_DATA[currentMode];
+      const accuracy = Math.round((correctCount / g.questions.length) * 100);
+      
+      document.getElementById('game-over-screen').classList.remove('hidden');
+      document.getElementById('final-score').innerText = `${score} pts`;
+      document.getElementById('final-accuracy').innerText = `${accuracy}%`;
+
+      let rank = "⭐";
+      let note = "";
+      if (accuracy >= 90) {
+        rank = "⭐⭐⭐";
+        note = "Ms. Lily chúc mừng em! Em đã làm chủ hoàn hảo toàn bộ kiến thức Câu đơn, Câu ghép và từ vựng Unit 3 Teenagers!";
+      } else if (accuracy >= 70) {
+        rank = "⭐⭐";
+        note = "Làm tốt lắm em! Em đã nắm vững ngữ pháp, hãy lưu ý thêm các dấu câu với trạng từ liên kết để đạt điểm 10 tuyệt đối nhé!";
+      } else {
+        rank = "⭐";
+        note = "Cố gắng thêm chút nữa nhé! Em hãy vào mục 'Cẩm Nang Ngữ Pháp' để ôn lại các mẹo dấu câu trước khi thử sức lại nha!";
+      }
+
+      document.getElementById('final-rank').innerText = rank;
+      document.getElementById('teacher-note').innerText = `"${note}" — Ms. Lily (HT English)`;
+    }
+
+    function restartCurrentGame() {
+      loadGame(currentMode);
+    }
+
+    function nextGameMode() {
+      const nextId = (currentMode + 1) % GAMES_DATA.length;
+      switchMode(nextId);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HT English - Unit 5: Food and Drink - Grammar Games Master</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Google Fonts: Inter & Baloo 2 for playful educational feel -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Canvas Confetti CDN for celebrations -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    .font-baloo {
+      font-family: 'Baloo 2', cursive;
+    }
+    /* Smooth custom scrollbars */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    /* Pulse badge animation */
+    @keyframes softPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .animate-soft-pulse {
+      animation: softPulse 2.5s infinite ease-in-out;
+    }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col selection:bg-amber-100 selection:text-amber-900">
+
+  <!-- HEADER & BRANDING -->
+  <header class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-700 text-white shadow-xl sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 sm:py-4">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-3">
+        <!-- Logo & Center Name -->
+        <div class="flex items-center gap-3 text-center md:text-left">
+          <div class="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/30 flex items-center justify-center text-amber-300 text-2xl shadow-inner animate-soft-pulse">
+            <i class="fa-solid fa-utensils"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 justify-center md:justify-start">
+              <span class="bg-amber-400 text-slate-900 font-extrabold text-xs px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow">HT English Center</span>
+              <span class="text-xs bg-white/20 px-2 py-0.5 rounded-full">Tiếng Anh 7 Global Success</span>
+            </div>
+            <h1 class="text-xl sm:text-2xl font-bold font-baloo tracking-tight text-white drop-shadow">
+              Unit 5: Food and Drink • Đấu Trường Từ Chỉ Số Lượng
+            </h1>
+          </div>
+        </div>
+
+        <!-- Teacher & Hotline Info -->
+        <div class="flex flex-wrap items-center justify-center gap-2 sm:gap-4 text-xs sm:text-sm bg-white/10 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20 shadow-sm">
+          <div class="flex items-center gap-1.5 text-emerald-100 font-medium">
+            <i class="fa-solid fa-chalkboard-user text-amber-300"></i>
+            <span>Giáo viên: <strong class="text-white font-bold">Ms. Lily</strong></span>
+          </div>
+          <div class="h-3 w-px bg-white/30 hidden sm:block"></div>
+          <div class="flex items-center gap-1.5 text-emerald-100 font-medium">
+            <i class="fa-solid fa-phone-volume text-amber-300"></i>
+            <a href="tel:0963422940" class="hover:underline text-white font-bold">0963.422.940</a>
+            <span>–</span>
+            <a href="tel:0962240866" class="hover:underline text-white font-bold">0962.240.866</a>
+          </div>
+          <div class="h-3 w-px bg-white/30 hidden sm:block"></div>
+          <div class="flex items-center gap-1.5 text-emerald-100">
+            <i class="fa-solid fa-location-dot text-rose-300"></i>
+            <span>Thôn Đạo Đường, xã Ninh Cường, Ninh Bình</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAVIGATION TABS -->
+    <div class="bg-teal-800/80 backdrop-blur border-t border-teal-500/30 px-4">
+      <div class="max-w-7xl mx-auto flex items-center gap-2 overflow-x-auto py-2 text-xs sm:text-sm font-medium scrollbar-none">
+        <button onclick="switchTab('handbook')" id="tab-handbook" class="tab-btn px-4 py-2 rounded-xl flex items-center gap-2 bg-white text-teal-900 font-bold shadow-sm transition">
+          <i class="fa-solid fa-book-open-reader text-amber-500"></i>
+          <span>Cẩm Nang Ngữ Pháp</span>
+        </button>
+        <button onclick="switchTab('game1')" id="tab-game1" class="tab-btn px-4 py-2 rounded-xl flex items-center gap-2 text-teal-100 hover:bg-white/10 transition">
+          <i class="fa-solid fa-scale-balanced text-amber-300"></i>
+          <span>Game 1: Đấu Sĩ Phân Loại</span>
+        </button>
+        <button onclick="switchTab('game2')" id="tab-game2" class="tab-btn px-4 py-2 rounded-xl flex items-center gap-2 text-teal-100 hover:bg-white/10 transition">
+          <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
+          <span>Game 2: Some hay Any?</span>
+        </button>
+        <button onclick="switchTab('game3')" id="tab-game3" class="tab-btn px-4 py-2 rounded-xl flex items-center gap-2 text-teal-100 hover:bg-white/10 transition">
+          <i class="fa-solid fa-boxes-stacked text-amber-300"></i>
+          <span>Game 3: A Lot Of hay Some?</span>
+        </button>
+        <button onclick="switchTab('game4')" id="tab-game4" class="tab-btn px-4 py-2 rounded-xl flex items-center gap-2 text-teal-100 hover:bg-white/10 transition">
+          <i class="fa-solid fa-circle-question text-amber-300"></i>
+          <span>Game 4: How Much / How Many?</span>
+        </button>
+        <button onclick="switchTab('game5')" id="tab-game5" class="tab-btn px-4 py-2 rounded-xl flex items-center gap-2 text-teal-100 hover:bg-white/10 transition">
+          <i class="fa-solid fa-kitchen-set text-amber-300"></i>
+          <span>Game 5: Siêu Đầu Bếp Bắt Lỗi</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 py-6 flex-grow w-full">
+
+    <!-- TAB 1: CẨM NANG NGỮ PHÁP UNIT 5 -->
+    <section id="section-handbook" class="tab-content space-y-6">
+      <!-- Hero Welcome Card -->
+      <div class="bg-gradient-to-br from-emerald-500 to-teal-700 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+        <div class="relative z-10 max-w-3xl">
+          <span class="bg-amber-400 text-slate-900 text-xs font-black uppercase px-3 py-1 rounded-full shadow-sm">Bí Kíp Sư Phạm Ms. Lily</span>
+          <h2 class="text-2xl sm:text-3xl font-extrabold font-baloo mt-2 leading-tight">
+            Làm Chủ Từ Chỉ Số Lượng (Quantifiers) & Danh Từ Đếm Được / Không Đếm Được
+          </h2>
+          <p class="mt-2 text-emerald-100 text-sm sm:text-base leading-relaxed">
+            Chào mừng các em học sinh trung tâm <strong>HT English</strong> đến với đấu trường ngữ pháp Unit 5! Hãy đọc kỹ 4 bí kíp vàng dưới đây và bấm vào chiếc loa <i class="fa-solid fa-volume-high text-amber-300 mx-1"></i> để nghe giọng nữ chuẩn Anh - Mỹ trước khi vào thử thách 100 câu đố nhé!
+          </p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <button onclick="switchTab('game1')" class="bg-amber-400 hover:bg-amber-300 text-slate-900 font-bold px-5 py-2.5 rounded-2xl shadow-lg transition transform hover:-translate-y-0.5 flex items-center gap-2">
+              <i class="fa-solid fa-gamepad"></i> Chinh Phục 5 Game Ngay
+            </button>
+            <button onclick="speakText('Welcome to Unit 5: Food and Drink at HT English Center with Ms. Lily!')" class="bg-white/20 hover:bg-white/30 text-white font-medium px-4 py-2.5 rounded-2xl border border-white/30 backdrop-blur transition flex items-center gap-2">
+              <i class="fa-solid fa-volume-high text-amber-300"></i> Nghe Lời Chào
+            </button>
+          </div>
+        </div>
+        <div class="absolute -right-8 -bottom-10 opacity-20 text-white text-9xl pointer-events-none">
+          <i class="fa-solid fa-bowl-rice"></i>
+        </div>
+      </div>
+
+      <!-- 4 BÍ KÍP VÀNG TRỰC QUAN -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Card 1: Countable vs Uncountable -->
+        <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-200 hover:shadow-lg transition">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-3">
+            <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center font-bold text-lg">
+              1
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-800 text-lg font-baloo">Danh Từ Đếm Được & Không Đếm Được</h3>
+              <p class="text-xs text-slate-500">Countable Nouns vs. Uncountable Nouns</p>
+            </div>
+          </div>
+          <div class="mt-4 space-y-3 text-sm">
+            <div class="bg-emerald-50 rounded-2xl p-3 border border-emerald-100">
+              <span class="font-bold text-emerald-800 flex items-center gap-1.5">
+                <i class="fa-solid fa-apple-whole text-emerald-600"></i> Danh từ đếm được (Countable Nouns):
+              </span>
+              <p class="text-slate-600 mt-1">Đếm trực tiếp bằng số 1, 2, 3... Có dạng số ít (an apple, an egg) và số nhiều thêm -s/-es (two apples, three eggs, bananas, biscuits, spring rolls, bottles of water).</p>
+            </div>
+            <div class="bg-sky-50 rounded-2xl p-3 border border-sky-100">
+              <span class="font-bold text-sky-800 flex items-center gap-1.5">
+                <i class="fa-solid fa-glass-water text-sky-600"></i> Danh từ không đếm được (Uncountable Nouns):
+              </span>
+              <p class="text-slate-600 mt-1">Không đếm trực tiếp bằng số, luôn đi với động từ số ít (There is / isn't). Thường là chất lỏng, hạt nhỏ, khối lượng: <em>water, milk, lemonade, tea, rice, sugar, salt, pepper, flour, butter, beef, pork</em>.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Some vs Any -->
+        <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-200 hover:shadow-lg transition">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-3">
+            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-lg">
+              2
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-800 text-lg font-baloo">Quy Tắc Vàng: SOME và ANY</h3>
+              <p class="text-xs text-slate-500">Đi với cả danh từ đếm được số nhiều và không đếm được</p>
+            </div>
+          </div>
+          <div class="mt-4 space-y-3 text-sm">
+            <div class="bg-amber-50 rounded-2xl p-3 border border-amber-100">
+              <div class="flex justify-between items-start">
+                <span class="font-bold text-amber-900">🌟 SOME (Một vài, một ít):</span>
+                <button onclick="speakText('There is some water in the bottle. I need some apples. Would you like some milk?')" class="text-amber-700 hover:text-amber-900 text-xs flex items-center gap-1 bg-amber-200/60 px-2 py-0.5 rounded-lg">
+                  <i class="fa-solid fa-volume-high"></i> Ví dụ mẫu
+                </button>
+              </div>
+              <p class="text-slate-600 mt-1">• Dùng trong câu <strong>khẳng định (+)</strong>: <em>There is some water. / I have some eggs.</em></p>
+              <p class="text-slate-600 mt-1">• Dùng trong <strong>lời mời hoặc yêu cầu lịch sự (?)</strong>: <em>Would you like some tea? / Can I have some water, please?</em></p>
+            </div>
+            <div class="bg-rose-50 rounded-2xl p-3 border border-rose-100">
+              <div class="flex justify-between items-start">
+                <span class="font-bold text-rose-900">🚫 ANY (Bất kỳ, chút nào):</span>
+                <button onclick="speakText('There aren\'t any biscuits on the plate. Do you have any cheese?')" class="text-rose-700 hover:text-rose-900 text-xs flex items-center gap-1 bg-rose-200/60 px-2 py-0.5 rounded-lg">
+                  <i class="fa-solid fa-volume-high"></i> Ví dụ mẫu
+                </button>
+              </div>
+              <p class="text-slate-600 mt-1">• Dùng trong câu <strong>phủ định (-)</strong> có <em>not / isn't / aren't / don't</em>: <em>There aren't any biscuits on the plate.</em></p>
+              <p class="text-slate-600 mt-1">• Dùng trong câu <strong>hỏi nghi vấn thông thường (?)</strong>: <em>Do we have any milk? / Is there any rice?</em></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: A lot of / Lots of vs Some -->
+        <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-200 hover:shadow-lg transition">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-3">
+            <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-lg">
+              3
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-800 text-lg font-baloo">A LOT OF / LOTS OF (Nhiều)</h3>
+              <p class="text-xs text-slate-500">Trang 53 SGK Global Success 7</p>
+            </div>
+          </div>
+          <div class="mt-4 space-y-2 text-sm text-slate-600">
+            <p>• <strong>A lot of</strong> và <strong>Lots of</strong> có ý nghĩa hoàn toàn giống nhau, dùng thoải mái với cả danh từ đếm được số nhiều và danh từ không đếm được.</p>
+            <div class="bg-slate-50 p-3 rounded-2xl border border-slate-200 space-y-2">
+              <div class="flex items-center justify-between">
+                <span>• <em>He has got a lot of friends.</em> (Đếm được số nhiều)</span>
+                <button onclick="speakText('He has got a lot of friends.')" class="text-teal-600"><i class="fa-solid fa-volume-high"></i></button>
+              </div>
+              <div class="flex items-center justify-between">
+                <span>• <em>She likes coffee with lots of sugar.</em> (Không đếm được)</span>
+                <button onclick="speakText('She likes coffee with lots of sugar.')" class="text-teal-600"><i class="fa-solid fa-volume-high"></i></button>
+              </div>
+            </div>
+            <div class="p-2.5 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900">
+              <strong>💡 Mẹo SGK Bài 1:</strong> Nếu câu có dấu hiệu <em>"Too many/much"</em>, <em>"very busy"</em>, <em>"very popular"</em> thì diễn tả số lượng nhiều nên chọn <strong>a lot of / lots of</strong>; còn nếu có <em>"Not too much"</em>, <em>"not much but just enough"</em> thì diễn tả lượng vừa phải nên chọn <strong>some</strong>!
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: How Much vs How Many -->
+        <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-200 hover:shadow-lg transition">
+          <div class="flex items-center gap-3 border-b border-slate-100 pb-3">
+            <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-lg">
+              4
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-800 text-lg font-baloo">Hỏi Số Lượng: HOW MUCH & HOW MANY</h3>
+              <p class="text-xs text-slate-500">Trang 54 SGK Global Success 7</p>
+            </div>
+          </div>
+          <div class="mt-4 space-y-3 text-sm">
+            <div class="bg-purple-50 p-3 rounded-2xl border border-purple-100">
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-purple-900">🍳 HOW MANY + Danh từ đếm được số nhiều:</span>
+                <button onclick="speakText('How many eggs do we need? How many bananas do you eat every week?')" class="text-purple-700 text-xs flex items-center gap-1"><i class="fa-solid fa-volume-high"></i> Nghe</button>
+              </div>
+              <p class="text-slate-600 mt-1">Dùng hỏi số lượng đếm được: <em>How many eggs / books / bananas / spring rolls...?</em></p>
+            </div>
+            <div class="bg-teal-50 p-3 rounded-2xl border border-teal-100">
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-teal-900">🥛 HOW MUCH + Danh từ không đếm được:</span>
+                <button onclick="speakText('How much water do you drink every day? How much milk do we need for the pancakes?')" class="text-teal-700 text-xs flex items-center gap-1"><i class="fa-solid fa-volume-high"></i> Nghe</button>
+              </div>
+              <p class="text-slate-600 mt-1">Dùng hỏi lượng chất lỏng, bột, đường, thịt: <em>How much water / milk / flour / butter / sugar...?</em></p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Quick Summary Banner -->
+      <div class="bg-white rounded-3xl p-6 border border-teal-200 shadow-md flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-2xl bg-amber-400 text-slate-900 flex items-center justify-center text-xl font-black">
+            <i class="fa-solid fa-graduation-cap"></i>
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-800 text-base">Sẵn sàng thử tài với 5 Game Ngữ Pháp Đỉnh Cao?</h4>
+            <p class="text-xs text-slate-500">Mỗi game 20 câu hỏi độc quyền có loa giọng nữ bản ngữ và chấm điểm tự động.</p>
+          </div>
+        </div>
+        <button onclick="switchTab('game1')" class="w-full sm:w-auto px-6 py-3 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold rounded-2xl shadow-md transition transform hover:-translate-y-0.5">
+          Bắt Đầu Game 1 <i class="fa-solid fa-arrow-right ml-1"></i>
+        </button>
+      </div>
+    </section>
+
+    <!-- CONTAINER CHO CÁC GAME -->
+    <div id="game-containers" class="space-y-8">
+      <!-- Game sections will be dynamically populated/managed here -->
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 py-8 border-t border-slate-800 mt-12 text-sm">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pb-6 border-b border-slate-800">
+        <div>
+          <div class="flex items-center gap-2 text-white font-bold font-baloo text-lg mb-2">
+            <i class="fa-solid fa-graduation-cap text-amber-400"></i>
+            <span>HT ENGLISH CENTER</span>
+          </div>
+          <p class="text-xs leading-relaxed text-slate-400">
+            Hệ thống bài tập & trò chơi giáo dục số hóa chuẩn khung chương trình Tiếng Anh 7 Global Success. Thiết kế giảng dạy độc quyền bởi cô <strong>Ms. Lily</strong>.
+          </p>
+        </div>
+        <div>
+          <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-2">Thông Tin Liên Hệ</h4>
+          <ul class="text-xs space-y-1.5">
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-phone text-amber-400"></i>
+              <span>Hotline: <strong class="text-white">0963422940</strong> – <strong class="text-white">0962240866</strong></span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-chalkboard-user text-amber-400"></i>
+              <span>Giáo viên phụ trách: <strong class="text-white">Ms. Lily</strong></span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-location-dot text-amber-400"></i>
+              <span>Địa chỉ: Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình</span>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-bold text-xs uppercase tracking-wider mb-2">Lời Khuyên Từ Ms. Lily</h4>
+          <p class="text-xs text-slate-400 italic">
+            "Hãy luôn quan sát kỹ danh từ đứng phía sau là đếm được hay không đếm được, sau đó nhìn vào dấu hiệu của câu (khẳng định, phủ định, câu hỏi hay lời mời) để chọn đúng từ chỉ số lượng các em nhé!"
+          </p>
+        </div>
+      </div>
+      <div class="pt-4 text-center text-xs text-slate-500">
+        © 2026 HT English Center (Ms. Lily). Unit 5: Food and Drink Grammar Arena. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const GAMES_DATA = [
+      {
+        id: "game1",
+        title: "Game 1: Đấu Sĩ Phân Loại - Countable hay Uncountable?",
+        badge: "Nền Tảng Cốt Lõi (20 Câu)",
+        icon: "fa-scale-balanced",
+        theme: "emerald",
+        desc: "Phân loại chuẩn xác danh từ đếm được (Countable Nouns) và không đếm được (Uncountable Nouns) thuộc chủ đề Đồ Ăn & Thức Uống Unit 5.",
+        questions: [
+          { id: 1, q: "Từ 'apple' (quả táo) là danh từ loại nào?", audio: "apple", options: ["Countable Noun (Danh từ đếm được)", "Uncountable Noun (Danh từ không đếm được)"], correct: 0, exp: "Quả táo có thể đếm từng quả 1 apple, 2 apples nên là Danh từ đếm được (Countable Noun)." },
+          { id: 2, q: "Từ 'water' (nước lọc) là danh từ loại nào?", audio: "water", options: ["Countable Noun (Danh từ đếm được)", "Uncountable Noun (Danh từ không đếm được)"], correct: 1, exp: "Nước là chất lỏng, không đếm trực tiếp 1 nước, 2 nước nên là Danh từ không đếm được (Uncountable Noun)." },
+          { id: 3, q: "Từ 'egg' (quả trứng) là danh từ loại nào?", audio: "egg", options: ["Countable Noun (Danh từ đếm được)", "Uncountable Noun (Danh từ không đếm được)"], correct: 0, exp: "Trứng đếm trực tiếp được: 1 egg, 2 eggs, 3 eggs nên là Danh từ đếm được (Countable Noun)." },
+          { id: 4, q: "Từ 'milk' (sữa) là danh từ loại nào?", audio: "milk", options: ["Countable Noun (Danh từ đếm được)", "Uncountable Noun (Danh từ không đếm được)"], correct: 1, exp: "Sữa là chất lỏng nên là Danh từ không đếm được (Uncountable Noun)." },
+          { id: 5, q: "Từ 'sugar' (đường) là danh từ loại nào?", audio: "sugar", options: ["Countable Noun (Danh từ đếm được)", "Uncountable Noun (Danh từ không đếm được)"], correct: 1, exp: "Đường ở dạng hạt nhỏ li ti, thuộc nhóm gia vị không đếm được (Uncountable Noun)." },
+          { id: 6, q: "Từ 'banana' (quả chuối) là danh từ loại nào?", audio: "banana", options: ["Countable Noun (Danh từ đếm được)", "Uncountable Noun (Danh từ không đếm được)"], correct: 0, exp: "Quả chuối đếm được từng quả: a banana, two bananas nên là Danh từ đếm được (Countable Noun)." },
+          { id: 7, q: "Từ 'cheese' (phô mai) là danh từ loại nào?", audio: "cheese", options: ["Countable Noun (Danh từ đếm được)", "Uncountable Noun (Danh từ không đếm được)"], correct: 1, exp: "Phô mai là khối thực phẩm chung, là Danh từ không đếm được (Uncountable Noun)." },
+          { id: 8, q: "Từ 'biscuit' (bánh quy) là danh từ loại nào?", audio: "biscuit", options: ["Countable Noun (Danh từ đếm được)", "Uncountable Noun (Danh từ không đếm được)"], correct: 0, exp: "Bánh quy đếm được từng chiếc: a biscuit, two biscuits nên là Danh từ đếm được (Countable Noun)." },
+          { id: 9, q: "Từ 'rice' (cơm, gạo) là danh từ loại nào?", audio: "rice", options: ["Countable Noun (Danh từ đếm được)", "Uncountable Noun (Danh từ không đếm được)"], correct: 1, exp: "Cơm, gạo gồm hàng ngàn hạt nhỏ, là Danh từ không đếm được (Uncountable Noun)." },
+          { id: 10, q: "Từ 'spring roll' (nem rán / chả giò) là danh từ loại nào?", audio: "spring roll", options: ["Countable Noun (Danh từ đếm được)", "Uncountable Noun (Danh từ không đếm được)"], correct: 0, exp: "Nem rán đếm được từng cái: a spring roll, ten spring rolls nên là Danh từ đếm được (Countable Noun)." },
+          { id: 11, q: "Từ 'butter' (bơ) là danh từ loại nào?", audio: "butter", options: ["Countable Noun (Danh từ đếm được)", "Uncountable Noun (Danh từ không đếm được)"], correct: 1, exp: "Bơ là chất béo đặc không đếm được, muốn đếm phải dùng đơn vị như 15 grams of butter." },
+          { id: 12, q: "Từ 'bottle of water' (chai nước) là danh từ loại nào?", audio: "bottle of water", options: ["Countable Noun (Danh từ đếm được)", "Uncountable Noun (Danh từ không đếm được)"], correct: 0, exp: "Tuy 'water' không đếm được nhưng 'bottle' (chai) lại đếm được: one bottle, two bottles of water." },
+          { id: 13, q: "Từ 'salt' (muối ăn) là danh từ loại nào?", audio: "salt", options: ["Countable Noun (Danh từ đếm được)", "Uncountable Noun (Danh từ không đếm được)"], correct: 1, exp: "Muối là gia vị hạt nhỏ, là Danh từ không đếm được (Uncountable Noun)." },
+          { id: 14, q: "Từ 'pancake' (bánh kếp) là danh từ loại nào?", audio: "pancake", options: ["Countable Noun (Danh từ đếm được)", "Uncountable Noun (Danh từ không đếm được)"], correct: 0, exp: "Bánh kếp đếm được từng chiếc: a pancake, three pancakes nên là Danh từ đếm được (Countable Noun)." },
+          { id: 15, q: "Từ 'pepper' (hạt tiêu) là danh từ loại nào?", audio: "pepper", options: ["Countable Noun (Danh từ đếm được)", "Uncountable Noun (Danh từ không đếm được)"], correct: 1, exp: "Hạt tiêu bột là gia vị không đếm được (Uncountable Noun)." },
+          { id: 16, q: "Từ 'flour' (bột mì) là danh từ loại nào?", audio: "flour", options: ["Countable Noun (Danh từ đếm được)", "Uncountable Noun (Danh từ không đếm được)"], correct: 1, exp: "Bột mì là chất bột mịn, không thể đếm từng hạt nên là Danh từ không đếm được (Uncountable Noun)." },
+          { id: 17, q: "Từ 'sandwich' (bánh mì kẹp) là danh từ loại nào?", audio: "sandwich", options: ["Countable Noun (Danh từ đếm được)", "Uncountable Noun (Danh từ không đếm được)"], correct: 0, exp: "Bánh mì kẹp đếm được: a sandwich, two sandwiches nên là Danh từ đếm được (Countable Noun)." },
+          { id: 18, q: "Từ 'lemonade' (nước chanh) là danh từ loại nào?", audio: "lemonade", options: ["Countable Noun (Danh từ đếm được)", "Uncountable Noun (Danh từ không đếm được)"], correct: 1, exp: "Nước chanh là đồ uống dạng lỏng nên là Danh từ không đếm được (Uncountable Noun)." },
+          { id: 19, q: "Từ 'tomato' (quả cà chua) là danh từ loại nào?", audio: "tomato", options: ["Countable Noun (Danh từ đếm được)", "Uncountable Noun (Danh từ không đếm được)"], correct: 0, exp: "Quả cà chua đếm được: a tomato, two tomatoes nên là Danh từ đếm được (Countable Noun)." },
+          { id: 20, q: "Từ 'beef' (thịt bò) là danh từ loại nào?", audio: "beef", options: ["Countable Noun (Danh từ đếm được)", "Uncountable Noun (Danh từ không đếm được)"], correct: 1, exp: "Các loại thịt nói chung (beef, pork, chicken khi nói về thịt) là Danh từ không đếm được (Uncountable Noun)." }
+        ]
+      },
+      {
+        id: "game2",
+        title: "Game 2: Mắt Thần Lựa Chọn: Some hay Any?",
+        badge: "Khẳng Định vs. Phủ Định / Nghi Vấn (20 Câu)",
+        icon: "fa-wand-magic-sparkles",
+        theme: "amber",
+        desc: "Khắc sâu quy tắc vàng: Some cho câu khẳng định và lời mời lịch sự; Any cho câu phủ định và câu hỏi.",
+        questions: [
+          { id: 1, q: "There is ________ orange juice in the glass.", audio: "There is some orange juice in the glass.", options: ["some", "any", "a", "an"], correct: 0, exp: "Đây là câu khẳng định (+), 'orange juice' là danh từ không đếm được nên ta dùng 'some' (Có một ít nước cam trong ly)." },
+          { id: 2, q: "There aren't ________ biscuits on the plate.", audio: "There aren't any biscuits on the plate.", options: ["some", "any", "lots", "a"], correct: 1, exp: "Câu chứa thể phủ định 'aren't' (không có) nên theo quy tắc ta phải chọn 'any' (Không có bất kỳ chiếc bánh quy nào trên đĩa)." },
+          { id: 3, q: "I need ________ apples for this recipe.", audio: "I need some apples for this recipe.", options: ["any", "some", "a", "an"], correct: 1, exp: "Đây là câu khẳng định (+) diễn đạt nhu cầu lấy một vài quả táo, ta dùng 'some' đi với danh từ đếm được số nhiều 'apples'." },
+          { id: 4, q: "Do you have ________ milk in the fridge?", audio: "Do you have any milk in the fridge?", options: ["some", "any", "a lot", "many"], correct: 1, exp: "Đây là câu hỏi nghi vấn thông thường (?) nên ta chọn 'any' (Bạn có còn chút sữa nào trong tủ lạnh không?)." },
+          { id: 5, q: "Would you like ________ tea with sugar?", audio: "Would you like some tea with sugar?", options: ["any", "some", "a", "an"], correct: 1, exp: "ĐÂY LÀ LỜI MỜI LỊCH SỰ với cấu trúc 'Would you like...?', theo quy tắc vàng ta phải dùng 'some' chứ không dùng 'any'." },
+          { id: 6, q: "We don't have ________ butter left to make cakes.", audio: "We don't have any butter left to make cakes.", options: ["some", "any", "a", "many"], correct: 1, exp: "Câu phủ định chứa 'don't have', danh từ 'butter' không đếm được, ta dùng 'any' (Chúng ta không còn chút bơ nào)." },
+          { id: 7, q: "There are ________ fresh vegetables on the table.", audio: "There are some fresh vegetables on the table.", options: ["some", "any", "much", "an"], correct: 0, exp: "Câu khẳng định (+) với danh từ đếm được số nhiều 'vegetables', ta chọn 'some' (Có một vài loại rau tươi trên bàn)." },
+          { id: 8, q: "Can I have ________ water, please? I am very thirsty.", audio: "Can I have some water, please? I am very thirsty.", options: ["any", "some", "a", "many"], correct: 1, exp: "CÂU YÊU CẦU LỊCH SỰ 'Can I have...?' thể hiện mong muốn nhận được câu trả lời Yes, do đó ta dùng 'some'." },
+          { id: 9, q: "Is there ________ cheese in this pizza?", audio: "Is there any cheese in this pizza?", options: ["any", "some", "many", "a"], correct: 0, exp: "Câu hỏi nghi vấn (?) với 'Is there...?' và danh từ không đếm được 'cheese', ta dùng 'any'." },
+          { id: 10, q: "My mother didn't buy ________ meat yesterday.", audio: "My mother didn't buy any meat yesterday.", options: ["some", "any", "a lot", "a"], correct: 1, exp: "Câu phủ định quá khứ đơn có 'didn't buy' nên ta dùng 'any' (Mẹ tôi không mua chút thịt nào hôm qua)." },
+          { id: 11, q: "Susie bought ________ bananas at the supermarket.", audio: "Susie bought some bananas at the supermarket.", options: ["any", "some", "a", "much"], correct: 1, exp: "Câu khẳng định (+) nói về hành động mua hàng, 'bananas' là danh từ đếm được số nhiều, ta dùng 'some'." },
+          { id: 12, q: "There isn't ________ salt in the soup. It's too plain.", audio: "There isn't any salt in the soup. It's too plain.", options: ["some", "any", "a lot", "many"], correct: 1, exp: "Câu phủ định có 'isn't' đi với danh từ không đếm được 'salt', ta bắt buộc phải chọn 'any'." },
+          { id: 13, q: "Would you like ________ lemonade, Nick?", audio: "Would you like some lemonade, Nick?", options: ["any", "some", "a", "lots"], correct: 1, exp: "Lời mời đồ uống 'Would you like...?' luôn dùng 'some' để tạo sự hiếu khách và mong muốn người nghe đồng ý." },
+          { id: 14, q: "Are there ________ spring rolls left for dinner?", audio: "Are there any spring rolls left for dinner?", options: ["some", "any", "much", "a"], correct: 1, exp: "Câu hỏi nghi vấn (?) với 'Are there...?' và danh từ số nhiều 'spring rolls', ta chọn 'any'." },
+          { id: 15, q: "She has got ________ good recipes for delicious omelettes.", audio: "She has got some good recipes for delicious omelettes.", options: ["some", "any", "a", "much"], correct: 0, exp: "Câu khẳng định (+) với 'recipes' (công thức nấu ăn) là danh từ đếm được số nhiều, ta chọn 'some'." },
+          { id: 16, q: "They didn't add ________ pepper to the food.", audio: "They didn't add any pepper to the food.", options: ["some", "any", "many", "a"], correct: 1, exp: "Câu phủ định 'didn't add' kết hợp với danh từ không đếm được 'pepper' (tiêu), ta dùng 'any'." },
+          { id: 17, q: "Can you give me ________ sugar for my coffee?", audio: "Can you give me some sugar for my coffee?", options: ["any", "some", "a", "many"], correct: 1, exp: "Lời nhờ vả, yêu cầu lịch sự 'Can you give me...?' ta dùng 'some' (Bạn có thể cho mình xin ít đường không?)." },
+          { id: 18, q: "We don't need ________ eggs for this dish.", audio: "We don't need any eggs for this dish.", options: ["some", "any", "much", "a"], correct: 1, exp: "Câu phủ định 'don't need' đi kèm danh từ đếm được số nhiều 'eggs', ta chọn 'any'." },
+          { id: 19, q: "I can see ________ bottles of milk on the shelf.", audio: "I can see some bottles of milk on the shelf.", options: ["any", "some", "much", "an"], correct: 1, exp: "Câu khẳng định (+) với danh từ đếm được số nhiều 'bottles of milk', ta chọn 'some'." },
+          { id: 20, q: "Does your father drink ________ coffee in the evening?", audio: "Does your father drink any coffee in the evening?", options: ["some", "any", "a", "many"], correct: 1, exp: "Câu hỏi nghi vấn hiện tại đơn 'Does your father drink...?' hỏi về danh từ 'coffee', ta dùng 'any'." }
+        ]
+      },
+      {
+        id: "game3",
+        title: "Game 3: Bậc Thầy Số Lượng: A Lot Of / Lots Of hay Some?",
+        badge: "Bám Sát SGK Trang 53 Bài 1 & 2 (20 Câu)",
+        icon: "fa-boxes-stacked",
+        theme: "teal",
+        desc: "Phân biệt sắc thái số lượng: A lot of / Lots of (nhiều) vs. Some (vừa phải / một vài) theo từng ngữ cảnh tình huống chuẩn SGK.",
+        questions: [
+          { id: 1, q: "Minh is very popular. He has got ________ friends.", audio: "Minh is very popular. He has got a lot of friends.", options: ["some", "a lot of", "any", "much"], correct: 1, exp: "SGK Bài 1 Câu 1: Ngữ cảnh 'Minh is very popular' (Minh rất nổi tiếng/được yêu mến) thể hiện anh ấy có 'nhiều' bạn bè nên ta chọn 'a lot of'." },
+          { id: 2, q: "Linh is very busy. She has got ________ homework.", audio: "Linh is very busy. She has got lots of homework.", options: ["some", "lots of", "any", "many"], correct: 1, exp: "SGK Bài 1 Câu 2: 'Linh is very busy' (Linh rất bận rộn) chứng tỏ cô ấy có 'rất nhiều' bài tập về nhà nên ta chọn 'lots of'." },
+          { id: 3, q: "Put ________ sugar in my tea. But not too much.", audio: "Put some sugar in my tea. But not too much.", options: ["some", "a lot of", "any", "many"], correct: 0, exp: "SGK Bài 1 Câu 3: 'But not too much' (Nhưng đừng nhiều quá) là dấu hiệu rõ ràng chỉ cần một lượng vừa phải, vì vậy ta phải chọn 'some'." },
+          { id: 4, q: "There are ________ cars in our city. Too many. I don't like it.", audio: "There are a lot of cars in our city. Too many. I don't like it.", options: ["some", "a lot of", "any", "much"], correct: 1, exp: "SGK Bài 1 Câu 4: Ngữ cảnh 'Too many. I don't like it' (Quá nhiều. Tôi không thích điều đó) khẳng định số lượng xe cộ rất nhiều, nên ta chọn 'a lot of'." },
+          { id: 5, q: "There is ________ rice left. Not much but just enough for our breakfast.", audio: "There is some rice left. Not much but just enough for our breakfast.", options: ["lots of", "some", "any", "many"], correct: 1, exp: "SGK Bài 1 Câu 5: Dấu hiệu 'Not much but just enough' (Không nhiều nhưng vừa đủ ăn sáng) chứng tỏ chỉ có một ít cơm, nên chọn 'some'." },
+          { id: 6, q: "There is a full carton of ten eggs on the table. There are ________ eggs.", audio: "There are a lot of eggs in the carton.", options: ["a lot of", "any", "a", "much"], correct: 0, exp: "Cả một hộp đầy 10 quả trứng (theo tranh bài 2 SGK trang 53) biểu thị số lượng nhiều, nên dùng 'a lot of eggs'." },
+          { id: 7, q: "Look at the empty plate! There aren't ________ biscuits.", audio: "There aren't any biscuits on the plate.", options: ["a lot of", "any", "some", "much"], correct: 1, exp: "SGK Bài 2 Câu 2: Chiếc đĩa trống trơn không còn cái nào, kết hợp câu phủ định 'aren't' nên ta phải điền 'any'." },
+          { id: 8, q: "Susie went to the cinema with ________ friends, about two or three.", audio: "Susie went to the cinema with some friends.", options: ["any", "some", "much", "a lot"], correct: 1, exp: "Đi với một vài người bạn (2-3 bạn) trong câu khẳng định, ta chọn 'some friends'." },
+          { id: 9, q: "I'd like a delicious pizza with ________ melted cheese on top.", audio: "I'd like a pizza with some cheese.", options: ["some", "any", "many", "an"], correct: 0, exp: "SGK Bài 2 Câu 4: Muốn ăn pizza có một ít phô mai tan chảy (câu khẳng định), ta chọn 'some cheese'." },
+          { id: 10, q: "There is a large bowl full of sugar cubes. There is ________ sugar.", audio: "There is a lot of sugar in the bowl.", options: ["a lot of", "any", "many", "a"], correct: 0, exp: "SGK Bài 2 Câu 5: Bát đầy ắp các viên đường (large bowl) biểu thị lượng đường rất nhiều, ta chọn 'a lot of sugar'." },
+          { id: 11, q: "He is a famous chef. He knows ________ amazing recipes.", audio: "He knows lots of amazing recipes.", options: ["lots of", "any", "much", "an"], correct: 0, exp: "Đầu bếp nổi tiếng (famous chef) thì chắc chắn biết 'rất nhiều' công thức nấu ăn, ta chọn 'lots of'." },
+          { id: 12, q: "I only need ________ drops of lemon juice for the salad.", audio: "I only need some drops of lemon juice for the salad.", options: ["a lot of", "some", "any", "much"], correct: 1, exp: "Từ 'only' (chỉ) bổ nghĩa cho lượng ít một vài giọt nước chanh, ta chọn 'some'." },
+          { id: 13, q: "Vietnamese people eat ________ rice every day because it is their staple food.", audio: "Vietnamese people eat a lot of rice every day.", options: ["a lot of", "any", "many", "a few"], correct: 0, exp: "Cơm là món ăn chính (staple food) của người Việt nên họ ăn 'rất nhiều' cơm hàng ngày, ta chọn 'a lot of rice'." },
+          { id: 14, q: "Can you pass me ________ salt, please? Just a little bit.", audio: "Can you pass me some salt, please?", options: ["a lot of", "some", "any", "many"], correct: 1, exp: "Lời nhờ vả 'Just a little bit' (chỉ một chút xíu thôi) nên ta dùng 'some' thể hiện lượng vừa phải." },
+          { id: 15, q: "There are ________ tourists at the food street tonight. It is extremely crowded!", audio: "There are lots of tourists at the food street tonight.", options: ["lots of", "any", "much", "a"], correct: 0, exp: "Ngữ cảnh 'extremely crowded' (cực kỳ đông đúc) chỉ số lượng người rất đông, ta chọn 'lots of'." },
+          { id: 16, q: "We still have ________ bread for breakfast. It's enough for two of us.", audio: "We still have some bread for breakfast.", options: ["a lot of", "some", "any", "many"], correct: 1, exp: "Đủ cho 2 người (enough for two) diễn tả lượng vừa đủ nên ta dùng 'some'." },
+          { id: 17, q: "Drinking ________ water is very good for your skin and health.", audio: "Drinking a lot of water is very good for your skin and health.", options: ["a lot of", "any", "many", "few"], correct: 0, exp: "Uống 'nhiều' nước (2 lít mỗi ngày) rất tốt cho sức khỏe, ta dùng 'a lot of water'." },
+          { id: 18, q: "She bought ________ apples at the market to make an apple pie.", audio: "She bought some apples at the market.", options: ["any", "some", "much", "an"], correct: 1, exp: "Câu khẳng định mua một vài quả táo để làm bánh, ta chọn 'some apples'." },
+          { id: 19, q: "There is ________ trash in the river. It's heavily polluted.", audio: "There is a lot of trash in the river.", options: ["a lot of", "some", "any", "many"], correct: 0, exp: "Sông bị ô nhiễm nặng (heavily polluted) vì có 'rất nhiều' rác thải, ta chọn 'a lot of'." },
+          { id: 20, q: "I will add ________ pepper to make the pork smell better.", audio: "I will add some pepper to make the pork smell better.", options: ["a lot of", "some", "any", "many"], correct: 1, exp: "Gia vị tiêu chỉ thêm một ít để thơm ngon, dùng quá nhiều sẽ bị cay, nên ta chọn 'some pepper'." }
+        ]
+      },
+      {
+        id: "game4",
+        title: "Game 4: Thám Tử Hỏi Đáp: How Much hay How Many?",
+        badge: "Bám Sát SGK Trang 54 Bài 3, 4 & 5 (20 Câu)",
+        icon: "fa-circle-question",
+        theme: "purple",
+        desc: "Luyện phản xạ tuyệt đỉnh: How much cho danh từ không đếm được và How many cho danh từ đếm được số nhiều.",
+        questions: [
+          { id: 1, q: "________ water do you drink every day? - About two litres.", audio: "How much water do you drink every day?", options: ["How much", "How many", "How long", "How often"], correct: 0, exp: "SGK Bài 3 Câu 1: 'water' là danh từ không đếm được nên ta bắt buộc phải dùng 'How much' (Bạn uống bao nhiêu nước mỗi ngày?)." },
+          { id: 2, q: "________ books did you read last month? - Two books.", audio: "How many books did you read last month?", options: ["How much", "How many", "How old", "How far"], correct: 1, exp: "SGK Bài 3 Câu 2: 'books' là danh từ đếm được số nhiều (có đuôi -s) nên ta phải hỏi bằng 'How many'." },
+          { id: 3, q: "________ films did you watch last year? - About five films.", audio: "How many films did you watch last year?", options: ["How much", "How many", "How often", "How long"], correct: 1, exp: "SGK Bài 3 Câu 3: 'films' là danh từ đếm được số nhiều nên dùng 'How many' (Bạn đã xem bao nhiêu bộ phim năm ngoái?)." },
+          { id: 4, q: "________ bananas do you eat every week? - Three bananas.", audio: "How many bananas do you eat every week?", options: ["How much", "How many", "How big", "How often"], correct: 1, exp: "SGK Bài 3 Câu 4: 'bananas' là danh từ đếm được số nhiều nên ta chọn 'How many'." },
+          { id: 5, q: "________ spring rolls did your mother cook last month? - Twenty spring rolls.", audio: "How many spring rolls did your mother cook last month?", options: ["How much", "How many", "How long", "How far"], correct: 1, exp: "SGK Bài 3 Câu 5: 'spring rolls' (những chiếc nem rán) là danh từ đếm được số nhiều nên ta dùng 'How many'." },
+          { id: 6, q: "________ milk do we need to make pancakes? - About 100 millilitres.", audio: "How much milk do we need to make pancakes?", options: ["How much", "How many", "How long", "How often"], correct: 0, exp: "SGK Bài 5: 'milk' (sữa) là chất lỏng, danh từ không đếm được nên ta dùng 'How much milk'." },
+          { id: 7, q: "________ eggs do we need for an omelette? - Three eggs.", audio: "How many eggs do we need for an omelette?", options: ["How much", "How many", "How big", "How old"], correct: 1, exp: "SGK Bài 5: 'eggs' là danh từ đếm được số nhiều nên ta dùng 'How many eggs' (Cần bao nhiêu quả trứng?)." },
+          { id: 8, q: "________ sugar do you put in your lemonade? - One tablespoon.", audio: "How much sugar do you put in your lemonade?", options: ["How much", "How many", "How often", "How far"], correct: 0, exp: "'sugar' (đường) là danh từ không đếm được nên ta dùng 'How much sugar'." },
+          { id: 9, q: "________ butter do we need for the cake? - About 15 grams.", audio: "How much butter do we need for the cake?", options: ["How much", "How many", "How long", "How often"], correct: 0, exp: "'butter' (bơ) là danh từ không đếm được nên ta chọn 'How much butter'." },
+          { id: 10, q: "________ apples are there in the basket? - There are six apples.", audio: "How many apples are there in the basket?", options: ["How much", "How many", "How old", "How long"], correct: 1, exp: "'apples' (những quả táo) là danh từ đếm được số nhiều nên ta dùng 'How many apples'." },
+          { id: 11, q: "________ flour do we need to bake this bread? - Five tablespoons.", audio: "How much flour do we need to bake this bread?", options: ["How much", "How many", "How often", "How far"], correct: 0, exp: "'flour' (bột mì) là chất bột không đếm được nên ta dùng 'How much flour'." },
+          { id: 12, q: "________ bottles of mineral water did you buy? - Three bottles.", audio: "How many bottles of mineral water did you buy?", options: ["How much", "How many", "How long", "How often"], correct: 1, exp: "Tuy 'water' không đếm được nhưng từ chỉ đồ chứa 'bottles' (những chiếc chai) lại đếm được số nhiều nên phải dùng 'How many bottles'." },
+          { id: 13, q: "________ salt should I add to the soup? - One teaspoon.", audio: "How much salt should I add to the soup?", options: ["How much", "How many", "How big", "How old"], correct: 0, exp: "'salt' (muối) là danh từ không đếm được nên ta chọn 'How much salt'." },
+          { id: 14, q: "________ cups of green tea does your grandfather drink a day? - Two cups.", audio: "How many cups of green tea does your grandfather drink a day?", options: ["How much", "How many", "How long", "How often"], correct: 1, exp: "'cups' (những tách trà) là danh từ đếm được số nhiều nên dùng 'How many cups'." },
+          { id: 15, q: "________ beef do you want to buy at the butcher's? - Half a kilo.", audio: "How much beef do you want to buy at the butcher's?", options: ["How much", "How many", "How often", "How far"], correct: 0, exp: "'beef' (thịt bò) là danh từ không đếm được nên ta dùng 'How much beef'." },
+          { id: 16, q: "________ slices of bread are left on the table? - Four slices.", audio: "How many slices of bread are left on the table?", options: ["How much", "How many", "How old", "How big"], correct: 1, exp: "'slices' (những lát bánh mì) là danh từ đếm được số nhiều nên dùng 'How many slices'." },
+          { id: 17, q: "________ rice do you eat for lunch? - Two bowls.", audio: "How much rice do you eat for lunch?", options: ["How much", "How many", "How often", "How long"], correct: 0, exp: "'rice' (cơm) là danh từ không đếm được nên ta dùng 'How much rice'." },
+          { id: 18, q: "________ sandwiches did Tom take to school? - Two sandwiches.", audio: "How many sandwiches did Tom take to school?", options: ["How much", "How many", "How often", "How long"], correct: 1, exp: "'sandwiches' là danh từ đếm được số nhiều nên ta chọn 'How many sandwiches'." },
+          { id: 19, q: "________ orange juice is there in the fridge? - A whole carton.", audio: "How much orange juice is there in the fridge?", options: ["How much", "How many", "How far", "How old"], correct: 0, exp: "'orange juice' là danh từ không đếm được nên ta dùng 'How much orange juice'." },
+          { id: 20, q: "________ tomatoes do you need for the spaghetti sauce? - Three tomatoes.", audio: "How many tomatoes do you need for the spaghetti sauce?", options: ["How much", "How many", "How often", "How long"], correct: 1, exp: "'tomatoes' là danh từ đếm được số nhiều nên ta dùng 'How many tomatoes'." }
+        ]
+      },
+      {
+        id: "game5",
+        title: "Game 5: Siêu Đầu Bếp Bắt Lỗi & Hoàn Thiện Câu",
+        badge: "Thử Thách Nâng Cao & Bắt Lỗi Sai (20 Câu)",
+        icon: "fa-kitchen-set",
+        theme: "rose",
+        desc: "Trở thành siêu đầu bếp ngữ pháp: phát hiện các lỗi dùng từ chỉ số lượng sai kinh điển và hoàn thiện câu chuẩn xác.",
+        questions: [
+          { id: 1, q: "Tìm lỗi sai trong câu sau: 'There isn't some milk in the carton.'", audio: "There isn't some milk in the carton.", options: ["isn't", "some", "milk", "carton"], correct: 1, exp: "Lỗi sai ở từ 'some'. Đây là câu phủ định có 'isn't' nên theo quy tắc bắt buộc phải sửa 'some' thành 'any' (There isn't any milk...)." },
+          { id: 2, q: "Tìm lỗi sai trong câu sau: 'How much eggs do we need to make an omelette?'", audio: "How much eggs do we need to make an omelette?", options: ["How much", "eggs", "need", "make"], correct: 0, exp: "Lỗi sai ở 'How much'. Danh từ 'eggs' là đếm được số nhiều nên phải sửa thành 'How many eggs'." },
+          { id: 3, q: "Tìm lỗi sai trong câu sau: 'She eats many rice every day for dinner.'", audio: "She eats many rice every day for dinner.", options: ["eats", "many", "rice", "dinner"], correct: 1, exp: "'rice' là danh từ không đếm được, không bao giờ đi với 'many'. Phải sửa 'many' thành 'a lot of' hoặc 'lots of'." },
+          { id: 4, q: "Tìm lỗi sai trong câu sau: 'Would you like any orange juice, Nam?'", audio: "Would you like any orange juice, Nam?", options: ["Would", "like", "any", "orange juice"], correct: 2, exp: "Lỗi sai ở 'any'. Đây là lời mời lịch sự 'Would you like...?', theo quy tắc vàng phải sửa 'any' thành 'some'." },
+          { id: 5, q: "Tìm lỗi sai trong câu sau: 'How many water do you drink every day?'", audio: "How many water do you drink every day?", options: ["How many", "water", "drink", "every day"], correct: 0, exp: "Lỗi sai ở 'How many'. 'water' là danh từ không đếm được nên phải sửa thành 'How much water'." },
+          { id: 6, q: "Chọn câu viết đúng hoàn chỉnh:", audio: "There aren't any biscuits left on the plate.", options: ["There aren't some biscuits left on the plate.", "There aren't any biscuits left on the plate.", "There isn't any biscuits left on the plate.", "There aren't any biscuit left on the plate."], correct: 1, exp: "Câu phủ định số nhiều đúng chuẩn ngữ pháp là: 'There aren't any biscuits left on the plate'." },
+          { id: 7, q: "Tìm lỗi sai trong câu sau: 'He has got lot of friends at school.'", audio: "He has got lot of friends at school.", options: ["has", "lot of", "friends", "at school"], correct: 1, exp: "Lỗi sai ở 'lot of'. Trong tiếng Anh chỉ có 'a lot of' (có chữ a) hoặc 'lots of' (có đuôi s), không bao giờ dùng 'lot of' đứng một mình." },
+          { id: 8, q: "Tìm lỗi sai trong câu sau: 'There is some apples on the kitchen table.'", audio: "There is some apples on the kitchen table.", options: ["is", "some", "apples", "kitchen"], correct: 0, exp: "Lỗi sai ở 'is'. Danh từ 'apples' là số nhiều nên động từ to-be phải sửa thành 'are' (There are some apples...)." },
+          { id: 9, q: "Tìm lỗi sai trong câu sau: 'I don't have some money to buy beef.'", audio: "I don't have some money to buy beef.", options: ["don't", "have", "some", "buy"], correct: 2, exp: "Lỗi sai ở 'some'. Câu phủ định có trợ động từ 'don't' nên phải đổi 'some' thành 'any' (I don't have any money...)." },
+          { id: 10, q: "Chọn câu viết đúng theo công thức làm bánh kếp (Pancakes):", audio: "We need two eggs and some flour.", options: ["We need two eggs and some flour.", "We need two eggs and any flour.", "We need two egg and some flours.", "We need much eggs and some flour."], correct: 0, exp: "Câu khẳng định dùng số đếm 'two eggs' (số nhiều) và 'some flour' (bột mì không đếm được) là hoàn toàn chính xác." },
+          { id: 11, q: "Tìm lỗi sai trong câu sau: 'Do you have some questions for Ms. Lily?'", audio: "Do you have some questions for Ms. Lily?", options: ["Do", "have", "some", "questions"], correct: 2, exp: "Lỗi sai ở 'some'. Đây là câu hỏi nghi vấn thông thường, ta phải dùng 'any questions'." },
+          { id: 12, q: "Tìm lỗi sai trong câu sau: 'There are a lot of sugar in the glass.'", audio: "There are a lot of sugar in the glass.", options: ["are", "a lot of", "sugar", "glass"], correct: 0, exp: "Lỗi sai ở 'are'. 'sugar' là danh từ không đếm được nên to-be đi kèm phải là số ít 'is' (There is a lot of sugar...)." },
+          { id: 13, q: "Chọn câu hỏi giá tiền hoặc lượng nước đúng chuẩn:", audio: "How much is a bottle of mineral water?", options: ["How many is a bottle of mineral water?", "How much is a bottle of mineral water?", "How much are a bottle of mineral water?", "How many does a bottle of water cost?"], correct: 1, exp: "Hỏi giá tiền cho một chai nước số ít, cấu trúc chuẩn là: 'How much is a bottle of mineral water?'." },
+          { id: 14, q: "Tìm lỗi sai trong câu sau: 'Can I have any lemonade, please?'", audio: "Can I have any lemonade, please?", options: ["Can", "have", "any", "lemonade"], correct: 2, exp: "Lỗi sai ở 'any'. Đây là câu yêu cầu xin đồ uống lịch sự 'Can I have...?', ta phải sửa thành 'some lemonade'." },
+          { id: 15, q: "Tìm lỗi sai trong câu sau: 'My brother doesn't eat many pork.'", audio: "My brother doesn't eat many pork.", options: ["doesn't", "eat", "many", "pork"], correct: 2, exp: "'pork' (thịt lợn) là danh từ không đếm được, không đi với 'many'. Phải sửa thành 'much' hoặc 'a lot of'." },
+          { id: 16, q: "Chọn câu viết đúng hoàn chỉnh:", audio: "Put some sugar in my tea, but not too much.", options: ["Put a lot of sugar in my tea, but not too much.", "Put some sugar in my tea, but not too much.", "Put any sugar in my tea, but not too much.", "Put many sugar in my tea, but not too much."], correct: 1, exp: "Câu chuẩn theo Bài 1 SGK: 'Put some sugar in my tea, but not too much' (vì phía sau dặn 'not too much' nên phải dùng 'some')." },
+          { id: 17, q: "Tìm lỗi sai trong câu sau: 'There aren't no bananas left in the kitchen.'", audio: "There aren't no bananas left in the kitchen.", options: ["aren't", "no", "bananas", "left"], correct: 1, exp: "Đây là lỗi phủ định kép (double negative). Đã có 'aren't' thì không được dùng 'no', phải sửa 'no' thành 'any' (There aren't any bananas...)." },
+          { id: 18, q: "Tìm lỗi sai trong câu sau: 'How many butter do you need for this omelette?'", audio: "How many butter do you need for this omelette?", options: ["How many", "butter", "need", "omelette"], correct: 0, exp: "'butter' (bơ) không đếm được nên phải sửa 'How many' thành 'How much'." },
+          { id: 19, q: "Chọn câu viết đúng hoàn chỉnh về số lượng xe cộ:", audio: "There are a lot of cars in our city. Too many.", options: ["There are some cars in our city. Too many.", "There are a lot of cars in our city. Too many.", "There is a lot of cars in our city. Too many.", "There are any cars in our city. Too many."], correct: 1, exp: "Câu chuẩn theo SGK: 'There are a lot of cars in our city. Too many' (diễn tả số lượng quá nhiều, danh từ 'cars' số nhiều dùng 'There are')." },
+          { id: 20, q: "Chọn câu hoàn thiện công thức nấu ăn đúng nhất:", audio: "We need three eggs, 100 millilitres of milk, and some sugar.", options: ["We need three egg, 100 millilitres of milk, and some sugar.", "We need three eggs, 100 millilitres of milk, and some sugar.", "We need three eggs, 100 millilitres of milk, and any sugar.", "We need much eggs, 100 millilitres of milk, and some sugar."], correct: 1, exp: "Câu chuẩn xác hoàn toàn: 'three eggs' (3 quả trứng số nhiều), '100 millilitres of milk' (đơn vị đo lường cho sữa), và 'some sugar' (một ít đường)." }
+        ]
+      }
+    ];
+
+    let userAnswers = {};
+    let submittedGames = {};
+
+    // Text To Speech Helper Function
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) {
+        alert("Trình duyệt không hỗ trợ Web Speech API.");
+        return;
+      }
+      window.speechSynthesis.cancel(); // Stop any pending speech
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 0.9; // Slightly slower for clear teaching
+      utterance.pitch = 1.05; // Friendly female pitch
+      utterance.lang = 'en-US';
+
+      // Pick best US female voice
+      const voices = window.speechSynthesis.getVoices();
+      const usFemale = voices.find(v => v.lang.includes('en-US') && (v.name.includes('Samantha') || v.name.includes('Zira') || v.name.includes('Google US English') || v.name.includes('Jenny') || v.name.includes('Female')));
+      if (usFemale) {
+        utterance.voice = usFemale;
+      }
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // Ensure voices are loaded
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = () => {
+        // Voices ready
+      };
+    }
+
+    function renderGames() {
+      const container = document.getElementById('game-containers');
+      container.innerHTML = '';
+
+      GAMES_DATA.forEach((game, gameIdx) => {
+        userAnswers[game.id] = {};
+        submittedGames[game.id] = false;
+
+        const section = document.createElement('section');
+        section.id = `section-${game.id}`;
+        section.className = `tab-content hidden space-y-6`;
+
+        // Game Header Card
+        const headerHtml = `
+          <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-200">
+            <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-teal-500/10 text-teal-600 flex items-center justify-center text-2xl">
+                  <i class="fa-solid ${game.icon}"></i>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <span class="bg-teal-100 text-teal-800 text-xs font-bold px-2.5 py-0.5 rounded-full uppercase">${game.badge}</span>
+                    <span class="text-xs text-slate-400 font-medium">20 Câu hỏi</span>
+                  </div>
+                  <h2 class="text-xl sm:text-2xl font-bold font-baloo text-slate-800 mt-1">${game.title}</h2>
+                  <p class="text-xs sm:text-sm text-slate-500 mt-0.5">${game.desc}</p>
+                </div>
+              </div>
+
+              <!-- Score Board Placeholder -->
+              <div id="scoreboard-${game.id}" class="bg-slate-50 border border-slate-200 px-5 py-2.5 rounded-2xl flex items-center gap-4 text-xs sm:text-sm">
+                <div class="text-center">
+                  <span class="text-slate-400 block text-[11px] uppercase tracking-wider font-semibold">Đã Làm</span>
+                  <span id="progress-${game.id}" class="font-extrabold text-teal-600 text-base">0/20</span>
+                </div>
+                <div class="h-6 w-px bg-slate-200"></div>
+                <div class="text-center">
+                  <span class="text-slate-400 block text-[11px] uppercase tracking-wider font-semibold">Điểm Số</span>
+                  <span id="score-${game.id}" class="font-extrabold text-slate-700 text-base">-- / 20</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+
+        let questionsHtml = `<div class="grid grid-cols-1 gap-4">`;
+
+        game.questions.forEach((qItem, qIndex) => {
+          questionsHtml += `
+            <div id="card-${game.id}-${qItem.id}" class="bg-white rounded-3xl p-5 shadow-sm border border-slate-200 transition hover:border-teal-300">
+              <div class="flex items-start justify-between gap-3">
+                <div class="flex items-start gap-3">
+                  <span class="w-8 h-8 rounded-xl bg-slate-100 text-slate-600 font-bold flex items-center justify-center text-xs shrink-0 mt-0.5">
+                    ${qItem.id}
+                  </span>
+                  <div>
+                    <div class="text-slate-800 font-semibold text-sm sm:text-base leading-snug flex flex-wrap items-center gap-2">
+                      <span>${qItem.q}</span>
+                      <button type="button" onclick="speakText('${qItem.audio.replace(/'/g, "\\'")}')" class="text-teal-600 hover:text-teal-800 hover:scale-110 transition p-1 text-base" title="Nghe phát âm chuẩn giọng Nữ Anh - Mỹ">
+                        <i class="fa-solid fa-volume-high"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div id="status-icon-${game.id}-${qItem.id}" class="shrink-0 text-lg"></div>
+              </div>
+
+              <!-- Options -->
+              <div class="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                ${qItem.options.map((opt, optIndex) => `
+                  <button type="button" 
+                          id="opt-btn-${game.id}-${qItem.id}-${optIndex}" 
+                          onclick="selectOption('${game.id}', ${qItem.id}, ${optIndex})"
+                          class="option-btn text-left px-4 py-2.5 rounded-2xl border border-slate-200 hover:bg-teal-50 hover:border-teal-300 transition text-xs sm:text-sm font-medium flex items-center justify-between group">
+                    <div class="flex items-center gap-2.5">
+                      <span class="w-6 h-6 rounded-lg bg-slate-100 group-hover:bg-teal-200 text-slate-600 text-xs font-bold flex items-center justify-center">
+                        ${String.fromCharCode(65 + optIndex)}
+                      </span>
+                      <span class="text-slate-700 group-hover:text-teal-900">${opt}</span>
+                    </div>
+                    <button type="button" onclick="event.stopPropagation(); speakText('${opt.replace(/'/g, "\\'")}')" class="text-slate-400 hover:text-teal-600 p-1 opacity-60 hover:opacity-100" title="Nghe phương án">
+                      <i class="fa-solid fa-volume-high text-xs"></i>
+                    </button>
+                  </button>
+                `).join('')}
+              </div>
+
+              <!-- Explanation Box (Initially Hidden) -->
+              <div id="exp-${game.id}-${qItem.id}" class="hidden mt-4 p-4 rounded-2xl bg-amber-50/80 border border-amber-200 text-xs sm:text-sm text-slate-700">
+                <div class="flex items-start justify-between gap-2">
+                  <div class="space-y-1">
+                    <p class="font-bold text-amber-900 flex items-center gap-1.5">
+                      <i class="fa-solid fa-lightbulb text-amber-500"></i> Lời giải sư phạm Ms. Lily:
+                    </p>
+                    <p class="text-slate-700 leading-relaxed">${qItem.exp}</p>
+                  </div>
+                  <button type="button" onclick="speakText('${qItem.audio.replace(/'/g, "\\'")}')" class="shrink-0 bg-amber-200 hover:bg-amber-300 text-amber-900 px-2.5 py-1 rounded-xl text-xs flex items-center gap-1">
+                    <i class="fa-solid fa-volume-high"></i> Nghe lại
+                  </button>
+                </div>
+              </div>
+            </div>
+          `;
+        });
+
+        questionsHtml += `</div>`;
+
+        const actionHtml = `
+          <div class="bg-white rounded-3xl p-6 shadow-md border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="text-xs text-slate-500">
+              <i class="fa-solid fa-circle-info text-teal-600 mr-1"></i>
+              Hoàn thành tất cả 20 câu để nhận đánh giá và giải thích chi tiết từ cô Ms. Lily.
+            </div>
+            <div class="flex items-center gap-3 w-full sm:w-auto">
+              <button type="button" onclick="resetGame('${game.id}')" class="flex-1 sm:flex-initial px-4 py-2.5 border border-slate-300 hover:bg-slate-100 text-slate-700 font-semibold rounded-2xl text-xs sm:text-sm transition">
+                <i class="fa-solid fa-rotate-left mr-1"></i> Làm Lại
+              </button>
+              <button type="button" onclick="submitGame('${game.id}')" class="flex-1 sm:flex-initial px-6 py-2.5 bg-teal-600 hover:bg-teal-700 text-white font-bold rounded-2xl text-xs sm:text-sm shadow-md transition transform hover:-translate-y-0.5">
+                <i class="fa-solid fa-check-double mr-1"></i> Nộp Bài & Chấm Điểm
+              </button>
+            </div>
+          </div>
+        `;
+
+        section.innerHTML = headerHtml + questionsHtml + actionHtml;
+        container.appendChild(section);
+      });
+    }
+
+    function selectOption(gameId, questionId, optionIndex) {
+      if (submittedGames[gameId]) return; // locked after submission
+
+      userAnswers[gameId][questionId] = optionIndex;
+
+      // Update button styling for this question
+      const game = GAMES_DATA.find(g => g.id === gameId);
+      const qItem = game.questions.find(q => q.id === questionId);
+
+      qItem.options.forEach((_, idx) => {
+        const btn = document.getElementById(`opt-btn-${gameId}-${questionId}-${idx}`);
+        if (idx === optionIndex) {
+          btn.className = "option-btn text-left px-4 py-2.5 rounded-2xl border-2 border-teal-600 bg-teal-50 text-xs sm:text-sm font-bold flex items-center justify-between text-teal-900 shadow-sm";
+        } else {
+          btn.className = "option-btn text-left px-4 py-2.5 rounded-2xl border border-slate-200 hover:bg-teal-50 hover:border-teal-300 transition text-xs sm:text-sm font-medium flex items-center justify-between group";
+        }
+      });
+
+      // Update progress
+      const answeredCount = Object.keys(userAnswers[gameId]).length;
+      document.getElementById(`progress-${gameId}`).innerText = `${answeredCount}/20`;
+    }
+
+    function submitGame(gameId) {
+      const game = GAMES_DATA.find(g => g.id === gameId);
+      const answers = userAnswers[gameId];
+      const answeredCount = Object.keys(answers).length;
+
+      if (answeredCount < 20) {
+        const remaining = 20 - answeredCount;
+        // Teacher friendly modal/prompt
+        const confirmSubmit = window.confirm(`Em còn ${remaining} câu chưa làm. Em có chắc chắn muốn nộp bài để cô Ms. Lily chấm điểm luôn không?`);
+        if (!confirmSubmit) return;
+      }
+
+      submittedGames[gameId] = true;
+      let correctScore = 0;
+
+      game.questions.forEach((qItem) => {
+        const userChoice = answers[qItem.id];
+        const isCorrect = userChoice === qItem.correct;
+        if (isCorrect) correctScore++;
+
+        // Show explanation box
+        const expBox = document.getElementById(`exp-${game.id}-${qItem.id}`);
+        if (expBox) expBox.classList.remove('hidden');
+
+        // Status icon
+        const iconEl = document.getElementById(`status-icon-${game.id}-${qItem.id}`);
+        if (iconEl) {
+          if (isCorrect) {
+            iconEl.innerHTML = `<span class="text-emerald-500 font-bold flex items-center gap-1 text-sm bg-emerald-100 px-2 py-0.5 rounded-lg"><i class="fa-solid fa-circle-check"></i> Đúng</span>`;
+          } else {
+            iconEl.innerHTML = `<span class="text-rose-500 font-bold flex items-center gap-1 text-sm bg-rose-100 px-2 py-0.5 rounded-lg"><i class="fa-solid fa-circle-xmark"></i> Chưa đúng</span>`;
+          }
+        }
+
+        // Highlight correct and incorrect options
+        qItem.options.forEach((_, idx) => {
+          const btn = document.getElementById(`opt-btn-${game.id}-${qItem.id}-${idx}`);
+          if (idx === qItem.correct) {
+            btn.className = "option-btn text-left px-4 py-2.5 rounded-2xl border-2 border-emerald-500 bg-emerald-50 text-xs sm:text-sm font-bold flex items-center justify-between text-emerald-900 shadow-sm";
+          } else if (idx === userChoice && !isCorrect) {
+            btn.className = "option-btn text-left px-4 py-2.5 rounded-2xl border-2 border-rose-500 bg-rose-50 text-xs sm:text-sm font-bold flex items-center justify-between text-rose-900 shadow-sm";
+          } else {
+            btn.className = "option-btn text-left px-4 py-2.5 rounded-2xl border border-slate-200 opacity-60 text-xs sm:text-sm font-normal flex items-center justify-between";
+          }
+        });
+      });
+
+      // Update Scoreboard
+      const scoreEl = document.getElementById(`score-${gameId}`);
+      scoreEl.innerHTML = `<span class="text-emerald-600 font-black">${correctScore}</span> / 20`;
+
+      // Trigger Confetti if score >= 16/20
+      if (correctScore >= 16 && typeof confetti === 'function') {
+        confetti({
+          particleCount: 120,
+          spread: 70,
+          origin: { y: 0.6 }
+        });
+      }
+
+      // Teacher feedback
+      let comment = "";
+      if (correctScore === 20) {
+        comment = "Xuất sắc tuyệt đối! Em đã hoàn toàn làm chủ kiến thức ngữ pháp Unit 5!";
+      } else if (correctScore >= 16) {
+        comment = "Rất tốt! Em nắm bài rất vững, hãy xem kỹ các câu giải thích để đạt điểm 10 tuyệt đối nhé!";
+      } else if (correctScore >= 10) {
+        comment = "Khá tốt! Em hãy đọc lại cẩm nang ngữ pháp phía trên để khắc phục các bẫy nhỏ nhé!";
+      } else {
+        comment = "Cố gắng lên nào! Hãy đọc lại cẩm nang lý thuyết của cô Lily và ấn loa nghe thật kỹ nhé!";
+      }
+
+      // Speak feedback
+      speakText(`Good job! Your score is ${correctScore} out of 20.`);
+
+      // Smooth scroll to top of game to view score
+      document.getElementById(`scoreboard-${gameId}`).scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function resetGame(gameId) {
+      const game = GAMES_DATA.find(g => g.id === gameId);
+      userAnswers[gameId] = {};
+      submittedGames[gameId] = false;
+
+      document.getElementById(`progress-${gameId}`).innerText = `0/20`;
+      document.getElementById(`score-${gameId}`).innerText = `-- / 20`;
+
+      game.questions.forEach((qItem) => {
+        // Hide explanation
+        const expBox = document.getElementById(`exp-${game.id}-${qItem.id}`);
+        if (expBox) expBox.classList.add('hidden');
+
+        // Clear status icon
+        const iconEl = document.getElementById(`status-icon-${game.id}-${qItem.id}`);
+        if (iconEl) iconEl.innerHTML = '';
+
+        // Reset options styling
+        qItem.options.forEach((_, idx) => {
+          const btn = document.getElementById(`opt-btn-${game.id}-${qItem.id}-${idx}`);
+          btn.className = "option-btn text-left px-4 py-2.5 rounded-2xl border border-slate-200 hover:bg-teal-50 hover:border-teal-300 transition text-xs sm:text-sm font-medium flex items-center justify-between group";
+        });
+      });
+    }
+
+    function switchTab(tabId) {
+      // Hide all contents
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+
+      // Show target content
+      const target = document.getElementById(`section-${tabId}`);
+      if (target) {
+        target.classList.remove('hidden');
+      }
+
+      // Update tab button styles
+      const tabButtons = [
+        { id: 'handbook', elId: 'tab-handbook' },
+        { id: 'game1', elId: 'tab-game1' },
+        { id: 'game2', elId: 'tab-game2' },
+        { id: 'game3', elId: 'tab-game3' },
+        { id: 'game4', elId: 'tab-game4' },
+        { id: 'game5', elId: 'tab-game5' }
+      ];
+
+      tabButtons.forEach(btn => {
+        const btnEl = document.getElementById(btn.elId);
+        if (btn.id === tabId) {
+          btnEl.className = "tab-btn px-4 py-2 rounded-xl flex items-center gap-2 bg-white text-teal-900 font-bold shadow-sm transition";
+        } else {
+          btnEl.className = "tab-btn px-4 py-2 rounded-xl flex items-center gap-2 text-teal-100 hover:bg-white/10 transition";
+        }
+      });
+
+      // Scroll to top of main area
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.onload = function() {
+      renderGames();
+      // Default to handbook
+      switchTab('handbook');
+    };
+  </script>
+</body>
+</html>

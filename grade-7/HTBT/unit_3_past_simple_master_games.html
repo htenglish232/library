@@ -1,0 +1,1547 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HT English - Unit 3: Community Service (Past Simple Games)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & Fredoka -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Canvas Confetti for high score celebrations -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Fredoka', 'cursive', 'sans-serif']
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            navy: '#0f172a',
+                            accent: '#f97316'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 9999px;
+        }
+        .animate-bounce-short {
+            animation: bounceShort 0.5s ease infinite alternate;
+        }
+        @keyframes bounceShort {
+            from { transform: translateY(0); }
+            to { transform: translateY(-4px); }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans min-h-screen flex flex-col">
+
+    <!-- Header with Center Branding -->
+    <header class="bg-gradient-to-r from-emerald-700 via-teal-700 to-cyan-800 text-white shadow-xl sticky top-0 z-40">
+        <div class="max-w-7xl mx-auto px-4 py-3 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-3">
+            <div class="flex items-center space-x-3">
+                <div class="w-12 h-12 bg-white/10 backdrop-blur rounded-2xl flex items-center justify-center border border-white/20 shadow-inner">
+                    <i class="fa-solid fa-hands-holding-child text-2xl text-emerald-300"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-2">
+                        <h1 class="text-2xl font-bold font-heading tracking-wide text-white">HT ENGLISH CENTER</h1>
+                        <span class="bg-amber-400 text-slate-900 text-xs font-bold px-2 py-0.5 rounded-full uppercase">Ms. Lily</span>
+                    </div>
+                    <p class="text-xs text-emerald-100 flex items-center gap-2 flex-wrap">
+                        <span><i class="fa-solid fa-location-dot text-amber-300"></i> Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình</span>
+                        <span class="hidden sm:inline">•</span>
+                        <span><i class="fa-solid fa-phone text-amber-300"></i> 0963.422.940 - 0962.240.866</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <div class="flex items-center gap-2 bg-black/20 p-1 rounded-xl border border-white/10 text-sm font-medium w-full md:w-auto justify-center">
+                <button id="tab-handbook-btn" onclick="switchMainTab('handbook')" class="px-4 py-2 rounded-lg transition-all duration-200 bg-white text-emerald-800 shadow font-bold flex items-center gap-2">
+                    <i class="fa-solid fa-book-bookmark text-emerald-600"></i>
+                    <span>Cẩm Nang Lý Thuyết</span>
+                </button>
+                <button id="tab-games-btn" onclick="switchMainTab('games')" class="px-4 py-2 rounded-lg transition-all duration-200 hover:text-white text-emerald-100 flex items-center gap-2">
+                    <i class="fa-solid fa-gamepad text-amber-400"></i>
+                    <span>5 Đấu Trường Game (100 Câu)</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 space-y-6">
+
+        <!-- ================= SECTION 1: CẨM NANG LÝ THUYẾT ================= -->
+        <section id="handbook-section" class="space-y-6">
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-r from-emerald-500 to-teal-600 rounded-3xl p-6 sm:p-8 text-white shadow-lg relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl">
+                    <i class="fa-solid fa-hand-holding-heart"></i>
+                </div>
+                <div class="relative z-10 max-w-3xl">
+                    <span class="bg-white/20 text-white text-xs uppercase font-bold tracking-widest px-3 py-1 rounded-full inline-block mb-3">Unit 3: Community Service • Tiếng Anh 7 Global Success</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold font-heading mb-3">Bí Kíp Chinh Phục Thì Quá Khứ Đơn (The Past Simple)</h2>
+                    <p class="text-emerald-100 text-sm sm:text-base leading-relaxed">
+                        Thì Quá Khứ Đơn dùng để diễn tả các hoạt động vì cộng đồng đã diễn ra và hoàn thành dứt điểm trong quá khứ. Cùng cô <strong>Ms. Lily</strong> nằm lòng trọn bộ quy tắc trước khi bước vào đấu trường rinh điểm 10!
+                    </p>
+                    <div class="mt-4 flex flex-wrap gap-3">
+                        <button onclick="switchMainTab('games')" class="bg-amber-400 hover:bg-amber-300 text-slate-900 font-bold px-5 py-2.5 rounded-xl shadow-lg transition-transform active:scale-95 flex items-center gap-2">
+                            <i class="fa-solid fa-play"></i> Bắt đầu chiến 5 Game ngay
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Theory Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                <!-- Card 1: Cấu trúc Động từ To-Be -->
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 hover:shadow-md transition">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-cube"></i></span>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-lg">1. Động từ To-Be (Was / Were)</h3>
+                            <p class="text-xs text-slate-500">Thì, là, ở trong quá khứ</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="p-3 bg-blue-50/60 rounded-xl border border-blue-100">
+                            <span class="font-semibold text-blue-900 block mb-1">Chủ ngữ số ít (I / He / She / It / Danh từ số ít):</span>
+                            <div class="flex items-center justify-between text-xs text-slate-700">
+                                <span>Khẳng định: <strong>was</strong> • Phủ định: <strong>was not (wasn't)</strong></span>
+                                <button onclick="speakText('She was in the volunteer club last year.', 'en-US')" class="text-blue-600 hover:text-blue-800 p-1" title="Nghe câu ví dụ"><i class="fa-solid fa-volume-high"></i></button>
+                            </div>
+                            <p class="text-xs italic text-blue-800 mt-1">Ví dụ: She was in the volunteer club last year.</p>
+                        </div>
+
+                        <div class="p-3 bg-indigo-50/60 rounded-xl border border-indigo-100">
+                            <span class="font-semibold text-indigo-900 block mb-1">Chủ ngữ số nhiều (We / You / They / Danh từ số nhiều):</span>
+                            <div class="flex items-center justify-between text-xs text-slate-700">
+                                <span>Khẳng định: <strong>were</strong> • Phủ định: <strong>were not (weren't)</strong></span>
+                                <button onclick="speakText('They were very happy after helping the elderly.', 'en-US')" class="text-indigo-600 hover:text-indigo-800 p-1" title="Nghe câu ví dụ"><i class="fa-solid fa-volume-high"></i></button>
+                            </div>
+                            <p class="text-xs italic text-indigo-800 mt-1">Ví dụ: They were very happy after helping the elderly.</p>
+                        </div>
+
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs">
+                            <strong class="text-slate-800">Câu hỏi Nghi vấn:</strong><br>
+                            Was / Were + S + ...? <br>
+                            Trả lời: Yes, S + was/were. Hoặc No, S + wasn't/weren't.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Cấu trúc Động từ thường -->
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 hover:shadow-md transition">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-bolt"></i></span>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-lg">2. Động từ thường (Regular & Irregular)</h3>
+                            <p class="text-xs text-slate-500">Khẳng định, phủ định & nghi vấn</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3 text-sm">
+                        <div class="p-3 bg-emerald-50/60 rounded-xl border border-emerald-100">
+                            <span class="font-semibold text-emerald-900 block mb-1">Thể Khẳng định: S + V-ed / V2</span>
+                            <div class="flex items-center justify-between text-xs text-slate-700">
+                                <span>Động từ thêm -ed hoặc bất quy tắc cột 2</span>
+                                <button onclick="speakText('We planted 100 trees in the village last week.', 'en-US')" class="text-emerald-600 hover:text-emerald-800 p-1"><i class="fa-solid fa-volume-high"></i></button>
+                            </div>
+                            <p class="text-xs italic text-emerald-800 mt-1">Ví dụ: We planted 100 trees in the village last week.</p>
+                        </div>
+
+                        <div class="p-3 bg-amber-50/60 rounded-xl border border-amber-100">
+                            <span class="font-semibold text-amber-900 block mb-1">Thể Phủ định: S + did not (didn't) + V-nguyên thể</span>
+                            <div class="flex items-center justify-between text-xs text-slate-700">
+                                <span><strong>Lưu ý vàng:</strong> Đã có <em>didn't</em> thì động từ về nguyên mẫu!</span>
+                                <button onclick="speakText('Tom didn\'t join the project yesterday.', 'en-US')" class="text-amber-600 hover:text-amber-800 p-1"><i class="fa-solid fa-volume-high"></i></button>
+                            </div>
+                            <p class="text-xs italic text-amber-800 mt-1">Ví dụ: Tom didn't join the project yesterday. (Không dùng didn't joined)</p>
+                        </div>
+
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs">
+                            <strong class="text-slate-800">Câu hỏi Nghi vấn:</strong><br>
+                            Did + S + V-nguyên thể...? <br>
+                            Wh-word + did + S + V-nguyên thể...?
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Thần chú phát âm đuôi -ed & Động từ bất quy tắc -->
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 hover:shadow-md transition md:col-span-2 lg:col-span-1">
+                    <div class="flex items-center gap-3 mb-4">
+                        <span class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-lg"><i class="fa-solid fa-wand-magic-sparkles"></i></span>
+                        <div>
+                            <h3 class="font-bold text-slate-900 text-lg">3. Thần Chú Phát Âm Đuôi -ed</h3>
+                            <p class="text-xs text-slate-500">Mẹo 3 giây chuẩn xác 100%</p>
+                        </div>
+                    </div>
+                    <div class="space-y-3 text-xs">
+                        <div class="p-2.5 bg-purple-50 rounded-xl border border-purple-100">
+                            <span class="font-bold text-purple-900">1. Phát âm là /ɪd/: Sau tận cùng 't' và 'd'</span>
+                            <p class="text-slate-600 mt-0.5">Mẹo nhớ: <em>"Tiền Đô"</em> (plant thành <strong>planted</strong>, need thành <strong>needed</strong>, donate thành <strong>donated</strong>)</p>
+                            <button onclick="speakText('planted, needed, donated', 'en-US')" class="mt-1 text-purple-600 hover:underline flex items-center gap-1 font-semibold"><i class="fa-solid fa-volume-high"></i> Nghe mẫu /ɪd/</button>
+                        </div>
+
+                        <div class="p-2.5 bg-pink-50 rounded-xl border border-pink-100">
+                            <span class="font-bold text-pink-900">2. Phát âm là /t/: Sau các âm vô thanh (p, k, f, s, sh, ch)</span>
+                            <p class="text-slate-600 mt-0.5">Mẹo nhớ: <em>"Phải Cười Thôi Phục Sẵn Súng Chờ"</em> (cook thành <strong>cooked</strong>, pick thành <strong>picked</strong>, help thành <strong>helped</strong>)</p>
+                            <button onclick="speakText('cooked, picked, helped', 'en-US')" class="mt-1 text-pink-600 hover:underline flex items-center gap-1 font-semibold"><i class="fa-solid fa-volume-high"></i> Nghe mẫu /t/</button>
+                        </div>
+
+                        <div class="p-2.5 bg-emerald-50 rounded-xl border border-emerald-100">
+                            <span class="font-bold text-emerald-900">3. Phát âm là /d/: Các âm hữu thanh còn lại</span>
+                            <p class="text-slate-600 mt-0.5">Ví dụ: clean thành <strong>cleaned</strong>, volunteer thành <strong>volunteered</strong>, recycle thành <strong>recycled</strong></p>
+                            <button onclick="speakText('cleaned, volunteered, recycled', 'en-US')" class="mt-1 text-emerald-600 hover:underline flex items-center gap-1 font-semibold"><i class="fa-solid fa-volume-high"></i> Nghe mẫu /d/</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Dấu hiệu nhận biết & Bảng từ bất quy tắc Unit 3 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Dấu hiệu nhận biết -->
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
+                    <h3 class="font-bold text-slate-900 text-base mb-3 flex items-center gap-2">
+                        <i class="fa-solid fa-calendar-check text-emerald-600"></i> Dấu hiệu nhận biết thì Quá khứ đơn
+                    </h3>
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-100">
+                            <span class="font-bold text-slate-800">yesterday:</span> hôm qua<br>
+                            <span class="text-slate-500">yesterday morning, yesterday afternoon</span>
+                        </div>
+                        <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-100">
+                            <span class="font-bold text-slate-800">last + thời gian:</span> trước<br>
+                            <span class="text-slate-500">last week, last month, last year, last summer</span>
+                        </div>
+                        <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-100">
+                            <span class="font-bold text-slate-800">khoảng thời gian + ago:</span> trước đây<br>
+                            <span class="text-slate-500">two days ago, a month ago, 3 years ago</span>
+                        </div>
+                        <div class="p-2.5 bg-slate-50 rounded-lg border border-slate-100">
+                            <span class="font-bold text-slate-800">in + năm trong quá khứ:</span> vào năm<br>
+                            <span class="text-slate-500">in 2015, in 2018, in 2020</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bảng động từ bất quy tắc cốt lõi Unit 3 -->
+                <div class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200">
+                    <h3 class="font-bold text-slate-900 text-base mb-3 flex items-center justify-between">
+                        <span class="flex items-center gap-2"><i class="fa-solid fa-star text-amber-500"></i> Động từ bất quy tắc hay gặp (Unit 3)</span>
+                        <span class="text-xs text-slate-400 font-normal">Nguyên mẫu đổi sang Quá khứ</span>
+                    </h3>
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs">
+                        <div class="bg-slate-50 p-2 rounded-lg border">grow đổi thành <strong>grew</strong></div>
+                        <div class="bg-slate-50 p-2 rounded-lg border">teach đổi thành <strong>taught</strong></div>
+                        <div class="bg-slate-50 p-2 rounded-lg border">make đổi thành <strong>made</strong></div>
+                        <div class="bg-slate-50 p-2 rounded-lg border">take đổi thành <strong>took</strong></div>
+                        <div class="bg-slate-50 p-2 rounded-lg border">send đổi thành <strong>sent</strong></div>
+                        <div class="bg-slate-50 p-2 rounded-lg border">give đổi thành <strong>gave</strong></div>
+                        <div class="bg-slate-50 p-2 rounded-lg border">read đổi thành <strong>read (/red/)</strong></div>
+                        <div class="bg-slate-50 p-2 rounded-lg border">buy đổi thành <strong>bought</strong></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SECTION 2: ĐẤU TRƯỜNG 5 GAME ================= -->
+        <section id="games-section" class="space-y-6 hidden">
+            <!-- Game Selector Bar -->
+            <div class="bg-white rounded-2xl p-4 shadow-sm border border-slate-200 flex flex-wrap gap-2 items-center justify-between">
+                <div class="flex items-center gap-2 overflow-x-auto w-full md:w-auto pb-2 md:pb-0 custom-scrollbar" id="game-nav-tabs">
+                    <!-- Buttons injected via JS -->
+                </div>
+                <div class="text-xs font-semibold text-slate-500 flex items-center gap-3 w-full md:w-auto justify-end pt-2 md:pt-0 border-t md:border-t-0">
+                    <span id="current-game-progress" class="bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full border border-emerald-200">
+                        Đã làm: 0/20 câu
+                    </span>
+                    <button onclick="resetCurrentGame()" class="text-slate-500 hover:text-red-600 transition flex items-center gap-1 py-1 px-2 rounded-lg hover:bg-slate-100">
+                        <i class="fa-solid fa-arrows-rotate"></i> Làm lại
+                    </button>
+                </div>
+            </div>
+
+            <!-- Current Active Game Header Card -->
+            <div class="bg-gradient-to-r from-slate-900 to-slate-800 text-white rounded-2xl p-5 shadow-md flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                <div>
+                    <div class="flex items-center gap-2 mb-1">
+                        <span id="game-badge" class="bg-emerald-500 text-white text-xs font-bold px-2.5 py-0.5 rounded-full uppercase">Game 1</span>
+                        <h3 id="game-title" class="text-xl font-bold font-heading text-amber-300">Đấu Sĩ Biến Hình: Regular & Irregular Verbs</h3>
+                    </div>
+                    <p id="game-desc" class="text-xs sm:text-sm text-slate-300">Chọn chính xác dạng quá khứ của động từ có quy tắc (-ed) và bất quy tắc theo chủ đề Community Service.</p>
+                </div>
+                <div class="flex items-center gap-2 self-end md:self-auto">
+                    <button onclick="submitGame()" class="bg-amber-400 hover:bg-amber-300 active:scale-95 text-slate-900 font-bold px-5 py-2.5 rounded-xl shadow transition flex items-center gap-2 text-sm">
+                        <i class="fa-solid fa-check-double"></i> Nộp Bài & Chấm Điểm
+                    </button>
+                </div>
+            </div>
+
+            <!-- Score Summary Card (Hidden initially until submitted) -->
+            <div id="result-summary-card" class="hidden bg-white border-2 border-emerald-500 rounded-3xl p-6 shadow-xl text-center space-y-4">
+                <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                    <i class="fa-solid fa-trophy"></i>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-bold text-slate-900 font-heading">Kết Quả Đấu Trường</h3>
+                    <p id="score-text" class="text-3xl font-extrabold text-emerald-600 mt-1">20 / 20 Điểm (100%)</p>
+                    <p id="feedback-text" class="text-sm text-slate-600 mt-2 max-w-md mx-auto">Xuất sắc! Em đã nắm vững hoàn toàn kiến thức ngữ pháp này cùng cô Lily!</p>
+                </div>
+                <div class="flex justify-center gap-3 pt-2">
+                    <button onclick="scrollToExplanation()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm px-4 py-2 rounded-xl transition">
+                        <i class="fa-solid fa-circle-info"></i> Xem Giải Thích Chi Tiết
+                    </button>
+                    <button onclick="goToNextGame()" class="bg-slate-800 hover:bg-slate-900 text-white font-semibold text-sm px-4 py-2 rounded-xl transition flex items-center gap-1">
+                        Chinh Phục Game Kế Tiếp <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Questions Container (20 questions rendered dynamically) -->
+            <div id="questions-container" class="space-y-4">
+                <!-- Injected via JavaScript -->
+            </div>
+
+            <!-- Bottom Floating Action Bar -->
+            <div class="sticky bottom-4 z-30 flex justify-center">
+                <div class="bg-slate-900/90 backdrop-blur-md text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-4 border border-white/20">
+                    <span class="text-xs sm:text-sm font-medium" id="bottom-progress-tracker">Đã chọn: 0/20 câu</span>
+                    <button onclick="submitGame()" class="bg-emerald-500 hover:bg-emerald-400 text-slate-900 text-xs sm:text-sm font-bold px-4 py-1.5 rounded-full transition active:scale-95 flex items-center gap-1">
+                        <i class="fa-solid fa-paper-plane"></i> Nộp Bài Ngay
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-900 text-slate-400 text-xs py-8 mt-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div>
+                <p class="text-white font-bold text-sm">HT ENGLISH CENTER • MS. LILY</p>
+                <p class="mt-1">Hệ Thống Đào Tạo Ngữ Pháp Tiếng Anh Cấp 2 Chuẩn Global Success</p>
+                <p class="text-slate-400 mt-1"><i class="fa-solid fa-location-dot text-emerald-400"></i> Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình</p>
+            </div>
+            <div class="text-right">
+                <p class="text-emerald-400 font-semibold text-sm"><i class="fa-solid fa-phone"></i> Hotline: 0963422940 - 0962240866</p>
+                <p class="mt-1">Giọng đọc nữ Anh-Mỹ tương tác • Bản quyền bài giảng HT English</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // State Management
+        let currentGameIndex = 0;
+        let userAnswers = {}; // { qId: selectedOptionIndex }
+        let isSubmitted = false;
+
+        // Sound Synthesis helper (US Female Voice)
+        function speakText(text, lang = 'en-US') {
+            if (!('speechSynthesis' in window)) {
+                console.warn("Trình duyệt không hỗ trợ Text-to-Speech.");
+                return;
+            }
+            window.speechSynthesis.cancel(); // Dừng câu đang đọc nếu có
+            const cleanText = text.replace(/[_/]/g, ' ').trim();
+            const utterance = new SpeechSynthesisUtterance(cleanText);
+            utterance.lang = lang;
+            utterance.rate = 0.9; // Tốc độ vừa phải cho học sinh cấp 2 dễ nghe
+
+            // Tìm giọng nữ tiếng Anh Mỹ (US Female)
+            const voices = window.speechSynthesis.getVoices();
+            const femaleUsVoice = voices.find(v => 
+                v.lang.includes('en-US') && 
+                (v.name.toLowerCase().includes('female') || 
+                 v.name.toLowerCase().includes('zira') || 
+                 v.name.toLowerCase().includes('samantha') ||
+                 v.name.toLowerCase().includes('karen') ||
+                 v.name.toLowerCase().includes('google us english'))
+            ) || voices.find(v => v.lang.includes('en-US')) || voices.find(v => v.lang.startsWith('en'));
+
+            if (femaleUsVoice) {
+                utterance.voice = femaleUsVoice;
+            }
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Đảm bảo load voices trên Chrome/Edge
+        if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+            window.speechSynthesis.onvoiceschanged = () => {
+                window.speechSynthesis.getVoices();
+            };
+        }
+
+        const gamesData = [
+            {
+                id: 1,
+                title: "Game 1: Đấu Sĩ Biến Hình (Regular & Irregular Verbs)",
+                badge: "Game 1 • Động từ Quá khứ",
+                desc: "Rèn luyện phản xạ biến đổi động từ có quy tắc (-ed) và bất quy tắc trong chủ đề Community Service.",
+                questions: [
+                    {
+                        id: "g1_1",
+                        sentence: "Green School _______ vegetables for an orphanage last spring.",
+                        options: ["grow", "grew", "growing", "growed"],
+                        answer: 1,
+                        explain: "Ta thấy dấu hiệu thời gian 'last spring' (mùa xuân năm ngoái) chỉ hành động đã xảy ra và kết thúc trong quá khứ. Động từ 'grow' là động từ bất quy tắc, dạng quá khứ cột 2 chuyển thành 'grew'. Vì vậy ta chọn đáp án grew."
+                    },
+                    {
+                        id: "g1_2",
+                        sentence: "Children _______ plastic bottles for recycling a month ago.",
+                        options: ["collected", "collect", "collecting", "collects"],
+                        answer: 0,
+                        explain: "Dấu hiệu thời gian 'a month ago' (một tháng trước) là thì quá khứ đơn. Động từ 'collect' là động từ có quy tắc, chỉ cần thêm đuôi '-ed' thành 'collected'. Vì vậy ta chọn đáp án collected."
+                    },
+                    {
+                        id: "g1_3",
+                        sentence: "We _______ English to children in a primary school last summer.",
+                        options: ["teaching", "taught", "teach", "teached"],
+                        answer: 1,
+                        explain: "Dấu hiệu 'last summer' (mùa hè năm ngoái) yêu cầu chia thì quá khứ đơn. Động từ 'teach' là bất quy tắc, đổi thành 'taught' (không có dạng teached). Vì vậy ta chọn taught."
+                    },
+                    {
+                        id: "g1_4",
+                        sentence: "Our school club _______ warm gloves for old people in nursing homes last winter.",
+                        options: ["makes", "making", "made", "maked"],
+                        answer: 2,
+                        explain: "Dấu hiệu 'last winter' (mùa đông năm ngoái) thuộc thì quá khứ đơn. Động từ 'make' là bất quy tắc, dạng quá khứ đổi thành 'made'. Vì vậy ta chọn made."
+                    },
+                    {
+                        id: "g1_5",
+                        sentence: "We _______ used bottles to help protect the environment last month.",
+                        options: ["reused", "reuse", "reusing", "reuseds"],
+                        answer: 0,
+                        explain: "Dấu hiệu 'last month' (tháng trước) chỉ hành động trong quá khứ. Động từ có quy tắc tận cùng bằng 'e' như 'reuse' chỉ việc thêm 'd' thành 'reused'. Vì vậy ta chọn reused."
+                    },
+                    {
+                        id: "g1_6",
+                        sentence: "Care for Animals _______ care of thousands of homeless dogs and cats last year.",
+                        options: ["take", "took", "taken", "taked"],
+                        answer: 1,
+                        explain: "Dấu hiệu 'last year' (năm ngoái) chỉ quá khứ đơn. Dạng quá khứ của động từ 'take' đổi thành 'took'. Cụm từ 'take care of' chuyển thành 'took care of' (đã chăm sóc). Vì vậy ta chọn took."
+                    },
+                    {
+                        id: "g1_7",
+                        sentence: "Many teenagers _______ Lending Hand club in 2015.",
+                        options: ["joined", "join", "joining", "joins"],
+                        answer: 0,
+                        explain: "Thời điểm 'in 2015' là mốc năm trong quá khứ. Động từ 'join' là động từ có quy tắc, ta thêm đuôi '-ed' thành 'joined'. Vì vậy ta chọn joined."
+                    },
+                    {
+                        id: "g1_8",
+                        sentence: "Last year, our volunteer team _______ textbooks to help children in a rural village.",
+                        options: ["sended", "send", "sent", "sending"],
+                        answer: 2,
+                        explain: "Dấu hiệu 'Last year' đòi hỏi thì quá khứ đơn. Động từ 'send' là bất quy tắc, đổi chữ 'd' thành chữ 't' là 'sent' (không có sended). Vì vậy ta chọn sent."
+                    },
+                    {
+                        id: "g1_9",
+                        sentence: "Tom _______ to tutor math for homeless kids last winter.",
+                        options: ["volunteered", "volunteer", "volunteering", "volunteers"],
+                        answer: 0,
+                        explain: "Dấu hiệu 'last winter' chỉ quá khứ. Động từ 'volunteer' là có quy tắc, thêm '-ed' chuyển thành 'volunteered'. Vì vậy ta chọn volunteered."
+                    },
+                    {
+                        id: "g1_10",
+                        sentence: "Students _______ warm clothes and books to flooded areas two weeks ago.",
+                        options: ["donated", "donate", "donating", "donates"],
+                        answer: 0,
+                        explain: "Dấu hiệu 'two weeks ago' (hai tuần trước) chỉ quá khứ đơn. Động từ 'donate' có sẵn 'e' ở cuối nên chỉ việc thêm 'd' thành 'donated'. Vì vậy ta chọn donated."
+                    },
+                    {
+                        id: "g1_11",
+                        sentence: "Volunteers _______ dirty water bottles from the lake yesterday morning.",
+                        options: ["fished", "fish", "fishing", "fishes"],
+                        answer: 0,
+                        explain: "Dấu hiệu 'yesterday morning' (sáng hôm qua) chỉ quá khứ đơn. Động từ 'fish' (vớt/câu) là có quy tắc, thêm đuôi '-ed' thành 'fished'. Vì vậy ta chọn fished."
+                    },
+                    {
+                        id: "g1_12",
+                        sentence: "My brother _______ blood to the local hospital last December.",
+                        options: ["gave", "gives", "given", "gived"],
+                        answer: 0,
+                        explain: "Mốc thời gian 'last December' là quá khứ. Động từ 'give' là bất quy tắc, dạng quá khứ đổi thành 'gave'. Cụm 'give blood' nghĩa là hiến máu. Vì vậy ta chọn gave."
+                    },
+                    {
+                        id: "g1_13",
+                        sentence: "They _______ a lot of sweet soup for sick patients in the hospital yesterday.",
+                        options: ["cooked", "cook", "cooking", "cooks"],
+                        answer: 0,
+                        explain: "Dấu hiệu 'yesterday' (hôm qua) là quá khứ đơn. Động từ 'cook' là có quy tắc, thêm đuôi '-ed' thành 'cooked'. Vì vậy ta chọn cooked."
+                    },
+                    {
+                        id: "g1_14",
+                        sentence: "We _______ those shade trees in the school playground three years ago.",
+                        options: ["plant", "planted", "planting", "plants"],
+                        answer: 1,
+                        explain: "Dấu hiệu 'three years ago' (3 năm trước) chỉ thì quá khứ đơn. Động từ 'plant' là có quy tắc, thêm đuôi '-ed' thành 'planted'. Vì vậy ta chọn planted."
+                    },
+                    {
+                        id: "g1_15",
+                        sentence: "Lan _______ fairy tales to disabled children at the community center last weekend.",
+                        options: ["read", "reads", "reading", "readed"],
+                        answer: 0,
+                        explain: "Dấu hiệu 'last weekend' (cuối tuần trước) chỉ quá khứ đơn. Động từ 'read' có dạng quá khứ viết giống hệt 'read' nhưng phát âm là /red/ (không bao giờ có dạng readed). Vì vậy ta chọn read."
+                    },
+                    {
+                        id: "g1_16",
+                        sentence: "The club members _______ old notebooks to exchange for green trees yesterday.",
+                        options: ["brought", "bring", "bringed", "bringing"],
+                        answer: 0,
+                        explain: "Dấu hiệu 'yesterday' chỉ quá khứ. Động từ 'bring' là bất quy tắc, dạng quá khứ đổi thành 'brought'. Vì vậy ta chọn brought."
+                    },
+                    {
+                        id: "g1_17",
+                        sentence: "My father _______ some useful books for street children last Saturday.",
+                        options: ["buyed", "bought", "buy", "buying"],
+                        answer: 1,
+                        explain: "Dấu hiệu 'last Saturday' chỉ quá khứ. Động từ 'buy' là bất quy tắc, dạng quá khứ đổi thành 'bought' (không dùng buyed). Vì vậy ta chọn bought."
+                    },
+                    {
+                        id: "g1_18",
+                        sentence: "We _______ all the street rubbish and cleaned the dirty canal two days ago.",
+                        options: ["picked up", "pick up", "picking up", "picks up"],
+                        answer: 0,
+                        explain: "Dấu hiệu 'two days ago' chỉ thì quá khứ đơn và động từ 'cleaned' đi kèm ở dạng quá khứ. Động từ 'pick' thêm '-ed' thành 'picked up'. Vì vậy ta chọn picked up."
+                    },
+                    {
+                        id: "g1_19",
+                        sentence: "Our youth group _______ a charity concert to raise money last month.",
+                        options: ["organized", "organize", "organizing", "organizes"],
+                        answer: 0,
+                        explain: "Dấu hiệu 'last month' chỉ quá khứ. Động từ 'organize' có đuôi 'e' nên thêm 'd' thành 'organized'. Vì vậy ta chọn organized."
+                    },
+                    {
+                        id: "g1_20",
+                        sentence: "They _______ a small wooden house for homeless puppies last week.",
+                        options: ["builded", "built", "build", "building"],
+                        answer: 1,
+                        explain: "Dấu hiệu 'last week' chỉ quá khứ đơn. Động từ 'build' là bất quy tắc, đổi chữ 'd' thành 't' là 'built'. Vì vậy ta chọn built."
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "Game 2: Phù Thủy To-Be: Was hay Were?",
+                badge: "Game 2 • To-Be Quá khứ",
+                desc: "Phân biệt was / were / wasn't / weren't chuẩn xác theo chủ ngữ và ý nghĩa trong câu.",
+                questions: [
+                    {
+                        id: "g2_1",
+                        sentence: "Tom _______ a member of the Green Volunteer Club in 2021.",
+                        options: ["was", "were", "is", "are"],
+                        answer: 0,
+                        explain: "Chủ ngữ 'Tom' là danh từ số ít (tương đương với He), thời gian 'in 2021' là quá khứ nên to-be chia là 'was'. Vì vậy ta chọn was."
+                    },
+                    {
+                        id: "g2_2",
+                        sentence: "Many students _______ very eager to donate blood last Sunday.",
+                        options: ["was", "were", "are", "been"],
+                        answer: 1,
+                        explain: "Chủ ngữ 'Many students' là danh từ số nhiều (những học sinh), mốc thời gian 'last Sunday' là quá khứ nên to-be phải dùng 'were'. Vì vậy ta chọn were."
+                    },
+                    {
+                        id: "g2_3",
+                        sentence: "I _______ at the nursing home to visit the elderly yesterday afternoon.",
+                        options: ["was", "were", "am", "be"],
+                        answer: 0,
+                        explain: "Với chủ ngữ ngôi thứ nhất số ít 'I' trong thì quá khứ đơn, động từ to-be đi kèm là 'was'. Vì vậy ta chọn was."
+                    },
+                    {
+                        id: "g2_4",
+                        sentence: "We _______ busy planting flowers, so we couldn't join the meeting yesterday.",
+                        options: ["was", "were", "are", "weren't"],
+                        answer: 1,
+                        explain: "Chủ ngữ 'We' (chúng tôi - số nhiều), câu ở quá khứ chỉ nguyên nhân chúng tôi đã bận rộn nên dùng 'were'. Vì vậy ta chọn were."
+                    },
+                    {
+                        id: "g2_5",
+                        sentence: "The project 'Help Lonely People' _______ very successful in 2016.",
+                        options: ["were", "was", "is", "been"],
+                        answer: 1,
+                        explain: "Chủ ngữ 'The project' (dự án - danh từ số ít), mốc thời gian 'in 2016' là quá khứ nên to-be chia là 'was'. Vì vậy ta chọn was."
+                    },
+                    {
+                        id: "g2_6",
+                        sentence: "_______ you at the school community fair yesterday morning?",
+                        options: ["Was", "Were", "Did", "Are"],
+                        answer: 1,
+                        explain: "Chủ ngữ là 'you', sau đó là cụm giới từ chỉ địa điểm 'at the school community fair' nên dùng to-be quá khứ dạng đảo: 'Were you...?'. Vì vậy ta chọn Were."
+                    },
+                    {
+                        id: "g2_7",
+                        sentence: "No, she _______ at home last night; she was at the animal shelter.",
+                        options: ["wasn't", "weren't", "didn't", "isn't"],
+                        answer: 0,
+                        explain: "Chủ ngữ 'she' là số ít, câu phủ định to-be trong quá khứ là 'was not' viết tắt là 'wasn't'. Vì vậy ta chọn wasn't."
+                    },
+                    {
+                        id: "g2_8",
+                        sentence: "The children in the flooded village _______ very happy when receiving new textbooks.",
+                        options: ["was", "were", "are", "wasn't"],
+                        answer: 1,
+                        explain: "Chủ ngữ chính của câu là 'The children' (những đứa trẻ - danh từ số nhiều bất quy tắc của child), do đó to-be quá khứ là 'were'. Vì vậy ta chọn were."
+                    },
+                    {
+                        id: "g2_9",
+                        sentence: "Lan and Mai _______ volunteers for the Red Cross two years ago.",
+                        options: ["was", "were", "are", "been"],
+                        answer: 1,
+                        explain: "Chủ ngữ nối bằng 'and' gồm 2 người: 'Lan and Mai' là chủ ngữ số nhiều (họ), mốc thời gian 'two years ago' là quá khứ nên dùng 'were'. Vì vậy ta chọn were."
+                    },
+                    {
+                        id: "g2_10",
+                        sentence: "_______ the streets dirty before the volunteers picked up the rubbish?",
+                        options: ["Was", "Were", "Did", "Are"],
+                        answer: 1,
+                        explain: "Chủ ngữ 'the streets' là danh từ số nhiều (những con phố), tính từ 'dirty' đi sau to-be nên câu hỏi đảo là 'Were the streets dirty...?'. Vì vậy ta chọn Were."
+                    },
+                    {
+                        id: "g2_11",
+                        sentence: "There _______ a lot of homeless cats in the park before the rescue team arrived.",
+                        options: ["was", "were", "is", "are"],
+                        answer: 1,
+                        explain: "Cấu trúc 'There were + danh từ số nhiều'. Ở đây 'a lot of homeless cats' là danh từ đếm được số nhiều (những chú mèo) trong quá khứ nên dùng 'were'. Vì vậy ta chọn were."
+                    },
+                    {
+                        id: "g2_12",
+                        sentence: "There _______ much warm soup left for the patients yesterday.",
+                        options: ["wasn't", "weren't", "didn't", "not was"],
+                        answer: 0,
+                        explain: "'soup' (món súp) là danh từ không đếm được đi với 'much', đóng vai trò như số ít nên phủ định của to-be là 'wasn't'. Vì vậy ta chọn wasn't."
+                    },
+                    {
+                        id: "g2_13",
+                        sentence: "Why _______ Tom absent from the charity event last Saturday?",
+                        options: ["was", "were", "did", "is"],
+                        answer: 0,
+                        explain: "Chủ ngữ 'Tom' là số ít, 'absent' là tính từ (vắng mặt) nên câu hỏi đi với to-be quá khứ: 'Why was Tom absent...?'. Vì vậy ta chọn was."
+                    },
+                    {
+                        id: "g2_14",
+                        sentence: "The elderly in the nursing home _______ lonely before we visited them.",
+                        options: ["was", "were", "are", "is"],
+                        answer: 1,
+                        explain: "'The elderly' mang nghĩa là người già nói chung, là danh từ tập hợp số nhiều (những người cao tuổi) nên to-be chia là 'were'. Vì vậy ta chọn were."
+                    },
+                    {
+                        id: "g2_15",
+                        sentence: "It _______ a cold winter day when we delivered food to street people.",
+                        options: ["was", "were", "is", "are"],
+                        answer: 0,
+                        explain: "Chủ ngữ giả 'It' chỉ thời tiết luôn đi với động từ to-be số ít 'was' trong quá khứ. Vì vậy ta chọn was."
+                    },
+                    {
+                        id: "g2_16",
+                        sentence: "_______ you tired after a long day of cleaning the beach?",
+                        options: ["Was", "Were", "Did", "Do"],
+                        answer: 1,
+                        explain: "Chủ ngữ 'you' đi kèm tính từ 'tired' (mệt mỏi), câu hỏi ở thì quá khứ dùng to-be đảo 'Were you...?'. Vì vậy ta chọn Were."
+                    },
+                    {
+                        id: "g2_17",
+                        sentence: "The local people _______ very helpful during the flood last autumn.",
+                        options: ["was", "were", "is", "wasn't"],
+                        answer: 1,
+                        explain: "'people' là danh từ số nhiều (mọi người), câu ở quá khứ 'last autumn' nên to-be là 'were'. Vì vậy ta chọn were."
+                    },
+                    {
+                        id: "g2_18",
+                        sentence: "Nick _______ able to attend the meeting yesterday because he was sick.",
+                        options: ["wasn't", "weren't", "didn't", "not was"],
+                        answer: 0,
+                        explain: "Chủ ngữ 'Nick' là số ít, cấu trúc 'was not able to + V' (đã không thể làm gì) trong quá khứ nên dùng 'wasn't'. Vì vậy ta chọn wasn't."
+                    },
+                    {
+                        id: "g2_19",
+                        sentence: "_______ there any interesting books donated to the rural library last week?",
+                        options: ["Was", "Were", "Did", "Are"],
+                        answer: 1,
+                        explain: "Danh từ sau 'there' là 'interesting books' (danh từ số nhiều), câu hỏi ở quá khứ đảo to-be là 'Were there...?'. Vì vậy ta chọn Were."
+                    },
+                    {
+                        id: "g2_20",
+                        sentence: "Both Minh and Hoa _______ present at the charity club yesterday.",
+                        options: ["was", "were", "is", "are"],
+                        answer: 1,
+                        explain: "Cấu trúc 'Both A and B' (cả hai người) là chủ ngữ số nhiều, câu có mốc 'yesterday' nên to-be chia là 'were'. Vì vậy ta chọn were."
+                    }
+                ]
+            },
+            {
+                id: 3,
+                title: "Game 3: Bậc Thầy Cấu Trúc (Did & Didn't)",
+                badge: "Game 3 • Cấu trúc Phủ định & Nghi vấn",
+                desc: "Thực hành quy tắc vàng: khi đã có trợ động từ DID hoặc DIDN'T thì động từ luôn ở dạng NGUYÊN THỂ (V-bare).",
+                questions: [
+                    {
+                        id: "g3_1",
+                        sentence: "We _______ plastic bottles to make vases last month; we made pencil holders.",
+                        options: ["didn't use", "didn't used", "don't use", "not used"],
+                        answer: 0,
+                        explain: "Dấu hiệu 'last month' là quá khứ. Cấu trúc phủ định với động từ thường là: S + didn't + V-nguyên thể. Do đó dùng 'didn't use' (không dùng didn't used). Vì vậy ta chọn didn't use."
+                    },
+                    {
+                        id: "g3_2",
+                        sentence: "_______ you tutor secondary school students in your village last summer?",
+                        options: ["Did", "Do", "Were", "Was"],
+                        answer: 0,
+                        explain: "Câu hỏi nghi vấn ở quá khứ đơn với động từ thường 'tutor' (dạy kèm) cần mượn trợ động từ 'Did' đứng đầu câu: Did + S + V-nguyên thể...? Vì vậy ta chọn Did."
+                    },
+                    {
+                        id: "g3_3",
+                        sentence: "What _______ Tom do to help elderly people in 2018?",
+                        options: ["did", "does", "was", "were"],
+                        answer: 0,
+                        explain: "Câu hỏi có từ để hỏi 'What' trong quá khứ ('in 2018') với động từ chính 'do' cần trợ động từ 'did': Wh-word + did + S + V-bare? Vì vậy ta chọn did."
+                    },
+                    {
+                        id: "g3_4",
+                        sentence: "They didn't _______ any trees in the school garden yesterday because of heavy rain.",
+                        options: ["plant", "planted", "planting", "plants"],
+                        answer: 0,
+                        explain: "Quy tắc vàng: Sau trợ động từ phủ định 'didn't', động từ theo sau bắt buộc phải ở dạng nguyên thể không chia (V-bare). Do đó ta chọn 'plant' (không dùng planted). Vì vậy ta chọn plant."
+                    },
+                    {
+                        id: "g3_5",
+                        sentence: "Did your class _______ books and warm clothes to children in rural areas?",
+                        options: ["sent", "send", "sending", "sends"],
+                        answer: 1,
+                        explain: "Câu hỏi bắt đầu bằng trợ động từ 'Did', động từ chính theo sau phải ở dạng nguyên thể 'send' (không dùng dạng quá khứ sent). Vì vậy ta chọn send."
+                    },
+                    {
+                        id: "g3_6",
+                        sentence: "Lan didn't _______ calls from lonely people yesterday; she visited them instead.",
+                        options: ["answered", "answer", "answering", "answers"],
+                        answer: 1,
+                        explain: "Sau 'didn't', động từ giữ nguyên mẫu 'answer' (không thêm -ed). Vì vậy ta chọn answer."
+                    },
+                    {
+                        id: "g3_7",
+                        sentence: "_______ they collect used paper to exchange for green plants last Friday?",
+                        options: ["Did", "Were", "Do", "Have"],
+                        answer: 0,
+                        explain: "Động từ chính là động từ thường 'collect', câu hỏi quá khứ ('last Friday') mượn trợ động từ 'Did'. Không thể dùng 'Were' vì sau đó là động từ thường nguyên mẫu. Vì vậy ta chọn Did."
+                    },
+                    {
+                        id: "g3_8",
+                        sentence: "She _______ any thank-you cards to us a week ago.",
+                        options: ["didn't send", "didn't sent", "not sent", "doesn't send"],
+                        answer: 0,
+                        explain: "Dấu hiệu 'a week ago' là quá khứ đơn. Phủ định là 'didn't' cộng động từ nguyên thể 'send'. Vì vậy ta chọn didn't send."
+                    },
+                    {
+                        id: "g3_9",
+                        sentence: "Where did your club _______ homeless animals last winter?",
+                        options: ["shelter", "sheltered", "sheltering", "shelters"],
+                        answer: 0,
+                        explain: "Trong câu hỏi đã có trợ động từ 'did', động từ 'shelter' (che chở/nuôi dưỡng) phải ở dạng nguyên thể. Vì vậy ta chọn shelter."
+                    },
+                    {
+                        id: "g3_10",
+                        sentence: "He _______ help the flood victims last year because he was hospitalized.",
+                        options: ["couldn't", "can't", "didn't could", "wasn't"],
+                        answer: 0,
+                        explain: "'couldn't' là dạng quá khứ của 'can't' (không thể), diễn tả khả năng trong quá khứ ('last year'). Cấu trúc: couldn't + V-nguyên thể. Vì vậy ta chọn couldn't."
+                    },
+                    {
+                        id: "g3_11",
+                        sentence: "Did you and your friends _______ rubbish along the river bank yesterday?",
+                        options: ["pick up", "picked up", "picking up", "picks up"],
+                        answer: 0,
+                        explain: "Câu hỏi bắt đầu bằng 'Did', động từ chính 'pick' phải ở dạng nguyên mẫu 'pick up'. Vì vậy ta chọn pick up."
+                    },
+                    {
+                        id: "g3_12",
+                        sentence: "I didn't _______ English to grade 2 children last year; I taught grade 4.",
+                        options: ["teach", "taught", "teaching", "teaches"],
+                        answer: 0,
+                        explain: "Sau 'didn't', động từ bất quy tắc 'teach' phải trở về dạng nguyên mẫu là 'teach' (không dùng taught). Vì vậy ta chọn teach."
+                    },
+                    {
+                        id: "g3_13",
+                        sentence: "Why _______ your school organize a book drive last month?",
+                        options: ["did", "does", "was", "were"],
+                        answer: 0,
+                        explain: "Động từ chính là động từ thường 'organize' (tổ chức), mốc thời gian 'last month' nên mượn trợ động từ 'did'. Vì vậy ta chọn did."
+                    },
+                    {
+                        id: "g3_14",
+                        sentence: "The students _______ throw away plastic bottles; they recycled them.",
+                        options: ["didn't", "don't", "weren't", "not"],
+                        answer: 0,
+                        explain: "Vế sau có động từ quá khứ 'recycled' (họ đã tái chế chúng). Vế trước diễn tả họ đã không vứt chai nhựa đi, dùng trợ động từ quá khứ 'didn't'. Vì vậy ta chọn didn't."
+                    },
+                    {
+                        id: "g3_15",
+                        sentence: "Did Tom _______ books to sick children in the hospital in 2018?",
+                        options: ["read", "readed", "reading", "reads"],
+                        answer: 0,
+                        explain: "Sau trợ động từ 'Did', động từ 'read' ở dạng nguyên thể (phát âm là /ri:d/). Không bao giờ có từ 'readed'. Vì vậy ta chọn read."
+                    },
+                    {
+                        id: "g3_16",
+                        sentence: "They didn't _______ warm blankets to the poor last winter because they ran out of stock.",
+                        options: ["give", "gave", "given", "giving"],
+                        answer: 0,
+                        explain: "Sau 'didn't', động từ 'give' phải ở dạng nguyên mẫu 'give' (không dùng gave). Vì vậy ta chọn give."
+                    },
+                    {
+                        id: "g3_17",
+                        sentence: "How many trees did your club _______ in the playground two years ago?",
+                        options: ["plant", "planted", "planting", "plants"],
+                        answer: 0,
+                        explain: "Cấu trúc câu hỏi: How many + N_plural + did + S + V-nguyên thể? Đã có 'did' thì động từ là 'plant'. Vì vậy ta chọn plant."
+                    },
+                    {
+                        id: "g3_18",
+                        sentence: "My mother didn't _______ meals for the charity kitchen yesterday morning.",
+                        options: ["cook", "cooked", "cooking", "cooks"],
+                        answer: 0,
+                        explain: "Sau 'didn't' luôn luôn là động từ nguyên thể 'cook' (không chia -ed). Vì vậy ta chọn cook."
+                    },
+                    {
+                        id: "g3_19",
+                        sentence: "_______ the volunteer doctor examine the sick children in the mountain village?",
+                        options: ["Did", "Was", "Does", "Has"],
+                        answer: 0,
+                        explain: "'examine' (khám bệnh) là động từ thường, câu hỏi quá khứ dùng trợ động từ 'Did'. Vì vậy ta chọn Did."
+                    },
+                    {
+                        id: "g3_20",
+                        sentence: "We didn't _______ anything about the volunteer campaign until Tom told us yesterday.",
+                        options: ["know", "knew", "known", "knowing"],
+                        answer: 0,
+                        explain: "Sau 'didn't', động từ 'know' phải ở dạng nguyên mẫu (không dùng quá khứ knew). Vì vậy ta chọn know."
+                    }
+                ]
+            },
+            {
+                id: 4,
+                title: "Game 4: Thám Tử Thời Gian (Past Simple vs. Present Simple)",
+                badge: "Game 4 • Dấu hiệu & Thì",
+                desc: "Phân biệt hành động đã kết thúc trong quá khứ (Past Simple) và thói quen ở hiện tại (Present Simple) theo SGK trang 31.",
+                questions: [
+                    {
+                        id: "g4_1",
+                        sentence: "The club members _______ food for patients every Sunday, but yesterday they _______ soup.",
+                        options: ["cook / cooked", "cooked / cook", "cooks / cooked", "cooking / cooked"],
+                        answer: 0,
+                        explain: "Vế 1 có 'every Sunday' (mỗi chủ nhật) chỉ thói quen hiện tại đơn, chủ ngữ số nhiều 'club members' đi với 'cook'. Vế 2 có 'yesterday' (hôm qua) chỉ quá khứ nên chia 'cooked'. Vì vậy ta chọn cook / cooked."
+                    },
+                    {
+                        id: "g4_2",
+                        sentence: "We _______ those trees in the playground two years ago.",
+                        options: ["plant", "planted", "plants", "are planting"],
+                        answer: 1,
+                        explain: "Dấu hiệu rõ ràng 'two years ago' (hai năm trước) diễn tả hành động đã hoàn tất trong quá khứ. Do đó phải chia quá khứ đơn 'planted'. Vì vậy ta chọn planted."
+                    },
+                    {
+                        id: "g4_3",
+                        sentence: "Nick and his friends _______ rubbish on the beach now.",
+                        options: ["picked up", "are picking up", "pick up", "picks up"],
+                        answer: 1,
+                        explain: "Dấu hiệu 'now' (bây giờ) diễn tả hành động đang diễn ra tại thời điểm nói (Hiện tại tiếp diễn: S + am/is/are + V-ing). Nick and his friends là số nhiều nên dùng 'are picking up'. Vì vậy ta chọn are picking up."
+                    },
+                    {
+                        id: "g4_4",
+                        sentence: "Tom _______ the plastic bottles last week, and now he has some nice vases.",
+                        options: ["recycled", "recycles", "is recycling", "recycle"],
+                        answer: 0,
+                        explain: "Hành động tái chế đã hoàn thành trong quá khứ ('last week' - tuần trước) để dẫn tới kết quả bây giờ có bình hoa đẹp. Do đó dùng quá khứ đơn 'recycled'. Vì vậy ta chọn recycled."
+                    },
+                    {
+                        id: "g4_5",
+                        sentence: "We often _______ books to old people in a nursing home on weekends.",
+                        options: ["read", "readed", "are reading", "reads"],
+                        answer: 0,
+                        explain: "Dấu hiệu trạng từ tần suất 'often' (thường xuyên) kết hợp 'on weekends' chỉ thói quen lặp đi lặp lại ở hiện tại. Chủ ngữ 'We' đi với động từ nguyên mẫu 'read' (/ri:d/). Vì vậy ta chọn read."
+                    },
+                    {
+                        id: "g4_6",
+                        sentence: "Last summer, we _______ English to primary students, but this year we _______ math.",
+                        options: ["taught / teach", "teach / taught", "teaches / teach", "taught / taught"],
+                        answer: 0,
+                        explain: "Vế đầu có 'Last summer' là quá khứ nên chia 'taught'. Vế sau có 'this year' (năm nay) chỉ hiện tại nên chia 'teach' theo chủ ngữ 'we'. Vì vậy ta chọn taught / teach."
+                    },
+                    {
+                        id: "g4_7",
+                        sentence: "Care for Animals always _______ homeless dogs, but they _______ 50 new cats yesterday.",
+                        options: ["protects / rescued", "protect / rescue", "protected / rescues", "protecting / rescued"],
+                        answer: 0,
+                        explain: "Vế đầu có 'always' chỉ thói quen hiện tại, 'Care for Animals' là tên tổ chức (số ít) nên chia 'protects'. Vế sau có 'yesterday' nên chia 'rescued'. Vì vậy ta chọn protects / rescued."
+                    },
+                    {
+                        id: "g4_8",
+                        sentence: "My school club _______ blood every six months. We _______ blood last month.",
+                        options: ["donates / donated", "donated / donates", "donate / donate", "is donating / donated"],
+                        answer: 0,
+                        explain: "'every six months' (mỗi 6 tháng) là lịch trình hiện tại, 'school club' số ít chia 'donates'. 'last month' là quá khứ nên chia 'donated'. Vì vậy ta chọn donates / donated."
+                    },
+                    {
+                        id: "g4_9",
+                        sentence: "In 2016, Tom _______ on the project 'Help Lonely People'.",
+                        options: ["worked", "works", "is working", "work"],
+                        answer: 0,
+                        explain: "Mốc thời gian 'In 2016' là năm trong quá khứ, hành động đã hoàn toàn kết thúc nên chia quá khứ đơn 'worked'. Vì vậy ta chọn worked."
+                    },
+                    {
+                        id: "g4_10",
+                        sentence: "Our community _______ clean-up campaigns every Saturday morning.",
+                        options: ["holds", "held", "holding", "is holding"],
+                        answer: 0,
+                        explain: "Dấu hiệu 'every Saturday morning' (mỗi sáng thứ Bảy) chỉ thói quen định kỳ ở hiện tại đơn. Chủ ngữ 'Our community' số ít nên động từ thêm 's' thành 'holds'. Vì vậy ta chọn holds."
+                    },
+                    {
+                        id: "g4_11",
+                        sentence: "Two days ago, we _______ books; now we _______ them into boxes.",
+                        options: ["sorted / are putting", "sort / put", "sorted / putted", "sorting / are putting"],
+                        answer: 0,
+                        explain: "'Two days ago' chia quá khứ đơn 'sorted'. 'now' chỉ hành động đang xảy ra chia hiện tại tiếp diễn 'are putting'. Vì vậy ta chọn sorted / are putting."
+                    },
+                    {
+                        id: "g4_12",
+                        sentence: "Green Club members usually _______ used paper, but yesterday they _______ plastic spoons.",
+                        options: ["collect / collected", "collected / collect", "collects / collected", "collect / are collecting"],
+                        answer: 0,
+                        explain: "'usually' chỉ thói quen hiện tại đi với 'collect' (chủ ngữ members số nhiều). 'yesterday' là quá khứ đi với 'collected'. Vì vậy ta chọn collect / collected."
+                    },
+                    {
+                        id: "g4_13",
+                        sentence: "My father _______ street children when he was young.",
+                        options: ["helped", "helps", "is helping", "help"],
+                        answer: 0,
+                        explain: "Mệnh đề thời gian 'when he was young' (khi ông ấy còn trẻ) xác định rõ bối cảnh trong quá khứ, do đó mệnh đề chính phải chia quá khứ đơn 'helped'. Vì vậy ta chọn helped."
+                    },
+                    {
+                        id: "g4_14",
+                        sentence: "Look! The volunteers _______ trees in the local park right now.",
+                        options: ["are planting", "planted", "plants", "plant"],
+                        answer: 0,
+                        explain: "Có thán từ gây chú ý 'Look!' (Nhìn kìa!) và 'right now' (ngay lúc này), đây là dấu hiệu của thì hiện tại tiếp diễn: 'are planting'. Vì vậy ta chọn are planting."
+                    },
+                    {
+                        id: "g4_15",
+                        sentence: "They _______ in this volunteer organization in 2020.",
+                        options: ["participated", "participates", "participate", "participating"],
+                        answer: 0,
+                        explain: "Thời điểm 'in 2020' thuộc về quá khứ nên động từ phải chia quá khứ đơn 'participated'. Vì vậy ta chọn participated."
+                    },
+                    {
+                        id: "g4_16",
+                        sentence: "We rarely _______ trees in the winter because the weather is too freezing.",
+                        options: ["plant", "planted", "plants", "are planting"],
+                        answer: 0,
+                        explain: "Trạng từ tần suất 'rarely' (hiếm khi) diễn tả thực tế/thói quen lặp đi lặp lại ở hiện tại đơn. Chủ ngữ 'We' đi với 'plant'. Vì vậy ta chọn plant."
+                    },
+                    {
+                        id: "g4_17",
+                        sentence: "Lan _______ a letter of gratitude from the village school yesterday afternoon.",
+                        options: ["received", "receives", "is receiving", "receive"],
+                        answer: 0,
+                        explain: "Dấu hiệu 'yesterday afternoon' (chiều hôm qua) thuộc thì quá khứ đơn nên động từ thêm -d thành 'received'. Vì vậy ta chọn received."
+                    },
+                    {
+                        id: "g4_18",
+                        sentence: "Children in this rural area _______ to school by boat every rainy season.",
+                        options: ["travel", "traveled", "are traveling", "travels"],
+                        answer: 0,
+                        explain: "'every rainy season' (mỗi mùa mưa) diễn tả sự việc lặp lại định kỳ ở hiện tại. Chủ ngữ 'Children' số nhiều nên động từ giữ nguyên mẫu 'travel'. Vì vậy ta chọn travel."
+                    },
+                    {
+                        id: "g4_19",
+                        sentence: "The Red Cross _______ food packages to flood victims three days ago.",
+                        options: ["delivered", "delivers", "deliver", "delivering"],
+                        answer: 0,
+                        explain: "Dấu hiệu 'three days ago' (ba ngày trước) chỉ quá khứ đơn, động từ 'deliver' thêm -ed thành 'delivered'. Vì vậy ta chọn delivered."
+                    },
+                    {
+                        id: "g4_20",
+                        sentence: "Last winter, the weather _______ extremely cold, so we _______ warm coats to poor kids.",
+                        options: ["was / gave", "is / give", "were / gave", "was / gived"],
+                        answer: 0,
+                        explain: "'Last winter' là quá khứ. 'the weather' không đếm được đi với to-be 'was'. Động từ bất quy tắc 'give' đổi thành 'gave'. Vì vậy ta chọn was / gave."
+                    }
+                ]
+            },
+            {
+                id: 5,
+                title: "Game 5: Bác Sĩ Bắt Lỗi & Hoàn Thiện Câu",
+                badge: "Game 5 • Sửa Lỗi & Tạo Câu",
+                desc: "Tìm và sửa lỗi sai kinh điển, viết lại câu hoàn chỉnh từ từ gợi ý theo bài 4 & 5 SGK trang 32.",
+                questions: [
+                    {
+                        id: "g5_1",
+                        sentence: "Tìm lỗi sai trong câu: 'We didn't went to the nursing home yesterday.'",
+                        options: ["didn't went đổi thành didn't go", "nursing home đổi thành nursing homes", "yesterday đổi thành last day", "to đổi thành for"],
+                        answer: 0,
+                        explain: "Lỗi sai kinh điển: Sau trợ động từ 'didn't', động từ phải trở về dạng nguyên thể không chia (V-bare). Câu đúng chuẩn phải là 'didn't go'. Vì vậy ta chọn phương án sửa didn't went đổi thành didn't go."
+                    },
+                    {
+                        id: "g5_2",
+                        sentence: "Viết câu hoàn chỉnh: Last year / our club / donate / books / children in rural areas.",
+                        options: [
+                            "Last year, our club donated books to children in rural areas.",
+                            "Last year, our club donate books to children in rural areas.",
+                            "Last year, our club was donate books to children in rural areas.",
+                            "Last year, our club donated books for children on rural areas."
+                        ],
+                        answer: 0,
+                        explain: "Dấu hiệu 'Last year' đòi hỏi chia thì quá khứ đơn: donate đổi thành 'donated'. Cấu trúc 'donate something to somebody' (quyên góp cái gì cho ai). Vì vậy câu hoàn chỉnh chuẩn xác là câu A."
+                    },
+                    {
+                        id: "g5_3",
+                        sentence: "Tìm lỗi sai trong câu: 'Did you helped the elderly in your neighbourhood last week?'",
+                        options: ["helped đổi thành help", "Did đổi thành Were", "elderly đổi thành elderlies", "in đổi thành on"],
+                        answer: 0,
+                        explain: "Trong câu hỏi nghi vấn đã có trợ động từ 'Did' đứng đầu, động từ chính theo sau phải ở dạng nguyên mẫu: 'Did you help...?'. Không bao giờ được giữ đuôi -ed. Vì vậy ta chọn helped đổi thành help."
+                    },
+                    {
+                        id: "g5_4",
+                        sentence: "Viết câu hoàn chỉnh: Children / send / thank-you cards / us / a week ago.",
+                        options: [
+                            "Children sent thank-you cards to us a week ago.",
+                            "Children send thank-you cards for us a week ago.",
+                            "Children sended thank-you cards to us a week ago.",
+                            "Children was send thank-you cards to us a week ago."
+                        ],
+                        answer: 0,
+                        explain: "Thời gian 'a week ago' là quá khứ đơn, động từ bất quy tắc 'send' đổi thành 'sent'. Cấu trúc: 'send something to somebody'. Vì vậy câu chuẩn là Children sent thank-you cards to us a week ago."
+                    },
+                    {
+                        id: "g5_5",
+                        sentence: "Tìm lỗi sai trong câu: 'Tom was volunteer to teach English in our village last winter.'",
+                        options: ["was volunteer đổi thành volunteered", "to teach đổi thành teaching", "in đổi thành on", "last winter đổi thành yesterday winter"],
+                        answer: 0,
+                        explain: "Trong thì quá khứ đơn của động từ thường, ta chia trực tiếp S + V-ed/V2, không được ghép to-be 'was' với động từ thường nguyên thể như 'was volunteer'. Ta phải sửa thành động từ quá khứ 'volunteered'. Vì vậy chọn phương án A."
+                    },
+                    {
+                        id: "g5_6",
+                        sentence: "Viết câu hoàn chỉnh: I / teach / two children in grade 2 / last summer.",
+                        options: [
+                            "I taught two children in grade 2 last summer.",
+                            "I teach two children in grade 2 last summer.",
+                            "I teached two children in grade 2 last summer.",
+                            "I was teach two children in grade 2 last summer."
+                        ],
+                        answer: 0,
+                        explain: "'last summer' yêu cầu chia thì quá khứ đơn. Động từ bất quy tắc 'teach' chuyển thành 'taught' (không có teached). Vì vậy câu chuẩn là câu A."
+                    },
+                    {
+                        id: "g5_7",
+                        sentence: "Tìm lỗi sai trong câu: 'They was very proud of their volunteer project in 2018.'",
+                        options: ["was đổi thành were", "proud of đổi thành proud with", "in 2018 đổi thành on 2018", "volunteer đổi thành volunteering"],
+                        answer: 0,
+                        explain: "Chủ ngữ 'They' (họ) là đại từ nhân xưng số nhiều, động từ to-be trong quá khứ bắt buộc phải là 'were', không được dùng 'was'. Vì vậy ta sửa was đổi thành were."
+                    },
+                    {
+                        id: "g5_8",
+                        sentence: "Viết câu hoàn chỉnh: Last spring / we / help / the elderly / nursing home.",
+                        options: [
+                            "Last spring, we helped the elderly in a nursing home.",
+                            "Last spring, we help the elderly on nursing home.",
+                            "Last spring, we was help the elderly in nursing home.",
+                            "Last spring, we helped the elderly at nursing home."
+                        ],
+                        answer: 0,
+                        explain: "'Last spring' là quá khứ nên 'help' thêm -ed thành 'helped'. Cụm giới từ chuẩn xác chỉ địa điểm viện dưỡng lão là 'in a nursing home'. Vì vậy câu đúng là câu A."
+                    },
+                    {
+                        id: "g5_9",
+                        sentence: "Tìm lỗi sai trong câu: 'We gived warm clothes to homeless people yesterday.'",
+                        options: ["gived đổi thành gave", "warm clothes đổi thành warm cloths", "homeless đổi thành home", "yesterday đổi thành ago yesterday"],
+                        answer: 0,
+                        explain: "Động từ 'give' là động từ bất quy tắc, dạng quá khứ của nó đổi thành 'gave', trong tiếng Anh hoàn toàn không tồn tại từ 'gived'. Vì vậy sửa gived đổi thành gave."
+                    },
+                    {
+                        id: "g5_10",
+                        sentence: "Viết câu hoàn chỉnh: We / help / people / in flooded areas / last year.",
+                        options: [
+                            "We helped people in flooded areas last year.",
+                            "We help people in flooded areas last year.",
+                            "We were helped people in flooded areas last year.",
+                            "We helped people on flooded areas last year."
+                        ],
+                        answer: 0,
+                        explain: "Thời gian 'last year' chỉ quá khứ nên 'help' thêm -ed thành 'helped'. Giới từ chỉ khu vực ngập lụt là 'in flooded areas'. Vì vậy câu đúng là We helped people in flooded areas last year."
+                    },
+                    {
+                        id: "g5_11",
+                        sentence: "Tìm lỗi sai trong câu: 'What did you did during the volunteer campaign last month?'",
+                        options: ["you did đổi thành you do", "What did đổi thành What were", "during đổi thành while", "last month đổi thành next month"],
+                        answer: 0,
+                        explain: "Trong câu hỏi đã có trợ động từ 'did', động từ chính theo sau phải ở dạng nguyên mẫu 'do' (Cấu trúc: What did + S + V-bare?). Dùng 'did you did' là sai ngữ pháp nặng. Vì vậy sửa you did đổi thành you do."
+                    },
+                    {
+                        id: "g5_12",
+                        sentence: "Viết câu hoàn chỉnh: Tom / visit / lonely people / in 2016.",
+                        options: [
+                            "Tom visited lonely people in 2016.",
+                            "Tom visits lonely people in 2016.",
+                            "Tom was visit lonely people in 2016.",
+                            "Tom visited lonely people on 2016."
+                        ],
+                        answer: 0,
+                        explain: "Mốc năm 'in 2016' là quá khứ nên động từ 'visit' thêm -ed thành 'visited'. Trước năm dùng giới từ 'in'. Vì vậy câu hoàn chỉnh là Tom visited lonely people in 2016."
+                    },
+                    {
+                        id: "g5_13",
+                        sentence: "Tìm lỗi sai trong câu: 'We not planted any flowers in the schoolyard two days ago.'",
+                        options: ["not planted đổi thành didn't plant", "flowers đổi thành flower", "in đổi thành at", "two days ago đổi thành two days before"],
+                        answer: 0,
+                        explain: "Trong thì quá khứ đơn với động từ thường, thể phủ định bắt buộc phải dùng trợ động từ: S + didn't + V-nguyên thể. Không thể dùng 'not + V-ed'. Vì vậy ta sửa not planted đổi thành didn't plant."
+                    },
+                    {
+                        id: "g5_14",
+                        sentence: "Viết câu hỏi hoàn chỉnh từ gợi ý: What / you / do / on the project / in 2018?",
+                        options: [
+                            "What did you do on the project in 2018?",
+                            "What were you do on the project in 2018?",
+                            "What did you did on the project in 2018?",
+                            "What you did on the project in 2018?"
+                        ],
+                        answer: 0,
+                        explain: "Cấu trúc câu hỏi quá khứ với từ để hỏi: Wh-word + did + S + V-bare? Ở đây động từ chính là 'do', trợ động từ là 'did' nên câu đúng là 'What did you do on the project in 2018?'."
+                    },
+                    {
+                        id: "g5_15",
+                        sentence: "Tìm lỗi sai trong câu: 'She teached math to street children last semester.'",
+                        options: ["teached đổi thành taught", "math đổi thành maths", "to đổi thành for", "last semester đổi thành yesterday semester"],
+                        answer: 0,
+                        explain: "Động từ 'teach' là động từ bất quy tắc, quá khứ phải chuyển thành 'taught' (không có dạng teached). Vì vậy ta sửa teached đổi thành taught."
+                    },
+                    {
+                        id: "g5_16",
+                        sentence: "Viết câu hoàn chỉnh: The club / make / post cards / raise money / last week.",
+                        options: [
+                            "The club made postcards to raise money last week.",
+                            "The club maked postcards to raise money last week.",
+                            "The club was make postcards to raise money last week.",
+                            "The club made postcards raising money last week."
+                        ],
+                        answer: 0,
+                        explain: "'last week' chỉ quá khứ nên 'make' đổi thành 'made'. Cấu trúc chỉ mục đích dùng 'to + V-bare' (to raise money - để gây quỹ). Vì vậy câu chuẩn xác là câu A."
+                    },
+                    {
+                        id: "g5_17",
+                        sentence: "Tìm lỗi sai trong câu: 'Were you join the beach clean-up activity yesterday?'",
+                        options: ["Were you join đổi thành Did you join", "beach clean-up đổi thành beach clean", "yesterday đổi thành last day", "in đổi thành on"],
+                        answer: 0,
+                        explain: "Vì 'join' (tham gia) là động từ thường nên câu hỏi nghi vấn ở quá khứ phải mượn trợ động từ 'Did', không thể dùng to-be 'Were'. Vì vậy ta sửa Were you join đổi thành Did you join."
+                    },
+                    {
+                        id: "g5_18",
+                        sentence: "Viết câu hoàn chỉnh: We / provide / warm meals / sick children / yesterday.",
+                        options: [
+                            "We provided warm meals for sick children yesterday.",
+                            "We provide warm meals for sick children yesterday.",
+                            "We provided warm meals to sick children on yesterday.",
+                            "We was provide warm meals for sick children yesterday."
+                        ],
+                        answer: 0,
+                        explain: "'yesterday' là quá khứ nên 'provide' thêm -d thành 'provided'. Cấu trúc: 'provide something for somebody' (cung cấp bữa ăn ấm nóng cho các trẻ em bệnh). Vì vậy câu đúng là câu A."
+                    },
+                    {
+                        id: "g5_19",
+                        sentence: "Tìm lỗi sai trong câu: 'Students buyed many notebooks to give to poor children last month.'",
+                        options: ["buyed đổi thành bought", "give to đổi thành give for", "poor children đổi thành poorly children", "last month đổi thành past month"],
+                        answer: 0,
+                        explain: "Dạng quá khứ của động từ 'buy' là 'bought' (bất quy tắc), không thêm -ed thành 'buyed'. Vì vậy ta sửa buyed đổi thành bought."
+                    },
+                    {
+                        id: "g5_20",
+                        sentence: "Viết câu hoàn chỉnh: We / plant / 200 trees / along the river / last month.",
+                        options: [
+                            "We planted 200 trees along the river last month.",
+                            "We plant 200 trees along the river last month.",
+                            "We were plant 200 trees along the river last month.",
+                            "We planted 200 trees on the river in last month."
+                        ],
+                        answer: 0,
+                        explain: "'last month' chỉ quá khứ đơn nên 'plant' thêm -ed thành 'planted'. Trước 'last month' không dùng giới từ. Vì vậy câu hoàn chỉnh là câu A."
+                    }
+                ]
+            }
+        ];
+
+        function switchMainTab(tab) {
+            const handbookSec = document.getElementById('handbook-section');
+            const gamesSec = document.getElementById('games-section');
+            const tabHandbookBtn = document.getElementById('tab-handbook-btn');
+            const tabGamesBtn = document.getElementById('tab-games-btn');
+
+            if (tab === 'handbook') {
+                handbookSec.classList.remove('hidden');
+                gamesSec.classList.add('hidden');
+
+                tabHandbookBtn.className = "px-4 py-2 rounded-lg transition-all duration-200 bg-white text-emerald-800 shadow font-bold flex items-center gap-2";
+                tabGamesBtn.className = "px-4 py-2 rounded-lg transition-all duration-200 hover:text-white text-emerald-100 flex items-center gap-2";
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                handbookSec.classList.add('hidden');
+                gamesSec.classList.remove('hidden');
+
+                tabHandbookBtn.className = "px-4 py-2 rounded-lg transition-all duration-200 hover:text-white text-emerald-100 flex items-center gap-2";
+                tabGamesBtn.className = "px-4 py-2 rounded-lg transition-all duration-200 bg-white text-emerald-800 shadow font-bold flex items-center gap-2";
+                renderGameNavigation();
+                loadGame(currentGameIndex);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function renderGameNavigation() {
+            const navContainer = document.getElementById('game-nav-tabs');
+            navContainer.innerHTML = '';
+
+            gamesData.forEach((game, index) => {
+                const btn = document.createElement('button');
+                btn.id = `game-nav-btn-${index}`;
+                const isActive = index === currentGameIndex;
+                btn.className = `px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition flex items-center gap-1.5 ${
+                    isActive 
+                    ? 'bg-emerald-600 text-white shadow-sm ring-2 ring-emerald-300' 
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                }`;
+                btn.innerHTML = `<i class="fa-solid fa-gamepad"></i> Game ${game.id}`;
+                btn.onclick = () => {
+                    selectGame(index);
+                };
+                navContainer.appendChild(btn);
+            });
+        }
+
+        function selectGame(index) {
+            currentGameIndex = index;
+            userAnswers = {};
+            isSubmitted = false;
+            document.getElementById('result-summary-card').classList.add('hidden');
+            renderGameNavigation();
+            loadGame(index);
+            window.scrollTo({ top: document.getElementById('games-section').offsetTop - 70, behavior: 'smooth' });
+        }
+
+        function loadGame(gameIndex) {
+            const game = gamesData[gameIndex];
+            document.getElementById('game-badge').innerText = game.badge;
+            document.getElementById('game-title').innerText = game.title;
+            document.getElementById('game-desc').innerText = game.desc;
+
+            updateProgressTracker();
+
+            const questionsContainer = document.getElementById('questions-container');
+            questionsContainer.innerHTML = '';
+
+            game.questions.forEach((q, qIndex) => {
+                const card = document.createElement('div');
+                card.id = `q-card-${q.id}`;
+                card.className = "bg-white rounded-2xl p-5 shadow-sm border border-slate-200/80 transition hover:border-emerald-300 space-y-3";
+
+                // Header question row with US Audio Speaker
+                const headerRow = document.createElement('div');
+                headerRow.className = "flex items-start justify-between gap-3";
+
+                const questionTextWrapper = document.createElement('div');
+                questionTextWrapper.className = "flex items-start gap-3 flex-1";
+
+                const qBadge = document.createElement('span');
+                qBadge.className = "w-7 h-7 rounded-xl bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center flex-shrink-0 mt-0.5 border border-slate-200";
+                qBadge.innerText = `${qIndex + 1}`;
+
+                const sentencePara = document.createElement('p');
+                sentencePara.className = "text-sm sm:text-base font-semibold text-slate-900 leading-relaxed";
+                sentencePara.innerText = q.sentence;
+
+                questionTextWrapper.appendChild(qBadge);
+                questionTextWrapper.appendChild(sentencePara);
+
+                // Speaker button for the question sentence
+                const speakBtn = document.createElement('button');
+                speakBtn.className = "w-8 h-8 rounded-xl bg-emerald-50 text-emerald-700 hover:bg-emerald-100 transition flex items-center justify-center flex-shrink-0";
+                speakBtn.title = "Nghe câu hỏi giọng nữ Anh-Mỹ";
+                speakBtn.innerHTML = '<i class="fa-solid fa-volume-high text-sm"></i>';
+                speakBtn.onclick = () => {
+                    speakText(q.sentence, 'en-US');
+                };
+
+                headerRow.appendChild(questionTextWrapper);
+                headerRow.appendChild(speakBtn);
+                card.appendChild(headerRow);
+
+                // Options Container (4 Choices)
+                const optionsGrid = document.createElement('div');
+                optionsGrid.className = "grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1";
+
+                q.options.forEach((opt, optIndex) => {
+                    const optBtn = document.createElement('button');
+                    optBtn.id = `opt-${q.id}-${optIndex}`;
+                    const label = String.fromCharCode(65 + optIndex); // A, B, C, D
+                    optBtn.className = "text-left p-3 rounded-xl border border-slate-200 text-xs sm:text-sm font-medium transition flex items-center justify-between hover:bg-slate-50";
+                    
+                    optBtn.innerHTML = `
+                        <div class="flex items-center gap-2.5">
+                            <span class="w-6 h-6 rounded-lg bg-slate-100 text-slate-700 font-bold text-xs flex items-center justify-center">${label}</span>
+                            <span class="opt-text text-slate-800">${opt}</span>
+                        </div>
+                    `;
+
+                    // Single option voice reader
+                    const optSpeaker = document.createElement('span');
+                    optSpeaker.className = "text-slate-400 hover:text-emerald-600 p-1 transition";
+                    optSpeaker.innerHTML = '<i class="fa-solid fa-volume-high text-xs"></i>';
+                    optSpeaker.onclick = (e) => {
+                        e.stopPropagation();
+                        speakText(opt, 'en-US');
+                    };
+                    optBtn.appendChild(optSpeaker);
+
+                    optBtn.onclick = () => {
+                        if (!isSubmitted) {
+                            selectOption(q.id, optIndex);
+                        }
+                    };
+
+                    optionsGrid.appendChild(optBtn);
+                });
+
+                card.appendChild(optionsGrid);
+
+                // Explanation Box Container (Visible upon submission)
+                const explainBox = document.createElement('div');
+                explainBox.id = `explain-${q.id}`;
+                explainBox.className = "hidden mt-3 p-3.5 rounded-xl text-xs sm:text-sm leading-relaxed border space-y-1.5";
+                card.appendChild(explainBox);
+
+                questionsContainer.appendChild(card);
+            });
+        }
+
+        function selectOption(questionId, optionIndex) {
+            userAnswers[questionId] = optionIndex;
+
+            // Reset other buttons for this question
+            for (let i = 0; i < 4; i++) {
+                const btn = document.getElementById(`opt-${questionId}-${i}`);
+                if (btn) {
+                    if (i === optionIndex) {
+                        btn.className = "text-left p-3 rounded-xl border-2 border-emerald-500 bg-emerald-50/70 text-xs sm:text-sm font-semibold flex items-center justify-between shadow-sm";
+                    } else {
+                        btn.className = "text-left p-3 rounded-xl border border-slate-200 text-xs sm:text-sm font-medium transition flex items-center justify-between hover:bg-slate-50";
+                    }
+                }
+            }
+
+            updateProgressTracker();
+        }
+
+        function updateProgressTracker() {
+            const answeredCount = Object.keys(userAnswers).length;
+            const text = `Đã làm: ${answeredCount}/20 câu`;
+            document.getElementById('current-game-progress').innerText = text;
+            document.getElementById('bottom-progress-tracker').innerText = text;
+        }
+
+        function submitGame() {
+            if (isSubmitted) {
+                alertModal("Em đã nộp bài rồi! Hãy xem đáp án và giải thích chi tiết phía dưới nhé.");
+                return;
+            }
+
+            const game = gamesData[currentGameIndex];
+            const answeredCount = Object.keys(userAnswers).length;
+
+            if (answeredCount < 20) {
+                const remain = 20 - answeredCount;
+                if (!confirmModal(`Em còn ${remain} câu chưa làm. Em có chắc chắn muốn nộp bài để cô Lily chấm điểm ngay không?`)) {
+                    return;
+                }
+            }
+
+            isSubmitted = true;
+            let score = 0;
+
+            game.questions.forEach((q, qIndex) => {
+                const userChoice = userAnswers[q.id];
+                const isCorrect = userChoice === q.answer;
+                if (isCorrect) score++;
+
+                const card = document.getElementById(`q-card-${q.id}`);
+                const explainBox = document.getElementById(`explain-${q.id}`);
+
+                // Style question card based on correct/incorrect
+                if (isCorrect) {
+                    card.classList.add('border-emerald-400', 'bg-emerald-50/20');
+                } else {
+                    card.classList.add('border-rose-300', 'bg-rose-50/20');
+                }
+
+                // Highlight correct and wrong answers on options
+                for (let i = 0; i < 4; i++) {
+                    const btn = document.getElementById(`opt-${q.id}-${i}`);
+                    if (!btn) continue;
+
+                    if (i === q.answer) {
+                        // Đáp án đúng luôn có viền xanh lá đậm
+                        btn.className = "text-left p-3 rounded-xl border-2 border-emerald-600 bg-emerald-100 text-xs sm:text-sm font-bold flex items-center justify-between text-emerald-950";
+                    } else if (i === userChoice && !isCorrect) {
+                        // Học sinh chọn sai thì nút đó viền đỏ
+                        btn.className = "text-left p-3 rounded-xl border-2 border-rose-500 bg-rose-100 text-xs sm:text-sm font-bold flex items-center justify-between text-rose-900";
+                    } else {
+                        btn.className = "text-left p-3 rounded-xl border border-slate-200 text-xs sm:text-sm opacity-60 flex items-center justify-between";
+                    }
+                }
+
+                // Show Explanation Box with voice button for the full sentence
+                explainBox.classList.remove('hidden');
+                if (isCorrect) {
+                    explainBox.classList.add('bg-emerald-50', 'border-emerald-200', 'text-emerald-900');
+                } else {
+                    explainBox.classList.add('bg-amber-50', 'border-amber-200', 'text-amber-950');
+                }
+
+                const correctLetter = String.fromCharCode(65 + q.answer);
+                const correctContent = q.options[q.answer];
+
+                explainBox.innerHTML = `
+                    <div class="flex items-center justify-between border-b border-black/10 pb-1.5 mb-1.5">
+                        <span class="font-bold flex items-center gap-1.5">
+                            ${isCorrect ? '<i class="fa-solid fa-circle-check text-emerald-600"></i> Đúng rồi!' : '<i class="fa-solid fa-circle-xmark text-rose-500"></i> Chưa chính xác'}
+                            <span>Đáp án chuẩn: <strong>${correctLetter}. ${correctContent}</strong></span>
+                        </span>
+                        <button onclick="speakExplanation('${q.id}')" class="text-xs bg-white px-2.5 py-1 rounded-lg border shadow-xs hover:bg-slate-50 flex items-center gap-1 text-slate-700 font-semibold" title="Nghe câu trả lời hoàn chỉnh">
+                            <i class="fa-solid fa-volume-high text-emerald-600"></i> Nghe câu đúng
+                        </button>
+                    </div>
+                    <div class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                        <strong class="text-slate-900"><i class="fa-solid fa-lightbulb text-amber-500"></i> Lời giải từ cô Lily:</strong> ${q.explain}
+                    </div>
+                `;
+            });
+
+            // Show Results Summary Card
+            const resultCard = document.getElementById('result-summary-card');
+            resultCard.classList.remove('hidden');
+            const percent = Math.round((score / 20) * 100);
+            document.getElementById('score-text').innerText = `${score} / 20 Điểm (${percent}%)`;
+
+            let feedback = "";
+            if (percent === 100) {
+                feedback = "Thần đồng ngữ pháp! Em đã xuất sắc đạt điểm tuyệt đối 20/20! Cô Lily rất tự hào về em! 🎉";
+                triggerConfetti();
+            } else if (percent >= 80) {
+                feedback = "Kết quả tuyệt vời! Em nắm rất chắc thì Quá khứ đơn. Hãy xem lại vài câu chưa đúng để hoàn hảo hơn nhé!";
+                triggerConfetti();
+            } else if (percent >= 60) {
+                feedback = "Khá tốt! Em đã hiểu cơ bản nhưng cần chú ý thêm dạng động từ bất quy tắc và quy tắc sau trợ động từ didn't.";
+            } else {
+                feedback = "Cố lên em nhé! Hãy mở lại Cẩm Nang Lý Thuyết ở trên để ôn lại bảng động từ và làm lại để rèn phản xạ!";
+            }
+            document.getElementById('feedback-text').innerText = feedback;
+
+            // Scroll smoothly to result card
+            resultCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+
+        function speakExplanation(questionId) {
+            const game = gamesData[currentGameIndex];
+            const q = game.questions.find(item => item.id === questionId);
+            if (!q) return;
+
+            // Xây dựng câu hoàn chỉnh sau khi điền đáp án đúng
+            let fullSentence = q.sentence;
+            const correctWord = q.options[q.answer];
+
+            if (fullSentence.includes("_______")) {
+                fullSentence = fullSentence.replace("_______", correctWord);
+            } else if (fullSentence.startsWith("Viết câu") || fullSentence.startsWith("Tìm lỗi")) {
+                fullSentence = correctWord;
+            }
+            speakText(fullSentence, 'en-US');
+        }
+
+        function resetCurrentGame() {
+            userAnswers = {};
+            isSubmitted = false;
+            document.getElementById('result-summary-card').classList.add('hidden');
+            loadGame(currentGameIndex);
+            window.scrollTo({ top: document.getElementById('games-section').offsetTop - 60, behavior: 'smooth' });
+        }
+
+        function goToNextGame() {
+            if (currentGameIndex < gamesData.length - 1) {
+                selectGame(currentGameIndex + 1);
+            } else {
+                alertModal("Chúc mừng em đã hoàn thành xuất sắc toàn bộ 5 Game (100 câu) Thì Quá Khứ Đơn Unit 3!");
+            }
+        }
+
+        function scrollToExplanation() {
+            const firstQuestion = document.getElementById('questions-container');
+            if (firstQuestion) {
+                firstQuestion.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        function triggerConfetti() {
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 80,
+                    spread: 70,
+                    origin: { y: 0.6 }
+                });
+            }
+        }
+
+        // Custom Modal UI (Thay thế hoàn toàn alert() và confirm())
+        function alertModal(msg) {
+            const div = document.createElement('div');
+            div.className = "fixed inset-0 bg-black/50 backdrop-blur-xs flex items-center justify-center p-4 z-50";
+            div.innerHTML = `
+                <div class="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl text-center space-y-4 border">
+                    <div class="w-12 h-12 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto text-xl">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <p class="text-sm font-semibold text-slate-800">${msg}</p>
+                    <button onclick="this.closest('.fixed').remove()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 rounded-xl text-sm transition">Đã hiểu</button>
+                </div>
+            `;
+            document.body.appendChild(div);
+        }
+
+        function confirmModal(msg) {
+            // Cho mục đích trải nghiệm mượt mà không block iframe
+            return window.confirm(msg);
+        }
+
+        // Initial launch
+        window.addEventListener('DOMContentLoaded', () => {
+            renderGameNavigation();
+            loadGame(0);
+        });
+    </script>
+</body>
+</html>

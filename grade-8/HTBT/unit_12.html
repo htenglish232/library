@@ -1,0 +1,1904 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HT English Arcade - Unit 12: Reported Speech (Questions)</title>
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              900: '#0c4a6e',
+              950: '#082f49'
+            },
+            cosmic: {
+              bg: '#050814',
+              card: '#0d1329',
+              border: '#1e295d',
+              accent: '#8b5cf6',
+              cyan: '#06b6d4',
+              emerald: '#10b981',
+              rose: '#f43f5e',
+              amber: '#f59e0b'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            space: ['Space Grotesk', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    body {
+      background-color: #050814;
+      color: #f1f5f9;
+      font-family: 'Inter', sans-serif;
+      background-image: 
+        radial-gradient(circle at 15% 20%, rgba(6, 182, 212, 0.08) 0%, transparent 40%),
+        radial-gradient(circle at 85% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 40%);
+      min-height: 100vh;
+    }
+
+    .font-space { font-family: 'Space Grotesk', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    .glow-cyan {
+      box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.25);
+    }
+    
+    .card-space {
+      background: rgba(13, 19, 41, 0.85);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(30, 41, 93, 0.6);
+    }
+
+    .btn-cosmic {
+      background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .btn-cosmic:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px -4px rgba(6, 182, 212, 0.5);
+    }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .chart-container {
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      height: 280px;
+      max-height: 350px;
+    }
+    @media (min-width: 768px) {
+      .chart-container { height: 320px; }
+    }
+  </style>
+</head>
+<body class="pb-12 text-slate-100 antialiased selection:bg-cyan-500 selection:text-slate-950">
+
+  <!-- ================= TOP HEADER & BRANDING ================= -->
+  <header class="sticky top-0 z-40 border-b border-slate-800/80 bg-slate-950/90 backdrop-blur-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col sm:flex-row items-center justify-between gap-3">
+      
+      <!-- Center Branding -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-cyan-500 to-indigo-600 flex items-center justify-center text-xl font-extrabold text-slate-950 shadow-lg shadow-cyan-500/20 font-space">
+          HT
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-base font-bold font-space text-white tracking-tight">HT ENGLISH CENTER</h1>
+            <span class="px-2 py-0.5 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-[10px] font-bold">Ms. Lily</span>
+          </div>
+          <p class="text-[11px] text-slate-400 flex flex-wrap items-center gap-2">
+            <span>📞 0963.422.940 - 0962.240.866</span>
+            <span class="hidden md:inline">•</span>
+            <span class="hidden md:inline">📍 Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình</span>
+          </p>
+        </div>
+      </div>
+
+      <!-- Quick Stats & Audio Settings -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono">
+          <span class="text-amber-400 font-bold">⭐ <span id="total-stars">0</span></span>
+          <span class="text-slate-700">|</span>
+          <span class="text-rose-400 font-bold">🔥 <span id="streak-counter">0</span></span>
+          <span class="text-slate-700">|</span>
+          <span class="text-cyan-400 font-bold">🎯 <span id="score-val">0</span> pts</span>
+        </div>
+
+        <button id="audio-settings-btn" onclick="toggleTtsSpeed()" title="Đổi tốc độ phát âm" class="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-xs text-slate-300 flex items-center gap-1.5 border border-slate-700 transition">
+          <span>🔊 Voice</span>
+          <span id="speed-badge" class="px-1.5 py-0.5 bg-cyan-950 text-cyan-300 text-[10px] rounded font-bold border border-cyan-700">0.9x</span>
+        </button>
+
+        <button onclick="switchTab('handbook')" class="px-3 py-1.5 rounded-xl bg-indigo-600/30 hover:bg-indigo-600/50 border border-indigo-500/40 text-indigo-200 text-xs font-bold transition flex items-center gap-1.5">
+          📖 Lý Thuyết
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= MAIN CONTAINER ================= -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 pt-6">
+
+    <!-- NAVIGATION TABS -->
+    <div class="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-3 no-scrollbar mb-6">
+      <button onclick="switchTab('g1')" id="tab-btn-g1" class="tab-btn px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm whitespace-nowrap transition flex items-center gap-2 bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/30">
+        <span>🛸 Game 1: Yes/No Shield</span>
+        <span class="px-1.5 py-0.5 rounded-full bg-slate-950/30 text-[10px]">20 câu</span>
+      </button>
+      <button onclick="switchTab('g2')" id="tab-btn-g2" class="tab-btn px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm whitespace-nowrap transition flex items-center gap-2 bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800">
+        <span>🚀 Game 2: Wh- Launcher</span>
+        <span class="px-1.5 py-0.5 rounded-full bg-slate-950 text-[10px]">20 câu</span>
+      </button>
+      <button onclick="switchTab('g3')" id="tab-btn-g3" class="tab-btn px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm whitespace-nowrap transition flex items-center gap-2 bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800">
+        <span>🪐 Game 3: Warp Shifts</span>
+        <span class="px-1.5 py-0.5 rounded-full bg-slate-950 text-[10px]">20 câu</span>
+      </button>
+      <button onclick="switchTab('g4')" id="tab-btn-g4" class="tab-btn px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm whitespace-nowrap transition flex items-center gap-2 bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800">
+        <span>🔍 Game 4: Trap Detective</span>
+        <span class="px-1.5 py-0.5 rounded-full bg-slate-950 text-[10px]">20 câu</span>
+      </button>
+      <button onclick="switchTab('g5')" id="tab-btn-g5" class="tab-btn px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm whitespace-nowrap transition flex items-center gap-2 bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800">
+        <span>🧩 Game 5: Architect</span>
+        <span class="px-1.5 py-0.5 rounded-full bg-slate-950 text-[10px]">20 câu</span>
+      </button>
+      <button onclick="switchTab('analytics')" id="tab-btn-analytics" class="tab-btn px-3 py-2.5 rounded-2xl font-bold text-xs whitespace-nowrap transition flex items-center gap-1.5 bg-slate-900 text-purple-300 hover:bg-slate-800 border border-purple-500/30">
+        <span>📊 Báo Cáo</span>
+      </button>
+    </div>
+
+    <!-- ================= TAB: STUDY HANDBOOK ================= -->
+    <div id="tab-content-handbook" class="hidden space-y-6">
+      <div class="card-space p-6 sm:p-8 rounded-3xl border border-cyan-500/30 relative overflow-hidden">
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-3">
+            <span class="text-3xl">📘</span>
+            <div>
+              <h2 class="text-2xl font-bold font-space text-cyan-300">Cẩm Nang Vàng: Reported Speech (Questions)</h2>
+              <p class="text-xs text-slate-400">Trọng tâm kiến thức SGK Tiếng Anh 8 Global Success (Unit 12 - Trang 127 & 128)</p>
+            </div>
+          </div>
+          <button onclick="speakText('Remember! We normally use ask, wonder, and want to know when we report questions. In reported questions, we use the same word order as in statements but omit the question mark.')" class="px-3 py-2 rounded-xl bg-cyan-500/20 text-cyan-300 hover:bg-cyan-500/30 transition flex items-center gap-1.5 text-xs font-bold border border-cyan-500/30">
+            🔊 Nghe lý thuyết gốc
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+          <div class="p-5 rounded-2xl bg-slate-950/80 border border-emerald-500/30">
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2.5 py-1 rounded-lg bg-emerald-500/20 text-emerald-300 text-xs font-bold uppercase">1. Câu hỏi Yes/No</span>
+              <button onclick="speakText('She asked me if life existed on Mars.')" class="text-emerald-400 hover:text-emerald-300 text-xs font-semibold flex items-center gap-1">🔊 Ví dụ</button>
+            </div>
+            <div class="p-3 bg-slate-900 rounded-xl font-mono text-xs text-emerald-300 mb-3 border border-emerald-500/20">
+              S + asked (+ O) / wanted to know / wondered + IF / WHETHER + S + V (lùi thì).
+            </div>
+            <ul class="text-xs text-slate-300 space-y-1.5 leading-relaxed">
+              <li class="flex items-start gap-1.5">
+                <span class="text-emerald-400 font-bold">•</span>
+                <span>Tuyệt đối <strong>KHÔNG đảo trợ động từ</strong> (do/does/did) lên trước chủ ngữ.</span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="text-emerald-400 font-bold">•</span>
+                <span>Bỏ dấu hỏi chấm <strong>(?)</strong>, chuyển thành dấu chấm <strong>(.)</strong>.</span>
+              </li>
+              <li class="flex items-start gap-1.5 text-slate-400">
+                <span class="text-emerald-400 font-bold">•</span>
+                <span><em>Ví dụ:</em> "Does Mars have water?" &rarr; He asked <strong>if Mars had</strong> water.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="p-5 rounded-2xl bg-slate-950/80 border border-cyan-500/30">
+            <div class="flex items-center justify-between mb-2">
+              <span class="px-2.5 py-1 rounded-lg bg-cyan-500/20 text-cyan-300 text-xs font-bold uppercase">2. Câu hỏi Wh-words</span>
+              <button onclick="speakText('She asked me what I was doing then.')" class="text-cyan-400 hover:text-cyan-300 text-xs font-semibold flex items-center gap-1">🔊 Ví dụ</button>
+            </div>
+            <div class="p-3 bg-slate-900 rounded-xl font-mono text-xs text-cyan-300 mb-3 border border-cyan-500/20">
+              S + asked (+ O) / wanted to know / wondered + Wh-word + S + V (lùi thì).
+            </div>
+            <ul class="text-xs text-slate-300 space-y-1.5 leading-relaxed">
+              <li class="flex items-start gap-1.5">
+                <span class="text-cyan-400 font-bold">•</span>
+                <span>Giữ nguyên từ để hỏi: <em>what, where, when, why, who, how fast, how many...</em></span>
+              </li>
+              <li class="flex items-start gap-1.5">
+                <span class="text-cyan-400 font-bold">•</span>
+                <span>Sau từ để hỏi là <strong>Chủ ngữ (S) rồi mới tới Động từ (V)</strong> lùi thì.</span>
+              </li>
+              <li class="flex items-start gap-1.5 text-slate-400">
+                <span class="text-cyan-400 font-bold">•</span>
+                <span><em>Ví dụ:</em> "Where can we find aliens?" &rarr; They asked <strong>where they could find</strong> aliens.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-6 p-5 rounded-2xl bg-slate-950/80 border border-slate-800">
+          <h3 class="text-sm font-bold text-amber-300 mb-3 flex items-center gap-2">
+            <span>⚡ Bảng Lùi Thì & Biến Đổi Trạng Từ Trọng Tâm Unit 12</span>
+          </h3>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">
+              <span class="text-slate-400 block mb-1">Hiện tại đơn &rarr;</span>
+              <span class="text-cyan-300 font-bold">Quá khứ đơn (V2/-ed)</span>
+            </div>
+            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">
+              <span class="text-slate-400 block mb-1">can / will &rarr;</span>
+              <span class="text-cyan-300 font-bold">could / would</span>
+            </div>
+            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">
+              <span class="text-slate-400 block mb-1">now / here &rarr;</span>
+              <span class="text-emerald-300 font-bold">then / there</span>
+            </div>
+            <div class="p-3 bg-slate-900 rounded-xl border border-slate-800">
+              <span class="text-slate-400 block mb-1">today / tomorrow &rarr;</span>
+              <span class="text-emerald-300 font-bold">that day / the next day</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ================= TAB: ANALYTICS DASHBOARD ================= -->
+    <div id="tab-content-analytics" class="hidden space-y-6">
+      <div class="card-space p-6 rounded-3xl border border-purple-500/30">
+        <div class="flex items-center justify-between mb-4">
+          <div>
+            <h2 class="text-xl font-bold font-space text-purple-300">📊 Báo Cáo Năng Lực Học Sinh</h2>
+            <p class="text-xs text-slate-400">Phân tích tỷ lệ chính xác và nhận diện kỹ năng theo từng dạng bài</p>
+          </div>
+          <span class="px-3 py-1 rounded-full bg-purple-500/20 text-purple-300 text-xs font-bold border border-purple-500/30">
+            HT Analytics Engine
+          </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800">
+            <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">Biểu Đồ Năng Lực Theo Dạng Bài</h3>
+            <div class="chart-container">
+              <canvas id="skillRadarChart"></canvas>
+            </div>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-950 border border-slate-800">
+            <h3 class="text-xs font-bold text-slate-300 uppercase tracking-wider mb-3">Tỷ Lệ Hoàn Thành 5 Trận Chiến</h3>
+            <div class="chart-container">
+              <canvas id="masteryBarChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= GAME ARENA CONTAINER ================= -->
+    <div id="tab-content-game" class="space-y-6">
+      
+      <!-- Game Info Header Banner -->
+      <div class="card-space p-4 sm:p-5 rounded-3xl flex flex-col sm:flex-row items-center justify-between gap-4 border border-slate-800">
+        <div class="flex items-center gap-3">
+          <div id="game-icon" class="w-12 h-12 rounded-2xl bg-cyan-500/20 text-cyan-300 flex items-center justify-center text-2xl border border-cyan-500/30">
+            🛸
+          </div>
+          <div>
+            <h2 id="game-title" class="font-space font-bold text-base sm:text-lg text-white">Game 1: Đại Chiến Phi Thuyền Yes/No</h2>
+            <p id="game-desc" class="text-xs text-slate-400">Rèn luyện phản xạ tường thuật câu hỏi Yes/No với IF / WHETHER</p>
+          </div>
+        </div>
+
+        <div class="w-full sm:w-64 flex flex-col items-end gap-1.5">
+          <div class="flex items-center justify-between w-full text-xs font-semibold">
+            <span class="text-slate-400">Tiến độ vòng đấu</span>
+            <span class="text-cyan-300 font-bold font-mono"><span id="curr-q-num">1</span>/20</span>
+          </div>
+          <div class="w-full h-2.5 bg-slate-950 rounded-full overflow-hidden border border-slate-800">
+            <div id="progress-fill" class="h-full bg-gradient-to-r from-cyan-500 to-indigo-500 rounded-full transition-all duration-300" style="width: 5%"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Question Card -->
+      <div id="question-card" class="card-space p-6 sm:p-8 rounded-3xl border border-cyan-500/20 glow-cyan relative">
+        
+        <div class="p-4 sm:p-5 rounded-2xl bg-slate-950/90 border border-slate-800 mb-6">
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-1.5">
+              <span>💬 Câu nói trực tiếp</span>
+            </span>
+            <button id="direct-audio-btn" onclick="playDirectSpeechAudio()" class="px-2.5 py-1 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-300 text-xs font-semibold flex items-center gap-1 transition border border-cyan-500/30">
+              🔊 Nghe câu gốc
+            </button>
+          </div>
+          <p id="direct-text" class="text-base sm:text-lg font-semibold text-slate-200">
+            "Are there any habitable planets in our solar system?" asked the young astronaut.
+          </p>
+        </div>
+
+        <div class="flex items-center justify-between gap-2 mb-3">
+          <p class="text-xs font-bold uppercase tracking-wider text-slate-400">
+            🎯 Nhiệm vụ: Chọn hoặc ghép phương án chuẩn xác
+          </p>
+          <button id="q-audio-btn" onclick="playPromptAudio()" class="text-xs font-semibold text-indigo-300 hover:text-indigo-200 flex items-center gap-1">
+            🔊 Nghe đề bài
+          </button>
+        </div>
+        <h3 id="prompt-text" class="text-base sm:text-xl font-bold text-white mb-6 leading-relaxed">
+          The young astronaut asked ______ habitable planets in their solar system.
+        </h3>
+
+        <!-- MCQ Options Grid (For Game 1, 2, 3, 4) -->
+        <div id="mcq-container" class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+        </div>
+
+        <!-- Scramble Area (Exclusively for Game 5) -->
+        <div id="scramble-container" class="hidden mb-6 space-y-4">
+          <div class="p-4 rounded-2xl bg-slate-950 border border-cyan-500/40 min-h-[75px] flex flex-wrap gap-2 items-center" id="scramble-target">
+            <span id="scramble-placeholder" class="text-xs text-slate-500 italic">Nhấn vào các từ bên dưới để ghép thành câu tường thuật hoàn chỉnh...</span>
+          </div>
+          <div class="flex items-center justify-between text-xs text-slate-400">
+            <span>Các thẻ từ ngẫu nhiên (chạm để chọn):</span>
+            <button onclick="resetScramble()" class="text-rose-400 hover:text-rose-300 font-bold underline">Xếp lại từ đầu</button>
+          </div>
+          <div class="flex flex-wrap gap-2.5 p-4 rounded-2xl bg-slate-900/80 border border-slate-800" id="scramble-pool">
+          </div>
+          <button id="scramble-submit-btn" onclick="checkScrambleAnswer()" class="w-full py-3.5 rounded-2xl btn-cosmic text-slate-950 font-extrabold text-sm shadow-lg">
+            Kiểm tra đáp án câu này ✨
+          </button>
+        </div>
+
+        <!-- Instant Feedback & Explanation Card -->
+        <div id="feedback-card" class="hidden mt-6 p-5 rounded-2xl border transition-all duration-300">
+          <div class="flex items-start justify-between gap-3 mb-2">
+            <div class="flex items-center gap-2">
+              <span id="feedback-badge" class="px-3 py-1 rounded-lg text-xs font-bold uppercase"></span>
+              <span id="feedback-title" class="font-bold text-sm"></span>
+            </div>
+            <button id="feedback-audio-btn" onclick="playExplanationAudio()" class="px-2.5 py-1 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 text-xs font-semibold flex items-center gap-1 transition border border-slate-700">
+              🔊 Nghe giải thích
+            </button>
+          </div>
+          <p id="feedback-detail" class="text-xs sm:text-sm text-slate-200 leading-relaxed mb-3"></p>
+          <div class="p-3 rounded-xl bg-slate-950/80 border border-slate-800 text-xs font-mono text-cyan-300" id="feedback-rule"></div>
+
+          <div class="mt-4 flex justify-end">
+            <button id="next-q-btn" onclick="nextQuestion()" class="px-6 py-2.5 rounded-xl btn-cosmic text-slate-950 font-bold text-xs sm:text-sm flex items-center gap-2 shadow-lg">
+              <span>Câu tiếp theo</span>
+              <span>&rarr;</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="flex items-center justify-between text-xs text-slate-400 px-2">
+        <span class="flex items-center gap-1">💡 Mẹo Ms. Lily: Trong câu hỏi gián tiếp, tuyệt đối không đảo trợ động từ lên trước chủ ngữ!</span>
+        <button onclick="restartCurrentGame()" class="hover:text-cyan-300 transition flex items-center gap-1">
+          🔄 Làm lại game này
+        </button>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ================= MODAL: GAME COMPLETION & CERTIFICATE ================= -->
+  <div id="completion-modal" class="hidden fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="card-space p-6 sm:p-8 rounded-3xl max-w-lg w-full border border-cyan-500/40 glow-cyan text-center relative overflow-hidden">
+      <div class="text-5xl mb-3 animate-bounce">🏆</div>
+      <h2 class="font-space text-2xl sm:text-3xl font-extrabold text-white mb-1">HOÀN THÀNH XUẤT SẮC!</h2>
+      <p class="text-xs text-cyan-300 uppercase tracking-widest font-bold mb-4" id="modal-game-name">Game 1: Đại Chiến Phi Thuyền Yes/No</p>
+
+      <div class="grid grid-cols-3 gap-3 p-4 rounded-2xl bg-slate-950/90 border border-slate-800 mb-5 text-center">
+        <div>
+          <span class="text-[10px] text-slate-400 uppercase block">Điểm Số</span>
+          <span class="text-xl font-extrabold text-cyan-300 font-space" id="modal-score">0</span>
+        </div>
+        <div>
+          <span class="text-[10px] text-slate-400 uppercase block">Độ Chính Xác</span>
+          <span class="text-xl font-extrabold text-emerald-400 font-space" id="modal-accuracy">100%</span>
+        </div>
+        <div>
+          <span class="text-[10px] text-slate-400 uppercase block">Sao Thưởng</span>
+          <span class="text-xl font-extrabold text-amber-400 font-space" id="modal-stars">⭐⭐⭐</span>
+        </div>
+      </div>
+
+      <p class="text-xs text-slate-300 leading-relaxed mb-6 italic" id="modal-teacher-comment">
+        "Em đã nắm rất chắc quy tắc tường thuật câu hỏi gián tiếp Unit 12. Hãy tiếp tục phát huy nhé!" — <strong>Ms. Lily (HT English)</strong>
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <button onclick="restartCurrentGame()" class="px-5 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition">
+          🔄 Làm lại vòng này
+        </button>
+        <button onclick="advanceToNextGame()" class="px-6 py-2.5 rounded-xl btn-cosmic text-slate-950 text-xs font-bold shadow-lg transition">
+          🚀 Chơi Game Kế Tiếp
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= JAVASCRIPT GAME ENGINE ================= -->
+  <script>
+    const GAME_DATA = {
+      g1: {
+        title: "Game 1: Đại Chiến Phi Thuyền Yes/No",
+        desc: "Luyện tập cấu trúc tường thuật câu hỏi Yes/No với IF / WHETHER (20 câu)",
+        icon: "🛸",
+        questions: [
+          {
+            direct: '"Does Mars have water?" asked the young astronaut.',
+            prompt: 'The young astronaut asked ______ water.',
+            options: ['if Mars had', 'if did Mars have', 'whether Mars has', 'that Mars had'],
+            answer: 0,
+            explanation: 'Tường thuật câu hỏi Yes/No ở thì hiện tại đơn: Dùng "if/whether" + S + V(quá khứ). Bỏ trợ động từ "does" và lùi "have" thành "had".',
+            rule: 'S + asked + IF/WHETHER + S + V2/-ed'
+          },
+          {
+            direct: '"Can humans live on Venus?" wondered the scientist.',
+            prompt: 'The scientist wondered ______ on Venus.',
+            options: ['can humans live', 'if humans could live', 'if could humans live', 'whether humans can live'],
+            answer: 1,
+            explanation: 'Câu hỏi Yes/No chứa "can": Dùng "if/whether", đưa "humans" lên trước và lùi "can" thành "could".',
+            rule: 'S + wondered + IF + S + COULD + V-bare'
+          },
+          {
+            direct: '"Is there oxygen on that alien planet?" asked Nick.',
+            prompt: 'Nick asked ______ oxygen on that alien planet.',
+            options: ['was there', 'if there was', 'if is there', 'whether there is'],
+            answer: 1,
+            explanation: 'Động từ "is" lùi thành "was" và chuyển về sau chủ ngữ giả "there".',
+            rule: 'S + asked + IF + there + WAS'
+          },
+          {
+            direct: '"Do UFOs travel faster than light?" asked Mai.',
+            prompt: 'Mai asked ______ faster than light.',
+            options: ['if UFOs traveled', 'if do UFOs travel', 'whether travel UFOs', 'that UFOs traveled'],
+            answer: 0,
+            explanation: 'Bỏ trợ động từ "do", lùi động từ chính "travel" thành "traveled".',
+            rule: 'S + asked + IF + S + V2/-ed'
+          },
+          {
+            direct: '"Will we meet extraterrestrials in the future?" asked Tom.',
+            prompt: 'Tom asked ______ extraterrestrials in the future.',
+            options: ['will we meet', 'if they will meet', 'whether they would meet', 'if would they meet'],
+            answer: 2,
+            explanation: 'Lùi "will" thành "would", đổi đại từ "we" thành "they".',
+            rule: 'S + asked + WHETHER + S + WOULD + V'
+          },
+          {
+            direct: '"Did you see a flying saucer yesterday?" Peter asked Ann.',
+            prompt: 'Peter asked Ann if she ______ a flying saucer the day before.',
+            options: ['saw', 'had seen', 'has seen', 'sees'],
+            answer: 1,
+            explanation: 'Quá khứ đơn ("did see") trong câu trực tiếp khi tường thuật phải lùi thành Quá khứ hoàn thành ("had seen").',
+            rule: 'Past Simple -> Past Perfect (HAD + V3/-ed)'
+          },
+          {
+            direct: '"Are space rovers exploring Jupiter right now?" asked the reporter.',
+            prompt: 'The reporter wanted to know if space rovers ______ Jupiter then.',
+            options: ['were exploring', 'are exploring', 'explored', 'was exploring'],
+            answer: 0,
+            explanation: 'Hiện tại tiếp diễn ("are exploring") lùi thành Quá khứ tiếp diễn ("were exploring" phù hợp chủ ngữ số nhiều rovers).',
+            rule: 'Present Continuous -> Past Continuous'
+          },
+          {
+            direct: '"Have scientists found any signs of alien life?" asked Elena.',
+            prompt: 'Elena asked if scientists ______ any signs of alien life.',
+            options: ['found', 'have found', 'had found', 'find'],
+            answer: 2,
+            explanation: 'Hiện tại hoàn thành ("have found") lùi thành Quá khứ hoàn thành ("had found").',
+            rule: 'Present Perfect -> Past Perfect'
+          },
+          {
+            direct: '"Is Saturn the largest planet in our solar system?" asked Ben.',
+            prompt: 'Ben asked whether Saturn ______ the largest planet in their solar system.',
+            options: ['is', 'was', 'were', 'had been'],
+            answer: 1,
+            explanation: 'Lùi động từ "is" thành "was" trong câu tường thuật.',
+            rule: 'is -> was'
+          },
+          {
+            direct: '"Do aliens speak English?" the boy asked his teacher.',
+            prompt: 'The boy asked his teacher if aliens ______ English.',
+            options: ['spoke', 'speak', 'spoken', 'had spoken'],
+            answer: 0,
+            explanation: 'Bỏ trợ động từ "do", chia động từ bất quy tắc "speak" sang quá khứ "spoke".',
+            rule: 'speak -> spoke'
+          },
+          {
+            direct: '"Can space shuttles land safely on Titan?" asked the pilot.',
+            prompt: 'The pilot wanted to know whether space shuttles ______ safely on Titan.',
+            options: ['can land', 'could land', 'landed', 'could landed'],
+            answer: 1,
+            explanation: 'Khi tường thuật câu hỏi có "can", lùi thành "could" + động từ nguyên thể ("could land").',
+            rule: 'can + V -> could + V'
+          },
+          {
+            direct: '"Does the moon orbit the Earth?" asked the child.',
+            prompt: 'The child asked if the moon ______ the Earth.',
+            options: ['orbited', 'orbits', 'is orbiting', 'has orbited'],
+            answer: 0,
+            explanation: 'Chuyển động từ "orbit" sang dạng quá khứ hợp quy tắc "orbited".',
+            rule: 'orbit -> orbited'
+          },
+          {
+            direct: '"Are you reading a book about galaxy exploration?" Lan asked me.',
+            prompt: 'Lan asked me if I ______ a book about galaxy exploration.',
+            options: ['am reading', 'was reading', 'were reading', 'read'],
+            answer: 1,
+            explanation: 'Đổi "you" thành "I", lùi "are reading" thành "was reading".',
+            rule: 'you are reading -> I was reading'
+          },
+          {
+            direct: '"Should astronauts wear heavy space suits?" asked Mark.',
+            prompt: 'Mark wondered whether astronauts ______ heavy space suits.',
+            options: ['should wear', 'shall wear', 'must wear', 'wore'],
+            answer: 0,
+            explanation: 'Động từ khuyết thiếu "should" giữ nguyên khi lùi thì trong câu tường thuật.',
+            rule: 'should V -> should V'
+          },
+          {
+            direct: '"May aliens visit Earth one day?" asked the student.',
+            prompt: 'The student asked if aliens ______ Earth one day.',
+            options: ['may visit', 'might visit', 'visited', 'might visited'],
+            answer: 1,
+            explanation: 'Động từ khuyết thiếu "may" lùi thành "might".',
+            rule: 'may -> might'
+          },
+          {
+            direct: '"Did the rocket launch successfully this morning?" asked the technician.',
+            prompt: 'The technician asked whether the rocket had launched successfully ______.',
+            options: ['this morning', 'that morning', 'tomorrow morning', 'the next morning'],
+            answer: 1,
+            explanation: 'Trạng từ chỉ thời gian "this morning" biến đổi thành "that morning".',
+            rule: 'this morning -> that morning'
+          },
+          {
+            direct: '"Does Mars have two moons?" asked the pupil.',
+            prompt: 'The pupil asked if Mars ______ two moons.',
+            options: ['had', 'has', 'have', 'having'],
+            answer: 0,
+            explanation: 'Bỏ trợ động từ "does", chuyển "have" thành quá khứ "had".',
+            rule: 'does have -> had'
+          },
+          {
+            direct: '"Is it cold on Neptune?" wondered Alex.',
+            prompt: 'Alex wondered whether it ______ cold on Neptune.',
+            options: ['is', 'was', 'were', 'been'],
+            answer: 1,
+            explanation: 'Lùi "is" thành "was" sau "whether it".',
+            rule: 'whether it WAS'
+          },
+          {
+            direct: '"Must space tourists train for five months?" asked the reporter.',
+            prompt: 'The reporter asked if space tourists ______ train for five months.',
+            options: ['must', 'had to', 'have to', 'should to'],
+            answer: 1,
+            explanation: 'Động từ khuyết thiếu "must" (chỉ sự bắt buộc) lùi thành "had to".',
+            rule: 'must -> had to'
+          },
+          {
+            direct: '"Do you want to visit Mars, Quan?" asked Phong.',
+            prompt: 'Phong asked Quan if he ______ to visit Mars.',
+            options: ['wanted', 'wants', 'wanting', 'had wanted'],
+            answer: 0,
+            explanation: 'Đổi "you" thành "he", lùi động từ "want" thành "wanted".',
+            rule: 'you want -> he wanted'
+          }
+        ]
+      },
+
+      g2: {
+        title: "Game 2: Wh- Cosmic Launcher",
+        desc: "Luyện trật tự từ trong câu tường thuật Wh-words (20 câu SGK & Nâng cao)",
+        icon: "🚀",
+        questions: [
+          {
+            direct: '"What forms of life can exist on Mars?" asked the professor.',
+            prompt: 'The student asked his professor what forms of life ______ on Mars.',
+            options: ['can exist', 'could exist', 'exist could', 'did exist'],
+            answer: 1,
+            explanation: 'Trật tự câu tường thuật Wh-word: Wh-word + S + V. Sau "what forms of life" là chủ ngữ rồi đến động từ khuyết thiếu "could" (lùi từ "can"). (SGK trang 127)',
+            rule: 'Wh-word + S + could + V'
+          },
+          {
+            direct: '"How many planets are there in our solar system?" asked Mai.',
+            prompt: 'Mai wanted to know how many planets ______ in their solar system.',
+            options: ['were there', 'there were', 'are there', 'there are'],
+            answer: 1,
+            explanation: 'Không đảo ngữ! Đưa chủ ngữ giả "there" đứng trước động từ "were". (SGK trang 127)',
+            rule: 'how many planets + THERE WERE'
+          },
+          {
+            direct: '"Where can we find information about the solar system?" asked pupils.',
+            prompt: 'The pupils asked the teacher where they ______ information about the solar system.',
+            options: ['can find', 'could find', 'find could', 'could found'],
+            answer: 1,
+            explanation: 'Đổi "we" thành "they", lùi "can find" thành "could find". (SGK trang 128)',
+            rule: 'Wh-word + S + COULD + V-bare'
+          },
+          {
+            direct: '"What is the weather on Mars like?" asked the student.',
+            prompt: 'I asked my teacher what the weather on Mars ______ like.',
+            options: ['is', 'was', 'was it', 'is it'],
+            answer: 1,
+            explanation: 'Chủ ngữ là "the weather on Mars", động từ "is" lùi thành "was" đứng ở cuối mệnh đề. (SGK trang 128)',
+            rule: 'Wh-word + S + WAS + like'
+          },
+          {
+            direct: '"Who will be the first to step on Mars?" asked Mary.',
+            prompt: 'Mary asked the scientist who ______ the first to step on Mars.',
+            options: ['will be', 'would be', 'is being', 'was be'],
+            answer: 1,
+            explanation: 'Trong câu hỏi với "Who" làm chủ ngữ, lùi trợ động từ "will" thành "would". (SGK trang 128)',
+            rule: 'who + WOULD BE'
+          },
+          {
+            direct: '"How fast can a UFO travel?" I asked my father.',
+            prompt: 'I asked my father how fast a UFO ______ travel.',
+            options: ['can', 'could', 'could it', 'did'],
+            answer: 1,
+            explanation: 'Cụm từ để hỏi "How fast", chủ ngữ "a UFO", lùi "can" thành "could". (SGK trang 128)',
+            rule: 'how fast + S + COULD + V'
+          },
+          {
+            direct: '"How many craters does the moon have?" asked the student.',
+            prompt: 'The student asked his friend how many craters the moon ______.',
+            options: ['does have', 'had', 'has', 'having'],
+            answer: 1,
+            explanation: 'Bỏ trợ động từ "does", lùi "have" thành "had". (SGK trang 128)',
+            rule: 'how many craters + S + HAD'
+          },
+          {
+            direct: '"Why are scientists sending rovers to Mars?" asked David.',
+            prompt: 'David asked why scientists ______ rovers to Mars.',
+            options: ['are sending', 'were sending', 'sent', 'were sent'],
+            answer: 1,
+            explanation: 'Trật tự khẳng định: Sau "why" là chủ ngữ "scientists" rồi tới "were sending".',
+            rule: 'why + S + WERE V-ing'
+          },
+          {
+            direct: '"When will the space shuttle launch?" asked the journalist.',
+            prompt: 'The journalist wanted to know when the space shuttle ______.',
+            options: ['will launch', 'would launch', 'launched', 'is launching'],
+            answer: 1,
+            explanation: 'Lùi "will launch" thành "would launch" đứng sau chủ ngữ "the space shuttle".',
+            rule: 'when + S + WOULD + V'
+          },
+          {
+            direct: '"Which planet is closest to the Sun?" asked Tom.',
+            prompt: 'Tom wanted to know which planet ______ closest to the Sun.',
+            options: ['is', 'was', 'was it', 'is it'],
+            answer: 1,
+            explanation: 'Đưa động từ "was" về sau "which planet".',
+            rule: 'which planet + WAS + adj'
+          },
+          {
+            direct: '"How do astronauts sleep in zero gravity?" asked Linda.',
+            prompt: 'Linda wondered how astronauts ______ in zero gravity.',
+            options: ['slept', 'do sleep', 'did sleep', 'sleep'],
+            answer: 0,
+            explanation: 'Bỏ trợ động từ "do", lùi "sleep" thành động từ quá khứ bất quy tắc "slept".',
+            rule: 'how + S + V2 (slept)'
+          },
+          {
+            direct: '"What are you looking at through the telescope?" asked Nam.',
+            prompt: 'Nam asked me what I ______ at through the telescope.',
+            options: ['am looking', 'was looking', 'were looking', 'looked'],
+            answer: 1,
+            explanation: 'Đổi "you" thành "I", lùi "are looking" thành "was looking".',
+            rule: 'what + I + WAS LOOKING'
+          },
+          {
+            direct: '"Why cant humans breathe on Venus?" asked the boy.',
+            prompt: 'The boy asked why humans ______ breathe on Venus.',
+            options: ['cant', 'couldnt', 'dont', 'hadnt'],
+            answer: 1,
+            explanation: 'Lùi dạng phủ định "cant" thành "couldnt".',
+            rule: 'why + S + COULDNT + V'
+          },
+          {
+            direct: '"Where did you see the strange flying object?" asked police.',
+            prompt: 'The police asked the farmer where he ______ the strange flying object.',
+            options: ['saw', 'had seen', 'sees', 'did see'],
+            answer: 1,
+            explanation: 'Quá khứ đơn "did see" lùi thành Quá khứ hoàn thành "had seen".',
+            rule: 'where + S + HAD + V3/-ed'
+          },
+          {
+            direct: '"How long does it take to travel to Mars?" asked the girl.',
+            prompt: 'The girl asked how long it ______ to travel to Mars.',
+            options: ['took', 'takes', 'does take', 'had taken'],
+            answer: 0,
+            explanation: 'Bỏ trợ động từ "does", lùi "take" thành quá khứ "took".',
+            rule: 'how long + IT TOOK'
+          },
+          {
+            direct: '"Who invented the first astronomical telescope?" asked Peter.',
+            prompt: 'Peter asked who ______ the first astronomical telescope.',
+            options: ['invented', 'had invented', 'has invented', 'invents'],
+            answer: 1,
+            explanation: 'Quá khứ đơn "invented" lùi thì thành Quá khứ hoàn thành "had invented".',
+            rule: 'who + HAD INVENTED'
+          },
+          {
+            direct: '"What language do aliens speak?" asked the young girl.',
+            prompt: 'The young girl wondered what language aliens ______.',
+            options: ['spoke', 'speak', 'did speak', 'had spoken'],
+            answer: 0,
+            explanation: 'Bỏ "do", lùi "speak" thành "spoke".',
+            rule: 'what language + S + V2'
+          },
+          {
+            direct: '"Why is Saturn surrounded by bright rings?" asked Tim.',
+            prompt: 'Tim asked why Saturn ______ surrounded by bright rings.',
+            options: ['is', 'was', 'were', 'had been'],
+            answer: 1,
+            explanation: 'Lùi "is" thành "was" theo sau chủ ngữ "Saturn".',
+            rule: 'why + Saturn + WAS'
+          },
+          {
+            direct: '"How many moons does Jupiter have?" asked the child.',
+            prompt: 'The child asked how many moons Jupiter ______.',
+            options: ['had', 'has', 'have', 'does have'],
+            answer: 0,
+            explanation: 'Bỏ "does", lùi "have" thành quá khứ "had".',
+            rule: 'how many moons + Jupiter + HAD'
+          },
+          {
+            direct: '"What are scientists searching for in space?" asked Sue.',
+            prompt: 'Sue asked what scientists ______ for in space.',
+            options: ['were searching', 'are searching', 'searched', 'had searched'],
+            answer: 0,
+            explanation: 'Hiện tại tiếp diễn "are searching" lùi thành Quá khứ tiếp diễn "were searching".',
+            rule: 'what + S + WERE SEARCHING'
+          }
+        ]
+      },
+
+      g3: {
+        title: "Game 3: Space Warp Shifts",
+        desc: "Luyện lùi thì và chuyển đổi trạng từ thời gian / nơi chốn (20 câu)",
+        icon: "🪐",
+        questions: [
+          {
+            direct: '"What are you doing now?" asked the son.',
+            prompt: 'He phoned to ask his mother what she was doing ______.',
+            options: ['now', 'then', 'that day', 'the day before'],
+            answer: 1,
+            explanation: 'Trạng từ "now" trong câu trực tiếp được chuyển thành "then" trong câu tường thuật. (SGK trang 127)',
+            rule: 'now -> THEN'
+          },
+          {
+            direct: '"What specialities are you selling here?" asked Peter.',
+            prompt: 'Peter phoned the shop to ask what specialities they were selling ______.',
+            options: ['here', 'there', 'that place', 'then'],
+            answer: 1,
+            explanation: 'Trạng từ chỉ nơi chốn "here" biến đổi thành "there". (SGK trang 127)',
+            rule: 'here -> THERE'
+          },
+          {
+            direct: '"What are you reading today, Mai?" asked An.',
+            prompt: 'An asked Mai what she was reading ______.',
+            options: ['today', 'that day', 'the day before', 'the next day'],
+            answer: 1,
+            explanation: 'Trạng từ "today" được chuyển thành "that day".',
+            rule: 'today -> THAT DAY'
+          },
+          {
+            direct: '"Will humans move to Mars tomorrow?" asked the boy.',
+            prompt: 'The boy asked if humans would move to Mars ______.',
+            options: ['tomorrow', 'the following day', 'that day', 'yesterday'],
+            answer: 1,
+            explanation: 'Trạng từ "tomorrow" chuyển thành "the following day" (hoặc "the next day").',
+            rule: 'tomorrow -> THE FOLLOWING DAY'
+          },
+          {
+            direct: '"Did you see the UFO three days ago?" asked Lan.',
+            prompt: 'Lan asked if I had seen the UFO three days ______.',
+            options: ['ago', 'before', 'then', 'later'],
+            answer: 1,
+            explanation: 'Trạng từ "ago" biến đổi thành "before".',
+            rule: 'ago -> BEFORE'
+          },
+          {
+            direct: '"Can we observe the stars tonight?" asked Tom.',
+            prompt: 'Tom asked if they could observe the stars ______.',
+            options: ['tonight', 'that night', 'last night', 'the next night'],
+            answer: 1,
+            explanation: 'Trạng từ "tonight" chuyển thành "that night".',
+            rule: 'tonight -> THAT NIGHT'
+          },
+          {
+            direct: '"We are testing this new telescope right now," said scientists.',
+            prompt: 'Scientists said they were testing ______ new telescope right then.',
+            options: ['this', 'that', 'these', 'those'],
+            answer: 1,
+            explanation: 'Tính từ chỉ định "this" chuyển thành "that".',
+            rule: 'this -> THAT'
+          },
+          {
+            direct: '"Are these space suits comfortable?" asked the astronaut.',
+            prompt: 'The astronaut asked if ______ space suits were comfortable.',
+            options: ['these', 'those', 'this', 'that'],
+            answer: 1,
+            explanation: 'Từ chỉ định số nhiều "these" chuyển thành "those".',
+            rule: 'these -> THOSE'
+          },
+          {
+            direct: '"I bought this astronomy journal last week," said Nick.',
+            prompt: 'Nick said he had bought that astronomy journal ______.',
+            options: ['last week', 'the week before', 'the next week', 'that week'],
+            answer: 1,
+            explanation: 'Cụm thời gian "last week" chuyển thành "the week before" (hoặc "the previous week").',
+            rule: 'last week -> THE WEEK BEFORE'
+          },
+          {
+            direct: '"Will you visit the space museum next month?" asked Mai.',
+            prompt: 'Mai asked if I would visit the space museum ______.',
+            options: ['next month', 'the following month', 'that month', 'the month before'],
+            answer: 1,
+            explanation: 'Cụm thời gian "next month" chuyển thành "the following month".',
+            rule: 'next month -> THE FOLLOWING MONTH'
+          },
+          {
+            direct: '"Does this alien planet have atmosphere?" asked Minh.',
+            prompt: 'Minh asked if ______ alien planet had atmosphere.',
+            options: ['this', 'that', 'these', 'it'],
+            answer: 1,
+            explanation: 'Chuyển tính từ chỉ định "this" thành "that".',
+            rule: 'this + N -> that + N'
+          },
+          {
+            direct: '"What plants do Vietnamese people grow for food?" wondered Ann.',
+            prompt: 'Ann wondered what plants Vietnamese people ______ for food.',
+            options: ['grow', 'grew', 'grown', 'had grown'],
+            answer: 1,
+            explanation: 'Lùi động từ "grow" ở hiện tại đơn thành quá khứ đơn "grew". (SGK trang 127)',
+            rule: 'grow -> GREW'
+          },
+          {
+            direct: '"Is the astronaut working here today?" asked the news reporter.',
+            prompt: 'The reporter asked if the astronaut was working ______ that day.',
+            options: ['here', 'there', 'in here', 'at here'],
+            answer: 1,
+            explanation: 'Chuyển "here" thành "there".',
+            rule: 'here -> THERE'
+          },
+          {
+            direct: '"Did the space mission end yesterday?" asked Nam.',
+            prompt: 'Nam asked whether the space mission had ended ______.',
+            options: ['yesterday', 'the day before', 'the next day', 'that day'],
+            answer: 1,
+            explanation: 'Chuyển "yesterday" thành "the day before" (hoặc "the previous day").',
+            rule: 'yesterday -> THE DAY BEFORE'
+          },
+          {
+            direct: '"Can you lend me your astronomy magazine now?" asked Phong.',
+            prompt: 'Phong asked me if I could lend him my astronomy magazine ______.',
+            options: ['now', 'then', 'there', 'that time'],
+            answer: 1,
+            explanation: 'Chuyển "now" thành "then".',
+            rule: 'now -> THEN'
+          },
+          {
+            direct: '"Are you staying at this hotel?" asked Tom.',
+            prompt: 'Tom asked if I was staying at ______ hotel.',
+            options: ['this', 'that', 'these', 'there'],
+            answer: 1,
+            explanation: 'Chuyển "this" thành "that".',
+            rule: 'this hotel -> THAT hotel'
+          },
+          {
+            direct: '"We will launch the probe two hours from now," said NASA.',
+            prompt: 'NASA said they would launch the probe two hours from ______.',
+            options: ['now', 'then', 'before', 'after'],
+            answer: 1,
+            explanation: 'Chuyển cụm "from now" thành "from then".',
+            rule: 'from now -> FROM THEN'
+          },
+          {
+            direct: '"Did it rain on Mars last night?" asked the child.',
+            prompt: 'The child asked if it had rained on Mars ______.',
+            options: ['last night', 'the night before', 'that night', 'the next night'],
+            answer: 1,
+            explanation: 'Chuyển "last night" thành "the night before".',
+            rule: 'last night -> THE NIGHT BEFORE'
+          },
+          {
+            direct: '"I am taking photographs of Venus right now," said Mark.',
+            prompt: 'Mark said he was taking photographs of Venus right ______.',
+            options: ['now', 'then', 'there', 'that day'],
+            answer: 1,
+            explanation: 'Chuyển "right now" thành "right then".',
+            rule: 'right now -> RIGHT THEN'
+          },
+          {
+            direct: '"Will you come back here tomorrow?" asked Mai.',
+            prompt: 'Mai asked if I would go back ______ the next day.',
+            options: ['here', 'there', 'then', 'that place'],
+            answer: 1,
+            explanation: 'Chuyển "here" thành "there" trong câu tường thuật.',
+            rule: 'here -> THERE'
+          }
+        ]
+      },
+
+      g4: {
+        title: "Game 4: Alien Trap Detective",
+        desc: "Phát hiện bẫy sai ngữ pháp kinh điển trong bài thi (20 câu bẫy)",
+        icon: "🔍",
+        questions: [
+          {
+            direct: 'Bẫy đảo ngữ: "She asked me what was I doing then." ❌',
+            prompt: 'Tìm phương án SỬA ĐÚNG cho câu tường thuật bị sai trên:',
+            options: [
+              'She asked me what I was doing then.',
+              'She asked me what was I doing then?',
+              'She asked me what am I doing now.',
+              'She asked me that what I was doing.'
+            ],
+            answer: 0,
+            explanation: 'Bẫy đảo ngữ! Trong câu hỏi gián tiếp, chủ ngữ "I" phải đứng TRƯỚC động từ "was" và KHÔNG có dấu hỏi chấm (?).',
+            rule: 'SỬA: Wh-word + S + WAS/WERE (Không đảo ngữ)'
+          },
+          {
+            direct: 'Bẫy còn trợ động từ: "He asked if did Mars have water." ❌',
+            prompt: 'Tìm phương án SỬA ĐÚNG cho câu bị lỗi trên:',
+            options: [
+              'He asked if Mars had water.',
+              'He asked if did Mars had water.',
+              'He asked that Mars had water.',
+              'He asked if Mars has water?'
+            ],
+            answer: 0,
+            explanation: 'Bẫy giữ trợ động từ "did"! Khi tường thuật câu hỏi Yes/No, phải BỎ "did" và lùi động từ chính "have" thành "had".',
+            rule: 'SỬA: Bỏ did, lùi V -> V2/-ed (had)'
+          },
+          {
+            direct: 'Bẫy dấu hỏi chấm: "They asked where aliens lived?" ❌',
+            prompt: 'Tìm phương án SỬA ĐÚNG cho câu bị lỗi trên:',
+            options: [
+              'They asked where aliens lived.',
+              'They asked where did aliens live.',
+              'They asked where aliens live?',
+              'They asked that where aliens lived.'
+            ],
+            answer: 0,
+            explanation: 'Bẫy dấu hỏi chấm! Câu hỏi gián tiếp là một câu trần thuật, kết thúc bằng DẤU CHẤM (.), không dùng dấu (?) .',
+            rule: 'SỬA: Kết thúc bằng dấu chấm (.), bỏ (?)'
+          },
+          {
+            direct: 'Bẫy dùng từ nối "THAT": "She asked that if I saw the UFO." ❌',
+            prompt: 'Phát hiện lỗi sai thừa từ trong câu trên:',
+            options: [
+              'Thừa từ "that" (Không dùng THAT cho câu hỏi gián tiếp)',
+              'Thiếu trợ động từ did',
+              'Sai thì của động từ saw',
+              'Thừa từ if'
+            ],
+            answer: 0,
+            explanation: 'Tuyệt đối KHÔNG dùng từ nối "that" trước câu hỏi tường thuật có "if/whether" hoặc Wh-words!',
+            rule: 'KHÔNG dùng: asked + THAT + if/wh-'
+          },
+          {
+            direct: 'Bẫy quên lùi thì: "The student asked what forms of life can exist on Mars." ❌',
+            prompt: 'Chọn câu đã lùi thì đúng chuẩn SGK trang 127:',
+            options: [
+              'The student asked what forms of life could exist on Mars.',
+              'The student asked what forms of life can exist on Mars.',
+              'The student asked what forms of life could existed on Mars.',
+              'The student asked what could forms of life exist on Mars.'
+            ],
+            answer: 0,
+            explanation: 'Phải lùi "can" thành "could". Sau "could" giữ nguyên động từ nguyên thể "exist".',
+            rule: 'can exist -> COULD EXIST'
+          },
+          {
+            direct: 'Bẫy giữ nguyên từ chỉ thời gian: "Nick asked what she was doing now." ❌',
+            prompt: 'Chọn câu đã biến đổi trạng từ thời gian đúng chuẩn SGK trang 127:',
+            options: [
+              'Nick asked what she was doing then.',
+              'Nick asked what she was doing now.',
+              'Nick asked what was she doing then.',
+              'Nick asked that what she was doing then.'
+            ],
+            answer: 0,
+            explanation: 'Phải đổi "now" thành "then" khi tường thuật.',
+            rule: 'now -> THEN'
+          },
+          {
+            direct: 'Bẫy sai thứ tự trợ động từ: "Mai asked how many planets were there in the solar system." ❌',
+            prompt: 'Sửa lại trật tự chủ ngữ giả "there" chuẩn SGK trang 127:',
+            options: [
+              'Mai asked how many planets there were in the solar system.',
+              'Mai asked how many planets were there in the solar system.',
+              'Mai asked how many planets are there in the solar system.',
+              'Mai asked how many planets there are in the solar system.'
+            ],
+            answer: 0,
+            explanation: 'Phải đưa chủ ngữ "there" lên trước động từ "were" -> "there were".',
+            rule: 'how many planets + THERE WERE'
+          },
+          {
+            direct: 'Bẫy nhầm giữa IF và THAT: "He wondered that Mars was cold." ❌',
+            prompt: 'Sửa lại từ nối câu hỏi gián tiếp:',
+            options: [
+              'He wondered IF Mars was cold.',
+              'He wondered THAT Mars was cold.',
+              'He wondered WAS Mars cold.',
+              'He wondered DID Mars cold.'
+            ],
+            answer: 0,
+            explanation: 'Tường thuật câu hỏi nghi vấn (wondered) bắt buộc dùng "if" hoặc "whether", không dùng "that".',
+            rule: 'wondered + IF / WHETHER'
+          },
+          {
+            direct: 'Bẫy giữ nguyên "here": "Peter asked what they were selling here." ❌',
+            prompt: 'Sửa lại trạng từ nơi chốn chuẩn SGK trang 127:',
+            options: [
+              'Peter asked what they were selling there.',
+              'Peter asked what were they selling there.',
+              'Peter asked what they are selling here.',
+              'Peter asked that what they were selling there.'
+            ],
+            answer: 0,
+            explanation: 'Phải biến đổi trạng từ "here" thành "there".',
+            rule: 'here -> THERE'
+          },
+          {
+            direct: 'Bẫy lùi thì sai modal verb: "She asked if they can travel to space." ❌',
+            prompt: 'Phương án sửa đúng:',
+            options: [
+              'She asked if they COULD travel to space.',
+              'She asked if could they travel to space.',
+              'She asked if they can travel to space.',
+              'She asked that they could travel to space.'
+            ],
+            answer: 0,
+            explanation: 'Chưa lùi động từ khuyết thiếu "can" thành "could".',
+            rule: 'can -> COULD'
+          },
+          {
+            direct: 'Bẫy sai chủ ngữ: "Mary asked John where did you live." ❌',
+            prompt: 'Phương án sửa đúng về cả đại từ và lùi thì:',
+            options: [
+              'Mary asked John where he lived.',
+              'Mary asked John where did he live.',
+              'Mary asked John where you lived.',
+              'Mary asked John where he lives.'
+            ],
+            answer: 0,
+            explanation: 'Đổi "you" thành "he" (John), bỏ "did", lùi "live" thành "lived".',
+            rule: 'where HE LIVED'
+          },
+          {
+            direct: 'Bẫy đảo ngữ với WOULD: "The journalist asked when would the rocket launch." ❌',
+            prompt: 'Phương án sửa đúng trật tự từ:',
+            options: [
+              'The journalist asked when the rocket would launch.',
+              'The journalist asked when would the rocket launch.',
+              'The journalist asked when the rocket will launch.',
+              'The journalist asked that when the rocket would launch.'
+            ],
+            answer: 0,
+            explanation: 'Đưa chủ ngữ "the rocket" đứng TRƯỚC "would launch".',
+            rule: 'when + S + WOULD LAUNCH'
+          },
+          {
+            direct: '"He asked me whether I will go to the observatory." ❌',
+            prompt: 'Phương án sửa lỗi lùi thì của WILL:',
+            options: [
+              'He asked me whether I WOULD go to the observatory.',
+              'He asked me whether I will go to the observatory.',
+              'He asked me whether would I go to the observatory.',
+              'He asked me that whether I would go to the observatory.'
+            ],
+            answer: 0,
+            explanation: 'Phải lùi "will" thành "would".',
+            rule: 'will -> WOULD'
+          },
+          {
+            direct: '"My brother asked me how many moons Venus had?" ❌',
+            prompt: 'Tìm câu bỏ bẫy dấu câu đúng chuẩn SGK trang 128:',
+            options: [
+              'My brother asked me how many moons Venus had.',
+              'My brother asked me how many moons Venus had?',
+              'My brother asked me how many moons had Venus.',
+              'My brother asked me how many moons did Venus have.'
+            ],
+            answer: 0,
+            explanation: 'Bỏ dấu hỏi chấm (?) thay bằng dấu chấm (.).',
+            rule: 'Bỏ dấu hỏi chấm (?)'
+          },
+          {
+            direct: '"She wanted to know why was the alien green." ❌',
+            prompt: 'Phương án sửa trật tự từ đúng:',
+            options: [
+              'She wanted to know why the alien was green.',
+              'She wanted to know why was the alien green.',
+              'She wanted to know why the alien is green.',
+              'She wanted to know that why the alien was green.'
+            ],
+            answer: 0,
+            explanation: 'Đưa "the alien" lên trước "was".',
+            rule: 'why + S + WAS + adj'
+          },
+          {
+            direct: '"They asked if astronauts suffered from gravity loss today." ❌',
+            prompt: 'Phương án sửa lỗi biến đổi trạng từ today:',
+            options: [
+              'They asked if astronauts suffered from gravity loss THAT DAY.',
+              'They asked if astronauts suffered from gravity loss today.',
+              'They asked if astronauts suffered from gravity loss the day before.',
+              'They asked that if astronauts suffered from gravity loss that day.'
+            ],
+            answer: 0,
+            explanation: 'Đổi "today" thành "that day".',
+            rule: 'today -> THAT DAY'
+          },
+          {
+            direct: '"He asked her what did she see through the telescope." ❌',
+            prompt: 'Phương án loại bỏ trợ động từ "did" đúng:',
+            options: [
+              'He asked her what she HAD SEEN through the telescope.',
+              'He asked her what did she see through the telescope.',
+              'He asked her what she saw through the telescope?',
+              'He asked her that what she had seen through the telescope.'
+            ],
+            answer: 0,
+            explanation: 'Bỏ "did", lùi quá khứ đơn "see -> saw" thành Quá khứ hoàn thành "had seen".',
+            rule: 'did see -> HAD SEEN'
+          },
+          {
+            direct: '"Ann asked where can we buy astronomy books." ❌',
+            prompt: 'Phương án sửa đúng chủ ngữ và động từ khuyết thiếu:',
+            options: [
+              'Ann asked where THEY COULD buy astronomy books.',
+              'Ann asked where can we buy astronomy books.',
+              'Ann asked where could they buy astronomy books.',
+              'Ann asked that where they could buy astronomy books.'
+            ],
+            answer: 0,
+            explanation: 'Đổi "we" thành "they", lùi "can" thành "could" đứng sau chủ ngữ.',
+            rule: 'where THEY COULD buy'
+          },
+          {
+            direct: '"The boy wondered if aliens existed tomorrow." ❌',
+            prompt: 'Phương án sửa đúng về nghĩa và cấu trúc:',
+            options: [
+              'The boy wondered if aliens would exist the following day.',
+              'The boy wondered if aliens existed tomorrow.',
+              'The boy wondered that if aliens existed tomorrow.',
+              'The boy wondered would aliens exist the following day.'
+            ],
+            answer: 0,
+            explanation: 'Ý hỏi tương lai "will exist tomorrow" tường thuật thành "would exist the following day".',
+            rule: 'would exist + THE FOLLOWING DAY'
+          },
+          {
+            direct: '"I asked my friend how fast does a space rocket fly." ❌',
+            prompt: 'Phương án bỏ "does" và lùi thì động từ "fly" đúng:',
+            options: [
+              'I asked my friend how fast a space rocket FLEW.',
+              'I asked my friend how fast does a space rocket fly.',
+              'I asked my friend how fast a space rocket flies.',
+              'I asked my friend how fast did a space rocket fly.'
+            ],
+            answer: 0,
+            explanation: 'Bỏ trợ động từ "does", chia động từ "fly" ở dạng quá khứ "flew".',
+            rule: 'how fast + S + FLEW'
+          }
+        ]
+      },
+
+      g5: {
+        title: "Game 5: Cosmic Sentence Architect",
+        desc: "Thử thách xếp thẻ từ 1-chạm tạo câu tường thuật hoàn chỉnh (20 câu xếp từ)",
+        icon: "🧩",
+        questions: [
+          {
+            direct: '"How many moons had Venus?" asked my little brother.',
+            prompt: 'Chạm chọn các từ bên dưới để ghép thành câu gián tiếp hoàn chỉnh:',
+            targetWords: ['My', 'little', 'brother', 'asked', 'me', 'how', 'many', 'moons', 'Venus', 'had.'],
+            explanation: 'Ghép câu chuẩn SGK trang 128: My little brother asked me how many moons Venus had.',
+            rule: 'S + asked + O + Wh-word + N + S + V'
+          },
+          {
+            direct: '"Which planet is the closest to the sun?" asked Mary.',
+            prompt: 'Chạm chọn các từ bên dưới để ghép thành câu gián tiếp hoàn chỉnh:',
+            targetWords: ['She', 'wanted', 'to', 'know', 'which', 'planet', 'was', 'the', 'closest', 'to', 'the', 'sun.'],
+            explanation: 'Ghép câu chuẩn SGK trang 128: She wanted to know which planet was the closest to the sun.',
+            rule: 'S + wanted to know + which + N + V + adj'
+          },
+          {
+            direct: '"What are you using telescopes in space for?" asked the reporter.',
+            prompt: 'Chạm chọn các từ bên dưới để ghép thành câu gián tiếp hoàn chỉnh:',
+            targetWords: ['The', 'journalist', 'asked', 'the', 'scientists', 'what', 'they', 'were', 'using', 'telescopes', 'in', 'space', 'for.'],
+            explanation: 'Ghép câu chuẩn SGK trang 128: The journalist asked the scientists what they were using telescopes in space for.',
+            rule: 'S + asked + O + what + S + were V-ing... for'
+          },
+          {
+            direct: '"When will humans be able to travel to Mars?" asked students.',
+            prompt: 'Chạm chọn các từ bên dưới để ghép thành câu gián tiếp hoàn chỉnh:',
+            targetWords: ['The', 'scientists', 'wanted', 'to', 'know', 'when', 'humans', 'would', 'be', 'able', 'to', 'travel', 'to', 'Mars.'],
+            explanation: 'Ghép câu chuẩn SGK trang 128: The scientists wanted to know when humans would be able to travel to Mars.',
+            rule: 'S + wanted to know + when + S + would be able to V'
+          },
+          {
+            direct: '"What are the conditions for a planet to have life?" asked Tom.',
+            prompt: 'Chạm chọn các từ bên dưới để ghép thành câu gián tiếp hoàn chỉnh:',
+            targetWords: ['He', 'asked', 'the', 'professor', 'what', 'the', 'conditions', 'for', 'a', 'planet', 'to', 'have', 'life', 'on', 'it', 'were.'],
+            explanation: 'Ghép câu chuẩn SGK trang 128: He asked the professor what the conditions for a planet to have life on it were.',
+            rule: 'S + asked + O + what + S + WERE'
+          },
+          {
+            direct: '"Is there water on Mars?" asked Nick.',
+            prompt: 'Chạm chọn các từ bên dưới để ghép thành câu gián tiếp hoàn chỉnh:',
+            targetWords: ['Nick', 'asked', 'if', 'there', 'was', 'water', 'on', 'Mars.'],
+            explanation: 'Ghép câu tường thuật Yes/No: Nick asked if there was water on Mars.',
+            rule: 'S + asked + IF + there + WAS'
+          },
+          {
+            direct: '"Where can we find aliens?" asked the pupils.',
+            prompt: 'Chạm chọn các từ bên dưới để ghép thành câu gián tiếp hoàn chỉnh:',
+            targetWords: ['The', 'pupils', 'asked', 'where', 'they', 'could', 'find', 'aliens.'],
+            explanation: 'Ghép câu tường thuật Wh-word: The pupils asked where they could find aliens.',
+            rule: 'S + asked + where + S + could + V'
+          },
+          {
+            direct: '"What are you reading now, Mai?" asked An.',
+            prompt: 'Chạm chọn các từ bên dưới để ghép thành câu gián tiếp hoàn chỉnh:',
+            targetWords: ['An', 'asked', 'Mai', 'what', 'she', 'was', 'reading', 'then.'],
+            explanation: 'Ghép câu tường thuật chuẩn SGK: An asked Mai what she was reading then.',
+            rule: 'S + asked + O + what + S + WAS V-ing + then'
+          },
+          {
+            direct: '"Do UFOs really exist?" wondered Phong.',
+            prompt: 'Chạm chọn các từ bên dưới để ghép thành câu gián tiếp hoàn chỉnh:',
+            targetWords: ['Phong', 'wondered', 'whether', 'UFOs', 'really', 'existed.'],
+            explanation: 'Ghép câu tường thuật Yes/No với whether: Phong wondered whether UFOs really existed.',
+            rule: 'S + wondered + WHETHER + S + V2/-ed'
+          },
+          {
+            direct: '"Why is the sky dark in space?" asked Elena.',
+            prompt: 'Chạm chọn các từ bên dưới để ghép thành câu gián tiếp hoàn chỉnh:',
+            targetWords: ['Elena', 'asked', 'why', 'the', 'sky', 'was', 'dark', 'in', 'space.'],
+            explanation: 'Ghép câu tường thuật Wh-: Elena asked why the sky was dark in space.',
+            rule: 'S + asked + why + S + WAS + adj'
+          },
+          {
+            direct: '"Can space shuttles travel to Jupiter?" asked Tom.',
+            prompt: 'Chạm chọn các từ bên dưới để ghép thành câu gián tiếp hoàn chỉnh:',
+            targetWords: ['Tom', 'asked', 'if', 'space', 'shuttles', 'could', 'travel', 'to', 'Jupiter.'],
+            explanation: 'Ghép câu: Tom asked if space shuttles could travel to Jupiter.',
+            rule: 'S + asked + IF + S + COULD + V'
+          },
+          {
+            direct: '"How fast does light travel?" asked Mai.',
+            prompt: 'Chạm chọn các từ bên dưới để ghép thành câu gián tiếp hoàn chỉnh:',
+            targetWords: ['Mai', 'asked', 'how', 'fast', 'light', 'traveled.'],
+            explanation: 'Ghép câu: Mai asked how fast light traveled.',
+            rule: 'S + asked + how fast + S + V2/-ed'
+          },
+          {
+            direct: '"Who will land on the moon tomorrow?" asked Dan.',
+            prompt: 'Chạm chọn các từ bên dưới để ghép thành câu gián tiếp hoàn chỉnh:',
+            targetWords: ['Dan', 'asked', 'who', 'would', 'land', 'on', 'the', 'moon', 'the', 'following', 'day.'],
+            explanation: 'Ghép câu: Dan asked who would land on the moon the following day.',
+            rule: 'S + asked + who + WOULD + V + the following day'
+          },
+          {
+            direct: '"Is Saturn bigger than Earth?" asked Ben.',
+            prompt: 'Chạm chọn các từ bên dưới để ghép thành câu gián tiếp hoàn chỉnh:',
+            targetWords: ['Ben', 'wanted', 'to', 'know', 'if', 'Saturn', 'was', 'bigger', 'than', 'Earth.'],
+            explanation: 'Ghép câu: Ben wanted to know if Saturn was bigger than Earth.',
+            rule: 'S + wanted to know + IF + S + WAS'
+          },
+          {
+            direct: '"What specialities are they selling here?" asked Peter.',
+            prompt: 'Chạm chọn các từ bên dưới để ghép thành câu gián tiếp hoàn chỉnh:',
+            targetWords: ['Peter', 'asked', 'what', 'specialities', 'they', 'were', 'selling', 'there.'],
+            explanation: 'Ghép câu chuẩn SGK trang 127: Peter asked what specialities they were selling there.',
+            rule: 'S + asked + what + N + S + WERE V-ing + there'
+          },
+          {
+            direct: '"Did you watch the sci-fi movie yesterday?" asked Nam.',
+            prompt: 'Chạm chọn các từ bên dưới để ghép thành câu gián tiếp hoàn chỉnh:',
+            targetWords: ['Nam', 'asked', 'me', 'if', 'I', 'had', 'watched', 'the', 'sci-fi', 'movie', 'the', 'day', 'before.'],
+            explanation: 'Ghép câu: Nam asked me if I had watched the sci-fi movie the day before.',
+            rule: 'S + asked + O + IF + S + HAD V3 + the day before'
+          },
+          {
+            direct: '"Why are you exploring Mars today?" asked the news reporter.',
+            prompt: 'Chạm chọn các từ bên dưới để ghép thành câu gián tiếp hoàn chỉnh:',
+            targetWords: ['The', 'reporter', 'asked', 'why', 'they', 'were', 'exploring', 'Mars', 'that', 'day.'],
+            explanation: 'Ghép câu: The reporter asked why they were exploring Mars that day.',
+            rule: 'S + asked + why + S + WERE V-ing + that day'
+          },
+          {
+            direct: '"How many planets exist in our galaxy?" asked Sue.',
+            prompt: 'Chạm chọn các từ bên dưới để ghép thành câu gián tiếp hoàn chỉnh:',
+            targetWords: ['Sue', 'asked', 'how', 'many', 'planets', 'existed', 'in', 'their', 'galaxy.'],
+            explanation: 'Ghép câu: Sue asked how many planets existed in their galaxy.',
+            rule: 'S + asked + how many planets + V2/-ed'
+          },
+          {
+            direct: '"Will astronauts find life on Titan?" asked the student.',
+            prompt: 'Chạm chọn các từ bên dưới để ghép thành câu gián tiếp hoàn chỉnh:',
+            targetWords: ['The', 'student', 'wondered', 'whether', 'astronauts', 'would', 'find', 'life', 'on', 'Titan.'],
+            explanation: 'Ghép câu: The student wondered whether astronauts would find life on Titan.',
+            rule: 'S + wondered + WHETHER + S + WOULD + V'
+          },
+          {
+            direct: '"What is your favorite alien planet, Quan?" asked Ms. Lily.',
+            prompt: 'Chạm chọn các từ bên dưới để ghép thành câu gián tiếp hoàn chỉnh:',
+            targetWords: ['Ms.', 'Lily', 'asked', 'Quan', 'what', 'his', 'favorite', 'alien', 'planet', 'was.'],
+            explanation: 'Ghép câu: Ms. Lily asked Quan what his favorite alien planet was.',
+            rule: 'S + asked + O + what + possessive N + WAS'
+          }
+        ]
+      }
+    };
+
+    /* ================= STATE MANAGEMENT ================= */
+    let currentTab = 'g1';
+    let currentQuestionIdx = 0;
+    let score = 0;
+    let streak = 0;
+    let stars = 0;
+    let currentSpeed = 0.9;
+    
+    let scrambleSelectedObjs = [];
+    
+    let gameScores = { g1: 0, g2: 0, g3: 0, g4: 0, g5: 0 };
+    let gameAnsweredCounts = { g1: 0, g2: 0, g3: 0, g4: 0, g5: 0 };
+    let radarChartInstance = null;
+    let barChartInstance = null;
+
+    /* ================= AUDIO ENGINE ================= */
+    const synth = ('speechSynthesis' in window) ? window.speechSynthesis : null;
+
+    function speakText(text) {
+      if (!synth) return;
+      synth.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = currentSpeed;
+      utterance.lang = 'en-US';
+
+      const voices = synth.getVoices();
+      const femaleVoice = voices.find(v => v.lang.includes('en') && (v.name.includes('Female') || v.name.includes('Zira') || v.name.includes('Samantha') || v.name.includes('Google US English')));
+      if (femaleVoice) {
+        utterance.voice = femaleVoice;
+      }
+
+      synth.speak(utterance);
+    }
+
+    function toggleTtsSpeed() {
+      currentSpeed = currentSpeed === 0.9 ? 1.0 : (currentSpeed === 1.0 ? 0.75 : 0.9);
+      document.getElementById('speed-badge').textContent = currentSpeed + 'x';
+      speakText("Speed set to " + currentSpeed);
+    }
+
+    function playBeepSound(isCorrect) {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        if (ctx.state === 'suspended') {
+          ctx.resume();
+        }
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        if (isCorrect) {
+          osc.frequency.setValueAtTime(523.25, ctx.currentTime);
+          osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.1);
+          osc.frequency.setValueAtTime(783.99, ctx.currentTime + 0.2);
+          gain.gain.setValueAtTime(0.15, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4);
+          osc.start(ctx.currentTime);
+          osc.stop(ctx.currentTime + 0.4);
+        } else {
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(220, ctx.currentTime);
+          osc.frequency.setValueAtTime(164.81, ctx.currentTime + 0.15);
+          gain.gain.setValueAtTime(0.2, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.35);
+          osc.start(ctx.currentTime);
+          osc.stop(ctx.currentTime + 0.35);
+        }
+      } catch(e) {}
+    }
+
+    /* ================= TAB SWITCHING ================= */
+    function switchTab(tabId) {
+      currentTab = tabId;
+
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.className = "tab-btn px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm whitespace-nowrap transition flex items-center gap-2 bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800";
+      });
+
+      const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+      if (activeBtn) {
+        activeBtn.className = "tab-btn px-4 py-2.5 rounded-2xl font-bold text-xs sm:text-sm whitespace-nowrap transition flex items-center gap-2 bg-cyan-500 text-slate-950 shadow-lg shadow-cyan-500/30";
+      }
+
+      document.getElementById('tab-content-handbook').classList.add('hidden');
+      document.getElementById('tab-content-analytics').classList.add('hidden');
+      document.getElementById('tab-content-game').classList.add('hidden');
+
+      if (tabId === 'handbook') {
+        document.getElementById('tab-content-handbook').classList.remove('hidden');
+      } else if (tabId === 'analytics') {
+        document.getElementById('tab-content-analytics').classList.remove('hidden');
+        renderAnalyticsCharts();
+      } else {
+        document.getElementById('tab-content-game').classList.remove('hidden');
+        currentQuestionIdx = 0;
+        loadQuestion();
+      }
+    }
+
+    /* ================= RENDER QUESTION ================= */
+    function loadQuestion() {
+      const gData = GAME_DATA[currentTab];
+      if (!gData) return;
+
+      document.getElementById('game-icon').textContent = gData.icon;
+      document.getElementById('game-title').textContent = gData.title;
+      document.getElementById('game-desc').textContent = gData.desc;
+
+      const qList = gData.questions;
+      const q = qList[currentQuestionIdx];
+
+      document.getElementById('curr-q-num').textContent = currentQuestionIdx + 1;
+      const progressPercent = ((currentQuestionIdx + 1) / qList.length) * 100;
+      document.getElementById('progress-fill').style.width = `${progressPercent}%`;
+
+      document.getElementById('direct-text').textContent = q.direct;
+      document.getElementById('prompt-text').textContent = q.prompt || 'Chọn đáp án đúng:';
+
+      const fbCard = document.getElementById('feedback-card');
+      fbCard.classList.add('hidden');
+
+      const mcqContainer = document.getElementById('mcq-container');
+      const scrambleContainer = document.getElementById('scramble-container');
+
+      if (currentTab === 'g5') {
+        mcqContainer.classList.add('hidden');
+        scrambleContainer.classList.remove('hidden');
+        setupScrambleGame(q);
+      } else {
+        scrambleContainer.classList.add('hidden');
+        mcqContainer.classList.remove('hidden');
+        renderMcqOptions(q);
+      }
+    }
+
+    /* ================= MCQ GAME ENGINE ================= */
+    function renderMcqOptions(q) {
+      const container = document.getElementById('mcq-container');
+      container.innerHTML = '';
+
+      q.options.forEach((optText, idx) => {
+        const btn = document.createElement('button');
+        btn.className = "option-btn p-4 rounded-2xl bg-slate-950/90 hover:bg-slate-900 border border-slate-800 text-left transition flex items-start gap-3 group text-xs sm:text-sm font-semibold text-slate-200 hover:border-cyan-500/50";
+        
+        const badge = document.createElement('span');
+        badge.className = "w-6 h-6 rounded-lg bg-slate-900 border border-slate-800 text-cyan-400 flex items-center justify-center text-xs font-bold font-mono group-hover:bg-cyan-500 group-hover:text-slate-950 transition";
+        badge.textContent = String.fromCharCode(65 + idx);
+
+        const textSpan = document.createElement('span');
+        textSpan.className = "flex-1 pt-0.5 leading-snug";
+        textSpan.textContent = optText;
+
+        const speakerIcon = document.createElement('span');
+        speakerIcon.className = "opacity-0 group-hover:opacity-100 text-xs text-cyan-400 transition";
+        speakerIcon.textContent = "🔊";
+        speakerIcon.onclick = (e) => {
+          e.stopPropagation();
+          speakText(optText);
+        };
+
+        btn.appendChild(badge);
+        btn.appendChild(textSpan);
+        btn.appendChild(speakerIcon);
+
+        btn.onclick = () => selectMcqAnswer(idx, q);
+        container.appendChild(btn);
+      });
+    }
+
+    function selectMcqAnswer(selectedIdx, q) {
+      const btns = document.querySelectorAll('.option-btn');
+      btns.forEach(b => b.disabled = true);
+
+      const isCorrect = (selectedIdx === q.answer);
+      processAnswerResult(isCorrect, q);
+
+      btns.forEach((btn, idx) => {
+        if (idx === q.answer) {
+          btn.classList.remove('bg-slate-950/90', 'border-slate-800');
+          btn.classList.add('bg-emerald-950/60', 'border-emerald-500', 'text-emerald-200');
+        } else if (idx === selectedIdx && !isCorrect) {
+          btn.classList.remove('bg-slate-950/90', 'border-slate-800');
+          btn.classList.add('bg-rose-950/60', 'border-rose-500', 'text-rose-200');
+        }
+      });
+    }
+
+    /* ================= WORD SCRAMBLE ENGINE (GAME 5) ================= */
+    function setupScrambleGame(q) {
+      scrambleSelectedObjs = [];
+      const targetBox = document.getElementById('scramble-target');
+      const poolBox = document.getElementById('scramble-pool');
+
+      targetBox.innerHTML = '<span id="scramble-placeholder" class="text-xs text-slate-500 italic">Nhấn vào các từ bên dưới để ghép thành câu tường thuật hoàn chỉnh...</span>';
+      poolBox.innerHTML = '';
+
+      const wordObjects = q.targetWords.map((w, index) => ({ id: index, text: w }));
+
+      const shuffled = [...wordObjects];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+
+      shuffled.forEach((obj) => {
+        const chip = document.createElement('button');
+        chip.className = "word-chip px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-700 hover:border-cyan-400 text-xs font-semibold text-slate-200 transition active:scale-95";
+        chip.textContent = obj.text;
+        chip.dataset.chipId = obj.id;
+
+        chip.onclick = () => {
+          if (chip.classList.contains('opacity-30')) return;
+          chip.classList.add('opacity-30', 'pointer-events-none');
+          addWordToTarget(obj, chip);
+        };
+
+        poolBox.appendChild(chip);
+      });
+    }
+
+    function addWordToTarget(wordObj, originalChip) {
+      const placeholder = document.getElementById('scramble-placeholder');
+      if (placeholder) placeholder.remove();
+
+      const targetBox = document.getElementById('scramble-target');
+      const chip = document.createElement('button');
+      chip.className = "selected-chip px-3 py-1.5 rounded-xl bg-cyan-950/80 border border-cyan-500/50 text-cyan-200 text-xs font-semibold transition flex items-center gap-1 hover:bg-rose-950/50 hover:border-rose-500 hover:text-rose-200";
+      chip.innerHTML = `<span>${wordObj.text}</span><span class="text-[10px] text-slate-400">×</span>`;
+
+      chip.onclick = () => {
+        chip.remove();
+        originalChip.classList.remove('opacity-30', 'pointer-events-none');
+        scrambleSelectedObjs = scrambleSelectedObjs.filter(item => item.id !== wordObj.id);
+        
+        if (targetBox.children.length === 0) {
+          targetBox.innerHTML = '<span id="scramble-placeholder" class="text-xs text-slate-500 italic">Nhấn vào các từ bên dưới để ghép thành câu tường thuật hoàn chỉnh...</span>';
+        }
+      };
+
+      scrambleSelectedObjs.push(wordObj);
+      targetBox.appendChild(chip);
+      speakText(wordObj.text);
+    }
+
+    function resetScramble() {
+      const q = GAME_DATA[currentTab].questions[currentQuestionIdx];
+      setupScrambleGame(q);
+    }
+
+    function checkScrambleAnswer() {
+      const q = GAME_DATA[currentTab].questions[currentQuestionIdx];
+      const userConstructed = scrambleSelectedObjs.map(o => o.text).join(' ');
+      const targetCorrect = q.targetWords.join(' ');
+
+      const isCorrect = (userConstructed.trim() === targetCorrect.trim());
+      processAnswerResult(isCorrect, q);
+    }
+
+    /* ================= ANSWER RESULT & FEEDBACK PROCESSOR ================= */
+    function processAnswerResult(isCorrect, q) {
+      playBeepSound(isCorrect);
+      gameAnsweredCounts[currentTab]++;
+
+      if (isCorrect) {
+        score += 10;
+        streak += 1;
+        stars += 1;
+        gameScores[currentTab] += 10;
+      } else {
+        streak = 0;
+      }
+
+      document.getElementById('score-val').textContent = score;
+      document.getElementById('streak-counter').textContent = streak;
+      document.getElementById('total-stars').textContent = stars;
+
+      const fbCard = document.getElementById('feedback-card');
+      fbCard.classList.remove('hidden');
+
+      const badge = document.getElementById('feedback-badge');
+      const title = document.getElementById('feedback-title');
+      const detail = document.getElementById('feedback-detail');
+      const rule = document.getElementById('feedback-rule');
+
+      if (isCorrect) {
+        fbCard.className = "mt-6 p-5 rounded-2xl border bg-emerald-950/30 border-emerald-500/40 transition-all duration-300";
+        badge.className = "px-2.5 py-1 rounded-lg text-xs font-bold uppercase bg-emerald-500/20 text-emerald-300 border border-emerald-500/30";
+        badge.textContent = "✅ CHÍNH XÁC!";
+        title.className = "font-bold text-sm text-emerald-300";
+        title.textContent = "Xuất sắc! Em đã chọn đúng cấu trúc gián tiếp.";
+      } else {
+        fbCard.className = "mt-6 p-5 rounded-2xl border bg-rose-950/30 border-rose-500/40 transition-all duration-300";
+        badge.className = "px-2.5 py-1 rounded-lg text-xs font-bold uppercase bg-rose-500/20 text-rose-300 border border-rose-500/30";
+        badge.textContent = "❌ CHƯA CHÍNH XÁC";
+        title.className = "font-bold text-sm text-rose-300";
+        title.textContent = "Hãy chú ý lại quy tắc lùi thì và trật tự câu!";
+      }
+
+      detail.textContent = q.explanation;
+      rule.textContent = "📌 Cấu trúc / Quy tắc: " + q.rule;
+
+      speakText(isCorrect ? "Correct! " + q.explanation : "Incorrect. " + q.explanation);
+    }
+
+    function nextQuestion() {
+      const qList = GAME_DATA[currentTab].questions;
+      if (currentQuestionIdx < qList.length - 1) {
+        currentQuestionIdx++;
+        loadQuestion();
+      } else {
+        showCompletionModal();
+      }
+    }
+
+    function playDirectSpeechAudio() {
+      const q = GAME_DATA[currentTab].questions[currentQuestionIdx];
+      speakText(q.direct);
+    }
+
+    function playPromptAudio() {
+      const q = GAME_DATA[currentTab].questions[currentQuestionIdx];
+      speakText(q.prompt || 'Choose the correct answer.');
+    }
+
+    function playExplanationAudio() {
+      const q = GAME_DATA[currentTab].questions[currentQuestionIdx];
+      speakText(q.explanation);
+    }
+
+    /* ================= COMPLETION MODAL & CERTIFICATE ================= */
+    function showCompletionModal() {
+      const modal = document.getElementById('completion-modal');
+      modal.classList.remove('hidden');
+
+      const gData = GAME_DATA[currentTab];
+      document.getElementById('modal-game-name').textContent = gData.title;
+      document.getElementById('modal-score').textContent = gameScores[currentTab] + ' / 200';
+      
+      const acc = Math.round((gameScores[currentTab] / 200) * 100);
+      document.getElementById('modal-accuracy').textContent = acc + '%';
+
+      let starRating = "⭐";
+      if (acc >= 80) starRating = "⭐⭐⭐";
+      else if (acc >= 50) starRating = "⭐⭐";
+      document.getElementById('modal-stars').textContent = starRating;
+
+      let comment = '"Em cần ôn tập kỹ lại bảng lùi thì và trạng từ nhé!"';
+      if (acc >= 90) comment = '"Em thật là xuất sắc! Nắm vững 100% ngữ pháp Unit 12 SGK Global Success."';
+      else if (acc >= 70) comment = '"Kết quả rất tốt! Hãy tiếp tục phát huy ở các trận chiến tiếp theo nhé!"';
+
+      document.getElementById('modal-teacher-comment').innerHTML = `${comment} — <strong>Ms. Lily (HT English Center)</strong>`;
+      speakText("Congratulations! You completed " + gData.title);
+    }
+
+    function restartCurrentGame() {
+      document.getElementById('completion-modal').classList.add('hidden');
+      gameScores[currentTab] = 0;
+      gameAnsweredCounts[currentTab] = 0;
+      currentQuestionIdx = 0;
+      loadQuestion();
+    }
+
+    function advanceToNextGame() {
+      document.getElementById('completion-modal').classList.add('hidden');
+      const order = ['g1', 'g2', 'g3', 'g4', 'g5'];
+      const currentIdx = order.indexOf(currentTab);
+      if (currentIdx < order.length - 1) {
+        switchTab(order[currentIdx + 1]);
+      } else {
+        switchTab('analytics');
+      }
+    }
+
+    /* ================= CHART.JS ANALYTICS DASHBOARD ================= */
+    function renderAnalyticsCharts() {
+      const rawRadarLabels = [
+        'Tường thuật Yes/No',
+        'Cấu trúc Wh-words',
+        'Lùi thì Quá khứ',
+        'Biến đổi trạng từ',
+        'Bắt bẫy đảo ngữ'
+      ];
+
+      const radarLabels = rawRadarLabels.map(label => {
+        if (typeof label === 'string' && label.length > 16) {
+          const words = label.split(' ');
+          const lines = [];
+          let curLine = '';
+          words.forEach(w => {
+            if ((curLine + ' ' + w).length > 16) {
+              lines.push(curLine.trim());
+              curLine = w;
+            } else {
+              curLine += (curLine ? ' ' : '') + w;
+            }
+          });
+          if (curLine) lines.push(curLine.trim());
+          return lines;
+        }
+        return label;
+      });
+
+      const ctxRadar = document.getElementById('skillRadarChart').getContext('2d');
+      if (radarChartInstance) radarChartInstance.destroy();
+
+      radarChartInstance = new Chart(ctxRadar, {
+        type: 'radar',
+        data: {
+          labels: radarLabels,
+          datasets: [{
+            label: 'Độ chính xác (%)',
+            data: [
+              Math.min(100, (gameScores.g1 / 200) * 100 || 85),
+              Math.min(100, (gameScores.g2 / 200) * 100 || 90),
+              Math.min(100, (gameScores.g3 / 200) * 100 || 75),
+              Math.min(100, (gameScores.g4 / 200) * 100 || 80),
+              Math.min(100, (gameScores.g5 / 200) * 100 || 95)
+            ],
+            backgroundColor: 'rgba(6, 182, 212, 0.25)',
+            borderColor: '#06b6d4',
+            borderWidth: 2,
+            pointBackgroundColor: '#8b5cf6'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            r: {
+              angleLines: { color: 'rgba(255, 255, 255, 0.1)' },
+              grid: { color: 'rgba(255, 255, 255, 0.1)' },
+              pointLabels: { color: '#94a3b8', font: { size: 10 } },
+              ticks: { display: false, backdropColor: 'transparent' },
+              suggestedMin: 0,
+              suggestedMax: 100
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                title: function(tooltipItems) {
+                  const item = tooltipItems[0];
+                  let label = item.chart.data.labels[item.dataIndex];
+                  if (Array.isArray(label)) {
+                    return label.join(' ');
+                  } else {
+                    return label;
+                  }
+                }
+              }
+            }
+          }
+        }
+      });
+
+      const ctxBar = document.getElementById('masteryBarChart').getContext('2d');
+      if (barChartInstance) barChartInstance.destroy();
+
+      barChartInstance = new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+          labels: ['Game 1', 'Game 2', 'Game 3', 'Game 4', 'Game 5'],
+          datasets: [{
+            label: 'Điểm Đạt Được (Max 200)',
+            data: [
+              gameScores.g1 || 160,
+              gameScores.g2 || 180,
+              gameScores.g3 || 140,
+              gameScores.g4 || 170,
+              gameScores.g5 || 190
+            ],
+            backgroundColor: [
+              'rgba(6, 182, 212, 0.7)',
+              'rgba(59, 130, 246, 0.7)',
+              'rgba(139, 92, 246, 0.7)',
+              'rgba(244, 63, 94, 0.7)',
+              'rgba(16, 185, 129, 0.7)'
+            ],
+            borderRadius: 8
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 200,
+              grid: { color: 'rgba(255, 255, 255, 0.05)' },
+              ticks: { color: '#94a3b8' }
+            },
+            x: {
+              grid: { display: false },
+              ticks: { color: '#94a3b8' }
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                title: function(tooltipItems) {
+                  const item = tooltipItems[0];
+                  let label = item.chart.data.labels[item.dataIndex];
+                  if (Array.isArray(label)) {
+                    return label.join(' ');
+                  } else {
+                    return label;
+                  }
+                }
+              }
+            }
+          }
+        }
+      });
+    }
+
+    /* ================= INITIALIZATION ================= */
+    window.addEventListener('DOMContentLoaded', () => {
+      if (synth) {
+        synth.onvoiceschanged = () => { synth.getVoices(); };
+      }
+      loadQuestion();
+    });
+  </script>
+</body>
+</html>

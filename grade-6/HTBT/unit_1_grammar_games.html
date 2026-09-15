@@ -1,0 +1,1591 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HT English - Unit 1: My New School | Grammar Master Games</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f0fdf4 0%, #eff6ff 50%, #fdf4ff 100%);
+      min-height: 100vh;
+    }
+    .custom-shadow {
+      box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.15), 0 8px 10px -6px rgba(59, 130, 246, 0.1);
+    }
+    .game-card-active {
+      border-color: #3b82f6;
+      background: linear-gradient(to right, #eff6ff, #ffffff);
+      transform: translateY(-2px);
+    }
+    /* Pulse animation for active audio */
+    @keyframes soundwave {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.18); }
+      100% { transform: scale(1); }
+    }
+    .speaking-btn {
+      animation: soundwave 0.7s infinite ease-in-out;
+      color: #ea580c !important;
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="text-slate-800 antialiased selection:bg-blue-200">
+
+  <!-- HEADER & BRANDING -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-col md:flex-row items-center justify-between gap-3">
+      <!-- Brand & Teacher -->
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 flex items-center justify-center text-white text-2xl font-black shadow-lg shadow-blue-500/30">
+          HT
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-xl font-black tracking-tight text-blue-900">HT ENGLISH</h1>
+            <span class="bg-blue-100 text-blue-800 text-xs px-2.5 py-0.5 rounded-full font-bold border border-blue-200">Lớp 6</span>
+            <span class="bg-purple-100 text-purple-800 text-xs px-2.5 py-0.5 rounded-full font-bold border border-purple-200">Ms. Lily</span>
+          </div>
+          <p class="text-xs text-slate-500 font-medium">Unit 1: My New School • Grammar Master Games</p>
+        </div>
+      </div>
+
+      <!-- Hotline & Address Info -->
+      <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-6 text-xs text-slate-600">
+        <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-xl">
+          <i class="fa-solid fa-phone text-rose-500 text-sm"></i>
+          <div>
+            <span class="font-bold text-slate-700">Hotline:</span>
+            <span class="font-semibold text-rose-600 ml-1">0963.422.940</span> - <span class="font-semibold text-rose-600">0962.240.866</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 bg-slate-50 border border-slate-200 px-3 py-1.5 rounded-xl hidden lg:flex">
+          <i class="fa-solid fa-location-dot text-emerald-600 text-sm"></i>
+          <span>Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình</span>
+        </div>
+      </div>
+
+      <!-- Quick Audio Setting Test -->
+      <button onclick="testFemaleVoice()" class="flex items-center gap-2 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-300 px-3 py-1.5 rounded-xl text-xs font-bold transition">
+        <i class="fa-solid fa-volume-high text-amber-600"></i>
+        <span>Giọng nữ US: Test loa</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- NAVIGATION TABS -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6">
+    
+    <!-- Top Action / Navigation Bar -->
+    <div class="flex flex-wrap items-center justify-between gap-3 mb-6 bg-white p-2 sm:p-3 rounded-2xl shadow-sm border border-slate-200">
+      <div class="flex flex-wrap items-center gap-1.5 sm:gap-2" id="navTabsContainer">
+        <!-- Theory Tab Button -->
+        <button onclick="switchTab('theory')" id="btn-tab-theory" class="nav-btn px-4 py-2.5 rounded-xl font-bold text-sm flex items-center gap-2 transition bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-md">
+          <i class="fa-solid fa-book-bookmark"></i>
+          <span>📖 Cẩm Nang Bí Kíp</span>
+        </button>
+        <!-- Game 1 -->
+        <button onclick="switchTab('game1')" id="btn-tab-game1" class="nav-btn px-3.5 py-2.5 rounded-xl font-semibold text-sm flex items-center gap-2 text-slate-600 hover:bg-slate-100 transition">
+          <span class="w-6 h-6 rounded-full bg-blue-100 text-blue-700 flex items-center justify-center text-xs font-bold">1</span>
+          <span>Hiệp Sĩ Khẳng Định</span>
+        </button>
+        <!-- Game 2 -->
+        <button onclick="switchTab('game2')" id="btn-tab-game2" class="nav-btn px-3.5 py-2.5 rounded-xl font-semibold text-sm flex items-center gap-2 text-slate-600 hover:bg-slate-100 transition">
+          <span class="w-6 h-6 rounded-full bg-rose-100 text-rose-700 flex items-center justify-center text-xs font-bold">2</span>
+          <span>Pháo Đài Phủ Định</span>
+        </button>
+        <!-- Game 3 -->
+        <button onclick="switchTab('game3')" id="btn-tab-game3" class="nav-btn px-3.5 py-2.5 rounded-xl font-semibold text-sm flex items-center gap-2 text-slate-600 hover:bg-slate-100 transition">
+          <span class="w-6 h-6 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center text-xs font-bold">3</span>
+          <span>Thám Tử Do / Does</span>
+        </button>
+        <!-- Game 4 -->
+        <button onclick="switchTab('game4')" id="btn-tab-game4" class="nav-btn px-3.5 py-2.5 rounded-xl font-semibold text-sm flex items-center gap-2 text-slate-600 hover:bg-slate-100 transition">
+          <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center text-xs font-bold">4</span>
+          <span>Vòng Xoay Tần Suất</span>
+        </button>
+        <!-- Game 5 -->
+        <button onclick="switchTab('game5')" id="btn-tab-game5" class="nav-btn px-3.5 py-2.5 rounded-xl font-semibold text-sm flex items-center gap-2 text-slate-600 hover:bg-slate-100 transition">
+          <span class="w-6 h-6 rounded-full bg-purple-100 text-purple-700 flex items-center justify-center text-xs font-bold">5</span>
+          <span>Đấu Trường Quán Quân</span>
+        </button>
+      </div>
+
+      <!-- Current Game Overall Score Badge -->
+      <div class="flex items-center gap-3 bg-gradient-to-r from-amber-500 to-orange-500 text-white px-4 py-2 rounded-xl font-bold shadow-md shadow-orange-400/20 text-sm">
+        <i class="fa-solid fa-trophy text-amber-200"></i>
+        <span>Điểm Game này:</span>
+        <span id="currentScoreDisplay" class="text-xl font-black">0/100</span>
+      </div>
+    </div>
+
+    <!-- SECTION 0: THEORY HANDBOOK (CẨM NANG NGỮ PHÁP UNIT 1) -->
+    <section id="section-theory" class="space-y-6">
+      
+      <!-- Welcome Hero Banner -->
+      <div class="bg-gradient-to-r from-indigo-900 via-blue-900 to-sky-800 text-white p-6 sm:p-8 rounded-3xl shadow-xl relative overflow-hidden">
+        <div class="relative z-10 max-w-3xl">
+          <span class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-amber-300 uppercase tracking-wider mb-3">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> HT English Exclusive Grammar Note
+          </span>
+          <h2 class="text-2xl sm:text-3xl font-black tracking-tight mb-2">
+            Cẩm Nang Bí Kíp Ngữ Pháp Unit 1: My New School
+          </h2>
+          <p class="text-blue-100 text-sm sm:text-base leading-relaxed">
+            Chào mừng các em học sinh lớp 6 của <strong>Ms. Lily</strong>! Hãy ôn tập thật kỹ 2 chuyên đề trọng tâm: 
+            <strong>Thì Hiện Tại Đơn (The Present Simple)</strong> và <strong>Trạng Từ Chỉ Tần Suất (Adverbs of Frequency)</strong> trước khi bước vào 5 Đấu trường Game nhé!
+          </p>
+          <div class="mt-4 flex flex-wrap gap-3">
+            <button onclick="switchTab('game1')" class="bg-amber-400 hover:bg-amber-300 text-slate-900 font-extrabold text-sm px-5 py-2.5 rounded-xl shadow-lg transition flex items-center gap-2">
+              <i class="fa-solid fa-gamepad"></i> Bắt đầu chơi Game 1 ngay!
+            </button>
+            <button onclick="speakText('Welcome to HT English with Ms. Lily! Let us learn grammar together.')" class="bg-white/15 hover:bg-white/25 text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition flex items-center gap-2">
+              <i class="fa-solid fa-volume-high"></i> Nghe lời chào từ Ms. Lily (US Voice)
+            </button>
+          </div>
+        </div>
+        <i class="fa-solid fa-graduation-cap absolute -right-6 -bottom-8 text-white/10 text-9xl pointer-events-none"></i>
+      </div>
+
+      <!-- Theory Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Card 1: To-Be in Present Simple -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-black text-lg">1</span>
+              <h3 class="text-lg font-bold text-slate-800">Động từ "TO-BE" (am / is / are)</h3>
+            </div>
+            <button onclick="speakText('I am a student. He is my friend. We are in class 6A.')" class="text-blue-600 hover:text-blue-800 p-2 rounded-lg hover:bg-blue-50 transition" title="Nghe ví dụ">
+              <i class="fa-solid fa-volume-high text-lg"></i>
+            </button>
+          </div>
+          <div class="space-y-3 text-sm">
+            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+              <span class="font-bold text-blue-700">Khẳng định (+):</span>
+              <p class="font-mono text-slate-700 mt-1">S + am / is / are + (noun/adj)...</p>
+              <ul class="list-disc list-inside text-xs text-slate-600 mt-1 space-y-0.5">
+                <li><strong>I</strong> + am (I'm)</li>
+                <li><strong>He / She / It / Danh từ số ít</strong> + is</li>
+                <li><strong>You / We / They / Danh từ số nhiều</strong> + are</li>
+              </ul>
+            </div>
+            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+              <span class="font-bold text-rose-700">Phủ định (-):</span>
+              <p class="font-mono text-slate-700 mt-1">S + am not / isn't / aren't + ...</p>
+              <p class="text-xs text-slate-500 mt-1">VD: My new school <em>isn't</em> in the centre of the village.</p>
+            </div>
+            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+              <span class="font-bold text-emerald-700">Nghi vấn (?):</span>
+              <p class="font-mono text-slate-700 mt-1">Am / Is / Are + S + ...? ➔ Yes, S + be. / No, S + be not.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Ordinary Verbs & s/es rules -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center font-black text-lg">2</span>
+              <h3 class="text-lg font-bold text-slate-800">Động từ Thường & Quy tắc thêm -s / -es</h3>
+            </div>
+            <button onclick="speakText('I walk to school. Duy cycles to school every day. She studies English.')" class="text-indigo-600 hover:text-indigo-800 p-2 rounded-lg hover:bg-indigo-50 transition" title="Nghe ví dụ">
+              <i class="fa-solid fa-volume-high text-lg"></i>
+            </button>
+          </div>
+          <div class="space-y-3 text-sm">
+            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+              <span class="font-bold text-indigo-700">Khẳng định (+):</span>
+              <ul class="list-disc list-inside text-xs text-slate-600 mt-1 space-y-1">
+                <li><strong>I / You / We / They / N số nhiều:</strong> + V nguyên mẫu (VD: <em>We have new subjects.</em>)</li>
+                <li><strong>He / She / It / N số ít:</strong> + V-(s / es) (VD: <em>Duy cycles to school.</em>)</li>
+              </ul>
+            </div>
+            <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs text-amber-900">
+              <span class="font-bold text-amber-800 block mb-1">⚡ Bí kíp thêm đuôi s/es khi chủ ngữ số ít:</span>
+              <ul class="list-disc list-inside space-y-1">
+                <li>Tận cùng là <strong>o, s, ch, x, sh, z</strong> (<em>Ông Sáu Chạy Xe Sh Zui</em>) ➔ thêm <strong>-es</strong> (<em>go ➔ goes, watch ➔ watches, teach ➔ teaches</em>).</li>
+                <li>Phụ âm + <strong>y</strong> ➔ đổi thành <strong>-ies</strong> (<em>study ➔ studies</em>).</li>
+                <li>Đặc biệt: <strong>have</strong> ➔ <strong>has</strong>.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Negative & Questions with Do/Does -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center font-black text-lg">3</span>
+              <h3 class="text-lg font-bold text-slate-800">Phủ Định & Nghi Vấn (Trợ từ DO / DOES)</h3>
+            </div>
+            <button onclick="speakText('I do not like school lunch. Does Vy walk to school with you? Yes, she does.')" class="text-rose-600 hover:text-rose-800 p-2 rounded-lg hover:bg-rose-50 transition" title="Nghe ví dụ">
+              <i class="fa-solid fa-volume-high text-lg"></i>
+            </button>
+          </div>
+          <div class="space-y-3 text-sm">
+            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+              <span class="font-bold text-rose-700">Phủ định (-):</span>
+              <p class="font-mono text-slate-700 mt-1">S + don't / doesn't + V (nguyên mẫu)</p>
+              <p class="text-xs text-slate-500 mt-1">VD: <em>I don't like school lunch.</em> / <em>She doesn't have a brother.</em></p>
+              <p class="text-xs font-bold text-rose-600 mt-0.5">⚠️ Khi đã có don't/doesn't thì động từ trả về NGUYÊN MẪU!</p>
+            </div>
+            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+              <span class="font-bold text-blue-700">Nghi vấn (?):</span>
+              <p class="font-mono text-slate-700 mt-1">Do / Does + S + V (nguyên mẫu)?</p>
+              <p class="text-xs text-slate-500 mt-1">Wh-word + do / does + S + V (nguyên mẫu)?</p>
+              <p class="text-xs text-slate-500">VD: <em>Where do you live?</em> / <em>Does Vy walk to school?</em></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Adverbs of Frequency -->
+        <div class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-3">
+              <span class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-black text-lg">4</span>
+              <h3 class="text-lg font-bold text-slate-800">Trạng Từ Chỉ Tần Suất (Adverbs of Frequency)</h3>
+            </div>
+            <button onclick="speakText('We usually place the adverb of frequency before the main verb. Tom usually takes the bus.')" class="text-emerald-600 hover:text-emerald-800 p-2 rounded-lg hover:bg-emerald-50 transition" title="Nghe ví dụ">
+              <i class="fa-solid fa-volume-high text-lg"></i>
+            </button>
+          </div>
+          <div class="space-y-3 text-sm">
+            <!-- Frequency Pyramid Bar -->
+            <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+              <span class="font-bold text-emerald-800 text-xs">Mức độ từ 100% ➔ 0%:</span>
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 mt-2 text-xs">
+                <div class="bg-emerald-600 text-white p-2 rounded-lg font-bold">100% Always (Luôn luôn)</div>
+                <div class="bg-emerald-500 text-white p-2 rounded-lg font-bold">80% Usually (Thường xuyên)</div>
+                <div class="bg-teal-500 text-white p-2 rounded-lg font-bold">60% Often (Thường)</div>
+                <div class="bg-amber-500 text-white p-2 rounded-lg font-bold">40% Sometimes (Thỉnh thoảng)</div>
+                <div class="bg-orange-500 text-white p-2 rounded-lg font-bold">10% Rarely (Hiếm khi)</div>
+                <div class="bg-rose-600 text-white p-2 rounded-lg font-bold">0% Never (Không bao giờ)</div>
+              </div>
+            </div>
+
+            <!-- Golden Rule of Position -->
+            <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-200 text-xs text-indigo-900">
+              <span class="font-bold text-indigo-800 block mb-1">⭐ Vị trí vàng trong câu (RẤT QUAN TRỌNG):</span>
+              <ul class="list-disc list-inside space-y-1 font-medium">
+                <li><strong class="text-indigo-900">ĐỨNG TRƯỚC ĐỘNG TỪ THƯỜNG:</strong> <em>S + [Adverb] + V...</em> (VD: Tom <strong>usually takes</strong> the bus).</li>
+                <li><strong class="text-indigo-900">ĐỨNG SAU ĐỘNG TỪ TO-BE:</strong> <em>S + be + [Adverb]...</em> (VD: He <strong>is always</strong> on time).</li>
+                <li><strong class="text-indigo-900">TRONG CÂU PHỦ ĐỊNH & HỎI:</strong> <em>They don't <strong>often</strong> go...</em> / <em>Do you <strong>often</strong> travel?</em></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- SECTION 1-5: GAME PLAY CONTAINER (DYNAMICALLY LOADED) -->
+    <section id="section-game-play" class="hidden">
+      
+      <!-- Game Info Header Card -->
+      <div id="gameHeaderCard" class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm mb-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span id="gameBadge" class="bg-blue-600 text-white text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">GAME 1</span>
+            <span class="text-xs text-slate-500 font-semibold">20 Câu Hỏi Ngữ Pháp • 5 điểm/câu</span>
+          </div>
+          <h2 id="gameTitle" class="text-2xl font-black text-slate-800 tracking-tight">Tên Trò Chơi</h2>
+          <p id="gameDesc" class="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl">Mô tả luật chơi và mục tiêu ngữ pháp của game.</p>
+        </div>
+
+        <!-- Quick Game Controls & Score -->
+        <div class="flex flex-wrap items-center gap-3">
+          <button onclick="resetCurrentGame()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-xl text-xs transition flex items-center gap-2">
+            <i class="fa-solid fa-rotate-right"></i> Làm Lại Game
+          </button>
+          <button onclick="showAllAnswersAndExplanations()" class="px-4 py-2 bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 font-bold rounded-xl text-xs transition flex items-center gap-2">
+            <i class="fa-solid fa-lightbulb"></i> Xem Toàn Bộ Giải Thích
+          </button>
+        </div>
+      </div>
+
+      <!-- Question List Container (20 questions) -->
+      <div id="questionsContainer" class="space-y-4">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Bottom Submission and Score Summary -->
+      <div class="mt-8 bg-white rounded-3xl p-6 border border-slate-200 shadow-lg text-center">
+        <div class="max-w-xl mx-auto">
+          <div class="w-16 h-16 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-3xl mx-auto mb-3">
+            <i class="fa-solid fa-award"></i>
+          </div>
+          <h3 class="text-xl font-black text-slate-800">Hoàn Thành Bài Học Cùng Ms. Lily</h3>
+          <p class="text-xs text-slate-500 mt-1">Nhấp vào từng đáp án để kiểm tra kết quả ngay lập tức kèm giọng đọc US & giải thích ngữ pháp chuyên sâu!</p>
+          <div class="mt-4 flex justify-center gap-3">
+            <button onclick="scrollToTop()" class="px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs shadow-md transition flex items-center gap-2">
+              <i class="fa-solid fa-arrow-up"></i> Lên Đầu Trang
+            </button>
+            <button onclick="goToNextGame()" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs shadow-md transition flex items-center gap-2">
+              <span>Chuyển Sang Game Tiếp Theo</span> <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-white border-t border-slate-200 mt-16 py-8 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 space-y-2">
+      <p class="font-bold text-slate-700 text-sm">TRUNG TÂM TIẾNG ANH HT ENGLISH - MS. LILY</p>
+      <p>Địa chỉ: Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình</p>
+      <p>Hotline tư vấn & hỗ trợ học tập: <span class="font-bold text-blue-600">0963.422.940</span> - <span class="font-bold text-blue-600">0962.240.866</span></p>
+      <p class="text-slate-400 mt-2">Biên soạn chuẩn khung chương trình Tiếng Anh 6 Global Success - Unit 1: My New School</p>
+    </div>
+  </footer>
+
+  <script>
+    /* ==========================================================
+       US FEMALE AUDIO SYSTEM (WEB SPEECH API)
+       ========================================================== */
+    let femaleVoice = null;
+
+    function initVoices() {
+      if (!('speechSynthesis' in window)) return;
+      const voices = window.speechSynthesis.getVoices();
+      
+      // Look specifically for US English female voices
+      femaleVoice = voices.find(v => 
+        (v.lang === 'en-US' || v.lang === 'en_US') && 
+        (v.name.includes('Female') || v.name.includes('Zira') || v.name.includes('Samantha') || v.name.includes('Google US English') || v.name.includes('Jenny') || v.name.includes('Aria'))
+      ) || voices.find(v => v.lang === 'en-US') || voices.find(v => v.lang.startsWith('en'));
+    }
+
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = initVoices;
+      initVoices();
+    }
+
+    // Audio synthesizer for correct / incorrect sounds
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    function playBeep(isSuccess) {
+      try {
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        
+        if (isSuccess) {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+          osc.frequency.setValueAtTime(659.25, audioCtx.currentTime + 0.1); // E5
+          gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.35);
+        } else {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(220, audioCtx.currentTime); // A3
+          osc.frequency.setValueAtTime(196, audioCtx.currentTime + 0.12); // G3
+          gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.35);
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.35);
+        }
+      } catch (e) {
+        // AudioContext fallback ignored
+      }
+    }
+
+    function speakText(text, btnElement = null) {
+      if (!('speechSynthesis' in window)) {
+        alert("Trình duyệt không hỗ trợ Web Speech API.");
+        return;
+      }
+      window.speechSynthesis.cancel(); // Stop prior utterance
+
+      const cleanText = text.replace(/_+/g, 'blank').replace(/[()]/g, '');
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.88; // Ideal clear teaching pace for 6th graders
+      utterance.pitch = 1.05; // Slightly higher feminine warmth
+
+      if (femaleVoice) {
+        utterance.voice = femaleVoice;
+      }
+
+      if (btnElement) {
+        btnElement.classList.add('speaking-btn');
+        utterance.onend = () => btnElement.classList.remove('speaking-btn');
+        utterance.onerror = () => btnElement.classList.remove('speaking-btn');
+      }
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function testFemaleVoice() {
+      speakText("Hello students! This is your American English female voice at HT English. Let's master Unit 1 grammar!");
+    }
+
+    /* ==========================================================
+       DATA: 5 GAMES x 20 QUESTIONS = 100 QUESTIONS
+       Carefully curated based on Global Success 6 - Unit 1:
+       - Present Simple (Affirmative, Negative, Question, To-be & Ordinary verbs)
+       - Adverbs of Frequency & Collocations from Unit 1
+       ========================================================== */
+    const GAMES_DATA = {
+      game1: {
+        id: "game1",
+        badge: "GAME 1 • 20 CÂU",
+        title: "Hiệp Sĩ Khẳng Định (Affirmative Knights)",
+        desc: "Thử thách chia động từ thể khẳng định với TO-BE và ĐỘNG TỪ THƯỜNG. Rèn luyện quy tắc thêm -s / -es / -ies và đổi have ➔ has.",
+        color: "blue",
+        questions: [
+          {
+            id: 1,
+            question: "We ______ new subjects for this school year.",
+            options: ["A. have", "B. has", "C. having", "D. to have"],
+            correct: 0,
+            explain: "Chủ ngữ 'We' (chúng tôi) là đại từ số nhiều, trong thì hiện tại đơn động từ thường giữ nguyên mẫu 'have'. (Xem Unit 1 - A Closer Look 2 - Ex 1.1).",
+            rule: "S (I/We/You/They/N nhiều) + V_nguyên mẫu"
+          },
+          {
+            id: 2,
+            question: "Duy ______ to school every day.",
+            options: ["A. cycle", "B. cycles", "C. cycling", "D. is cycle"],
+            correct: 1,
+            explain: "Chủ ngữ 'Duy' là danh từ riêng số ít (ngôi thứ 3 số ít), động từ 'cycle' phải thêm '-s' thành 'cycles'. (Xem SGK tr.9).",
+            rule: "S (He/She/It/Duy/N ít) + V-s/es"
+          },
+          {
+            id: 3,
+            question: "My new school ______ a large playground.",
+            options: ["A. have", "B. having", "C. has", "D. haves"],
+            correct: 2,
+            explain: "'My new school' là danh từ số ít (tương đương 'It'), động từ bất quy tắc 'have' biến đổi thành 'has'. (SGK tr.9 - Ex 2).",
+            rule: "He / She / It / N số ít + has"
+          },
+          {
+            id: 4,
+            question: "I ______ home at 4 p.m. every day.",
+            options: ["A. goes", "B. go", "C. going", "D. to go"],
+            correct: 1,
+            explain: "Với chủ ngữ ngôi thứ nhất 'I', động từ thường ở thì hiện tại đơn luôn giữ nguyên thể 'go'.",
+            rule: "I + V_nguyên mẫu"
+          },
+          {
+            id: 5,
+            question: "My school ______ in the centre of the village.",
+            options: ["A. is", "B. are", "C. am", "D. be"],
+            correct: 0,
+            explain: "'My school' là danh từ số ít nên dùng to-be là 'is'. (SGK tr.9 - Ex 1.3).",
+            rule: "Danh từ số ít + IS"
+          },
+          {
+            id: 6,
+            question: "Phong and Duy ______ their new school uniform on Mondays.",
+            options: ["A. wears", "B. wear", "C. wearing", "D. are wear"],
+            correct: 1,
+            explain: "'Phong and Duy' là chủ ngữ gồm 2 người (danh từ số nhiều), nên động từ 'wear' giữ nguyên thể.",
+            rule: "Danh từ số nhiều + V_nguyên mẫu"
+          },
+          {
+            id: 7,
+            question: "Vy ______ English and Science on Tuesday mornings.",
+            options: ["A. studies", "B. studys", "C. study", "D. studying"],
+            correct: 0,
+            explain: "Chủ ngữ 'Vy' là ngôi thứ 3 số ít. Động từ 'study' kết thúc bằng phụ âm + y ➔ đổi y thành -ies ➔ 'studies'.",
+            rule: "Phụ âm + y ➔ -ies (studies)"
+          },
+          {
+            id: 8,
+            question: "My brother ______ television after doing his homework.",
+            options: ["A. watch", "B. watchs", "C. watches", "D. watching"],
+            correct: 2,
+            explain: "'My brother' là chủ ngữ số ít. Động từ 'watch' kết thúc bằng 'ch' nên ta thêm đuôi '-es' ➔ 'watches'.",
+            rule: "Đuôi ch, sh, s, x, z, o + ES"
+          },
+          {
+            id: 9,
+            question: "Students in my class ______ their homework carefully.",
+            options: ["A. does", "B. do", "C. doing", "D. to do"],
+            correct: 1,
+            explain: "'Students' có tận cùng là -s (danh từ số nhiều), do đó động từ chính giữ nguyên 'do'. Cụm từ: 'do homework'.",
+            rule: "N số nhiều + DO"
+          },
+          {
+            id: 10,
+            question: "Miss Nguyet ______ the school newsletter every month.",
+            options: ["A. writes", "B. write", "C. writing", "D. is write"],
+            correct: 0,
+            explain: "Chủ ngữ 'Miss Nguyet' là ngôi thứ 3 số ít (She), động từ 'write' thêm đuôi '-s' thành 'writes'.",
+            rule: "Miss Nguyet (She) + V-s"
+          },
+          {
+            id: 11,
+            question: "We ______ judo in the school gym on Wednesdays.",
+            options: ["A. plays", "B. do", "C. does", "D. makes"],
+            correct: 1,
+            explain: "Với môn võ judo, ta dùng động từ 'do' (do judo). Chủ ngữ là 'We' nên dùng 'do' nguyên thể.",
+            rule: "Collocation Unit 1: do judo / Chủ ngữ We + V nguyên"
+          },
+          {
+            id: 12,
+            question: "Nick ______ football with his classmates every afternoon.",
+            options: ["A. plays", "B. play", "C. does", "D. playes"],
+            correct: 0,
+            explain: "Với môn thể thao có bóng như football ta dùng 'play'. 'Nick' là chủ ngữ số ít, tận cùng 'y' sau nguyên âm 'a' chỉ thêm -s ➔ 'plays'.",
+            rule: "play football / Chủ ngữ số ít + plays"
+          },
+          {
+            id: 13,
+            question: "The students ______ very excited on the first day of school.",
+            options: ["A. is", "B. are", "C. am", "D. be"],
+            correct: 1,
+            explain: "'The students' là danh từ số nhiều, động từ To-be tương ứng ở thì hiện tại đơn là 'are'.",
+            rule: "The students (They) + ARE"
+          },
+          {
+            id: 14,
+            question: "Mr. Quang ______ history at Duy's school.",
+            options: ["A. teach", "B. teachs", "C. teaches", "D. teaching"],
+            correct: 2,
+            explain: "'Mr. Quang' là danh từ số ít (He). Động từ 'teach' kết thúc bằng 'ch' nên ta thêm đuôi '-es' ➔ 'teaches'.",
+            rule: "teach + es = teaches (do tận cùng ch)"
+          },
+          {
+            id: 15,
+            question: "I ______ two compasses and a calculator in my pencil case.",
+            options: ["A. has", "B. having", "C. am have", "D. have"],
+            correct: 3,
+            explain: "Chủ ngữ 'I' đi với động từ 'have' nguyên thể để diễn tả sự sở hữu.",
+            rule: "I + have (không dùng has)"
+          },
+          {
+            id: 16,
+            question: "An and her sister ______ to school by bus.",
+            options: ["A. goes", "B. go", "C. going", "D. to go"],
+            correct: 1,
+            explain: "'An and her sister' là chủ ngữ gồm 2 người (số nhiều), nên động từ 'go' giữ nguyên.",
+            rule: "Chủ ngữ ghép 'A and B' = số nhiều ➔ V nguyên mẫu"
+          },
+          {
+            id: 17,
+            question: "My father ______ up early to make breakfast every morning.",
+            options: ["A. gets", "B. get", "C. geting", "D. is get"],
+            correct: 0,
+            explain: "'My father' là ngôi thứ ba số ít (He), động từ 'get' thêm -s ➔ 'gets up'.",
+            rule: "He / My father + gets"
+          },
+          {
+            id: 18,
+            question: "The school library ______ thousands of interesting books.",
+            options: ["A. have", "B. has", "C. haves", "D. having"],
+            correct: 1,
+            explain: "'The school library' là danh từ số ít (thư viện trường), nên 'have' đổi thành 'has'.",
+            rule: "Danh từ số ít + HAS"
+          },
+          {
+            id: 19,
+            question: "They ______ lunch in the school canteen at 11:30.",
+            options: ["A. have", "B. has", "C. having", "D. haves"],
+            correct: 0,
+            explain: "Chủ ngữ 'They' là số nhiều ➔ dùng động từ nguyên thể 'have'. Cụm từ: 'have lunch'.",
+            rule: "They + have lunch"
+          },
+          {
+            id: 20,
+            question: "Duy's teacher ______ very kind and friendly to all students.",
+            options: ["A. are", "B. is", "C. am", "D. be"],
+            correct: 1,
+            explain: "'Duy's teacher' (giáo viên của Duy) là danh từ số ít chỉ 1 người ➔ dùng to-be 'is'.",
+            rule: "Danh từ số ít + IS + tính từ (kind & friendly)"
+          }
+        ]
+      },
+
+      game2: {
+        id: "game2",
+        badge: "GAME 2 • 20 CÂU",
+        title: "Pháo Đài Phủ Định (Negative Fortress)",
+        desc: "Luyện tập thuần thục cấu trúc câu phủ định với 'don't', 'doesn't' và 'isn't / aren't'. Khắc sâu nguyên tắc trả động từ về nguyên mẫu!",
+        color: "rose",
+        questions: [
+          {
+            id: 1,
+            question: "My friend has a sister, but she ______ a brother.",
+            options: ["A. not has", "B. don't have", "C. doesn't have", "D. isn't have"],
+            correct: 2,
+            explain: "Chủ ngữ 'she' là số ít, câu phủ định mượn trợ từ 'doesn't' và động từ 'have' đưa về nguyên thể 'have'. (Xem SGK tr.9 - Ex 1.5).",
+            rule: "He/She/It + DOESN'T + V_nguyên mẫu"
+          },
+          {
+            id: 2,
+            question: "My new school ______ in the centre of the village.",
+            options: ["A. not", "B. isn't", "C. doesn't", "D. aren't"],
+            correct: 1,
+            explain: "Câu này dùng động từ To-be với danh từ số ít 'My new school'. Phủ định của 'is' là 'isn't' (is not). (SGK tr.9 - Ex 1.3).",
+            rule: "S (số ít) + IS NOT (isn't) + cụm giới từ"
+          },
+          {
+            id: 3,
+            question: "I ______ like school lunch very much.",
+            options: ["A. doesn't", "B. don't", "C. not", "D. am not"],
+            correct: 1,
+            explain: "Với chủ ngữ 'I' và động từ thường 'like', ta dùng trợ động từ phủ định 'don't' (do not). (SGK tr.9 mục Remember).",
+            rule: "I / You / We / They + DON'T + V_nguyên mẫu"
+          },
+          {
+            id: 4,
+            question: "We ______ wear our uniform on Saturdays and Sundays.",
+            options: ["A. don't", "B. doesn't", "C. aren't", "D. not"],
+            correct: 0,
+            explain: "'We' là chủ ngữ số nhiều, đi với động từ thường 'wear' nên dùng trợ động từ 'don't'.",
+            rule: "We + don't + wear"
+          },
+          {
+            id: 5,
+            question: "Vy ______ to school by bus; she walks every day.",
+            options: ["A. doesn't go", "B. doesn't goes", "C. don't go", "D. isn't go"],
+            correct: 0,
+            explain: "'Vy' là ngôi thứ ba số ít nên mượn 'doesn't'. Sau 'doesn't' động từ phải ở dạng NGUYÊN THỂ 'go' (không dùng goes).",
+            rule: "doesn't + V_nguyên mẫu (doesn't go)"
+          },
+          {
+            id: 6,
+            question: "These exercises ______ difficult for grade 6 students.",
+            options: ["A. isn't", "B. doesn't", "C. aren't", "D. don't"],
+            correct: 2,
+            explain: "'These exercises' là danh từ số nhiều (các bài tập này). 'Difficult' là tính từ nên dùng to-be phủ định 'aren't'.",
+            rule: "N số nhiều + AREN'T + adj"
+          },
+          {
+            id: 7,
+            question: "Duy and Phong ______ play computer games on school days.",
+            options: ["A. doesn't", "B. isn't", "C. don't", "D. aren't"],
+            correct: 2,
+            explain: "'Duy and Phong' là 2 người (chủ ngữ số nhiều) ➔ dùng trợ từ phủ định 'don't'.",
+            rule: "Chủ ngữ số nhiều + don't + V"
+          },
+          {
+            id: 8,
+            question: "He ______ his homework in the living room.",
+            options: ["A. doesn't do", "B. doesn't does", "C. don't do", "D. not do"],
+            correct: 0,
+            explain: "Chủ ngữ 'He' mượn trợ từ 'doesn't'. Động từ chính 'do' giữ nguyên thể ➔ 'doesn't do'.",
+            rule: "He + doesn't + do"
+          },
+          {
+            id: 9,
+            question: "Our classroom ______ a big TV on the wall.",
+            options: ["A. doesn't have", "B. doesn't has", "C. don't have", "D. isn't have"],
+            correct: 0,
+            explain: "'Our classroom' là danh từ số ít ➔ mượn 'doesn't'. Động từ có dạng nguyên thể là 'have'.",
+            rule: "doesn't + have (tuyệt đối không dùng doesn't has)"
+          },
+          {
+            id: 10,
+            question: "They ______ ride their bicycles to school when it rains.",
+            options: ["A. doesn't", "B. don't", "C. aren't", "D. not"],
+            correct: 1,
+            explain: "Chủ ngữ 'They' đi với động từ thường 'ride' nên phủ định dùng 'don't'.",
+            rule: "They + don't + ride"
+          },
+          {
+            id: 11,
+            question: "I ______ late for class. I am always on time.",
+            options: ["A. don't", "B. am not", "C. isn't", "D. not am"],
+            correct: 1,
+            explain: "'Late' là tính từ, chủ ngữ là 'I' ➔ dùng động từ to-be phủ định 'am not'.",
+            rule: "I + AM NOT + adj"
+          },
+          {
+            id: 12,
+            question: "Linda ______ like studying science subjects.",
+            options: ["A. don't", "B. doesn't", "C. isn't", "D. not"],
+            correct: 1,
+            explain: "Chủ ngữ 'Linda' là tên riêng số ít (She), dùng 'doesn't' + V nguyên mẫu.",
+            rule: "Linda + doesn't + like"
+          },
+          {
+            id: 13,
+            question: "My father and mother ______ work on Sundays.",
+            options: ["A. doesn't", "B. isn't", "C. don't", "D. aren't"],
+            correct: 2,
+            explain: "'My father and mother' là 2 người (bố và mẹ = số nhiều) ➔ dùng 'don't'.",
+            rule: "Danh từ ghép số nhiều + don't"
+          },
+          {
+            id: 14,
+            question: "The teacher ______ give us too much homework at weekends.",
+            options: ["A. doesn't", "B. don't", "C. isn't", "D. not"],
+            correct: 0,
+            explain: "'The teacher' là danh từ số ít ➔ trợ động từ phủ định là 'doesn't'.",
+            rule: "The teacher (số ít) + doesn't + V_inf"
+          },
+          {
+            id: 15,
+            question: "You ______ need to bring a calculator for art class.",
+            options: ["A. doesn't", "B. don't", "C. aren't", "D. not"],
+            correct: 1,
+            explain: "Chủ ngữ 'You' đi với trợ động từ phủ định 'don't'.",
+            rule: "You + don't + need"
+          },
+          {
+            id: 16,
+            question: "An ______ study in the library on Friday afternoons.",
+            options: ["A. doesn't", "B. don't", "C. isn't", "D. not"],
+            correct: 0,
+            explain: "'An' là danh từ số ít ➔ chọn 'doesn't'. Động từ 'study' theo sau giữ nguyên.",
+            rule: "An + doesn't + study"
+          },
+          {
+            id: 17,
+            question: "We ______ ready for the physical education lesson yet.",
+            options: ["A. don't", "B. aren't", "C. isn't", "D. not are"],
+            correct: 1,
+            explain: "'Ready' là tính từ (sẵn sàng). Với chủ ngữ 'We', ta dùng to-be phủ định 'aren't'.",
+            rule: "We + aren't + adj (ready)"
+          },
+          {
+            id: 18,
+            question: "Phong's brother ______ wear glasses when reading.",
+            options: ["A. doesn't", "B. don't", "C. isn't", "D. not"],
+            correct: 0,
+            explain: "'Phong's brother' (anh trai của Phong) là số ít ➔ dùng 'doesn't'.",
+            rule: "Chủ ngữ số ít + doesn't + wear"
+          },
+          {
+            id: 19,
+            question: "I ______ have any lessons on Sunday mornings.",
+            options: ["A. am not", "B. doesn't", "C. don't", "D. haven't"],
+            correct: 2,
+            explain: "Chủ ngữ 'I' đi với động từ thường 'have' thì phủ định là 'don't have'.",
+            rule: "I + don't have"
+          },
+          {
+            id: 20,
+            question: "The new students ______ feel nervous anymore.",
+            options: ["A. doesn't", "B. aren't", "C. don't", "D. not"],
+            correct: 2,
+            explain: "'The new students' có tận cùng -s là số nhiều. Động từ 'feel' là động từ tri giác ➔ mượn 'don't'.",
+            rule: "Students (số nhiều) + don't + feel"
+          }
+        ]
+      },
+
+      game3: {
+        id: "game3",
+        badge: "GAME 3 • 20 CÂU",
+        title: "Thám Tử Do / Does & Wh- (Question Detective)",
+        desc: "Phá giải các câu hỏi Yes/No và câu hỏi từ để hỏi (Where, What time, When, How often). Nhận biết chính xác vị trí đảo trợ từ!",
+        color: "amber",
+        questions: [
+          {
+            id: 1,
+            question: "I live near here. Where ______ live?",
+            options: ["A. do you", "B. you", "C. are you", "D. does you"],
+            correct: 0,
+            explain: "Câu hỏi Wh- với động từ thường 'live' và chủ ngữ 'you' ➔ đảo trợ động từ 'do' lên trước 'you'. (SGK tr.9 - Ex 1.4).",
+            rule: "Wh-word + DO + you + V_nguyên mẫu?"
+          },
+          {
+            id: 2,
+            question: "Miss Nguyet: \"______ you have any new friends, Duy?\"",
+            options: ["A. Do", "B. Does", "C. Are", "D. Is"],
+            correct: 0,
+            explain: "Câu hỏi Yes/No với chủ ngữ 'you' và động từ thường 'have' ➔ dùng trợ từ 'Do' đầu câu. (SGK tr.9 - Ex 2.2).",
+            rule: "DO + you + have...?"
+          },
+          {
+            id: 3,
+            question: "______ Vy walk to school with you?",
+            options: ["A. Do", "B. Is", "C. Does", "D. Are"],
+            correct: 2,
+            explain: "Chủ ngữ 'Vy' là ngôi thứ ba số ít (she) ➔ dùng trợ động từ 'Does'. Động từ 'walk' ở dạng nguyên mẫu. (SGK tr.9 - Ex 2.4).",
+            rule: "DOES + He/She/Vy + V_nguyên mẫu?"
+          },
+          {
+            id: 4,
+            question: "What time ______ you go home every day?",
+            options: ["A. are", "B. do", "C. does", "D. is"],
+            correct: 1,
+            explain: "Cấu trúc hỏi giờ giấc: What time + do/does + S + V? Với chủ ngữ 'you' ta dùng 'do'. (SGK tr.9 - Ex 2).",
+            rule: "What time + DO + you + go home?"
+          },
+          {
+            id: 5,
+            question: "______ your new school big and modern?",
+            options: ["A. Is", "B. Does", "C. Do", "D. Are"],
+            correct: 0,
+            explain: "'Your new school' là danh từ số ít. 'Big and modern' là tính từ nên câu hỏi dùng To-be 'Is' đảo lên đầu.",
+            rule: "IS + danh từ số ít + adj...?"
+          },
+          {
+            id: 6,
+            question: "What subjects ______ Duy like best at school?",
+            options: ["A. do", "B. is", "C. does", "D. are"],
+            correct: 2,
+            explain: "Chủ ngữ là 'Duy' (số ít) và động từ thường là 'like' ➔ dùng trợ động từ 'does'.",
+            rule: "What subjects + DOES + Duy + like?"
+          },
+          {
+            id: 7,
+            question: "______ Phong and Duy study in the same classroom?",
+            options: ["A. Does", "B. Do", "C. Are", "D. Is"],
+            correct: 1,
+            explain: "'Phong and Duy' là 2 người (chủ ngữ số nhiều) ➔ dùng trợ động từ 'Do'.",
+            rule: "DO + S (số nhiều) + study...?"
+          },
+          {
+            id: 8,
+            question: "Where ______ your English teacher come from?",
+            options: ["A. do", "B. does", "C. is", "D. are"],
+            correct: 1,
+            explain: "'Your English teacher' là danh từ số ít (chỉ 1 thầy/cô) ➔ dùng trợ động từ 'does'.",
+            rule: "Where + DOES + teacher + come from?"
+          },
+          {
+            id: 9,
+            question: "______ you often ride your bicycle to school?",
+            options: ["A. Do", "B. Does", "C. Are", "D. Have"],
+            correct: 0,
+            explain: "Câu hỏi Yes/No với chủ ngữ 'you' ➔ bắt đầu bằng 'Do'. (SGK tr.10 - Ex 5.1).",
+            rule: "Do you often + V_inf...?"
+          },
+          {
+            id: 10,
+            question: "______ your friends always go to school with you?",
+            options: ["A. Does", "B. Do", "C. Are", "D. Is"],
+            correct: 1,
+            explain: "Lưu ý 'your friends' có đuôi -s (những người bạn = danh từ số nhiều) ➔ phải dùng 'Do'. (SGK tr.10 - Ex 5.4).",
+            rule: "DO + your friends (số nhiều) + always go...?"
+          },
+          {
+            id: 11,
+            question: "How ______ you go to school every morning? - By bus.",
+            options: ["A. do", "B. does", "C. are", "D. is"],
+            correct: 0,
+            explain: "Hỏi phương tiện đi lại: How + do + you + go to school?",
+            rule: "How do you go to school?"
+          },
+          {
+            id: 12,
+            question: "______ Duy have lunch at the school canteen?",
+            options: ["A. Do", "B. Is", "C. Does", "D. Are"],
+            correct: 2,
+            explain: "Chủ ngữ 'Duy' là số ít nên câu hỏi mượn trợ từ 'Does'. Động từ 'have' giữ nguyên.",
+            rule: "Does + Duy + have...?"
+          },
+          {
+            id: 13,
+            question: "When ______ they usually have English lessons?",
+            options: ["A. do", "B. does", "C. are", "D. is"],
+            correct: 0,
+            explain: "Chủ ngữ 'they' (họ) là số nhiều ➔ dùng trợ từ 'do'.",
+            rule: "When + DO + they + usually have...?"
+          },
+          {
+            id: 14,
+            question: "______ there a library in your new school?",
+            options: ["A. Are", "B. Is", "C. Does", "D. Do"],
+            correct: 1,
+            explain: "Cấu trúc hỏi 'Có ... không' với danh từ số ít 'a library' ➔ dùng 'Is there...?'.",
+            rule: "Is there + a/an + N số ít...?"
+          },
+          {
+            id: 15,
+            question: "What kind of music ______ Susan listen to?",
+            options: ["A. does", "B. is", "C. do", "D. are"],
+            correct: 0,
+            explain: "Chủ ngữ 'Susan' là ngôi thứ ba số ít ➔ dùng 'does'. (SGK tr.10 - Ex 4.4).",
+            rule: "What kind of music + DOES + Susan + listen to?"
+          },
+          {
+            id: 16,
+            question: "______ the students wear their uniforms on Mondays?",
+            options: ["A. Does", "B. Do", "C. Are", "D. Is"],
+            correct: 1,
+            explain: "'The students' là danh từ số nhiều ➔ dùng trợ từ 'Do'.",
+            rule: "DO + the students + wear...?"
+          },
+          {
+            id: 17,
+            question: "Why ______ you like your new school?",
+            options: ["A. are", "B. does", "C. do", "D. is"],
+            correct: 2,
+            explain: "Câu hỏi Wh- với 'Why' và chủ ngữ 'you' ➔ đảo trợ từ 'do'.",
+            rule: "Why + do + you + like...?"
+          },
+          {
+            id: 18,
+            question: "______ your sister study in the school library after class?",
+            options: ["A. Does", "B. Do", "C. Is", "D. Are"],
+            correct: 0,
+            explain: "'Your sister' (chị/em gái bạn) là danh từ số ít ➔ dùng 'Does'.",
+            rule: "Does + your sister + study...?"
+          },
+          {
+            id: 19,
+            question: "How many subjects ______ we have on Wednesday?",
+            options: ["A. are", "B. does", "C. do", "D. is"],
+            correct: 2,
+            explain: "Chủ ngữ là 'we' (chúng tôi) ➔ dùng trợ động từ 'do'.",
+            rule: "How many subjects + do + we + have?"
+          },
+          {
+            id: 20,
+            question: "______ you ready to join the football club?",
+            options: ["A. Do", "B. Are", "C. Is", "D. Does"],
+            correct: 1,
+            explain: "'Ready' là tính từ (sẵn sàng) nên câu hỏi dùng to-be: 'Are you ready...?'. Không dùng Do!",
+            rule: "ARE + you + ready...?"
+          }
+        ]
+      },
+
+      game4: {
+        id: "game4",
+        badge: "GAME 4 • 20 CÂU",
+        title: "Vòng Xoay Tần Suất (Frequency Speedrun)",
+        desc: "Thử thách vị trí 'vàng' của trạng từ tần suất (always, usually, often, sometimes, rarely, never). Đứng trước V thường - Đứng sau To-Be!",
+        color: "emerald",
+        questions: [
+          {
+            id: 1,
+            question: "I ______ late on Saturdays.",
+            options: ["A. get up usually", "B. usually get up", "C. get usually up", "D. usually gets up"],
+            correct: 1,
+            explain: "Quy tắc vàng: Trạng từ tần suất đứng TRƯỚC động từ thường. Với chủ ngữ 'I', động từ 'get up' nguyên thể. (SGK tr.10 - Ex 4.1).",
+            rule: "S + Adverb (usually) + Main Verb (get up)"
+          },
+          {
+            id: 2,
+            question: "My mum ______ to work late.",
+            options: ["A. rarely goes", "B. goes rarely", "C. rarely go", "D. is rarely go"],
+            correct: 0,
+            explain: "'Rarely' đứng trước động từ thường 'goes'. 'My mum' là số ít nên 'go' thêm -es thành 'goes'. (SGK tr.10 - Ex 4.2).",
+            rule: "My mum + rarely + goes"
+          },
+          {
+            id: 3,
+            question: "______ at weekends?",
+            options: ["A. Often do you travel", "B. Do you travel often", "C. Do you often travel", "D. Are you often travel"],
+            correct: 2,
+            explain: "Trong câu hỏi, trạng từ tần suất 'often' đứng ngay TRƯỚC động từ thường 'travel': Do you + often + travel? (SGK tr.10 - Ex 4.3).",
+            rule: "Do + S + [Adverb] + V_inf...?"
+          },
+          {
+            id: 4,
+            question: "What kind of music ______?",
+            options: ["A. usually does Susan listen to", "B. does Susan usually listen to", "C. does usually Susan listen to", "D. Susan usually listens to"],
+            correct: 1,
+            explain: "Trợ từ 'does' đứng trước chủ ngữ 'Susan', trạng từ 'usually' đứng ngay trước động từ 'listen to'. (SGK tr.10 - Ex 4.4).",
+            rule: "does + S + usually + V_inf?"
+          },
+          {
+            id: 5,
+            question: "When ______ go on holiday each year?",
+            options: ["A. you usually", "B. do you usually", "C. usually you", "D. are you usually"],
+            correct: 1,
+            explain: "Câu hỏi Wh- cần trợ từ 'do' trước 'you', sau đó là trạng từ 'usually' rồi tới động từ 'go'. (SGK tr.10 - Ex 4.5).",
+            rule: "When + do + you + usually + go...?"
+          },
+          {
+            id: 6,
+            question: "Tom ______ the bus to school.",
+            options: ["A. usually takes", "B. takes usually", "C. usually take", "D. is usually takes"],
+            correct: 0,
+            explain: "Trạng từ 'usually' đứng trước động từ 'takes'. 'Tom' là số ít nên động từ 'take' thêm -s. (SGK tr.10 mục Remember).",
+            rule: "Tom (số ít) + usually + takes"
+          },
+          {
+            id: 7,
+            question: "They ______ to the cinema on weekdays.",
+            options: ["A. go often not", "B. don't often go", "C. often don't go", "D. not often go"],
+            correct: 1,
+            explain: "Trong câu phủ định, trạng từ tần suất thường đứng sau trợ từ phủ định: don't / doesn't + often + V. (SGK tr.10).",
+            rule: "don't + often + go"
+          },
+          {
+            id: 8,
+            question: "Nam is a good student. He ______ on time for school.",
+            options: ["A. is always", "B. always is", "C. does always", "D. is always be"],
+            correct: 0,
+            explain: "Quy tắc vàng với To-Be: Trạng từ tần suất đứng SAU động từ To-Be (am / is / are) ➔ 'is always'.",
+            rule: "S + TO-BE + Adverb (He is always on time)"
+          },
+          {
+            id: 9,
+            question: "We ______ bicycle to school with our friends.",
+            options: ["A. ride often our", "B. often ride our", "C. often rides our", "D. are often ride"],
+            correct: 1,
+            explain: "'Often' đứng trước động từ thường 'ride'. Chủ ngữ 'We' nên động từ giữ nguyên mẫu.",
+            rule: "We + often + ride"
+          },
+          {
+            id: 10,
+            question: "I ______ do my homework right after dinner.",
+            options: ["A. always", "B. rarely not", "C. not never", "D. ever"],
+            correct: 0,
+            explain: "'Always' (luôn luôn) đứng trước động từ thường 'do'.",
+            rule: "I + always + do my homework"
+          },
+          {
+            id: 11,
+            question: "My brother ______ plays football because he doesn't like sports.",
+            options: ["A. always", "B. never", "C. usually", "D. often"],
+            correct: 1,
+            explain: "Theo nghĩa câu: Vì anh ấy không thích thể thao (doesn't like sports), nên anh ấy KHÔNG BAO GIỜ (never - 0%) chơi bóng đá.",
+            rule: "0% frequency = NEVER (Đứng trước plays)"
+          },
+          {
+            id: 12,
+            question: "______ you sometimes study in the school library?",
+            options: ["A. Do", "B. Are", "C. Does", "D. Is"],
+            correct: 0,
+            explain: "Câu hỏi Yes/No với chủ ngữ 'you' và động từ 'study': Do + you + sometimes + study...?",
+            rule: "Do + you + sometimes + V?"
+          },
+          {
+            id: 13,
+            question: "The students ______ quiet during the English test.",
+            options: ["A. always are", "B. are always", "C. always", "D. be always"],
+            correct: 1,
+            explain: "Động từ To-be 'are' đứng trước trạng từ tần suất 'always' ➔ 'are always'.",
+            rule: "To-be (are) + always + adj (quiet)"
+          },
+          {
+            id: 14,
+            question: "How ______ do you play badminton after school? - Twice a week.",
+            options: ["A. often", "B. many", "C. much", "D. rarely"],
+            correct: 0,
+            explain: "Cấu trúc hỏi tần suất làm việc gì đó: 'How often...?' (Bạn có thường... không?).",
+            rule: "How often + do/does + S + V?"
+          },
+          {
+            id: 15,
+            question: "Vy ______ helps her mother with the housework.",
+            options: ["A. usually", "B. usually is", "C. is usually", "D. usually does"],
+            correct: 0,
+            explain: "'Usually' đứng trước động từ thường 'helps'. Chủ ngữ 'Vy' là số ít nên 'help' thêm -s.",
+            rule: "Vy + usually + helps"
+          },
+          {
+            id: 16,
+            question: "Duy and Phong are ______ to each other.",
+            options: ["A. always nice", "B. nice always", "C. always be nice", "D. do always nice"],
+            correct: 0,
+            explain: "Sau to-be 'are' là trạng từ 'always', sau đó là tính từ 'nice' ➔ 'are always nice'.",
+            rule: "are + always + nice"
+          },
+          {
+            id: 17,
+            question: "She ______ eats fast food because it is unhealthy.",
+            options: ["A. rarely", "B. always", "C. usually", "D. often"],
+            correct: 0,
+            explain: "Dựa vào ngữ cảnh 'unhealthy' (không tốt cho sức khoẻ), nên cô ấy 'hiếm khi' (rarely) ăn đồ ăn nhanh.",
+            rule: "Rarely (10%) đứng trước eats"
+          },
+          {
+            id: 18,
+            question: "______ does your sister usually get up on Sundays?",
+            options: ["A. What time", "B. How often", "C. How many", "D. Who"],
+            correct: 0,
+            explain: "Hỏi về mốc thời gian thức dậy: What time does your sister usually get up?",
+            rule: "What time + does + S + usually + get up?"
+          },
+          {
+            id: 19,
+            question: "We are ______ on time for the flag salute ceremony.",
+            options: ["A. never", "B. always", "C. rarely", "D. seldom"],
+            correct: 1,
+            explain: "Học sinh luôn luôn (always) có mặt đúng giờ cho lễ chào cờ. 'Always' đứng sau 'are'.",
+            rule: "are + always + on time"
+          },
+          {
+            id: 20,
+            question: "Duy ______ wears his uniform on Sunday because he doesn't go to school.",
+            options: ["A. always", "B. never", "C. usually", "D. often"],
+            correct: 1,
+            explain: "Chủ nhật không đi học (doesn't go to school) nên Duy 'không bao giờ' (never - 0%) mặc đồng phục.",
+            rule: "never (0%) đứng trước động từ wears"
+          }
+        ]
+      },
+
+      game5: {
+        id: "game5",
+        badge: "GAME 5 • 20 CÂU",
+        title: "Đấu Trường Quán Quân (Grammar Master Cup)",
+        desc: "Thử thách tìm lỗi sai, viết lại câu và bài tập nâng cao tổng hợp toàn bộ kiến thức thì Hiện Tại Đơn Unit 1 sách Global Success!",
+        color: "purple",
+        questions: [
+          {
+            id: 1,
+            question: "Tìm lỗi sai: 'She [A] don't [B] have a new [C] calculator in her [D] school bag.'",
+            options: ["A. don't", "B. have", "C. calculator", "D. school bag"],
+            correct: 0,
+            explain: "Lỗi sai ở [A] don't. Với chủ ngữ số ít 'She', trợ động từ phủ định phải là 'doesn't'. Sửa: don't ➔ doesn't.",
+            rule: "She + doesn't have"
+          },
+          {
+            id: 2,
+            question: "Tìm lỗi sai: 'Duy [A] always cycle [B] to school [C] with his [D] friends.'",
+            options: ["A. always", "B. cycle", "C. to school", "D. friends"],
+            correct: 1,
+            explain: "Lỗi sai ở [B] cycle. 'Duy' là ngôi thứ 3 số ít, động từ thường phải chia có 's' ➔ 'cycles'.",
+            rule: "Duy always cycles"
+          },
+          {
+            id: 3,
+            question: "Tìm lỗi sai: 'My new school [A] are [B] very big [C] and beautiful [D].'",
+            options: ["A. My new school", "B. are", "C. big", "D. beautiful"],
+            correct: 1,
+            explain: "Lỗi sai ở [B] are. 'My new school' là danh từ số ít nên to-be phải là 'is'. Sửa: are ➔ is.",
+            rule: "My new school IS"
+          },
+          {
+            id: 4,
+            question: "Tìm lỗi sai: 'Where [A] does [B] you live [C] with your [D] family?'",
+            options: ["A. Where", "B. does", "C. live", "D. your"],
+            correct: 1,
+            explain: "Lỗi sai ở [B] does. Với chủ ngữ 'you', trợ động từ phải là 'do'. Sửa: does ➔ do.",
+            rule: "Where DO you live?"
+          },
+          {
+            id: 5,
+            question: "Tìm lỗi sai: 'He [A] is usually [B] get up [C] at 6 a.m. [D] every day.'",
+            options: ["A. He", "B. is usually", "C. get up", "D. every day"],
+            correct: 1,
+            explain: "Lỗi sai ở [B] is usually. 'Get up' là động từ thường nên không dùng to-be 'is'. Câu đúng: 'He usually gets up...'.",
+            rule: "Không dùng is + V nguyên trong thì hiện tại đơn"
+          },
+          {
+            id: 6,
+            question: "Chọn câu viết ĐÚNG ngữ pháp nhất:",
+            options: [
+              "A. Tom usually takes the bus to school.",
+              "B. Tom takes usually the bus to school.",
+              "C. Tom usually take the bus to school.",
+              "D. Tom is usually take the bus to school."
+            ],
+            correct: 0,
+            explain: "Câu A đúng hoàn toàn: 'usually' đứng trước động từ thường 'takes' và 'Tom' số ít nên 'take' thêm -s.",
+            rule: "Tom usually takes..."
+          },
+          {
+            id: 7,
+            question: "Chọn câu viết ĐÚNG ngữ pháp nhất:",
+            options: [
+              "A. Does Vy walks to school with you?",
+              "B. Does Vy walk to school with you?",
+              "C. Do Vy walk to school with you?",
+              "D. Is Vy walk to school with you?"
+            ],
+            correct: 1,
+            explain: "Câu B đúng: Trong câu hỏi có 'Does', động từ chính 'walk' phải ở dạng nguyên thể không chia.",
+            rule: "Does + Vy + walk (nguyên thể)?"
+          },
+          {
+            id: 8,
+            question: "Duy: 'I usually go home at 4 p.m.' ➔ Nghĩa là gì?",
+            options: [
+              "A. Duy luôn luôn về nhà lúc 4 giờ.",
+              "B. Duy thường xuyên về nhà lúc 4 giờ chiều.",
+              "C. Duy hiếm khi về nhà lúc 4 giờ.",
+              "D. Duy không bao giờ về nhà lúc 4 giờ."
+            ],
+            correct: 1,
+            explain: "'Usually' có nghĩa là 'thường xuyên' (khoảng 80% thời gian). 'p.m.' là buổi chiều.",
+            rule: "usually = thường xuyên / p.m. = chiều"
+          },
+          {
+            id: 9,
+            question: "Hoàn thành đoạn hội thoại: Miss Nguyet: '______ you have any new friends?' - Duy: 'Yes, I ______.'",
+            options: ["A. Do / do", "B. Does / does", "C. Are / am", "D. Do / have"],
+            correct: 0,
+            explain: "Hỏi 'Do you...?' trả lời 'Yes, I do.'. (Xem bài phỏng vấn SGK tr.9).",
+            rule: "Do you...? ➔ Yes, I do."
+          },
+          {
+            id: 10,
+            question: "Tìm lỗi sai: 'They [A] doesn't [B] often go [C] to the cinema [D].'",
+            options: ["A. They", "B. doesn't", "C. go", "D. to the cinema"],
+            correct: 1,
+            explain: "Lỗi sai ở [B] doesn't. 'They' là số nhiều nên phải dùng 'don't'. Sửa: doesn't ➔ don't.",
+            rule: "They + don't often go"
+          },
+          {
+            id: 11,
+            question: "Điền cặp từ đúng: 'Vy ______ her homework, but Duy ______ judo.'",
+            options: ["A. does / does", "B. do / does", "C. does / do", "D. do / do"],
+            correct: 0,
+            explain: "Cả 'Vy' và 'Duy' đều là chủ ngữ số ít, nên động từ 'do' đều phải thêm -es thành 'does' (does homework / does judo).",
+            rule: "Vy does / Duy does"
+          },
+          {
+            id: 12,
+            question: "Sắp xếp lại các từ sau thành câu đúng: 'rarely / my mum / to work / goes / late.'",
+            options: [
+              "A. My mum goes rarely to work late.",
+              "B. My mum rarely goes to work late.",
+              "C. Rarely my mum goes to work late.",
+              "D. My mum to work rarely goes late."
+            ],
+            correct: 1,
+            explain: "'Rarely' đứng trước động từ thường 'goes' ➔ 'My mum rarely goes to work late.' (SGK tr.10 - Ex 4.2).",
+            rule: "S + rarely + V"
+          },
+          {
+            id: 13,
+            question: "Tìm lỗi sai: 'Our school [A] have [B] a large [C] library with [D] many books.'",
+            options: ["A. Our school", "B. have", "C. large", "D. with"],
+            correct: 1,
+            explain: "Lỗi sai ở [B] have. 'Our school' là danh từ số ít nên 'have' phải chuyển thành 'has'.",
+            rule: "Our school + has"
+          },
+          {
+            id: 14,
+            question: "Chọn câu phủ định đúng của câu: 'Nam studies English every day.'",
+            options: [
+              "A. Nam doesn't studies English every day.",
+              "B. Nam isn't study English every day.",
+              "C. Nam doesn't study English every day.",
+              "D. Nam don't study English every day."
+            ],
+            correct: 2,
+            explain: "Phủ định mượn 'doesn't' và đưa 'studies' về nguyên thể là 'study' ➔ 'Nam doesn't study...'.",
+            rule: "doesn't + study (nguyên mẫu)"
+          },
+          {
+            id: 15,
+            question: "Điền từ thích hợp: '______ does Phong feel on his first day at school? - He feels happy.'",
+            options: ["A. How", "B. What", "C. Where", "D. When"],
+            correct: 0,
+            explain: "Hỏi về cảm xúc/tâm trạng: 'How does + S + feel?' (Phong cảm thấy thế nào?).",
+            rule: "How does + S + feel?"
+          },
+          {
+            id: 16,
+            question: "Tìm lỗi sai: 'Susan [A] always is [B] ready [C] for the new [D] lesson.'",
+            options: ["A. Susan", "B. always is", "C. ready", "D. lesson"],
+            correct: 1,
+            explain: "Lỗi sai ở [B] always is. Trạng từ tần suất phải đứng SAU động từ To-Be. Sửa: 'always is' ➔ 'is always'.",
+            rule: "is always ready (To-Be trước Adverb)"
+          },
+          {
+            id: 17,
+            question: "Chọn câu có cùng nghĩa với: 'I never go to school by car.'",
+            options: [
+              "A. I always walk or cycle to school, not by car.",
+              "B. I usually go to school by car.",
+              "C. I sometimes go to school by car.",
+              "D. I rarely drive my car to school."
+            ],
+            correct: 0,
+            explain: "'Never' nghĩa là 0% (không bao giờ). Tức là không bao giờ đi ô tô mà luôn đi bộ hoặc xe đạp.",
+            rule: "never = 0% frequency"
+          },
+          {
+            id: 18,
+            question: "Chọn câu hỏi đúng cho câu trả lời: 'Yes, we often ride our bicycles to school.'",
+            options: [
+              "A. Do you often ride your bicycles to school?",
+              "B. Does you often ride your bicycles to school?",
+              "C. Are you often ride your bicycles to school?",
+              "D. Do often you ride your bicycles to school?"
+            ],
+            correct: 0,
+            explain: "Câu hỏi Yes/No với 'you' và trạng từ 'often': 'Do you often ride your bicycles to school?' (SGK tr.10).",
+            rule: "Do you often + V...?"
+          },
+          {
+            id: 19,
+            question: "Điền trợ động từ phù hợp: 'What ______ your new classmate look like?'",
+            options: ["A. do", "B. does", "C. is", "D. are"],
+            correct: 1,
+            explain: "'Your new classmate' là số ít (người bạn cùng lớp mới của bạn) và có động từ thường 'look like' ➔ dùng 'does'.",
+            rule: "What DOES + N số ít + look like?"
+          },
+          {
+            id: 20,
+            question: "Thử thách trùm cuối: 'Duy and his friends ______ their uniforms, and Duy ______ his bicycle to school.'",
+            options: [
+              "A. wears / ride",
+              "B. wear / rides",
+              "C. wearing / is ride",
+              "D. wear / ride"
+            ],
+            correct: 1,
+            explain: "'Duy and his friends' là số nhiều ➔ động từ nguyên thể 'wear'. 'Duy' ở vế sau là số ít ➔ động từ thêm s thành 'rides'.",
+            rule: "Nhiều + wear / Duy + rides"
+          }
+        ]
+      }
+    };
+
+    /* ==========================================================
+       APP CONTROLLER & STATE
+       ========================================================== */
+    let currentTab = 'theory';
+    let userAnswers = {
+      game1: {},
+      game2: {},
+      game3: {},
+      game4: {},
+      game5: {}
+    };
+
+    function switchTab(tabId) {
+      currentTab = tabId;
+
+      // Update Nav Buttons appearance
+      const navButtons = document.querySelectorAll('.nav-btn');
+      navButtons.forEach(btn => {
+        btn.classList.remove('bg-gradient-to-r', 'from-purple-600', 'to-indigo-600', 'text-white', 'shadow-md', 'bg-blue-600');
+        btn.classList.add('text-slate-600', 'hover:bg-slate-100');
+      });
+
+      const activeBtn = document.getElementById(`btn-tab-${tabId}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-slate-600', 'hover:bg-slate-100');
+        activeBtn.classList.add('bg-gradient-to-r', 'from-blue-600', 'to-indigo-600', 'text-white', 'shadow-md');
+      }
+
+      // Hide or show sections
+      const theorySec = document.getElementById('section-theory');
+      const gameSec = document.getElementById('section-game-play');
+
+      if (tabId === 'theory') {
+        theorySec.classList.remove('hidden');
+        gameSec.classList.add('hidden');
+        document.getElementById('currentScoreDisplay').innerText = "Cẩm Nang";
+      } else {
+        theorySec.classList.add('hidden');
+        gameSec.classList.remove('hidden');
+        loadGame(tabId);
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function loadGame(gameKey) {
+      const data = GAMES_DATA[gameKey];
+      if (!data) return;
+
+      // Update header
+      document.getElementById('gameBadge').innerText = data.badge;
+      document.getElementById('gameTitle').innerText = data.title;
+      document.getElementById('gameDesc').innerText = data.desc;
+
+      renderQuestions(gameKey);
+      updateScoreDisplay(gameKey);
+    }
+
+    function renderQuestions(gameKey) {
+      const container = document.getElementById('questionsContainer');
+      container.innerHTML = '';
+      const data = GAMES_DATA[gameKey];
+
+      data.questions.forEach((q, index) => {
+        const userAnswerIndex = userAnswers[gameKey][q.id];
+        const isAnswered = userAnswerIndex !== undefined;
+        const isCorrect = isAnswered && userAnswerIndex === q.correct;
+
+        const qCard = document.createElement('div');
+        qCard.className = `p-4 sm:p-5 rounded-2xl bg-white border transition duration-200 ${
+          isAnswered 
+            ? (isCorrect ? 'border-emerald-300 bg-emerald-50/20' : 'border-rose-300 bg-rose-50/20')
+            : 'border-slate-200 hover:border-blue-200 hover:shadow-sm'
+        }`;
+
+        // Question text and audio
+        let html = `
+          <div class="flex items-start justify-between gap-3 mb-3">
+            <div class="flex items-start gap-2.5">
+              <span class="w-7 h-7 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center font-bold text-xs shrink-0 mt-0.5">
+                ${index + 1}
+              </span>
+              <div>
+                <p class="font-bold text-slate-800 text-sm sm:text-base leading-snug">${escapeHtml(q.question)}</p>
+                <p class="text-[11px] text-slate-400 mt-0.5">Unit 1 Grammar Practice</p>
+              </div>
+            </div>
+            <!-- Audio Button for Question -->
+            <button onclick="speakText('${escapeQuotes(q.question)}', this)" class="shrink-0 p-2 rounded-xl text-blue-600 hover:bg-blue-50 border border-transparent hover:border-blue-200 transition" title="Nghe phát âm câu hỏi (US Female Voice)">
+              <i class="fa-solid fa-volume-high text-base"></i>
+            </button>
+          </div>
+
+          <!-- Options Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-3">
+        `;
+
+        q.options.forEach((opt, optIndex) => {
+          let btnClass = "border-slate-200 bg-slate-50/70 hover:bg-slate-100 text-slate-700";
+          let iconHtml = `<span class="w-5 h-5 rounded-md border border-slate-300 text-[11px] flex items-center justify-center font-bold text-slate-500">${String.fromCharCode(65 + optIndex)}</span>`;
+
+          if (isAnswered) {
+            if (optIndex === q.correct) {
+              btnClass = "border-emerald-500 bg-emerald-100/80 text-emerald-900 font-bold shadow-sm";
+              iconHtml = `<i class="fa-solid fa-circle-check text-emerald-600 text-base"></i>`;
+            } else if (userAnswerIndex === optIndex) {
+              btnClass = "border-rose-500 bg-rose-100/80 text-rose-900 font-bold shadow-sm";
+              iconHtml = `<i class="fa-solid fa-circle-xmark text-rose-600 text-base"></i>`;
+            } else {
+              btnClass = "opacity-50 border-slate-200 bg-slate-50 text-slate-400";
+            }
+          }
+
+          html += `
+            <div class="flex items-center gap-1.5 w-full">
+              <button onclick="selectOption('${gameKey}', ${q.id}, ${optIndex})" 
+                      class="flex-1 flex items-center justify-between p-3 rounded-xl border text-xs sm:text-sm transition text-left ${btnClass}">
+                <span class="flex items-center gap-2">
+                  ${iconHtml}
+                  <span>${escapeHtml(opt)}</span>
+                </span>
+              </button>
+              <!-- Small Audio Button for each option -->
+              <button onclick="speakText('${escapeQuotes(opt.replace(/^[A-D]\.\s*/, ''))}', this)" 
+                      class="p-2.5 rounded-xl text-slate-400 hover:text-blue-600 hover:bg-blue-50 border border-slate-100 transition" title="Nghe phát âm đáp án này">
+                <i class="fa-solid fa-volume-high text-xs"></i>
+              </button>
+            </div>
+          `;
+        });
+
+        html += `</div>`;
+
+        // Explanation & Rule Box (Shown immediately if answered)
+        if (isAnswered) {
+          html += `
+            <div class="mt-3.5 p-3.5 rounded-xl ${isCorrect ? 'bg-emerald-50/90 border border-emerald-200' : 'bg-rose-50/90 border border-rose-200'} text-xs">
+              <div class="flex items-center justify-between mb-1.5">
+                <div class="flex items-center gap-1.5 font-bold ${isCorrect ? 'text-emerald-800' : 'text-rose-800'}">
+                  <i class="fa-solid ${isCorrect ? 'fa-circle-check text-emerald-600' : 'fa-circle-info text-rose-600'}"></i>
+                  <span>${isCorrect ? 'Tuyệt vời! Chính xác 100%' : 'Chưa đúng rồi! Hãy cùng Ms. Lily xem lý do nhé:'}</span>
+                </div>
+                <!-- Audio button for full explanation & correct answer -->
+                <button onclick="speakText('${escapeQuotes(q.options[q.correct])}. ${escapeQuotes(q.rule)}', this)" class="text-xs font-bold ${isCorrect ? 'text-emerald-700' : 'text-rose-700'} hover:underline flex items-center gap-1">
+                  <i class="fa-solid fa-volume-high"></i> Nghe đáp án đúng
+                </button>
+              </div>
+              <p class="text-slate-700 leading-relaxed font-medium"><strong>Tại sao chọn:</strong> ${escapeHtml(q.explain)}</p>
+              <div class="mt-1.5 inline-block bg-white/80 px-2.5 py-1 rounded-md text-[11px] font-bold ${isCorrect ? 'text-emerald-900 border border-emerald-200' : 'text-rose-900 border border-rose-200'}">
+                📌 Cấu trúc ngữ pháp: <span class="font-mono">${escapeHtml(q.rule)}</span>
+              </div>
+            </div>
+          `;
+        }
+
+        qCard.innerHTML = html;
+        container.appendChild(qCard);
+      });
+    }
+
+    function selectOption(gameKey, questionId, optionIndex) {
+      const qData = GAMES_DATA[gameKey].questions.find(q => q.id === questionId);
+      if (!qData) return;
+
+      const isCorrect = optionIndex === qData.correct;
+      userAnswers[gameKey][questionId] = optionIndex;
+
+      // Sound feedback
+      playBeep(isCorrect);
+
+      // Re-render
+      renderQuestions(gameKey);
+      updateScoreDisplay(gameKey);
+
+      // Auto pronounce answer if desired
+      speakText(qData.options[optionIndex].replace(/^[A-D]\.\s*/, ''));
+    }
+
+    function updateScoreDisplay(gameKey) {
+      const data = GAMES_DATA[gameKey];
+      if (!data) return;
+
+      let correctCount = 0;
+      data.questions.forEach(q => {
+        if (userAnswers[gameKey][q.id] === q.correct) {
+          correctCount++;
+        }
+      });
+
+      const score = correctCount * 5; // 20 questions x 5 = 100 max
+      document.getElementById('currentScoreDisplay').innerText = `${score}/100`;
+    }
+
+    function resetCurrentGame() {
+      if (currentTab === 'theory') return;
+      userAnswers[currentTab] = {};
+      renderQuestions(currentTab);
+      updateScoreDisplay(currentTab);
+    }
+
+    function showAllAnswersAndExplanations() {
+      if (currentTab === 'theory') return;
+      const data = GAMES_DATA[currentTab];
+      data.questions.forEach(q => {
+        if (userAnswers[currentTab][q.id] === undefined) {
+          userAnswers[currentTab][q.id] = q.correct;
+        }
+      });
+      renderQuestions(currentTab);
+      updateScoreDisplay(currentTab);
+    }
+
+    function goToNextGame() {
+      const tabs = ['theory', 'game1', 'game2', 'game3', 'game4', 'game5'];
+      const currentIndex = tabs.indexOf(currentTab);
+      const nextIndex = (currentIndex + 1) % tabs.length;
+      switchTab(tabs[nextIndex]);
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+    }
+
+    function escapeQuotes(str) {
+      if (!str) return '';
+      return str.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    }
+
+    // Initialize on page load
+    window.addEventListener('DOMContentLoaded', () => {
+      switchTab('theory');
+    });
+  </script>
+</body>
+</html>

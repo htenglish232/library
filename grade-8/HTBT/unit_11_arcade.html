@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="vi" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HT English - Unit 11 Reported Speech Arcade</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            fun: ['"Fredoka"', 'cursive'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              400: '#2dd4bf',
+              500: '#14b8a6',
+              600: '#0d9488',
+              800: '#115e59',
+              900: '#134e4a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background: radial-gradient(circle at top left, #0f172a, #090d16);
+      min-height: 100vh;
+      color: #f8fafc;
+    }
+    .glass-card {
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .glass-card-hover {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .glass-card-hover:hover {
+      transform: translateY(-3px);
+      border-color: rgba(45, 212, 191, 0.4);
+      box-shadow: 0 12px 24px -6px rgba(13, 148, 136, 0.25);
+    }
+    .btn-bounce:active {
+      transform: scale(0.96);
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 15px rgba(20, 184, 166, 0.4); }
+      50% { box-shadow: 0 0 30px rgba(20, 184, 166, 0.8); }
+    }
+    .pulse-glow {
+      animation: pulseGlow 2.5s infinite;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: rgba(15, 23, 42, 0.6);
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: rgba(45, 212, 191, 0.3);
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: rgba(45, 212, 191, 0.6);
+    }
+  </style>
+</head>
+<body class="font-sans antialiased selection:bg-teal-500 selection:text-white custom-scrollbar pb-12">
+
+  <header class="sticky top-0 z-40 glass-card border-b border-slate-800/80 bg-slate-950/80 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-teal-500 to-cyan-400 flex items-center justify-center text-slate-950 font-fun text-2xl font-bold shadow-lg shadow-teal-500/30">
+          HT
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-fun text-xl md:text-2xl font-bold text-white tracking-wide">HT ENGLISH</h1>
+            <span class="bg-teal-500/20 text-teal-300 text-xs font-bold px-2.5 py-0.5 rounded-full border border-teal-500/40">Ms. Lily</span>
+          </div>
+          <p class="text-xs text-slate-400">Unit 11: Science & Technology • Reported Speech Master</p>
+        </div>
+      </div>
+
+      <div class="hidden md:flex items-center gap-6 text-xs text-slate-300">
+        <div class="flex items-center gap-2">
+          <span class="text-teal-400 text-sm">📞</span>
+          <div>
+            <div class="font-bold text-slate-200">0963.422.940 - 0962.240.866</div>
+            <div class="text-[10px] text-slate-400">Hotline tư vấn</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-teal-400 text-sm">📍</span>
+          <div>
+            <div class="font-bold text-slate-200">Đạo Đường, Ninh Cường</div>
+            <div class="text-[10px] text-slate-400">Ninh Bình</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <div class="bg-slate-900/90 px-3.5 py-1.5 rounded-xl border border-slate-700/70 flex items-center gap-2 text-xs">
+          <span class="text-amber-400">⭐</span>
+          <span id="headerScore" class="font-fun font-bold text-amber-300 text-base">0</span>
+          <span class="text-slate-500">|</span>
+          <span class="text-rose-400">🔥</span>
+          <span id="headerStreak" class="font-fun font-bold text-rose-300 text-base">0</span>
+        </div>
+        <button onclick="testAudioGlobal()" class="p-2.5 bg-teal-500/20 hover:bg-teal-500/30 text-teal-300 border border-teal-500/40 rounded-xl text-sm transition btn-bounce" title="Test Giọng Nữ Anh-Mỹ 🔊">
+          🔊 <span class="hidden sm:inline text-xs font-bold ml-1">Giọng Mỹ</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 pt-6 space-y-6">
+
+    <nav class="flex items-center gap-2 overflow-x-auto pb-2 custom-scrollbar">
+      <button onclick="switchTab('handbook')" id="nav-handbook" class="px-4 py-2.5 rounded-xl font-fun font-semibold text-xs whitespace-nowrap transition flex items-center gap-2 bg-teal-500 text-slate-950 shadow-lg shadow-teal-500/20">
+        📖 Cẩm Nang Lý Thuyết
+      </button>
+      <button onclick="switchTab('game1')" id="nav-game1" class="px-4 py-2.5 rounded-xl font-fun font-semibold text-xs whitespace-nowrap transition flex items-center gap-2 bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800">
+        🏎️ Game 1: Lùi Thì (20Q)
+      </button>
+      <button onclick="switchTab('game2')" id="nav-game2" class="px-4 py-2.5 rounded-xl font-fun font-semibold text-xs whitespace-nowrap transition flex items-center gap-2 bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800">
+        🎈 Game 2: Trạng Từ (20Q)
+      </button>
+      <button onclick="switchTab('game3')" id="nav-game3" class="px-4 py-2.5 rounded-xl font-fun font-semibold text-xs whitespace-nowrap transition flex items-center gap-2 bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800">
+        🛸 Game 3: Said / Told (20Q)
+      </button>
+      <button onclick="switchTab('game4')" id="nav-game4" class="px-4 py-2.5 rounded-xl font-fun font-semibold text-xs whitespace-nowrap transition flex items-center gap-2 bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800">
+        🔍 Game 4: Sửa Lỗi Sai (20Q)
+      </button>
+      <button onclick="switchTab('game5')" id="nav-game5" class="px-4 py-2.5 rounded-xl font-fun font-semibold text-xs whitespace-nowrap transition flex items-center gap-2 bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800">
+        🧩 Game 5: Ghép Câu (20Q)
+      </button>
+    </nav>
+
+    <section id="view-handbook" class="glass-card rounded-3xl p-6 md:p-8 space-y-6">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-800 pb-5">
+        <div>
+          <div class="flex items-center gap-2 text-teal-400 font-bold text-xs uppercase tracking-wider mb-1">
+            <span>🔬 GLOBAL SUCCESS 8 • UNIT 11</span>
+          </div>
+          <h2 class="text-2xl md:text-3xl font-fun font-bold text-white flex items-center gap-3">
+            BÍ KÍP CÂU TƯỜNG THUẬT (REPORTED STATEMENTS)
+          </h2>
+          <p class="text-slate-400 text-xs md:text-sm mt-1">Nắm vững 3 quy tắc vàng: Lùi thì động từ, Chuyển đổi trạng từ và Biến đổi đại từ.</p>
+        </div>
+        <button onclick="speakText('Reported speech is used to report what someone said. When changing direct speech to reported speech, we shift verb tenses back, change pronouns, and adjust time and place expressions.')" class="px-4 py-2.5 bg-teal-500/20 hover:bg-teal-500/30 border border-teal-500/40 text-teal-300 rounded-xl text-xs font-bold flex items-center gap-2 transition btn-bounce">
+          🔊 Nghe tóm tắt lý thuyết
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-slate-900/90 rounded-2xl p-5 border border-teal-500/30 space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <h3 class="font-fun text-base text-teal-300 font-bold">1. Quy Tắc Lùi Thì (Verb Tenses)</h3>
+            <button onclick="speakText('Present simple changes to past simple. Present continuous changes to past continuous. Will changes to would. Can changes to could.')" class="text-teal-400 hover:text-teal-200">🔊</button>
+          </div>
+          <p class="text-xs text-slate-400">Khi động từ tường thuật ở quá khứ (<span class="text-amber-300 font-bold">said/told</span>), lùi động từ chính 1 thì:</p>
+          <div class="space-y-1.5 text-xs">
+            <div class="p-2 bg-slate-950/70 rounded-lg flex justify-between items-center">
+              <span class="text-slate-400">Hiện tại đơn (V1/s/es)</span>
+              <span class="text-teal-400 font-bold">Quá khứ đơn (V2/-ed)</span>
+            </div>
+            <div class="p-2 bg-slate-950/70 rounded-lg flex justify-between items-center">
+              <span class="text-slate-400">am / is / are</span>
+              <span class="text-teal-400 font-bold">was / were</span>
+            </div>
+            <div class="p-2 bg-slate-950/70 rounded-lg flex justify-between items-center">
+              <span class="text-slate-400">HT tiếp diễn (am/is/are + V-ing)</span>
+              <span class="text-teal-400 font-bold">QK tiếp diễn (was/were + V-ing)</span>
+            </div>
+            <div class="p-2 bg-slate-950/70 rounded-lg flex justify-between items-center">
+              <span class="text-slate-400">will + V-inf</span>
+              <span class="text-teal-400 font-bold">would + V-inf</span>
+            </div>
+            <div class="p-2 bg-slate-950/70 rounded-lg flex justify-between items-center">
+              <span class="text-slate-400">can + V-inf</span>
+              <span class="text-teal-400 font-bold">could + V-inf</span>
+            </div>
+            <div class="p-2 bg-slate-950/70 rounded-lg flex justify-between items-center">
+              <span class="text-slate-400">don't / doesn't + V</span>
+              <span class="text-teal-400 font-bold">didn't + V</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-900/90 rounded-2xl p-5 border border-purple-500/30 space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <h3 class="font-fun text-base text-purple-300 font-bold">2. Trạng Từ Thời Gian & Nơi Chốn</h3>
+            <button onclick="speakText('Now becomes then. Today becomes that day. Tomorrow becomes the next day or following day. Here becomes there.')" class="text-purple-400 hover:text-purple-200">🔊</button>
+          </div>
+          <p class="text-xs text-slate-400">Chuyển đổi trạng từ phù hợp với thời điểm tường thuật gián tiếp:</p>
+          <div class="space-y-1.5 text-xs">
+            <div class="p-2 bg-slate-950/70 rounded-lg flex justify-between">
+              <span class="text-slate-400">now</span>
+              <span class="text-purple-400 font-bold">then</span>
+            </div>
+            <div class="p-2 bg-slate-950/70 rounded-lg flex justify-between">
+              <span class="text-slate-400">today</span>
+              <span class="text-purple-400 font-bold">that day</span>
+            </div>
+            <div class="p-2 bg-slate-950/70 rounded-lg flex justify-between">
+              <span class="text-slate-400">tomorrow</span>
+              <span class="text-purple-400 font-bold">the next day / following day</span>
+            </div>
+            <div class="p-2 bg-slate-950/70 rounded-lg flex justify-between">
+              <span class="text-slate-400">this week / year</span>
+              <span class="text-purple-400 font-bold">that week / that year</span>
+            </div>
+            <div class="p-2 bg-slate-950/70 rounded-lg flex justify-between">
+              <span class="text-slate-400">here</span>
+              <span class="text-purple-400 font-bold">there</span>
+            </div>
+            <div class="p-2 bg-slate-950/70 rounded-lg flex justify-between">
+              <span class="text-slate-400">ago</span>
+              <span class="text-purple-400 font-bold">before</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-900/90 rounded-2xl p-5 border border-amber-500/30 space-y-3">
+          <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+            <h3 class="font-fun text-base text-amber-300 font-bold">3. Said (that) vs Told + O (that)</h3>
+            <button onclick="speakText('Remember: S said that. But S told someone that. Never say: said me that.')" class="text-amber-400 hover:text-amber-200">🔊</button>
+          </div>
+          <p class="text-xs text-slate-400">Phân biệt cấu trúc động từ tường thuật & đổi đại từ:</p>
+          <div class="p-3 bg-amber-950/40 rounded-xl border border-amber-500/30 text-xs space-y-1">
+            <div class="text-amber-300 font-bold">⭐ Công Thức Chuẩn:</div>
+            <div>• <span class="text-slate-200 font-semibold">S + said (that) + S + V(lùi thì)...</span></div>
+            <div>• <span class="text-slate-200 font-semibold">S + told + O (that) + S + V(lùi thì)...</span></div>
+            <div class="text-rose-400 text-[11px] font-bold pt-1">⚠️ Tuyệt đối không dùng: "said me that" ❌</div>
+          </div>
+          <div class="space-y-1 text-xs pt-1">
+            <div class="flex justify-between py-1 border-b border-slate-800">
+              <span class="text-slate-400">I / we</span>
+              <span class="text-amber-300 font-bold">he, she / they</span>
+            </div>
+            <div class="flex justify-between py-1 border-b border-slate-800">
+              <span class="text-slate-400">my / our</span>
+              <span class="text-amber-300 font-bold">his, her / their</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-slate-400">me / us</span>
+              <span class="text-amber-300 font-bold">him, her / them</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-2xl bg-gradient-to-r from-teal-950/80 via-slate-900 to-indigo-950/80 border border-teal-500/30 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <span class="text-3xl">💡</span>
+          <div>
+            <div class="text-teal-300 font-bold text-xs uppercase">Ví dụ minh họa SGK Trang 117:</div>
+            <div class="text-slate-200 text-xs mt-0.5">
+              Direct: Minh's uncle: <span class="text-amber-300">"The robots will be able to mark our work."</span><br>
+              Reported: My uncle said that the robots <span class="text-teal-400 font-bold">would</span> be able to mark <span class="text-teal-400 font-bold">their</span> work.
+            </div>
+          </div>
+        </div>
+        <button onclick="switchTab('game1')" class="px-5 py-3 bg-teal-500 hover:bg-teal-400 text-slate-950 font-fun font-bold text-xs rounded-xl shadow-lg shadow-teal-500/20 transition btn-bounce whitespace-nowrap">
+          Vào Luyện Game 1 Ngay ➔
+        </button>
+      </div>
+    </section>
+
+    <section id="view-game-card" class="glass-card rounded-3xl p-5 md:p-8 space-y-6 hidden">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <span id="gameBadge" class="bg-teal-500/20 text-teal-300 text-xs font-bold px-3 py-1 rounded-full border border-teal-500/40">GAME 1</span>
+            <span id="gameFocus" class="text-xs text-slate-400">Chủ đề</span>
+          </div>
+          <h2 id="gameTitle" class="text-xl md:text-2xl font-fun font-bold text-white mt-1">Tiêu Đề Trò Chơi</h2>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="text-right">
+            <div class="text-[11px] text-slate-400 uppercase font-bold tracking-wider">Tiến Độ</div>
+            <div id="qProgress" class="text-teal-400 font-fun font-bold text-lg">1 / 20</div>
+          </div>
+          <button onclick="playCurrentQuestionAudio()" class="p-3 bg-teal-500/20 hover:bg-teal-500/30 border border-teal-500/40 text-teal-300 rounded-2xl shadow-lg transition btn-bounce" title="Nghe câu hỏi gốc 🔊">
+            🔊
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-slate-900/90 rounded-2xl p-5 border border-slate-800 space-y-3">
+        <div id="directSentenceBox" class="text-xs md:text-sm text-teal-300 font-semibold bg-teal-950/60 p-3 rounded-xl border border-teal-800/60 flex items-center justify-between">
+          <div><span class="text-slate-400 uppercase font-bold mr-2 text-[10px] tracking-wider">Direct Speech:</span> <span id="directSentenceText">"..."</span></div>
+          <button id="btnDirectAudio" onclick="playDirectAudio()" class="text-teal-400 hover:text-white text-base ml-2">🔊</button>
+        </div>
+        <div id="questionPrompt" class="text-base md:text-lg font-bold text-white leading-relaxed pt-1">
+          Nội dung câu hỏi...
+        </div>
+      </div>
+
+      <div id="optionsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+      </div>
+
+      <div id="explanationBox" class="hidden rounded-2xl p-5 border transition-all duration-300 space-y-2">
+        <div class="flex items-center justify-between">
+          <div id="feedbackTitle" class="font-fun text-base font-bold flex items-center gap-2">
+          </div>
+          <button id="btnExpAudio" onclick="playExpAudio()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 rounded-xl text-slate-200 text-xs font-bold flex items-center gap-1">
+            🔊 Nghe giải thích
+          </button>
+        </div>
+        <div id="explanationText" class="text-xs md:text-sm text-slate-300 leading-relaxed pt-1 border-t border-slate-800">
+        </div>
+      </div>
+
+      <div class="flex items-center justify-between pt-2">
+        <button onclick="prevQuestion()" id="btnPrevQ" class="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-slate-300 rounded-xl text-xs font-bold transition border border-slate-800">
+          ⬅ Câu Trước
+        </button>
+        <div id="questionDots" class="hidden sm:flex items-center gap-1.5">
+        </div>
+        <button onclick="nextQuestion()" id="btnNextQ" class="px-5 py-2.5 bg-teal-500 hover:bg-teal-400 text-slate-950 rounded-xl text-xs font-fun font-bold shadow-lg shadow-teal-500/20 transition btn-bounce">
+          Câu Tiếp Theo ➔
+        </button>
+      </div>
+    </section>
+
+    <section id="view-game5" class="glass-card rounded-3xl p-5 md:p-8 space-y-6 hidden">
+      <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="bg-purple-500/20 text-purple-300 text-xs font-bold px-3 py-1 rounded-full border border-purple-500/40">GAME 5</span>
+            <span class="text-xs text-slate-400">Kiến Trúc Sư Ghép Câu 1-Chạm</span>
+          </div>
+          <h2 class="text-xl md:text-2xl font-fun font-bold text-purple-300 mt-1">Xếp Khối Từ Thành Câu Tường Thuật Hoàn Chỉnh</h2>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="text-right">
+            <div class="text-[11px] text-slate-400 uppercase font-bold tracking-wider">Tiến Độ</div>
+            <div id="g5Progress" class="text-purple-400 font-fun font-bold text-lg">1 / 20</div>
+          </div>
+          <button onclick="playG5Audio()" class="p-3 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/40 text-purple-300 rounded-2xl shadow-lg transition btn-bounce" title="Nghe câu gốc 🔊">
+            🔊
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-slate-900/90 rounded-2xl p-5 border border-purple-800/40 space-y-2">
+        <div class="text-[11px] text-purple-400 font-bold uppercase tracking-wider">Câu Trực Tiếp Gốc (Direct Speech):</div>
+        <div id="g5Direct" class="text-base md:text-lg font-bold text-amber-300">
+          "..."
+        </div>
+        <div class="text-xs text-slate-400 pt-1">
+          👉 <span id="g5Prompt" class="text-slate-300 font-semibold">Bắt đầu bằng: ...</span>
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <div class="flex justify-between items-center">
+          <span class="text-xs text-slate-300 font-bold">Ô ghép câu gián tiếp của bạn (Chạm vào từ để gỡ):</span>
+          <button onclick="clearG5Slots()" class="text-xs text-rose-400 hover:text-rose-300 font-bold flex items-center gap-1">
+            🔄 Xóa xếp lại
+          </button>
+        </div>
+        <div id="g5AnswerSlot" class="min-h-[72px] bg-slate-950/80 border-2 border-dashed border-purple-500/40 rounded-2xl p-3 flex flex-wrap gap-2 items-center">
+          <span class="text-slate-500 text-xs italic pointer-events-none" id="g5Placeholder">Chạm các khối từ bên dưới để xếp vào đây...</span>
+        </div>
+      </div>
+
+      <div class="space-y-2">
+        <div class="text-xs text-slate-400 font-bold">Các khối từ gợi ý (Đã xáo trộn ngẫu nhiên):</div>
+        <div id="g5WordPool" class="flex flex-wrap gap-2 p-4 bg-slate-900/70 rounded-2xl border border-slate-800 min-h-[80px] items-center">
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button onclick="checkG5Answer()" id="btnCheckG5" class="px-6 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-fun font-bold text-xs rounded-xl shadow-lg transition btn-bounce flex items-center gap-2">
+          <span>✓</span> Kiểm Tra Đáp Án
+        </button>
+      </div>
+
+      <div id="g5ExpBox" class="hidden rounded-2xl p-5 border transition-all duration-300 space-y-2">
+        <div class="flex items-center justify-between">
+          <div id="g5FeedbackTitle" class="font-fun text-base font-bold"></div>
+          <button id="btnG5ExpAudio" onclick="playG5CorrectAudio()" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-700 rounded-xl text-slate-200 text-xs font-bold flex items-center gap-1">
+            🔊 Nghe câu đúng
+          </button>
+        </div>
+        <div id="g5ExpText" class="text-xs md:text-sm text-slate-300 leading-relaxed border-t border-slate-800 pt-2"></div>
+      </div>
+
+      <div class="flex items-center justify-between pt-2">
+        <button onclick="prevG5Q()" id="btnPrevG5" class="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-slate-300 rounded-xl text-xs font-bold transition border border-slate-800">
+          ⬅ Câu Trước
+        </button>
+        <button onclick="nextG5Q()" id="btnNextG5" class="px-5 py-2.5 bg-purple-500 hover:bg-purple-400 text-white font-fun font-bold text-xs rounded-xl shadow-lg transition btn-bounce">
+          Câu Tiếp Theo ➔
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="summaryModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4 z-50">
+    <div class="glass-card max-w-md w-full rounded-3xl p-6 text-center border-2 border-teal-400 shadow-2xl space-y-5">
+      <div class="text-5xl">🏆</div>
+      <div>
+        <h3 class="text-2xl font-fun font-bold text-white">XUẤT SẮC HOÀN THÀNH!</h3>
+        <p class="text-xs text-teal-300 uppercase font-bold tracking-wider mt-1">Trung Tâm Tiếng Anh HT English – Ms. Lily</p>
+      </div>
+      
+      <div class="grid grid-cols-2 gap-3">
+        <div class="bg-slate-900/90 p-3.5 rounded-2xl border border-slate-800">
+          <div class="text-xs text-slate-400 font-bold">Điểm Số Đạt Được</div>
+          <div id="modalScore" class="text-2xl font-fun font-bold text-amber-400 mt-1">0</div>
+        </div>
+        <div class="bg-slate-900/90 p-3.5 rounded-2xl border border-slate-800">
+          <div class="text-xs text-slate-400 font-bold">Chuỗi Đúng Tối Đa</div>
+          <div id="modalStreak" class="text-2xl font-fun font-bold text-rose-400 mt-1">0</div>
+        </div>
+      </div>
+
+      <div id="modalTeacherComment" class="p-4 bg-teal-950/60 rounded-2xl border border-teal-500/40 text-xs text-slate-200 leading-relaxed text-left">
+        Lời nhận xét của cô Lily...
+      </div>
+
+      <div class="flex gap-3">
+        <button onclick="closeSummaryModal()" class="flex-1 py-3 bg-slate-900 hover:bg-slate-800 text-slate-300 font-bold text-xs rounded-xl transition border border-slate-800">
+          Xem Lại Bài Làm
+        </button>
+        <button onclick="restartCurrentGame()" class="flex-1 py-3 bg-teal-500 hover:bg-teal-400 text-slate-950 font-fun font-bold text-xs rounded-xl shadow-lg transition btn-bounce">
+          Chơi Lại Game Này 🔄
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="confettiCanvas" class="fixed inset-0 pointer-events-none z-50 hidden"></canvas>
+
+  <script>
+    const game1Data = Array.from({ length: 20 }, (_, i) => {
+      const items = [
+        { d: 'The scientist said, "I test a new AI robot."', q: 'The scientist said that he _______ a new AI robot.', opts: ['tested', 'tests', 'is testing', 'will test'], ans: 0, exp: 'Công thức: Present Simple (test) ➔ Past Simple (tested).' },
+        { d: 'Minh said, "The students are visiting the space museum."', q: 'Minh said that the students _______ the space museum.', opts: ['were visiting', 'are visiting', 'visited', 'would visit'], ans: 0, exp: 'Công thức: Present Continuous (are visiting) ➔ Past Continuous (were visiting).' },
+        { d: 'Mai said, "Robots will mark our homework."', q: 'Mai said that robots _______ mark their homework.', opts: ['would', 'will', 'can', 'could'], ans: 0, exp: 'Công thức: Modal verb (will) ➔ (would).' },
+        { d: 'Tom said, "I can build a solar-powered vehicle."', q: 'Tom said that he _______ build a solar-powered vehicle.', opts: ['could', 'can', 'would', 'is able to'], ans: 0, exp: 'Công thức: Modal verb (can) ➔ (could).' },
+        { d: 'Nick said, "I don\'t have a smartphone to join online classes."', q: 'Nick said that he _______ a smartphone to join online classes.', opts: ['didn\'t have', 'don\'t have', 'doesn\'t have', 'had not'], ans: 0, exp: 'Công thức: don\'t/doesn\'t + V ➔ didn\'t + V.' },
+        { d: 'The teacher said, "Biometric scanners are accurate."', q: 'The teacher said that biometric scanners _______ accurate.', opts: ['were', 'are', 'will be', 'have been'], ans: 0, exp: 'Công thức: Present Simple to be (are) ➔ Past Simple (were).' },
+        { d: 'Hoa said, "Our team is developing a new vaccine."', q: 'Hoa said that their team _______ a new vaccine.', opts: ['was developing', 'is developing', 'developed', 'would develop'], ans: 0, exp: 'Công thức: Present Continuous (is developing) ➔ Past Continuous (was developing).' },
+        { d: 'Phong said, "3D printers can create bone replacements."', q: 'Phong said that 3D printers _______ create bone replacements.', opts: ['could', 'can', 'would', 'will'], ans: 0, exp: 'Công thức: Modal verb (can) ➔ (could).' },
+        { d: 'The engineer said, "We will install smart screens next month."', q: 'The engineer said that they _______ install smart screens.', opts: ['would', 'will', 'can', 'are going to'], ans: 0, exp: 'Công thức: Modal verb (will) ➔ (would).' },
+        { d: 'Lan said, "I am talking to an AI chatbot."', q: 'Lan said that she _______ to an AI chatbot.', opts: ['was talking', 'is talking', 'talked', 'would talk'], ans: 0, exp: 'Công thức: Present Continuous (am talking) ➔ Past Continuous (was talking).' },
+        { d: 'David said, "Engineers design autonomous cars."', q: 'David said that engineers _______ autonomous cars.', opts: ['designed', 'design', 'are designing', 'will design'], ans: 0, exp: 'Công thức: Present Simple (design) ➔ Past Simple (designed).' },
+        { d: 'The student said, "I don\'t know how to use this software."', q: 'The student said that he _______ how to use that software.', opts: ['didn\'t know', 'don\'t know', 'doesn\'t know', 'won\'t know'], ans: 0, exp: 'Công thức: don\'t + V ➔ didn\'t + V.' },
+        { d: 'My uncle said, "Drones will deliver medicine to remote areas."', q: 'My uncle said that drones _______ deliver medicine to remote areas.', opts: ['would', 'will', 'can', 'could'], ans: 0, exp: 'Công thức: Modal verb (will) ➔ (would).' },
+        { d: 'Linda said, "We are conducting an experiment in the lab."', q: 'Linda said that they _______ an experiment in the lab.', opts: ['were conducting', 'are conducting', 'conducted', 'would conduct'], ans: 0, exp: 'Công thức: Present Continuous (are conducting) ➔ Past Continuous (were conducting).' },
+        { d: 'Peter said, "Smartwatches track our daily heart rates."', q: 'Peter said that smartwatches _______ their daily heart rates.', opts: ['tracked', 'track', 'are tracking', 'would track'], ans: 0, exp: 'Công thức: Present Simple (track) ➔ Past Simple (tracked).' },
+        { d: 'The doctor said, "Telemedicine helps patients in rural zones."', q: 'The doctor said that telemedicine _______ patients in rural zones.', opts: ['helped', 'helps', 'is helping', 'would help'], ans: 0, exp: 'Công thức: Present Simple (helps) ➔ Past Simple (helped).' },
+        { d: 'John said, "I am reading an article about space exploration."', q: 'John said that he _______ an article about space exploration.', opts: ['was reading', 'is reading', 'read', 'would read'], ans: 0, exp: 'Công thức: Present Continuous (am reading) ➔ Past Continuous (was reading).' },
+        { d: 'The guide said, "Visitors can touch the interactive screen."', q: 'The guide said that visitors _______ touch the interactive screen.', opts: ['could', 'can', 'would', 'will'], ans: 0, exp: 'Công thức: Modal verb (can) ➔ (could).' },
+        { d: 'My sister said, "I will study computer science."', q: 'My sister said that she _______ study computer science.', opts: ['would', 'will', 'can', 'could'], ans: 0, exp: 'Công thức: Modal verb (will) ➔ (would).' },
+        { d: 'Mark said, "Scientists don\'t stop searching for new energy."', q: 'Mark said that scientists _______ searching for new energy.', opts: ['didn\'t stop', 'don\'t stop', 'doesn\'t stop', 'won\'t stop'], ans: 0, exp: 'Công thức: don\'t + V ➔ didn\'t + V.' }
+      ];
+      return items[i];
+    });
+
+    const game2Data = Array.from({ length: 20 }, (_, i) => {
+      const items = [
+        { d: 'Mary said, "I am testing this lab equipment now."', q: 'Mary said she was testing that lab equipment _______.', opts: ['then', 'now', 'today', 'that day'], ans: 0, exp: 'Trạng từ chỉ thời gian: "now" ➔ "then".' },
+        { d: 'Tom said, "We have a science test today."', q: 'Tom said that they had a science test _______.', opts: ['that day', 'today', 'then', 'the next day'], ans: 0, exp: 'Trạng từ chỉ thời gian: "today" ➔ "that day".' },
+        { d: 'The principal said, "We will build a new laboratory tomorrow."', q: 'The principal said they would build a new laboratory _______.', opts: ['the following day', 'tomorrow', 'that day', 'then'], ans: 0, exp: 'Trạng từ chỉ thời gian: "tomorrow" ➔ "the following day" hoặc "the next day".' },
+        { d: 'Mi said, "My teacher will park her car here."', q: 'Mi said her teacher would park her car _______.', opts: ['there', 'here', 'then', 'that place'], ans: 0, exp: 'Trạng từ nơi chốn: "here" ➔ "there".' },
+        { d: 'Minh said, "They will invent a smart cooker this year."', q: 'Minh said that they would invent a smart cooker _______.', opts: ['that year', 'this year', 'the next year', 'then'], ans: 0, exp: 'Trạng từ thời gian: "this year" ➔ "that year".' },
+        { d: 'The engineer said, "We launched the rocket two days ago."', q: 'The engineer said they had launched the rocket two days _______.', opts: ['before', 'ago', 'then', 'earlier'], ans: 0, exp: 'Trạng từ chỉ thời gian: "ago" ➔ "before".' },
+        { d: 'Mai said, "I am attending an online robotics course this week."', q: 'Mai said she was attending an online robotics course _______.', opts: ['that week', 'this week', 'next week', 'then'], ans: 0, exp: 'Trạng từ chỉ thời gian: "this week" ➔ "that week".' },
+        { d: 'Nick said, "I am playing video games with Phong now."', q: 'Nick said he was playing video games with Phong _______.', opts: ['then', 'now', 'at that moment', 'today'], ans: 0, exp: 'Trạng từ thời gian: "now" ➔ "then".' },
+        { d: 'The scientist said, "We are meeting our partners here tomorrow."', q: 'The scientist said they were meeting their partners _______ the next day.', opts: ['there', 'here', 'then', 'that day'], ans: 0, exp: 'Trạng từ nơi chốn: "here" ➔ "there".' },
+        { d: 'Hoa said, "Our class will present the STEM project today."', q: 'Hoa said that their class would present the STEM project _______.', opts: ['that day', 'today', 'then', 'the following day'], ans: 0, exp: 'Trạng từ chỉ thời gian: "today" ➔ "that day".' },
+        { d: 'The technician said, "I fixed this smart screen yesterday."', q: 'The technician said he had fixed that smart screen _______.', opts: ['the day before', 'yesterday', 'that day', 'then'], ans: 0, exp: 'Trạng từ chỉ thời gian: "yesterday" ➔ "the day before" / "the previous day".' },
+        { d: 'Elena said, "We will upgrade our anti-virus software next week."', q: 'Elena said they would upgrade their anti-virus software _______.', opts: ['the following week', 'next week', 'that week', 'then'], ans: 0, exp: 'Trạng từ chỉ thời gian: "next week" ➔ "the following week".' },
+        { d: 'Ben said, "I bought this VR headset three months ago."', q: 'Ben said he had bought that VR headset three months _______.', opts: ['before', 'ago', 'then', 'later'], ans: 0, exp: 'Trạng từ chỉ thời gian: "ago" ➔ "before".' },
+        { d: 'Anna said, "My father is working in this room now."', q: 'Anna said her father was working in that room _______.', opts: ['then', 'now', 'today', 'there'], ans: 0, exp: 'Trạng từ thời gian: "now" ➔ "then".' },
+        { d: 'Jack said, "The drone delivered the package here."', q: 'Jack said the drone had delivered the package _______.', opts: ['there', 'here', 'then', 'that day'], ans: 0, exp: 'Trạng từ nơi chốn: "here" ➔ "there".' },
+        { d: 'Sophia said, "We are starting the space campaign this month."', q: 'Sophia said they were starting the space campaign _______.', opts: ['that month', 'this month', 'next month', 'then'], ans: 0, exp: 'Trạng từ thời gian: "this month" ➔ "that month".' },
+        { d: 'Liam said, "The AI exhibition opens tomorrow."', q: 'Liam said the AI exhibition opened _______.', opts: ['the next day', 'tomorrow', 'that day', 'then'], ans: 0, exp: 'Trạng từ chỉ thời gian: "tomorrow" ➔ "the next day".' },
+        { d: 'Lucas said, "I finished my computer project an hour ago."', q: 'Lucas said he had finished his computer project an hour _______.', opts: ['before', 'ago', 'then', 'earlier'], ans: 0, exp: 'Trạng từ chỉ thời gian: "ago" ➔ "before".' },
+        { d: 'Emily said, "The students are experimenting here."', q: 'Emily said that the students were experimenting _______.', opts: ['there', 'here', 'then', 'that place'], ans: 0, exp: 'Trạng từ nơi chốn: "here" ➔ "there".' },
+        { d: 'Noah said, "We will test the solar panels today."', q: 'Noah said they would test the solar panels _______.', opts: ['that day', 'today', 'then', 'the next day'], ans: 0, exp: 'Trạng từ chỉ thời gian: "today" ➔ "that day".' }
+      ];
+      return items[i];
+    });
+
+    const game3Data = Array.from({ length: 20 }, (_, i) => {
+      const items = [
+        { d: 'The teacher said to me, "You need to finish your lab report."', q: 'The teacher _______ me that I needed to finish my lab report.', opts: ['told', 'said', 'said to', 'told to'], ans: 0, exp: 'Cấu trúc: "S + told + O + (that)". Tuyệt đối không chọn "said me".' },
+        { d: 'Nam said, "My father is a computer programmer."', q: 'Nam said that _______ father was a computer programmer.', opts: ['his', 'my', 'her', 'their'], ans: 0, exp: 'Biến đổi tính từ sở hữu: "my" (của Nam - Nam là nam) ➔ "his".' },
+        { d: 'Lan said, "I will send you an email about the project."', q: 'Lan told me that _______ would send me an email.', opts: ['she', 'I', 'he', 'they'], ans: 0, exp: 'Biến đổi đại từ nhân xưng: "I" (Lan - nữ) ➔ "she".' },
+        { d: 'The scientists said to the team, "We are close to a breakthrough."', q: 'The scientists _______ the team that they were close to a breakthrough.', opts: ['told', 'said', 'said that', 'told that'], ans: 0, exp: 'Cấu trúc: "S + told + Tân ngữ chỉ người (the team)".' },
+        { d: 'Peter said, "Our school has a modern science lab."', q: 'Peter said that _______ school had a modern science lab.', opts: ['their', 'our', 'his', 'her'], ans: 0, exp: 'Biến đổi tính từ sở hữu: "our" (trường của chúng tôi) ➔ "their".' },
+        { d: 'He _______ that robots would replace human workers in some factories.', q: 'Chọn động từ tường thuật phù hợp không có tân ngữ:', opts: ['said', 'told', 'told to', 'said me'], ans: 0, exp: 'Không có tân ngữ phía sau ➔ Dùng "said (that)".' },
+        { d: 'Mary told _______ that she was using an online dictionary.', q: 'Chọn đại từ tân ngữ đúng trong cấu trúc "told + O":', opts: ['me', 'I', 'my', 'mine'], ans: 0, exp: 'Cấu trúc: "told + Tân ngữ (me)".' },
+        { d: 'Tom said, "I want to become a rocket engineer."', q: 'Tom said that _______ wanted to become a rocket engineer.', opts: ['he', 'I', 'she', 'they'], ans: 0, exp: 'Đại từ "I" (Tom - nam) ➔ "he".' },
+        { d: 'The guide told us, "You will see 3D holograms in this room."', q: 'The guide told us that _______ would see 3D holograms in that room.', opts: ['we', 'you', 'they', 'I'], ans: 0, exp: 'Đại từ "you" (nói với "us" - chúng tôi) ➔ "we".' },
+        { d: 'Phong and Nick said, "We are testing our new drone model."', q: 'Phong and Nick said that _______ were testing their new drone model.', opts: ['they', 'we', 'he', 'you'], ans: 0, exp: 'Đại từ "we" (Phong & Nick - họ) ➔ "they".' },
+        { d: 'The principal _______ the parents that the school installed smart boards.', q: 'Điền động từ tường thuật:', opts: ['told', 'said', 'said to', 'told that'], ans: 0, exp: 'Có tân ngữ chỉ người "the parents" ➔ dùng "told".' },
+        { d: 'She said, "My brother creates computer games."', q: 'She said that _______ brother created computer games.', opts: ['her', 'my', 'his', 'their'], ans: 0, exp: 'Tính từ sở hữu "my" (của cô ấy) ➔ "her".' },
+        { d: 'The engineer _______ that the biometric system was fully functional.', q: 'Điền động từ tường thuật:', opts: ['said', 'told', 'told me', 'said to'], ans: 0, exp: 'Không có tân ngữ phía sau ➔ dùng "said (that)".' },
+        { d: 'They told me, "We will help you with your robotics assignment."', q: 'They told me that they would help _______ with my assignment.', opts: ['me', 'you', 'him', 'us'], ans: 0, exp: 'Tân ngữ "you" (họ nói với "me") ➔ "me".' },
+        { d: 'Minh said, "I love learning about artificial intelligence."', q: 'Minh said that _______ loved learning about artificial intelligence.', opts: ['he', 'I', 'she', 'they'], ans: 0, exp: 'Đại từ "I" (Minh) ➔ "he".' },
+        { d: 'The doctor told the patient, "You can use this health tracking app."', q: 'The doctor told the patient that _______ could use that health tracking app.', opts: ['he/she', 'you', 'I', 'they'], ans: 0, exp: 'Đại từ "you" (bệnh nhân - ngôi 3 số ít) ➔ "he/she".' },
+        { d: 'Hoa said, "My group finished the science summary."', q: 'Hoa said that _______ group had finished the science summary.', opts: ['her', 'my', 'his', 'their'], ans: 0, exp: 'Tính từ sở hữu "my" (của Hoa) ➔ "her".' },
+        { d: 'Mark _______ us that the online library was free for students.', q: 'Điền động từ tường thuật:', opts: ['told', 'said', 'said that', 'told to'], ans: 0, exp: 'Có tân ngữ "us" ➔ dùng "told us".' },
+        { d: 'The children said, "We can control the robot with a voice command."', q: 'The children said that _______ could control the robot with a voice command.', opts: ['they', 'we', 'you', 'he'], ans: 0, exp: 'Đại từ "we" (bọn trẻ - số nhiều) ➔ "they".' },
+        { d: 'Mai said to Nick, "I will lend you my laptop."', q: 'Mai _______ Nick that she would lend him her laptop.', opts: ['told', 'said', 'said to me', 'told that'], ans: 0, exp: 'Chuyển "said to Nick" ➔ "told Nick".' }
+      ];
+      return items[i];
+    });
+
+    const game4Data = Array.from({ length: 20 }, (_, i) => {
+      const items = [
+        { d: 'Tom said: "I will buy a new tablet tomorrow."', q: 'Phát hiện lỗi sai trong câu tường thuật sau:\n"Tom said that he will buy a new tablet the next day."', opts: ['Lỗi chưa lùi "will" ➔ "would"', 'Lỗi biến đổi "tomorrow"', 'Lỗi dùng "said"', 'Lỗi đổi "I" ➔ "he"'], ans: 0, exp: 'Động từ tường thuật ở quá khứ (said) ➔ Bắt buộc phải lùi "will" thành "would".' },
+        { d: 'Minh said to me: "I am using an AI app now."', q: 'Sửa lỗi sai trong câu: "Minh told me that he was using an AI app now."', opts: ['"now" ➔ "then"', '"was using" ➔ "is using"', '"told me" ➔ "said me"', '"he" ➔ "I"'], ans: 0, exp: 'Chưa chuyển đổi trạng từ thời gian: "now" phải đổi thành "then".' },
+        { d: 'The teacher said: "You can download the science software here."', q: 'Phát hiện lỗi sai trong câu: "The teacher told that we could download the software there."', opts: ['"told that" ➔ "said that" (vì thiếu tân ngữ)', '"could" ➔ "can"', '"there" ➔ "here"', '"we" ➔ "you"'], ans: 0, exp: 'Cấu trúc "told" bắt buộc có tân ngữ (told me/us). Nếu không có tân ngữ phải dùng "said that".' },
+        { d: 'Lan said: "My sister is studying biotechnology today."', q: 'Phát hiện lỗi sai: "Lan said that my sister was studying biotechnology that day."', opts: ['"my sister" ➔ "her sister"', '"that day" ➔ "today"', '"was studying" ➔ "is studying"', 'Không có lỗi sai'], ans: 0, exp: 'Chưa đổi tính từ sở hữu: "my sister" (chị của Lan) phải thành "her sister".' },
+        { d: 'Phong said: "Robots don\'t make human emotional errors."', q: 'Phát hiện lỗi sai: "Phong said that robots don\'t make human emotional errors."', opts: ['"don\'t" ➔ "didn\'t"', '"said" ➔ "told"', '"robots" ➔ "they"', 'Không có lỗi sai'], ans: 0, exp: 'Chưa lùi thì động từ phủ định: "don\'t make" phải đổi thành "didn\'t make".' },
+        { d: 'The scientist said: "We will launch the satellite next year."', q: 'Sửa lỗi sai: "The scientist said that they would launch the satellite next year."', opts: ['"next year" ➔ "the following year"', '"would" ➔ "will"', '"they" ➔ "we"', '"said" ➔ "told me"'], ans: 0, exp: 'Trạng từ chỉ thời gian: "next year" phải chuyển thành "the following year" hoặc "the next year".' },
+        { d: 'Hoa said me: "I have a smart watch."', q: 'Phát hiện lỗi sai ngữ pháp nghiêm trọng trong câu tường thuật:', opts: ['"said me" ➔ "told me" (hoặc "said to me")', '"have" ➔ "had"', '"I" ➔ "she"', '"smart watch" ➔ "a smart watch"'], ans: 0, exp: 'Lỗi bẫy kinh điển: Không bao giờ nói "said me". Phải dùng "told me" hoặc "said to me".' },
+        { d: 'Nick said: "We are developing a new algorithm here."', q: 'Sửa lỗi sai trong câu: "Nick said that they were developing a new algorithm here."', opts: ['"here" ➔ "there"', '"were developing" ➔ "are developing"', '"they" ➔ "we"', '"said" ➔ "told"'], ans: 0, exp: 'Trạng từ nơi chốn: "here" phải chuyển thành "there".' },
+        { d: 'The engineer said: "This biometric scanner is very modern."', q: 'Phát hiện lỗi sai: "The engineer said that this biometric scanner was very modern."', opts: ['"this" ➔ "that"', '"was" ➔ "is"', '"said" ➔ "told"', '"scanner" ➔ "scanners"'], ans: 0, exp: 'Từ chỉ định "this" phải đổi thành "that".' },
+        { d: 'Mai said: "I can write code for this robot."', q: 'Sửa lỗi sai: "Mai said that she can write code for that robot."', opts: ['"can" ➔ "could"', '"she" ➔ "I"', '"that" ➔ "this"', '"said" ➔ "told"'], ans: 0, exp: 'Modal verb "can" chưa được lùi thì thành "could".' },
+        { d: 'David told: "I am interested in space discovery."', q: 'Phát hiện lỗi sai: "David told that he was interested in space discovery."', opts: ['"told" ➔ "said" (hoặc thêm tân ngữ "told me")', '"was" ➔ "is"', '"he" ➔ "I"', '"interested" ➔ "interesting"'], ans: 0, exp: 'Động từ "told" không đứng trực tiếp trước "that" mà phải có tân ngữ (told me/us). Nên dùng "said that".' },
+        { d: 'The student said: "We will take an online exam tomorrow."', q: 'Phát hiện lỗi sai: "The student said that they will take an online exam the next day."', opts: ['"will" ➔ "would"', '"the next day" ➔ "tomorrow"', '"they" ➔ "we"', '"take" ➔ "took"'], ans: 0, exp: 'Chưa lùi thì động từ "will" ➔ "would".' },
+        { d: 'Susan said: "I am not using social media today."', q: 'Sửa lỗi sai: "Susan said that she was not using social media today."', opts: ['"today" ➔ "that day"', '"was not using" ➔ "is not using"', '"she" ➔ "I"', '"said" ➔ "told"'], ans: 0, exp: 'Chưa chuyển đổi trạng từ "today" ➔ "that day".' },
+        { d: 'The doctor said to him: "You must rest your eyes from screens."', q: 'Sửa lỗi sai: "The doctor said him that he needed to rest his eyes from screens."', opts: ['"said him" ➔ "told him"', '"he" ➔ "you"', '"his" ➔ "your"', '"needed" ➔ "need"'], ans: 0, exp: 'Không dùng "said him". Phải dùng "told him" hoặc "said to him".' },
+        { d: 'Mark said: "My team won the science fair two days ago."', q: 'Phát hiện lỗi sai: "Mark said that his team had won the science fair two days ago."', opts: ['"two days ago" ➔ "two days before"', '"his team" ➔ "my team"', '"had won" ➔ "won"', '"said" ➔ "told"'], ans: 0, exp: 'Trạng từ "ago" chưa đổi thành "before".' },
+        { d: 'The teacher said: "There are no classes tomorrow."', q: 'Phát hiện lỗi sai: "The teacher said that there are no classes the following day."', opts: ['"are" ➔ "were"', '"the following day" ➔ "tomorrow"', '"said" ➔ "told"', '"classes" ➔ "class"'], ans: 0, exp: 'Động từ to be "are" chưa được lùi thì thành "were".' },
+        { d: 'Linda said: "I don\'t know how to operate this 3D printer."', q: 'Sửa lỗi sai: "Linda said that she doesn\'t know how to operate that 3D printer."', opts: ['"doesn\'t" ➔ "didn\'t"', '"that" ➔ "this"', '"she" ➔ "I"', '"said" ➔ "told"'], ans: 0, exp: 'Chưa lùi thì trợ động từ phủ định: "doesn\'t" ➔ "didn\'t".' },
+        { d: 'Ben said me: "The experiment is successful."', q: 'Sửa lỗi sai: "Ben said me that the experiment was successful."', opts: ['"said me" ➔ "told me"', '"was" ➔ "is"', '"experiment" ➔ "experiments"', '"successful" ➔ "success"'], ans: 0, exp: 'Lỗi bẫy: "said me" ➔ sửa thành "told me".' },
+        { d: 'Anna said: "We are building a solar lab this week."', q: 'Phát hiện lỗi sai: "Anna said that they are building a solar lab that week."', opts: ['"are building" ➔ "were building"', '"that week" ➔ "this week"', '"they" ➔ "we"', '"said" ➔ "told"'], ans: 0, exp: 'Thì HT tiếp diễn "are building" chưa lùi thành QK tiếp diễn "were building".' },
+        { d: 'The boy said: "My drone can fly higher than yours."', q: 'Sửa lỗi sai: "The boy said that my drone could fly higher than mine."', opts: ['"my drone" ➔ "his drone"', '"could" ➔ "can"', '"higher" ➔ "more high"', '"said" ➔ "told"'], ans: 0, exp: 'Tính từ sở hữu "my drone" chưa đổi thành "his drone".' }
+      ];
+      return items[i];
+    });
+
+    const game5Data = Array.from({ length: 20 }, (_, i) => {
+      const items = [
+        { d: 'Minh said, "Robots will mark our work."', prompt: 'Chuyển sang câu gián tiếp bắt đầu bằng "Minh said that...":', words: ['Minh', 'said', 'that', 'robots', 'would', 'mark', 'their', 'work.'], ansStr: 'Minh said that robots would mark their work.', exp: 'will ➔ would; our ➔ their.' },
+        { d: 'Lan said, "I am learning English online today."', prompt: 'Chuyển sang câu gián tiếp bắt đầu bằng "Lan said that...":', words: ['Lan', 'said', 'that', 'she', 'was', 'learning', 'English', 'online', 'that', 'day.'], ansStr: 'Lan said that she was learning English online that day.', exp: 'I ➔ she; am learning ➔ was learning; today ➔ that day.' },
+        { d: 'Tom told me, "We will test the solar drone tomorrow."', prompt: 'Chuyển sang câu gián tiếp bắt đầu bằng "Tom told me that...":', words: ['Tom', 'told', 'me', 'that', 'they', 'would', 'test', 'the', 'solar', 'drone', 'the', 'next', 'day.'], ansStr: 'Tom told me that they would test the solar drone the next day.', exp: 'will ➔ would; tomorrow ➔ the next day.' },
+        { d: 'The engineer said, "This biometric scanner is modern."', prompt: 'Chuyển sang câu gián tiếp:', words: ['The', 'engineer', 'said', 'that', 'that', 'biometric', 'scanner', 'was', 'modern.'], ansStr: 'The engineer said that that biometric scanner was modern.', exp: 'this ➔ that; is ➔ was.' },
+        { d: 'Mai said, "My brother can build a mini robot."', prompt: 'Chuyển sang câu gián tiếp:', words: ['Mai', 'said', 'that', 'her', 'brother', 'could', 'build', 'a', 'mini', 'robot.'], ansStr: 'Mai said that her brother could build a mini robot.', exp: 'my ➔ her; can ➔ could.' },
+        { d: 'Nick said, "I don\'t have a modern smartphone now."', prompt: 'Chuyển sang câu gián tiếp:', words: ['Nick', 'said', 'that', 'he', 'didn\'t', 'have', 'a', 'modern', 'smartphone', 'then.'], ansStr: 'Nick said that he didn\'t have a modern smartphone then.', exp: 'don\'t ➔ didn\'t; now ➔ then.' },
+        { d: 'The teacher said, "We want some students to join the club."', prompt: 'Chuyển sang câu gián tiếp:', words: ['The', 'teacher', 'said', 'that', 'they', 'wanted', 'some', 'students', 'to', 'join', 'the', 'club.'], ansStr: 'The teacher said that they wanted some students to join the club.', exp: 'we ➔ they; want ➔ wanted.' },
+        { d: 'The scientist told us, "AI tools are improving quickly."', prompt: 'Chuyển sang câu gián tiếp:', words: ['The', 'scientist', 'told', 'us', 'that', 'AI', 'tools', 'were', 'improving', 'quickly.'], ansStr: 'The scientist told us that AI tools were improving quickly.', exp: 'are ➔ were.' },
+        { d: 'David said, "I am talking to Phong on the phone."', prompt: 'Chuyển sang câu gián tiếp:', words: ['David', 'said', 'that', 'he', 'was', 'talking', 'to', 'Phong', 'on', 'the', 'phone.'], ansStr: 'David said that he was talking to Phong on the phone.', exp: 'am talking ➔ was talking.' },
+        { d: 'My dad said, "We are developing new technology here."', prompt: 'Chuyển sang câu gián tiếp:', words: ['My', 'dad', 'said', 'that', 'they', 'were', 'developing', 'new', 'technology', 'there.'], ansStr: 'My dad said that they were developing new technology there.', exp: 'here ➔ there; are ➔ were.' },
+        { d: 'Hoa said, "I will become a computer scientist."', prompt: 'Chuyển sang câu gián tiếp:', words: ['Hoa', 'said', 'that', 'she', 'would', 'become', 'a', 'computer', 'scientist.'], ansStr: 'Hoa said that she would become a computer scientist.', exp: 'will ➔ would.' },
+        { d: 'The guide said, "You can touch this interactive screen."', prompt: 'Chuyển sang câu gián tiếp:', words: ['The', 'guide', 'said', 'that', 'we', 'could', 'touch', 'that', 'interactive', 'screen.'], ansStr: 'The guide said that we could touch that interactive screen.', exp: 'this ➔ that; can ➔ could.' },
+        { d: 'Phong said, "Our school has a new science lab this year."', prompt: 'Chuyển sang câu gián tiếp:', words: ['Phong', 'said', 'that', 'their', 'school', 'had', 'a', 'new', 'science', 'lab', 'that', 'year.'], ansStr: 'Phong said that their school had a new science lab that year.', exp: 'has ➔ had; this year ➔ that year.' },
+        { d: 'The doctor told me, "Telemedicine is very convenient today."', prompt: 'Chuyển sang câu gián tiếp:', words: ['The', 'doctor', 'told', 'me', 'that', 'telemedicine', 'was', 'very', 'convenient', 'that', 'day.'], ansStr: 'The doctor told me that telemedicine was very convenient that day.', exp: 'is ➔ was; today ➔ that day.' },
+        { d: 'Linda said, "My group is working on the project now."', prompt: 'Chuyển sang câu gián tiếp:', words: ['Linda', 'said', 'that', 'her', 'group', 'was', 'working', 'on', 'the', 'project', 'then.'], ansStr: 'Linda said that her group was working on the project then.', exp: 'now ➔ then; is working ➔ was working.' },
+        { d: 'The principal said, "Students will live longer in the future."', prompt: 'Chuyển sang câu gián tiếp:', words: ['The', 'principal', 'said', 'that', 'students', 'would', 'live', 'longer', 'in', 'the', 'future.'], ansStr: 'The principal said that students would live longer in the future.', exp: 'will ➔ would.' },
+        { d: 'Mark said, "I don\'t like virtual reality games."', prompt: 'Chuyển sang câu gián tiếp:', words: ['Mark', 'said', 'that', 'he', 'didn\'t', 'like', 'virtual', 'reality', 'games.'], ansStr: 'Mark said that he didn\'t like virtual reality games.', exp: 'don\'t ➔ didn\'t.' },
+        { d: 'The manager told us, "Drones can deliver packages quickly."', prompt: 'Chuyển sang câu gián tiếp:', words: ['The', 'manager', 'told', 'us', 'that', 'drones', 'could', 'deliver', 'packages', 'quickly.'], ansStr: 'The manager told us that drones could deliver packages quickly.', exp: 'can ➔ could.' },
+        { d: 'Anna said, "I am reading an article about AI today."', prompt: 'Chuyển sang câu gián tiếp:', words: ['Anna', 'said', 'that', 'she', 'was', 'reading', 'an', 'article', 'about', 'AI', 'that', 'day.'], ansStr: 'Anna said that she was reading an article about AI that day.', exp: 'am reading ➔ was reading; today ➔ that day.' },
+        { d: 'The teacher told Phong, "You will present your model tomorrow."', prompt: 'Chuyển sang câu gián tiếp:', words: ['The', 'teacher', 'told', 'Phong', 'that', 'he', 'would', 'present', 'his', 'model', 'the', 'next', 'day.'], ansStr: 'The teacher told Phong that he would present his model the next day.', exp: 'will ➔ would; tomorrow ➔ the next day.' }
+      ];
+      return items[i];
+    });
+
+    let currentTab = 'handbook';
+    let currentGameIndex = 1; 
+    let currentQIndex = 0;
+    let score = 0;
+    let streak = 0;
+    let maxStreak = 0;
+
+    let userAnswers = {
+      g1: Array(20).fill(null),
+      g2: Array(20).fill(null),
+      g3: Array(20).fill(null),
+      g4: Array(20).fill(null),
+      g5: Array(20).fill(null)
+    };
+
+    let g5UserPool = [];
+    let g5UserSlots = [];
+
+    function shuffleArray(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) {
+        alert('Trình duyệt của bạn chưa hỗ trợ phát âm tự động Speech Synthesis.');
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      utterance.pitch = 1.0;
+      
+      const voices = window.speechSynthesis.getVoices();
+      const femaleUS = voices.find(v => v.lang.includes('en-US') && (v.name.includes('Female') || v.name.includes('Samantha') || v.name.includes('Zira') || v.name.includes('Google US English')));
+      if (femaleUS) {
+        utterance.voice = femaleUS;
+      }
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function testAudioGlobal() {
+      speakText("Welcome to HT English Center with Ms. Lily! Let us master reported speech together.");
+    }
+
+    function updateHeaderStats() {
+      document.getElementById('headerScore').textContent = score;
+      document.getElementById('headerStreak').textContent = streak;
+    }
+
+    function switchTab(tab) {
+      currentTab = tab;
+      document.querySelectorAll('nav button').forEach(btn => {
+        btn.className = 'px-4 py-2.5 rounded-xl font-fun font-semibold text-xs whitespace-nowrap transition flex items-center gap-2 bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800';
+      });
+      document.getElementById(`nav-${tab}`).className = 'px-4 py-2.5 rounded-xl font-fun font-semibold text-xs whitespace-nowrap transition flex items-center gap-2 bg-teal-500 text-slate-950 shadow-lg shadow-teal-500/20';
+
+      document.getElementById('view-handbook').classList.add('hidden');
+      document.getElementById('view-game-card').classList.add('hidden');
+      document.getElementById('view-game5').classList.add('hidden');
+
+      if (tab === 'handbook') {
+        document.getElementById('view-handbook').classList.remove('hidden');
+      } else if (tab === 'game5') {
+        document.getElementById('view-game5').classList.remove('hidden');
+        currentGameIndex = 5;
+        currentQIndex = 0;
+        loadG5Question();
+      } else {
+        document.getElementById('view-game-card').classList.remove('hidden');
+        if (tab === 'game1') currentGameIndex = 1;
+        if (tab === 'game2') currentGameIndex = 2;
+        if (tab === 'game3') currentGameIndex = 3;
+        if (tab === 'game4') currentGameIndex = 4;
+        currentQIndex = 0;
+        loadStandardQuestion();
+      }
+    }
+
+    function getCurrentDataset() {
+      if (currentGameIndex === 1) return game1Data;
+      if (currentGameIndex === 2) return game2Data;
+      if (currentGameIndex === 3) return game3Data;
+      if (currentGameIndex === 4) return game4Data;
+      return game5Data;
+    }
+
+    function loadStandardQuestion() {
+      const data = getCurrentDataset();
+      const q = data[currentQIndex];
+      const gameBadge = document.getElementById('gameBadge');
+      const gameTitle = document.getElementById('gameTitle');
+      const gameFocus = document.getElementById('gameFocus');
+
+      if (currentGameIndex === 1) {
+        gameBadge.textContent = 'GAME 1';
+        gameBadge.className = 'bg-teal-500/20 text-teal-300 text-xs font-bold px-3 py-1 rounded-full border border-teal-500/40';
+        gameTitle.textContent = '🏎️ Đua Xe Lùi Thì Thần Tốc (Tense Shift Speedway)';
+        gameFocus.textContent = 'Quy tắc lùi thì của động từ';
+      } else if (currentGameIndex === 2) {
+        gameBadge.textContent = 'GAME 2';
+        gameBadge.className = 'bg-purple-500/20 text-purple-300 text-xs font-bold px-3 py-1 rounded-full border border-purple-500/40';
+        gameTitle.textContent = '🎈 Bắn Bóng Trạng Từ Thời Gian & Nơi Chốn';
+        gameFocus.textContent = 'Chuyển đổi now ➔ then, today ➔ that day, here ➔ there...';
+      } else if (currentGameIndex === 3) {
+        gameBadge.textContent = 'GAME 3';
+        gameBadge.className = 'bg-amber-500/20 text-amber-300 text-xs font-bold px-3 py-1 rounded-full border border-amber-500/40';
+        gameTitle.textContent = '🛸 Said vs Told & Biến Đổi Đại Từ';
+        gameFocus.textContent = 'Said (that) vs Told + O (that) & Đại từ/Tính từ sở hữu';
+      } else if (currentGameIndex === 4) {
+        gameBadge.textContent = 'GAME 4';
+        gameBadge.className = 'bg-rose-500/20 text-rose-300 text-xs font-bold px-3 py-1 rounded-full border border-rose-500/40';
+        gameTitle.textContent = '🔍 Thám Tử Bắt Lỗi Sai Câu Tường Thuật';
+        gameFocus.textContent = 'Sửa lỗi quên lùi thì, chưa đổi trạng từ, lỗi said me...';
+      }
+
+      document.getElementById('qProgress').textContent = `${currentQIndex + 1} / 20`;
+      document.getElementById('directSentenceText').textContent = q.d;
+      document.getElementById('questionPrompt').textContent = q.q;
+
+      const dotsContainer = document.getElementById('questionDots');
+      dotsContainer.innerHTML = '';
+      const savedAnswers = userAnswers[`g${currentGameIndex}`];
+      for (let i = 0; i < 20; i++) {
+        const dot = document.createElement('div');
+        dot.className = `w-2.5 h-2.5 rounded-full ${i === currentQIndex ? 'ring-2 ring-teal-400 scale-125' : ''} `;
+        if (savedAnswers[i] === null) {
+          dot.className += 'bg-slate-700';
+        } else if (savedAnswers[i].isCorrect) {
+          dot.className += 'bg-emerald-400';
+        } else {
+          dot.className += 'bg-rose-500';
+        }
+        dotsContainer.appendChild(dot);
+      }
+
+      const optionsContainer = document.getElementById('optionsContainer');
+      optionsContainer.innerHTML = '';
+
+      const userSaved = savedAnswers[currentQIndex];
+
+      q.opts.forEach((optText, idx) => {
+        const btn = document.createElement('button');
+        btn.onclick = () => selectOption(idx);
+        btn.className = 'p-4 rounded-2xl border text-left text-xs md:text-sm font-semibold transition flex items-center justify-between glass-card-hover btn-bounce bg-slate-900/90 border-slate-800 text-slate-200';
+
+        if (userSaved !== null) {
+          btn.disabled = true;
+          if (idx === q.ans) {
+            btn.className = 'p-4 rounded-2xl border text-left text-xs md:text-sm font-semibold flex items-center justify-between bg-emerald-950/80 border-emerald-500 text-emerald-200';
+          } else if (userSaved.selected === idx) {
+            btn.className = 'p-4 rounded-2xl border text-left text-xs md:text-sm font-semibold flex items-center justify-between bg-rose-950/80 border-rose-500 text-rose-200';
+          }
+        }
+
+        btn.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-xl bg-slate-800 flex items-center justify-center text-xs font-bold text-teal-300 font-fun">${String.fromCharCode(65 + idx)}</span>
+            <span>${optText}</span>
+          </div>
+          <button onclick="event.stopPropagation(); speakText('${optText.replace(/'/g, "\\'")}')" class="text-slate-400 hover:text-teal-300 p-1">🔊</button>
+        `;
+        optionsContainer.appendChild(btn);
+      });
+
+      const expBox = document.getElementById('explanationBox');
+      if (userSaved !== null) {
+        expBox.classList.remove('hidden');
+        const feedbackTitle = document.getElementById('feedbackTitle');
+        if (userSaved.isCorrect) {
+          expBox.className = 'rounded-2xl p-5 border bg-emerald-950/60 border-emerald-500/50 text-emerald-100';
+          feedbackTitle.className = 'font-fun text-base font-bold text-emerald-300 flex items-center gap-2';
+          feedbackTitle.innerHTML = '<span>🎉</span> CHÍNH XÁC! (+10 Điểm)';
+        } else {
+          expBox.className = 'rounded-2xl p-5 border bg-rose-950/60 border-rose-500/50 text-rose-100';
+          feedbackTitle.className = 'font-fun text-base font-bold text-rose-300 flex items-center gap-2';
+          feedbackTitle.innerHTML = '<span>❌</span> CHƯA CHÍNH XÁC!';
+        }
+        document.getElementById('explanationText').innerHTML = `
+          <div class="font-bold text-teal-300 mb-1">Đáp án đúng: ${q.opts[q.ans]}</div>
+          <div>${q.exp}</div>
+        `;
+      } else {
+        expBox.classList.add('hidden');
+      }
+
+      document.getElementById('btnPrevQ').disabled = (currentQIndex === 0);
+    }
+
+    function selectOption(idx) {
+      const data = getCurrentDataset();
+      const q = data[currentQIndex];
+      const isCorrect = (idx === q.ans);
+
+      if (isCorrect) {
+        score += 10;
+        streak += 1;
+        if (streak > maxStreak) maxStreak = streak;
+        playAudioFeedback(true);
+      } else {
+        streak = 0;
+        playAudioFeedback(false);
+      }
+      updateHeaderStats();
+
+      userAnswers[`g${currentGameIndex}`][currentQIndex] = {
+        selected: idx,
+        isCorrect: isCorrect
+      };
+
+      loadStandardQuestion();
+      speakText(isCorrect ? "Correct! Good job!" : `Incorrect. The correct answer is ${q.opts[q.ans]}`);
+    }
+
+    function playAudioFeedback(isCorrect) {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        if (isCorrect) {
+          osc.frequency.setValueAtTime(523.25, ctx.currentTime);
+          osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.1);
+          gain.gain.setValueAtTime(0.2, ctx.currentTime);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.25);
+        } else {
+          osc.frequency.setValueAtTime(220, ctx.currentTime);
+          osc.frequency.setValueAtTime(174.61, ctx.currentTime + 0.15);
+          gain.gain.setValueAtTime(0.2, ctx.currentTime);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.3);
+        }
+      } catch (e) {}
+    }
+
+    function prevQuestion() {
+      if (currentQIndex > 0) {
+        currentQIndex--;
+        loadStandardQuestion();
+      }
+    }
+
+    function nextQuestion() {
+      if (currentQIndex < 19) {
+        currentQIndex++;
+        loadStandardQuestion();
+      } else {
+        showSummaryModal();
+      }
+    }
+
+    function playCurrentQuestionAudio() {
+      const data = getCurrentDataset();
+      speakText(data[currentQIndex].q);
+    }
+
+    function playDirectAudio() {
+      const data = getCurrentDataset();
+      speakText(data[currentQIndex].d);
+    }
+
+    function playExpAudio() {
+      const data = getCurrentDataset();
+      speakText(data[currentQIndex].exp);
+    }
+
+    function loadG5Question() {
+      const q = game5Data[currentQIndex];
+      document.getElementById('g5Progress').textContent = `${currentQIndex + 1} / 20`;
+      document.getElementById('g5Direct').textContent = `"${q.d}"`;
+      document.getElementById('g5Prompt').textContent = q.prompt;
+
+      const userSaved = userAnswers.g5[currentQIndex];
+
+      if (userSaved !== null) {
+        g5UserSlots = [...userSaved.builtWords];
+        g5UserPool = [];
+      } else {
+        g5UserSlots = [];
+        g5UserPool = shuffleArray(q.words);
+      }
+
+      renderG5Board();
+
+      const expBox = document.getElementById('g5ExpBox');
+      if (userSaved !== null) {
+        expBox.classList.remove('hidden');
+        const feedbackTitle = document.getElementById('g5FeedbackTitle');
+        if (userSaved.isCorrect) {
+          expBox.className = 'rounded-2xl p-5 border bg-emerald-950/60 border-emerald-500/50 text-emerald-100';
+          feedbackTitle.className = 'font-fun text-base font-bold text-emerald-300 flex items-center gap-2';
+          feedbackTitle.innerHTML = '<span>🎉</span> XẾP CÂU CHÍNH XÁC! (+10 Điểm)';
+        } else {
+          expBox.className = 'rounded-2xl p-5 border bg-rose-950/60 border-rose-500/50 text-rose-100';
+          feedbackTitle.className = 'font-fun text-base font-bold text-rose-300 flex items-center gap-2';
+          feedbackTitle.innerHTML = '<span>❌</span> CHƯA ĐÚNG THỨ TỰ!';
+        }
+        document.getElementById('g5ExpText').innerHTML = `
+          <div class="font-bold text-purple-300 mb-1">Câu chuẩn: ${q.ansStr}</div>
+          <div>${q.exp}</div>
+        `;
+        document.getElementById('btnCheckG5').disabled = true;
+      } else {
+        expBox.classList.add('hidden');
+        document.getElementById('btnCheckG5').disabled = false;
+      }
+
+      document.getElementById('btnPrevG5').disabled = (currentQIndex === 0);
+    }
+
+    function renderG5Board() {
+      const slotContainer = document.getElementById('g5AnswerSlot');
+      const placeholder = document.getElementById('g5Placeholder');
+      slotContainer.innerHTML = '';
+
+      if (g5UserSlots.length === 0) {
+        slotContainer.appendChild(placeholder);
+        placeholder.style.display = 'block';
+      } else {
+        g5UserSlots.forEach((word, idx) => {
+          const chip = document.createElement('button');
+          chip.onclick = () => removeG5SlotWord(idx);
+          chip.className = 'px-3 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs md:text-sm shadow-md transition btn-bounce flex items-center gap-1.5';
+          chip.innerHTML = `<span>${word}</span> <span class="text-purple-300 text-xs">✕</span>`;
+          slotContainer.appendChild(chip);
+        });
+      }
+
+      const poolContainer = document.getElementById('g5WordPool');
+      poolContainer.innerHTML = '';
+      g5UserPool.forEach((word, idx) => {
+        const chip = document.createElement('button');
+        chip.onclick = () => addG5SlotWord(word, idx);
+        chip.className = 'px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-purple-950 hover:border-purple-500 border border-slate-700 text-slate-200 font-bold text-xs md:text-sm transition btn-bounce';
+        chip.textContent = word;
+        poolContainer.appendChild(chip);
+      });
+    }
+
+    function addG5SlotWord(word, poolIdx) {
+      if (userAnswers.g5[currentQIndex] !== null) return;
+      g5UserSlots.push(word);
+      g5UserPool.splice(poolIdx, 1);
+      renderG5Board();
+      speakText(word);
+    }
+
+    function removeG5SlotWord(slotIdx) {
+      if (userAnswers.g5[currentQIndex] !== null) return;
+      const word = g5UserSlots.splice(slotIdx, 1)[0];
+      g5UserPool.push(word);
+      renderG5Board();
+    }
+
+    function clearG5Slots() {
+      if (userAnswers.g5[currentQIndex] !== null) return;
+      const q = game5Data[currentQIndex];
+      g5UserSlots = [];
+      g5UserPool = shuffleArray(q.words);
+      renderG5Board();
+    }
+
+    function checkG5Answer() {
+      if (userAnswers.g5[currentQIndex] !== null) return;
+      const q = game5Data[currentQIndex];
+      const builtStr = g5UserSlots.join(' ').trim();
+      const isCorrect = (builtStr === q.ansStr.trim());
+
+      if (isCorrect) {
+        score += 10;
+        streak += 1;
+        if (streak > maxStreak) maxStreak = streak;
+        playAudioFeedback(true);
+      } else {
+        streak = 0;
+        playAudioFeedback(false);
+      }
+      updateHeaderStats();
+
+      userAnswers.g5[currentQIndex] = {
+        builtWords: [...g5UserSlots],
+        isCorrect: isCorrect
+      };
+
+      loadG5Question();
+      speakText(isCorrect ? "Excellent! Perfect sentence!" : "Not quite right. Listen to the correct sentence.");
+    }
+
+    function prevG5Q() {
+      if (currentQIndex > 0) {
+        currentQIndex--;
+        loadG5Question();
+      }
+    }
+
+    function nextG5Q() {
+      if (currentQIndex < 19) {
+        currentQIndex++;
+        loadG5Question();
+      } else {
+        showSummaryModal();
+      }
+    }
+
+    function playG5Audio() {
+      speakText(game5Data[currentQIndex].d);
+    }
+
+    function playG5CorrectAudio() {
+      speakText(game5Data[currentQIndex].ansStr);
+    }
+
+    function showSummaryModal() {
+      const modal = document.getElementById('summaryModal');
+      document.getElementById('modalScore').textContent = score;
+      document.getElementById('modalStreak').textContent = maxStreak;
+
+      let comment = "";
+      if (score >= 160) {
+        comment = "🌟 Xuất sắc! Em đã hoàn toàn làm chủ kiến thức Câu Tường Thuật Unit 11. Cô Lily rất tự hào về em!";
+      } else if (score >= 100) {
+        comment = "👏 Khá tốt! Em đã nắm vững các quy tắc lùi thì cơ bản. Hãy xem lại các câu sai để bứt phá điểm 10 nhé!";
+      } else {
+        comment = "💪 Cố gắng lên nhé! Em hãy đọc lại Cẩm Nang Lý Thuyết ở Tab 1 và làm lại lượt chơi để ghi nhớ sâu hơn!";
+      }
+      document.getElementById('modalTeacherComment').textContent = comment;
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      triggerConfetti();
+    }
+
+    function closeSummaryModal() {
+      const modal = document.getElementById('summaryModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function restartCurrentGame() {
+      closeSummaryModal();
+      userAnswers[`g${currentGameIndex}`] = Array(20).fill(null);
+      currentQIndex = 0;
+      if (currentGameIndex === 5) {
+        loadG5Question();
+      } else {
+        loadStandardQuestion();
+      }
+    }
+
+    function triggerConfetti() {
+      const canvas = document.getElementById('confettiCanvas');
+      canvas.classList.remove('hidden');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const pieces = Array.from({ length: 80 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height - canvas.height,
+        size: Math.random() * 8 + 4,
+        color: ['#2dd4bf', '#a855f7', '#f59e0b', '#ec4899', '#3b82f6'][Math.floor(Math.random() * 5)],
+        speed: Math.random() * 4 + 2,
+        rotation: Math.random() * 360
+      }));
+
+      let animationFrame;
+      function render() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        pieces.forEach(p => {
+          p.y += p.speed;
+          p.rotation += 2;
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate((p.rotation * Math.PI) / 180);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+          ctx.restore();
+        });
+
+        if (pieces.some(p => p.y < canvas.height)) {
+          animationFrame = requestAnimationFrame(render);
+        } else {
+          canvas.classList.add('hidden');
+          cancelAnimationFrame(animationFrame);
+        }
+      }
+      render();
+    }
+
+    window.addEventListener('load', () => {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.onvoiceschanged = () => {};
+      }
+    });
+  </script>
+</body>
+</html>

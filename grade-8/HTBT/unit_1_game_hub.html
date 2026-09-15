@@ -1,0 +1,2095 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HT English - Verbs of Liking & Unit 1 Game Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Quicksand:wght@500;600;700&family=Bungee&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --primary: #0284c7;
+      --primary-dark: #0369a1;
+      --accent: #f59e0b;
+      --success: #10b981;
+      --danger: #ef4444;
+      --purple: #8b5cf6;
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #1e293b, #0f172a 80%);
+      color: var(--text);
+      font-family: 'Quicksand', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+    }
+
+    /* HEADER */
+    header {
+      width: 100%;
+      background: rgba(15, 23, 42, 0.95);
+      border-bottom: 2px solid #334155;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(10px);
+    }
+
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 46px;
+      height: 46px;
+      background: linear-gradient(135deg, #0ea5e9, #6366f1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Fredoka', cursive;
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(14, 165, 233, 0.4);
+    }
+
+    .brand-info h1 {
+      font-family: 'Fredoka', cursive;
+      font-size: 18px;
+      color: #38bdf8;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-info p {
+      font-size: 12px;
+      color: #94a3b8;
+    }
+
+    .brand-contact {
+      text-align: right;
+      font-size: 12px;
+      color: #cbd5e1;
+    }
+
+    .brand-contact span {
+      color: #facc15;
+      font-weight: 700;
+    }
+
+    /* MAIN CONTAINER */
+    .app-container {
+      width: 100%;
+      max-width: 1100px;
+      padding: 24px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+    }
+
+    /* HERO BANNER */
+    .hero-banner {
+      width: 100%;
+      background: linear-gradient(135deg, #1e1b4b, #312e81, #0f172a);
+      border: 2px solid #4338ca;
+      border-radius: 24px;
+      padding: 28px;
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-banner::after {
+      content: '🎮';
+      position: absolute;
+      right: 15px;
+      bottom: -15px;
+      font-size: 120px;
+      opacity: 0.12;
+      pointer-events: none;
+    }
+
+    .hero-text h2 {
+      font-family: 'Fredoka', cursive;
+      font-size: 32px;
+      color: #fbbf24;
+      margin-bottom: 8px;
+    }
+
+    .hero-text p {
+      font-size: 15px;
+      color: #cbd5e1;
+      max-width: 650px;
+      line-height: 1.5;
+    }
+
+    .rules-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fde68a;
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 700;
+      margin-top: 10px;
+    }
+
+    /* MENU GRID: 5 GAMES */
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 18px;
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+    .game-card {
+      background: #1e293b;
+      border: 2px solid #334155;
+      border-radius: 20px;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.5);
+    }
+
+    .game-card.card-1 { border-color: #ef4444; }
+    .game-card.card-1:hover { background: linear-gradient(180deg, #1e293b, #450a0a); }
+    .game-card.card-2 { border-color: #06b6d4; }
+    .game-card.card-2:hover { background: linear-gradient(180deg, #1e293b, #083344); }
+    .game-card.card-3 { border-color: #ec4899; }
+    .game-card.card-3:hover { background: linear-gradient(180deg, #1e293b, #500724); }
+    .game-card.card-4 { border-color: #8b5cf6; }
+    .game-card.card-4:hover { background: linear-gradient(180deg, #1e293b, #2e1065); }
+    .game-card.card-5 { border-color: #f59e0b; }
+    .game-card.card-5:hover { background: linear-gradient(180deg, #1e293b, #451a03); }
+
+    .game-icon {
+      font-size: 42px;
+      margin-bottom: 12px;
+      transition: transform 0.3s;
+    }
+
+    .game-card:hover .game-icon {
+      transform: scale(1.2) rotate(8deg);
+    }
+
+    .game-card h3 {
+      font-family: 'Fredoka', cursive;
+      font-size: 18px;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+
+    .game-card p {
+      font-size: 12px;
+      color: #94a3b8;
+      line-height: 1.3;
+      margin-bottom: 12px;
+    }
+
+    .question-badge {
+      background: #0f172a;
+      border: 1px solid #475569;
+      font-size: 11px;
+      font-weight: 700;
+      color: #38bdf8;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    /* PLAY AREA CONTAINER */
+    .game-view {
+      display: none;
+      width: 100%;
+      background: #1e293b;
+      border: 2px solid #3b82f6;
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+      position: relative;
+    }
+
+    .game-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+      background: #0f172a;
+      padding: 12px 20px;
+      border-radius: 16px;
+      border: 1px solid #334155;
+    }
+
+    .game-title-hud {
+      font-family: 'Fredoka', cursive;
+      font-size: 20px;
+      color: #38bdf8;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .stats-hud {
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      font-family: 'Fredoka', cursive;
+      font-size: 16px;
+    }
+
+    .score-chip {
+      color: #facc15;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .progress-chip {
+      color: #a78bfa;
+    }
+
+    .back-btn {
+      background: #334155;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-family: 'Quicksand', sans-serif;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .back-btn:hover {
+      background: #475569;
+      transform: translateX(-3px);
+    }
+
+    /* QUESTION DISPLAY BOX */
+    .question-box {
+      background: #0f172a;
+      border: 2px solid #334155;
+      border-radius: 20px;
+      padding: 22px;
+      text-align: center;
+      margin-bottom: 24px;
+      position: relative;
+    }
+
+    .q-number {
+      display: inline-block;
+      background: #3b82f6;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 12px;
+    }
+
+    .q-sentence {
+      font-size: 23px;
+      font-weight: 700;
+      color: #f1f5f9;
+      line-height: 1.5;
+      margin-bottom: 12px;
+    }
+
+    .q-sentence span.blank {
+      color: #f59e0b;
+      border-bottom: 3px dashed #f59e0b;
+      padding: 0 10px;
+    }
+
+    .tts-btn {
+      background: #0284c7;
+      color: #fff;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      transition: all 0.2s;
+      margin-left: 10px;
+      box-shadow: 0 4px 10px rgba(2, 132, 199, 0.4);
+    }
+
+    .tts-btn:hover {
+      transform: scale(1.15);
+      background: #38bdf8;
+    }
+
+    .tts-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* INTERACTIVE ARENAS FOR 5 GAMES */
+    .game-arena {
+      width: 100%;
+      min-height: 280px;
+      background: #090d16;
+      border-radius: 20px;
+      border: 2px solid #1e293b;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* ARENA 1: FRUIT SLASHER */
+    .fruits-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 30px;
+      width: 100%;
+    }
+
+    .fruit-target {
+      background: #1e293b;
+      border: 3px solid #ef4444;
+      border-radius: 24px;
+      padding: 16px 24px;
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      min-width: 160px;
+      animation: floatFruit 3s ease-in-out infinite alternate;
+      box-shadow: 0 8px 20px rgba(239, 68, 68, 0.25);
+    }
+
+    .fruit-target:nth-child(2) { animation-delay: 0.5s; border-color: #f59e0b; }
+    .fruit-target:nth-child(3) { animation-delay: 1s; border-color: #10b981; }
+    .fruit-target:nth-child(4) { animation-delay: 1.5s; border-color: #8b5cf6; }
+
+    @keyframes floatFruit {
+      0% { transform: translateY(0px) rotate(0deg); }
+      100% { transform: translateY(-16px) rotate(3deg); }
+    }
+
+    .fruit-target:hover {
+      transform: scale(1.1) translateY(-10px);
+      box-shadow: 0 15px 30px rgba(239, 68, 68, 0.4);
+    }
+
+    .fruit-icon {
+      font-size: 36px;
+    }
+
+    .fruit-text {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* ARENA 2: RACING TRACK */
+    .highway-track {
+      width: 100%;
+      height: 320px;
+      background: #1e293b;
+      background-image: linear-gradient(180deg, #111827 0%, #1f2937 100%);
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      padding: 20px 10px;
+      gap: 10px;
+    }
+
+    .highway-lane {
+      border-right: 2px dashed #475569;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 12px;
+      transition: background 0.2s;
+    }
+
+    .highway-lane:last-child {
+      border-right: none;
+    }
+
+    .highway-lane:hover {
+      background: rgba(14, 165, 233, 0.15);
+    }
+
+    .racer-car {
+      font-size: 38px;
+      transition: transform 0.3s ease;
+      filter: drop-shadow(0 5px 10px rgba(250, 204, 21, 0.6));
+    }
+
+    .lane-choice-box {
+      background: #0f172a;
+      border: 2px solid #38bdf8;
+      border-radius: 14px;
+      padding: 12px 14px;
+      text-align: center;
+      width: 100%;
+      font-weight: 700;
+      font-size: 16px;
+      color: #fff;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+
+    /* ARENA 3: BALLOON POPPING */
+    .balloons-sky {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      padding: 30px;
+      width: 100%;
+    }
+
+    .balloon-item {
+      width: 150px;
+      height: 190px;
+      border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 15px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 17px;
+      cursor: pointer;
+      position: relative;
+      animation: flyBalloon 4s ease-in-out infinite alternate;
+      box-shadow: inset -6px -6px 12px rgba(0,0,0,0.3), 0 10px 20px rgba(0,0,0,0.4);
+      transition: transform 0.2s;
+    }
+
+    .balloon-item::after {
+      content: '';
+      position: absolute;
+      bottom: -18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 20px;
+      background: #94a3b8;
+    }
+
+    .b-pink { background: linear-gradient(135deg, #f43f5e, #be123c); }
+    .b-blue { background: linear-gradient(135deg, #0284c7, #0369a1); animation-delay: 0.7s; }
+    .b-green { background: linear-gradient(135deg, #10b981, #047857); animation-delay: 1.4s; }
+    .b-purple { background: linear-gradient(135deg, #a855f7, #7e22ce); animation-delay: 2.1s; }
+
+    @keyframes flyBalloon {
+      0% { transform: translateY(0) scale(1); }
+      100% { transform: translateY(-20px) scale(1.04); }
+    }
+
+    .balloon-item:hover {
+      transform: scale(1.12) translateY(-15px);
+    }
+
+    /* ARENA 4: SPACE DEFENDER */
+    .space-field {
+      width: 100%;
+      height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      padding: 20px;
+      background: radial-gradient(circle, #1e1b4b, #050510);
+      position: relative;
+    }
+
+    .asteroids-row {
+      display: flex;
+      gap: 18px;
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .asteroid-ship {
+      background: #1e293b;
+      border: 2px dashed #a855f7;
+      border-radius: 18px;
+      padding: 12px 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #e9d5ff;
+      transition: all 0.2s;
+    }
+
+    .asteroid-ship:hover {
+      background: #3b0764;
+      border-style: solid;
+      transform: scale(1.1);
+    }
+
+    .spaceship-player {
+      font-size: 52px;
+      animation: hoverShip 2s infinite ease-in-out alternate;
+    }
+
+    @keyframes hoverShip {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px); }
+    }
+
+    /* ARENA 5: WHACK A MOLE */
+    .moles-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      padding: 24px;
+      width: 100%;
+      max-width: 650px;
+    }
+
+    .mole-hole {
+      background: #291d0f;
+      border: 3px solid #78350f;
+      border-radius: 24px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: pointer;
+      transition: all 0.2s;
+      box-shadow: inset 0 6px 12px rgba(0,0,0,0.7);
+    }
+
+    .mole-hole:hover {
+      background: #451a03;
+      transform: translateY(-4px);
+    }
+
+    .mole-icon {
+      font-size: 38px;
+      margin-bottom: 6px;
+      animation: molePeep 2s infinite alternate;
+    }
+
+    @keyframes molePeep {
+      0% { transform: translateY(10px); }
+      100% { transform: translateY(-4px); }
+    }
+
+    .mole-label {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fef3c7;
+      text-align: center;
+    }
+
+    /* FEEDBACK CARD / EXPLANATION MODAL */
+    .explanation-card {
+      display: none;
+      background: #0f172a;
+      border: 2px solid #10b981;
+      border-radius: 20px;
+      padding: 22px;
+      margin-top: 15px;
+      animation: slideUp 0.3s ease;
+    }
+
+    .explanation-card.incorrect {
+      border-color: #ef4444;
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .exp-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-family: 'Fredoka', cursive;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+
+    .exp-header.correct { color: #34d399; }
+    .exp-header.wrong { color: #f87171; }
+
+    .exp-content {
+      font-size: 15px;
+      color: #cbd5e1;
+      line-height: 1.6;
+    }
+
+    .rule-tag {
+      display: inline-block;
+      background: #1e3a8a;
+      color: #bfdbfe;
+      padding: 4px 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 13px;
+      margin-top: 8px;
+    }
+
+    .next-btn {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: #fff;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 12px;
+      font-family: 'Fredoka', cursive;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 16px;
+      transition: all 0.2s;
+    }
+
+    .next-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 20px rgba(16, 185, 129, 0.4);
+    }
+
+    /* RESULT SCREEN */
+    .result-view {
+      display: none;
+      background: #1e293b;
+      border: 2px solid #facc15;
+      border-radius: 24px;
+      padding: 40px 24px;
+      text-align: center;
+      width: 100%;
+      max-width: 700px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+      animation: popIn 0.4s ease;
+    }
+
+    @keyframes popIn {
+      from { transform: scale(0.85); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .trophy-icon {
+      font-size: 75px;
+      color: #facc15;
+      margin-bottom: 16px;
+      animation: bounce 1.5s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .result-score {
+      font-family: 'Fredoka', cursive;
+      font-size: 48px;
+      color: #38bdf8;
+      margin: 10px 0;
+    }
+
+    .result-msg {
+      font-size: 18px;
+      color: #cbd5e1;
+      margin-bottom: 24px;
+    }
+
+    .result-actions {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* FOOTER */
+    footer {
+      width: 100%;
+      background: #090d16;
+      border-top: 1px solid #1e293b;
+      padding: 16px;
+      text-align: center;
+      font-size: 13px;
+      color: #64748b;
+      margin-top: auto;
+    }
+
+    @media (max-width: 768px) {
+      .hero-banner { flex-direction: column; text-align: center; gap: 15px; }
+      .highway-track { grid-template-columns: repeat(2, 1fr); height: 420px; }
+      .moles-grid { grid-template-columns: 1fr; }
+      .q-sentence { font-size: 19px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="brand-box">
+      <div class="brand-logo">HT</div>
+      <div class="brand-info">
+        <h1>HT ENGLISH CENTER</h1>
+        <p>Ms. Lily • 0963.422.940 - 0962.240.866</p>
+      </div>
+    </div>
+    <div class="brand-contact">
+      <div>📍 Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình</div>
+      <div>🌟 Lớp 8: <span>Unit 1 - Leisure Time & Verbs of Liking</span></div>
+    </div>
+  </header>
+
+  <!-- MAIN APP CONTAINER -->
+  <div class="app-container">
+
+    <!-- HERO INTRO -->
+    <div class="hero-banner" id="heroBanner">
+      <div class="hero-text">
+        <h2>⚡ 5 ĐẤU TRƯỜNG NGỮ PHÁP TIẾNG ANH 8</h2>
+        <p>Chinh phục trọn bộ quy tắc kết hợp động từ chỉ sự yêu/ghét <strong>(adore, love, like, enjoy, fancy, prefer, dislike, hate, detest, mind)</strong> với V-ing và To-V trong SGK Tiếng Anh 8 Global Success Unit 1!</p>
+        <div class="rules-badge">
+          <i class="fa-solid fa-volume-high"></i> Giọng đọc nữ US chuẩn • Tự động chấm điểm • Lời giải chi tiết
+        </div>
+      </div>
+    </div>
+
+    <!-- 5 GAME SELECTOR GRID -->
+    <div class="game-grid" id="gameMenu">
+      
+      <!-- GAME 1 -->
+      <div class="game-card card-1" onclick="launchGame(0)">
+        <div class="game-icon">🍉</div>
+        <h3>Fruit Slasher</h3>
+        <p>Chém hoa quả ngữ pháp! Chém đúng dạng V-ing / To-V chuẩn để ghi điểm.</p>
+        <span class="question-badge">20 Câu hỏi • Chém ngọt</span>
+      </div>
+
+      <!-- GAME 2 -->
+      <div class="game-card card-2" onclick="launchGame(1)">
+        <div class="game-icon">🏎️</div>
+        <h3>Highway Racer</h3>
+        <p>Đua xe cao tốc Unit 1! Chuyển làn chuẩn xác để bứt tốc Turbo về đích.</p>
+        <span class="question-badge">20 Câu hỏi • Tốc độ</span>
+      </div>
+
+      <!-- GAME 3 -->
+      <div class="game-card card-3" onclick="launchGame(2)">
+        <div class="game-icon">🎈</div>
+        <h3>Balloon Pop</h3>
+        <p>Lễ hội bắn bóng bay! Bắn vỡ quả bóng mang đáp án chính xác.</p>
+        <span class="question-badge">20 Câu hỏi • Tinh mắt</span>
+      </div>
+
+      <!-- GAME 4 -->
+      <div class="game-card card-4" onclick="launchGame(3)">
+        <div class="game-icon">🚀</div>
+        <h3>Space Invader</h3>
+        <p>Chiến hạm vũ trụ! Phá hủy thiên thạch mang cấu trúc sai, bảo vệ căn cứ.</p>
+        <span class="question-badge">20 Câu hỏi • Kịch tính</span>
+      </div>
+
+      <!-- GAME 5 -->
+      <div class="game-card card-5" onclick="launchGame(4)">
+        <div class="game-icon">🔨</div>
+        <h3>Whack-a-Mole</h3>
+        <p>Đập chuột vui nhộn! Phản xạ nhanh tay gõ đúng chú chuột mang đáp án.</p>
+        <span class="question-badge">20 Câu hỏi • Phản xạ</span>
+      </div>
+
+    </div>
+
+    <!-- GAME PLAY AREA -->
+    <div class="game-view" id="gameView">
+      <div class="game-topbar">
+        <div class="game-title-hud" id="currentGamename">
+          <span>🍉 Fruit Slasher</span>
+        </div>
+        <div class="stats-hud">
+          <div class="progress-chip">Câu: <span id="currentQNum">1</span>/20</div>
+          <div class="score-chip"><i class="fa-solid fa-star"></i> Điểm: <span id="currentScore">0</span></div>
+        </div>
+        <button class="back-btn" onclick="backToMenu()"><i class="fa-solid fa-house"></i> Chọn game khác</button>
+      </div>
+
+      <!-- QUESTION DISPLAY -->
+      <div class="question-box">
+        <div class="q-number" id="qBadge">Câu số 1</div>
+        <div class="q-sentence">
+          <span id="questionSentence">My mother enjoys _______ aerobics every morning.</span>
+          <button class="tts-btn" title="Nghe câu hỏi giọng Nữ US" onclick="speakCurrentQuestion()"><i class="fa-solid fa-volume-high"></i></button>
+        </div>
+        <div style="font-size:14px; color:#94a3b8;" id="qHint">Chọn dạng động từ đúng điền vào chỗ trống:</div>
+      </div>
+
+      <!-- ARENA CONTAINER (Rendered dynamically based on game) -->
+      <div class="game-arena" id="interactiveArena">
+        <!-- Interactive Targets will be injected here -->
+      </div>
+
+      <!-- EXPLANATION & NEXT -->
+      <div class="explanation-card" id="explanationCard">
+        <div class="exp-header" id="expHeader">
+          <i class="fa-solid fa-circle-check"></i> <span>Chính xác! Xuất sắc lắm!</span>
+        </div>
+        <div class="exp-content" id="expContent">
+          <strong>Cấu trúc ngữ pháp:</strong> enjoy + V-ing (thích làm gì).<br>
+          <em>"doing aerobics"</em>: tập thể dục nhịp điệu.
+        </div>
+        <div style="margin-top:8px;">
+          <button class="tts-btn" style="width:34px; height:34px; font-size:13px;" onclick="speakExplanation()"><i class="fa-solid fa-volume-high"></i></button>
+          <span style="font-size:13px; color:#94a3b8; margin-left:6px;">Nghe phát âm lời giải</span>
+        </div>
+        <button class="next-btn" onclick="nextQuestion()"><i class="fa-solid fa-forward-step"></i> Câu tiếp theo</button>
+      </div>
+
+    </div>
+
+    <!-- RESULT SUMMARY SCREEN -->
+    <div class="result-view" id="resultView">
+      <div class="trophy-icon"><i class="fa-solid fa-trophy"></i></div>
+      <h2 style="font-family: 'Fredoka', cursive; font-size: 32px; color: #facc15;">HOÀN THÀNH XUẤT SẮC!</h2>
+      <div class="result-score" id="finalScoreDisplay">100 / 100</div>
+      <div class="result-msg" id="finalFeedbackMsg">Tuyệt vời! Em đã nắm rất vững cấu trúc Verbs of Liking / Disliking!</div>
+      
+      <div style="background:#0f172a; border-radius:16px; padding:16px; margin-bottom:24px; text-align:left; border:1px solid #334155;">
+        <h4 style="color:#38bdf8; margin-bottom:8px; font-size:16px;"><i class="fa-solid fa-lightbulb"></i> Bảng Vàng Ghi Nhớ Ngữ Pháp Unit 1:</h4>
+        <ul style="font-size:14px; color:#cbd5e1; line-height:1.7; padding-left:20px;">
+          <li><strong>Bắt buộc + V-ing:</strong> enjoy, fancy, adore, detest, dislike, mind / don't mind.</li>
+          <li><strong>Đi kèm cả V-ing & To-V:</strong> like, love, hate, prefer (nghĩa tương đương nhau).</li>
+          <li><strong>Có 'WOULD' (+ would like, would love, would prefer):</strong> Bắt buộc đi với <strong>TO-V</strong>!</li>
+          <li><strong>Giới từ chỉ sở thích:</strong> fond of, keen on, interested in, crazy about + <strong>V-ing</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="result-actions">
+        <button class="next-btn" onclick="replayCurrentGame()"><i class="fa-solid fa-rotate-right"></i> Chơi lại Game này</button>
+        <button class="back-btn" style="padding: 12px 24px; font-size: 16px;" onclick="backToMenu()"><i class="fa-solid fa-gamepad"></i> Khám phá Game khác</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    HT ENGLISH CENTER • MS. LILY • HOTLINE: 0963.422.940 - 0962.240.866<br>
+    Địa chỉ: Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình • Chương trình Tiếng Anh 8 Global Success
+  </footer>
+
+  <script>
+    /* =========================================================================
+       AUDIO & SPEECH SYNTHESIS SETUP (US FEMALE AUDIO)
+       ========================================================================= */
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9; // pedagogical pace for middle schoolers
+
+      const voices = window.speechSynthesis.getVoices();
+      const femaleUS = voices.find(v => 
+        (v.lang === 'en-US' || v.lang.startsWith('en')) &&
+        (v.name.includes('Female') || v.name.includes('Samantha') || v.name.includes('Zira') || 
+         v.name.includes('Victoria') || v.name.includes('Google US English') || v.name.includes('Jenny'))
+      );
+      if (femaleUS) utterance.voice = femaleUS;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // Audio SFX using Web Audio API
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    function playBeep(freq, type, duration) {
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.value = freq;
+        gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function soundCorrect() {
+      playBeep(587.33, 'triangle', 0.12);
+      setTimeout(() => playBeep(880, 'sine', 0.25), 100);
+    }
+
+    function soundWrong() {
+      playBeep(220, 'sawtooth', 0.18);
+      setTimeout(() => playBeep(160, 'sawtooth', 0.25), 120);
+    }
+
+    /* =========================================================================
+       MASTER DATABASE: 5 GAMES x 20 QUESTIONS EACH (TOTAL 100 QUESTIONS)
+       Focus: like, love, enjoy, fancy, prefer, adore, dislike, hate, detest...
+       With Unit 1 Vocab (DIY, knitting, puzzles, origami, cooking, cycling, etc.)
+       ========================================================================= */
+    const GAMES_DATA = [
+      // GAME 1: FRUIT SLASHER (20 Questions)
+      {
+        title: "🍉 Fruit Slasher",
+        theme: "fruit",
+        questions: [
+          {
+            sentence: "My mother enjoys _______ aerobics in the early morning.",
+            displayBlank: "aerobics in the early morning.",
+            options: ["doing", "to do", "do", "did"],
+            answer: 0,
+            rule: "enjoy + V-ing",
+            explanation: "Sau động từ chỉ sở thích 'enjoy' luôn luôn đi với danh động từ V-ing (doing aerobics = tập thể dục nhịp điệu)."
+          },
+          {
+            sentence: "Jenny fancies _______ a diary every night before bedtime.",
+            displayBlank: "a diary every night before bedtime.",
+            options: ["writing", "to write", "write", "written"],
+            answer: 0,
+            rule: "fancy + V-ing",
+            explanation: "Động từ 'fancy' (thích/hứng thú) bắt buộc kết hợp với V-ing (writing a diary = viết nhật ký)."
+          },
+          {
+            sentence: "In his leisure time, Antony likes _______ photographs of nature.",
+            displayBlank: "photographs of nature.",
+            options: ["taking", "take", "took", "taken"],
+            answer: 0,
+            rule: "like + V-ing / To-V",
+            explanation: "Sau 'like' có thể dùng V-ing hoặc To-V. Trong các phương án chỉ có 'taking' là cấu trúc chính xác."
+          },
+          {
+            sentence: "Are you interested in _______ basketball with our school club?",
+            displayBlank: "basketball with our school club?",
+            options: ["playing", "to play", "play", "played"],
+            answer: 0,
+            rule: "be interested in + V-ing",
+            explanation: "Sau giới từ 'in' (trong cụm be interested in) bắt buộc dùng V-ing: playing basketball."
+          },
+          {
+            sentence: "Does your grandfather love _______ rare foreign coins?",
+            displayBlank: "rare foreign coins?",
+            options: ["collecting", "collect", "collected", "collects"],
+            answer: 0,
+            rule: "love + V-ing / To-V",
+            explanation: "Sau động từ 'love' dùng V-ing để chỉ sở thích lâu dài: collecting foreign coins."
+          },
+          {
+            sentence: "Nam hates _______ his bike to school on heavy rainy days.",
+            displayBlank: "his bike to school on heavy rainy days.",
+            options: ["riding", "to riding", "rode", "rides"],
+            answer: 0,
+            rule: "hate + V-ing",
+            explanation: "'hate' (ghét) đi kèm V-ing diễn tả sự không thích: riding a bike."
+          },
+          {
+            sentence: "We prefer watching movies at home to _______ to the cinema.",
+            displayBlank: "to the cinema.",
+            options: ["going", "to go", "go", "went"],
+            answer: 0,
+            rule: "prefer V-ing to V-ing",
+            explanation: "Cấu trúc so sánh sở thích: prefer doing sth TO doing sth (thích làm gì hơn làm gì)."
+          },
+          {
+            sentence: "My sister detests _______ greasy dishes after every meal.",
+            displayBlank: "greasy dishes after every meal.",
+            options: ["washing", "to wash", "wash", "washed"],
+            answer: 0,
+            rule: "detest + V-ing",
+            explanation: "'detest' (cực kỳ ghét/ghê tởm) bắt buộc đi sau bởi V-ing: washing the dishes."
+          },
+          {
+            sentence: "My father doesn't mind _______ to loud classical music in the room.",
+            displayBlank: "to loud classical music in the room.",
+            options: ["listening", "to listen", "listen", "listened"],
+            answer: 0,
+            rule: "mind / don't mind + V-ing",
+            explanation: "Sau cụm 'don't mind' (không ngại/không phiền) luôn dùng V-ing: listening."
+          },
+          {
+            sentence: "Kim Joon adores _______ Vietnamese street food such as Pho and Banh mi.",
+            displayBlank: "Vietnamese street food.",
+            options: ["eating", "to eat", "eat", "ate"],
+            answer: 0,
+            rule: "adore + V-ing",
+            explanation: "'adore' (rất yêu thích, mê mẩn) chỉ đi kèm với V-ing: eating."
+          },
+          {
+            sentence: "Kelly is so keen on _______ comedies on television.",
+            displayBlank: "comedies on television.",
+            options: ["watching", "watch", "to watch", "watched"],
+            answer: 0,
+            rule: "be keen on + V-ing",
+            explanation: "Cụm tính từ + giới từ: be keen on + V-ing (say mê xem hài kịch)."
+          },
+          {
+            sentence: "Why are you fond of _______ DIY projects in your spare time?",
+            displayBlank: "DIY projects in your spare time?",
+            options: ["doing", "to do", "make", "to doing"],
+            answer: 0,
+            rule: "be fond of + V-ing",
+            explanation: "Cụm 'be fond of' (thích) + V-ing; kết hợp với DIY là 'doing DIY'."
+          },
+          {
+            sentence: "Sue _______ eating durian because its smell is too strong for her.",
+            displayBlank: "eating durian because its smell is too strong.",
+            options: ["detests", "enjoys", "fancies", "likes"],
+            answer: 0,
+            rule: "Chủ ngữ ngôi 3 số ít + detests",
+            explanation: "Ngữ cảnh 'mùi nồng' thể hiện sự không thích; Sue là ngôi 3 số ít nên chọn động từ 'detests'."
+          },
+          {
+            sentence: "We like _______ text messages to our classmates every evening.",
+            displayBlank: "text messages to our classmates every evening.",
+            options: ["sending", "send", "sent", "to sending"],
+            answer: 0,
+            rule: "like + V-ing",
+            explanation: "Sau 'like' dùng V-ing: sending text messages (hoặc texting friends)."
+          },
+          {
+            sentence: "Kim would prefer _______ at home this weekend rather than go out.",
+            displayBlank: "at home this weekend rather than go out.",
+            options: ["to stay", "staying", "stay", "stayed"],
+            answer: 0,
+            rule: "would prefer + TO-V",
+            explanation: "Lưu ý đặc biệt: Có 'WOULD' đi trước prefer thì bắt buộc dùng TO-V: would prefer to stay."
+          },
+          {
+            sentence: "How much time do you spend _______ social media and the Internet?",
+            displayBlank: "social media and the Internet?",
+            options: ["surfing", "to surf", "surf", "surfed"],
+            answer: 0,
+            rule: "spend time + V-ing",
+            explanation: "Cấu trúc: spend + khoảng thời gian + V-ing (dành thời gian lướt mạng)."
+          },
+          {
+            sentence: "I enjoy _______ detective novels whenever I have spare time.",
+            displayBlank: "detective novels whenever I have spare time.",
+            options: ["reading", "to read", "read", "reads"],
+            answer: 0,
+            rule: "enjoy + V-ing",
+            explanation: "Sau 'enjoy' luôn luôn là danh động từ V-ing: reading."
+          },
+          {
+            sentence: "My daughter dislikes _______ the dog when the weather is freezing.",
+            displayBlank: "the dog when the weather is freezing.",
+            options: ["walking", "to walk", "walk", "walked"],
+            answer: 0,
+            rule: "dislike + V-ing",
+            explanation: "'dislike' (không thích) bắt buộc kết hợp với V-ing: walking the dog."
+          },
+          {
+            sentence: "Do you fancy _______ paper flowers with me this afternoon?",
+            displayBlank: "paper flowers with me this afternoon?",
+            options: ["making", "to make", "make", "made"],
+            answer: 0,
+            rule: "fancy + V-ing",
+            explanation: "'fancy' + V-ing; làm hoa giấy là 'making paper flowers'."
+          },
+          {
+            sentence: "My brother loves _______ puzzles like Sudoku to train his memory.",
+            displayBlank: "puzzles like Sudoku to train his memory.",
+            options: ["doing", "to doing", "make", "play"],
+            answer: 0,
+            rule: "love + doing puzzles",
+            explanation: "Collocation chuẩn SGK Unit 1: 'doing puzzles' (giải câu đố)."
+          }
+        ]
+      },
+
+      // GAME 2: HIGHWAY RACER (20 Questions)
+      {
+        title: "🏎️ Highway Racer",
+        theme: "car",
+        questions: [
+          {
+            sentence: "She would love _______ to New World Cinema with us this Sunday.",
+            displayBlank: "to New World Cinema with us this Sunday.",
+            options: ["to go", "going", "go", "went"],
+            answer: 0,
+            rule: "would love + TO-V",
+            explanation: "Khi có 'would love' diễn tả lời mời hoặc mong muốn cụ thể, bắt buộc dùng To-V."
+          },
+          {
+            sentence: "Many teenagers prefer _______ online games to reading books.",
+            displayBlank: "online games to reading books.",
+            options: ["playing", "to play", "play", "played"],
+            answer: 0,
+            rule: "prefer V-ing to V-ing",
+            explanation: "prefer + V-ing (playing) ... to + V-ing (reading)."
+          },
+          {
+            sentence: "He detests _______ up early on cold winter mornings.",
+            displayBlank: "up early on cold winter mornings.",
+            options: ["getting", "to get", "get", "got"],
+            answer: 0,
+            rule: "detest + V-ing",
+            explanation: "detest + V-ing: ghét cay ghét đắng việc thức dậy sớm (getting up early)."
+          },
+          {
+            sentence: "I don't like _______ origami because I am not patient enough.",
+            displayBlank: "origami because I am not patient enough.",
+            options: ["doing", "do", "did", "to doing"],
+            answer: 0,
+            rule: "like + doing origami",
+            explanation: "like + V-ing; collocation sách bài tập Unit 1: doing origami (gấp giấy Nhật Bản)."
+          },
+          {
+            sentence: "Children adore _______ with Barbie dolls and small toy cars.",
+            displayBlank: "with Barbie dolls and small toy cars.",
+            options: ["playing", "to play", "play", "played"],
+            answer: 0,
+            rule: "adore + V-ing",
+            explanation: "'adore' luôn đi với V-ing (không dùng to-play)."
+          },
+          {
+            sentence: "Would you like _______ us for cycling in the park this weekend?",
+            displayBlank: "us for cycling in the park this weekend?",
+            options: ["to join", "joining", "join", "joined"],
+            answer: 0,
+            rule: "Would you like + TO-V?",
+            explanation: "Mẫu câu mời lịch sự: Would you like + TO-V (Bạn có muốn tham gia cùng chúng tôi không?)."
+          },
+          {
+            sentence: "My little brother hates _______ bitter medicines when he is sick.",
+            displayBlank: "bitter medicines when he is sick.",
+            options: ["taking", "to taking", "take", "took"],
+            answer: 0,
+            rule: "hate + V-ing",
+            explanation: "hate + V-ing: ghét uống thuốc (taking medicine)."
+          },
+          {
+            sentence: "We fancy _______ out at the local coffee shop after school.",
+            displayBlank: "out at the local coffee shop after school.",
+            options: ["hanging", "to hang", "hang", "hung"],
+            answer: 0,
+            rule: "fancy + V-ing",
+            explanation: "fancy + V-ing: thích đi tụ tập bạn bè (hanging out with friends)."
+          },
+          {
+            sentence: "Does Mark prefer _______ computer games or playing sports outdoors?",
+            displayBlank: "computer games or playing sports outdoors?",
+            options: ["playing", "to playing", "play", "played"],
+            answer: 0,
+            rule: "prefer + V-ing",
+            explanation: "prefer + V-ing diễn tả sở thích chung giữa hai hoạt động."
+          },
+          {
+            sentence: "Most teenagers enjoy _______ TikTok videos in their leisure time.",
+            displayBlank: "TikTok videos in their leisure time.",
+            options: ["creating", "to create", "create", "created"],
+            answer: 0,
+            rule: "enjoy + V-ing",
+            explanation: "enjoy + V-ing: thích sáng tạo video."
+          },
+          {
+            sentence: "My aunt detests _______ in crowded supermarkets on Sundays.",
+            displayBlank: "in crowded supermarkets on Sundays.",
+            options: ["shopping", "to shop", "shop", "shopped"],
+            answer: 0,
+            rule: "detest + V-ing",
+            explanation: "detest + V-ing: cực ghét đi mua sắm ở nơi đông đúc."
+          },
+          {
+            sentence: "Tom likes _______ time on his own building intricate dollhouses.",
+            displayBlank: "time on his own building intricate dollhouses.",
+            options: ["spending", "spend", "spent", "to spending"],
+            answer: 0,
+            rule: "like + spending time",
+            explanation: "like + V-ing: thích dành thời gian tự mình làm gì (spending time on one's own)."
+          },
+          {
+            sentence: "I wouldn't prefer _______ fast food because it is unhealthy.",
+            displayBlank: "fast food because it is unhealthy.",
+            options: ["to eat", "eating", "eat", "ate"],
+            answer: 0,
+            rule: "wouldn't prefer + TO-V",
+            explanation: "Có would/wouldn't đi cùng prefer thì đi kèm To-V."
+          },
+          {
+            sentence: "She doesn't mind _______ her younger brother with his math homework.",
+            displayBlank: "her younger brother with his math homework.",
+            options: ["helping", "to help", "help", "helped"],
+            answer: 0,
+            rule: "don't mind + V-ing",
+            explanation: "don't mind + V-ing: không ngại giúp đỡ em trai."
+          },
+          {
+            sentence: "Lan loves _______ paper flowers to decorate her study corner.",
+            displayBlank: "paper flowers to decorate her study corner.",
+            options: ["making", "make", "made", "to making"],
+            answer: 0,
+            rule: "love + making",
+            explanation: "love + V-ing: thích làm hoa giấy thủ công."
+          },
+          {
+            sentence: "They dislike _______ horror films alone at night.",
+            displayBlank: "horror films alone at night.",
+            options: ["watching", "to watch", "watch", "watched"],
+            answer: 0,
+            rule: "dislike + V-ing",
+            explanation: "dislike luôn đi sau bởi danh động từ V-ing."
+          },
+          {
+            sentence: "Do you fancy _______ a new DIY knitting kit for winter?",
+            displayBlank: "a new DIY knitting kit for winter?",
+            options: ["buying", "to buy", "buy", "bought"],
+            answer: 0,
+            rule: "fancy + V-ing",
+            explanation: "fancy + V-ing: bạn có thích mua một bộ đan len không?"
+          },
+          {
+            sentence: "Peter enjoys _______ football with his neighborhood friends.",
+            displayBlank: "football with his neighborhood friends.",
+            options: ["playing", "to play", "play", "played"],
+            answer: 0,
+            rule: "enjoy + playing",
+            explanation: "enjoy + V-ing: chơi bóng đá."
+          },
+          {
+            sentence: "My grandparents hate _______ late at night due to poor eyesight.",
+            displayBlank: "late at night due to poor eyesight.",
+            options: ["driving", "to driving", "drive", "drove"],
+            answer: 0,
+            rule: "hate + V-ing",
+            explanation: "hate + V-ing: ghét lái xe vào đêm khuya."
+          },
+          {
+            sentence: "We adore _______ Vietnamese folk music during traditional festivals.",
+            displayBlank: "Vietnamese folk music during traditional festivals.",
+            options: ["listening", "to listen", "listen", "listened"],
+            answer: 0,
+            rule: "adore + V-ing",
+            explanation: "adore luôn đi kèm V-ing: listening to folk music."
+          }
+        ]
+      },
+
+      // GAME 3: BALLOON POP (20 Questions)
+      {
+        title: "🎈 Balloon Pop",
+        theme: "balloon",
+        questions: [
+          {
+            sentence: "My mother detests _______ the floor when it is dusty.",
+            displayBlank: "the floor when it is dusty.",
+            options: ["sweeping", "to sweep", "sweep", "swept"],
+            answer: 0,
+            rule: "detest + V-ing",
+            explanation: "detest + V-ing: ghét quét nhà (sweeping the floor)."
+          },
+          {
+            sentence: "Do you prefer _______ by train or travelling by coach?",
+            displayBlank: "by train or travelling by coach?",
+            options: ["travelling", "to travel", "travel", "travelled"],
+            answer: 0,
+            rule: "prefer V-ing or V-ing",
+            explanation: "Cân bằng cấu trúc song song giữa hai vế V-ing: travelling."
+          },
+          {
+            sentence: "She enjoys _______ window shopping at the grand mall on weekends.",
+            displayBlank: "window shopping at the grand mall on weekends.",
+            options: ["doing", "to do", "do", "did"],
+            answer: 0,
+            rule: "enjoy doing window shopping",
+            explanation: "enjoy + V-ing: thích đi ngắm đồ qua tủ kính."
+          },
+          {
+            sentence: "He fancies _______ computer skills to build modern mobile apps.",
+            displayBlank: "computer skills to build modern mobile apps.",
+            options: ["learning", "to learn", "learn", "learned"],
+            answer: 0,
+            rule: "fancy + V-ing",
+            explanation: "fancy + V-ing: thích học kỹ năng máy tính."
+          },
+          {
+            sentence: "I would like _______ an English club meeting at HT English Center.",
+            displayBlank: "an English club meeting at HT English Center.",
+            options: ["to attend", "attending", "attend", "attended"],
+            answer: 0,
+            rule: "would like + TO-V",
+            explanation: "Cấu trúc would like + TO-V: muốn tham dự buổi sinh hoạt CLB."
+          },
+          {
+            sentence: "My sister adores _______ delicious cakes for family birthdays.",
+            displayBlank: "delicious cakes for family birthdays.",
+            options: ["baking", "to bake", "bake", "baked"],
+            answer: 0,
+            rule: "adore + V-ing",
+            explanation: "adore + V-ing: cực kỳ mê nướng bánh."
+          },
+          {
+            sentence: "They hate _______ long hours in front of computer monitors.",
+            displayBlank: "long hours in front of computer monitors.",
+            options: ["sitting", "to sitting", "sit", "sat"],
+            answer: 0,
+            rule: "hate + V-ing",
+            explanation: "hate + V-ing: ghét ngồi hàng giờ trước màn hình máy tính."
+          },
+          {
+            sentence: "My father dislikes _______ in heavy traffic during rush hours.",
+            displayBlank: "in heavy traffic during rush hours.",
+            options: ["driving", "to drive", "drive", "drove"],
+            answer: 0,
+            rule: "dislike + V-ing",
+            explanation: "dislike + V-ing: không thích lái xe vào giờ cao điểm."
+          },
+          {
+            sentence: "We don't mind _______ quiet so that the baby can sleep.",
+            displayBlank: "quiet so that the baby can sleep.",
+            options: ["keeping", "to keep", "keep", "kept"],
+            answer: 0,
+            rule: "don't mind + V-ing",
+            explanation: "don't mind + V-ing: không ngại giữ trật tự."
+          },
+          {
+            sentence: "Are you keen on _______ DIY furniture for your bedroom?",
+            displayBlank: "DIY furniture for your bedroom?",
+            options: ["making", "to make", "make", "made"],
+            answer: 0,
+            rule: "keen on + V-ing",
+            explanation: "Sau giới từ 'on' là V-ing: making DIY furniture."
+          },
+          {
+            sentence: "She loves _______ swimming in the cool river in the countryside.",
+            displayBlank: "swimming in the cool river in the countryside.",
+            options: ["going", "to going", "go", "went"],
+            answer: 0,
+            rule: "love going swimming",
+            explanation: "Cụm 'go swimming' chuyển thành 'going swimming' sau love."
+          },
+          {
+            sentence: "He prefers _______ books rather than watch television shows.",
+            displayBlank: "books rather than watch television shows.",
+            options: ["to read", "reading", "read", "reads"],
+            answer: 0,
+            rule: "prefer TO-V rather than V",
+            explanation: "Khi có cấu trúc 'rather than V' ở vế sau, ta dùng 'prefer TO-V'."
+          },
+          {
+            sentence: "My mother fancies _______ fresh flowers from our home garden.",
+            displayBlank: "fresh flowers from our home garden.",
+            options: ["picking", "to pick", "pick", "picked"],
+            answer: 0,
+            rule: "fancy + V-ing",
+            explanation: "fancy + V-ing: hái hoa tươi từ vườn nhà."
+          },
+          {
+            sentence: "We detest _______ fake news and gossiping on social networks.",
+            displayBlank: "fake news and gossiping on social networks.",
+            options: ["reading", "to read", "read", "reads"],
+            answer: 0,
+            rule: "detest + V-ing",
+            explanation: "detest + V-ing: ghét đọc tin giả."
+          },
+          {
+            sentence: "Antony likes _______ physical fitness exercises every afternoon.",
+            displayBlank: "physical fitness exercises every afternoon.",
+            options: ["doing", "to doing", "make", "play"],
+            answer: 0,
+            rule: "like + doing exercises",
+            explanation: "Tập thể dục dùng động từ 'do' -> doing exercises."
+          },
+          {
+            sentence: "My cousins enjoy _______ cycling around the peaceful village.",
+            displayBlank: "cycling around the peaceful village.",
+            options: ["going", "to go", "go", "went"],
+            answer: 0,
+            rule: "enjoy going cycling",
+            explanation: "enjoy + V-ing: đi đạp xe quanh làng."
+          },
+          {
+            sentence: "He dislikes _______ dirty clothes on rainy days.",
+            displayBlank: "dirty clothes on rainy days.",
+            options: ["washing", "to wash", "wash", "washed"],
+            answer: 0,
+            rule: "dislike + V-ing",
+            explanation: "dislike + V-ing: giặt quần áo (washing clothes)."
+          },
+          {
+            sentence: "Would you prefer _______ tea or iced fruit juice?",
+            displayBlank: "tea or iced fruit juice?",
+            options: ["to drink", "drinking", "drink", "drank"],
+            answer: 0,
+            rule: "would prefer + TO-V",
+            explanation: "Lựa chọn lịch sự với would prefer đi kèm To-V."
+          },
+          {
+            sentence: "She adores _______ funny stories to her younger cousins.",
+            displayBlank: "funny stories to her younger cousins.",
+            options: ["telling", "to tell", "tell", "told"],
+            answer: 0,
+            rule: "adore + V-ing",
+            explanation: "adore + V-ing: kể chuyện cười."
+          },
+          {
+            sentence: "I hate _______ late for English classes at HT English Center.",
+            displayBlank: "late for English classes at HT English Center.",
+            options: ["being", "to being", "be", "been"],
+            answer: 0,
+            rule: "hate + being late",
+            explanation: "Động từ to be biến thành danh động từ 'being' sau hate."
+          }
+        ]
+      },
+
+      // GAME 4: SPACE INVADER (20 Questions)
+      {
+        title: "🚀 Space Invader",
+        theme: "space",
+        questions: [
+          {
+            sentence: "Do you like _______ puzzles to improve your cognitive memory?",
+            displayBlank: "puzzles to improve your cognitive memory?",
+            options: ["solving", "to solving", "solve", "solved"],
+            answer: 0,
+            rule: "like + V-ing",
+            explanation: "like + solving puzzles: giải câu đố để cải thiện trí nhớ."
+          },
+          {
+            sentence: "Teenagers fancy _______ text messages instantly with smartphones.",
+            displayBlank: "text messages instantly with smartphones.",
+            options: ["sending", "to send", "send", "sent"],
+            answer: 0,
+            rule: "fancy + V-ing",
+            explanation: "fancy + V-ing: nhắn tin tức thì."
+          },
+          {
+            sentence: "My brother prefers staying in shape to _______ sedentary all day.",
+            displayBlank: "sedentary all day.",
+            options: ["sitting", "to sit", "sit", "sat"],
+            answer: 0,
+            rule: "prefer V-ing to V-ing",
+            explanation: "V-ing sau giới từ so sánh 'to': sitting."
+          },
+          {
+            sentence: "They adore _______ traditional folk dances during festivals.",
+            displayBlank: "traditional folk dances during festivals.",
+            options: ["performing", "to perform", "perform", "performed"],
+            answer: 0,
+            rule: "adore + V-ing",
+            explanation: "adore + V-ing: biểu diễn các điệu múa dân gian."
+          },
+          {
+            sentence: "I detest _______ in the rain without an umbrella or raincoat.",
+            displayBlank: "in the rain without an umbrella or raincoat.",
+            options: ["walking", "to walk", "walk", "walked"],
+            answer: 0,
+            rule: "detest + V-ing",
+            explanation: "detest + V-ing: ghét đi bộ dưới mưa."
+          },
+          {
+            sentence: "She would love _______ you how to make miniature dollhouses.",
+            displayBlank: "you how to make miniature dollhouses.",
+            options: ["to teach", "teaching", "teach", "taught"],
+            answer: 0,
+            rule: "would love + TO-V",
+            explanation: "would love + To-V: rất muốn dạy bạn cách làm nhà búp bê."
+          },
+          {
+            sentence: "My father enjoys _______ ornamental trees in front of our house.",
+            displayBlank: "ornamental trees in front of our house.",
+            options: ["planting", "to plant", "plant", "planted"],
+            answer: 0,
+            rule: "enjoy + V-ing",
+            explanation: "enjoy + V-ing: thích trồng cây cảnh."
+          },
+          {
+            sentence: "He doesn't mind _______ extra hours to finish the DIY project.",
+            displayBlank: "extra hours to finish the DIY project.",
+            options: ["working", "to work", "work", "worked"],
+            answer: 0,
+            rule: "don't mind + V-ing",
+            explanation: "don't mind + V-ing: không ngại làm thêm giờ."
+          },
+          {
+            sentence: "We dislike _______ unhealthy junk food such as potato chips.",
+            displayBlank: "unhealthy junk food such as potato chips.",
+            options: ["eating", "to eat", "eat", "ate"],
+            answer: 0,
+            rule: "dislike + V-ing",
+            explanation: "dislike + V-ing: không thích ăn đồ ăn vặt."
+          },
+          {
+            sentence: "Are you interested in _______ a knitting kit for your grandmother?",
+            displayBlank: "a knitting kit for your grandmother?",
+            options: ["buying", "to buy", "buy", "bought"],
+            answer: 0,
+            rule: "interested in + V-ing",
+            explanation: "interested in + V-ing: thích mua bộ đồ đan len."
+          },
+          {
+            sentence: "I like _______ time with my family because it makes me stress-free.",
+            displayBlank: "time with my family because it makes me stress-free.",
+            options: ["spending", "spend", "spent", "to spending"],
+            answer: 0,
+            rule: "like + spending",
+            explanation: "like + spending time: thích dành thời gian bên gia đình."
+          },
+          {
+            sentence: "She hates _______ boring speeches that last for hours.",
+            displayBlank: "boring speeches that last for hours.",
+            options: ["hearing", "to hearing", "hear", "heard"],
+            answer: 0,
+            rule: "hate + hearing",
+            explanation: "hate + V-ing: ghét nghe những bài diễn văn nhàm chán."
+          },
+          {
+            sentence: "Does your friend fancy _______ origami models like swans and boxes?",
+            displayBlank: "origami models like swans and boxes?",
+            options: ["making", "to make", "make", "made"],
+            answer: 0,
+            rule: "fancy + making",
+            explanation: "fancy + V-ing: thích gấp các mô hình giấy origami."
+          },
+          {
+            sentence: "We prefer _______ outdoor sports rather than stay indoors.",
+            displayBlank: "outdoor sports rather than stay indoors.",
+            options: ["to play", "playing", "play", "played"],
+            answer: 0,
+            rule: "prefer TO-V rather than V",
+            explanation: "Vế sau có 'rather than + V' -> vế trước dùng prefer TO-V."
+          },
+          {
+            sentence: "Kim Joon detests _______ bitter black coffee without sugar.",
+            displayBlank: "bitter black coffee without sugar.",
+            options: ["drinking", "to drink", "drink", "drank"],
+            answer: 0,
+            rule: "detest + V-ing",
+            explanation: "detest + V-ing: cực ghét uống cà phê đen đắng."
+          },
+          {
+            sentence: "My mother loves _______ fresh vegetables at the morning market.",
+            displayBlank: "fresh vegetables at the morning market.",
+            options: ["choosing", "choose", "chose", "to choosing"],
+            answer: 0,
+            rule: "love + choosing",
+            explanation: "love + V-ing: thích lựa chọn rau tươi."
+          },
+          {
+            sentence: "Would you like _______ some fruit juice with ice cubes?",
+            displayBlank: "some fruit juice with ice cubes?",
+            options: ["to have", "having", "have", "had"],
+            answer: 0,
+            rule: "would you like + TO-V",
+            explanation: "Lời mời: Would you like to have...?"
+          },
+          {
+            sentence: "They enjoy _______ in touch with their overseas friends by email.",
+            displayBlank: "in touch with their overseas friends by email.",
+            options: ["keeping", "to keep", "keep", "kept"],
+            answer: 0,
+            rule: "enjoy + keeping",
+            explanation: "enjoy + V-ing; cụm 'keep in touch' chuyển thành 'keeping in touch'."
+          },
+          {
+            sentence: "I dislike _______ in noisy places when I need to study.",
+            displayBlank: "in noisy places when I need to study.",
+            options: ["sitting", "to sit", "sit", "sat"],
+            answer: 0,
+            rule: "dislike + V-ing",
+            explanation: "dislike + V-ing: không thích ngồi ở nơi ồn ào."
+          },
+          {
+            sentence: "Antony adores _______ around the city on his new sports bicycle.",
+            displayBlank: "around the city on his new sports bicycle.",
+            options: ["cycling", "to cycle", "cycle", "cycled"],
+            answer: 0,
+            rule: "adore + cycling",
+            explanation: "adore + V-ing: thích đạp xe thể thao."
+          }
+        ]
+      },
+
+      // GAME 5: WHACK-A-MOLE (20 Questions)
+      {
+        title: "🔨 Whack-a-Mole",
+        theme: "mole",
+        questions: [
+          {
+            sentence: "She detests _______ dishes in the cold winter water.",
+            displayBlank: "dishes in the cold winter water.",
+            options: ["washing", "to wash", "wash", "washed"],
+            answer: 0,
+            rule: "detest + V-ing",
+            explanation: "detest + V-ing: ghét rửa bát bằng nước lạnh."
+          },
+          {
+            sentence: "Do you fancy _______ paper planes with colorful paper?",
+            displayBlank: "paper planes with colorful paper?",
+            options: ["folding", "to fold", "fold", "folded"],
+            answer: 0,
+            rule: "fancy + V-ing",
+            explanation: "fancy + V-ing: thích gấp máy bay giấy."
+          },
+          {
+            sentence: "I prefer _______ books to watching nonsense online videos.",
+            displayBlank: "books to watching nonsense online videos.",
+            options: ["reading", "to read", "read", "reads"],
+            answer: 0,
+            rule: "prefer V-ing to V-ing",
+            explanation: "prefer + V-ing: thích đọc sách hơn xem video nhảm."
+          },
+          {
+            sentence: "They adore _______ on the beach during warm summer holidays.",
+            displayBlank: "on the beach during warm summer holidays.",
+            options: ["relaxing", "to relax", "relax", "relaxed"],
+            answer: 0,
+            rule: "adore + V-ing",
+            explanation: "adore + V-ing: rất thích thư giãn trên bãi biển."
+          },
+          {
+            sentence: "My father hates _______ up late when he has an early morning meeting.",
+            displayBlank: "up late when he has an early morning meeting.",
+            options: ["staying", "to staying", "stay", "stayed"],
+            answer: 0,
+            rule: "hate + staying",
+            explanation: "hate + V-ing: ghét thức khuya (staying up late)."
+          },
+          {
+            sentence: "Would you like _______ to Ms. Lily's English class this Friday?",
+            displayBlank: "to Ms. Lily's English class this Friday?",
+            options: ["to come", "coming", "come", "came"],
+            answer: 0,
+            rule: "would you like + TO-V",
+            explanation: "Lời mời: Would you like to come...?"
+          },
+          {
+            sentence: "We don't mind _______ for our friends at the cinema gate.",
+            displayBlank: "for our friends at the cinema gate.",
+            options: ["waiting", "to wait", "wait", "waited"],
+            answer: 0,
+            rule: "don't mind + waiting",
+            explanation: "don't mind + V-ing: không phiền chờ bạn ở cổng rạp."
+          },
+          {
+            sentence: "He enjoys _______ Sudoku puzzles to boost mental sharpness.",
+            displayBlank: "Sudoku puzzles to boost mental sharpness.",
+            options: ["doing", "to do", "do", "did"],
+            answer: 0,
+            rule: "enjoy doing puzzles",
+            explanation: "enjoy + V-ing: giải câu đố Sudoku."
+          },
+          {
+            sentence: "My sister dislikes _______ up her bedroom every Sunday.",
+            displayBlank: "up her bedroom every Sunday.",
+            options: ["cleaning", "to clean", "clean", "cleaned"],
+            answer: 0,
+            rule: "dislike + V-ing",
+            explanation: "dislike + V-ing: không thích dọn dẹp phòng."
+          },
+          {
+            sentence: "She is keen on _______ hand-made jewelry with beads.",
+            displayBlank: "hand-made jewelry with beads.",
+            options: ["making", "to make", "make", "made"],
+            answer: 0,
+            rule: "keen on + V-ing",
+            explanation: "keen on + V-ing: thích làm đồ trang sức thủ công."
+          },
+          {
+            sentence: "Do they love _______ comic books in the school library?",
+            displayBlank: "comic books in the school library?",
+            options: ["reading", "to reading", "read", "reads"],
+            answer: 0,
+            rule: "love + reading",
+            explanation: "love + V-ing: thích đọc truyện tranh."
+          },
+          {
+            sentence: "I would prefer _______ at home rather than travel in this storm.",
+            displayBlank: "at home rather than travel in this storm.",
+            options: ["to stay", "staying", "stay", "stayed"],
+            answer: 0,
+            rule: "would prefer + TO-V",
+            explanation: "would prefer + To-V: thích ở nhà hơn là đi ra ngoài bão."
+          },
+          {
+            sentence: "Mark detests _______ bad marks in his grammar examinations.",
+            displayBlank: "bad marks in his grammar examinations.",
+            options: ["getting", "to get", "get", "got"],
+            answer: 0,
+            rule: "detest + V-ing",
+            explanation: "detest + V-ing: ghét bị điểm kém."
+          },
+          {
+            sentence: "We fancy _______ badminton in the park on breezy afternoons.",
+            displayBlank: "badminton in the park on breezy afternoons.",
+            options: ["playing", "to play", "play", "played"],
+            answer: 0,
+            rule: "fancy + playing",
+            explanation: "fancy + V-ing: thích chơi cầu lông."
+          },
+          {
+            sentence: "My grandmother prefers _______ green tea to drinking soda.",
+            displayBlank: "green tea to drinking soda.",
+            options: ["drinking", "to drink", "drink", "drank"],
+            answer: 0,
+            rule: "prefer V-ing to V-ing",
+            explanation: "prefer + V-ing: thích uống trà xanh hơn soda."
+          },
+          {
+            sentence: "Students adore _______ school clubs to make new close friends.",
+            displayBlank: "school clubs to make new close friends.",
+            options: ["joining", "to join", "join", "joined"],
+            answer: 0,
+            rule: "adore + joining",
+            explanation: "adore + V-ing: thích tham gia các câu lạc bộ trường."
+          },
+          {
+            sentence: "He hates _______ his keys every time he leaves the house.",
+            displayBlank: "his keys every time he leaves the house.",
+            options: ["losing", "to losing", "lose", "lost"],
+            answer: 0,
+            rule: "hate + losing",
+            explanation: "hate + V-ing: ghét việc hay làm mất chìa khóa."
+          },
+          {
+            sentence: "My mother dislikes _______ instant noodles because they lack nutrition.",
+            displayBlank: "instant noodles because they lack nutrition.",
+            options: ["eating", "to eat", "eat", "ate"],
+            answer: 0,
+            rule: "dislike + eating",
+            explanation: "dislike + V-ing: không thích ăn mì tôm ăn liền."
+          },
+          {
+            sentence: "Do you fancy _______ a movie trailer with video editor software?",
+            displayBlank: "a movie trailer with video editor software?",
+            options: ["editing", "to edit", "edit", "edited"],
+            answer: 0,
+            rule: "fancy + editing",
+            explanation: "fancy + V-ing: thích biên tập video."
+          },
+          {
+            sentence: "I enjoy _______ English songs to enhance my pronunciation.",
+            displayBlank: "English songs to enhance my pronunciation.",
+            options: ["singing", "to sing", "sing", "sang"],
+            answer: 0,
+            rule: "enjoy + singing",
+            explanation: "enjoy + V-ing: thích hát các bài hát tiếng Anh."
+          }
+        ]
+      }
+    ];
+
+    /* =========================================================================
+       GAME ENGINE STATE MANAGEMENT
+       ========================================================================= */
+    let currentActiveGame = 0;
+    let currentQIndex = 0;
+    let score = 0;
+    let answered = false;
+
+    function launchGame(gameIdx) {
+      currentActiveGame = gameIdx;
+      currentQIndex = 0;
+      score = 0;
+      answered = false;
+
+      document.getElementById('heroBanner').style.display = 'none';
+      document.getElementById('gameMenu').style.display = 'none';
+      document.getElementById('resultView').style.display = 'none';
+      document.getElementById('gameView').style.display = 'block';
+
+      document.getElementById('currentGamename').innerHTML = `<span>${GAMES_DATA[gameIdx].title}</span>`;
+      renderCurrentQuestion();
+    }
+
+    function backToMenu() {
+      document.getElementById('heroBanner').style.display = 'flex';
+      document.getElementById('gameMenu').style.display = 'grid';
+      document.getElementById('gameView').style.display = 'none';
+      document.getElementById('resultView').style.display = 'none';
+      window.speechSynthesis.cancel();
+    }
+
+    function replayCurrentGame() {
+      launchGame(currentActiveGame);
+    }
+
+    /* RENDER CURRENT QUESTION */
+    function renderCurrentQuestion() {
+      answered = false;
+      const game = GAMES_DATA[currentActiveGame];
+      const q = game.questions[currentQIndex];
+
+      document.getElementById('currentQNum').innerText = currentQIndex + 1;
+      document.getElementById('currentScore').innerText = score;
+      document.getElementById('qBadge').innerText = `Câu số ${currentQIndex + 1} / 20`;
+
+      // Format sentence with blank
+      const sentenceHtml = q.sentence.replace('_______', '<span class="blank">_______</span>');
+      document.getElementById('questionSentence').innerHTML = sentenceHtml;
+
+      // Hide explanation
+      const expCard = document.getElementById('explanationCard');
+      expCard.style.display = 'none';
+
+      // Render interactive arena according to game theme
+      const arena = document.getElementById('interactiveArena');
+      arena.innerHTML = '';
+
+      if (game.theme === 'fruit') {
+        renderFruitArena(arena, q);
+      } else if (game.theme === 'car') {
+        renderRacerArena(arena, q);
+      } else if (game.theme === 'balloon') {
+        renderBalloonArena(arena, q);
+      } else if (game.theme === 'space') {
+        renderSpaceArena(arena, q);
+      } else if (game.theme === 'mole') {
+        renderMoleArena(arena, q);
+      }
+
+      // Read question out loud automatically if wanted, or student clicks speaker
+    }
+
+    /* 1. FRUIT ARENA */
+    function renderFruitArena(container, q) {
+      const fruitIcons = ['🍉 Dưa hấu', '🍎 Táo ngọt', '🍍 Quả dứa', '🍓 Dâu tây'];
+      const fruitDiv = document.createElement('div');
+      fruitDiv.className = 'fruits-container';
+
+      // Shuffle or list options
+      q.options.forEach((opt, idx) => {
+        const target = document.createElement('div');
+        target.className = 'fruit-target';
+        target.innerHTML = `
+          <div class="fruit-icon">${fruitIcons[idx].split(' ')[0]}</div>
+          <div class="fruit-text">${opt}</div>
+          <button class="tts-btn" style="width:28px; height:28px; font-size:11px;" onclick="event.stopPropagation(); speakText('${opt}')"><i class="fa-solid fa-volume-high"></i></button>
+        `;
+        target.onclick = () => selectOption(idx);
+        fruitDiv.appendChild(target);
+      });
+      container.appendChild(fruitDiv);
+    }
+
+    /* 2. HIGHWAY RACER ARENA */
+    function renderRacerArena(container, q) {
+      const track = document.createElement('div');
+      track.className = 'highway-track';
+
+      q.options.forEach((opt, idx) => {
+        const lane = document.createElement('div');
+        lane.className = 'highway-lane';
+        lane.innerHTML = `
+          <div class="lane-choice-box">
+            Làn ${idx + 1}: <strong>${opt}</strong>
+            <button class="tts-btn" style="width:26px; height:26px; font-size:10px; margin-left:4px;" onclick="event.stopPropagation(); speakText('${opt}')"><i class="fa-solid fa-volume-high"></i></button>
+          </div>
+          <div class="racer-car" id="carLane${idx}">🏎️</div>
+        `;
+        lane.onclick = () => {
+          document.querySelectorAll('.racer-car').forEach(c => c.style.transform = 'scale(0.8)');
+          document.getElementById(`carLane${idx}`).style.transform = 'scale(1.4) translateY(-20px)';
+          selectOption(idx);
+        };
+        track.appendChild(lane);
+      });
+      container.appendChild(track);
+    }
+
+    /* 3. BALLOON POP ARENA */
+    function renderBalloonArena(container, q) {
+      const balloonColors = ['b-pink', 'b-blue', 'b-green', 'b-purple'];
+      const sky = document.createElement('div');
+      sky.className = 'balloons-sky';
+
+      q.options.forEach((opt, idx) => {
+        const b = document.createElement('div');
+        b.className = `balloon-item ${balloonColors[idx]}`;
+        b.innerHTML = `
+          <div>🎈 ${opt}</div>
+          <button class="tts-btn" style="width:26px; height:26px; font-size:10px; margin-top:8px;" onclick="event.stopPropagation(); speakText('${opt}')"><i class="fa-solid fa-volume-high"></i></button>
+        `;
+        b.onclick = () => selectOption(idx);
+        sky.appendChild(b);
+      });
+      container.appendChild(sky);
+    }
+
+    /* 4. SPACE INVADER ARENA */
+    function renderSpaceArena(container, q) {
+      const space = document.createElement('div');
+      space.className = 'space-field';
+      
+      const asteroidRow = document.createElement('div');
+      asteroidRow.className = 'asteroids-row';
+
+      q.options.forEach((opt, idx) => {
+        const ast = document.createElement('div');
+        ast.className = 'asteroid-ship';
+        ast.innerHTML = `
+          <span>☄️ ${opt}</span>
+          <button class="tts-btn" style="width:26px; height:26px; font-size:10px;" onclick="event.stopPropagation(); speakText('${opt}')"><i class="fa-solid fa-volume-high"></i></button>
+        `;
+        ast.onclick = () => selectOption(idx);
+        asteroidRow.appendChild(ast);
+      });
+
+      space.appendChild(asteroidRow);
+      space.innerHTML += `<div class="spaceship-player">🚀</div>`;
+      container.appendChild(space);
+    }
+
+    /* 5. WHACK A MOLE ARENA */
+    function renderMoleArena(container, q) {
+      const grid = document.createElement('div');
+      grid.className = 'moles-grid';
+
+      q.options.forEach((opt, idx) => {
+        const hole = document.createElement('div');
+        hole.className = 'mole-hole';
+        hole.innerHTML = `
+          <div class="mole-icon">🐹</div>
+          <div class="mole-label">${opt}</div>
+          <button class="tts-btn" style="width:26px; height:26px; font-size:10px; margin-top:6px;" onclick="event.stopPropagation(); speakText('${opt}')"><i class="fa-solid fa-volume-high"></i></button>
+        `;
+        hole.onclick = () => selectOption(idx);
+        grid.appendChild(hole);
+      });
+      container.appendChild(grid);
+    }
+
+    /* USER SELECTS AN OPTION */
+    function selectOption(selectedIdx) {
+      if (answered) return;
+      answered = true;
+
+      const game = GAMES_DATA[currentActiveGame];
+      const q = game.questions[currentQIndex];
+      const isCorrect = (selectedIdx === q.answer);
+
+      const expCard = document.getElementById('explanationCard');
+      const expHeader = document.getElementById('expHeader');
+      const expContent = document.getElementById('expContent');
+
+      // Fill in the sentence blank with correct answer
+      const filledSentence = q.sentence.replace('_______', `<span style="color:${isCorrect ? '#34d399' : '#f87171'}; font-weight:700; text-decoration:underline;">${q.options[q.answer]}</span>`);
+      document.getElementById('questionSentence').innerHTML = filledSentence;
+
+      if (isCorrect) {
+        soundCorrect();
+        score += 5; // 20 questions * 5 = 100 points
+        document.getElementById('currentScore').innerText = score;
+        expHeader.className = 'exp-header correct';
+        expHeader.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>Chính xác! Xuất sắc (+5 điểm)</span>`;
+      } else {
+        soundWrong();
+        expHeader.className = 'exp-header wrong';
+        expHeader.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> <span>Chưa đúng! Đáp án đúng là: "${q.options[q.answer]}"</span>`;
+      }
+
+      expContent.innerHTML = `
+        <div style="margin-bottom:8px;"><strong>Cấu trúc chuẩn:</strong> <span class="rule-tag">${q.rule}</span></div>
+        <div>${q.explanation}</div>
+      `;
+      expCard.className = isCorrect ? 'explanation-card' : 'explanation-card incorrect';
+      expCard.style.display = 'block';
+
+      // Read correct sentence with TTS
+      speakText(q.sentence.replace('_______', q.options[q.answer]));
+    }
+
+    function nextQuestion() {
+      const game = GAMES_DATA[currentActiveGame];
+      if (currentQIndex < game.questions.length - 1) {
+        currentQIndex++;
+        renderCurrentQuestion();
+      } else {
+        showResults();
+      }
+    }
+
+    function showResults() {
+      document.getElementById('gameView').style.display = 'none';
+      document.getElementById('resultView').style.display = 'block';
+      document.getElementById('finalScoreDisplay').innerText = `${score} / 100`;
+
+      const msg = document.getElementById('finalFeedbackMsg');
+      if (score === 100) {
+        msg.innerHTML = "🏆 ĐỈNH CAO! Em đạt điểm tuyệt đối 100/100! Ms. Lily rất tự hào về em!";
+      } else if (score >= 80) {
+        msg.innerHTML = "🌟 RẤT TỐT! Em đã nắm vững hầu hết các cấu trúc Verbs of Liking / Disliking!";
+      } else if (score >= 60) {
+        msg.innerHTML = "👍 KHÁ TỐT! Hãy chú ý các động từ đặc biệt như 'detest, adore' và 'would prefer' nhé!";
+      } else {
+        msg.innerHTML = "💪 CỐ GẮNG LÊN! Hãy ôn lại bảng ghi nhớ ngữ pháp phía dưới và chơi lại một lần nữa nhé!";
+      }
+    }
+
+    function speakCurrentQuestion() {
+      const game = GAMES_DATA[currentActiveGame];
+      const q = game.questions[currentQIndex];
+      speakText(q.sentence);
+    }
+
+    function speakExplanation() {
+      const game = GAMES_DATA[currentActiveGame];
+      const q = game.questions[currentQIndex];
+      speakText(`The correct structure is ${q.rule}. ${q.sentence.replace('_______', q.options[q.answer])}`);
+    }
+  </script>
+</body>
+</html>

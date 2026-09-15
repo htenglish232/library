@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HT English - Unit 10: Communication in the Future</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts & Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- Canvas Confetti for Fireworks -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <style>
+    body {
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #e0f2fe 0%, #fdf4ff 50%, #fef3c7 100%);
+      min-height: 100vh;
+    }
+    h1, h2, h3, .font-heading {
+      font-family: 'Fredoka', cursive, sans-serif;
+    }
+    .game-card-hover {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .game-card-hover:hover {
+      transform: translateY(-6px) scale(1.02);
+      box-shadow: 0 20px 30px -10px rgba(79, 70, 229, 0.25);
+    }
+    .btn-pop {
+      transition: all 0.15s ease-in-out;
+    }
+    .btn-pop:active {
+      transform: scale(0.96);
+    }
+    .pulse-glow {
+      animation: pulseGlow 2s infinite;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 15px rgba(14, 165, 233, 0.4); }
+      50% { box-shadow: 0 0 25px rgba(236, 72, 153, 0.6); }
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="text-slate-800 pb-16">
+
+  <!-- TOP BRAND HEADER -->
+  <header class="bg-gradient-to-r from-cyan-600 via-indigo-600 to-purple-600 text-white shadow-xl sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-3 sm:py-4 flex flex-col md:flex-row items-center justify-between gap-2">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-lg transform -rotate-6 text-indigo-600 font-extrabold text-2xl">
+          HT
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-2xl sm:text-3xl font-extrabold tracking-wide">TRUNG TÂM TIẾNG ANH HT ENGLISH</h1>
+            <span class="bg-amber-400 text-slate-900 text-xs px-2.5 py-0.5 rounded-full font-bold uppercase">Ms. Lily</span>
+          </div>
+          <p class="text-xs sm:text-sm text-cyan-100 font-medium">
+            <i class="fa-solid fa-location-dot text-amber-300 mr-1"></i> Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình
+            <span class="mx-2">•</span>
+            <i class="fa-solid fa-phone text-amber-300 mr-1"></i> Hotline: 0963.422.940 - 0962.240.866
+          </p>
+        </div>
+      </div>
+      <!-- Score counter / Controls -->
+      <div class="flex items-center gap-3 bg-white/10 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20">
+        <div class="text-center">
+          <span class="text-xs uppercase tracking-wider text-cyan-200 block font-semibold">Tổng điểm</span>
+          <span id="global-score" class="text-xl sm:text-2xl font-black text-amber-300 font-heading">0</span>
+        </div>
+        <div class="h-8 w-px bg-white/20"></div>
+        <button id="sound-toggle-btn" onclick="toggleMute()" class="w-10 h-10 rounded-xl bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition">
+          <i id="sound-icon" class="fa-solid fa-volume-high text-lg"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- BANNER INTRO -->
+  <div class="max-w-6xl mx-auto px-4 mt-6">
+    <div class="bg-white/90 backdrop-blur rounded-3xl p-6 sm:p-8 shadow-xl border border-indigo-100 flex flex-col md:flex-row items-center justify-between gap-6">
+      <div class="space-y-2">
+        <div class="inline-flex items-center gap-2 bg-indigo-50 text-indigo-700 px-3.5 py-1.5 rounded-full font-bold text-sm border border-indigo-200">
+          <i class="fa-solid fa-satellite-dish text-indigo-500"></i> Tiếng Anh 8 Global Success • Unit 10
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-black text-slate-800 font-heading tracking-tight">
+          COMMUNICATION IN THE FUTURE
+        </h2>
+        <p class="text-base sm:text-lg text-slate-600 font-medium">
+          Đấu trường 5 Game Ngữ pháp: <span class="text-indigo-600 font-bold">Giới từ chỉ nơi chốn & thời gian (in, on, at, by, for...)</span> & <span class="text-purple-600 font-bold">Đại từ sở hữu (mine, yours, his, hers...)</span>
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-2 justify-center">
+        <button onclick="showHandbook()" class="btn-pop bg-amber-400 hover:bg-amber-500 text-slate-900 font-bold px-5 py-3 rounded-2xl shadow-lg flex items-center gap-2 border-2 border-amber-300">
+          <i class="fa-solid fa-book-bookmark text-lg"></i> Cẩm Nang Bí Kíp
+        </button>
+        <button onclick="scrollToGames()" class="btn-pop bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-600 hover:to-indigo-700 text-white font-bold px-6 py-3 rounded-2xl shadow-lg flex items-center gap-2 shadow-indigo-200">
+          <i class="fa-solid fa-gamepad text-lg"></i> Chọn Trò Chơi Ngay
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STUDY HANDBOOK MODAL -->
+  <div id="handbook-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-3xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative border-4 border-indigo-200">
+      <button onclick="closeHandbook()" class="absolute top-5 right-5 w-10 h-10 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center text-slate-600 transition">
+        <i class="fa-solid fa-xmark text-lg"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 bg-amber-100 rounded-2xl flex items-center justify-center text-amber-600 text-2xl font-bold">
+          <i class="fa-solid fa-lightbulb"></i>
+        </div>
+        <div>
+          <h3 class="text-2xl font-black text-slate-800 font-heading">BÍ KÍP VÀNG NGỮ PHÁP UNIT 10</h3>
+          <p class="text-sm text-slate-500 font-semibold">Tóm tắt chuẩn theo SGK Global Success 8 - Trang 107 & 108</p>
+        </div>
+      </div>
+
+      <div class="space-y-6 text-sm sm:text-base">
+        <!-- Part 1: Prepositions of Place -->
+        <div class="bg-cyan-50 p-5 rounded-2xl border border-cyan-200">
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="font-extrabold text-cyan-900 text-lg flex items-center gap-2">
+              <i class="fa-solid fa-map-pin text-cyan-600"></i> 1. Giới từ chỉ địa điểm (Prepositions of Place)
+            </h4>
+            <button onclick="speak('Prepositions of place: in, on, at, in front of, opposite, under.')" class="text-cyan-700 hover:text-cyan-900 bg-cyan-100 p-2 rounded-lg">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+          </div>
+          <ul class="space-y-2 text-slate-700">
+            <li><span class="font-bold text-cyan-800">IN (trong):</span> Chỉ khu vực bao quanh, thành phố, đất nước (<em>in Hanoi, in a garden, in a room, in a box</em>).</li>
+            <li><span class="font-bold text-cyan-800">ON (trên):</span> Nằm trên bề mặt hoặc trang, đồi, đường phố chung (<em>on the hill, on the table, on the street, on the pavement, on the Internet</em>).</li>
+            <li><span class="font-bold text-cyan-800">AT (ở tại):</span> Vị trí chính xác, địa chỉ cụ thể hoặc cụm cố định (<em>at the end of this street, at 169 Tran Hung Dao, at home, at work, at the bus stop</em>).</li>
+            <li><span class="font-bold text-cyan-800">Khác:</span> <em>in front of</em> (phía trước), <em>opposite</em> (đối diện), <em>under</em> (bên dưới: <em>under the table</em>).</li>
+          </ul>
+        </div>
+
+        <!-- Part 2: Prepositions of Time -->
+        <div class="bg-emerald-50 p-5 rounded-2xl border border-emerald-200">
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="font-extrabold text-emerald-900 text-lg flex items-center gap-2">
+              <i class="fa-solid fa-clock text-emerald-600"></i> 2. Giới từ chỉ thời gian (in, for, by)
+            </h4>
+            <button onclick="speak('Prepositions of time: in expresses future meaning, for expresses duration, by means not later than that time.')" class="text-emerald-700 hover:text-emerald-900 bg-emerald-100 p-2 rounded-lg">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+          </div>
+          <ul class="space-y-2 text-slate-700">
+            <li><span class="font-bold text-emerald-800">IN + khoảng thời gian:</span> Diễn tả nghĩa tương lai ("... nữa") ➜ <em>in ten years</em> (trong 10 năm nữa), <em>in 30 years</em>, <em>in the near future</em>.</li>
+            <li><span class="font-bold text-emerald-800">FOR + khoảng thời gian:</span> Kéo dài trong bao lâu ➜ <em>for three hours</em> (suốt 3 tiếng), <em>for two weeks</em>, <em>for a long time</em>.</li>
+            <li><span class="font-bold text-emerald-800">BY + mốc thời gian:</span> Trước hoặc không muộn hơn thời điểm đó ➜ <em>by 6 p.m.</em> (trước 6h chiều), <em>by 2035</em>, <em>by 10 a.m.</em></li>
+            <li><span class="font-bold text-emerald-800">Lưu ý thêm:</span> <em>on Sundays</em> (vào các Chủ Nhật), <em>in May 1999</em> (tháng/năm), <em>at 10:15</em> (giờ giấc cụ thể).</li>
+          </ul>
+        </div>
+
+        <!-- Part 3: Possessive Pronouns -->
+        <div class="bg-purple-50 p-5 rounded-2xl border border-purple-200">
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="font-extrabold text-purple-900 text-lg flex items-center gap-2">
+              <i class="fa-solid fa-hand-holding-dollar text-purple-600"></i> 3. Đại từ sở hữu (Possessive Pronouns)
+            </h4>
+            <button onclick="speak('Possessive pronouns: mine, yours, his, hers, ours, theirs. We can use possessive pronouns after of.')" class="text-purple-700 hover:text-purple-900 bg-purple-100 p-2 rounded-lg">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center my-3">
+            <div class="bg-white p-2 rounded-xl border border-purple-200 font-bold text-purple-700">my ➜ <span class="text-pink-600">mine</span></div>
+            <div class="bg-white p-2 rounded-xl border border-purple-200 font-bold text-purple-700">your ➜ <span class="text-pink-600">yours</span></div>
+            <div class="bg-white p-2 rounded-xl border border-purple-200 font-bold text-purple-700">his ➜ <span class="text-pink-600">his</span></div>
+            <div class="bg-white p-2 rounded-xl border border-purple-200 font-bold text-purple-700">her ➜ <span class="text-pink-600">hers</span></div>
+            <div class="bg-white p-2 rounded-xl border border-purple-200 font-bold text-purple-700">our ➜ <span class="text-pink-600">ours</span></div>
+            <div class="bg-white p-2 rounded-xl border border-purple-200 font-bold text-purple-700">their ➜ <span class="text-pink-600">theirs</span></div>
+            <div class="bg-white p-2 rounded-xl border border-purple-200 font-bold text-purple-700">its ➜ <span class="text-pink-600">its</span></div>
+            <div class="bg-purple-200 p-2 rounded-xl font-bold text-purple-900">Thay thế Tính từ + N</div>
+          </div>
+          <p class="text-slate-700 font-medium">
+            ⭐ <span class="font-bold text-purple-900">Cấu trúc quan trọng trang 108 SGK:</span> Dùng sau <strong>OF</strong> để diễn đạt "một người bạn/người họ hàng của tôi":
+            <br>• <em>Mi is one of my friends ➜ Mi is a friend of <strong>mine</strong>.</em>
+            <br>• <em>Jack is one of her cousins ➜ Jack is a cousin of <strong>hers</strong>.</em>
+          </p>
+        </div>
+      </div>
+
+      <div class="mt-6 text-center">
+        <button onclick="closeHandbook()" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3 rounded-2xl shadow-lg">
+          Đã Hiểu, Bắt Đầu Chơi! 🚀
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAME SELECTOR HUBS -->
+  <section id="games-section" class="max-w-6xl mx-auto px-4 mt-10">
+    <div class="text-center mb-8">
+      <h3 class="text-2xl sm:text-3xl font-black text-slate-800 font-heading">
+        HỆ THỐNG 5 GAME NGỮ PHÁP TƯƠNG TÁC
+      </h3>
+      <p class="text-slate-500 font-semibold">Mỗi Game gồm đúng 20 câu hỏi ngữ pháp chất lượng cao kèm loa giọng đọc Nữ Anh - Mỹ 🔊</p>
+    </div>
+
+    <!-- 5 Game Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Card 1 -->
+      <div class="game-card-hover bg-white rounded-3xl p-6 shadow-lg border-3 border-cyan-400 flex flex-col justify-between relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-cyan-100 rounded-bl-full -z-0 opacity-60"></div>
+        <div class="z-10">
+          <div class="w-14 h-14 bg-gradient-to-tr from-cyan-500 to-blue-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-md mb-4">
+            🏎️
+          </div>
+          <span class="text-xs font-bold uppercase tracking-wider text-cyan-600 bg-cyan-50 px-3 py-1 rounded-full border border-cyan-200">Game 1 • 20 Câu</span>
+          <h4 class="text-xl font-extrabold text-slate-800 font-heading mt-2">Cyber Racer 2050</h4>
+          <p class="text-slate-600 text-sm mt-1">Đua xe cao tốc tương lai: Phản xạ nhanh giới từ chỉ địa điểm (in, on, at, under, in front of, opposite).</p>
+        </div>
+        <div class="mt-6 z-10 flex items-center justify-between pt-4 border-t border-slate-100">
+          <span class="text-xs font-bold text-slate-500">Thang điểm: 200đ</span>
+          <button onclick="startSpecificGame(0)" class="btn-pop bg-cyan-500 hover:bg-cyan-600 text-white font-bold px-4 py-2 rounded-xl text-sm shadow flex items-center gap-1.5">
+            Chơi Ngay <i class="fa-solid fa-play text-xs"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="game-card-hover bg-white rounded-3xl p-6 shadow-lg border-3 border-emerald-400 flex flex-col justify-between relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-100 rounded-bl-full -z-0 opacity-60"></div>
+        <div class="z-10">
+          <div class="w-14 h-14 bg-gradient-to-tr from-emerald-500 to-teal-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-md mb-4">
+            🎈
+          </div>
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">Game 2 • 20 Câu</span>
+          <h4 class="text-xl font-extrabold text-slate-800 font-heading mt-2">Hologram Balloon Pop</h4>
+          <p class="text-slate-600 text-sm mt-1">Bắn bóng thời gian: Phân biệt chính xác in, for, by, on, at theo chuẩn ngữ pháp SGK Unit 10.</p>
+        </div>
+        <div class="mt-6 z-10 flex items-center justify-between pt-4 border-t border-slate-100">
+          <span class="text-xs font-bold text-slate-500">Thang điểm: 200đ</span>
+          <button onclick="startSpecificGame(1)" class="btn-pop bg-emerald-500 hover:bg-emerald-600 text-white font-bold px-4 py-2 rounded-xl text-sm shadow flex items-center gap-1.5">
+            Chơi Ngay <i class="fa-solid fa-play text-xs"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="game-card-hover bg-white rounded-3xl p-6 shadow-lg border-3 border-purple-400 flex flex-col justify-between relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-purple-100 rounded-bl-full -z-0 opacity-60"></div>
+        <div class="z-10">
+          <div class="w-14 h-14 bg-gradient-to-tr from-purple-500 to-indigo-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-md mb-4">
+            🛸
+          </div>
+          <span class="text-xs font-bold uppercase tracking-wider text-purple-600 bg-purple-50 px-3 py-1 rounded-full border border-purple-200">Game 3 • 20 Câu</span>
+          <h4 class="text-xl font-extrabold text-slate-800 font-heading mt-2">Cyber Space Invader</h4>
+          <p class="text-slate-600 text-sm mt-1">Chiến hạm không gian: Làm chủ đại từ sở hữu (mine, yours, his, hers, ours, theirs, its) thay thế danh từ.</p>
+        </div>
+        <div class="mt-6 z-10 flex items-center justify-between pt-4 border-t border-slate-100">
+          <span class="text-xs font-bold text-slate-500">Thang điểm: 200đ</span>
+          <button onclick="startSpecificGame(2)" class="btn-pop bg-purple-500 hover:bg-purple-600 text-white font-bold px-4 py-2 rounded-xl text-sm shadow flex items-center gap-1.5">
+            Chơi Ngay <i class="fa-solid fa-play text-xs"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="game-card-hover bg-white rounded-3xl p-6 shadow-lg border-3 border-rose-400 flex flex-col justify-between relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-24 h-24 bg-rose-100 rounded-bl-full -z-0 opacity-60"></div>
+        <div class="z-10">
+          <div class="w-14 h-14 bg-gradient-to-tr from-rose-500 to-pink-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-md mb-4">
+            🔍
+          </div>
+          <span class="text-xs font-bold uppercase tracking-wider text-rose-600 bg-rose-50 px-3 py-1 rounded-full border border-rose-200">Game 4 • 20 Câu</span>
+          <h4 class="text-xl font-extrabold text-slate-800 font-heading mt-2">Future Error Detective</h4>
+          <p class="text-slate-600 text-sm mt-1">Thám tử bắt bẫy: Tìm và sửa các lỗi sai kinh điển về giới từ và đại từ sở hữu trong bài kiểm tra.</p>
+        </div>
+        <div class="mt-6 z-10 flex items-center justify-between pt-4 border-t border-slate-100">
+          <span class="text-xs font-bold text-slate-500">Thang điểm: 200đ</span>
+          <button onclick="startSpecificGame(3)" class="btn-pop bg-rose-500 hover:bg-rose-600 text-white font-bold px-4 py-2 rounded-xl text-sm shadow flex items-center gap-1.5">
+            Chơi Ngay <i class="fa-solid fa-play text-xs"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="game-card-hover bg-white rounded-3xl p-6 shadow-lg border-3 border-amber-400 flex flex-col justify-between relative overflow-hidden lg:col-span-2">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-amber-100 rounded-bl-full -z-0 opacity-60"></div>
+        <div class="z-10">
+          <div class="w-14 h-14 bg-gradient-to-tr from-amber-500 to-orange-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-md mb-4">
+            🧩
+          </div>
+          <span class="text-xs font-bold uppercase tracking-wider text-amber-700 bg-amber-50 px-3 py-1 rounded-full border border-amber-200">Game 5 • 20 Câu</span>
+          <h4 class="text-xl font-extrabold text-slate-800 font-heading mt-2">Smart Sentence Architect</h4>
+          <p class="text-slate-600 text-sm mt-1">Kiến trúc sư ghép câu 1-chạm: Rèn luyện viết câu chuẩn mẫu cấu trúc "one of my friends ➜ a friend of mine" và giới từ thời gian/nơi chốn.</p>
+        </div>
+        <div class="mt-6 z-10 flex items-center justify-between pt-4 border-t border-slate-100">
+          <span class="text-xs font-bold text-slate-500">Thang điểm: 200đ • Thao tác chạm nhẹ, không cần gõ phím</span>
+          <button onclick="startSpecificGame(4)" class="btn-pop bg-amber-500 hover:bg-amber-600 text-white font-bold px-5 py-2.5 rounded-xl text-sm shadow flex items-center gap-1.5">
+            Chơi Ngay <i class="fa-solid fa-play text-xs"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MAIN PLAYING ARENA -->
+  <main id="play-arena" class="max-w-4xl mx-auto px-4 mt-8 hidden">
+    <!-- Header Game info -->
+    <div class="bg-white rounded-3xl p-6 shadow-xl border-2 border-indigo-100 mb-6">
+      <div class="flex flex-wrap items-center justify-between gap-4 pb-4 border-b border-slate-100">
+        <div class="flex items-center gap-3">
+          <button onclick="exitGameToMenu()" class="w-10 h-10 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition">
+            <i class="fa-solid fa-arrow-left"></i>
+          </button>
+          <div>
+            <h3 id="current-game-title" class="text-xl sm:text-2xl font-black text-indigo-700 font-heading">Game 1: Cyber Racer</h3>
+            <span id="current-game-desc" class="text-xs sm:text-sm text-slate-500 font-semibold">Prepositions of Place</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-4">
+          <div class="text-right">
+            <span class="text-xs text-slate-400 block font-bold">Câu hỏi</span>
+            <span id="question-progress" class="text-lg font-black text-slate-800 font-heading">1 / 20</span>
+          </div>
+          <div class="text-right">
+            <span class="text-xs text-slate-400 block font-bold">Điểm game</span>
+            <span id="game-score" class="text-lg font-black text-emerald-600 font-heading">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress bar -->
+      <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden mt-4">
+        <div id="game-progress-bar" class="bg-gradient-to-r from-cyan-500 to-indigo-600 h-full transition-all duration-300" style="width: 5%;"></div>
+      </div>
+    </div>
+
+    <!-- Question Box Area -->
+    <div id="question-card" class="bg-white rounded-3xl p-6 sm:p-8 shadow-2xl border-4 border-indigo-100 relative">
+      <!-- Injected by JavaScript -->
+    </div>
+
+    <!-- Explanation Box (Appears after answer) -->
+    <div id="explanation-card" class="mt-6 bg-amber-50 rounded-3xl p-6 border-2 border-amber-200 shadow-md hidden">
+      <div class="flex items-start justify-between gap-4">
+        <div class="space-y-2">
+          <div class="flex items-center gap-2 font-black text-amber-900 font-heading text-lg">
+            <i class="fa-solid fa-graduation-cap text-amber-600"></i>
+            <span>GIẢI THÍCH NGỮ PHÁP CHI TIẾT</span>
+          </div>
+          <p id="explanation-text" class="text-slate-700 font-medium text-base leading-relaxed">
+            <!-- Explanation text -->
+          </p>
+          <div class="bg-white/80 p-3 rounded-xl border border-amber-200 text-sm">
+            <span class="font-bold text-amber-800">Cấu trúc trọng tâm:</span>
+            <span id="explanation-structure" class="text-slate-800 font-semibold ml-1"></span>
+          </div>
+        </div>
+        <button id="speak-expl-btn" onclick="speakCurrentExplanation()" class="flex-shrink-0 w-12 h-12 rounded-2xl bg-amber-200 hover:bg-amber-300 text-amber-800 flex items-center justify-center transition shadow">
+          <i class="fa-solid fa-volume-high text-xl"></i>
+        </button>
+      </div>
+
+      <!-- Next Button -->
+      <div class="mt-6 flex justify-end">
+        <button id="next-question-btn" onclick="nextQuestion()" class="btn-pop bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-8 py-3.5 rounded-2xl shadow-lg flex items-center gap-2 text-base">
+          <span>Câu Tiếp Theo</span>
+          <i class="fa-solid fa-arrow-right"></i>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- GAME OVER / RESULTS MODAL -->
+  <div id="result-modal" class="fixed inset-0 bg-slate-900/70 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-8 shadow-2xl text-center border-4 border-amber-300 relative">
+      <div class="w-24 h-24 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-4 text-5xl shadow-inner animate-bounce">
+        🏆
+      </div>
+      <h3 class="text-3xl font-black text-slate-800 font-heading">XUẤT SẮC HOÀN THÀNH!</h3>
+      <p id="result-game-name" class="text-indigo-600 font-bold mt-1 text-lg">Game 1: Cyber Racer 2050</p>
+
+      <div class="bg-slate-50 rounded-2xl p-5 my-6 border border-slate-200 flex justify-around">
+        <div>
+          <span class="text-xs text-slate-500 font-bold uppercase block">Đúng</span>
+          <span id="result-correct-count" class="text-3xl font-black text-emerald-600 font-heading">20/20</span>
+        </div>
+        <div class="w-px bg-slate-200"></div>
+        <div>
+          <span class="text-xs text-slate-500 font-bold uppercase block">Điểm số</span>
+          <span id="result-final-score" class="text-3xl font-black text-amber-500 font-heading">200</span>
+        </div>
+        <div class="w-px bg-slate-200"></div>
+        <div>
+          <span class="text-xs text-slate-500 font-bold uppercase block">Độ chính xác</span>
+          <span id="result-accuracy" class="text-3xl font-black text-indigo-600 font-heading">100%</span>
+        </div>
+      </div>
+
+      <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200 mb-6 text-sm text-slate-700">
+        <p class="font-bold text-amber-900 mb-1">Lời phê của Cô Lily (HT English):</p>
+        <p id="result-teacher-note" class="italic">"Em nắm vững kiến thức về giới từ và đại từ sở hữu Unit 10 rất xuất sắc! Hãy tiếp tục phát huy nhé!"</p>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3 justify-center">
+        <button onclick="retryCurrentGame()" class="btn-pop bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-6 py-3 rounded-2xl text-sm flex items-center justify-center gap-2">
+          <i class="fa-solid fa-rotate-left"></i> Chơi Lại Game Này
+        </button>
+        <button onclick="exitGameToMenu()" class="btn-pop bg-gradient-to-r from-cyan-600 to-indigo-600 text-white font-bold px-6 py-3 rounded-2xl text-sm shadow-lg flex items-center justify-center gap-2">
+          <i class="fa-solid fa-list-check"></i> Chọn Game Khác
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC & 100 QUESTIONS DATA -->
+  <script>
+    /* ==========================================================
+       1. DATA BANK: 5 GAMES X 20 QUESTIONS = 100 HIGH-QUALITY ITEMS
+       Focus: Prepositions of Place & Time, Possessive Pronouns
+       Unit 10: Communication in the Future (Global Success 8)
+       ========================================================== */
+
+    const GAMES_DATA = [
+      // --------------------------------------------------------
+      // GAME 1: Cyber Racer 2050 (Prepositions of Place - 20 Questions)
+      // --------------------------------------------------------
+      {
+        id: "game1",
+        title: "Game 1: Cyber Racer 2050",
+        desc: "Prepositions of Place (in, on, at, under, in front of, opposite)",
+        icon: "🏎️",
+        color: "cyan",
+        questions: [
+          {
+            q: "Lily’s high-tech smart house is ______ the end of this street.",
+            options: ["at", "in", "on", "under"],
+            ans: 0,
+            expl: "Cụm cố định chỉ vị trí chính xác: 'at the end of (the street)' (ở cuối con phố).",
+            rule: "at + the end of sth (vị trí chính xác cụ thể)"
+          },
+          {
+            q: "In a chess game, two players always sit ______ each other.",
+            options: ["opposite", "under", "in", "on"],
+            ans: 0,
+            expl: "Trong ván cờ, hai người chơi luôn ngồi đối diện nhau, ta dùng giới từ 'opposite' (đối diện).",
+            rule: "opposite + someone/something (đối diện)"
+          },
+          {
+            q: "She looked ______ the table and finally found her smartwatch on the floor.",
+            options: ["under", "on", "in", "opposite"],
+            ans: 0,
+            expl: "Cô ấy nhìn xuống 'bên dưới cái bàn' (under the table) và tìm thấy đồng hồ thông minh rơi trên sàn.",
+            rule: "under + Noun (bên dưới vật gì đó)"
+          },
+          {
+            q: "Don't walk in the street! You should walk ______ the pavement.",
+            options: ["on", "at", "under", "in front of"],
+            ans: 0,
+            expl: "Đi bộ 'trên vỉa hè' (bề mặt) dùng giới từ 'on the pavement'.",
+            rule: "on + pavement / floor / surface (trên bề mặt)"
+          },
+          {
+            q: "Ann stood ______ me in a line to get on the smart electric bus.",
+            options: ["in front of", "under", "at", "on"],
+            ans: 0,
+            expl: "Ann đứng 'ở phía trước tôi' trong hàng để bước lên xe buýt, dùng 'in front of me'.",
+            rule: "in front of + Object (phía trước ai/cái gì)"
+          },
+          {
+            q: "They can check the latest tech news ______ the Internet easily.",
+            options: ["on", "in", "at", "under"],
+            ans: 0,
+            expl: "Với mạng Internet hoặc các phương tiện truyền thông mạng, ta dùng 'on the Internet'.",
+            rule: "on + the Internet / screen / social media"
+          },
+          {
+            q: "Smart devices can charge their battery automatically when we are ______ home.",
+            options: ["at", "on", "in front of", "under"],
+            ans: 0,
+            expl: "Cụm từ chỉ địa điểm quen thuộc: 'at home' (ở nhà).",
+            rule: "at home / at school / at work (địa điểm thường ngày)"
+          },
+          {
+            q: "The cinema where they watch 3D hologram films is ______ the bakery.",
+            options: ["opposite", "under", "at", "in"],
+            ans: 0,
+            expl: "Rạp chiếu phim nằm 'đối diện' tiệm bánh, dùng 'opposite the bakery'.",
+            rule: "opposite + Noun (đối diện với cái gì)"
+          },
+          {
+            q: "The futuristic communication lab is located ______ Hanoi, Vietnam.",
+            options: ["in", "at", "on", "under"],
+            ans: 0,
+            expl: "Trước tên thành phố lớn hoặc quốc gia, ta luôn dùng giới từ 'in' (in Hanoi).",
+            rule: "in + city / country / town"
+          },
+          {
+            q: "There is a pond with aquatic robots ______ our modern house.",
+            options: ["in front of", "on", "under", "at"],
+            ans: 0,
+            expl: "Có một cái ao 'phía trước' ngôi nhà, ta dùng cụm 'in front of the house'.",
+            rule: "in front of + Noun (ở đằng trước)"
+          },
+          {
+            q: "They live in that modern villa ______ the hill.",
+            options: ["on", "at", "in", "under"],
+            ans: 0,
+            expl: "Nằm ở trên bề mặt sườn đồi, ta dùng 'on the hill' (trên đồi).",
+            rule: "on + hill / mountain slope (trên đồi/núi)"
+          },
+          {
+            q: "Robots were waiting for passengers ______ the bus stop.",
+            options: ["at", "on", "under", "in front"],
+            ans: 0,
+            expl: "Tại trạm dừng xe buýt là vị trí cụ thể, chuẩn cấu trúc 'at the bus stop'.",
+            rule: "at + bus stop / train station / airport"
+          },
+          {
+            q: "The video call hologram appeared right ______ the middle of the room.",
+            options: ["in", "on", "at", "under"],
+            ans: 0,
+            expl: "Cụm từ cố định: 'in the middle of...' (ở giữa không gian của căn phòng).",
+            rule: "in the middle of + place (trong không gian)"
+          },
+          {
+            q: "The smart robot vacuum cleaner is working ______ the living room floor.",
+            options: ["on", "at", "under", "opposite"],
+            ans: 0,
+            expl: "Làm việc trên bề mặt sàn nhà dùng 'on the floor'.",
+            rule: "on + the floor / surface"
+          },
+          {
+            q: "The scientist left his holographic headset ______ the top of the stairs.",
+            options: ["at", "on", "in", "opposite"],
+            ans: 0,
+            expl: "Ở đầu/đỉnh cầu thang là vị trí xác định, ta dùng 'at the top of the stairs'.",
+            rule: "at + the top / bottom of sth"
+          },
+          {
+            q: "We sat ______ the tree shade to test our futuristic solar-powered tablets.",
+            options: ["under", "on", "at", "opposite"],
+            ans: 0,
+            expl: "Ngồi 'dưới' bóng cây ta dùng giới từ 'under the tree'.",
+            rule: "under + Noun (ở dưới bóng râm/dưới vật)"
+          },
+          {
+            q: "The message notification was displayed ______ the screen of my smartphone.",
+            options: ["on", "at", "in", "under"],
+            ans: 0,
+            expl: "Hiển thị 'trên màn hình' điện thoại hay thiết bị điện tử luôn dùng 'on the screen'.",
+            rule: "on + the screen (trên màn hình)"
+          },
+          {
+            q: "Lily met her teacher ______ 169 Tran Hung Dao street yesterday.",
+            options: ["at", "in", "on", "under"],
+            ans: 0,
+            expl: "Có số nhà cụ thể (169...) phải dùng giới từ 'at' (at 169 Tran Hung Dao).",
+            rule: "at + số nhà cụ thể + tên đường"
+          },
+          {
+            q: "Look! Don't run ______ the street when traffic is crowded.",
+            options: ["in", "at", "under", "opposite"],
+            ans: 0,
+            expl: "Chạy bên trong lòng đường phố dùng 'in the street' (theo SGK trang 107).",
+            rule: "in the street (trong lòng đường) vs on the pavement (trên vỉa hè)"
+          },
+          {
+            q: "The tech store is right ______ my school, so I just need to cross the road.",
+            options: ["opposite", "under", "at", "in"],
+            ans: 0,
+            expl: "Chỉ cần băng qua đường là tới, nghĩa là cửa hàng nằm 'đối diện' trường học (opposite my school).",
+            rule: "opposite + Place (đối diện với nơi nào)"
+          }
+        ]
+      },
+
+      // --------------------------------------------------------
+      // GAME 2: Hologram Balloon Pop (Prepositions of Time - 20 Questions)
+      // --------------------------------------------------------
+      {
+        id: "game2",
+        title: "Game 2: Hologram Balloon Pop",
+        desc: "Prepositions of Time: in, for, by, on, at (SGK Page 107)",
+        icon: "🎈",
+        color: "emerald",
+        questions: [
+          {
+            q: "Robots will replace human shop assistants ______ ten years.",
+            options: ["in", "for", "by", "at"],
+            ans: 0,
+            expl: "'in + khoảng thời gian' thể hiện nghĩa tương lai: trong vòng 10 năm nữa.",
+            rule: "in + khoảng thời gian = diễn tả ý tương lai (in 10 years)"
+          },
+          {
+            q: "It rained continuously ______ three hours yesterday afternoon.",
+            options: ["for", "in", "by", "on"],
+            ans: 0,
+            expl: "'for + khoảng thời gian' diễn tả sự việc kéo dài trong bao lâu (suốt 3 giờ).",
+            rule: "for + khoảng thời gian = kéo dài trong bao lâu"
+          },
+          {
+            q: "We need to send the report ______ 6 p.m. today, or the system will lock.",
+            options: ["by", "for", "in", "on"],
+            ans: 0,
+            expl: "'by + thời gian cụ thể' có nghĩa là 'trước thời điểm đó' (trước 6 giờ chiều).",
+            rule: "by + mốc thời gian = trước hoặc không muộn hơn thời điểm đó"
+          },
+          {
+            q: "Let's get ready ______ 10 a.m. We are meeting Dr. Saito at 10:15.",
+            options: ["by", "on", "for", "in"],
+            ans: 0,
+            expl: "Gặp bác sĩ lúc 10:15 nên chúng ta cần chuẩn bị xong trước 10:00 sáng ➜ dùng 'by 10 a.m.'.",
+            rule: "by + specific time (trước giờ đó)"
+          },
+          {
+            q: "The first camera phone appeared ______ May 1999 in Japan.",
+            options: ["in", "on", "at", "by"],
+            ans: 0,
+            expl: "Trước tháng và năm (May 1999) ta luôn dùng giới từ 'in'.",
+            rule: "in + tháng / năm / thế kỷ"
+          },
+          {
+            q: "Our family will be away on a smart tour ______ two weeks.",
+            options: ["for", "on", "by", "at"],
+            ans: 0,
+            expl: "Chuyến đi kéo dài trong bao lâu (trong 2 tuần) ➜ dùng 'for two weeks'.",
+            rule: "for + length of time (kéo dài suốt bao lâu)"
+          },
+          {
+            q: "In the UK, supermarkets always close early ______ Sundays.",
+            options: ["on", "in", "by", "at"],
+            ans: 0,
+            expl: "Trước các ngày trong tuần (Sundays, Mondays...) ta luôn dùng giới từ 'on'.",
+            rule: "on + days of the week (on Sundays)"
+          },
+          {
+            q: "I think language barriers will completely disappear ______ 30 years.",
+            options: ["in", "for", "by", "at"],
+            ans: 0,
+            expl: "Rào cản ngôn ngữ sẽ biến mất 'trong 30 năm nữa' (nghĩa tương lai) ➜ dùng 'in 30 years'.",
+            rule: "in + a length of time (ý tương lai trong SGK)"
+          },
+          {
+            q: "I think smartphones will change a lot ______ the near future.",
+            options: ["in", "at", "for", "by"],
+            ans: 0,
+            expl: "Cụm từ cố định: 'in the near future' (trong tương lai gần).",
+            rule: "in the near future (trong tương lai gần)"
+          },
+          {
+            q: "______ 2035, we might be able to roll a phone like a sheet of paper.",
+            options: ["By", "For", "On", "At"],
+            ans: 0,
+            expl: "Trước năm 2035 (thời điểm cụ thể trong tương lai) ➜ dùng 'By 2035' (theo SGK trang 107).",
+            rule: "By + năm tương lai (trước mốc năm đó)"
+          },
+          {
+            q: "We won't have to wait ______ a long time for these super smartphones.",
+            options: ["for", "in", "by", "at"],
+            ans: 0,
+            expl: "Chờ đợi trong suốt một khoảng thời gian dài ➜ dùng 'wait for a long time'.",
+            rule: "wait for + a long time (kéo dài bao lâu)"
+          },
+          {
+            q: "Hologram devices will be upgraded ______ five months.",
+            options: ["in", "by", "for", "at"],
+            ans: 0,
+            expl: "Thiết bị sẽ được nâng cấp trong vòng 5 tháng nữa (tương lai) ➜ dùng 'in five months'.",
+            rule: "in + length of time = future meaning"
+          },
+          {
+            q: "The online international conference will start ______ 8:30 a.m. tomorrow.",
+            options: ["at", "in", "on", "by"],
+            ans: 0,
+            expl: "Trước mốc giờ chính xác (8:30 a.m.) ta dùng giới từ 'at'.",
+            rule: "at + giờ cụ thể (at 8:30 a.m.)"
+          },
+          {
+            q: "Telepathy technology has been studied ______ decades by scientists.",
+            options: ["for", "in", "by", "at"],
+            ans: 0,
+            expl: "Kéo dài suốt nhiều thập kỷ (khoảng thời gian) ➜ dùng 'for decades'.",
+            rule: "for + decades / years (suốt bao lâu)"
+          },
+          {
+            q: "You must submit your tech project ______ next Friday at the latest.",
+            options: ["by", "in", "for", "on"],
+            ans: 0,
+            expl: "Hạn chót trước thứ Sáu tới ➜ dùng 'by next Friday' (trước thời điểm đó).",
+            rule: "by + mốc thời gian = hạn chót, không muộn hơn"
+          },
+          {
+            q: "People celebrated the launch of the 5G satellite ______ December 2024.",
+            options: ["in", "on", "at", "by"],
+            ans: 0,
+            expl: "Trước tháng kèm năm (December 2024) dùng giới từ 'in'.",
+            rule: "in + tháng năm"
+          },
+          {
+            q: "Will we be having lunch with alien friends ______ 50 years?",
+            options: ["in", "for", "by", "at"],
+            ans: 0,
+            expl: "Trong 50 năm nữa (thể hiện thời điểm tương lai) ➜ dùng 'in 50 years'.",
+            rule: "in + khoảng thời gian (nghĩa tương lai)"
+          },
+          {
+            q: "The battery can keep the 3D hologram running ______ 24 hours non-stop.",
+            options: ["for", "in", "by", "at"],
+            ans: 0,
+            expl: "Hoạt động kéo dài trong 24 giờ liên tục ➜ dùng 'for 24 hours'.",
+            rule: "for + khoảng thời gian (thời lượng duy trì)"
+          },
+          {
+            q: "Please complete downloading this update ______ 9:00 p.m. tonight.",
+            options: ["by", "for", "in", "on"],
+            ans: 0,
+            expl: "Trước 9:00 tối nay (mốc thời gian cụ thể) ➜ dùng 'by 9:00 p.m.'.",
+            rule: "by + giờ cụ thể (trước thời điểm đó)"
+          },
+          {
+            q: "Future students will have practical robotics classes ______ Monday mornings.",
+            options: ["on", "at", "in", "for"],
+            ans: 0,
+            expl: "Vào các buổi sáng thứ Hai (có thứ trong tuần) ➜ dùng 'on Monday mornings'.",
+            rule: "on + thứ trong tuần / buổi của thứ (on Monday mornings)"
+          }
+        ]
+      },
+
+      // --------------------------------------------------------
+      // GAME 3: Cyber Space Invader (Possessive Pronouns - 20 Questions)
+      // --------------------------------------------------------
+      {
+        id: "game3",
+        title: "Game 3: Cyber Space Invader",
+        desc: "Possessive Pronouns (mine, yours, his, hers, ours, theirs, its)",
+        icon: "🛸",
+        color: "purple",
+        questions: [
+          {
+            q: "This is not my smartphone. ______ is in the cyber charging dock.",
+            options: ["Mine", "My", "Me", "I"],
+            ans: 0,
+            expl: "'Mine' là đại từ sở hữu thay thế cho cụm 'My smartphone' làm chủ ngữ của câu.",
+            rule: "Mine = My + Noun"
+          },
+          {
+            q: "Jack is one of her cousins. ➜ Jack is a cousin of ______.",
+            options: ["hers", "her", "she", "herself"],
+            ans: 0,
+            expl: "Cấu trúc chuẩn SGK trang 108: dùng đại từ sở hữu sau 'of' ➜ 'a cousin of hers'.",
+            rule: "Noun + of + Possessive Pronoun (hers = her cousins)"
+          },
+          {
+            q: "Is this one of his tablets? ➜ Is this a tablet of ______?",
+            options: ["his", "him", "he", "himself"],
+            ans: 0,
+            expl: "Đại từ sở hữu của 'he' vẫn là 'his' (thay thế cho his tablets).",
+            rule: "a tablet of his (his vừa là tính từ vừa là đại từ sở hữu)"
+          },
+          {
+            q: "Can I borrow your digital pen? ➜ Can I borrow a pencil of ______?",
+            options: ["yours", "your", "you", "yourself"],
+            ans: 0,
+            expl: "Sau giới từ 'of' để chỉ sở hữu ta dùng đại từ sở hữu 'yours' (của bạn).",
+            rule: "of + yours (= your pencils)"
+          },
+          {
+            q: "You look like Nick and Peter. Are you a relative of ______?",
+            options: ["theirs", "their", "them", "they"],
+            ans: 0,
+            expl: "Đại từ sở hữu thay cho 'their relatives' sau 'of' là 'theirs'.",
+            rule: "a relative of theirs = one of their relatives"
+          },
+          {
+            q: "Last year, two of our classmates won scholarships. ➜ Last year, two classmates of ______ won scholarships.",
+            options: ["ours", "our", "us", "we"],
+            ans: 0,
+            expl: "Cấu trúc SGK trang 108: 'two classmates of ours' (thay cho our classmates).",
+            rule: "of + ours (= our classmates)"
+          },
+          {
+            q: "My video camera has 4K resolution, but ______ has 8K resolution.",
+            options: ["hers", "her", "she", "herself"],
+            ans: 0,
+            expl: "'Hers' là đại từ sở hữu thay thế cho 'Her video camera' đóng vai trò chủ ngữ.",
+            rule: "Hers = Her + Noun"
+          },
+          {
+            q: "Their translation device works well, and ______ works smoothly too.",
+            options: ["ours", "our", "we", "us"],
+            ans: 0,
+            expl: "'Ours' thay thế cho cụm danh từ 'Our translation device'.",
+            rule: "Ours = Our + Noun"
+          },
+          {
+            q: "I forgot to bring my futuristic headset. Can I use ______?",
+            options: ["yours", "your", "you", "yourself"],
+            ans: 0,
+            expl: "Dùng 'yours' ở vị trí tân ngữ thay thế cho 'your futuristic headset'.",
+            rule: "yours = your + Noun (làm tân ngữ)"
+          },
+          {
+            q: "Whose holographic watch is this? Is it ______?",
+            options: ["his", "him", "he", "its"],
+            ans: 0,
+            expl: "Hỏi đồng hồ của anh ấy phải không? Dùng đại từ sở hữu 'his'.",
+            rule: "his = his watch"
+          },
+          {
+            q: "That high-speed flying car isn't their car. ______ is parked on the roof.",
+            options: ["Theirs", "Their", "Them", "They"],
+            ans: 0,
+            expl: "'Theirs' thay cho 'Their flying car' làm chủ ngữ câu sau.",
+            rule: "Theirs = Their + Noun"
+          },
+          {
+            q: "Mi is one of my friends. ➜ Mi is a friend of ______.",
+            options: ["mine", "my", "me", "myself"],
+            ans: 0,
+            expl: "Ví dụ kinh điển trong khung Remember SGK trang 108: 'a friend of mine'.",
+            rule: "a friend of mine = one of my friends"
+          },
+          {
+            q: "Don't touch that voice recorder! It is ______.",
+            options: ["mine", "my", "me", "I"],
+            ans: 0,
+            expl: "Nó là 'của tôi' (đứng sau to be đóng vai trò đại từ sở hữu): 'It is mine'.",
+            rule: "Subject + be + Possessive Pronoun"
+          },
+          {
+            q: "Our classroom has a smart screen, but ______ doesn't have one.",
+            options: ["theirs", "their", "them", "they"],
+            ans: 0,
+            expl: "'Theirs' thay cho 'Their classroom' để tránh lặp từ classroom.",
+            rule: "Theirs = Their classroom"
+          },
+          {
+            q: "The robot lost ______ power cable, so it cannot recharge.",
+            options: ["its", "it", "it's", "their"],
+            ans: 0,
+            expl: "Đứng trước danh từ 'power cable' ta dùng tính từ sở hữu 'its' (của nó, không có dấu phẩy).",
+            rule: "its + Noun (tính từ sở hữu của con vật/đồ vật)"
+          },
+          {
+            q: "Her smartphone is foldable, whereas ______ is rigid.",
+            options: ["his", "him", "he", "he's"],
+            ans: 0,
+            expl: "'His' ở đây là đại từ sở hữu thay cho 'His smartphone'.",
+            rule: "His = His smartphone"
+          },
+          {
+            q: "We repaired our drone, but they haven't fixed ______ yet.",
+            options: ["theirs", "their", "them", "theirs drone"],
+            ans: 0,
+            expl: "'theirs' thay thế cho cụm 'their drone' ở vị trí tân ngữ sau động từ fixed.",
+            rule: "theirs = their drone"
+          },
+          {
+            q: "Is this futuristic hoverboard ______ or your brother's?",
+            options: ["yours", "your", "you", "yours'"],
+            ans: 0,
+            expl: "Cái ván trượt này là 'của bạn' (yours) hay của anh trai bạn?",
+            rule: "yours = your hoverboard"
+          },
+          {
+            q: "I met an old teacher of ______ at the national technology exhibition.",
+            options: ["mine", "my", "me", "I"],
+            ans: 0,
+            expl: "'an old teacher of mine' = one of my old teachers.",
+            rule: "Noun + of + mine"
+          },
+          {
+            q: "Her internet connection is stable, but ______ keeps disconnecting.",
+            options: ["mine", "my", "me", "I"],
+            ans: 0,
+            expl: "'Mine' làm chủ ngữ thay thế cho cụm 'My internet connection'.",
+            rule: "Mine = My + Noun"
+          }
+        ]
+      },
+
+      // --------------------------------------------------------
+      // GAME 4: Future Error Detective (Error Identification - 20 Questions)
+      // --------------------------------------------------------
+      {
+        id: "game4",
+        title: "Game 4: Future Error Detective",
+        desc: "Săn lỗi sai ngữ pháp về Giới từ & Đại từ sở hữu",
+        icon: "🔍",
+        color: "rose",
+        questions: [
+          {
+            q: "Tìm lỗi sai: 'My tablet has better voice recognition than your.'",
+            options: ["your ➜ yours", "has ➜ have", "better ➜ more better", "than ➜ then"],
+            ans: 0,
+            expl: "Đứng một mình ở cuối câu để so sánh phải dùng đại từ sở hữu 'yours' (your tablet), không dùng tính từ sở hữu 'your'.",
+            rule: "your + Noun vs yours (đại từ sở hữu đứng độc lập)"
+          },
+          {
+            q: "Tìm lỗi sai: 'Language barriers will completely disappear by 30 years.'",
+            options: ["by 30 years ➜ in 30 years", "completely ➜ complete", "will ➜ would", "disappear ➜ disappearing"],
+            ans: 0,
+            expl: "Diễn tả sự việc xảy ra trong bao nhiêu năm nữa (nghĩa tương lai) phải dùng 'in 30 years', không dùng 'by'.",
+            rule: "in + khoảng thời gian (ý tương lai) theo SGK trang 107"
+          },
+          {
+            q: "Tìm lỗi sai: 'Jack is a close friend of him from the tech club.'",
+            options: ["of him ➜ of his", "is ➜ are", "from ➜ in", "close ➜ closely"],
+            ans: 0,
+            expl: "Theo cấu trúc SGK trang 108: sau 'of' phải dùng đại từ sở hữu ➜ 'a friend of his' (không dùng of him).",
+            rule: "Noun + of + Possessive pronoun (his, hers, mine...)"
+          },
+          {
+            q: "Tìm lỗi sai: 'Don't walk at the street; walk on the pavement.'",
+            options: ["at the street ➜ in the street", "walk ➜ walking", "on ➜ under", "pavement ➜ pavements"],
+            ans: 0,
+            expl: "Đi trong lòng đường phố dùng 'in the street' (theo bài 1 trang 107 SGK).",
+            rule: "in the street (trong lòng đường) vs at (sai)"
+          },
+          {
+            q: "Tìm lỗi sai: 'The battery can last in five hours during 3D calls.'",
+            options: ["in five hours ➜ for five hours", "last ➜ lasts", "during ➜ on", "can ➜ could"],
+            ans: 0,
+            expl: "Kéo dài suốt 5 tiếng (thời lượng diễn ra) phải dùng giới từ 'for' (for five hours).",
+            rule: "for + khoảng thời gian (nói về độ dài thời gian)"
+          },
+          {
+            q: "Tìm lỗi sai: 'She looked opposite the table and found her fallen earphone.'",
+            options: ["opposite the table ➜ under the table", "found ➜ find", "fallen ➜ fall", "looked ➜ look"],
+            ans: 0,
+            expl: "Rơi xuống đất thì phải nhìn 'dưới cái bàn' (under the table), không dùng 'opposite' (đối diện).",
+            rule: "under the table (dưới gầm bàn)"
+          },
+          {
+            q: "Tìm lỗi sai: 'They will be away on holiday by two weeks.'",
+            options: ["by two weeks ➜ for two weeks", "away ➜ out", "will be ➜ are", "on holiday ➜ in holiday"],
+            ans: 0,
+            expl: "Đi vắng suốt 2 tuần (khoảng thời gian) phải dùng 'for two weeks', không dùng 'by'.",
+            rule: "for + length of time (kéo dài trong bao lâu)"
+          },
+          {
+            q: "Tìm lỗi sai: 'Can I borrow that smart translator of you?'",
+            options: ["of you ➜ of yours", "borrow ➜ to borrow", "that ➜ this", "Can I ➜ Do I"],
+            ans: 0,
+            expl: "Cấu trúc sở hữu sau 'of' phải dùng đại từ sở hữu 'yours' (of yours), không dùng đại từ nhân xưng 'you'.",
+            rule: "of + yours (đại từ sở hữu)"
+          },
+          {
+            q: "Tìm lỗi sai: 'The video conference will start in 10:15 a.m. tomorrow.'",
+            options: ["in 10:15 a.m. ➜ at 10:15 a.m.", "conference ➜ conferences", "start ➜ starting", "tomorrow ➜ yesterday"],
+            ans: 0,
+            expl: "Trước mốc giờ chính xác (10:15 a.m.) phải dùng giới từ 'at', không dùng 'in'.",
+            rule: "at + giờ cụ thể (at 10:15 a.m.)"
+          },
+          {
+            q: "Tìm lỗi sai: 'Our school has Wi-Fi 6, but their don't have it.'",
+            options: ["their ➜ theirs", "has ➜ have", "don't ➜ doesn't", "it ➜ them"],
+            ans: 0,
+            expl: "'their' là tính từ sở hữu không thể đứng một mình làm chủ ngữ. Phải đổi thành đại từ sở hữu 'theirs'.",
+            rule: "Theirs (đại từ sở hữu làm chủ ngữ) = Their school"
+          },
+          {
+            q: "Tìm lỗi sai: 'Lily's house is on the end of this street.'",
+            options: ["on the end ➜ at the end", "is ➜ are", "of ➜ in", "this ➜ that"],
+            ans: 0,
+            expl: "Cụm từ cố định chỉ vị trí là 'at the end of this street' (ở cuối con phố).",
+            rule: "at the end of + place (ở cuối nơi nào)"
+          },
+          {
+            q: "Tìm lỗi sai: 'We must finish checking this holographic system for 6 p.m.'",
+            options: ["for 6 p.m. ➜ by 6 p.m.", "must ➜ have", "checking ➜ check", "finish ➜ finishes"],
+            ans: 0,
+            expl: "Hoàn thành trước 6 giờ chiều (hạn chót) phải dùng 'by 6 p.m.', không dùng 'for'.",
+            rule: "by + mốc thời gian = trước thời điểm đó"
+          },
+          {
+            q: "Tìm lỗi sai: 'Last week, two classmates of us won the robotic contest.'",
+            options: ["of us ➜ of ours", "classmates ➜ classmate", "won ➜ win", "the robotic ➜ a robotic"],
+            ans: 0,
+            expl: "Cấu trúc SGK: 'two classmates of ours' (dùng đại từ sở hữu ours, không dùng tân ngữ us).",
+            rule: "Noun + of + ours"
+          },
+          {
+            q: "Tìm lỗi sai: 'The first camera phone appeared on May 1999.'",
+            options: ["on May 1999 ➜ in May 1999", "appeared ➜ appear", "first ➜ one", "phone ➜ phones"],
+            ans: 0,
+            expl: "Trước tháng và năm ta phải dùng giới từ 'in' (in May 1999), không dùng 'on'.",
+            rule: "in + tháng năm (in May 1999)"
+          },
+          {
+            q: "Tìm lỗi sai: 'The cyber cafe is under the bakery across the road.'",
+            options: ["under ➜ opposite", "is ➜ are", "across ➜ over", "bakery ➜ bakeries"],
+            ans: 0,
+            expl: "Nằm ở phía bên kia đường nghĩa là 'đối diện' (opposite), dùng 'under' (dưới gầm) là sai nghĩa.",
+            rule: "opposite (đối diện) phù hợp với ngữ cảnh qua đường"
+          },
+          {
+            q: "Tìm lỗi sai: 'Supermarkets in the future will open early by Sundays.'",
+            options: ["by Sundays ➜ on Sundays", "in the future ➜ at future", "will open ➜ opens", "early ➜ earlier"],
+            ans: 0,
+            expl: "Trước các ngày trong tuần ta phải dùng giới từ 'on' (on Sundays), không dùng 'by'.",
+            rule: "on + các ngày trong tuần"
+          },
+          {
+            q: "Tìm lỗi sai: 'This is my modern drone and that is her.'",
+            options: ["her ➜ hers", "my ➜ mine", "that ➜ those", "modern ➜ modernly"],
+            ans: 0,
+            expl: "Đứng độc lập để chỉ 'cái drone của cô ấy' phải dùng đại từ sở hữu 'hers'.",
+            rule: "hers = her drone"
+          },
+          {
+            q: "Tìm lỗi sai: 'The robotic dog lost it's battery cover yesterday.'",
+            options: ["it's ➜ its", "robotic ➜ robot", "lost ➜ lose", "yesterday ➜ tomorrow"],
+            ans: 0,
+            expl: "'it's' là viết tắt của 'it is'. Tính từ sở hữu chỉ đồ vật/con vật là 'its' (không có dấu phẩy).",
+            rule: "its (tính từ sở hữu) vs it's (it is)"
+          },
+          {
+            q: "Tìm lỗi sai: 'Smartphones can charge battery automatically when we are in home.'",
+            options: ["in home ➜ at home", "can ➜ will can", "automatically ➜ automatic", "when ➜ while"],
+            ans: 0,
+            expl: "Cụm từ ở nhà là 'at home', không dùng 'in home'.",
+            rule: "at home (ở nhà)"
+          },
+          {
+            q: "Tìm lỗi sai: 'Are you one of they relatives in this futuristic city?'",
+            options: ["they relatives ➜ their relatives", "Are you ➜ Do you", "in ➜ at", "this ➜ these"],
+            ans: 0,
+            expl: "Trước danh từ 'relatives' phải dùng tính từ sở hữu 'their relatives' (hoặc 'a relative of theirs').",
+            rule: "their + Noun (tính từ sở hữu)"
+          }
+        ]
+      },
+
+      // --------------------------------------------------------
+      // GAME 5: Smart Sentence Architect (Sentence Transformation - 20 Questions)
+      // --------------------------------------------------------
+      {
+        id: "game5",
+        title: "Game 5: Smart Sentence Architect",
+        desc: "Kiến trúc sư ghép câu 1-chạm: Chuyển đổi câu cấu trúc đại từ sở hữu & giới từ",
+        icon: "🧩",
+        color: "amber",
+        questions: [
+          {
+            prompt: "Chuyển câu sau sang cấu trúc với đại từ sở hữu: 'Jack is one of her cousins.'",
+            chips: ["Jack", "is", "a", "cousin", "of", "hers", "."],
+            correct: "Jack is a cousin of hers .",
+            expl: "Cấu trúc SGK trang 108: 'one of her cousins' ➜ 'a cousin of hers'.",
+            rule: "one of her + N(plural) ➜ a/an + N(singular) + of hers"
+          },
+          {
+            prompt: "Chuyển câu: 'Is this one of his tablets?'",
+            chips: ["Is", "this", "a", "tablet", "of", "his", "?"],
+            correct: "Is this a tablet of his ?",
+            expl: "Cấu trúc nghi vấn: 'one of his tablets' ➜ 'a tablet of his?'.",
+            rule: "Is this a + N + of his?"
+          },
+          {
+            prompt: "Chuyển câu: 'Can I borrow one of your pencils?'",
+            chips: ["Can", "I", "borrow", "a", "pencil", "of", "yours", "?"],
+            correct: "Can I borrow a pencil of yours ?",
+            expl: "Cấu trúc mượn đồ: 'one of your pencils' ➜ 'a pencil of yours?'.",
+            rule: "Can I borrow a + N + of yours?"
+          },
+          {
+            prompt: "Chuyển câu: 'Are you one of their relatives?'",
+            chips: ["Are", "you", "a", "relative", "of", "theirs", "?"],
+            correct: "Are you a relative of theirs ?",
+            expl: "Cấu trúc: 'one of their relatives' ➜ 'a relative of theirs?'.",
+            rule: "Are you a + N + of theirs?"
+          },
+          {
+            prompt: "Chuyển câu: 'Last year, two of our classmates won scholarships.'",
+            chips: ["Last", "year", ",", "two", "classmates", "of", "ours", "won", "scholarships", "."],
+            correct: "Last year , two classmates of ours won scholarships .",
+            expl: "Cấu trúc SGK trang 108: 'two of our classmates' ➜ 'two classmates of ours'.",
+            rule: "Number + N + of ours"
+          },
+          {
+            prompt: "Ghép câu đúng ngữ pháp: 'Lily's house is at the end of this street.'",
+            chips: ["Lily's", "house", "is", "at", "the", "end", "of", "this", "street", "."],
+            correct: "Lily's house is at the end of this street .",
+            expl: "Giới từ chỉ vị trí chính xác: 'at the end of this street'.",
+            rule: "at the end of + place"
+          },
+          {
+            prompt: "Ghép câu đúng: 'Robots will replace shop assistants in ten years.'",
+            chips: ["Robots", "will", "replace", "shop", "assistants", "in", "ten", "years", "."],
+            correct: "Robots will replace shop assistants in ten years .",
+            expl: "Giới từ chỉ thời gian tương lai: 'in ten years' (trong 10 năm nữa).",
+            rule: "in + length of time"
+          },
+          {
+            prompt: "Ghép câu: 'We might roll a phone like paper by 2035.'",
+            chips: ["We", "might", "roll", "a", "phone", "like", "paper", "by", "2035", "."],
+            correct: "We might roll a phone like paper by 2035 .",
+            expl: "'by 2035' có nghĩa là trước hoặc muộn nhất là vào năm 2035.",
+            rule: "by + specific future year"
+          },
+          {
+            prompt: "Chuyển câu: 'Mi is one of my friends.'",
+            chips: ["Mi", "is", "a", "friend", "of", "mine", "."],
+            correct: "Mi is a friend of mine .",
+            expl: "Ví dụ kinh điển trong khung Remember SGK: 'Mi is a friend of mine'.",
+            rule: "a friend of mine = one of my friends"
+          },
+          {
+            prompt: "Ghép câu: 'Smartphones can charge battery automatically at home.'",
+            chips: ["Smartphones", "can", "charge", "battery", "automatically", "at", "home", "."],
+            correct: "Smartphones can charge battery automatically at home .",
+            expl: "Cụm từ chỉ địa điểm quen thuộc: 'at home'.",
+            rule: "at home (ở nhà)"
+          },
+          {
+            prompt: "Ghép câu: 'They can check the latest tech news on the Internet.'",
+            chips: ["They", "can", "check", "the", "latest", "tech", "news", "on", "the", "Internet", "."],
+            correct: "They can check the latest tech news on the Internet .",
+            expl: "Giới từ đi với Internet luôn là 'on the Internet'.",
+            rule: "on + the Internet"
+          },
+          {
+            prompt: "Ghép câu: 'Players always sit opposite each other in chess.'",
+            chips: ["Players", "always", "sit", "opposite", "each", "other", "in", "chess", "."],
+            correct: "Players always sit opposite each other in chess .",
+            expl: "Ngồi đối diện nhau trong ván cờ: 'sit opposite each other'.",
+            rule: "opposite + someone (đối diện)"
+          },
+          {
+            prompt: "Ghép câu: 'We will be away on a trip for two weeks.'",
+            chips: ["We", "will", "be", "away", "on", "a", "trip", "for", "two", "weeks", "."],
+            correct: "We will be away on a trip for two weeks .",
+            expl: "Kéo dài suốt 2 tuần dùng giới từ 'for two weeks'.",
+            rule: "for + khoảng thời gian"
+          },
+          {
+            prompt: "Chuyển câu: 'That is one of his invention ideas.'",
+            chips: ["That", "is", "an", "invention", "idea", "of", "his", "."],
+            correct: "That is an invention idea of his .",
+            expl: "'one of his invention ideas' ➜ 'an invention idea of his'.",
+            rule: "an idea of his (his là đại từ sở hữu)"
+          },
+          {
+            prompt: "Chuyển câu: 'She borrowed two of my 3D glasses.'",
+            chips: ["She", "borrowed", "two", "3D", "glasses", "of", "mine", "."],
+            correct: "She borrowed two 3D glasses of mine .",
+            expl: "'two of my 3D glasses' ➜ 'two 3D glasses of mine'.",
+            rule: "Noun + of + mine"
+          },
+          {
+            prompt: "Ghép câu: 'Don't walk in the street, walk on the pavement.'",
+            chips: ["Don't", "walk", "in", "the", "street", ",", "walk", "on", "the", "pavement", "."],
+            correct: "Don't walk in the street , walk on the pavement .",
+            expl: "Phân biệt: 'in the street' (lòng đường) và 'on the pavement' (trên vỉa hè).",
+            rule: "in the street vs on the pavement"
+          },
+          {
+            prompt: "Ghép câu: 'Let's get ready by ten a.m. for the meeting.'",
+            chips: ["Let's", "get", "ready", "by", "ten", "a.m.", "for", "the", "meeting", "."],
+            correct: "Let's get ready by ten a.m. for the meeting .",
+            expl: "Chuẩn bị xong trước 10h sáng: 'by ten a.m.'.",
+            rule: "by + mốc thời gian"
+          },
+          {
+            prompt: "Ghép câu: 'His car is red and mine is electric blue.'",
+            chips: ["His", "car", "is", "red", "and", "mine", "is", "electric", "blue", "."],
+            correct: "His car is red and mine is electric blue .",
+            expl: "'mine' thay thế cho 'my car' để câu văn không bị lặp từ.",
+            rule: "mine = my car"
+          },
+          {
+            prompt: "Chuyển câu: 'Tom is one of your teammates.'",
+            chips: ["Tom", "is", "a", "teammate", "of", "yours", "."],
+            correct: "Tom is a teammate of yours .",
+            expl: "'one of your teammates' ➜ 'a teammate of yours'.",
+            rule: "a teammate of yours"
+          },
+          {
+            prompt: "Ghép câu: 'The first camera phone appeared in May 1999.'",
+            chips: ["The", "first", "camera", "phone", "appeared", "in", "May", "1999", "."],
+            correct: "The first camera phone appeared in May 1999 .",
+            expl: "Tháng và năm dùng giới từ 'in May 1999'.",
+            rule: "in + month year"
+          }
+        ]
+      }
+    ];
+
+    /* ==========================================================
+       2. WEB SPEECH API: US FEMALE AUDIO
+       ========================================================== */
+    let isSoundMuted = false;
+    let synth = window.speechSynthesis;
+    let usFemaleVoice = null;
+
+    function initVoices() {
+      if (!synth) return;
+      const voices = synth.getVoices();
+      // Look for US Female voices
+      usFemaleVoice = voices.find(v => 
+        v.lang.includes('en-US') && (
+          v.name.toLowerCase().includes('female') ||
+          v.name.toLowerCase().includes('samantha') ||
+          v.name.toLowerCase().includes('zira') ||
+          v.name.toLowerCase().includes('jenny') ||
+          v.name.toLowerCase().includes('karen') ||
+          v.name.toLowerCase().includes('google us english')
+        )
+      ) || voices.find(v => v.lang === 'en-US') || voices.find(v => v.lang.startsWith('en'));
+    }
+
+    if (speechSynthesis.onvoiceschanged !== undefined) {
+      speechSynthesis.onvoiceschanged = initVoices;
+    }
+    initVoices();
+
+    function speak(text) {
+      if (isSoundMuted || !synth) return;
+      synth.cancel(); // stop previous
+      const utterance = new SpeechSynthesisUtterance(text);
+      if (usFemaleVoice) {
+        utterance.voice = usFemaleVoice;
+      }
+      utterance.lang = 'en-US';
+      utterance.rate = 0.88; // clear, pedagogical pace for middle schoolers
+      utterance.pitch = 1.05;
+      synth.speak(utterance);
+    }
+
+    function toggleMute() {
+      isSoundMuted = !isSoundMuted;
+      const icon = document.getElementById('sound-icon');
+      if (isSoundMuted) {
+        icon.className = 'fa-solid fa-volume-xmark text-lg text-rose-300';
+        if (synth) synth.cancel();
+      } else {
+        icon.className = 'fa-solid fa-volume-high text-lg text-white';
+        speak("Sound unmuted. Welcome to HT English!");
+      }
+    }
+
+    /* Web Audio Sound Effects */
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    function playBeep(type) {
+      if (isSoundMuted) return;
+      try {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        const now = audioCtx.currentTime;
+
+        if (type === 'correct') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(587.33, now); // D5
+          osc.frequency.setValueAtTime(880, now + 0.1); // A5
+          gain.gain.setValueAtTime(0.2, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.35);
+          osc.start(now);
+          osc.stop(now + 0.35);
+        } else if (type === 'wrong') {
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(250, now);
+          osc.frequency.setValueAtTime(160, now + 0.12);
+          gain.gain.setValueAtTime(0.25, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+          osc.start(now);
+          osc.stop(now + 0.3);
+        } else if (type === 'click') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(600, now);
+          gain.gain.setValueAtTime(0.08, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.08);
+          osc.start(now);
+          osc.stop(now + 0.08);
+        }
+      } catch (e) {
+        // audio context safety
+      }
+    }
+
+    /* ==========================================================
+       3. GAME ENGINE STATE MANAGEMENT
+       ========================================================== */
+    let currentGameIndex = 0;
+    let currentQuestionIndex = 0;
+    let currentGameScore = 0;
+    let totalOverallScore = 0;
+    let answeredQuestionsCount = 0;
+    let currentQuestionAnswered = false;
+
+    // Game 5 word chip builder state
+    let activeSelectedChips = [];
+
+    function scrollToGames() {
+      document.getElementById('games-section').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function showHandbook() {
+      document.getElementById('handbook-modal').classList.remove('hidden');
+    }
+
+    function closeHandbook() {
+      document.getElementById('handbook-modal').classList.add('hidden');
+    }
+
+    function startSpecificGame(gameIdx) {
+      currentGameIndex = gameIdx;
+      currentQuestionIndex = 0;
+      currentGameScore = 0;
+      currentQuestionAnswered = false;
+
+      // Update header details
+      const g = GAMES_DATA[currentGameIndex];
+      document.getElementById('current-game-title').innerText = g.title;
+      document.getElementById('current-game-desc').innerText = g.desc;
+      document.getElementById('game-score').innerText = '0';
+
+      // Switch view
+      document.getElementById('games-section').classList.add('hidden');
+      document.getElementById('play-arena').classList.remove('hidden');
+
+      loadCurrentQuestion();
+      window.scrollTo({ top: 120, behavior: 'smooth' });
+    }
+
+    function exitGameToMenu() {
+      document.getElementById('result-modal').classList.add('hidden');
+      document.getElementById('play-arena').classList.add('hidden');
+      document.getElementById('games-section').classList.remove('hidden');
+      window.scrollTo({ top: 150, behavior: 'smooth' });
+    }
+
+    function retryCurrentGame() {
+      document.getElementById('result-modal').classList.add('hidden');
+      startSpecificGame(currentGameIndex);
+    }
+
+    /* Fisher-Yates Scramble algorithm for words */
+    function shuffleArray(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      // Ensure it's not identical to original if length > 2
+      if (arr.join(' ') === array.join(' ') && arr.length > 2) {
+        [arr[0], arr[1]] = [arr[1], arr[0]];
+      }
+      return arr;
+    }
+
+    /* ==========================================================
+       4. QUESTION RENDERER & INTERACTION
+       ========================================================== */
+    function loadCurrentQuestion() {
+      currentQuestionAnswered = false;
+      const g = GAMES_DATA[currentGameIndex];
+      const q = g.questions[currentQuestionIndex];
+
+      // Update progress indicators
+      document.getElementById('question-progress').innerText = `${currentQuestionIndex + 1} / 20`;
+      const progressPercent = ((currentQuestionIndex + 1) / 20) * 100;
+      document.getElementById('game-progress-bar').style.width = `${progressPercent}%`;
+
+      // Hide explanation card
+      document.getElementById('explanation-card').classList.add('hidden');
+
+      const card = document.getElementById('question-card');
+
+      // Check if Game 5 (Word Builder / Transformation)
+      if (g.id === "game5") {
+        activeSelectedChips = [];
+        const shuffled = shuffleArray(q.chips);
+
+        card.innerHTML = `
+          <div class="space-y-6">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <span class="inline-block bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full uppercase mb-2">
+                  Thử thách Ghép Câu 1-Chạm • Câu ${currentQuestionIndex + 1}
+                </span>
+                <h4 class="text-xl sm:text-2xl font-bold text-slate-800 leading-snug">
+                  ${q.prompt}
+                </h4>
+              </div>
+              <button onclick="speak('${q.prompt.replace(/'/g, "\\'")}')" class="flex-shrink-0 w-11 h-11 bg-amber-100 hover:bg-amber-200 text-amber-700 rounded-2xl flex items-center justify-center transition shadow">
+                <i class="fa-solid fa-volume-high text-lg"></i>
+              </button>
+            </div>
+
+            <!-- Answer Zone -->
+            <div class="bg-slate-50 border-2 border-dashed border-indigo-300 rounded-2xl p-4 min-h-[70px] flex flex-wrap items-center gap-2" id="answer-slot-zone">
+              <span id="slot-placeholder" class="text-slate-400 italic text-sm">Chạm vào các từ bên dưới theo thứ tự để ghép thành câu đúng...</span>
+            </div>
+
+            <!-- Chips Zone -->
+            <div class="pt-2">
+              <span class="text-xs text-slate-400 font-bold uppercase block mb-2">Các thẻ từ (Nhấn để chọn / bỏ chọn):</span>
+              <div class="flex flex-wrap gap-2.5" id="source-chips-zone">
+                ${shuffled.map((word, idx) => `
+                  <button id="chip-${idx}" onclick="handleChipClick('${idx}', '${word.replace(/'/g, "\\'")}')" class="btn-pop bg-white hover:bg-indigo-50 text-slate-800 border-2 border-slate-200 hover:border-indigo-400 font-bold px-4 py-2.5 rounded-xl shadow-sm text-base transition flex items-center gap-1.5">
+                    <span>${word}</span>
+                    <i class="fa-solid fa-plus text-xs text-slate-400"></i>
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+
+            <!-- Controls -->
+            <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+              <button onclick="clearAllChips()" class="text-rose-500 hover:text-rose-700 font-bold text-sm flex items-center gap-1">
+                <i class="fa-solid fa-arrow-rotate-left"></i> Làm lại câu này
+              </button>
+              <button id="submit-sentence-btn" onclick="checkSentenceAnswer()" class="btn-pop bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-7 py-3 rounded-2xl shadow-lg flex items-center gap-2">
+                <span>Kiểm Tra Đáp Án</span>
+                <i class="fa-solid fa-check"></i>
+              </button>
+            </div>
+          </div>
+        `;
+        speak(q.prompt);
+
+      } else {
+        // Games 1, 2, 3, 4 (Multiple Choice)
+        card.innerHTML = `
+          <div class="space-y-6">
+            <div class="flex items-start justify-between gap-4">
+              <div>
+                <span class="inline-block bg-indigo-100 text-indigo-800 text-xs font-bold px-3 py-1 rounded-full uppercase mb-2">
+                  ${g.title} • Câu ${currentQuestionIndex + 1}
+                </span>
+                <h4 class="text-xl sm:text-2xl font-bold text-slate-800 leading-snug">
+                  ${q.q}
+                </h4>
+              </div>
+              <button onclick="speak('${q.q.replace(/'/g, "\\'")}')" class="flex-shrink-0 w-11 h-11 bg-indigo-100 hover:bg-indigo-200 text-indigo-700 rounded-2xl flex items-center justify-center transition shadow">
+                <i class="fa-solid fa-volume-high text-lg"></i>
+              </button>
+            </div>
+
+            <!-- Options Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 pt-2">
+              ${q.options.map((opt, idx) => `
+                <div class="flex items-center gap-2">
+                  <button id="opt-btn-${idx}" onclick="checkOptionAnswer(${idx})" class="btn-pop w-full text-left bg-slate-50 hover:bg-indigo-50/80 border-2 border-slate-200 hover:border-indigo-400 p-4 rounded-2xl transition font-bold text-base sm:text-lg flex items-center justify-between group">
+                    <div class="flex items-center gap-3">
+                      <span class="w-8 h-8 rounded-xl bg-white border border-slate-300 group-hover:border-indigo-500 group-hover:bg-indigo-600 group-hover:text-white flex items-center justify-center text-sm font-extrabold text-slate-600 transition">
+                        ${String.fromCharCode(65 + idx)}
+                      </span>
+                      <span class="text-slate-800">${opt}</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-right text-slate-300 group-hover:text-indigo-500 transition text-sm"></i>
+                  </button>
+                  <button onclick="speak('${opt.replace(/'/g, "\\'")}')" class="flex-shrink-0 w-10 h-10 rounded-xl bg-slate-100 hover:bg-indigo-100 text-slate-500 hover:text-indigo-700 flex items-center justify-center transition">
+                    <i class="fa-solid fa-volume-high text-sm"></i>
+                  </button>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+        speak(q.q);
+      }
+    }
+
+    /* Option click handler */
+    function checkOptionAnswer(chosenIdx) {
+      if (currentQuestionAnswered) return;
+      currentQuestionAnswered = true;
+
+      const g = GAMES_DATA[currentGameIndex];
+      const q = g.questions[currentQuestionIndex];
+      const isCorrect = (chosenIdx === q.ans);
+
+      // Highlight options
+      for (let i = 0; i < q.options.length; i++) {
+        const btn = document.getElementById(`opt-btn-${i}`);
+        btn.disabled = true;
+        btn.classList.remove('hover:bg-indigo-50/80', 'hover:border-indigo-400');
+        if (i === q.ans) {
+          btn.classList.remove('bg-slate-50', 'border-slate-200');
+          btn.classList.add('bg-emerald-50', 'border-emerald-500', 'text-emerald-800', 'ring-2', 'ring-emerald-200');
+          btn.querySelector('span').classList.add('bg-emerald-600', 'text-white', 'border-emerald-600');
+        } else if (i === chosenIdx && !isCorrect) {
+          btn.classList.remove('bg-slate-50', 'border-slate-200');
+          btn.classList.add('bg-rose-50', 'border-rose-400', 'text-rose-800');
+          btn.querySelector('span').classList.add('bg-rose-600', 'text-white', 'border-rose-600');
+        } else {
+          btn.classList.add('opacity-50');
+        }
+      }
+
+      if (isCorrect) {
+        playBeep('correct');
+        currentGameScore += 10;
+        totalOverallScore += 10;
+        document.getElementById('game-score').innerText = currentGameScore;
+        document.getElementById('global-score').innerText = totalOverallScore;
+        confetti({ particleCount: 30, spread: 60, origin: { y: 0.7 } });
+      } else {
+        playBeep('wrong');
+      }
+
+      showExplanation(q, isCorrect);
+    }
+
+    /* Word Chip logic for Game 5 */
+    function handleChipClick(chipId, word) {
+      if (currentQuestionAnswered) return;
+      playBeep('click');
+
+      const chipBtn = document.getElementById(`chip-${chipId}`);
+      if (chipBtn.classList.contains('opacity-25')) {
+        // Return chip from answer back to source
+        return;
+      }
+
+      // Add to answer
+      activeSelectedChips.push({ id: chipId, word: word });
+      chipBtn.classList.add('opacity-25', 'pointer-events-none');
+      renderAnswerSlotZone();
+    }
+
+    function removeChipFromAnswer(indexInAnswer) {
+      if (currentQuestionAnswered) return;
+      playBeep('click');
+
+      const removed = activeSelectedChips.splice(indexInAnswer, 1)[0];
+      const sourceBtn = document.getElementById(`chip-${removed.id}`);
+      if (sourceBtn) {
+        sourceBtn.classList.remove('opacity-25', 'pointer-events-none');
+      }
+      renderAnswerSlotZone();
+    }
+
+    function renderAnswerSlotZone() {
+      const zone = document.getElementById('answer-slot-zone');
+      if (activeSelectedChips.length === 0) {
+        zone.innerHTML = `<span id="slot-placeholder" class="text-slate-400 italic text-sm">Chạm vào các từ bên dưới theo thứ tự để ghép thành câu đúng...</span>`;
+        return;
+      }
+      zone.innerHTML = activeSelectedChips.map((item, idx) => `
+        <button onclick="removeChipFromAnswer(${idx})" class="btn-pop bg-indigo-600 hover:bg-rose-600 text-white font-bold px-3.5 py-1.5 rounded-xl text-base shadow flex items-center gap-1.5 transition group">
+          <span>${item.word}</span>
+          <i class="fa-solid fa-xmark text-xs opacity-75 group-hover:opacity-100"></i>
+        </button>
+      `).join('');
+    }
+
+    function clearAllChips() {
+      if (currentQuestionAnswered) return;
+      playBeep('click');
+      activeSelectedChips.forEach(item => {
+        const btn = document.getElementById(`chip-${item.id}`);
+        if (btn) btn.classList.remove('opacity-25', 'pointer-events-none');
+      });
+      activeSelectedChips = [];
+      renderAnswerSlotZone();
+    }
+
+    function checkSentenceAnswer() {
+      if (currentQuestionAnswered) return;
+      if (activeSelectedChips.length === 0) {
+        alert("Em hãy chọn ít nhất 1 từ để ghép câu nhé!");
+        return;
+      }
+
+      currentQuestionAnswered = true;
+      const g = GAMES_DATA[currentGameIndex];
+      const q = g.questions[currentQuestionIndex];
+
+      const studentSentence = activeSelectedChips.map(c => c.word).join(' ').trim();
+      const expectedSentence = q.correct.trim();
+
+      const isCorrect = (studentSentence.toLowerCase() === expectedSentence.toLowerCase());
+      const zone = document.getElementById('answer-slot-zone');
+
+      if (isCorrect) {
+        playBeep('correct');
+        currentGameScore += 10;
+        totalOverallScore += 10;
+        document.getElementById('game-score').innerText = currentGameScore;
+        document.getElementById('global-score').innerText = totalOverallScore;
+        confetti({ particleCount: 35, spread: 70, origin: { y: 0.7 } });
+        zone.classList.remove('border-indigo-300', 'bg-slate-50');
+        zone.classList.add('border-emerald-500', 'bg-emerald-50');
+      } else {
+        playBeep('wrong');
+        zone.classList.remove('border-indigo-300', 'bg-slate-50');
+        zone.classList.add('border-rose-400', 'bg-rose-50');
+      }
+
+      // Disable button
+      const submitBtn = document.getElementById('submit-sentence-btn');
+      if (submitBtn) submitBtn.disabled = true;
+
+      showExplanation(q, isCorrect);
+    }
+
+    /* Explanation modal trigger */
+    function showExplanation(q, isCorrect) {
+      const explCard = document.getElementById('explanation-card');
+      const explText = document.getElementById('explanation-text');
+      const explStruct = document.getElementById('explanation-structure');
+
+      let prefix = isCorrect ? '🎉 <strong class="text-emerald-600 font-bold">Chính xác!</strong> ' : '💡 <strong class="text-rose-600 font-bold">Chưa đúng rồi!</strong> ';
+      if (q.correct) {
+        prefix += `<br><strong>Đáp án đúng:</strong> <span class="text-indigo-700 font-bold">${q.correct}</span><br>`;
+      } else {
+        prefix += `<br><strong>Đáp án đúng:</strong> <span class="text-indigo-700 font-bold">${q.options[q.ans]}</span><br>`;
+      }
+
+      explText.innerHTML = `${prefix} ${q.expl}`;
+      explStruct.innerText = q.rule;
+      explCard.classList.remove('hidden');
+
+      // Pronounce the correct answer & explanation
+      const speakText = (q.correct ? q.correct : q.options[q.ans]) + ". " + q.expl;
+      speak(speakText);
+    }
+
+    function speakCurrentExplanation() {
+      const g = GAMES_DATA[currentGameIndex];
+      const q = g.questions[currentQuestionIndex];
+      const txt = (q.correct ? q.correct : q.options[q.ans]) + ". " + q.expl;
+      speak(txt);
+    }
+
+    /* Next question handler */
+    function nextQuestion() {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < 20) {
+        loadCurrentQuestion();
+      } else {
+        finishGameSession();
+      }
+    }
+
+    /* Finish Game & Show Certificate / Score card */
+    function finishGameSession() {
+      const g = GAMES_DATA[currentGameIndex];
+      const correctCount = currentGameScore / 10;
+      const accuracy = Math.round((correctCount / 20) * 100);
+
+      document.getElementById('result-game-name').innerText = g.title;
+      document.getElementById('result-correct-count').innerText = `${correctCount} / 20`;
+      document.getElementById('result-final-score').innerText = currentGameScore;
+      document.getElementById('result-accuracy').innerText = `${accuracy}%`;
+
+      let note = "";
+      if (accuracy >= 90) {
+        note = `"Tuyệt vời! Em đạt điểm số xuất sắc! Ngữ pháp Unit 10 của em rất vững vàng!" - Ms. Lily`;
+      } else if (accuracy >= 70) {
+        note = `"Làm tốt lắm! Em đã hiểu rõ hầu hết các giới từ và đại từ sở hữu. Ôn lại các câu sai một chút là đạt 100% nhé!" - Ms. Lily`;
+      } else {
+        note = `"Đừng nản lòng nhé! Em hãy mở phần 'Cẩm Nang Bí Kíp' để ôn lại cách dùng in, on, at, by, for và đại từ sở hữu rồi thử lại nha!" - Ms. Lily`;
+      }
+      document.getElementById('result-teacher-note').innerText = note;
+
+      document.getElementById('result-modal').classList.remove('hidden');
+      confetti({ particleCount: 80, spread: 90, origin: { y: 0.5 } });
+      speak(`Congratulations! You completed ${g.title} with a score of ${currentGameScore} points!`);
+    }
+  </script>
+</body>
+</html>

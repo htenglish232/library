@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HT English - Grade 8 Unit 7 Grammar Arena</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f0fdf4;
+    }
+    .card-shadow {
+      box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.1), 0 8px 10px -6px rgba(16, 185, 129, 0.1);
+    }
+    .custom-bounce {
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .shake-err {
+      animation: shake 0.4s ease-in-out;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+  </style>
+</head>
+<body class="min-h-screen text-slate-800 pb-12">
+
+  <div class="max-w-6xl mx-auto px-4 py-4">
+    
+    <header class="bg-white rounded-3xl p-4 sm:p-6 mb-6 border-2 border-emerald-200 card-shadow flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center font-black text-xl shadow-md">
+          HT
+        </div>
+        <div>
+          <h1 class="text-xl sm:text-2xl font-black text-emerald-900 tracking-tight">TRUNG TÂM TIẾNG ANH HT ENGLISH</h1>
+          <p class="text-xs sm:text-sm font-semibold text-emerald-700">
+            <i class="fa-solid fa-user-ninja"></i> Ms. Lily &nbsp;|&nbsp; 
+            <i class="fa-solid fa-phone"></i> 0963.422.940 - 0962.240.866
+          </p>
+          <p class="text-xs text-slate-500 hidden sm:block">
+            <i class="fa-solid fa-location-dot text-rose-500"></i> Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình
+          </p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <div class="bg-amber-50 border border-amber-300 px-3.5 py-2 rounded-2xl flex items-center gap-2 text-amber-800 font-bold text-sm shadow-sm">
+          <i class="fa-solid fa-fire text-amber-500 text-lg"></i>
+          <span>Streak: <span id="streakCount">0</span> 🔥</span>
+        </div>
+        <div class="bg-emerald-50 border border-emerald-300 px-3.5 py-2 rounded-2xl flex items-center gap-2 text-emerald-800 font-bold text-sm shadow-sm">
+          <i class="fa-solid fa-trophy text-emerald-500 text-lg"></i>
+          <span>Điểm: <span id="totalScore">0</span></span>
+        </div>
+        <button onclick="testVoice()" title="Thử loa giọng nữ Anh-Mỹ" class="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-700 hover:bg-emerald-200 flex items-center justify-center transition shadow-sm border border-emerald-300">
+          <i class="fa-solid fa-volume-high text-lg"></i>
+        </button>
+      </div>
+    </header>
+
+    <div class="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-700 rounded-3xl p-6 text-white shadow-xl mb-6 relative overflow-hidden">
+      <div class="relative z-10 max-w-3xl">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-emerald-100 text-xs font-bold uppercase tracking-wider mb-2 backdrop-blur-sm">
+          <i class="fa-solid fa-book-open"></i> Tiếng Anh 8 Global Success — Unit 7
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight mb-2">
+          ENVIRONMENTAL PROTECTION: ADVERB CLAUSES OF TIME
+        </h2>
+        <p class="text-emerald-100 text-sm sm:text-base leading-relaxed">
+          Đấu trường 5 Game Ngữ pháp Lớp 8 đỉnh cao: Khắc cốt ghi tâm <strong>Mệnh đề thời gian (when, while, before, after, as soon as, until)</strong> và quy tắc vàng <strong>KHÔNG DÙNG "WILL" trong mệnh đề trạng ngữ chỉ thời gian</strong>!
+        </p>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 mb-6" id="navTabs">
+      <button onclick="switchTab('handbook')" id="tab-handbook" class="tab-btn px-3 py-3 rounded-2xl bg-white text-slate-700 font-bold text-xs sm:text-sm border-2 border-slate-200 hover:border-emerald-400 flex flex-col items-center gap-1 shadow-sm transition active:scale-95">
+        <i class="fa-solid fa-book-bookmark text-emerald-600 text-lg"></i>
+        <span>Bí Kíp Vàng</span>
+      </button>
+      <button onclick="switchTab('game1')" id="tab-game1" class="tab-btn px-3 py-3 rounded-2xl bg-white text-slate-700 font-bold text-xs sm:text-sm border-2 border-slate-200 hover:border-emerald-400 flex flex-col items-center gap-1 shadow-sm transition active:scale-95">
+        <span class="text-lg">🏎️</span>
+        <span>Game 1: Liên Từ</span>
+      </button>
+      <button onclick="switchTab('game2')" id="tab-game2" class="tab-btn px-3 py-3 rounded-2xl bg-white text-slate-700 font-bold text-xs sm:text-sm border-2 border-slate-200 hover:border-emerald-400 flex flex-col items-center gap-1 shadow-sm transition active:scale-95">
+        <span class="text-lg">🎈</span>
+        <span>Game 2: Bẫy "WILL"</span>
+      </button>
+      <button onclick="switchTab('game3')" id="tab-game3" class="tab-btn px-3 py-3 rounded-2xl bg-white text-slate-700 font-bold text-xs sm:text-sm border-2 border-slate-200 hover:border-emerald-400 flex flex-col items-center gap-1 shadow-sm transition active:scale-95">
+        <span class="text-lg">🎯</span>
+        <span>Game 3: I.C vs D.C</span>
+      </button>
+      <button onclick="switchTab('game4')" id="tab-game4" class="tab-btn px-3 py-3 rounded-2xl bg-white text-slate-700 font-bold text-xs sm:text-sm border-2 border-slate-200 hover:border-emerald-400 flex flex-col items-center gap-1 shadow-sm transition active:scale-95">
+        <span class="text-lg">🔍</span>
+        <span>Game 4: Bắt Lỗi Sai</span>
+      </button>
+      <button onclick="switchTab('game5')" id="tab-game5" class="tab-btn px-3 py-3 rounded-2xl bg-white text-slate-700 font-bold text-xs sm:text-sm border-2 border-slate-200 hover:border-emerald-400 flex flex-col items-center gap-1 shadow-sm transition active:scale-95">
+        <span class="text-lg">🧩</span>
+        <span>Game 5: Ghép Câu</span>
+      </button>
+    </div>
+
+    <div id="view-handbook" class="space-y-6">
+      <div class="bg-white rounded-3xl p-6 border-2 border-emerald-200 card-shadow">
+        <div class="flex items-center justify-between border-b pb-3 mb-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-lg">
+              📖
+            </div>
+            <div>
+              <h3 class="text-lg sm:text-xl font-extrabold text-emerald-900">CẨM NANG NGỮ PHÁP UNIT 7: CÂU PHỨC THỜI GIAN</h3>
+              <p class="text-xs sm:text-sm text-slate-500">Complex Sentences with Adverb Clauses of Time</p>
+            </div>
+          </div>
+          <button onclick="speakText('A complex sentence contains one independent clause and at least one dependent clause. An adverb clause of time shows when something happens. Never use will in an adverb clause of time referring to the future!')" class="text-xs bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-3 rounded-xl flex items-center gap-1 shadow transition">
+            <i class="fa-solid fa-volume-high"></i> <span>Nghe tóm tắt</span>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+          <div class="bg-emerald-50/70 p-4 rounded-2xl border border-emerald-200">
+            <h4 class="font-bold text-emerald-900 flex items-center gap-2 mb-2">
+              <i class="fa-solid fa-puzzle-piece text-emerald-600"></i> 1. Cấu Tạo Câu Phức (Complex Sentence)
+            </h4>
+            <p class="text-slate-700 mb-2">Gồm <strong>1 Mệnh đề Độc lập (I.C)</strong> và <strong>1 Mệnh đề Phụ thuộc (D.C)</strong> bắt đầu bằng liên từ thời gian.</p>
+            <div class="bg-white p-3 rounded-xl border border-emerald-200 font-mono text-xs text-emerald-900 mb-2">
+              <span class="text-blue-700 font-bold">The roads were slippery</span> <span class="text-emerald-700 font-bold">when it rained</span>.<br/>
+              ↳ [I.C: đứng 1 mình có nghĩa] + [D.C: mệnh đề trạng ngữ chỉ thời gian]
+            </div>
+            <p class="text-xs text-slate-600 italic">📌 <strong>Quy tắc dấu phẩy:</strong> Nếu Mệnh đề Phụ thuộc (D.C) đứng ĐẦU câu thì PHẢI có dấu phẩy (,). Nếu đứng sau thì KHÔNG dùng dấu phẩy!</p>
+          </div>
+
+          <div class="bg-sky-50/70 p-4 rounded-2xl border border-sky-200">
+            <h4 class="font-bold text-sky-900 flex items-center gap-2 mb-2">
+              <i class="fa-solid fa-clock text-sky-600"></i> 2. Phân Biệt Các Liên Từ Thời Gian
+            </h4>
+            <ul class="space-y-1.5 text-xs sm:text-sm text-slate-700">
+              <li><strong class="text-sky-700">when</strong>: khi (một sự việc xảy ra tại một thời điểm)</li>
+              <li><strong class="text-sky-700">while</strong>: trong khi (hai sự việc diễn ra song song)</li>
+              <li><strong class="text-sky-700">before</strong>: trước khi (xảy ra trước sự việc khác)</li>
+              <li><strong class="text-sky-700">after</strong>: sau khi (xảy ra sau sự việc khác)</li>
+              <li><strong class="text-sky-700">as soon as</strong>: ngay khi (xảy ra ngay lập tức kế tiếp)</li>
+              <li><strong class="text-sky-700">until / till</strong>: cho đến khi (kéo dài tới mốc thời gian)</li>
+            </ul>
+          </div>
+
+          <div class="md:col-span-2 bg-rose-50 p-4 rounded-2xl border-2 border-rose-300">
+            <h4 class="font-extrabold text-rose-900 flex items-center gap-2 mb-2 text-base">
+              <i class="fa-solid fa-triangle-exclamation text-rose-600 text-xl"></i> QUY TẮC SỐNG CÒN: TUYỆT ĐỐI KHÔNG DÙNG "WILL" TRONG MỆNH ĐỀ THỜI GIAN!
+            </h4>
+            <p class="text-slate-800 text-xs sm:text-sm mb-2">
+              Khi câu diễn tả hành động trong tương lai, mệnh đề chính dùng <strong>will + V-inf</strong>, nhưng <strong>mệnh đề trạng ngữ chỉ thời gian (sau when, as soon as, before, after, until) CHỈ ĐƯỢC DÙNG THÌ HIỆN TẠI ĐƠN</strong> (Present Simple).
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs font-mono">
+              <div class="bg-rose-100 p-2.5 rounded-xl text-rose-900 border border-rose-300">
+                ❌ <strong>SAI:</strong> We will plant trees when the rain <u>will stop</u>.
+              </div>
+              <div class="bg-emerald-100 p-2.5 rounded-xl text-emerald-900 border border-emerald-300">
+                ✔️ <strong>ĐÚNG:</strong> We will plant trees when the rain <u>stops</u>.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-6 text-center">
+          <button onclick="switchTab('game1')" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-3 rounded-2xl shadow-md transition transform active:scale-95 inline-flex items-center gap-2 text-base">
+            <span>Bắt Đầu Thử Thách Game 1</span> <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="game-view" class="hidden space-y-6">
+      <div class="bg-white rounded-3xl p-5 border-2 border-emerald-200 card-shadow flex flex-wrap items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <span id="currentGameBadge" class="px-3 py-1 rounded-full text-xs font-extrabold uppercase bg-emerald-100 text-emerald-800">GAME 1</span>
+            <h3 id="currentGameTitle" class="text-lg sm:text-xl font-black text-slate-800">Đua Xe Liên Từ Thời Gian</h3>
+          </div>
+          <p id="currentGameDesc" class="text-xs sm:text-sm text-slate-500 mt-1">Chọn liên từ phù hợp nhất theo ngữ cảnh bảo vệ môi trường.</p>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <div class="text-right">
+            <div class="text-xs font-bold text-slate-400">Tiến Độ</div>
+            <div class="text-sm font-black text-emerald-700"><span id="currentQIndex">1</span> / 10 Câu</div>
+          </div>
+          <div class="w-32 sm:w-48 bg-slate-100 h-3.5 rounded-full overflow-hidden border border-slate-200">
+            <div id="progressBar" class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full rounded-full transition-all duration-300" style="width: 10%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="questionContainer" class="bg-white rounded-3xl p-6 sm:p-8 border-2 border-emerald-300 card-shadow">
+      </div>
+
+      <div class="bg-white rounded-2xl p-4 border border-emerald-200 card-shadow">
+        <div class="text-xs font-bold text-slate-500 mb-2 flex items-center justify-between">
+          <span>Danh Sách 10 Câu Hỏi Game Này:</span>
+          <span class="text-emerald-700 font-extrabold" id="gameScoreTracker">Đúng: 0 / 10</span>
+        </div>
+        <div class="grid grid-cols-10 gap-2" id="questionBubbles">
+        </div>
+      </div>
+    </div>
+
+    <div id="game-summary" class="hidden bg-white rounded-3xl p-6 sm:p-8 border-2 border-emerald-300 card-shadow text-center">
+      <div class="w-20 h-20 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-4xl mx-auto mb-4 custom-bounce">
+        🏆
+      </div>
+      <h3 class="text-2xl sm:text-3xl font-black text-slate-800 mb-2">XUẤT SẮC HOÀN THÀNH VÒNG CHƠI!</h3>
+      <p class="text-slate-600 text-sm sm:text-base max-w-md mx-auto mb-4">
+        Chúc mừng em đã chinh phục thành công các câu hỏi ngữ pháp Unit 7 tại <strong class="text-emerald-700">Trung tâm HT English – Ms. Lily</strong>!
+      </p>
+
+      <div class="inline-flex items-center gap-6 bg-slate-50 border border-slate-200 px-6 py-3 rounded-2xl mb-6">
+        <div>
+          <div class="text-xs text-slate-400 font-bold uppercase">Số Câu Đúng</div>
+          <div class="text-2xl font-black text-emerald-600" id="summaryCorrect">10 / 10</div>
+        </div>
+        <div class="h-8 w-px bg-slate-300"></div>
+        <div>
+          <div class="text-xs text-slate-400 font-bold uppercase">Độ Chính Xác</div>
+          <div class="text-2xl font-black text-amber-500" id="summaryAccuracy">100%</div>
+        </div>
+        <div class="h-8 w-px bg-slate-300"></div>
+        <div>
+          <div class="text-xs text-slate-400 font-bold uppercase">Xếp Hạng</div>
+          <div class="text-2xl font-black text-cyan-600" id="summaryRank">Master ⭐⭐⭐</div>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap justify-center gap-3">
+        <button onclick="retryCurrentGame()" class="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold transition flex items-center gap-2">
+          <i class="fa-solid fa-arrow-rotate-left"></i> Chơi Lại Vòng Này
+        </button>
+        <button onclick="goToNextGame()" id="btnNextGame" class="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold transition flex items-center gap-2 shadow-md">
+          <span>Game Tiếp Theo</span> <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <canvas id="fireworksCanvas" class="fixed inset-0 pointer-events-none z-50"></canvas>
+
+  <script>
+    const gamesData = {
+      game1: {
+        badge: "GAME 1: LIÊN TỪ THỜI GIAN",
+        title: "🏎️ Đua Xe Liên Từ Thời Gian (Speed Racer)",
+        desc: "Chọn liên từ chỉ thời gian (when, while, before, after, as soon as, until) chính xác nhất theo ngữ cảnh môi trường.",
+        questions: [
+          {
+            q: "We should turn off the lights ______ we leave the classroom to save energy.",
+            options: ["before", "until", "while", "as soon as"],
+            answer: 0,
+            sentence: "We should turn off the lights before we leave the classroom to save energy.",
+            explain: "Dùng 'before' (trước khi). Ta cần tắt đèn TRƯỚC KHI rời khỏi phòng học để tiết kiệm điện năng."
+          },
+          {
+            q: "______ I was walking in the park yesterday, I saw a group of students collecting plastic bottles.",
+            options: ["Until", "While", "Before", "After"],
+            answer: 1,
+            sentence: "While I was walking in the park yesterday, I saw a group of students collecting plastic bottles.",
+            explain: "Dùng 'While' (trong khi) vì hành động đang diễn ra trong quá khứ (was walking)."
+          },
+          {
+            q: "Don't pour dirty water into the river ______ the authorities finish testing it.",
+            options: ["until", "after", "as soon as", "when"],
+            answer: 0,
+            sentence: "Don't pour dirty water into the river until the authorities finish testing it.",
+            explain: "Dùng 'until' (cho đến khi). Không được xả nước bẩn cho tới khi cơ quan chức năng kiểm nghiệm xong."
+          },
+          {
+            q: "______ the bell rings, the eco-club members will start cleaning the school yard.",
+            options: ["As soon as", "Until", "While", "Before"],
+            answer: 0,
+            sentence: "As soon as the bell rings, the eco-club members will start cleaning the school yard.",
+            explain: "Dùng 'As soon as' (ngay khi). Ngay khi chuông reo, các thành viên câu lạc bộ môi trường sẽ bắt đầu dọn dẹp."
+          },
+          {
+            q: "Always wash your hands carefully ______ you handle food or after sorting recycled waste.",
+            options: ["before", "until", "while", "as soon as"],
+            answer: 0,
+            sentence: "Always wash your hands carefully before you handle food.",
+            explain: "Dùng 'before' (trước khi) làm hành động vệ sinh ăn uống."
+          },
+          {
+            q: "______ they finished planting 100 trees, they felt very proud of their hard work.",
+            options: ["After", "Until", "While", "Before"],
+            answer: 0,
+            sentence: "After they finished planting 100 trees, they felt very proud of their hard work.",
+            explain: "Dùng 'After' (sau khi). Sau khi trồng xong 100 cây xanh, họ cảm thấy rất tự hào."
+          },
+          {
+            q: "The air quality will improve ______ people stop burning trash openly.",
+            options: ["when", "while", "before", "until"],
+            answer: 0,
+            sentence: "The air quality will improve when people stop burning trash openly.",
+            explain: "Dùng 'when' (khi). Chất lượng không khí sẽ cải thiện KHI mọi người ngừng đốt rác bừa bãi."
+          },
+          {
+            q: "We cannot reduce plastic pollution ______ everyone changes their daily habit.",
+            options: ["until", "as soon as", "while", "after"],
+            answer: 0,
+            sentence: "We cannot reduce plastic pollution until everyone changes their daily habit.",
+            explain: "Dùng 'until' (cho đến khi). Chúng ta không thể giảm ô nhiễm nhựa cho tới khi mọi người thay đổi thói quen."
+          },
+          {
+            q: "______ the sun sets, temperatures in urban areas drop slightly.",
+            options: ["When", "While", "Until", "Before"],
+            answer: 0,
+            sentence: "When the sun sets, temperatures in urban areas drop slightly.",
+            explain: "Dùng 'When' để chỉ mốc thời gian mặt trời lặn."
+          },
+          {
+            q: "My sister was separating organic waste ______ I was cleaning the kitchen table.",
+            options: ["while", "until", "before", "after"],
+            answer: 0,
+            sentence: "My sister was separating organic waste while I was cleaning the kitchen table.",
+            explain: "Dùng 'while' diễn tả 2 hành động diễn ra song song cùng lúc."
+          }
+        ]
+      },
+
+      game2: {
+        badge: "GAME 2: BẪY 'NO WILL'",
+        title: "🎈 Bắn Bóng Bẫy 'NO WILL' (Future Time Clause)",
+        desc: "Khắc cốt ghi tâm: Tuyệt đối KHÔNG DÙNG WILL trong mệnh đề chỉ thời gian! Phải dùng Hiện Tại Đơn.",
+        questions: [
+          {
+            q: "We will start the green campaign as soon as the principal ______ (approve) our plan.",
+            options: ["approves", "will approve", "is approving", "approved"],
+            answer: 0,
+            sentence: "We will start the green campaign as soon as the principal approves our plan.",
+            explain: "Mệnh đề sau 'as soon as' chỉ tương lai CHỈ dùng Hiện tại đơn (approves), KHÔNG dùng 'will approve'."
+          },
+          {
+            q: "When the rain ______, we will go out to pick up litter along the beach.",
+            options: ["stops", "will stop", "stopped", "is stopping"],
+            answer: 0,
+            sentence: "When the rain stops, we will go out to pick up litter along the beach.",
+            explain: "Mệnh đề sau 'when' dùng Hiện tại đơn 'stops' (ngôi 3 số ít). Bẫy cực hay gặp: 'will stop' là SAI!"
+          },
+          {
+            q: "They will not release the wild animals until they ______ completely healthy.",
+            options: ["are", "will be", "were", "to be"],
+            answer: 0,
+            sentence: "They will not release the wild animals until they are completely healthy.",
+            explain: "Mệnh đề sau 'until' dùng hiện tại đơn 'are', không dùng 'will be'."
+          },
+          {
+            q: "Before you ______ the room, make sure you turn off all electronic devices.",
+            options: ["leave", "will leave", "left", "are leaving"],
+            answer: 0,
+            sentence: "Before you leave the room, make sure you turn off all electronic devices.",
+            explain: "Sau 'Before' chia hiện tại đơn 'leave'."
+          },
+          {
+            q: "After the scientists ______ the water samples, they will publish the environmental report.",
+            options: ["test", "will test", "tested", "are testing"],
+            answer: 0,
+            sentence: "After the scientists test the water samples, they will publish the environmental report.",
+            explain: "Sau 'After' chia Hiện tại đơn 'test' cho hành động tương lai."
+          },
+          {
+            q: "I will call you as soon as I ______ at the wildlife rescue center.",
+            options: ["arrive", "will arrive", "arrived", "am arriving"],
+            answer: 0,
+            sentence: "I will call you as soon as I arrive at the wildlife rescue center.",
+            explain: "Sau 'as soon as' dùng hiện tại đơn 'arrive'."
+          },
+          {
+            q: "While he ______ the solar panels tomorrow, his assistant will test the battery.",
+            options: ["installs", "will install", "installed", "is install"],
+            answer: 0,
+            sentence: "While he installs the solar panels tomorrow, his assistant will test the battery.",
+            explain: "Trong mệnh đề thời gian 'while' chỉ sự việc tương lai, ta dùng Hiện tại đơn 'installs'."
+          },
+          {
+            q: "What will you do when the electric bus ______?",
+            options: ["comes", "will come", "came", "coming"],
+            answer: 0,
+            sentence: "What will you do when the electric bus comes?",
+            explain: "Sau 'when' dùng 'comes' (Hiện tại đơn số ít)."
+          },
+          {
+            q: "We will keep planting trees until the whole hill ______ green again.",
+            options: ["becomes", "will become", "became", "becoming"],
+            answer: 0,
+            sentence: "We will keep planting trees until the whole hill becomes green again.",
+            explain: "Sau 'until' dùng 'becomes' (Hiện tại đơn)."
+          },
+          {
+            q: "As soon as the factory ______ clean technology, water pollution in the river will drop.",
+            options: ["applies", "will apply", "applied", "apply"],
+            answer: 0,
+            sentence: "As soon as the factory applies clean technology, water pollution in the river will drop.",
+            explain: "Sau 'as soon as' dùng hiện tại đơn 'applies'."
+          }
+        ]
+      },
+
+      game3: {
+        badge: "GAME 3: I.C VS D.C",
+        title: "🎯 Thợ Săn Câu Phức (Independent vs Dependent Clause)",
+        desc: "Nhận biết Mệnh đề Độc lập (I.C), Mệnh đề Phụ thuộc (D.C) và quy tắc dùng dấu phẩy (,).",
+        questions: [
+          {
+            q: "Trong câu: 'When we recycle paper, we save many trees.', phần 'When we recycle paper' là loại mệnh đề gì?",
+            options: [
+              "Mệnh đề Phụ thuộc (Dependent Clause - D.C)",
+              "Mệnh đề Độc lập (Independent Clause - I.C)",
+              "Mệnh đề Nối (Coordinating Clause)",
+              "Cụm danh từ (Noun Phrase)"
+            ],
+            answer: 0,
+            sentence: "When we recycle paper, we save many trees.",
+            explain: "'When we recycle paper' bắt đầu bằng liên từ 'When' nên là Mệnh đề Phụ thuộc chỉ thời gian (D.C). Đứng đầu câu nên có dấu phẩy (,)."
+          },
+          {
+            q: "Câu nào dưới đây sử dụng dấu phẩy (,) ĐÚNG quy tắc?",
+            options: [
+              "Before we go home, we will clean the park.",
+              "We will clean the park, before we go home.",
+              "Before, we go home we will clean the park.",
+              "Before we go home we, will clean the park."
+            ],
+            answer: 0,
+            sentence: "Before we go home, we will clean the park.",
+            explain: "Khi Mệnh đề Phụ thuộc (D.C) đứng ở ĐẦU câu, ta PHẢI dùng dấu phẩy ngăn cách với Mệnh đề Độc lập (I.C)."
+          },
+          {
+            q: "Câu nào dưới đây KHÔNG NÊN dùng dấu phẩy?",
+            options: [
+              "The river becomes cleaner after the local people stop dumping rubbish.",
+              "After the local people stop dumping rubbish, the river becomes cleaner.",
+              "When it rains heavily, the drainage system overflows.",
+              "As soon as the sun rises, the birds start singing."
+            ],
+            answer: 0,
+            sentence: "The river becomes cleaner after the local people stop dumping rubbish.",
+            explain: "Khi Mệnh đề Phụ thuộc đứng SAU Mệnh đề Độc lập (I.C + D.C), ta KHÔNG dùng dấu phẩy ngăn cách."
+          },
+          {
+            q: "Xác định Mệnh đề Độc lập (I.C) trong câu: 'Until the air pollution decreases, residents should wear masks outside.'",
+            options: [
+              "residents should wear masks outside",
+              "Until the air pollution decreases",
+              "Until the air pollution",
+              "wear masks outside"
+            ],
+            answer: 0,
+            sentence: "Residents should wear masks outside.",
+            explain: "'residents should wear masks outside' đứng độc lập vẫn đầy đủ nghĩa ngữ pháp (I.C)."
+          },
+          {
+            q: "Chọn phát biểu ĐÚNG về Mệnh đề Phụ thuộc chỉ thời gian (Adverb Clause of Time):",
+            options: [
+              "Nó không thể đứng một mình như một câu hoàn chỉnh.",
+              "Nó luôn luôn phải đứng cuối câu.",
+              "Nó bắt đầu bằng các từ nối như: and, but, or, so.",
+              "Nó chứa động từ chia ở thì tương lai đơn 'will'."
+            ],
+            answer: 0,
+            sentence: "An adverb clause of time cannot stand alone as a complete sentence.",
+            explain: "Mệnh đề phụ thuộc (D.C) chưa hoàn chỉnh về nghĩa nếu đứng độc lập một mình."
+          },
+          {
+            q: "Điền dấu thích hợp: 'As soon as the campaign started ___ hundreds of volunteers joined.'",
+            options: [", (dấu phẩy)", ". (dấu chấm)", "; (dấu chấm phẩy)", "Không dùng dấu gì"],
+            answer: 0,
+            sentence: "As soon as the campaign started, hundreds of volunteers joined.",
+            explain: "D.C đứng đầu câu -> Cần dấu phẩy (,)."
+          },
+          {
+            q: "Điền dấu thích hợp: 'Thousands of fish died ___ when toxic chemicals leaked into the sea.'",
+            options: ["Không dùng dấu gì", ", (dấu phẩy)", "; (dấu chấm phẩy)", ": (dấu hai chấm)"],
+            answer: 0,
+            sentence: "Thousands of fish died when toxic chemicals leaked into the sea.",
+            explain: "I.C đứng trước D.C -> KHÔNG dùng dấu phẩy."
+          },
+          {
+            q: "Trong câu: 'While the students were planting trees, the teacher was explaining the process.', vế nào là D.C?",
+            options: [
+              "While the students were planting trees",
+              "the teacher was explaining the process",
+              "the teacher was explaining",
+              "were planting trees"
+            ],
+            answer: 0,
+            sentence: "While the students were planting trees.",
+            explain: "Vế chứa liên từ 'While' chính là D.C."
+          },
+          {
+            q: "Mệnh đề nào có thể đứng độc lập làm một câu hoàn chỉnh?",
+            options: [
+              "We will collect plastic bags.",
+              "When we collect plastic bags",
+              "Before we collect plastic bags",
+              "Until we collect plastic bags"
+            ],
+            answer: 0,
+            sentence: "We will collect plastic bags.",
+            explain: "'We will collect plastic bags' có đủ S + V và trọn vẹn ý nghĩa."
+          },
+          {
+            q: "Chọn cấu trúc câu phức thời gian chuẩn:",
+            options: [
+              "D.C , I.C  hoặc  I.C D.C",
+              "D.C I.C  hoặc  I.C , D.C",
+              "I.C , D.C ,",
+              "D.C . I.C"
+            ],
+            answer: 0,
+            sentence: "D.C , I.C  or  I.C D.C",
+            explain: "Công thức chuẩn: [D.C , I.C] hoặc [I.C D.C]."
+          }
+        ]
+      },
+
+      game4: {
+        badge: "GAME 4: BẮT LỖI SAI",
+        title: "🔍 Trinh Thám Vệ Binh Rừng (Error Detective)",
+        desc: "Phát hiện và sửa các lỗi sai phổ biến về liên từ, chia động từ và dấu phẩy.",
+        questions: [
+          {
+            q: "Tìm lỗi sai trong câu: 'We will clean the beach when the sun will rise tomorrow morning.'",
+            options: ["will rise -> rises", "will clean -> clean", "when -> while", "tomorrow -> yesterday"],
+            answer: 0,
+            sentence: "We will clean the beach when the sun rises tomorrow morning.",
+            explain: "Lỗi sai ở 'will rise'. Trong mệnh đề thời gian 'when...', phải dùng Hiện tại đơn 'rises'."
+          },
+          {
+            q: "Tìm lỗi sai trong câu: 'After we will finish the eco-project, we will hold a school exhibition.'",
+            options: ["will finish -> finish", "will hold -> hold", "eco-project -> eco-projects", "After -> Until"],
+            answer: 0,
+            sentence: "After we finish the eco-project, we will hold a school exhibition.",
+            explain: "Lỗi sai ở 'will finish'. Sau 'After', phải dùng Hiện tại đơn 'finish'."
+          },
+          {
+            q: "Tìm lỗi sai trong câu: 'Before, we start recycling plastic we should learn how to sort trash correctly.'",
+            options: ["Before, -> Before", "we should -> should we", "sort -> sorting", "learn -> learning"],
+            answer: 0,
+            sentence: "Before we start recycling plastic, we should learn how to sort trash correctly.",
+            explain: "Đặt dấu phẩy sai vị trí! Dấu phẩy phải đặt ở cuối mệnh đề D.C (sau 'plastic'), không đặt ngay sau 'Before'."
+          },
+          {
+            q: "Tìm lỗi sai trong câu: 'While I turned off the tap, water was running continuously.'",
+            options: ["turned -> was turning", "While -> Until", "running -> run", "continuously -> continuous"],
+            answer: 0,
+            sentence: "While I was turning off the tap, water was running continuously.",
+            explain: "Hành động kéo dài diễn ra song song dùng thì Tiếp diễn 'was turning'."
+          },
+          {
+            q: "Tìm lỗi sai trong câu: 'As soon as the fresh air will return, we will open all windows.'",
+            options: ["will return -> returns", "will open -> open", "As soon as -> While", "windows -> window"],
+            answer: 0,
+            sentence: "As soon as the fresh air returns, we will open all windows.",
+            explain: "Sau 'As soon as' phải chia hiện tại đơn 'returns', không dùng 'will return'."
+          },
+          {
+            q: "Tìm lỗi sai trong câu: 'The animals will starve until we don't protect their natural forest habitat.'",
+            options: ["don't protect -> protect / unless -> until", "starve -> will starve", "habitat -> habitats", "their -> its"],
+            answer: 0,
+            sentence: "The animals will starve until we protect their natural forest habitat.",
+            explain: "Sai về mặt ý nghĩa phủ định trùng lặp. Sửa thành 'until we protect'."
+          },
+          {
+            q: "Tìm lỗi sai trong câu: 'When Nam is seeing the plastic bin, he put the bottle into it.'",
+            options: ["is seeing -> saw", "he -> she", "into -> onto", "put -> puts"],
+            answer: 0,
+            sentence: "When Nam saw the plastic bin, he put the bottle into it.",
+            explain: "Động từ 'see' không dùng ở dạng tiếp diễn trong ngữ cảnh này. Dùng quá khứ đơn 'saw'."
+          },
+          {
+            q: "Tìm lỗi sai trong câu: 'You shouldn't leave the air conditioner on, before you leave the room.'",
+            options: ["bỏ dấu phẩy (,) trước before", "shouldn't -> should", "leave -> left", "on -> off"],
+            answer: 0,
+            sentence: "You shouldn't leave the air conditioner on before you leave the room.",
+            explain: "Mệnh đề phụ thuộc đứng SAU mệnh đề chính thì KHÔNG có dấu phẩy."
+          },
+          {
+            q: "Tìm lỗi sai trong câu: 'After the rain will stop, we will plant seedlings in the garden.'",
+            options: ["will stop -> stops", "will plant -> plant", "in -> on", "seedlings -> seedling"],
+            answer: 0,
+            sentence: "After the rain stops, we will plant seedlings in the garden.",
+            explain: "Sau 'After' chia Hiện tại đơn 'stops'."
+          },
+          {
+            q: "Tìm lỗi sai trong câu: 'Until everyone will recycle plastic, environmental pollution will worsen.'",
+            options: ["will recycle -> recycles", "will worsen -> worsens", "everyone -> someone", "plastic -> plastics"],
+            answer: 0,
+            sentence: "Until everyone recycles plastic, environmental pollution will worsen.",
+            explain: "Sau 'Until' chia Hiện tại đơn 'recycles' (everyone + V_s/es)."
+          }
+        ]
+      },
+
+      game5: {
+        badge: "GAME 5: GHÉP CÂU HOÀN CHỈNH",
+        title: "🧩 Kiến Trúc Sư Ghép Câu (Sentence Builder)",
+        desc: "Lựa chọn mảnh ghép chính xác để hoàn thành câu phức có ý nghĩa về bảo vệ môi trường.",
+        questions: [
+          {
+            q: "Ghép nửa câu thích hợp: 'We will reduce air pollution ______.'",
+            options: [
+              "when more people use electric buses",
+              "when more people will use electric buses",
+              "until more people used electric buses",
+              "before more people will use electric buses"
+            ],
+            answer: 0,
+            sentence: "We will reduce air pollution when more people use electric buses.",
+            explain: "Vế D.C dùng 'when' + Hiện tại đơn 'use'."
+          },
+          {
+            q: "Ghép nửa câu thích hợp: '______ as soon as the storm ends.'",
+            options: [
+              "Volunteers will clean up the fallen trees",
+              "Volunteers clean up the fallen trees",
+              "Volunteers cleaned up the fallen trees",
+              "Volunteers will cleaned up the fallen trees"
+            ],
+            answer: 0,
+            sentence: "Volunteers will clean up the fallen trees as soon as the storm ends.",
+            explain: "Mệnh đề chính I.C chia Tương lai đơn 'will clean up'."
+          },
+          {
+            q: "Ghép nửa câu thích hợp: 'Don't turn on the heater ______.'",
+            options: [
+              "until you close all the windows",
+              "until you will close all the windows",
+              "before you closed all the windows",
+              "while you will close all the windows"
+            ],
+            answer: 0,
+            sentence: "Don't turn on the heater until you close all the windows.",
+            explain: "Cụm hợp lý: 'until you close all the windows' (cho đến khi bạn đóng hết cửa sổ)."
+          },
+          {
+            q: "Ghép nửa câu thích hợp: 'While the students were cleaning the beach, ______.'",
+            options: [
+              "their teacher was taking photos for the eco-blog",
+              "their teacher will take photos for the eco-blog",
+              "their teacher takes photos for the eco-blog",
+              "their teacher is taking photos for the eco-blog"
+            ],
+            answer: 0,
+            sentence: "While the students were cleaning the beach, their teacher was taking photos for the eco-blog.",
+            explain: "Hai hành động diễn ra song song trong quá khứ: Quá khứ tiếp diễn + Quá khứ tiếp diễn."
+          },
+          {
+            q: "Ghép nửa câu thích hợp: 'Before you buy single-use plastic cups, ______.'",
+            options: [
+              "think about bringing your own bottle",
+              "you will think about bringing your own bottle",
+              "thinking about bringing your own bottle",
+              "thought about bringing your own bottle"
+            ],
+            answer: 0,
+            sentence: "Before you buy single-use plastic cups, think about bringing your own bottle.",
+            explain: "Mệnh đề chính I.C là một câu mệnh lệnh lịch sự: 'think about...'."
+          },
+          {
+            q: "Ghép nửa câu thích hợp: '______ after they heard the news about forest fire.'",
+            options: [
+              "They immediately donated money to the rescue fund",
+              "They will immediately donate money to the rescue fund",
+              "They are immediately donating money",
+              "They donate money immediately"
+            ],
+            answer: 0,
+            sentence: "They immediately donated money to the rescue fund after they heard the news about forest fire.",
+            explain: "Vế D.C chia Quá khứ đơn 'heard' -> Vế I.C chia Quá khứ đơn 'donated'."
+          },
+          {
+            q: "Ghép nửa câu thích hợp: 'As soon as we collect enough signatures, ______.'",
+            options: [
+              "we will send the petition to the local authority",
+              "we send the petition to the local authority",
+              "we sent the petition to the local authority",
+              "we will sending the petition"
+            ],
+            answer: 0,
+            sentence: "As soon as we collect enough signatures, we will send the petition to the local authority.",
+            explain: "Vế I.C dùng Tương lai đơn 'will send'."
+          },
+          {
+            q: "Ghép nửa câu thích hợp: 'The soil will become fertile again ______.'",
+            options: [
+              "after farmers stop using harmful chemical fertilizers",
+              "after farmers will stop using harmful chemical fertilizers",
+              "after farmers stopped using harmful chemical fertilizers",
+              "until farmers will stop using harmful chemical fertilizers"
+            ],
+            answer: 0,
+            sentence: "The soil will become fertile again after farmers stop using harmful chemical fertilizers.",
+            explain: "Sau 'after' dùng Hiện tại đơn 'stop'."
+          },
+          {
+            q: "Ghép nửa câu thích hợp: '______ when she saw the trash on the lawn.'",
+            options: [
+              "She felt very disappointed",
+              "She will feel very disappointed",
+              "She feels very disappointed",
+              "She is feeling very disappointed"
+            ],
+            answer: 0,
+            sentence: "She felt very disappointed when she saw the trash on the lawn.",
+            explain: "Sự việc đã xảy ra trong quá khứ 'saw' -> I.C dùng Quá khứ đơn 'felt'."
+          },
+          {
+            q: "Ghép nửa câu thích hợp: 'Save water today ______.'",
+            options: [
+              "before clean water runs out in the future",
+              "before clean water will run out in the future",
+              "until clean water ran out in the future",
+              "as soon as clean water will run out"
+            ],
+            answer: 0,
+            sentence: "Save water today before clean water runs out in the future.",
+            explain: "Cụm từ chuẩn: 'before clean water runs out' (trước khi nước sạch cạn kiệt)."
+          }
+        ]
+      }
+    };
+
+    let currentTab = 'handbook';
+    let currentGameKey = 'game1';
+    let currentQIndex = 0;
+    let currentStreak = 0;
+    let totalScore = 0;
+    let gameScores = { game1: 0, game2: 0, game3: 0, game4: 0, game5: 0 };
+    let userAnswers = {};
+
+    let usFemaleVoice = null;
+    function initTTS() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.onvoiceschanged = () => {
+          const voices = window.speechSynthesis.getVoices();
+          usFemaleVoice = voices.find(v => v.lang.includes('en-US') && (v.name.includes('Female') || v.name.includes('Samantha') || v.name.includes('Zira') || v.name.includes('Google US English'))) 
+                       || voices.find(v => v.lang.includes('en-US')) 
+                       || voices[0];
+        };
+      }
+    }
+    initTTS();
+
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'en-US';
+      u.rate = 0.9;
+      if (usFemaleVoice) u.voice = usFemaleVoice;
+      window.speechSynthesis.speak(u);
+    }
+
+    function testVoice() {
+      speakText("Hello students! Welcome to HT English Center with Ms. Lily. Let us master adverb clauses of time today!");
+    }
+
+    function switchTab(tabKey) {
+      currentTab = tabKey;
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('border-emerald-600', 'bg-emerald-50', 'text-emerald-700');
+        btn.classList.add('border-slate-200', 'bg-white', 'text-slate-700');
+      });
+
+      const activeBtn = document.getElementById(`tab-${tabKey}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('border-slate-200', 'bg-white', 'text-slate-700');
+        activeBtn.classList.add('border-emerald-600', 'bg-emerald-50', 'text-emerald-700');
+      }
+
+      const viewHandbook = document.getElementById('view-handbook');
+      const viewGame = document.getElementById('game-view');
+      const viewSummary = document.getElementById('game-summary');
+
+      if (tabKey === 'handbook') {
+        viewHandbook.classList.remove('hidden');
+        viewGame.classList.add('hidden');
+        viewSummary.classList.add('hidden');
+      } else {
+        viewHandbook.classList.add('hidden');
+        viewSummary.classList.add('hidden');
+        viewGame.classList.remove('hidden');
+
+        currentGameKey = tabKey;
+        currentQIndex = 0;
+        userAnswers[currentGameKey] = new Array(10).fill(null);
+        renderGameHeader();
+        renderQuestion();
+        renderBubbles();
+      }
+    }
+
+    function renderGameHeader() {
+      const g = gamesData[currentGameKey];
+      document.getElementById('currentGameBadge').innerText = g.badge;
+      document.getElementById('currentGameTitle').innerText = g.title;
+      document.getElementById('currentGameDesc').innerText = g.desc;
+    }
+
+    function renderBubbles() {
+      const container = document.getElementById('questionBubbles');
+      container.innerHTML = '';
+      const answers = userAnswers[currentGameKey] || [];
+      let correctCount = 0;
+
+      for (let i = 0; i < 10; i++) {
+        const bubble = document.createElement('button');
+        bubble.onclick = () => jumpToQuestion(i);
+        bubble.className = "w-full aspect-square rounded-xl font-bold text-xs flex items-center justify-center transition border ";
+
+        if (answers[i] === null) {
+          if (i === currentQIndex) {
+            bubble.className += "bg-emerald-600 text-white border-emerald-700 ring-2 ring-emerald-300";
+          } else {
+            bubble.className += "bg-slate-100 text-slate-600 border-slate-300 hover:bg-slate-200";
+          }
+        } else if (answers[i].isCorrect) {
+          correctCount++;
+          bubble.className += "bg-emerald-500 text-white border-emerald-600";
+        } else {
+          bubble.className += "bg-rose-500 text-white border-rose-600";
+        }
+
+        bubble.innerText = i + 1;
+        container.appendChild(bubble);
+      }
+
+      document.getElementById('gameScoreTracker').innerText = `Đúng: ${correctCount} / 10`;
+    }
+
+    function renderQuestion() {
+      const g = gamesData[currentGameKey];
+      const qData = g.questions[currentQIndex];
+      const answers = userAnswers[currentGameKey] || [];
+      const currentAns = answers[currentQIndex];
+
+      document.getElementById('currentQIndex').innerText = currentQIndex + 1;
+      document.getElementById('progressBar').style.width = `${((currentQIndex + 1) / 10) * 100}%`;
+
+      const box = document.getElementById('questionContainer');
+      box.innerHTML = '';
+
+      const headerDiv = document.createElement('div');
+      headerDiv.className = "flex items-start justify-between gap-4 mb-6";
+      headerDiv.innerHTML = `
+        <div class="flex items-start gap-3">
+          <span class="w-9 h-9 rounded-2xl bg-emerald-100 text-emerald-800 flex items-center justify-center font-black text-sm shrink-0 mt-0.5 border border-emerald-300">
+            Q${currentQIndex + 1}
+          </span>
+          <h4 class="text-base sm:text-lg font-bold text-slate-800 leading-snug">
+            ${qData.q}
+          </h4>
+        </div>
+        <button onclick="speakText('${qData.q.replace(/'/g, "\\'")}')" class="w-10 h-10 rounded-2xl bg-emerald-50 text-emerald-700 hover:bg-emerald-100 flex items-center justify-center transition border border-emerald-200 shrink-0" title="Nghe câu hỏi">
+          <i class="fa-solid fa-volume-high text-lg"></i>
+        </button>
+      `;
+      box.appendChild(headerDiv);
+
+      const optsGrid = document.createElement('div');
+      optsGrid.className = "grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6";
+
+      qData.options.forEach((optText, optIdx) => {
+        const btn = document.createElement('button');
+        btn.onclick = () => handleAnswer(optIdx);
+
+        let styleClasses = "w-full p-4 rounded-2xl text-left font-bold text-sm sm:text-base transition flex items-center justify-between border-2 card-shadow ";
+
+        if (currentAns === null || currentAns === undefined) {
+          styleClasses += "bg-white text-slate-700 border-slate-200 hover:border-emerald-400 hover:bg-emerald-50/50 active:scale-98";
+        } else {
+          btn.disabled = true;
+          if (optIdx === qData.answer) {
+            styleClasses += "bg-emerald-100 text-emerald-900 border-emerald-500 ring-2 ring-emerald-400";
+          } else if (currentAns.selected === optIdx && !currentAns.isCorrect) {
+            styleClasses += "bg-rose-100 text-rose-900 border-rose-500 shake-err";
+          } else {
+            styleClasses += "bg-slate-50 text-slate-400 border-slate-200 opacity-60";
+          }
+        }
+
+        btn.className = styleClasses;
+        btn.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center font-extrabold text-xs border border-slate-300">
+              ${String.fromCharCode(65 + optIdx)}
+            </span>
+            <span>${optText}</span>
+          </div>
+          <button onclick="event.stopPropagation(); speakText('${optText.replace(/'/g, "\\'")}')" class="text-slate-400 hover:text-emerald-600 p-1">
+            <i class="fa-solid fa-volume-high text-sm"></i>
+          </button>
+        `;
+        optsGrid.appendChild(btn);
+      });
+
+      box.appendChild(optsGrid);
+
+      if (currentAns !== undefined && currentAns !== null) {
+        const explainBox = document.createElement('div');
+        explainBox.className = `p-5 rounded-2xl border-2 mb-6 ${currentAns.isCorrect ? 'bg-emerald-50 border-emerald-300 text-emerald-950' : 'bg-rose-50 border-rose-300 text-rose-950'}`;
+        explainBox.innerHTML = `
+          <div class="flex items-center justify-between mb-2 border-b pb-2 ${currentAns.isCorrect ? 'border-emerald-200' : 'border-rose-200'}">
+            <div class="flex items-center gap-2 font-black text-sm sm:text-base">
+              ${currentAns.isCorrect ? '<i class="fa-solid fa-circle-check text-emerald-600 text-xl"></i> CHÍNH XÁC! (+10 Điểm)' : '<i class="fa-solid fa-circle-xmark text-rose-600 text-xl"></i> CHƯA CHÍNH XÁC!'}
+            </div>
+            <button onclick="speakText('${qData.sentence.replace(/'/g, "\\'")}')" class="text-xs font-bold bg-white px-3 py-1 rounded-xl shadow border flex items-center gap-1.5 hover:bg-slate-50">
+              <i class="fa-solid fa-volume-high text-emerald-600"></i> Nghe câu hoàn chỉnh
+            </button>
+          </div>
+          <p class="text-xs sm:text-sm font-mono mb-2 bg-white/70 p-2.5 rounded-xl border ${currentAns.isCorrect ? 'border-emerald-200' : 'border-rose-200'}">
+            <strong>Câu hoàn chỉnh:</strong> "${qData.sentence}"
+          </p>
+          <p class="text-xs sm:text-sm leading-relaxed">
+            💡 <strong>Giải thích ngữ pháp:</strong> ${qData.explain}
+          </p>
+        `;
+        box.appendChild(explainBox);
+
+        const navBtns = document.createElement('div');
+        navBtns.className = "flex items-center justify-between pt-2";
+        navBtns.innerHTML = `
+          <button onclick="prevQuestion()" ${currentQIndex === 0 ? 'disabled class="opacity-40 cursor-not-allowed px-4 py-2 bg-slate-200 rounded-xl font-bold text-sm text-slate-500"' : 'class="px-5 py-2.5 bg-slate-100 hover:bg-slate-200 rounded-xl font-bold text-sm text-slate-700 transition flex items-center gap-2"'}>
+            <i class="fa-solid fa-arrow-left"></i> Câu trước
+          </button>
+          <button onclick="nextQuestion()" class="px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-sm transition flex items-center gap-2 shadow-md">
+            <span>${currentQIndex === 9 ? 'Xem Kết Quả' : 'Câu tiếp theo'}</span> <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        `;
+        box.appendChild(navBtns);
+      }
+    }
+
+    function handleAnswer(optIdx) {
+      const g = gamesData[currentGameKey];
+      const qData = g.questions[currentQIndex];
+      const isCorrect = (optIdx === qData.answer);
+
+      if (!userAnswers[currentGameKey]) {
+        userAnswers[currentGameKey] = new Array(10).fill(null);
+      }
+
+      userAnswers[currentGameKey][currentQIndex] = {
+        selected: optIdx,
+        isCorrect: isCorrect
+      };
+
+      if (isCorrect) {
+        currentStreak++;
+        totalScore += 10;
+        gameScores[currentGameKey] += 10;
+        speakText("Correct! Great job!");
+      } else {
+        currentStreak = 0;
+        speakText("Not quite right! Keep trying!");
+      }
+
+      document.getElementById('streakCount').innerText = currentStreak;
+      document.getElementById('totalScore').innerText = totalScore;
+
+      renderQuestion();
+      renderBubbles();
+    }
+
+    function jumpToQuestion(idx) {
+      currentQIndex = idx;
+      renderQuestion();
+      renderBubbles();
+    }
+
+    function prevQuestion() {
+      if (currentQIndex > 0) {
+        currentQIndex--;
+        renderQuestion();
+        renderBubbles();
+      }
+    }
+
+    function nextQuestion() {
+      if (currentQIndex < 9) {
+        currentQIndex++;
+        renderQuestion();
+        renderBubbles();
+      } else {
+        showSummary();
+      }
+    }
+
+    function showSummary() {
+      document.getElementById('game-view').classList.add('hidden');
+      const summary = document.getElementById('game-summary');
+      summary.classList.remove('hidden');
+
+      const answers = userAnswers[currentGameKey] || [];
+      const correct = answers.filter(a => a && a.isCorrect).length;
+      const acc = Math.round((correct / 10) * 100);
+
+      document.getElementById('summaryCorrect').innerText = `${correct} / 10`;
+      document.getElementById('summaryAccuracy').innerText = `${acc}%`;
+
+      let rank = "Tập Sự ⭐";
+      if (acc === 100) rank = "Master ⭐⭐⭐";
+      else if (acc >= 70) rank = "Expert ⭐⭐";
+      document.getElementById('summaryRank').innerText = rank;
+
+      triggerFireworks();
+      speakText(`Congratulations! You completed ${gamesData[currentGameKey].badge} with an accuracy of ${acc} percent!`);
+    }
+
+    function retryCurrentGame() {
+      userAnswers[currentGameKey] = new Array(10).fill(null);
+      switchTab(currentGameKey);
+    }
+
+    function goToNextGame() {
+      const keys = ['game1', 'game2', 'game3', 'game4', 'game5'];
+      const curIdx = keys.indexOf(currentGameKey);
+      if (curIdx < keys.length - 1) {
+        switchTab(keys[curIdx + 1]);
+      } else {
+        switchTab('handbook');
+      }
+    }
+
+    function triggerFireworks() {
+      const canvas = document.getElementById('fireworksCanvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      let particles = [];
+      const colors = ['#10B981', '#3B82F6', '#F59E0B', '#EC4899', '#8B5CF6'];
+
+      for (let i = 0; i < 60; i++) {
+        particles.push({
+          x: canvas.width / 2,
+          y: canvas.height / 2,
+          vx: (Math.random() - 0.5) * 12,
+          vy: (Math.random() - 0.5) * 12,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          alpha: 1,
+          size: Math.random() * 6 + 3
+        });
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let alive = false;
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.alpha -= 0.02;
+          if (p.alpha > 0) {
+            alive = true;
+            ctx.globalAlpha = p.alpha;
+            ctx.fillStyle = p.color;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        });
+        if (alive) requestAnimationFrame(animate);
+      }
+      animate();
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HT English - Lớp 8 Grammar Arcade | Ms. Lily</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0284c7',
+              600: '#0369a1',
+              700: '#075985',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #f8fafc;
+      color: #0f172a;
+    }
+    .game-card-hover {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .game-card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    }
+    .word-chip {
+      user-select: none;
+      transition: all 0.15s ease;
+    }
+    .word-chip:active {
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 pb-12">
+
+  <!-- TOP BRANDING HEADER -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white font-black text-xl shadow-md">
+          HT
+        </div>
+        <div>
+          <h1 class="font-black text-slate-900 text-lg md:text-xl leading-tight tracking-tight">
+            TRUNG TÂM TIẾNG ANH HT ENGLISH
+          </h1>
+          <p class="text-xs text-slate-500 font-semibold">
+            👩‍🏫 Ms. Lily • Thôn Đạo Đường, Xã Ninh Cường, Tỉnh Ninh Bình
+          </p>
+        </div>
+      </div>
+
+      <!-- Hotline & Global Stats -->
+      <div class="flex items-center gap-4 text-xs md:text-sm">
+        <div class="hidden sm:flex flex-col text-right">
+          <span class="text-slate-400 font-bold">HOTLINE TƯ VẤN:</span>
+          <span class="font-extrabold text-rose-600">0963.422.940 - 0962.240.866</span>
+        </div>
+        <div class="flex items-center gap-2 bg-amber-100 border border-amber-300 px-3 py-1.5 rounded-xl font-bold text-amber-900">
+          <span>⭐ Điểm Tổng:</span>
+          <span id="global-total-score" class="text-base text-rose-600 font-extrabold">0</span>/50
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN APP CONTAINER -->
+  <main class="max-w-6xl mx-auto px-4 pt-6">
+
+    <!-- HERO BANNER -->
+    <div class="bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 rounded-3xl p-6 md:p-8 text-white shadow-xl relative overflow-hidden mb-8">
+      <div class="relative z-10">
+        <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs md:text-sm font-extrabold mb-3">
+          📚 TIẾNG ANH 8 GLOBAL SUCCESS – UNIT 6: LIFESTYLES
+        </div>
+        <h2 class="text-2xl md:text-4xl font-black tracking-wide leading-snug">
+          ĐẤU TRƯỜNG NGỮ PHÁP 8:<br class="hidden sm:inline" /> THÌ TƯƠNG LAI ĐƠN & CÂU ĐIỀU KIỆN LOẠI 1
+        </h2>
+        <p class="text-sky-100 text-sm md:text-base mt-2 max-w-2xl leading-relaxed">
+          Tập trung rèn luyện các dạng câu trọng điểm: <span class="font-bold text-amber-300">Future Simple (will / won't + V)</span> và <span class="font-bold text-amber-300">First Conditional (If + V_HTĐ, will + V)</span>. Tích hợp giọng đọc Nữ Anh - Mỹ 🔊 và giải thích chi tiết từng câu!
+        </p>
+        
+        <div class="flex flex-wrap gap-3 mt-5">
+          <button onclick="switchView('handbook')" class="bg-amber-400 hover:bg-amber-500 text-slate-900 font-black px-4 py-2.5 rounded-xl shadow-md transition flex items-center gap-2 text-sm">
+            📖 Cẩm Nang Ngữ Pháp & Bẫy Cần Tránh
+          </button>
+          <button onclick="speakText('Welcome to HT English with Ms. Lily! Let us master Future Simple and First Conditional today!')" class="bg-white/20 hover:bg-white/30 text-white font-bold px-4 py-2.5 rounded-xl backdrop-blur-md transition flex items-center gap-2 text-sm">
+            🔊 Nghe Cô Lily Chào
+          </button>
+        </div>
+      </div>
+
+      <!-- Decorative shapes -->
+      <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-white/10 rounded-full blur-2xl"></div>
+      <div class="absolute right-8 top-6 text-6xl md:text-7xl opacity-30 select-none">🏕️</div>
+    </div>
+
+    <!-- VIEW: GRAMMAR HANDBOOK -->
+    <section id="view-handbook" class="hidden bg-white rounded-3xl p-6 md:p-8 shadow-lg border-2 border-sky-100 mb-8">
+      <div class="flex items-center justify-between border-b pb-4 mb-6">
+        <div>
+          <span class="text-xs font-black uppercase tracking-wider text-sky-600 bg-sky-100 px-3 py-1 rounded-full">Bí kíp điểm 10</span>
+          <h3 class="text-2xl font-black text-slate-800 mt-1">Cẩm Nang Ngữ Pháp Trọng Tâm Unit 6</h3>
+        </div>
+        <button onclick="switchView('hub')" class="text-slate-500 hover:text-rose-600 font-bold text-sm bg-slate-100 hover:bg-rose-50 px-3 py-1.5 rounded-xl transition">
+          ✕ Đóng Cẩm Nang
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+        <!-- Part 1: Future Simple -->
+        <div class="bg-blue-50 border-2 border-blue-200 rounded-2xl p-5">
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="font-black text-blue-900 text-base">1. THÌ TƯƠNG LAI ĐƠN (FUTURE SIMPLE)</h4>
+            <button onclick="speakText('Future Simple tense: Subject plus will or will not plus verb bare infinitive.')" class="text-blue-600 hover:text-blue-800">🔊</button>
+          </div>
+          <div class="bg-white p-3 rounded-xl border border-blue-100 font-mono text-xs text-blue-800 mb-3 space-y-1">
+            <p><strong>(+)</strong> S + will + V-inf</p>
+            <p><strong>(-)</strong> S + will not (won't) + V-inf</p>
+            <p><strong>(?)</strong> Will + S + V-inf?</p>
+          </div>
+          <p class="font-bold text-blue-950 mb-1">Cách dùng cốt lõi:</p>
+          <ul class="list-disc list-inside space-y-1 text-slate-700 text-xs leading-relaxed">
+            <li><strong>Dự đoán (Predictions):</strong> Thường đi kèm <em>I think, I believe, probably, in the future</em>. (VD: <em>I think people will preserve traditional crafts.</em>)</li>
+            <li><strong>Lời hứa (Promises):</strong> Thường đi với <em>I promise</em>. (VD: <em>I promise I won't waste food.</em>)</li>
+            <li><strong>Quyết định tức thì (On-the-spot decisions):</strong> Đưa ra quyết định ngay lúc nói. (VD: <em>The internet is slow. I will study offline today.</em>)</li>
+          </ul>
+        </div>
+
+        <!-- Part 2: First Conditional -->
+        <div class="bg-emerald-50 border-2 border-emerald-200 rounded-2xl p-5">
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="font-black text-emerald-900 text-base">2. CÂU ĐIỀU KIỆN LOẠI 1 (FIRST CONDITIONAL)</h4>
+            <button onclick="speakText('First Conditional: If plus Present Simple, Future Simple with will.')" class="text-emerald-600 hover:text-emerald-800">🔊</button>
+          </div>
+          <div class="bg-white p-3 rounded-xl border border-emerald-100 font-mono text-xs text-emerald-800 mb-3 space-y-1">
+            <p><strong>If + S + V(hiện tại đơn), S + will / won't + V-inf</strong></p>
+            <p>hoặc: <strong>S + will / won't + V-inf + if + S + V(hiện tại đơn)</strong></p>
+          </div>
+          <p class="font-bold text-emerald-950 mb-1">Cách dùng & Bẫy kinh điển:</p>
+          <ul class="list-disc list-inside space-y-1 text-slate-700 text-xs leading-relaxed">
+            <li>Diễn tả một sự việc, hành động <strong>có thể xảy ra</strong> ở hiện tại hoặc tương lai.</li>
+            <li><strong class="text-rose-600">BẪY SỐ 1:</strong> KHÔNG BAO GIỜ dùng <em>will</em> ngay sau <em>If</em>! (Sai: <em>If it will rain ❌</em> -> Đúng: <em>If it rains ✔️</em>).</li>
+            <li><strong class="text-rose-600">BẪY SỐ 2:</strong> Vế <em>If</em> chia hiện tại đơn (chú ý chủ ngữ số ít: <em>he/she/it</em> thêm <em>s/es</em>; phủ định dùng <em>don't / doesn't</em>).</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- VIEW: GAME HUB (5 GAME TILES) -->
+    <section id="view-hub" class="space-y-6">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="text-xl md:text-2xl font-black text-slate-900">5 Đấu Trường Ngữ Pháp Unit 6</h3>
+          <p class="text-xs md:text-sm text-slate-500 font-semibold">Mỗi game gồm 10 câu trọng tâm (tổng 50 câu thiết kế chuẩn sư phạm)</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        
+        <!-- Game 1 Card -->
+        <div onclick="startGame(1)" class="game-card-hover bg-white rounded-3xl p-5 border-2 border-sky-200 shadow-md cursor-pointer flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-3xl">🏎️</span>
+              <span class="text-xs font-bold px-2.5 py-1 bg-sky-100 text-sky-700 rounded-full">Game 1 • 10 Câu</span>
+            </div>
+            <h4 class="font-black text-lg text-slate-800">Đua Xe Cao Tốc Tương Lai</h4>
+            <p class="text-xs text-slate-500 mt-1 leading-relaxed">Luyện phản xạ thì Tương lai đơn (will / won't + V): Dự đoán, lời hứa & quyết định tức thì theo chủ đề Lifestyles.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold">
+            <span class="text-slate-400">Tiến độ: <span id="g1-progress">0/10</span></span>
+            <span class="text-sky-600 hover:underline">Vào Đua Ngay ➔</span>
+          </div>
+        </div>
+
+        <!-- Game 2 Card -->
+        <div onclick="startGame(2)" class="game-card-hover bg-white rounded-3xl p-5 border-2 border-emerald-200 shadow-md cursor-pointer flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-3xl">🎈</span>
+              <span class="text-xs font-bold px-2.5 py-1 bg-emerald-100 text-emerald-700 rounded-full">Game 2 • 10 Câu</span>
+            </div>
+            <h4 class="font-black text-lg text-slate-800">Bắn Bóng Điều Kiện Loại 1</h4>
+            <p class="text-xs text-slate-500 mt-1 leading-relaxed">Phân biệt chính xác động từ ở Mệnh đề If (Hiện tại đơn) và Mệnh đề chính (Will/Won't + V).</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold">
+            <span class="text-slate-400">Tiến độ: <span id="g2-progress">0/10</span></span>
+            <span class="text-emerald-600 hover:underline">Bắn Bóng Ngay ➔</span>
+          </div>
+        </div>
+
+        <!-- Game 3 Card -->
+        <div onclick="startGame(3)" class="game-card-hover bg-white rounded-3xl p-5 border-2 border-rose-200 shadow-md cursor-pointer flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-3xl">🚀</span>
+              <span class="text-xs font-bold px-2.5 py-1 bg-rose-100 text-rose-700 rounded-full">Game 3 • 10 Câu</span>
+            </div>
+            <h4 class="font-black text-lg text-slate-800">Chiến Hạm Bắt Bẫy Ngữ Pháp</h4>
+            <p class="text-xs text-slate-500 mt-1 leading-relaxed">Truy quét và phá hủy các bẫy ngữ pháp kinh điển: dùng will sau If, chia sai chủ ngữ số ít, sai dạng nguyên mẫu.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold">
+            <span class="text-slate-400">Tiến độ: <span id="g3-progress">0/10</span></span>
+            <span class="text-rose-600 hover:underline">Bắn Bẫy Ngay ➔</span>
+          </div>
+        </div>
+
+        <!-- Game 4 Card -->
+        <div onclick="startGame(4)" class="game-card-hover bg-white rounded-3xl p-5 border-2 border-purple-200 shadow-md cursor-pointer flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-3xl">🧩</span>
+              <span class="text-xs font-bold px-2.5 py-1 bg-purple-100 text-purple-700 rounded-full">Game 4 • 10 Câu</span>
+            </div>
+            <h4 class="font-black text-lg text-slate-800">Kiến Trúc Sư Ghép Câu</h4>
+            <p class="text-xs text-slate-500 mt-1 leading-relaxed">Thao tác 1-chạm đặt thẻ từ xây dựng câu điều kiện và thì tương lai hoàn chỉnh đúng ngữ pháp.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold">
+            <span class="text-slate-400">Tiến độ: <span id="g4-progress">0/10</span></span>
+            <span class="text-purple-600 hover:underline">Xây Câu Ngay ➔</span>
+          </div>
+        </div>
+
+        <!-- Game 5 Card -->
+        <div onclick="startGame(5)" class="game-card-hover bg-white rounded-3xl p-5 border-2 border-amber-200 shadow-md cursor-pointer flex flex-col justify-between md:col-span-2 lg:col-span-1">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-3xl">🏕️</span>
+              <span class="text-xs font-bold px-2.5 py-1 bg-amber-100 text-amber-700 rounded-full">Game 5 • 10 Câu</span>
+            </div>
+            <h4 class="font-black text-lg text-slate-800">Thử Thách Lối Sống Xanh</h4>
+            <p class="text-xs text-slate-500 mt-1 leading-relaxed">Đấu trí các tình huống thực tế về lối sống du mục, bộ lạc, học online vs offline và bảo vệ môi trường.</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold">
+            <span class="text-slate-400">Tiến độ: <span id="g5-progress">0/10</span></span>
+            <span class="text-amber-600 hover:underline">Vào Thử Thách ➔</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- VIEW: ACTIVE GAMEPLAY SCREEN -->
+    <section id="view-gameplay" class="hidden">
+      <!-- Game Top Bar -->
+      <div class="bg-white rounded-3xl p-4 md:p-6 shadow-md border-2 border-sky-200 mb-6 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center gap-3">
+          <button onclick="backToHub()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold px-3 py-2 rounded-xl text-xs flex items-center gap-1 transition">
+            ◀ Menu Game
+          </button>
+          <div>
+            <h3 id="game-title" class="font-black text-slate-800 text-base md:text-lg">Game Title</h3>
+            <p id="game-desc" class="text-xs text-slate-500 font-medium">Description</p>
+          </div>
+        </div>
+
+        <!-- In-game score & progress counter -->
+        <div class="flex items-center gap-3">
+          <div class="bg-sky-50 border border-sky-200 px-3 py-1.5 rounded-xl text-xs font-bold text-sky-800">
+            Câu: <span id="current-question-idx" class="text-sm font-extrabold text-sky-600">1</span>/10
+          </div>
+          <div class="bg-amber-50 border border-amber-200 px-3 py-1.5 rounded-xl text-xs font-bold text-amber-800">
+            Điểm game: <span id="game-score" class="text-sm font-extrabold text-rose-600">0</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden mb-6">
+        <div id="game-progress-bar" class="bg-gradient-to-r from-sky-500 to-indigo-600 h-full w-0 transition-all duration-300"></div>
+      </div>
+
+      <!-- MAIN QUESTION CARD -->
+      <div class="bg-white rounded-3xl p-6 md:p-8 shadow-xl border-2 border-sky-100 relative">
+        
+        <!-- Question Header with Audio -->
+        <div class="flex items-start justify-between gap-4 mb-6">
+          <div class="flex-1">
+            <span id="question-badge" class="inline-block text-xs font-black uppercase px-3 py-1 rounded-full bg-sky-100 text-sky-700 mb-2">
+              Question 1
+            </span>
+            <h4 id="question-prompt" class="text-lg md:text-xl font-black text-slate-900 leading-relaxed">
+              Loading question...
+            </h4>
+          </div>
+          <button id="btn-speak-question" onclick="speakCurrentQuestion()" class="flex-shrink-0 w-12 h-12 bg-sky-500 hover:bg-sky-600 text-white rounded-2xl flex items-center justify-center text-xl shadow-md transition transform hover:scale-105" title="Nghe giọng Nữ Anh - Mỹ 🔊">
+            🔊
+          </button>
+        </div>
+
+        <!-- DYNAMIC AREA: MULTIPLE CHOICE OR SENTENCE BUILDER -->
+        <div id="game-interactive-area" class="min-h-[160px]">
+          <!-- Injected via JS -->
+        </div>
+
+        <!-- EXPLANATION BOX (Revealed after answering) -->
+        <div id="explanation-box" class="hidden mt-6 bg-slate-50 border-2 rounded-2xl p-4 md:p-5 transition-all">
+          <div class="flex items-center justify-between mb-2">
+            <span id="result-status-badge" class="text-xs font-black px-3 py-1 rounded-full"></span>
+            <button id="btn-speak-explain" onclick="speakExplanation()" class="text-xs font-bold text-sky-600 hover:text-sky-800 flex items-center gap-1">
+              🔊 Nghe giải thích
+            </button>
+          </div>
+          <p id="explanation-text" class="text-xs md:text-sm text-slate-700 font-semibold leading-relaxed"></p>
+          
+          <div class="mt-4 flex justify-end">
+            <button id="btn-next-question" onclick="goToNextQuestion()" class="bg-gradient-to-r from-sky-600 to-blue-600 hover:from-sky-700 hover:to-blue-700 text-white font-black text-sm px-5 py-2.5 rounded-xl shadow-md transition flex items-center gap-2">
+              Câu Tiếp Theo ➔
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- VIEW: GAME SUMMARY MODAL / SCREEN -->
+    <section id="view-summary" class="hidden bg-white rounded-3xl p-6 md:p-10 shadow-2xl border-2 border-sky-200 text-center max-w-2xl mx-auto">
+      <div id="summary-icon" class="text-6xl mb-3">🏆</div>
+      <h3 class="text-2xl md:text-3xl font-black text-slate-800" id="summary-title">Hoàn Thành Xuất Sắc!</h3>
+      <p class="text-slate-500 text-sm font-semibold mt-1" id="summary-subtitle">Bạn đã chinh phục thành công chặng thử thách này.</p>
+
+      <div class="my-6 bg-sky-50 border-2 border-sky-200 rounded-2xl p-4 flex items-center justify-around">
+        <div>
+          <span class="block text-xs font-bold text-slate-400">ĐIỂM SỐ</span>
+          <span class="text-2xl md:text-3xl font-black text-rose-600" id="summary-score">10/10</span>
+        </div>
+        <div class="w-px h-10 bg-sky-200"></div>
+        <div>
+          <span class="block text-xs font-bold text-slate-400">TỶ LỆ ĐÚNG</span>
+          <span class="text-2xl md:text-3xl font-black text-sky-600" id="summary-percent">100%</span>
+        </div>
+        <div class="w-px h-10 bg-sky-200"></div>
+        <div>
+          <span class="block text-xs font-bold text-slate-400">XẾP HẠNG</span>
+          <span class="text-2xl md:text-3xl font-black text-amber-500" id="summary-stars">⭐⭐⭐</span>
+        </div>
+      </div>
+
+      <!-- Teacher Lily's feedback -->
+      <div class="bg-amber-50 border border-amber-200 rounded-2xl p-4 text-left text-xs md:text-sm text-amber-900 font-medium mb-6 flex items-start gap-3">
+        <span class="text-2xl">👩‍🏫</span>
+        <div>
+          <strong class="text-amber-950 font-bold">Lời nhận xét từ Cô Lily (HT English):</strong>
+          <p id="summary-teacher-feedback" class="mt-0.5">Em nắm rất vững cấu trúc thì Tương lai đơn và Câu điều kiện loại 1. Hãy tiếp tục phát huy ở các chặng tiếp theo nhé!</p>
+        </div>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <button onclick="retryCurrentGame()" class="bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold px-5 py-2.5 rounded-xl text-sm transition">
+          🔄 Chơi Lại Game Này
+        </button>
+        <button onclick="backToHub()" class="bg-gradient-to-r from-sky-600 to-blue-600 text-white font-black px-6 py-2.5 rounded-xl text-sm shadow-md transition">
+          🏠 Trở Về Danh Sách Game
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- JAVASCRIPT GAME LOGIC -->
+  <script>
+    // -------------------------------------------------------------
+    // AUDIO ENGINE (US Female TTS)
+    // -------------------------------------------------------------
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel(); // Stop active speech
+
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9; // Natural pace for students
+
+      // Try to select an US female voice if available
+      const voices = window.speechSynthesis.getVoices();
+      const femaleUSVoice = voices.find(v => 
+        v.lang === 'en-US' && (
+          v.name.includes('Female') || 
+          v.name.includes('Google US English') || 
+          v.name.includes('Samantha') || 
+          v.name.includes('Zira') ||
+          v.name.includes('Victoria')
+        )
+      ) || voices.find(v => v.lang === 'en-US');
+
+      if (femaleUSVoice) {
+        utterance.voice = femaleUSVoice;
+      }
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // Pre-load voices
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = () => {
+        window.speechSynthesis.getVoices();
+      };
+    }
+
+    // -------------------------------------------------------------
+    // QUESTION BANK (5 GAMES x 10 QUESTIONS EACH = 50 QUESTIONS)
+    // -------------------------------------------------------------
+    const GAME_DATA = {
+      1: {
+        title: "🏎️ Game 1: Đua Xe Cao Tốc Tương Lai",
+        desc: "Luyện phản xạ Thì Tương lai đơn (will / won't + V-inf): Dự đoán, lời hứa & quyết định tức thì.",
+        questions: [
+          {
+            prompt: "I think people ________ traditional tribal crafts in the future.",
+            options: ["will preserve", "preserves", "are preserving", "preserved"],
+            answer: 0,
+            explain: "Dùng 'will preserve' vì có dấu hiệu dự đoán trong tương lai 'I think' và 'in the future' (Cấu trúc: S + will + V-inf)."
+          },
+          {
+            prompt: "I promise I ________ too much fast food anymore.",
+            options: ["don't eat", "won't eat", "am not eating", "didn't eat"],
+            answer: 1,
+            explain: "Diễn tả lời hứa trong tương lai đi với 'I promise', ta dùng 'won't + V-inf' (will not eat)."
+          },
+          {
+            prompt: "Look! The internet is down. I ________ offline books today.",
+            options: ["read", "will read", "reads", "have read"],
+            answer: 1,
+            explain: "Quyết định bộc phát ngay tại thời điểm nói ('The internet is down') -> Dùng 'will read'."
+          },
+          {
+            prompt: "Do you think smart devices ________ physical schools by 2030?",
+            options: ["replace", "will replace", "replaced", "replaces"],
+            answer: 1,
+            explain: "Câu hỏi dự đoán tương lai với 'Do you think' -> Cấu trúc: Will + S + V-inf ('will replace')."
+          },
+          {
+            prompt: "Don't worry! I ________ you learn how to weave ethnic patterns.",
+            options: ["helps", "helped", "will help", "helping"],
+            answer: 2,
+            explain: "Đưa ra lời đề nghị giúp đỡ hoặc hứa hẹn ngẫu nhiên -> Dùng 'will help'."
+          },
+          {
+            prompt: "Scientists believe renewable energy ________ pollution in rural areas.",
+            options: ["will reduce", "reduces", "reduced", "reducing"],
+            answer: 0,
+            explain: "Dự đoán tương lai đi kèm 'Scientists believe' -> Cấu trúc 'will + V-inf' ('will reduce')."
+          },
+          {
+            prompt: "Wait a minute! I ________ you to the village market.",
+            options: ["drive", "will drive", "drove", "drives"],
+            answer: 1,
+            explain: "Quyết định làm gì ngay lúc nói ('Wait a minute!') -> Dùng 'will drive'."
+          },
+          {
+            prompt: "Many people hope young generations ________ native languages.",
+            options: ["won't forget", "don't forget", "didn't forget", "not forget"],
+            answer: 0,
+            explain: "Hy vọng về tương lai ('hope') -> Phủ định thì Tương lai đơn: 'won't forget' (will not forget)."
+          },
+          {
+            prompt: "I am thirsty. I ________ a glass of fresh lemonade.",
+            options: ["will take", "take", "took", "takes"],
+            answer: 0,
+            explain: "Quyết định bộc phát khi bộc lộ cảm xúc bối cảnh ('I am thirsty') -> Dùng 'will take'."
+          },
+          {
+            prompt: "In 20 years, many nomadic tribes ________ to modern cities.",
+            options: ["move", "will move", "moves", "moved"],
+            answer: 1,
+            explain: "Dự đoán mốc thời gian trong tương lai ('In 20 years') -> Dùng 'will move'."
+          }
+        ]
+      },
+      2: {
+        title: "🎈 Game 2: Bắn Bóng Điều Kiện Loại 1",
+        desc: "Phân biệt mệnh đề If (Hiện tại đơn) và mệnh đề chính (Will / Won't + V-inf).",
+        questions: [
+          {
+            prompt: "If we ________ eco-friendly habits, our planet will be cleaner.",
+            options: ["adopt", "will adopt", "adopted", "adopting"],
+            answer: 0,
+            explain: "Mệnh đề IF của Câu điều kiện loại 1 chia ở THÌ HIỆN TẠI ĐƠN. Chủ ngữ 'we' -> Động từ giữ nguyên 'adopt'."
+          },
+          {
+            prompt: "If she ________ online, she will miss the traditional craft workshop.",
+            options: ["studies", "will study", "study", "studied"],
+            answer: 0,
+            explain: "Mệnh đề IF chia hiện tại đơn. Chủ ngữ 'she' số ít -> Động từ chia 'studies'."
+          },
+          {
+            prompt: "The crops ________ well if it rains heavily tomorrow.",
+            options: ["grow", "will grow", "grew", "grows"],
+            answer: 1,
+            explain: "Mệnh đề CHÍNH của Câu điều kiện loại 1 dùng 'will + V-inf' ('will grow')."
+          },
+          {
+            prompt: "If you don't wear a warm coat, you ________ a cold in the mountains.",
+            options: ["catch", "will catch", "caught", "catches"],
+            answer: 1,
+            explain: "Mệnh đề CHÍNH chỉ kết quả có thể xảy ra ở hiện tại/tương lai -> Dùng 'will catch'."
+          },
+          {
+            prompt: "If he ________ hard, he will pass the English exam easily.",
+            options: ["try", "will try", "tries", "tried"],
+            answer: 2,
+            explain: "Mệnh đề IF chia Hiện tại đơn. Chủ ngữ 'he' số ít -> Động từ 'try' đổi thành 'tries'."
+          },
+          {
+            prompt: "We won't go camping if the weather ________ bad.",
+            options: ["is", "will be", "was", "are"],
+            answer: 0,
+            explain: "Mệnh đề IF chia Hiện tại đơn với to be. Chủ ngữ 'the weather' (số ít) -> Dùng 'is'."
+          },
+          {
+            prompt: "If they preserve local customs, tourists ________ their village more.",
+            options: ["visit", "will visit", "visited", "visiting"],
+            answer: 1,
+            explain: "Mệnh đề CHÍNH chỉ kết quả trong tương lai -> Dùng 'will visit'."
+          },
+          {
+            prompt: "If you ________ offline crafts, you will feel very relaxed.",
+            options: ["practice", "will practice", "practiced", "practices"],
+            answer: 0,
+            explain: "Mệnh đề IF dùng hiện tại đơn với chủ ngữ 'you' -> Động từ nguyên mẫu 'practice'."
+          },
+          {
+            prompt: "What ________ if we use too much plastic every day?",
+            options: ["happens", "will happen", "happened", "happen"],
+            answer: 1,
+            explain: "Câu hỏi mệnh đề CHÍNH điều kiện loại 1 -> Cấu trúc: What + will + S + V-inf? ('will happen')."
+          },
+          {
+            prompt: "If she doesn't hurry up, she ________ the morning train.",
+            options: ["misses", "will miss", "missed", "missing"],
+            answer: 1,
+            explain: "Mệnh đề CHÍNH mang ý chỉ kết quả phủ định/cảnh báo -> Dùng 'will miss'."
+          }
+        ]
+      },
+      3: {
+        title: "🚀 Game 3: Chiến Hạm Bắt Bẫy Ngữ Pháp",
+        desc: "Truy quét và sửa lỗi sai kinh điển: dùng 'will' sau 'If', chia sai ngôi số ít, sai dạng V-inf.",
+        questions: [
+          {
+            prompt: "Tìm lỗi sai trong câu: 'If it will rain tomorrow, we will stay at home.'",
+            options: ["will rain -> rains", "tomorrow -> yesterday", "stay -> stayed", "will stay -> stay"],
+            answer: 0,
+            explain: "BẪY SỐ 1: Không dùng 'will' ngay sau mệnh đề IF! Sửa 'will rain' thành Hiện tại đơn 'rains'."
+          },
+          {
+            prompt: "Tìm lỗi sai trong câu: 'If Nam work hard, he will succeed.'",
+            options: ["work -> works", "hard -> hardly", "will succeed -> succeeds", "Nam -> He"],
+            answer: 0,
+            explain: "BẪY SỐ 2: Mệnh đề IF chia hiện tại đơn. Chủ ngữ 'Nam' (ngôi thứ 3 số ít) -> Động từ phải thêm 's' ('works')."
+          },
+          {
+            prompt: "Tìm lỗi sai trong câu: 'I think people will preserves native languages.'",
+            options: ["preserves -> preserve", "think -> thought", "native -> nativing", "people -> person"],
+            answer: 0,
+            explain: "BẪY SỐ 3: Sau trợ động từ 'will' bắt buộc dùng ĐỘNG TỪ NGUYÊN MẪU (V-inf). Sửa 'preserves' -> 'preserve'."
+          },
+          {
+            prompt: "Tìm lỗi sai trong câu: 'If she don't save paper, trees will be cut down.'",
+            options: ["don't -> doesn't", "save -> saving", "trees -> tree", "will be -> is"],
+            answer: 0,
+            explain: "Chủ ngữ 'she' trong câu phủ định thì Hiện tại đơn phải dùng trợ động từ 'doesn't' (không dùng 'don't')."
+          },
+          {
+            prompt: "Tìm lỗi sai trong câu: 'We will going to the market if we have free time.'",
+            options: ["will going -> will go", "market -> marketing", "have -> will have", "time -> times"],
+            answer: 0,
+            explain: "Sau 'will' phải là V-inf. Không dùng dạng V-ing 'will going', phải sửa thành 'will go'."
+          },
+          {
+            prompt: "Tìm lỗi sai trong câu: 'If you will eat too much candy, you will have toothache.'",
+            options: ["will eat -> eat", "candy -> candies", "have -> having", "will have -> have"],
+            answer: 0,
+            explain: "Tuyệt đối không dùng 'will' ở mệnh đề IF. Sửa 'will eat' -> 'eat'."
+          },
+          {
+            prompt: "Tìm lỗi sai trong câu: 'If he study online, he will use a computer.'",
+            options: ["study -> studies", "online -> offlining", "will use -> uses", "computer -> computers"],
+            answer: 0,
+            explain: "Chủ ngữ 'he' ở mệnh đề IF hiện tại đơn -> Động từ 'study' đổi y -> i + es thành 'studies'."
+          },
+          {
+            prompt: "Tìm lỗi sai trong câu: 'They won't helps you if you are lazy.'",
+            options: ["helps -> help", "won't -> don't", "are -> will be", "lazy -> lazily"],
+            answer: 0,
+            explain: "Sau 'won't' (will not) phải là động từ nguyên mẫu không chia. Sửa 'helps' thành 'help'."
+          },
+          {
+            prompt: "Tìm lỗi sai trong câu: 'If it is cold, I will wearing a scarf.'",
+            options: ["will wearing -> will wear", "is -> will be", "cold -> coldly", "scarf -> scarfs"],
+            answer: 0,
+            explain: "Sau 'will' dùng V-inf, không dùng V-ing. Sửa 'will wearing' -> 'will wear'."
+          },
+          {
+            prompt: "Tìm lỗi sai trong câu: 'If we protects forests, wildlife will survive.'",
+            options: ["protects -> protect", "forests -> forest", "will survive -> survives", "wildlife -> wildlifes"],
+            answer: 0,
+            explain: "Chủ ngữ 'we' ở mệnh đề IF -> Động từ giữ nguyên mẫu 'protect' (không thêm 's')."
+          }
+        ]
+      },
+      4: {
+        title: "🧩 Game 4: Kiến Trúc Sư Ghép Câu",
+        desc: "Thao tác 1-chạm đặt các thẻ từ để sắp xếp thành câu điều kiện và thì tương lai hoàn chỉnh.",
+        type: "builder",
+        questions: [
+          {
+            prompt: "Ghép thành câu hoàn chỉnh: (tương lai bảo tồn văn hóa)",
+            words: ["People", "will", "preserve", "traditional", "crafts", "in", "the", "future."],
+            target: "People will preserve traditional crafts in the future.",
+            explain: "Cấu trúc Tương lai đơn: S (People) + will + V-inf (preserve) + O + time indicator."
+          },
+          {
+            prompt: "Ghép thành câu hoàn chỉnh: (câu điều kiện loại 1 lối sống xanh)",
+            words: ["If", "we", "recycle", "waste,", "we", "will", "protect", "nature."],
+            target: "If we recycle waste, we will protect nature.",
+            explain: "Cấu trúc Điều kiện loại 1: If + S + V(HTĐ), S + will + V-inf."
+          },
+          {
+            prompt: "Ghép thành câu hoàn chỉnh: (lời hứa trong tương lai)",
+            words: ["I", "promise", "I", "will", "study", "harder", "this", "semester."],
+            target: "I promise I will study harder this semester.",
+            explain: "Lời hứa trong tương lai: I promise + S + will + V-inf."
+          },
+          {
+            prompt: "Ghép thành câu hoàn chỉnh: (điều kiện học tập)",
+            words: ["If", "she", "studies", "online,", "she", "will", "save", "time."],
+            target: "If she studies online, she will save time.",
+            explain: "Mệnh đề If hiện tại đơn (she studies), mệnh đề chính tương lai đơn (she will save)."
+          },
+          {
+            prompt: "Ghép thành câu hoàn chỉnh: (dự đoán cuộc sống du mục)",
+            words: ["Nomadic", "tribes", "will", "adapt", "to", "modern", "lifestyle."],
+            target: "Nomadic tribes will adapt to modern lifestyle.",
+            explain: "Thì Tương lai đơn chỉ sự dự đoán: S + will + V-inf (adapt to...)."
+          },
+          {
+            prompt: "Ghép thành câu hoàn chỉnh: (kết quả nếu thời tiết xấu)",
+            words: ["If", "it", "rains,", "they", "will", "cancel", "the", "trip."],
+            target: "If it rains, they will cancel the trip.",
+            explain: "Mệnh đề If (it rains), mệnh đề chính (they will cancel)."
+          },
+          {
+            prompt: "Ghép thành câu hoàn chỉnh: (dùng năng lượng mặt trời)",
+            words: ["We", "will", "use", "solar", "energy", "if", "we", "install", "panels."],
+            target: "We will use solar energy if we install panels.",
+            explain: "Mệnh đề chính đứng trước (will use), mệnh đề IF đứng sau (if we install)."
+          },
+          {
+            prompt: "Ghép thành câu hoàn chỉnh: (quyết định tức thì)",
+            words: ["The", "bus", "left,", "so", "I", "will", "walk", "home."],
+            target: "The bus left, so I will walk home.",
+            explain: "Quyết định tức thì tại thời điểm nói: S + will + V-inf (I will walk)."
+          },
+          {
+            prompt: "Ghép thành câu hoàn chỉnh: (bảo vệ môi trường biển)",
+            words: ["If", "you", "clean", "beaches,", "fish", "will", "live", "longer."],
+            target: "If you clean beaches, fish will live longer.",
+            explain: "Mệnh đề IF (you clean), mệnh đề chính (fish will live)."
+          },
+          {
+            prompt: "Ghép thành câu hoàn chỉnh: (sử dụng sách điện tử)",
+            words: ["Students", "will", "use", "e-books", "instead", "of", "paper."],
+            target: "Students will use e-books instead of paper.",
+            explain: "Dự đoán tương lai: S + will + V-inf + instead of + N."
+          }
+        ]
+      },
+      5: {
+        title: "🏕️ Game 5: Thử Thách Lối Sống Xanh",
+        desc: "Đấu trí 10 tình huống thực tế về bảo tồn văn hóa, học tập và bảo vệ môi trường.",
+        questions: [
+          {
+            prompt: "Tình huống: Bạn thấy rác nhựa trên đường làng. Bạn sẽ làm gì?",
+            options: [
+              "I will collect it and put it in the recycling bin.",
+              "I leave it there.",
+              "I will ignore it completely.",
+              "I would burned it."
+            ],
+            answer: 0,
+            explain: "Quyết định bộc phát hành động tốt vì môi trường: 'I will collect it...' (dùng will + V-inf)."
+          },
+          {
+            prompt: "Tình huống: Nếu lớp học tổ chức làm đồ thủ công truyền thống (DIY craft), bạn sẽ...",
+            options: [
+              "If we join the workshop, we will learn native weaving skills.",
+              "If we will join, we learn nothing.",
+              "We joined if we will have time.",
+              "If we joins, we would be bored."
+            ],
+            answer: 0,
+            explain: "Câu điều kiện loại 1 thể hiện mong muốn trải nghiệm: 'If we join..., we will learn...'"
+          },
+          {
+            prompt: "Tình huống: Nếu mọi người tiết kiệm điện hàng ngày...",
+            options: [
+              "If everyone saves electricity, we will reduce carbon emissions.",
+              "If everyone will save electricity, we reduce carbon.",
+              "Everyone saves electricity if we will reduce carbon.",
+              "If everyone saved electricity, we will reduce."
+            ],
+            answer: 0,
+            explain: "Cấu trúc chuẩn loại 1: If + S(số ít - saves), S + will + V-inf (will reduce)."
+          },
+          {
+            prompt: "Tình huống: Bạn hứa với cô Lily sẽ không đi học muộn nữa...",
+            options: [
+              "I promise I will wake up early every morning.",
+              "I promise I wake up early yesterday.",
+              "I promise I would wake up late.",
+              "I promise I am waking up late."
+            ],
+            answer: 0,
+            explain: "Đưa ra lời hứa chuẩn thì Tương lai đơn: 'I promise I will wake up early'."
+          },
+          {
+            prompt: "Tình huống: Nếu học sinh sử dụng ứng dụng học online hiệu quả...",
+            options: [
+              "If students use online apps wisely, they will gain high marks.",
+              "If students will use apps, they gain high marks.",
+              "Students gain high marks if they used apps.",
+              "If students uses apps, they will gain."
+            ],
+            answer: 0,
+            explain: "Mệnh đề IF chủ ngữ số nhiều 'students' động từ nguyên mẫu 'use', mệnh đề chính 'they will gain'."
+          },
+          {
+            prompt: "Tình huống: Khi thấy đèn phòng học vẫn bật mà không có ai...",
+            options: [
+              "I will turn off the lights immediately.",
+              "I turn off the lights yesterday.",
+              "I will turning off the lights.",
+              "I would turned off the lights."
+            ],
+            answer: 0,
+            explain: "Quyết định tức thì xử lý tình huống lãng phí điện: 'I will turn off...'."
+          },
+          {
+            prompt: "Tình huống: Dự đoán về việc sử dụng túi vải (tote bags) thay cho túi nilon...",
+            options: [
+              "I think more people will use cloth bags for shopping.",
+              "I think more people uses cloth bags.",
+              "I think more people used cloth bags.",
+              "I think more people using cloth bags."
+            ],
+            answer: 0,
+            explain: "Dự đoán tương lai đi với 'I think': S + will + V-inf ('will use')."
+          },
+          {
+            prompt: "Tình huống: Nếu chúng ta bảo tồn nghề gốm cổ truyền...",
+            options: [
+              "If we keep traditional pottery, tourists will visit our village.",
+              "If we will keep pottery, tourists visit.",
+              "Tourists visited if we keep pottery.",
+              "If we keeps pottery, tourists will visit."
+            ],
+            answer: 0,
+            explain: "Điều kiện loại 1: If we keep (hiện tại đơn), tourists will visit (tương lai đơn)."
+          },
+          {
+            prompt: "Tình huống: Bạn chọn phương tiện giao thông thân thiện môi trường nào?",
+            options: [
+              "I will ride my bicycle to school every day.",
+              "I will riding my car.",
+              "I rode my bicycle tomorrow.",
+              "I will drove my bicycle."
+            ],
+            answer: 0,
+            explain: "Hành động chọn lối sống xanh: 'I will ride my bicycle...' (will + V-inf)."
+          },
+          {
+            prompt: "Tình huống: Lời cam kết bảo vệ nguồn nước sạch...",
+            options: [
+              "If we do not pollute rivers, water will be safe for everyone.",
+              "If we will not pollute rivers, water is safe.",
+              "Water will safe if we do not pollute.",
+              "If we not pollute, water will be safe."
+            ],
+            answer: 0,
+            explain: "Mệnh đề IF phủ định 'do not pollute', mệnh đề chính 'water will be safe'."
+          }
+        ]
+      }
+    };
+
+    // -------------------------------------------------------------
+    // GAME ENGINE STATE
+    // -------------------------------------------------------------
+    let currentGameId = 1;
+    let currentQuestionIdx = 0;
+    let gameScore = 0;
+    let userAnswers = [];
+    let builderSelectedWords = [];
+    let globalScores = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+
+    // -------------------------------------------------------------
+    // NAVIGATION & VIEW SWITCHING
+    // -------------------------------------------------------------
+    function switchView(viewName) {
+      document.getElementById('view-handbook').classList.add('hidden');
+      document.getElementById('view-hub').classList.add('hidden');
+      document.getElementById('view-gameplay').classList.add('hidden');
+      document.getElementById('view-summary').classList.add('hidden');
+
+      if (viewName === 'handbook') {
+        document.getElementById('view-handbook').classList.remove('hidden');
+      } else if (viewName === 'hub') {
+        document.getElementById('view-hub').classList.remove('hidden');
+        updateHubProgress();
+      } else if (viewName === 'gameplay') {
+        document.getElementById('view-gameplay').classList.remove('hidden');
+      } else if (viewName === 'summary') {
+        document.getElementById('view-summary').classList.remove('hidden');
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function updateHubProgress() {
+      let grandTotal = 0;
+      for (let id = 1; id <= 5; id++) {
+        const sc = globalScores[id] || 0;
+        document.getElementById(`g${id}-progress`).innerText = `${sc}/10`;
+        grandTotal += sc;
+      }
+      document.getElementById('global-total-score').innerText = grandTotal;
+    }
+
+    // -------------------------------------------------------------
+    // GAMEPLAY CONTROLLER
+    // -------------------------------------------------------------
+    function startGame(gameId) {
+      currentGameId = gameId;
+      currentQuestionIdx = 0;
+      gameScore = 0;
+      userAnswers = [];
+      
+      const gInfo = GAME_DATA[gameId];
+      document.getElementById('game-title').innerText = gInfo.title;
+      document.getElementById('game-desc').innerText = gInfo.desc;
+      
+      switchView('gameplay');
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      const gInfo = GAME_DATA[currentGameId];
+      const q = gInfo.questions[currentQuestionIdx];
+
+      // Update Top Status Bar
+      document.getElementById('current-question-idx').innerText = currentQuestionIdx + 1;
+      document.getElementById('game-score').innerText = gameScore;
+      
+      const pct = ((currentQuestionIdx) / gInfo.questions.length) * 100;
+      document.getElementById('game-progress-bar').style.width = `${pct}%`;
+
+      // Question Badge & Prompt
+      document.getElementById('question-badge').innerText = `Question ${currentQuestionIdx + 1} of 10`;
+      document.getElementById('question-prompt').innerText = q.prompt;
+
+      // Hide Explanation Box
+      document.getElementById('explanation-box').classList.add('hidden');
+
+      // Auto TTS Read Question Prompt
+      speakText(q.prompt);
+
+      // Render Interactive UI Area (Multiple Choice vs Sentence Builder)
+      const area = document.getElementById('game-interactive-area');
+      area.innerHTML = '';
+
+      if (gInfo.type === 'builder') {
+        renderSentenceBuilder(q, area);
+      } else {
+        renderMultipleChoice(q, area);
+      }
+    }
+
+    // MULTIPLE CHOICE RENDERER
+    function renderMultipleChoice(q, container) {
+      const grid = document.createElement('div');
+      grid.className = "grid grid-cols-1 md:grid-cols-2 gap-3";
+
+      q.options.forEach((optText, idx) => {
+        const btn = document.createElement('button');
+        btn.className = "choice-btn w-full bg-slate-50 hover:bg-sky-50 border-2 border-slate-200 hover:border-sky-400 p-4 rounded-2xl text-left text-sm md:text-base font-bold text-slate-800 transition flex items-center justify-between group";
+        
+        btn.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-xl bg-white border font-black text-xs flex items-center justify-center text-slate-500 group-hover:border-sky-400 group-hover:text-sky-600">
+              ${String.fromCharCode(65 + idx)}
+            </span>
+            <span>${optText}</span>
+          </div>
+          <span class="opacity-0 group-hover:opacity-100 text-sky-600 text-lg transition">🔊</span>
+        `;
+
+        btn.onclick = () => {
+          speakText(optText);
+          handleAnswerSelect(idx);
+        };
+
+        grid.appendChild(btn);
+      });
+
+      container.appendChild(grid);
+    }
+
+    // SENTENCE BUILDER RENDERER (Game 4)
+    function renderSentenceBuilder(q, container) {
+      builderSelectedWords = [];
+      
+      const wrapper = document.createElement('div');
+      wrapper.className = "space-y-4";
+
+      // Target drop zone display
+      const dropZone = document.createElement('div');
+      dropZone.id = "builder-drop-zone";
+      dropZone.className = "min-h-[64px] bg-slate-100 border-2 border-dashed border-sky-300 rounded-2xl p-3 flex flex-wrap items-center gap-2";
+      dropZone.innerHTML = `<span class="text-xs font-bold text-slate-400 italic" id="drop-placeholder">Nhấp chọn các từ bên dưới để xếp thành câu...</span>`;
+
+      // Scrambled pool zone
+      const poolZone = document.createElement('div');
+      poolZone.id = "builder-pool-zone";
+      poolZone.className = "flex flex-wrap items-center gap-2 pt-2";
+
+      // Shuffle copy of words
+      const shuffled = [...q.words].sort(() => Math.random() - 0.5);
+
+      shuffled.forEach((w, wIdx) => {
+        const chip = document.createElement('button');
+        chip.className = "word-chip bg-white border-2 border-slate-200 hover:border-purple-400 text-slate-800 font-bold px-3.5 py-2 rounded-xl text-sm shadow-sm hover:shadow transition";
+        chip.innerText = w;
+        chip.dataset.word = w;
+        chip.dataset.id = wIdx;
+
+        chip.onclick = () => {
+          speakText(w);
+          toggleBuilderWord(chip, w);
+        };
+
+        poolZone.appendChild(chip);
+      });
+
+      // Submit sentence button
+      const submitBtn = document.createElement('button');
+      submitBtn.className = "mt-4 bg-purple-600 hover:bg-purple-700 text-white font-black px-6 py-2.5 rounded-xl shadow-md text-sm transition";
+      submitBtn.innerText = "✔️ Kiểm Tra Câu Này";
+      submitBtn.onclick = () => checkBuilderAnswer(q);
+
+      wrapper.appendChild(dropZone);
+      wrapper.appendChild(poolZone);
+      wrapper.appendChild(submitBtn);
+
+      container.appendChild(wrapper);
+    }
+
+    function toggleBuilderWord(chipEl, word) {
+      const dropZone = document.getElementById('builder-drop-zone');
+      const placeholder = document.getElementById('drop-placeholder');
+      
+      if (placeholder) placeholder.remove();
+
+      if (chipEl.parentElement.id === 'builder-pool-zone') {
+        dropZone.appendChild(chipEl);
+        chipEl.classList.add('bg-purple-50', 'border-purple-400', 'text-purple-900');
+        builderSelectedWords.push(word);
+      } else {
+        document.getElementById('builder-pool-zone').appendChild(chipEl);
+        chipEl.classList.remove('bg-purple-50', 'border-purple-400', 'text-purple-900');
+        const idx = builderSelectedWords.indexOf(word);
+        if (idx > -1) builderSelectedWords.splice(idx, 1);
+      }
+
+      if (dropZone.children.length === 0) {
+        dropZone.innerHTML = `<span class="text-xs font-bold text-slate-400 italic" id="drop-placeholder">Nhấp chọn các từ bên dưới để xếp thành câu...</span>`;
+      }
+    }
+
+    function checkBuilderAnswer(q) {
+      const userSentence = builderSelectedWords.join(' ');
+      const isCorrect = userSentence.trim() === q.target.trim();
+
+      // Disable word chips
+      document.querySelectorAll('.word-chip').forEach(el => el.disabled = true);
+
+      showExplanation(isCorrect, q.explain, q.target);
+    }
+
+    function handleAnswerSelect(selectedIdx) {
+      const gInfo = GAME_DATA[currentGameId];
+      const q = gInfo.questions[currentQuestionIdx];
+      const isCorrect = selectedIdx === q.answer;
+
+      // Disable all choice buttons
+      const btns = document.querySelectorAll('.choice-btn');
+      btns.forEach((btn, idx) => {
+        btn.disabled = true;
+        if (idx === q.answer) {
+          btn.classList.remove('bg-slate-50', 'border-slate-200');
+          btn.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-950');
+        } else if (idx === selectedIdx && !isCorrect) {
+          btn.classList.remove('bg-slate-50', 'border-slate-200');
+          btn.classList.add('bg-rose-100', 'border-rose-500', 'text-rose-950');
+        }
+      });
+
+      showExplanation(isCorrect, q.explain, q.options[q.answer]);
+    }
+
+    function showExplanation(isCorrect, explainText, correctAnswerText) {
+      if (isCorrect) {
+        gameScore += 1;
+        document.getElementById('game-score').innerText = gameScore;
+      }
+
+      userAnswers.push(isCorrect);
+
+      const statusBadge = document.getElementById('result-status-badge');
+      if (isCorrect) {
+        statusBadge.className = "text-xs font-black px-3 py-1 rounded-full bg-emerald-100 text-emerald-800";
+        statusBadge.innerText = "🎉 CHÍNH XÁC (+1 ĐIỂM)";
+        speakText("Correct! Great job!");
+      } else {
+        statusBadge.className = "text-xs font-black px-3 py-1 rounded-full bg-rose-100 text-rose-800";
+        statusBadge.innerText = "❌ CHƯA CHÍNH XÁC";
+        speakText("Not quite right. Let us check the explanation.");
+      }
+
+      const expBox = document.getElementById('explanation-box');
+      expBox.classList.remove('hidden');
+
+      const fullExplainMsg = `Đáp án đúng: "${correctAnswerText}". ${explainText}`;
+      document.getElementById('explanation-text').innerText = fullExplainMsg;
+    }
+
+    function speakCurrentQuestion() {
+      const q = GAME_DATA[currentGameId].questions[currentQuestionIdx];
+      speakText(q.prompt);
+    }
+
+    function speakExplanation() {
+      const txt = document.getElementById('explanation-text').innerText;
+      speakText(txt);
+    }
+
+    function goToNextQuestion() {
+      const gInfo = GAME_DATA[currentGameId];
+      if (currentQuestionIdx < gInfo.questions.length - 1) {
+        currentQuestionIdx++;
+        renderQuestion();
+      } else {
+        finishGame();
+      }
+    }
+
+    function finishGame() {
+      globalScores[currentGameId] = Math.max(globalScores[currentGameId] || 0, gameScore);
+      updateHubProgress();
+
+      const totalQ = GAME_DATA[currentGameId].questions.length;
+      const pct = Math.round((gameScore / totalQ) * 100);
+
+      document.getElementById('summary-score').innerText = `${gameScore}/${totalQ}`;
+      document.getElementById('summary-percent').innerText = `${pct}%`;
+
+      let stars = "⭐";
+      let icon = "👍";
+      let feedback = "Em cần cố gắng ôn lại công thức trong Cẩm nang Ngữ pháp nhé!";
+
+      if (pct >= 90) {
+        stars = "⭐⭐⭐";
+        icon = "🏆";
+        feedback = "Xuất sắc! Em đã làm chủ hoàn toàn Thì Tương lai đơn và Câu điều kiện loại 1!";
+      } else if (pct >= 70) {
+        stars = "⭐⭐";
+        icon = "🌟";
+        feedback = "Rất tốt! Em chỉ cần chú ý hơn ở một số bẫy ngữ pháp số ít/số nhiều nữa thôi!";
+      }
+
+      document.getElementById('summary-stars').innerText = stars;
+      document.getElementById('summary-icon').innerText = icon;
+      document.getElementById('summary-teacher-feedback').innerText = feedback;
+
+      speakText(`Congratulations! You scored ${gameScore} out of ${totalQ}. ${feedback}`);
+
+      switchView('summary');
+    }
+
+    function retryCurrentGame() {
+      startGame(currentGameId);
+    }
+
+    function backToHub() {
+      switchView('hub');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1465 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HT English - Unit 11: Travelling in the Future (Grammar Games)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-header { background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%); }
+        .game-card-hover:hover { transform: translateY(-4px); box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.2); }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .animate-fade-in { animation: fadeIn 0.4s ease-out forwards; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col">
+
+    <header class="gradient-header text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-3">
+            <div class="flex items-center space-x-3">
+                <div class="bg-white text-blue-700 p-2.5 rounded-2xl shadow-md font-extrabold text-xl flex items-center justify-center w-12 h-12">
+                    <i class="fa-solid fa-rocket text-blue-600"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl md:text-2xl font-extrabold tracking-tight">HT ENGLISH CENTER</h1>
+                    <p class="text-xs text-blue-200 font-medium">Giáo viên: Ms. Lily | Hotline: 0963422940 - 0962240866</p>
+                    <p class="text-[11px] text-blue-100">Địa chỉ: Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình</p>
+                </div>
+            </div>
+            <div class="flex items-center gap-2 bg-blue-900/60 px-4 py-2 rounded-xl border border-blue-400/30">
+                <span class="text-xs uppercase tracking-wider text-blue-200 font-semibold">Chuyên đề:</span>
+                <span class="text-sm font-bold text-yellow-300">Unit 11 - Travelling in the Future</span>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl mx-auto px-4 py-8 w-full">
+        <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+            <div>
+                <h2 id="view-title" class="text-2xl md:text-3xl font-extrabold text-slate-900">🚀 Kho Tàng Game Ngữ Pháp Unit 11</h2>
+                <p id="view-subtitle" class="text-sm text-slate-600 mt-1">Lựa chọn cẩm nang lý thuyết hoặc 5 thử thách game đỉnh cao bám sát SGK Global Success 7!</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+                <button onclick="switchView('home')" id="nav-home" class="px-4 py-2.5 rounded-xl font-bold text-sm bg-blue-600 text-white shadow-md hover:bg-blue-700 transition flex items-center gap-2">
+                    <i class="fa-solid fa-house"></i> Trang Chủ Game
+                </button>
+                <button onclick="switchView('handbook')" id="nav-hand" class="px-4 py-2.5 rounded-xl font-bold text-sm bg-white text-blue-700 border border-blue-200 shadow-sm hover:bg-blue-50 transition flex items-center gap-2">
+                    <i class="fa-solid fa-book-open"></i> Cẩm Nang Lý Thuyết
+                </button>
+            </div>
+        </div>
+
+        <!-- VIEW 1: HOME (GAME SELECTION GRID) -->
+        <div id="view-home-container" class="space-y-6">
+            <!-- Banner Introduction -->
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-700 rounded-3xl p-6 md:p-8 text-white shadow-xl relative overflow-hidden">
+                <div class="absolute right-0 bottom-0 opacity-10 transform translate-x-10 translate-y-10">
+                    <i class="fa-solid fa-shuttle-space text-9xl"></i>
+                </div>
+                <div class="relative z-10 max-w-2xl">
+                    <span class="bg-yellow-400 text-slate-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Hệ thống 100 câu trắc nghiệm chuẩn SGK</span>
+                    <h3 class="text-2xl md:text-3xl font-black mt-3 mb-2">Chinh Phục Ngữ Pháp Tương Lai Cùng Ms. Lily</h3>
+                    <p class="text-blue-100 text-sm md:text-base leading-relaxed mb-6">
+                        Ôn tập thành thạo <b>Thì tương lai đơn (Will / Won't)</b> và <b>Đại từ sở hữu (Possessive Pronouns)</b> với âm thanh phát âm chuẩn giọng nữ Anh-Mỹ, chấm điểm tự động và lời giải thích chi tiết vô cùng dễ hiểu!
+                    </p>
+                    <button onclick="switchView('handbook')" class="bg-yellow-400 hover:bg-yellow-300 text-slate-900 font-extrabold px-6 py-3 rounded-xl shadow-lg transition flex items-center gap-2 text-sm">
+                        <i class="fa-solid fa-graduation-cap"></i> Xem Cẩm Nang Ngữ Pháp Ngay
+                    </button>
+                </div>
+            </div>
+
+            <!-- Games Grid (5 Games) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
+                <!-- Game 1 -->
+                <div onclick="startSelectedGame(1)" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm game-card-hover cursor-pointer transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-xl font-bold">
+                                <i class="fa-solid fa-bolt"></i>
+                            </div>
+                            <span class="bg-blue-50 text-blue-700 text-xs font-bold px-2.5 py-1 rounded-lg">20 Câu hỏi</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">Game 1: Biệt Đội Tương Lai: Will hay Won't?</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">Rèn phản xạ phân biệt khẳng định và phủ định của thì tương lai đơn với will và won't.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100 flex justify-between items-center text-xs font-bold text-blue-600">
+                        <span>Bắt đầu thử thách</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <!-- Game 2 -->
+                <div onclick="startSelectedGame(2)" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm game-card-hover cursor-pointer transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center text-xl font-bold">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </div>
+                            <span class="bg-purple-50 text-purple-700 text-xs font-bold px-2.5 py-1 rounded-lg">20 Câu hỏi</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">Game 2: Phù Thủy Đảo Ngữ & Sắp Xếp Câu</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">Chinh phục cấu trúc câu hỏi Yes/No và câu trần thuật với trật tự từ chuẩn xác.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100 flex justify-between items-center text-xs font-bold text-purple-600">
+                        <span>Bắt đầu thử thách</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <!-- Game 3 -->
+                <div onclick="startSelectedGame(3)" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm game-card-hover cursor-pointer transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl font-bold">
+                                <i class="fa-solid fa-key"></i>
+                            </div>
+                            <span class="bg-emerald-50 text-emerald-700 text-xs font-bold px-2.5 py-1 rounded-lg">20 Câu hỏi</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">Game 3: Bậc Thầy Cú Pháp: Dạng Đúng Động Từ</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">Khắc sâu quy tắc động từ nguyên mẫu không chia theo sau trợ động từ tương lai.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100 flex justify-between items-center text-xs font-bold text-emerald-600">
+                        <span>Bắt đầu thử thách</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <!-- Game 4 -->
+                <div onclick="startSelectedGame(4)" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm game-card-hover cursor-pointer transition flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-xl font-bold">
+                                <i class="fa-solid fa-gem"></i>
+                            </div>
+                            <span class="bg-amber-50 text-amber-700 text-xs font-bold px-2.5 py-1 rounded-lg">20 Câu hỏi</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">Game 4: Thám Tử Sở Hữu: Thay Thế Cụm Từ</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">Làm chủ mine, yours, his, hers, ours, theirs để tránh lặp từ hiệu quả.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100 flex justify-between items-center text-xs font-bold text-amber-600">
+                        <span>Bắt đầu thử thách</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+
+                <!-- Game 5 -->
+                <div onclick="startSelectedGame(5)" class="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm game-card-hover cursor-pointer transition flex flex-col justify-between md:col-span-2 lg:col-span-1">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-rose-100 text-rose-600 flex items-center justify-center text-xl font-bold">
+                                <i class="fa-solid fa-stethoscope"></i>
+                            </div>
+                            <span class="bg-rose-50 text-rose-700 text-xs font-bold px-2.5 py-1 rounded-lg">20 Câu hỏi</span>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-2">Game 5: Bác Sĩ Cú Pháp: Bắt Bệnh Lỗi Sai</h4>
+                        <p class="text-xs text-slate-600 leading-relaxed">Phát hiện và tiêu diệt các lỗi sai kinh điển trong bài kiểm tra ngữ pháp tương lai.</p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-100 flex justify-between items-center text-xs font-bold text-rose-600">
+                        <span>Bắt đầu thử thách</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 2: HANDBOOK -->
+        <div id="view-handbook-container" class="hidden space-y-8 animate-fade-in">
+            <div class="bg-white rounded-3xl p-6 md:p-10 border border-slate-200 shadow-sm space-y-8">
+                <div class="border-b border-slate-100 pb-6">
+                    <span class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full">Tài liệu độc quyền HT English</span>
+                    <h3 class="text-2xl md:text-3xl font-black text-slate-900 mt-2">Cẩm Nang Ngữ Pháp Unit 11: Travelling in the Future</h3>
+                    <p class="text-sm text-slate-600 mt-1">Hệ thống kiến thức trọng tâm bám sát SGK Tiếng Anh 7 Global Success.</p>
+                </div>
+
+                <!-- PHẦN 1 -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center font-bold">1</div>
+                        <h4 class="text-xl font-bold text-slate-900">Thì Tương Lai Đơn (The Future Simple)</h4>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-blue-50/60 p-5 rounded-2xl border border-blue-100 space-y-2">
+                            <h5 class="font-bold text-blue-900 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-blue-600"></i> Cấu trúc khẳng định & phủ định
+                            </h5>
+                            <p class="text-xs text-slate-700 leading-relaxed">
+                                <b>Khẳng định:</b> Chủ ngữ cộng với will cộng với động từ nguyên mẫu không chia.<br>
+                                <b>Phủ định:</b> Chủ ngữ cộng với won't (viết tắt của will not) cộng với động từ nguyên mẫu không chia.
+                            </p>
+                            <div class="bg-white p-3 rounded-xl border border-blue-100 text-xs flex justify-between items-center">
+                                <span>Ví dụ: We will buy an electric scooter soon.</span>
+                                <button onclick="speakText('We will buy an electric scooter soon.')" class="text-blue-600 hover:text-blue-800 p-1"><i class="fa-solid fa-volume-high"></i></button>
+                            </div>
+                        </div>
+                        <div class="bg-indigo-50/60 p-5 rounded-2xl border border-indigo-100 space-y-2">
+                            <h5 class="font-bold text-indigo-900 text-sm flex items-center gap-2">
+                                <i class="fa-solid fa-circle-check text-indigo-600"></i> Cách dùng & Dấu hiệu
+                            </h5>
+                            <p class="text-xs text-slate-700 leading-relaxed">
+                                • Diễn tả dự đoán tương lai, lời hứa hoặc quyết định tức thì.<br>
+                                • Dấu hiệu nhận biết: <i>soon, in 2030, in the future, tomorrow, next week...</i>
+                            </p>
+                            <div class="bg-white p-3 rounded-xl border border-indigo-100 text-xs flex justify-between items-center">
+                                <span>Ví dụ: People won't drive normal cars in 2050.</span>
+                                <button onclick="speakText('People won\'t drive normal cars in 2050.')" class="text-indigo-600 hover:text-indigo-800 p-1"><i class="fa-solid fa-volume-high"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PHẦN 2 -->
+                <div class="space-y-4 pt-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center font-bold">2</div>
+                        <h4 class="text-xl font-bold text-slate-900">Đại Từ Sở Hữu (Possessive Pronouns)</h4>
+                    </div>
+                    <div class="bg-purple-50/60 p-5 rounded-2xl border border-purple-100 space-y-4">
+                        <h5 class="font-bold text-purple-900 text-sm flex items-center gap-2">
+                            <i class="fa-solid fa-star text-purple-600"></i> Bảng quy đổi & Quy tắc vàng chi tiết
+                        </h5>
+                        <p class="text-xs text-slate-700 leading-relaxed">
+                            Đại từ sở hữu được dùng để thay thế cho cụm từ gồm <b>tính từ sở hữu cộng với danh từ</b> nhằm tránh việc lặp lại danh từ đã nhắc đến trước đó trong câu. Đại từ sở hữu có thể đứng độc lập làm chủ ngữ, tân ngữ hoặc sau động từ "to be".
+                        </p>
+                        
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 text-xs">
+                            <div class="bg-white p-3 rounded-xl border border-purple-100 space-y-1">
+                                <span class="text-slate-500 block">Ngôi thứ nhất số ít:</span>
+                                <b class="text-purple-700">my bicycle</b> thay bằng <b class="text-indigo-600">mine</b> (cái của tôi)
+                            </div>
+                            <div class="bg-white p-3 rounded-xl border border-purple-100 space-y-1">
+                                <span class="text-slate-500 block">Ngôi thứ hai:</span>
+                                <b class="text-purple-700">your bicycle</b> thay bằng <b class="text-indigo-600">yours</b> (cái của bạn)
+                            </div>
+                            <div class="bg-white p-3 rounded-xl border border-purple-100 space-y-1">
+                                <span class="text-slate-500 block">Ngôi thứ ba số ít (nam):</span>
+                                <b class="text-purple-700">his dream</b> thay bằng <b class="text-indigo-600">his</b> (cái của anh ấy)
+                            </div>
+                            <div class="bg-white p-3 rounded-xl border border-purple-100 space-y-1">
+                                <span class="text-slate-500 block">Ngôi thứ ba số ít (nữ):</span>
+                                <b class="text-purple-700">her motorbike</b> thay bằng <b class="text-indigo-600">hers</b> (cái của cô ấy)
+                            </div>
+                            <div class="bg-white p-3 rounded-xl border border-purple-100 space-y-1">
+                                <span class="text-slate-500 block">Ngôi thứ nhất số nhiều:</span>
+                                <b class="text-purple-700">our car</b> thay bằng <b class="text-indigo-600">ours</b> (cái của chúng ta)
+                            </div>
+                            <div class="bg-white p-3 rounded-xl border border-purple-100 space-y-1">
+                                <span class="text-slate-500 block">Ngôi thứ ba số nhiều:</span>
+                                <b class="text-purple-700">their motorbikes</b> thay bằng <b class="text-indigo-600">theirs</b> (cái của họ)
+                            </div>
+                        </div>
+
+                        <div class="bg-white p-4 rounded-xl border border-purple-100 space-y-2 text-xs">
+                            <p class="font-bold text-slate-900">💡 Lưu ý quan trọng khi làm bài tập đại từ sở hữu:</p>
+                            <p class="text-slate-700 leading-relaxed">
+                                - Đại từ sở hữu <b>không bao giờ đi kèm danh từ trực tiếp phía sau</b> (ví dụ: nói "mine bicycle" là sai hoàn toàn, phải dùng đơn độc là "mine").<br>
+                                - Khi chuyển đổi, học sinh cần xác định rõ chủ thể sở hữu để chọn đúng đại từ thay thế tương ứng.
+                            </p>
+                        </div>
+
+                        <div class="bg-white p-3 rounded-xl border border-purple-100 text-xs flex justify-between items-center">
+                            <span>Ví dụ: This is your bicycle. That bicycle is hers.</span>
+                            <button onclick="speakText('This is your bicycle. That bicycle is hers.')" class="text-purple-600 hover:text-purple-800 p-1"><i class="fa-solid fa-volume-high"></i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pt-4 flex justify-center">
+                    <button onclick="switchView('home')" class="bg-blue-600 hover:bg-blue-700 text-white font-extrabold px-8 py-3.5 rounded-2xl shadow-md transition flex items-center gap-2 text-sm">
+                        <i class="fa-solid fa-play"></i> Bắt Đầu Chinh Phục 5 Game Ngay
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 3: GAMEPLAY ARENA -->
+        <div id="view-game-container" class="hidden space-y-6 animate-fade-in">
+            <!-- Game Header & Progress -->
+            <div class="bg-white rounded-2xl p-4 md:p-6 border border-slate-200 shadow-sm flex flex-col md:flex-row justify-between items-center gap-4">
+                <div class="flex items-center gap-3">
+                    <button onclick="switchView('home')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 p-2.5 rounded-xl transition"><i class="fa-solid fa-arrow-left"></i></button>
+                    <div>
+                        <span id="game-badge" class="bg-blue-100 text-blue-700 text-xs font-bold px-2.5 py-1 rounded-md">Game 1</span>
+                        <h3 id="active-game-title" class="text-lg md:text-xl font-black text-slate-900 mt-1">Biệt Đội Tương Lai: Will hay Won't?</h3>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4 w-full md:w-auto justify-between">
+                    <div class="text-right">
+                        <span class="text-xs text-slate-500 block">Tiến độ câu hỏi</span>
+                        <span id="progress-text" class="text-sm font-bold text-blue-600">1 / 20</span>
+                    </div>
+                    <div class="w-32 bg-slate-100 h-3 rounded-full overflow-hidden">
+                        <div id="progress-bar" class="bg-blue-600 h-full w-[5%] transition-all duration-300"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question Card -->
+            <div class="bg-white rounded-3xl p-6 md:p-10 border border-slate-200 shadow-sm space-y-6 relative overflow-hidden">
+                <div class="flex justify-between items-start gap-4">
+                    <div class="space-y-1">
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Câu hỏi số <span id="current-q-num">1</span></span>
+                        <h4 id="question-text" class="text-lg md:text-xl font-bold text-slate-900 leading-snug">Loading question...</h4>
+                    </div>
+                    <button onclick="speakCurrentQuestion()" class="bg-blue-50 text-blue-600 hover:bg-blue-100 p-3 rounded-2xl transition flex items-center gap-1.5 text-xs font-bold shrink-0">
+                        <i class="fa-solid fa-volume-high text-sm"></i> Nghe câu hỏi
+                    </button>
+                </div>
+
+                <!-- Options Grid -->
+                <div id="options-container" class="grid grid-cols-1 md:grid-cols-2 gap-3 pt-2">
+                    <!-- Dynamically populated options -->
+                </div>
+
+                <!-- Clue Button & Hint Box -->
+                <div class="pt-2">
+                    <button onclick="toggleClue()" class="text-xs font-bold text-indigo-600 hover:text-indigo-800 bg-indigo-50 px-3.5 py-2 rounded-xl transition flex items-center gap-2">
+                        <i class="fa-solid fa-lightbulb"></i> Gợi ý tư duy của cô Lily 💡
+                    </button>
+                    <div id="clue-box" class="hidden mt-3 p-4 bg-indigo-50/70 border border-indigo-100 rounded-2xl text-xs text-indigo-900 leading-relaxed">
+                        <!-- Dynamic Clue -->
+                    </div>
+                </div>
+
+                <!-- Navigation Controls -->
+                <div class="pt-6 border-t border-slate-100 flex justify-between items-center">
+                    <button onclick="prevQuestion()" id="btn-prev" class="px-5 py-2.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-600 hover:bg-slate-200 transition disabled:opacity-40">
+                        <i class="fa-solid fa-arrow-left mr-1"></i> Câu trước
+                    </button>
+                    <button onclick="nextQuestion()" id="btn-next" class="px-6 py-3 rounded-xl text-xs font-bold bg-blue-600 text-white hover:bg-blue-700 shadow-md transition flex items-center gap-2">
+                        Câu tiếp theo <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 4: RESULTS DASHBOARD -->
+        <div id="view-results-container" class="hidden space-y-6 animate-fade-in max-w-4xl mx-auto">
+            <div class="bg-white rounded-3xl p-8 md:p-12 border border-slate-200 shadow-sm text-center space-y-6">
+                <div class="w-20 h-20 bg-blue-100 text-blue-600 rounded-3xl mx-auto flex items-center justify-center text-3xl font-extrabold shadow-inner">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+                <div>
+                    <span class="bg-yellow-100 text-yellow-800 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Hoàn thành thử thách</span>
+                    <h3 class="text-3xl font-black text-slate-900 mt-3">Tuyệt Vời, Học Sinh Của Cô Lily!</h3>
+                    <p id="result-comment" class="text-sm text-slate-600 mt-1">Em đã hoàn thành xuất sắc 20 câu hỏi của thử thách này.</p>
+                </div>
+
+                <!-- Score Board -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 py-4">
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                        <span class="text-xs text-slate-500 block">Số điểm đạt được</span>
+                        <span id="final-score-text" class="text-2xl font-black text-blue-600 mt-1 block">20 / 20</span>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                        <span class="text-xs text-slate-500 block">Tỷ lệ chính xác</span>
+                        <span id="final-percent-text" class="text-2xl font-black text-emerald-600 mt-1 block">100%</span>
+                    </div>
+                    <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200">
+                        <span class="text-xs text-slate-500 block">Xếp hạng đánh giá</span>
+                        <span id="final-rank-text" class="text-xl font-black text-purple-600 mt-1 block">Xuất Sắc 🌟</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-3 pt-2">
+                    <button onclick="restartCurrentGame()" class="bg-blue-600 hover:bg-blue-700 text-white font-extrabold px-6 py-3 rounded-xl shadow-md transition text-xs flex items-center gap-2">
+                        <i class="fa-solid fa-rotate-right"></i> Làm Lại Thử Thách
+                    </button>
+                    <button onclick="reviewMistakes()" class="bg-purple-600 hover:bg-purple-700 text-white font-extrabold px-6 py-3 rounded-xl shadow-md transition text-xs flex items-center gap-2">
+                        <i class="fa-solid fa-book-open-reader"></i> Xem Lại Đáp Án & Giải Thích
+                    </button>
+                    <button onclick="switchView('home')" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-extrabold px-6 py-3 rounded-xl transition text-xs flex items-center gap-2">
+                        <i class="fa-solid fa-house"></i> Về Menu Chọn Game
+                    </button>
+                </div>
+            </div>
+
+            <!-- Detailed Review Section -->
+            <div id="review-section" class="hidden space-y-4">
+                <h4 class="text-xl font-extrabold text-slate-900 px-2">📖 Chi Tiết Đáp Án & Giải Thích Sư Phạm</h4>
+                <div id="review-list" class="space-y-4">
+                    <!-- Populated via JS -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer Brand -->
+    <footer class="bg-slate-900 text-slate-400 py-6 px-4 mt-auto border-t border-slate-800">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-center md:text-left">
+            <div>
+                <p class="font-bold text-slate-200">HT ENGLISH CENTER (Ms. Lily)</p>
+                <p>Hotline: 0963422940 - 0962240866 | Địa chỉ: Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình</p>
+            </div>
+            <p class="text-slate-500">© 2026 HT English Interactive Learning System. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JS Application Logic -->
+    <script>
+        const gameData = {
+            1: {
+                title: "Game 1: Biệt Đội Tương Lai: Will hay Won't?",
+                badge: "Game 1 (20 Câu)",
+                questions: [
+                    {
+                        q: "Petrol-powered cars are not eco-friendly, so they ______ be popular in the future.",
+                        options: ["will", "won't", "is", "are"],
+                        correct: 1,
+                        clue: "Xe chạy bằng xăng không thân thiện môi trường, vậy liệu chúng có còn phổ biến không? Chọn phủ định won't.",
+                        explanation: "Ta chọn 'won't' (will not) vì xe chạy bằng xăng gây ô nhiễm nên trong tương lai chúng sẽ không còn phổ biến."
+                    },
+                    {
+                        q: "We ______ travel by teleporter soon because scientists say it will be much faster.",
+                        options: ["won't", "will", "are", "do"],
+                        correct: 1,
+                        clue: "Vế sau có từ khóa chỉ sự nhanh chóng, chứng tỏ đây là một dự đoán chắc chắn xảy ra với will.",
+                        explanation: "Ta chọn 'will' để diễn tả dự đoán sự việc di chuyển bằng máy dịch chuyển tức thời sẽ sớm xuất hiện."
+                    },
+                    {
+                        q: "Rich people ______ choose to travel to other planets for their holidays.",
+                        options: ["won't", "will", "does", "is"],
+                        correct: 1,
+                        clue: "Người giàu có đủ tài chính để du lịch hành tinh khác, đây là dự đoán khẳng định.",
+                        explanation: "Ta chọn 'will' kết hợp động từ nguyên mẫu để chỉ dự đoán người giàu sẽ chọn du lịch các hành tinh khác."
+                    },
+                    {
+                        q: "People ______ take holidays in crowded places as in the past because they prefer quiet spaces.",
+                        options: ["will", "won't", "can", "do"],
+                        correct: 1,
+                        clue: "Vì thích không gian yên tĩnh, họ sẽ không còn đi nghỉ mát ở nơi đông đúc như trước.",
+                        explanation: "Ta chọn 'won't' để diễn tả sự việc sẽ không còn xảy ra trong tương lai."
+                    },
+                    {
+                        q: "Bullet trains ______ soon become a popular means of transport in Viet Nam because they are green and safe.",
+                        options: ["won't", "will", "are", "have"],
+                        correct: 1,
+                        clue: "Tàu cao tốc rất xanh và an toàn, nên chúng sẽ trở nên phổ biến.",
+                        explanation: "Ta chọn 'will' vì tàu cao tốc thân thiện môi trường và an toàn, sẽ được ưa chuộng."
+                    },
+                    {
+                        q: "In 2050, most families ______ have a flying car to avoid traffic jams.",
+                        options: ["won't", "will", "does", "are"],
+                        correct: 1,
+                        clue: "Dự đoán tương lai với mốc thời gian trong năm 2050.",
+                        explanation: "Ta chọn 'will' để diễn tả dự đoán sở hữu xe bay trong năm 2050."
+                    },
+                    {
+                        q: "Children ______ go to school by flying bus in the next few years.",
+                        options: ["won't", "will", "is", "has"],
+                        correct: 1,
+                        clue: "Xu hướng phương tiện học sinh trong những năm tới.",
+                        explanation: "Ta chọn 'will' cho hành động di chuyển tương lai với xe buýt bay."
+                    },
+                    {
+                        q: "Our city ______ use normal buses anymore; we will switch entirely to electric buses.",
+                        options: ["will", "won't", "does", "are"],
+                        correct: 1,
+                        clue: "Có từ khóa 'anymore' đi kèm việc chuyển hoàn toàn sang xe điện.",
+                        explanation: "Ta chọn 'won't' kết hợp với 'anymore' để chỉ việc không còn dùng xe buýt thường nữa."
+                    },
+                    {
+                        q: "Solar-powered ships ______ pollute the water because they use clean energy from the sun.",
+                        options: ["will", "won't", "is", "does"],
+                        correct: 1,
+                        clue: "Tàu chạy bằng năng lượng mặt trời dùng năng lượng sạch, vậy chúng có gây ô nhiễm không?",
+                        explanation: "Ta chọn 'won't' vì sử dụng năng lượng mặt trời sạch nên chúng sẽ không gây ô nhiễm nước."
+                    },
+                    {
+                        q: "People ______ spend less time travelling thanks to modern high-speed vehicles.",
+                        options: ["won't", "will", "are", "do"],
+                        correct: 1,
+                        clue: "Nhờ phương tiện tốc độ cao, thời gian đi lại sẽ giảm đi.",
+                        explanation: "Ta chọn 'will' vì đây là dự đoán tích cực về việc tiết kiệm thời gian."
+                    },
+                    {
+                        q: "Driverless cars ______ be safer because they are controlled by smart computers.",
+                        options: ["won't", "will", "has", "do"],
+                        correct: 1,
+                        clue: "Xe không người lái điều khiển bằng máy tính thông minh nên sẽ an toàn hơn.",
+                        explanation: "Ta chọn 'will' để đưa ra dự đoán về sự an toàn của xe không người lái."
+                    },
+                    {
+                        q: "We ______ need traffic lights when all cars can fly in the sky.",
+                        options: ["will", "won't", "are", "did"],
+                        correct: 1,
+                        clue: "Khi xe bay trên trời thì không còn cần đèn giao thông nữa.",
+                        explanation: "Ta chọn 'won't' vì xe bay không cần hệ thống đèn giao thông đường bộ."
+                    },
+                    {
+                        q: "Scientists believe humans ______ live on the Moon by the end of this century.",
+                        options: ["won't", "will", "is", "have"],
+                        correct: 1,
+                        clue: "Niềm tin của các nhà khoa học về tương lai con người ở Mặt Trăng.",
+                        explanation: "Ta chọn 'will' để diễn tả dự đoán khoa học tương lai."
+                    },
+                    {
+                        q: "Flying bikes ______ replace bicycles for short trips in crowded cities.",
+                        options: ["won't", "will", "does", "are"],
+                        correct: 1,
+                        clue: "Xe đạp bay sẽ thay thế xe đạp thường cho các chuyến đi ngắn.",
+                        explanation: "Ta chọn 'will' cho dự đoán thay thế phương tiện."
+                    },
+                    {
+                        q: "Air pollution ______ disappear completely if we use electric vehicles.",
+                        options: ["won't", "will", "is", "does"],
+                        correct: 1,
+                        clue: "Nếu dùng xe điện, ô nhiễm không khí sẽ giảm hoặc biến mất.",
+                        explanation: "Ta chọn 'will' để chỉ kết quả tích cực khi dùng xe điện."
+                    },
+                    {
+                        q: "People ______ buy tickets at stations because they will use smartphones to pay online.",
+                        options: ["will", "won't", "are", "do"],
+                        correct: 1,
+                        clue: "Thanh toán trực tuyến qua điện thoại nghĩa là không cần mua vé tại ga nữa.",
+                        explanation: "Ta chọn 'won't' vì hành khách không cần mua vé trực tiếp."
+                    },
+                    {
+                        q: "Maglev trains ______ travel at speeds of over 500 kilometres per hour.",
+                        options: ["won't", "will", "is", "has"],
+                        correct: 1,
+                        clue: "Tốc độ cực nhanh của tàu đệm từ.",
+                        explanation: "Ta chọn 'will' để nêu đặc tính tốc độ cao của tàu đệm từ."
+                    },
+                    {
+                        q: "We ______ have traffic jams on flying highways in the future.",
+                        options: ["will", "won't", "are", "do"],
+                        correct: 1,
+                        clue: "Đường cao tốc trên không giúp giải quyết tắc đường.",
+                        explanation: "Ta chọn 'won't' vì đường cao tốc trên không sẽ không còn cảnh tắc đường."
+                    },
+                    {
+                        q: "Smart bicycles ______ automatically warn riders when danger is near.",
+                        options: ["won't", "will", "does", "is"],
+                        correct: 1,
+                        clue: "Xe đạp thông minh có tính năng cảnh báo tự động.",
+                        explanation: "Ta chọn 'will' để nói về tính năng thông minh trong tương lai."
+                    },
+                    {
+                        q: "Most citizens ______ use public transport instead of private cars to save energy.",
+                        options: ["won't", "will", "are", "did"],
+                        correct: 1,
+                        clue: "Xu hướng tiết kiệm năng lượng bằng cách dùng phương tiện công cộng.",
+                        explanation: "Ta chọn 'will' để chỉ dự đoán hành động của người dân trong tương lai."
+                    }
+                ]
+            },
+            2: {
+                title: "Game 2: Phù Thủy Đảo Ngữ & Sắp Xếp Câu",
+                badge: "Game 2 (20 Câu)",
+                questions: [
+                    {
+                        q: "Rearrange: driverless cars / we / will have / in 2030 /.",
+                        options: [
+                            "We will have driverless cars in 2030.",
+                            "Will we have driverless cars in 2030?",
+                            "Driverless cars we will have in 2030.",
+                            "In 2030 we have will driverless cars."
+                        ],
+                        correct: 0,
+                        clue: "Cấu trúc khẳng định: Chủ ngữ cộng với will cộng với động từ nguyên mẫu và các thành phần trạng ngữ.",
+                        explanation: "Đáp án đúng là 'We will have driverless cars in 2030.' theo đúng cấu trúc thì tương lai đơn khẳng định."
+                    },
+                    {
+                        q: "Rearrange: cars / cities / won't allow / in 2050 /.",
+                        options: [
+                            "Cars won't allow in cities in 2050.",
+                            "Cities won't allow cars in 2050.",
+                            "In 2050 won't cities allow cars.",
+                            "Cars in cities won't allow in 2050."
+                        ],
+                        correct: 1,
+                        clue: "Chủ ngữ là 'Cities', theo sau là won't allow cars trong năm 2050.",
+                        explanation: "Đáp án đúng là 'Cities won't allow cars in 2050.' (Các thành phố sẽ không cho phép ô tô vào năm 2050)."
+                    },
+                    {
+                        q: "Rearrange into a question: electric cars / will / popular / be /?",
+                        options: [
+                            "Will electric cars be popular?",
+                            "Electric cars will be popular?",
+                            "Be will electric cars popular?",
+                            "Will be electric cars popular?"
+                        ],
+                        correct: 0,
+                        clue: "Câu hỏi Yes/No với will: Đưa Will lên đầu, sau đó đến chủ ngữ rồi đến động từ be.",
+                        explanation: "Cấu trúc câu hỏi: Will cộng chủ ngữ cộng be cộng tính từ. Đáp án là 'Will electric cars be popular?'"
+                    },
+                    {
+                        q: "Rearrange: we / use / will / buses / soon / solar-powered /.",
+                        options: [
+                            "We will use solar-powered buses soon.",
+                            "Solar-powered buses we will use soon.",
+                            "We will soon use solar-powered buses.",
+                            "Soon we use will solar-powered buses."
+                        ],
+                        correct: 2,
+                        clue: "Sắp xếp chủ ngữ, trợ động từ will, trạng từ chỉ thời gian soon và động từ.",
+                        explanation: "Cấu trúc chuẩn: We will soon use solar-powered buses."
+                    },
+                    {
+                        q: "Rearrange into a question: have / enough parking places / we / will / in ten years /?",
+                        options: [
+                            "Will we have enough parking places in ten years?",
+                            "We will have enough parking places in ten years?",
+                            "Have we will enough parking places in ten years?",
+                            "In ten years will have we enough parking places?"
+                        ],
+                        correct: 0,
+                        clue: "Đưa Will lên đầu câu hỏi, theo sau là chủ ngữ we và động từ have.",
+                        explanation: "Đáp án đúng là 'Will we have enough parking places in ten years?'"
+                    },
+                    {
+                        q: "Rearrange: travel / by teleporter / will / people / soon /.",
+                        options: [
+                            "People will travel by teleporter soon.",
+                            "Will people travel by teleporter soon?",
+                            "People soon will travel by teleporter.",
+                            "By teleporter people will travel soon."
+                        ],
+                        correct: 0,
+                        clue: "Chủ ngữ People cộng will cộng travel by teleporter soon.",
+                        explanation: "Đáp án khẳng định: People will travel by teleporter soon."
+                    },
+                    {
+                        q: "Rearrange into a question: flying cars / buy / your parents / will / next year /?",
+                        options: [
+                            "Will buy your parents flying cars next year?",
+                            "Will your parents buy flying cars next year?",
+                            "Your parents will buy flying cars next year?",
+                            "Next year will your parents buy flying cars?"
+                        ],
+                        correct: 1,
+                        clue: "Trợ động từ Will đứng đầu, tiếp đến chủ ngữ 'your parents' và động từ nguyên mẫu 'buy'.",
+                        explanation: "Đáp án đúng là 'Will your parents buy flying cars next year?'"
+                    },
+                    {
+                        q: "Rearrange: traffic jams / won't / there / be / in the smart city /.",
+                        options: [
+                            "There won't be traffic jams in the smart city.",
+                            "Traffic jams won't there be in the smart city.",
+                            "Won't there be traffic jams in the smart city.",
+                            "In the smart city traffic jams won't be there."
+                        ],
+                        correct: 0,
+                        clue: "Cấu trúc tồn tại tương lai phủ định: There won't be.",
+                        explanation: "Cấu trúc tồn tại tương lai phủ định: There won't be cộng danh từ."
+                    },
+                    {
+                        q: "Rearrange: fast / bullet trains / will / travel / very /.",
+                        options: [
+                            "Bullet trains will travel very fast.",
+                            "Very fast bullet trains will travel.",
+                            "Will bullet trains travel very fast.",
+                            "Bullet trains will very fast travel."
+                        ],
+                        correct: 0,
+                        clue: "Chủ ngữ Bullet trains cộng will cộng travel very fast.",
+                        explanation: "Đáp án đúng là 'Bullet trains will travel very fast.'"
+                    },
+                    {
+                        q: "Rearrange into a question: you / take / will / a holiday / on the moon / ?",
+                        options: [
+                            "You will take a holiday on the moon?",
+                            "Will you take a holiday on the moon?",
+                            "Take you will a holiday on the moon?",
+                            "Will take you a holiday on the moon?"
+                        ],
+                        correct: 1,
+                        clue: "Đảo Will lên trước chủ ngữ you.",
+                        explanation: "Câu hỏi chuẩn: Will you take a holiday on the moon?"
+                    },
+                    {
+                        q: "Rearrange: clean energy / use / will / our city / in the future /.",
+                        options: [
+                            "Our city will use clean energy in the future.",
+                            "Clean energy will use our city in the future.",
+                            "In the future clean energy use will our city.",
+                            "Will our city use clean energy in the future."
+                        ],
+                        correct: 0,
+                        clue: "Chủ ngữ Our city cộng will cộng use clean energy in the future.",
+                        explanation: "Đáp án khẳng định chuẩn: Our city will use clean energy in the future."
+                    },
+                    {
+                        q: "Rearrange: people / work / from home / will / more /.",
+                        options: [
+                            "People will work from home more.",
+                            "More people will work from home.",
+                            "Work from home people will more.",
+                            "Will people work from home more."
+                        ],
+                        correct: 0,
+                        clue: "Chủ ngữ People cộng will cộng work from home more.",
+                        explanation: "Đáp án chuẩn: People will work from home more."
+                    },
+                    {
+                        q: "Rearrange into a question: what transport / we / use / will / in 2050 /?",
+                        options: [
+                            "What transport will we use in 2050?",
+                            "What will we transport use in 2050?",
+                            "What use will we transport in 2050?",
+                            "Will what transport we use in 2050?"
+                        ],
+                        correct: 0,
+                        clue: "Câu hỏi Wh-: Từ để hỏi cộng will cộng chủ ngữ cộng động từ nguyên mẫu.",
+                        explanation: "Cấu trúc Wh- future: What transport will we use in 2050?"
+                    },
+                    {
+                        q: "Rearrange: petrol cars / replace / electric cars / will /.",
+                        options: [
+                            "Electric cars will replace petrol cars.",
+                            "Petrol cars will replace electric cars.",
+                            "Will electric cars replace petrol cars.",
+                            "Electric cars replace will petrol cars."
+                        ],
+                        correct: 0,
+                        clue: "Xe điện sẽ thay thế xe xăng.",
+                        explanation: "Đáp án đúng là 'Electric cars will replace petrol cars.'"
+                    },
+                    {
+                        q: "Rearrange: accidents / fewer / there / be / will /.",
+                        options: [
+                            "There will be fewer accidents.",
+                            "Fewer accidents there will be.",
+                            "Will there be fewer accidents.",
+                            "There fewer accidents will be."
+                        ],
+                        correct: 0,
+                        clue: "Cấu trúc There will be cộng danh từ.",
+                        explanation: "Đáp án đúng là 'There will be fewer accidents.'"
+                    },
+                    {
+                        q: "Rearrange into a question: how long / it / take / will / to fly to Mars /?",
+                        options: [
+                            "How long will it take to fly to Mars?",
+                            "How long it will take to fly to Mars?",
+                            "Will how long it take to fly to Mars?",
+                            "How long take it will to fly to Mars?"
+                        ],
+                        correct: 0,
+                        clue: "Cấu trúc How long cộng will cộng it cộng take.",
+                        explanation: "Đáp án đúng là 'How long will it take to fly to Mars?'"
+                    },
+                    {
+                        q: "Rearrange: smart bikes / ride / children / will / safely /.",
+                        options: [
+                            "Children will ride smart bikes safely.",
+                            "Smart bikes children will ride safely.",
+                            "Safely children will ride smart bikes.",
+                            "Will children ride smart bikes safely."
+                        ],
+                        correct: 0,
+                        clue: "Chủ ngữ Children cộng will cộng ride smart bikes safely.",
+                        explanation: "Đáp án chuẩn: Children will ride smart bikes safely."
+                    },
+                    {
+                        q: "Rearrange: robots / do / heavy work / will / in factories /.",
+                        options: [
+                            "Robots will do heavy work in factories.",
+                            "In factories robots will do heavy work.",
+                            "Heavy work robots will do in factories.",
+                            "Will robots do heavy work in factories."
+                        ],
+                        correct: 0,
+                        clue: "Chủ ngữ Robots cộng will cộng do heavy work in factories.",
+                        explanation: "Đáp án đúng: Robots will do heavy work in factories."
+                    },
+                    {
+                        q: "Rearrange into a question: when / we / have / flying bikes / will /?",
+                        options: [
+                            "When will we have flying bikes?",
+                            "When we will have flying bikes?",
+                            "Will when we have flying bikes?",
+                            "When have we will flying bikes?"
+                        ],
+                        correct: 0,
+                        clue: "Cấu trúc Wh-: When cộng will cộng chúng ta cộng have flying bikes.",
+                        explanation: "Đáp án đúng: When will we have flying bikes?"
+                    },
+                    {
+                        q: "Rearrange: cleaner / our environment / be / will /.",
+                        options: [
+                            "Our environment will be cleaner.",
+                            "Cleaner our environment will be.",
+                            "Will our environment be cleaner.",
+                            "Our environment cleaner will be."
+                        ],
+                        correct: 0,
+                        clue: "Chủ ngữ Our environment cộng will cộng be cleaner.",
+                        explanation: "Đáp án đúng: Our environment will be cleaner."
+                    }
+                ]
+            },
+            3: {
+                title: "Game 3: Bậc Thầy Cú Pháp: Dạng Đúng Động Từ",
+                badge: "Game 3 (20 Câu)",
+                questions: [
+                    {
+                        q: "Alice: Do you think travelling by teleporter will become possible soon?\nTom: Yes. I hear that it (take) ______ very little time to travel.",
+                        options: ["takes", "will take", "took", "is taking"],
+                        correct: 1,
+                        clue: "Phía trước có will become, vế sau diễn tả dự đoán tương lai nên cũng dùng will cộng động từ nguyên mẫu.",
+                        explanation: "Ta chọn 'will take' vì đây là dự đoán trong tương lai theo cấu trúc thì tương lai đơn."
+                    },
+                    {
+                        q: "Alice: Right. And we (not have) ______ to wait at the airport.\nTom: Wow, that's amazing!",
+                        options: ["don't have", "won't have", "haven't", "didn't have"],
+                        correct: 1,
+                        clue: "Phủ định của thì tương lai đơn với chủ ngữ we.",
+                        explanation: "Ta chọn 'won't have' (will not have) để chỉ việc chúng ta sẽ không phải chờ ở sân bay."
+                    },
+                    {
+                        q: "Tom: ______ we (have) ______ to learn to drive it?",
+                        options: ["Do / have", "Will / have", "Will / has", "Does / have"],
+                        correct: 1,
+                        clue: "Câu hỏi thì tương lai đơn: Will cộng chủ ngữ cộng động từ nguyên mẫu.",
+                        explanation: "Ta chọn 'Will / have' vì đây là câu hỏi ở thì tương lai đơn."
+                    },
+                    {
+                        q: "Alice: No. We (not drive) ______ it. It makes us disappear then appear in seconds.",
+                        options: ["don't drive", "won't drive", "aren't driving", "didn't drive"],
+                        correct: 1,
+                        clue: "Thể phủ định tương lai đơn dùng won't cộng động từ nguyên mẫu.",
+                        explanation: "Ta chọn 'won't drive' vì đây là phủ định thì tương lai đơn."
+                    },
+                    {
+                        q: "Tom: How wonderful! There (not be) ______ traffic jams any more, right?",
+                        options: ["won't be", "aren't be", "isn't be", "won't are"],
+                        correct: 0,
+                        clue: "Cấu trúc There will be ở dạng phủ định tương lai.",
+                        explanation: "Ta chọn 'won't be' theo cấu trúc There won't be."
+                    },
+                    {
+                        q: "In 2050, flying cars (replace) ______ normal cars on city roads.",
+                        options: ["replace", "replaced", "will replace", "are replacing"],
+                        correct: 2,
+                        clue: "Mốc thời gian năm 2050 là dấu hiệu tương lai đơn.",
+                        explanation: "Ta chọn 'will replace' vì câu có mốc thời gian tương lai 2050."
+                    },
+                    {
+                        q: "Do you think people (live) ______ on Mars in the next century?",
+                        options: ["live", "lived", "will live", "are living"],
+                        correct: 2,
+                        clue: "Câu hỏi dự đoán với 'Do you think...' luôn đi với thì tương lai đơn.",
+                        explanation: "Ta chọn 'will live' cho câu hỏi dự đoán tương lai."
+                    },
+                    {
+                        q: "Solar-powered ships (help) ______ us protect the oceans from oil spills.",
+                        options: ["help", "helped", "will help", "are helping"],
+                        correct: 2,
+                        clue: "Hành động cứu giúp đại dương trong tương lai nhờ tàu năng lượng mặt trời.",
+                        explanation: "Ta chọn 'will help' vì diễn tả tác dụng tương lai của tàu."
+                    },
+                    {
+                        q: "My father says he (buy) ______ an electric scooter next month.",
+                        options: ["buys", "bought", "will buy", "is buying"],
+                        correct: 2,
+                        clue: "Dấu hiệu 'next month' và quyết định mua hàng trong tương lai.",
+                        explanation: "Ta chọn 'will buy' cho quyết định hoặc dự định tương lai với next month."
+                    },
+                    {
+                        q: "Students (not carry) ______ heavy school bags when e-books are popular.",
+                        options: ["don't carry", "won't carry", "didn't carry", "aren't carry"],
+                        correct: 1,
+                        clue: "Phủ định tương lai đơn dùng won't cộng động từ nguyên mẫu.",
+                        explanation: "Ta chọn 'won't carry' để chỉ việc học sinh sẽ không phải mang cặp nặng."
+                    },
+                    {
+                        q: "Scientists predict that robots (do) ______ all dangerous housework for us.",
+                        options: ["do", "did", "will do", "are doing"],
+                        correct: 2,
+                        clue: "Từ khóa 'predict' kết hợp với tương lai đơn.",
+                        explanation: "Ta chọn 'will do' vì dự đoán tương lai với predict."
+                    },
+                    {
+                        q: "Children (study) ______ online with virtual reality teachers in 2040.",
+                        options: ["study", "studied", "will study", "are studying"],
+                        correct: 2,
+                        clue: "Mốc thời gian năm 2040 chỉ tương lai.",
+                        explanation: "Ta chọn 'will study' cho hành động học tập trong tương lai."
+                    },
+                    {
+                        q: "______ bullet trains (connect) ______ all major cities in Viet Nam soon?",
+                        options: ["Do / connect", "Will / connect", "Did / connect", "Are / connecting"],
+                        correct: 1,
+                        clue: "Câu hỏi tương lai đơn bắt đầu bằng Will và động từ nguyên mẫu.",
+                        explanation: "Ta chọn 'Will / connect' để tạo câu hỏi tương lai đơn."
+                    },
+                    {
+                        q: "People (travel) ______ to other planets for summer holidays easily.",
+                        options: ["travel", "travelled", "will travel", "are travelling"],
+                        correct: 2,
+                        clue: "Dự đoán du lịch hành tinh khác.",
+                        explanation: "Ta chọn 'will travel' cho dự đoán du lịch không gian."
+                    },
+                    {
+                        q: "Our city (become) ______ a green smart city by 2035.",
+                        options: ["become", "became", "will become", "is becoming"],
+                        correct: 2,
+                        clue: "Mốc thời gian đến năm 2035 chỉ thời điểm trong tương lai.",
+                        explanation: "Ta chọn 'will become' cho sự thay đổi thành phố trong tương lai."
+                    },
+                    {
+                        q: "Drivers (not need) ______ to worry about red lights when cars drive themselves.",
+                        options: ["don't need", "won't need", "didn't need", "haven't needed"],
+                        correct: 1,
+                        clue: "Phủ định tương lai dùng won't need.",
+                        explanation: "Ta chọn 'won't need' vì xe tự lái giúp tài xế không phải lo lắng."
+                    },
+                    {
+                        q: "______ you (use) ______ a flying car if you have enough money?",
+                        options: ["Do / use", "Will / use", "Did / use", "Are / using"],
+                        correct: 1,
+                        clue: "Câu hỏi giả định tương lai sử dụng will.",
+                        explanation: "Ta chọn 'Will / use' trong câu hỏi giả định tương lai."
+                    },
+                    {
+                        q: "Clean energy (replace) ______ fossil fuels completely in the future.",
+                        options: ["replace", "replaced", "will replace", "is replacing"],
+                        correct: 2,
+                        clue: "Dự đoán năng lượng sạch thay thế nhiên liệu hóa thạch.",
+                        explanation: "Ta chọn 'will replace' cho dự đoán tương lai."
+                    },
+                    {
+                        q: "The air (be) ______ much fresher when petrol cars disappear.",
+                        options: ["is", "was", "will be", "has been"],
+                        correct: 2,
+                        clue: "Không khí sẽ trong lành hơn ở tương lai.",
+                        explanation: "Ta chọn 'will be' vì đây là hệ quả dự đoán trong tương lai."
+                    },
+                    {
+                        q: "Everyone (have) ______ a smart personal robot assistant soon.",
+                        options: ["have", "had", "will have", "is having"],
+                        correct: 2,
+                        clue: "Từ khóa 'soon' chỉ tương lai gần.",
+                        explanation: "Ta chọn 'will have' cho dự đoán sở hữu robot trợ lý."
+                    }
+                ]
+            },
+            4: {
+                title: "Game 4: Thám Tử Sở Hữu: Thay Thế Cụm Từ",
+                badge: "Game 4 (20 Câu)",
+                questions: [
+                    {
+                        q: "My motorbike runs on electricity. How about ______ (their motorbikes)?",
+                        options: ["theirs", "their", "theym", "themselves"],
+                        correct: 0,
+                        clue: "Thay thế cụm 'their motorbikes' bằng đại từ sở hữu tương ứng.",
+                        explanation: "Ta chọn 'theirs' để thay thế cho cụm [their cộng motorbikes] nhằm tránh lặp từ."
+                    },
+                    {
+                        q: "Your bicycle is blue and ______ (my bicycle) is red.",
+                        options: ["mine", "my", "me", "myself"],
+                        correct: 0,
+                        clue: "Thay thế cụm 'my bicycle' bằng đại từ sở hữu.",
+                        explanation: "Ta chọn 'mine' để thay thế cho cụm [my cộng bicycle]."
+                    },
+                    {
+                        q: "My dream is to travel to the moon. ______ (His dream) is different.",
+                        options: ["his", "him", "he", "hisher"],
+                        correct: 0,
+                        clue: "Tính từ sở hữu 'his' khi đứng một mình làm đại từ sở hữu vẫn giữ nguyên là 'his'.",
+                        explanation: "Ta chọn 'his' để thay thế cho 'His dream'."
+                    },
+                    {
+                        q: "My bus was late. ______ (Your bus) was on time.",
+                        options: ["yours", "your", "you", "yourself"],
+                        correct: 0,
+                        clue: "Thay thế cụm 'Your bus' thành đại từ sở hữu.",
+                        explanation: "Ta chọn 'yours' để thay thế cho cụm [your cộng bus]."
+                    },
+                    {
+                        q: "His car is a flying car. ______ (Our car) is an electric one.",
+                        options: ["ours", "our", "us", "we"],
+                        correct: 0,
+                        clue: "Thay thế cụm 'Our car' thành đại từ sở hữu.",
+                        explanation: "Ta chọn 'ours' để thay thế cho cụm [our cộng car]."
+                    },
+                    {
+                        q: "This laptop is not mine; it is ______ (her laptop).",
+                        options: ["hers", "her", "she", "herself"],
+                        correct: 0,
+                        clue: "Thay thế 'her laptop' bằng đại từ sở hữu.",
+                        explanation: "Ta chọn 'hers' để thay thế cho cụm [her cộng laptop]."
+                    },
+                    {
+                        q: "My backpack is new, but ______ (your backpack) is quite old.",
+                        options: ["yours", "your", "you", "yourself"],
+                        correct: 0,
+                        clue: "Thay thế cụm từ 'your backpack'.",
+                        explanation: "Ta chọn 'yours' để thay cho cụm [your cộng backpack]."
+                    },
+                    {
+                        q: "Their eco-friendly house has solar panels, but ______ (our house) doesn't.",
+                        options: ["ours", "our", "us", "we"],
+                        correct: 0,
+                        clue: "Thay thế cụm từ 'our house'.",
+                        explanation: "Ta chọn 'ours' để thay cho cụm [our cộng house]."
+                    },
+                    {
+                        q: "This smart phone is ______ (my phone). Yours is on the table.",
+                        options: ["mine", "my", "me", "myself"],
+                        correct: 0,
+                        clue: "Thay thế cụm từ 'my phone'.",
+                        explanation: "Ta chọn 'mine' để thay cho cụm [my cộng phone]."
+                    },
+                    {
+                        q: "Her project about future transport is excellent, and ______ (his project) is great too.",
+                        options: ["his", "him", "he", "her"],
+                        correct: 0,
+                        clue: "Thay thế cụm từ 'his project'.",
+                        explanation: "Ta chọn 'his' để thay cho cụm [his cộng project]."
+                    },
+                    {
+                        q: "Is this flying scooter ______ (your scooter)?",
+                        options: ["yours", "your", "you", "myself"],
+                        correct: 0,
+                        clue: "Đứng cuối câu hỏi sở hữu không có danh từ theo sau.",
+                        explanation: "Ta chọn 'yours' vì không có danh từ scooter đi kèm ở phía sau."
+                    },
+                    {
+                        q: "Our electric car is fast, but ______ (their car) is faster.",
+                        options: ["theirs", "their", "them", "they"],
+                        correct: 0,
+                        clue: "Thay thế cụm từ 'their car'.",
+                        explanation: "Ta chọn 'theirs' để thay cho cụm [their cộng car]."
+                    },
+                    {
+                        q: "That modern villa in the eco-city is ______ (my family's house / mine).",
+                        options: ["mine", "my", "me", "our"],
+                        correct: 0,
+                        clue: "Đại từ sở hữu thay thế nhà của tôi.",
+                        explanation: "Ta chọn 'mine' để chỉ sở hữu của tôi."
+                    },
+                    {
+                        q: "My ticket to Mars is ready. Where is ______ (your ticket)?",
+                        options: ["yours", "your", "you", "theirs"],
+                        correct: 0,
+                        clue: "Thay thế cụm từ 'your ticket'.",
+                        explanation: "Ta chọn 'yours' để thay cho cụm [your cộng ticket]."
+                    },
+                    {
+                        q: "His solar-powered boat is working well, but ______ (my boat) needs repairing.",
+                        options: ["mine", "my", "me", "ours"],
+                        correct: 0,
+                        clue: "Thay thế cụm từ 'my boat'.",
+                        explanation: "Ta chọn 'mine' để thay cho cụm [my cộng boat]."
+                    },
+                    {
+                        q: "These futuristic helmets are ours, and those are ______ (their helmets).",
+                        options: ["theirs", "their", "them", "they"],
+                        correct: 0,
+                        clue: "Thay thế cụm từ 'their helmets'.",
+                        explanation: "Ta chọn 'theirs' để thay cho cụm [their cộng helmets]."
+                    },
+                    {
+                        q: "My tablet has internet access, but ______ (her tablet) doesn't.",
+                        options: ["hers", "her", "she", "his"],
+                        correct: 0,
+                        clue: "Thay thế cụm từ 'her tablet'.",
+                        explanation: "Ta chọn 'hers' để thay cho cụm [her cộng tablet]."
+                    },
+                    {
+                        q: "Our driverless car is white. What color is ______ (your car)?",
+                        options: ["yours", "your", "you", "mine"],
+                        correct: 0,
+                        clue: "Thay thế cụm từ 'your car'.",
+                        explanation: "Ta chọn 'yours' để thay cho cụm [your cộng car]."
+                    },
+                    {
+                        q: "That model of a bullet train is ______ (his model).",
+                        options: ["his", "him", "he", "hers"],
+                        correct: 0,
+                        clue: "Thay thế cụm từ 'his model'.",
+                        explanation: "Ta chọn 'his' để thay cho cụm [his cộng model]."
+                    },
+                    {
+                        q: "My ideas about future travel are simple. What about ______ (your ideas)?",
+                        options: ["yours", "your", "you", "ours"],
+                        correct: 0,
+                        clue: "Thay thế cụm từ 'your ideas'.",
+                        explanation: "Ta chọn 'yours' để thay cho cụm [your cộng ideas]."
+                    }
+                ]
+            },
+            5: {
+                title: "Game 5: Bác Sĩ Cú Pháp: Bắt Bệnh Lỗi Sai",
+                badge: "Game 5 (20 Câu)",
+                questions: [
+                    {
+                        q: "Find the mistake: 'We will goes to school by flying car in 2050.'",
+                        options: ["will", "goes", "by", "in"],
+                        correct: 1,
+                        clue: "Sau trợ động từ will, động từ phải ở dạng nguyên mẫu không chia.",
+                        explanation: "Lỗi sai ở 'goes'. Phải sửa thành 'go' vì sau will luôn là động từ nguyên mẫu không chia."
+                    },
+                    {
+                        q: "Find the mistake: 'Will you to travel by teleporter tomorrow?'",
+                        options: ["Will", "to travel", "by", "tomorrow"],
+                        correct: 1,
+                        clue: "Trong câu hỏi tương lai đơn với Will, không có chữ 'to' trước động từ.",
+                        explanation: "Lỗi sai ở 'to travel'. Phải sửa thành 'travel' vì cấu trúc câu hỏi là Will cộng chủ ngữ cộng động từ nguyên mẫu."
+                    },
+                    {
+                        q: "Find the mistake: 'This is my bicycle. That bicycle is mine bicycle.'",
+                        options: ["is", "my", "That", "mine bicycle"],
+                        correct: 3,
+                        clue: "Đại từ sở hữu 'mine' đứng độc lập, tuyệt đối không đi kèm danh từ phía sau.",
+                        explanation: "Lỗi sai ở 'mine bicycle'. Đại từ sở hữu 'mine' đã bao gồm danh từ nên không được kèm 'bicycle', chỉ dùng 'mine'."
+                    },
+                    {
+                        q: "Find the mistake: 'People won't driving normal cars in the future.'",
+                        options: ["won't", "driving", "normal", "in"],
+                        correct: 1,
+                        clue: "Sau won't phải là động từ nguyên mẫu không chia.",
+                        explanation: "Lỗi sai ở 'driving'. Phải sửa thành 'drive' vì sau won't là động từ nguyên mẫu."
+                    },
+                    {
+                        q: "Find the mistake: 'Where will we travels in our holiday next summer?'",
+                        options: ["Where", "will", "travels", "next summer"],
+                        correct: 2,
+                        clue: "Sau will, động từ chia thêm s là sai nguyên tắc nguyên mẫu.",
+                        explanation: "Lỗi sai ở 'travels'. Phải sửa thành 'travel' nguyên mẫu."
+                    },
+                    {
+                        q: "Find the mistake: 'Is this your book? No, it's hers book.'",
+                        options: ["your", "No", "it's", "hers book"],
+                        correct: 3,
+                        clue: "Đại từ sở hữu 'hers' đứng một mình, không ghép với danh từ 'book'.",
+                        explanation: "Lỗi sai ở 'hers book'. Phải sửa thành 'hers'."
+                    },
+                    {
+                        q: "Find the mistake: 'Bullet trains will popular in Viet Nam soon.'",
+                        options: ["will", "popular", "in", "soon"],
+                        correct: 0,
+                        clue: "Thiếu động từ 'be' trước tính từ 'popular' sau will.",
+                        explanation: "Lỗi sai cấu trúc. Phải sửa thành 'will be popular' vì tính từ phải đi với động từ 'be'."
+                    },
+                    {
+                        q: "Find the mistake: 'What transport will use people in 2050?'",
+                        options: ["What transport", "will", "use people", "in 2050"],
+                        correct: 2,
+                        clue: "Trật tự câu hỏi Wh-: Từ để hỏi cộng will cộng chủ ngữ cộng động từ nguyên mẫu. 'use people' bị ngược chủ ngữ.",
+                        explanation: "Lỗi sai trật tự 'use people'. Phải sửa thành 'will people use'."
+                    },
+                    {
+                        q: "Find the mistake: 'Our car is electric, but their is petrol-powered.'",
+                        options: ["is", "electric", "their", "petrol-powered"],
+                        correct: 2,
+                        clue: "Chủ ngữ chỉ xe của họ phải dùng đại từ sở hữu 'theirs' thay vì 'their'.",
+                        explanation: "Lỗi sai ở 'their'. Phải sửa thành đại từ sở hữu 'theirs'."
+                    },
+                    {
+                        q: "Find the mistake: 'There will not a traffic jam on the sky highway.'",
+                        options: ["will not", "a traffic jam", "on", "sky highway"],
+                        correct: 0,
+                        clue: "Cấu trúc There will be thiếu động từ 'be'.",
+                        explanation: "Lỗi sai ở 'will not'. Phải sửa thành 'will not be' (won't be)."
+                    },
+                    {
+                        q: "Find the mistake: 'Does she will take a holiday on the moon?'",
+                        options: ["Does", "will", "take", "on the moon"],
+                        correct: 0,
+                        clue: "Không dùng trợ động từ 'Does' chung với 'will' trong thì tương lai đơn.",
+                        explanation: "Lỗi sai ở 'Does'. Phải đổi thành 'Will' đứng đầu câu hỏi tương lai."
+                    },
+                    {
+                        q: "Find the mistake: 'My laptop is modern. Your is old.'",
+                        options: ["modern", "Your", "is", "old"],
+                        correct: 1,
+                        clue: "Đại từ sở hữu chỉ máy tính của bạn phải là 'Yours'.",
+                        explanation: "Lỗi sai ở 'Your'. Phải sửa thành đại từ sở hữu 'Yours'."
+                    },
+                    {
+                        q: "Find the mistake: 'Solar-powered ships won't polluting the water.'",
+                        options: ["won't", "polluting", "the water", "ships"],
+                        correct: 1,
+                        clue: "Sau won't phải là động từ nguyên mẫu, không dùng đuôi -ing.",
+                        explanation: "Lỗi sai ở 'polluting'. Phải sửa thành 'pollute'."
+                    },
+                    {
+                        q: "Find the mistake: 'Will be there flying cars in our city?'",
+                        options: ["Will be", "there", "flying cars", "in our city"],
+                        correct: 0,
+                        clue: "Cấu trúc câu hỏi There will be phải đảo Will trước there.",
+                        explanation: "Lỗi sai trật tự 'Will be there'. Phải sửa thành 'Will there be'."
+                    },
+                    {
+                        q: "Find the mistake: 'This house is our, and that house is theirs.'",
+                        options: ["This house", "our", "that house", "theirs"],
+                        correct: 1,
+                        clue: "Tính từ sở hữu đứng độc lập cuối câu là sai, phải dùng đại từ sở hữu 'ours'.",
+                        explanation: "Lỗi sai ở 'our'. Phải sửa thành đại từ sở hữu 'ours'."
+                    },
+                    {
+                        q: "Find the mistake: 'Children doesn't go to school by normal bus in the future.'",
+                        options: ["doesn't", "go", "by", "in the future"],
+                        correct: 0,
+                        clue: "Thì tương lai đơn phủ định dùng 'won't', không dùng 'doesn't'.",
+                        explanation: "Lỗi sai ở 'doesn't'. Phải sửa thành 'won't'."
+                    },
+                    {
+                        q: "Find the mistake: 'How far it will take to travel from Ha Noi to Da Nang?'",
+                        options: ["How far", "it will take", "to travel", "from"],
+                        correct: 1,
+                        clue: "Câu hỏi với will phải đảo trợ động từ lên trước chủ ngữ it.",
+                        explanation: "Lỗi sai trật tự 'it will take'. Phải sửa thành 'will it take'."
+                    },
+                    {
+                        q: "Find the mistake: 'His motorbike is fast, but her is slow.'",
+                        options: ["is fast", "her", "is slow", "motorbike"],
+                        correct: 1,
+                        clue: "Đại từ sở hữu chỉ xe của cô ấy phải là 'hers'.",
+                        explanation: "Lỗi sai ở 'her'. Phải sửa thành 'hers'."
+                    },
+                    {
+                        q: "Find the mistake: 'Will you can fly a personal aircraft in 2035?'",
+                        options: ["Will", "can", "fly", "in 2035"],
+                        correct: 1,
+                        clue: "Không dùng đồng thời hai trợ động từ hoặc động từ khuyết thiếu cạnh nhau.",
+                        explanation: "Lỗi sai thừa 'can'. Phải bỏ 'can' hoặc dùng 'Will you be able to...'."
+                    },
+                    {
+                        q: "Find the mistake: 'Their project is great, and mine is too.'",
+                        options: ["Their project", "is great", "mine", "too"],
+                        correct: 2,
+                        clue: "Câu này hoàn toàn chính xác, không có lỗi ngữ pháp ('mine' là đại từ sở hữu đứng đúng vị trí).",
+                        explanation: "Câu này hoàn toàn chính xác, không có lỗi ngữ pháp ('mine' là đại từ sở hữu đứng đúng vị trí)."
+                    }
+                ]
+            }
+        };
+
+        let currentActiveGame = 1;
+        let currentQuestionIndex = 0;
+        let userAnswers = {};
+        let currentGameQuestions = [];
+
+        // TTS Voice Helper with US Female priority
+        function speakText(text) {
+            if (!window.speechSynthesis) return;
+            window.speechSynthesis.cancel();
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.95;
+            
+            const voices = window.speechSynthesis.getVoices();
+            const usFemale = voices.find(v => v.lang.includes('en') && (v.name.includes('Female') || v.name.includes('Samantha') || v.name.includes('Zira') || v.name.includes('Google US English')));
+            if (usFemale) utterance.voice = usFemale;
+
+            window.speechSynthesis.speak(utterance);
+        }
+
+        function speakCurrentQuestion() {
+            const qObj = currentGameQuestions[currentQuestionIndex];
+            speakText(qObj.q);
+        }
+
+        // View Switcher
+        function switchView(viewName) {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            document.getElementById('view-home-container').classList.add('hidden');
+            document.getElementById('view-handbook-container').classList.add('hidden');
+            document.getElementById('view-game-container').classList.add('hidden');
+            document.getElementById('view-results-container').classList.add('hidden');
+            document.getElementById('review-section').classList.add('hidden');
+
+            const titleEl = document.getElementById('view-title');
+            const subEl = document.getElementById('view-subtitle');
+
+            if (viewName === 'home') {
+                document.getElementById('view-home-container').classList.remove('hidden');
+                titleEl.innerText = "🚀 Kho Tàng Game Ngữ Pháp Unit 11";
+                subEl.innerText = "Lựa chọn cẩm nang lý thuyết hoặc 5 thử thách game đỉnh cao bám sát SGK Global Success 7!";
+            } else if (viewName === 'handbook') {
+                document.getElementById('view-handbook-container').classList.remove('hidden');
+                titleEl.innerText = "📖 Cẩm Nang Ngữ Pháp Unit 11";
+                subEl.innerText = "Hệ thống kiến thức trọng tâm & Bí kíp chinh phục điểm 10 cùng Ms. Lily.";
+            } else if (viewName === 'game') {
+                document.getElementById('view-game-container').classList.remove('hidden');
+            } else if (viewName === 'results') {
+                document.getElementById('view-results-container').classList.remove('hidden');
+                titleEl.innerText = "🏆 Kết Quả Thử Thách Ngữ Pháp";
+                subEl.innerText = "Xem lại điểm số, đánh giá năng lực và tra cứu đáp án chi tiết.";
+            }
+        }
+
+        // Start Game
+        function startSelectedGame(gameNum) {
+            currentActiveGame = gameNum;
+            currentQuestionIndex = 0;
+            userAnswers = {};
+            currentGameQuestions = gameData[gameNum].questions;
+
+            document.getElementById('game-badge').innerText = gameData[gameNum].badge;
+            document.getElementById('active-game-title').innerText = gameData[gameNum].title;
+
+            switchView('game');
+            renderQuestion();
+        }
+
+        // Render Question
+        function renderQuestion() {
+            const qObj = currentGameQuestions[currentQuestionIndex];
+            document.getElementById('current-q-num').innerText = currentQuestionIndex + 1;
+            document.getElementById('question-text').innerText = qObj.q;
+            
+            // Progress
+            const total = currentGameQuestions.length;
+            const progressPercent = ((currentQuestionIndex + 1) / total) * 100;
+            document.getElementById('progress-text').innerText = `${currentQuestionIndex + 1} / ${total}`;
+            document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+
+            // Clue
+            const clueBox = document.getElementById('clue-box');
+            clueBox.classList.add('hidden');
+            clueBox.innerText = `💡 Gợi ý của cô Lily: ${qObj.clue}`;
+
+            // Options
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+
+            qObj.options.forEach((opt, idx) => {
+                const isSelected = userAnswers[currentQuestionIndex] === idx;
+                const btnClass = isSelected 
+                    ? 'bg-blue-600 text-white border-blue-600 shadow-md' 
+                    : 'bg-slate-50 text-slate-800 border-slate-200 hover:bg-blue-50 hover:border-blue-200';
+
+                const div = document.createElement('div');
+                div.className = `p-4 rounded-2xl border-2 font-medium text-sm cursor-pointer transition flex justify-between items-center ${btnClass}`;
+                div.innerHTML = `
+                    <span><b>${String.fromCharCode(65 + idx)}.</b> ${opt}</span>
+                    <button onclick="event.stopPropagation(); speakText('${opt.replace(/'/g, "\\'")}')" class="text-blue-500 hover:text-blue-700 p-1"><i class="fa-solid fa-volume-high"></i></button>
+                `;
+                div.onclick = () => selectOption(idx);
+                optionsContainer.appendChild(div);
+            });
+
+            // Buttons
+            document.getElementById('btn-prev').disabled = currentQuestionIndex === 0;
+            const nextBtn = document.getElementById('btn-next');
+            if (currentQuestionIndex === total - 1) {
+                nextBtn.innerHTML = `Nộp Bài & Xem Điểm <i class="fa-solid fa-check-circle ml-1"></i>`;
+                nextBtn.onclick = submitQuiz;
+            } else {
+                nextBtn.innerHTML = `Câu tiếp theo <i class="fa-solid fa-arrow-right ml-1"></i>`;
+                nextBtn.onclick = nextQuestion;
+            }
+        }
+
+        function selectOption(optIdx) {
+            userAnswers[currentQuestionIndex] = optIdx;
+            renderQuestion();
+            speakText(currentGameQuestions[currentQuestionIndex].options[optIdx]);
+        }
+
+        function toggleClue() {
+            const clueBox = document.getElementById('clue-box');
+            clueBox.classList.toggle('hidden');
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIndex < currentGameQuestions.length - 1) {
+                currentQuestionIndex++;
+                renderQuestion();
+            }
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                renderQuestion();
+            }
+        }
+
+        // Submit Quiz & Evaluate
+        function submitQuiz() {
+            let score = 0;
+            currentGameQuestions.forEach((q, idx) => {
+                if (userAnswers[idx] === q.correct) {
+                    score++;
+                }
+            });
+
+            const total = currentGameQuestions.length;
+            const percent = Math.round((score / total) * 100);
+
+            document.getElementById('final-score-text').innerText = `${score} / ${total}`;
+            document.getElementById('final-percent-text').innerText = `${percent}%`;
+
+            let rank = "Cần Cố Gắng 💪";
+            let comment = "Em cần ôn tập thêm cẩm nang lý thuyết ngữ pháp Unit 11 nhé!";
+            if (percent >= 90) {
+                rank = "Xuất Sắc 🌟";
+                comment = "Quá đỉnh cao! Em đã nắm trọn vẹn ngữ pháp Unit 11 như một chuyên gia thực thụ.";
+            } else if (percent >= 70) {
+                rank = "Giỏi 🎯";
+                comment = "Làm bài rất tốt! Em đã hiểu sâu sắc các cấu trúc tương lai đơn và đại từ sở hữu.";
+            } else if (percent >= 50) {
+                rank = "Khá 👍";
+                comment = "Em đã hoàn thành bài, hãy xem lại phần giải thích để khắc phục những câu còn sai nhé.";
+            }
+
+            document.getElementById('final-rank-text').innerText = rank;
+            document.getElementById('result-comment').innerText = comment;
+
+            switchView('results');
+        }
+
+        function restartCurrentGame() {
+            startSelectedGame(currentActiveGame);
+        }
+
+        // Review Mistakes & Explanations
+        function reviewMistakes() {
+            const reviewSection = document.getElementById('review-section');
+            reviewSection.classList.remove('hidden');
+
+            const reviewList = document.getElementById('review-list');
+            reviewList.innerHTML = '';
+
+            currentGameQuestions.forEach((q, idx) => {
+                const userChoice = userAnswers[idx];
+                const isCorrect = userChoice === q.correct;
+                const userAnsText = userChoice !== undefined ? q.options[userChoice] : "Chưa trả lời";
+                const correctAnsText = q.options[q.correct];
+
+                const card = document.createElement('div');
+                card.className = `p-5 rounded-2xl border ${isCorrect ? 'bg-emerald-50/50 border-emerald-200' : 'bg-rose-50/50 border-rose-200'} space-y-3`;
+                card.innerHTML = `
+                    <div class="flex justify-between items-start gap-2">
+                        <span class="text-xs font-bold px-2.5 py-1 rounded-md ${isCorrect ? 'bg-emerald-100 text-emerald-800' : 'bg-rose-100 text-rose-800'}">
+                            Câu ${idx + 1}: ${isCorrect ? 'Chính xác ✔' : 'Chưa chính xác ✖'}
+                        </span>
+                        <button onclick="speakText('${q.q.replace(/'/g, "\\'")}')" class="text-blue-600 hover:text-blue-800 text-xs font-bold flex items-center gap-1">
+                            <i class="fa-solid fa-volume-high"></i> Nghe câu hỏi
+                        </button>
+                    </div>
+                    <p class="text-sm font-bold text-slate-900">${q.q}</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+                        <div class="p-2.5 rounded-xl bg-white border border-slate-200">
+                            <span class="text-slate-500 block">Lựa chọn của em:</span>
+                            <span class="font-bold ${isCorrect ? 'text-emerald-700' : 'text-rose-700'}">${userAnsText}</span>
+                        </div>
+                        <div class="p-2.5 rounded-xl bg-white border border-slate-200">
+                            <span class="text-slate-500 block">Đáp án chuẩn:</span>
+                            <span class="font-bold text-emerald-700">${correctAnsText}</span>
+                        </div>
+                    </div>
+                    <div class="p-3 bg-white/80 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed">
+                        <b>💡 Giải thích của cô Lily:</b> ${q.explanation}
+                    </div>
+                `;
+                reviewList.appendChild(card);
+            });
+
+            reviewSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>

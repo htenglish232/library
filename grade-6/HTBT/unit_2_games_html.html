@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HT English - Unit 2: My House Interactive Games</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Lexend -->
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Lexend', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              500: '#22c55e',
+              600: '#16a34a',
+              700: '#15803d',
+              800: '#166534',
+              900: '#14532d',
+            },
+            accent: {
+              gold: '#f59e0b',
+              navy: '#1e3a8a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Lexend', sans-serif;
+      background-color: #f8fafc;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    @keyframes pulse-speaker {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.15); }
+    }
+    .speaking {
+      animation: pulse-speaker 0.6s infinite ease-in-out;
+      color: #ea580c !important;
+    }
+  </style>
+</head>
+<body class="text-slate-800 flex flex-col min-h-screen">
+
+  <!-- TOP HEADER / BRANDING BANNER -->
+  <header class="bg-gradient-to-r from-blue-900 via-indigo-900 to-slate-900 text-white shadow-lg sticky top-0 z-50 border-b-4 border-amber-400">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between gap-3">
+      
+      <!-- Brand & Teacher Info -->
+      <div class="flex items-center space-x-3 text-center md:text-left">
+        <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-amber-400 to-yellow-200 text-blue-900 flex items-center justify-center font-black text-2xl shadow-inner border-2 border-white flex-shrink-0">
+          HT
+        </div>
+        <div>
+          <div class="flex items-center gap-2 justify-center md:justify-start">
+            <h1 class="text-xl font-extrabold tracking-wide text-amber-300">HT ENGLISH CENTER</h1>
+            <span class="bg-emerald-500 text-white text-xs px-2 py-0.5 rounded-full font-semibold">Ms. Lily</span>
+          </div>
+          <p class="text-xs text-slate-300 flex items-center gap-1 justify-center md:justify-start">
+            <i class="fas fa-map-marker-alt text-amber-400"></i> Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình
+          </p>
+        </div>
+      </div>
+
+      <!-- Hotline & Class Title -->
+      <div class="flex flex-wrap items-center justify-center gap-3">
+        <div class="bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-lg border border-white/20 text-xs text-center">
+          <span class="block text-amber-300 font-bold"><i class="fas fa-phone-alt"></i> HOTLINE TƯ VẤN</span>
+          <span class="font-bold tracking-wider text-white">0963 422 940 - 0962 240 866</span>
+        </div>
+        <button onclick="toggleTheoryModal()" class="bg-amber-500 hover:bg-amber-600 text-blue-950 font-bold text-xs px-3 py-2 rounded-lg transition duration-200 flex items-center gap-1.5 shadow">
+          <i class="fas fa-book-open"></i> Xem Lý Thuyết Unit 2
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- SUB BANNER - UNIT 2 TITLE -->
+  <div class="bg-gradient-to-r from-amber-500 via-amber-400 to-amber-500 text-blue-950 py-2 shadow-inner border-b border-amber-600">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between text-center sm:text-left text-sm font-bold">
+      <div class="flex items-center gap-2">
+        <i class="fas fa-home text-lg"></i>
+        <span>UNIT 2: MY HOUSE (TIẾNG ANH LỚP 6)</span>
+      </div>
+      <div class="text-xs bg-blue-950 text-white px-2.5 py-1 rounded-full mt-1 sm:mt-0 font-normal">
+        Nội dung: A Closer Look 1 & 2 + Skills (Posters 1 & 2)
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-6xl mx-auto px-4 py-6 flex-grow w-full">
+
+    <!-- OVERALL DASHBOARD & GAME SELECTOR -->
+    <div id="dashboardView" class="space-y-6">
+
+      <!-- Welcome Banner -->
+      <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 opacity-10 text-slate-800 text-9xl">
+          <i class="fas fa-gamepad"></i>
+        </div>
+        <div class="relative z-10">
+          <h2 class="text-2xl font-extrabold text-blue-900 mb-2 flex items-center gap-2">
+            <span>👋 Chào mừng các em học sinh đến với Lớp Học Ms. Lily!</span>
+          </h2>
+          <p class="text-slate-600 text-sm leading-relaxed max-w-3xl">
+            Ứng dụng bao gồm <strong class="text-blue-950">5 Game Học Tập Tương Tác</strong> giúp các em làm chủ toàn bộ từ vựng, ngữ pháp <em>(There is/are, Sở hữu cách)</em>, giới từ chỉ vị trí và câu mô tả trong Unit 2. Hãy ấn vào biểu tượng chiếc loa <i class="fas fa-volume-high text-amber-500"></i> để nghe phát âm tiếng Anh chuẩn bất cứ lúc nào!
+          </p>
+
+          <!-- Overall Score Summary Bar -->
+          <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div class="bg-blue-50 border border-blue-200 rounded-xl p-3 text-center">
+              <span class="block text-xs font-semibold text-blue-600">Tổng điểm tích lũy</span>
+              <span id="totalScoreText" class="text-2xl font-black text-blue-900">0 / 500</span>
+            </div>
+            <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-center">
+              <span class="block text-xs font-semibold text-emerald-600">Game đã hoàn thành</span>
+              <span id="gamesCompletedText" class="text-2xl font-black text-emerald-800">0 / 5</span>
+            </div>
+            <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 text-center">
+              <span class="block text-xs font-semibold text-amber-700">Tổng số câu hỏi</span>
+              <span class="text-2xl font-black text-amber-800">50 Câu</span>
+            </div>
+            <div class="bg-purple-50 border border-purple-200 rounded-xl p-3 text-center">
+              <span class="block text-xs font-semibold text-purple-600">Danh hiệu</span>
+              <span id="badgeText" class="text-sm font-bold text-purple-900 mt-1 block">🌱 Tập Sự</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 GAME CARDS GRID -->
+      <div>
+        <h3 class="text-lg font-bold text-slate-800 mb-4 flex items-center gap-2">
+          <i class="fas fa-trophy text-amber-500"></i> Danh Sách 5 Game Học Tập Unit 2
+        </h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="gameCardsContainer">
+          <!-- Game cards will be populated dynamically -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- GAME PLAY INTERFACE -->
+    <div id="gamePlayView" class="hidden space-y-6">
+
+      <!-- Top Navigation & Score Bar -->
+      <div class="bg-white rounded-xl p-4 shadow border border-slate-200 flex flex-wrap items-center justify-between gap-3">
+        <button onclick="showDashboard()" class="text-slate-600 hover:text-blue-900 font-bold text-sm flex items-center gap-1.5 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg transition">
+          <i class="fas fa-arrow-left"></i> Quay lại Menu
+        </button>
+
+        <div class="flex items-center gap-3">
+          <span id="currentGameBadge" class="bg-blue-900 text-white text-xs font-bold px-3 py-1 rounded-full">
+            Game 1
+          </span>
+          <span id="questionProgressText" class="text-sm font-bold text-slate-700">
+            Câu 1 / 10
+          </span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <i class="fas fa-star text-amber-400 text-lg"></i>
+          <span id="currentGameScoreText" class="font-extrabold text-blue-900 text-lg">0</span>
+          <span class="text-xs text-slate-500">điểm</span>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="w-full bg-slate-200 rounded-full h-2.5 overflow-hidden">
+        <div id="progressBarFill" class="bg-gradient-to-r from-blue-600 to-emerald-500 h-2.5 rounded-full transition-all duration-300" style="width: 10%;"></div>
+      </div>
+
+      <!-- QUESTION CARD -->
+      <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 space-y-6">
+        
+        <!-- Category & Context -->
+        <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+          <span id="questionCategoryTag" class="text-xs font-bold text-indigo-700 bg-indigo-50 border border-indigo-200 px-3 py-1 rounded-full">
+            Từ vựng
+          </span>
+          <span class="text-xs text-slate-400 italic">Nhấn vào nút chiếc loa 🔊 để nghe phát âm</span>
+        </div>
+
+        <!-- Question Prompt with Speaker -->
+        <div class="bg-slate-50 rounded-xl p-4 border border-slate-200">
+          <p id="questionContextVN" class="text-xs text-slate-500 font-medium mb-1"></p>
+          <div class="flex items-start gap-3">
+            <h3 id="questionTextEN" class="text-lg md:text-xl font-bold text-blue-950 flex-grow leading-snug">
+              Loading question...
+            </h3>
+            <button id="btnSpeakerQuestion" onclick="speakCurrentQuestion()" class="p-2.5 bg-amber-100 hover:bg-amber-200 text-amber-800 rounded-full transition shadow-sm flex-shrink-0 text-base" title="Nghe câu hỏi">
+              <i class="fas fa-volume-high"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- OPTIONS GRID -->
+        <div id="optionsContainer" class="grid grid-cols-1 md:grid-cols-2 gap-3">
+          <!-- Dynamic 4 Options -->
+        </div>
+
+        <!-- EXPLANATION & RESULT PANEL (Hidden initially) -->
+        <div id="explanationPanel" class="hidden rounded-xl p-5 border transition-all duration-300 space-y-3">
+          <div class="flex items-center justify-between border-b pb-2">
+            <div id="resultStatusText" class="font-extrabold text-base flex items-center gap-2">
+              <!-- Result Status -->
+            </div>
+            <button id="btnSpeakerFullSentence" onclick="speakFullSentence()" class="text-xs bg-white/80 hover:bg-white text-slate-800 font-bold px-3 py-1.5 rounded-lg border shadow-sm flex items-center gap-1.5">
+              <i class="fas fa-volume-high text-amber-600"></i> Nghe câu hoàn chỉnh
+            </button>
+          </div>
+
+          <!-- Explanation Details -->
+          <div class="space-y-2 text-sm">
+            <div>
+              <span class="font-bold text-slate-800 block text-xs uppercase tracking-wider"><i class="fas fa-lightbulb text-amber-500"></i> Tại sao chọn đáp án này?</span>
+              <p id="explanationText" class="text-slate-700 mt-0.5 leading-relaxed"></p>
+            </div>
+            <div class="bg-white/60 p-2.5 rounded-lg border border-slate-200/80">
+              <span class="font-bold text-indigo-900 text-xs block"><i class="fas fa-bookmark text-indigo-600"></i> Cấu trúc ngữ pháp trọng tâm:</span>
+              <code id="grammarRuleText" class="text-xs text-indigo-800 font-semibold block mt-0.5"></code>
+            </div>
+          </div>
+
+          <!-- Next Button -->
+          <div class="pt-2 flex justify-end">
+            <button id="btnNextQuestion" onclick="nextQuestion()" class="bg-blue-900 hover:bg-blue-950 text-white font-bold text-sm px-5 py-2.5 rounded-xl shadow transition flex items-center gap-2">
+              <span>Câu tiếp theo</span>
+              <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- GAME COMPLETE SCREEN -->
+    <div id="gameCompleteView" class="hidden bg-white rounded-2xl p-8 shadow-md border border-slate-200 text-center space-y-6 max-w-2xl mx-auto">
+      <div class="inline-block p-4 bg-amber-100 rounded-full text-amber-600 text-5xl mb-2 animate-bounce">
+        <i class="fas fa-trophy"></i>
+      </div>
+      <div>
+        <h2 class="text-2xl font-black text-blue-900">HOÀN THÀNH GAME!</h2>
+        <p id="gameCompleteTitle" class="text-slate-600 font-medium mt-1"></p>
+      </div>
+
+      <!-- Score Box -->
+      <div class="bg-slate-50 rounded-2xl p-6 border border-slate-200 grid grid-cols-2 gap-4">
+        <div>
+          <span class="text-xs font-semibold text-slate-500 block">Số câu trả lời đúng</span>
+          <span id="finalCorrectCount" class="text-3xl font-black text-emerald-600">0 / 10</span>
+        </div>
+        <div>
+          <span class="text-xs font-semibold text-slate-500 block">Tổng điểm đạt được</span>
+          <span id="finalScore" class="text-3xl font-black text-blue-900">0 Pts</span>
+        </div>
+      </div>
+
+      <div id="teacherFeedbackBox" class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl text-emerald-900 text-sm font-medium">
+        <!-- Teacher praise message -->
+      </div>
+
+      <!-- Actions -->
+      <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+        <button onclick="retryCurrentGame()" class="bg-slate-200 hover:bg-slate-300 text-slate-800 font-bold px-5 py-2.5 rounded-xl transition flex items-center gap-2">
+          <i class="fas fa-redo"></i> Chơi lại Game này
+        </button>
+        <button onclick="showDashboard()" class="bg-blue-900 hover:bg-blue-950 text-white font-bold px-6 py-2.5 rounded-xl shadow transition flex items-center gap-2">
+          <i class="fas fa-th-large"></i> Chọn Game Khác
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- THEORY MODAL (POSTER 1 & 2 QUICK LOOKUP) -->
+  <div id="theoryModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200">
+      
+      <!-- Modal Header -->
+      <div class="bg-blue-900 text-white p-4 flex items-center justify-between border-b border-blue-800">
+        <div class="flex items-center gap-2">
+          <i class="fas fa-book-open text-amber-400"></i>
+          <h3 class="font-extrabold text-base md:text-lg">TỔNG HỢP LÝ THUYẾT UNIT 2: MY HOUSE</h3>
+        </div>
+        <button onclick="toggleTheoryModal()" class="text-white/80 hover:text-white text-xl p-1">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+
+      <!-- Modal Content - Scrollable -->
+      <div class="p-6 overflow-y-auto space-y-6 custom-scrollbar text-sm">
+        
+        <!-- Section 1: Từ vựng & Phòng & Đồ đạc -->
+        <div class="space-y-3">
+          <h4 class="font-extrabold text-blue-900 border-b pb-1 flex items-center gap-2 text-base">
+            <span class="bg-blue-100 text-blue-900 px-2 py-0.5 rounded text-xs">POSTER 1</span> 1. Từ Vựng & Cụm Từ Trọng Tâm
+          </h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div class="bg-slate-50 p-3 rounded-lg border">
+              <strong class="text-blue-900 block mb-1">a. Rooms in the house (Các phòng)</strong>
+              <ul class="text-xs space-y-1 text-slate-700">
+                <li>• <strong>hall</strong>: sảnh / hành lang</li>
+                <li>• <strong>kitchen</strong>: nhà bếp</li>
+                <li>• <strong>bedroom</strong>: phòng ngủ</li>
+                <li>• <strong>bathroom</strong>: phòng tắm</li>
+                <li>• <strong>living room</strong>: phòng khách</li>
+              </ul>
+            </div>
+            <div class="bg-slate-50 p-3 rounded-lg border">
+              <strong class="text-blue-900 block mb-1">b. House types (Loại nhà)</strong>
+              <ul class="text-xs space-y-1 text-slate-700">
+                <li>• <strong>town house</strong>: nhà phố</li>
+                <li>• <strong>country house</strong>: nhà ở quê</li>
+                <li>• <strong>flat</strong>: căn hộ</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="bg-slate-50 p-3 rounded-lg border">
+            <strong class="text-blue-900 block mb-1">c. Furniture (Đồ nội thất)</strong>
+            <p class="text-xs text-slate-700 leading-relaxed">
+              sofa (ghế sofa), chair (ghế), table (bàn), lamp (đèn bàn), cupboard (tủ), chest of drawers (tủ ngăn kéo), fridge (tủ lạnh), sink (bồn rửa), dishwasher (máy rửa bát), toilet (bồn cầu), picture (bức tranh), shower (vòi sen).
+            </p>
+          </div>
+        </div>
+
+        <!-- Section 2: Ngữ pháp -->
+        <div class="space-y-3">
+          <h4 class="font-extrabold text-blue-900 border-b pb-1 flex items-center gap-2 text-base">
+            <span class="bg-amber-100 text-amber-900 px-2 py-0.5 rounded text-xs">POSTER 2</span> 2. Ngữ Pháp & Cấu Trúc Trọng Tâm
+          </h4>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <!-- Possessive Case -->
+            <div class="bg-amber-50/60 p-3 rounded-lg border border-amber-200">
+              <strong class="text-amber-900 block mb-1">A. Possessive Case (Sở hữu cách)</strong>
+              <code class="block text-xs bg-white p-1.5 rounded font-bold text-amber-800 mb-1 border">Noun + 's + noun</code>
+              <p class="text-xs text-slate-700">
+                Ví dụ: <em>Elena's room</em> (phòng của Elena), <em>my mum's book</em> (sách của mẹ tôi), <em>Nick's computer</em>.
+              </p>
+            </div>
+
+            <!-- There is / There are -->
+            <div class="bg-blue-50/60 p-3 rounded-lg border border-blue-200">
+              <strong class="text-blue-900 block mb-1">B. There is / There are</strong>
+              <div class="text-xs space-y-1 text-slate-700">
+                <p>• <strong>There is + danh từ số ít</strong> (Ex: <em>There is a table in the room.</em>)</p>
+                <p>• <strong>There are + danh từ số nhiều</strong> (Ex: <em>There are two bedrooms.</em>)</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Prepositions of place -->
+          <div class="bg-emerald-50/60 p-3 rounded-lg border border-emerald-200">
+            <strong class="text-emerald-900 block mb-1">C. Prepositions of place (Giới từ chỉ vị trí)</strong>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs text-slate-700 mt-2">
+              <div class="bg-white p-1.5 rounded text-center border"><strong>in</strong>: trong</div>
+              <div class="bg-white p-1.5 rounded text-center border"><strong>on</strong>: trên</div>
+              <div class="bg-white p-1.5 rounded text-center border"><strong>under</strong>: dưới</div>
+              <div class="bg-white p-1.5 rounded text-center border"><strong>behind</strong>: phía sau</div>
+              <div class="bg-white p-1.5 rounded text-center border"><strong>in front of</strong>: phía trước</div>
+              <div class="bg-white p-1.5 rounded text-center border"><strong>next to</strong>: bên cạnh</div>
+              <div class="bg-white p-1.5 rounded text-center border"><strong>between</strong>: ở giữa</div>
+              <div class="bg-white p-1.5 rounded text-center border"><strong>near</strong>: gần</div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="bg-slate-100 p-3 border-t text-right">
+        <button onclick="toggleTheoryModal()" class="bg-blue-900 text-white font-bold text-xs px-4 py-2 rounded-lg">
+          Đã hiểu & Đóng lại
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FOOTER BRANDING -->
+  <footer class="bg-slate-900 text-slate-400 text-xs py-6 mt-10 border-t border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 text-center space-y-2">
+      <div class="font-bold text-amber-400 text-sm">HT ENGLISH CENTER - MS. LILY</div>
+      <p>Địa chỉ: Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình | Hotline: 0963422940 - 0962240866</p>
+      <p class="text-slate-500">Ứng Dụng Game Tương Tác Học Tập Tiếng Anh Lớp 6 - Unit 2: My House</p>
+    </div>
+  </footer>
+
+  <!-- JAVASCRIPT GAME LOGIC & DATA -->
+  <script>
+    // ==========================================
+    // 1. GAME DATA STRUCTURE (5 GAMES x 10 QUESTIONS = 50 QUESTIONS)
+    // ==========================================
+    const GAMES_DATA = [
+      {
+        id: 1,
+        title: "Game 1: Vocabulary Master",
+        subtitle: "Từ Vựng Nhà Cửa & Đồ Đạc",
+        icon: "fa-couch",
+        color: "emerald",
+        description: "Ôn tập các loại nhà (town house, country house, flat), các phòng và đồ nội thất.",
+        questions: [
+          {
+            id: 101,
+            category: "Rooms in the house",
+            contextVN: "Nơi gia đình chuẩn bị và nấu các bữa ăn trong nhà là phòng nào?",
+            questionEN: "We cook dinner and prepare food in the __________.",
+            options: ["hall", "kitchen", "bedroom", "bathroom"],
+            answerIndex: 1,
+            fullSentence: "We cook dinner and prepare food in the kitchen.",
+            explanation: "Kitchen nghĩa là 'nhà bếp', đây là nơi dành riêng cho việc nấu nướng và chế biến thực phẩm.",
+            grammarRule: "Vocabulary - Rooms: kitchen = nhà bếp."
+          },
+          {
+            id: 102,
+            category: "Furniture",
+            contextVN: "Chiếc ghế dài, mềm mại cho nhiều người cùng ngồi ở phòng khách là gì?",
+            questionEN: "A large, comfortable seat for two or three people in the living room is a __________.",
+            options: ["sofa", "chair", "table", "lamp"],
+            answerIndex: 0,
+            fullSentence: "A large, comfortable seat for two or three people in the living room is a sofa.",
+            explanation: "Sofa nghĩa là 'ghế sofa / ghế bành dài' thường đặt ở phòng khách.",
+            grammarRule: "Vocabulary - Furniture: sofa = ghế sofa."
+          },
+          {
+            id: 103,
+            category: "Furniture",
+            contextVN: "Thiết bị dùng để giữ lạnh thức ăn, hoa quả và đồ uống là gì?",
+            questionEN: "We keep milk, fruit, and food cold in the __________.",
+            options: ["cupboard", "dishwasher", "fridge", "toilet"],
+            answerIndex: 2,
+            fullSentence: "We keep milk, fruit, and food cold in the fridge.",
+            explanation: "Fridge (viết tắt của refrigerator) nghĩa là 'tủ lạnh'.",
+            grammarRule: "Vocabulary - Furniture: fridge = tủ lạnh."
+          },
+          {
+            id: 104,
+            category: "House types",
+            contextVN: "Ngôi nhà nằm ở vùng nông thôn, thường có sân vườn yên tĩnh là loại nhà nào?",
+            questionEN: "A house situated in the countryside, usually with a garden, is a __________.",
+            options: ["town house", "country house", "flat", "department store"],
+            answerIndex: 1,
+            fullSentence: "A house situated in the countryside, usually with a garden, is a country house.",
+            explanation: "Country house là 'nhà ở vùng quê / nhà nông thôn'.",
+            grammarRule: "Vocabulary - House types: country house = nhà ở quê."
+          },
+          {
+            id: 105,
+            category: "Furniture",
+            contextVN: "Bồn rửa tay / bồn rửa mặt trong phòng tắm gọi là gì?",
+            questionEN: "You wash your hands and face in the __________ in the bathroom.",
+            options: ["sink", "dishwasher", "lamp", "chest of drawers"],
+            answerIndex: 0,
+            fullSentence: "You wash your hands and face in the sink in the bathroom.",
+            explanation: "Sink là 'bồn rửa' (rửa mặt, rửa tay hoặc bồn rửa bát).",
+            grammarRule: "Vocabulary - Furniture: sink = bồn rửa."
+          },
+          {
+            id: 106,
+            category: "House types",
+            contextVN: "Căn hộ nằm trong một tòa nhà chung cư cao tầng gọi là gì?",
+            questionEN: "My family lives on the 5th floor of a tall building. It is a __________.",
+            options: ["town house", "country house", "flat", "hall"],
+            answerIndex: 2,
+            fullSentence: "My family lives on the fifth floor of a tall building. It is a flat.",
+            explanation: "Flat có nghĩa là 'căn hộ' chung cư.",
+            grammarRule: "Vocabulary - House types: flat = căn hộ."
+          },
+          {
+            id: 107,
+            category: "Furniture",
+            contextVN: "Đồ vật dùng để chiếu sáng trên bàn học vào buổi tối là gì?",
+            questionEN: "I have a small __________ on my desk to read books at night.",
+            options: ["picture", "lamp", "shower", "toilet"],
+            answerIndex: 1,
+            fullSentence: "I have a small lamp on my desk to read books at night.",
+            explanation: "Lamp nghĩa là 'đèn bàn / đèn học'.",
+            grammarRule: "Vocabulary - Furniture: lamp = đèn bàn."
+          },
+          {
+            id: 108,
+            category: "Phrases & Collocations",
+            contextVN: "Cụm từ chỉ hành động 'tắm vòi sen' trong phòng tắm.",
+            questionEN: "Before going to school, I take a __________ in the bathroom.",
+            options: ["shower", "sofa", "cupboard", "table"],
+            answerIndex: 0,
+            fullSentence: "Before going to school, I take a shower in the bathroom.",
+            explanation: "Cụm từ cố định 'take a shower' nghĩa là tắm vòi sen.",
+            grammarRule: "Collocation: take a shower = tắm vòi sen."
+          },
+          {
+            id: 109,
+            category: "Furniture",
+            contextVN: "Chiếc tủ có nhiều ngăn kéo dùng để đựng quần áo gọn gàng.",
+            questionEN: "We put our clothes in a __________ in the bedroom.",
+            options: ["table", "chest of drawers", "picture", "fridge"],
+            answerIndex: 1,
+            fullSentence: "We put our clothes in a chest of drawers in the bedroom.",
+            explanation: "Chest of drawers có nghĩa là 'tủ ngăn kéo'.",
+            grammarRule: "Vocabulary - Furniture: chest of drawers = tủ ngăn kéo."
+          },
+          {
+            id: 110,
+            category: "Furniture",
+            contextVN: "Vật treo trên tường giúp trang trí phòng khách đẹp hơn.",
+            questionEN: "We hang a beautiful __________ on the wall of the living room.",
+            options: ["picture", "toilet", "sink", "dishwasher"],
+            answerIndex: 0,
+            fullSentence: "We hang a beautiful picture on the wall of the living room.",
+            explanation: "Picture có nghĩa là 'bức tranh'.",
+            grammarRule: "Vocabulary - Furniture: picture = bức tranh."
+          }
+        ]
+      },
+
+      {
+        id: 2,
+        title: "Game 2: Grammar Pro",
+        subtitle: "There is / There are & Sở Hữu Cách",
+        icon: "fa-graduation-cap",
+        color: "indigo",
+        description: "Luyện tập cấu trúc There is / There are và Sở hữu cách danh từ (Noun's + Noun).",
+        questions: [
+          {
+            id: 201,
+            category: "There is / There are",
+            contextVN: "Chọn cấu trúc chỉ sự tồn tại cho danh từ số ít 'a comfortable sofa'.",
+            questionEN: "__________ a comfortable sofa in our living room.",
+            options: ["There is", "There are", "Have", "Has"],
+            answerIndex: 0,
+            fullSentence: "There is a comfortable sofa in our living room.",
+            explanation: "Dùng 'There is' vì ngay đằng sau là danh từ số ít 'a comfortable sofa'.",
+            grammarRule: "Grammar: There is + danh từ số ít (Singular Noun)."
+          },
+          {
+            id: 202,
+            category: "There is / There are",
+            contextVN: "Chọn cấu trúc chỉ sự tồn tại cho danh từ số nhiều 'three bedrooms'.",
+            questionEN: "__________ three bedrooms in my grandmother's house.",
+            options: ["There is", "There are", "Is there", "Are there"],
+            answerIndex: 1,
+            fullSentence: "There are three bedrooms in my grandmother's house.",
+            explanation: "Dùng 'There are' vì đằng sau là danh từ số nhiều 'three bedrooms'.",
+            grammarRule: "Grammar: There are + danh từ số nhiều (Plural Noun)."
+          },
+          {
+            id: 203,
+            category: "Possessive Case",
+            contextVN: "Đây là máy tính của Elena. Chọn hình thức sở hữu cách đúng.",
+            questionEN: "This is __________ computer. She uses it every day.",
+            options: ["Elena", "Elena's", "Elenas", "of Elena"],
+            answerIndex: 1,
+            fullSentence: "This is Elena's computer.",
+            explanation: "Sở hữu cách thêm ''s' vào sau tên riêng/danh từ số ít: Elena's computer = Máy tính của Elena.",
+            grammarRule: "Possessive case: Noun + 's + Noun."
+          },
+          {
+            id: 204,
+            category: "Question Structure",
+            contextVN: "Hỏi nghi vấn với danh từ số nhiều 'any pictures'.",
+            questionEN: "__________ any pictures on the hall wall?",
+            options: ["Is there", "Are there", "There is", "There are"],
+            answerIndex: 1,
+            fullSentence: "Are there any pictures on the hall wall?",
+            explanation: "Trong câu hỏi nghi vấn số nhiều, ta đảo 'Are there' lên trước danh từ số nhiều.",
+            grammarRule: "Question: Are there + any + danh từ số nhiều...?"
+          },
+          {
+            id: 205,
+            category: "Possessive Case",
+            contextVN: "Cuốn sách của mẹ tôi nằm trên bàn.",
+            questionEN: "My __________ book is on the dining table.",
+            options: ["mum", "mums", "mum's", "mums'"],
+            answerIndex: 2,
+            fullSentence: "My mum's book is on the dining table.",
+            explanation: "My mum's book = Cuốn sách của mẹ tôi (Thêm 's vào danh từ mum).",
+            grammarRule: "Possessive case: my mum's + Noun."
+          },
+          {
+            id: 206,
+            category: "There is / There are",
+            contextVN: "Liệt kê bắt đầu bằng danh từ số ít 'a big fridge'.",
+            questionEN: "Look! __________ a big fridge and two chairs in the kitchen.",
+            options: ["There is", "There are", "They are", "It is"],
+            answerIndex: 0,
+            fullSentence: "Look! There is a big fridge and two chairs in the kitchen.",
+            explanation: "Khi liệt kê nhiều vật, động từ chia theo danh từ ĐẦU TIÊN ngay đằng sau nó ('a big fridge' - số ít) -> Dùng 'There is'.",
+            grammarRule: "Rule of proximity: There is + [Noun số ít 1] + and + [Noun số nhiều 2]."
+          },
+          {
+            id: 207,
+            category: "Possessive Case",
+            contextVN: "Phòng ngủ của Nick rất gọn gàng và đẹp đẽ.",
+            questionEN: "__________ room is very tidy and clean.",
+            options: ["Nick", "Nick's", "Nicks", "Nicks'"],
+            answerIndex: 1,
+            fullSentence: "Nick's room is very tidy and clean.",
+            explanation: "Nick's room = Phòng ngủ của Nick.",
+            grammarRule: "Possessive case: Nick + 's + room."
+          },
+          {
+            id: 208,
+            category: "Question Structure",
+            contextVN: "Đặt câu hỏi nghi vấn cho danh từ số ít 'a dishwasher'.",
+            questionEN: "__________ a dishwasher in your kitchen?",
+            options: ["Is there", "Are there", "There is", "There are"],
+            answerIndex: 0,
+            fullSentence: "Is there a dishwasher in your kitchen?",
+            explanation: "Câu hỏi nghi vấn số ít đảo 'Is there' lên trước danh từ số ít.",
+            grammarRule: "Question: Is there + a/an + danh từ số ít...?"
+          },
+          {
+            id: 209,
+            category: "Possessive Pronouns",
+            contextVN: "Đây là ngôi nhà của anh ấy. Chọn từ sở hữu phù hợp.",
+            questionEN: "This is his country house. It is __________.",
+            options: ["his", "her", "my", "their"],
+            answerIndex: 0,
+            fullSentence: "This is his country house. It is his.",
+            explanation: "His là từ chỉ sở hữu cho nam giới (của anh ấy / của cậu ấy).",
+            grammarRule: "Possessive words: his = của anh ấy."
+          },
+          {
+            id: 210,
+            category: "How many questions",
+            contextVN: "Hỏi số lượng phòng ngủ có trong nhà.",
+            questionEN: "How many bedrooms __________ in your house?",
+            options: ["there is", "there are", "is there", "are there"],
+            answerIndex: 3,
+            fullSentence: "How many bedrooms are there in your house?",
+            explanation: "Cấu trúc hỏi số lượng: How many + Danh từ số nhiều + are there...?",
+            grammarRule: "Question: How many + Plural Noun + are there...?"
+          }
+        ]
+      },
+
+      {
+        id: 3,
+        title: "Game 3: Spatial Genius",
+        subtitle: "Giới Từ Vị Trí & Cụm Từ",
+        icon: "fa-map-marker-alt",
+        color: "amber",
+        description: "Thành thạo các giới từ chỉ vị trí (in, on, under, behind, in front of, next to, between) và cụm từ.",
+        questions: [
+          {
+            id: 301,
+            category: "Prepositions of place",
+            contextVN: "Chú chó đang nằm ngủ Ở TRÊN chiếc ghế sofa.",
+            questionEN: "The dog is sleeping __________ the sofa.",
+            options: ["in", "on", "under", "between"],
+            answerIndex: 1,
+            fullSentence: "The dog is sleeping on the sofa.",
+            explanation: "'On' có nghĩa là 'ở trên' (tiếp xúc trực tiếp với bề mặt ghế).",
+            grammarRule: "Preposition: on = trên mặt phẳng."
+          },
+          {
+            id: 302,
+            category: "Prepositions of place",
+            contextVN: "Chú mèo đang trốn DƯỚI cái bàn.",
+            questionEN: "The cat is hiding __________ the table.",
+            options: ["on", "in", "under", "next to"],
+            answerIndex: 2,
+            fullSentence: "The cat is hiding under the table.",
+            explanation: "'Under' có nghĩa là 'ở dưới / phía dưới'.",
+            grammarRule: "Preposition: under = dưới."
+          },
+          {
+            id: 303,
+            category: "Prepositions of place",
+            contextVN: "Bức tranh được treo Ở GIỮA hai chiếc đồng hồ.",
+            questionEN: "The picture is hanging __________ two clocks on the wall.",
+            options: ["between", "behind", "in front of", "under"],
+            answerIndex: 0,
+            fullSentence: "The picture is hanging between two clocks on the wall.",
+            explanation: "'Between' nghĩa là 'ở giữa' 2 vật hoặc 2 người.",
+            grammarRule: "Preposition: between + 2 Nouns = ở giữa."
+          },
+          {
+            id: 304,
+            category: "Prepositions of place",
+            contextVN: "Cái cặp sách nằm PHÍA SAU ghế sofa nên bị che khuất.",
+            questionEN: "The backpack is __________ the sofa.",
+            options: ["in front of", "behind", "next to", "on"],
+            answerIndex: 1,
+            fullSentence: "The backpack is behind the sofa.",
+            explanation: "'Behind' nghĩa là 'ở phía sau'.",
+            grammarRule: "Preposition: behind = phía sau."
+          },
+          {
+            id: 305,
+            category: "Prepositions of place",
+            contextVN: "Mèo con thích ngồi PHÍA TRƯỚC ti vi để xem hoạt hình.",
+            questionEN: "My cat likes sitting __________ of the television.",
+            options: ["behind", "in front", "next", "between"],
+            answerIndex: 1,
+            fullSentence: "My cat likes sitting in front of the television.",
+            explanation: "Cụm giới từ đầy đủ là 'in front of' nghĩa là phía trước.",
+            grammarRule: "Preposition phrase: in front of = phía trước."
+          },
+          {
+            id: 306,
+            category: "Prepositions of place",
+            contextVN: "Có một khu vườn nhỏ BÊN CẠNH nhà phố của chúng tôi.",
+            questionEN: "There is a small garden right __________ to our town house.",
+            options: ["next", "near", "behind", "under"],
+            answerIndex: 0,
+            fullSentence: "There is a small garden right next to our town house.",
+            explanation: "'Next to' nghĩa là 'bên cạnh / ngay sát bên'.",
+            grammarRule: "Preposition phrase: next to = bên cạnh."
+          },
+          {
+            id: 307,
+            category: "Prepositions of place",
+            contextVN: "Thực phẩm được giữ BÊN TRONG tủ lạnh.",
+            questionEN: "We keep fresh food and drinks __________ the fridge.",
+            options: ["on", "in", "under", "behind"],
+            answerIndex: 1,
+            fullSentence: "We keep fresh food and drinks in the fridge.",
+            explanation: "'In' nghĩa là 'ở trong / bên trong'.",
+            grammarRule: "Preposition: in = trong."
+          },
+          {
+            id: 308,
+            category: "Collocations",
+            contextVN: "Mỗi buổi sáng, tôi đánh răng trong phòng tắm.",
+            questionEN: "Every morning, I __________ my teeth in the bathroom.",
+            options: ["brush", "watch", "live", "sleep"],
+            answerIndex: 0,
+            fullSentence: "Every morning, I brush my teeth in the bathroom.",
+            explanation: "Cụm từ cố định: 'brush teeth' = đánh răng.",
+            grammarRule: "Collocation: brush teeth in the bathroom."
+          },
+          {
+            id: 309,
+            category: "Collocations",
+            contextVN: "Sau bữa tối, ông bà tôi thích xem TV ở phòng khách.",
+            questionEN: "My grandparents usually __________ TV in the living room.",
+            options: ["sit", "watch", "sleep", "take"],
+            answerIndex: 1,
+            fullSentence: "My grandparents usually watch TV in the living room.",
+            explanation: "Cụm từ cố định: 'watch TV' = xem truyền hình / tivi.",
+            grammarRule: "Collocation: watch TV."
+          },
+          {
+            id: 310,
+            category: "Collocations",
+            contextVN: "Cả gia đình tôi thường ăn sáng cùng nhau lúc 7 giờ.",
+            questionEN: "We usually __________ breakfast in the kitchen at 7 a.m.",
+            options: ["go", "have", "live", "sleep"],
+            answerIndex: 1,
+            fullSentence: "We usually have breakfast in the kitchen at 7 a.m.",
+            explanation: "Cụm từ cố định: 'have breakfast' = ăn sáng.",
+            grammarRule: "Collocation: have breakfast = ăn sáng."
+          }
+        ]
+      },
+
+      {
+        id: 4,
+        title: "Game 4: Communication Star",
+        subtitle: "Giao Tiếp & Mô Tả Bức Tranh",
+        icon: "fa-comments",
+        color: "purple",
+        description: "Luyện tập mẫu câu giao tiếp hằng ngày (Where/Who/How many) & mô tả bức tranh.",
+        questions: [
+          {
+            id: 401,
+            category: "Everyday English",
+            contextVN: "Hỏi: 'Nhà của bạn ở đâu?' - Chọn câu trả lời phù hợp nhất.",
+            questionEN: "Where is your house? - __________",
+            options: [
+              "It is a town house in Ninh Binh.",
+              "Yes, it is very big.",
+              "I live with my parents.",
+              "There are five rooms."
+            ],
+            answerIndex: 0,
+            fullSentence: "Where is your house? - It is a town house in Ninh Binh.",
+            explanation: "Câu hỏi 'Where' dùng để hỏi vị trí/loại nhà. Trả lời về vị trí ngôi nhà ở Ninh Bình.",
+            grammarRule: "Question: Where is your house? -> Tra lời về địa điểm."
+          },
+          {
+            id: 402,
+            category: "Everyday English",
+            contextVN: "Hỏi: 'Bạn sống cùng với ai?' - Chọn câu trả lời đúng.",
+            questionEN: "Who do you live with? - __________",
+            options: [
+              "In a flat.",
+              "I live with my parents and my brother.",
+              "There is a living room.",
+              "I watch TV every day."
+            ],
+            answerIndex: 1,
+            fullSentence: "Who do you live with? - I live with my parents and my brother.",
+            explanation: "Câu hỏi 'Who do you live with?' hỏi về người cùng sống chung.",
+            grammarRule: "Question: Who do you live with? -> I live with + [người]."
+          },
+          {
+            id: 403,
+            category: "Everyday English",
+            contextVN: "Hỏi số lượng phòng trong căn hộ.",
+            questionEN: "How many rooms are there in your flat? - __________",
+            options: [
+              "There are six rooms.",
+              "It is next to the park.",
+              "My house is yellow.",
+              "Yes, there are."
+            ],
+            answerIndex: 0,
+            fullSentence: "How many rooms are there in your flat? - There are six rooms.",
+            explanation: "Câu hỏi 'How many... are there?' được trả lời bằng 'There is / There are + số lượng'.",
+            grammarRule: "Question: How many rooms are there...? -> There are + [số lượng]."
+          },
+          {
+            id: 404,
+            category: "Describing Pictures",
+            contextVN: "Nhìn tranh mô tả: Chú mèo đang ngồi PHÍA TRƯỚC màn hình máy tính.",
+            questionEN: "Look at Poster 2: The cat is sitting __________ of the computer.",
+            options: ["behind", "in front", "under", "between"],
+            answerIndex: 1,
+            fullSentence: "The cat is sitting in front of the computer.",
+            explanation: "Mô tả bức tranh mục 4: 'The cat is in front of the computer' (Mèo ở phía trước máy tính).",
+            grammarRule: "Describing pictures: in front of = phía trước."
+          },
+          {
+            id: 405,
+            category: "Describing Pictures",
+            contextVN: "Nhìn tranh mô tả: Chiếc mũ lưỡi trai ở DƯỚI cái gối.",
+            questionEN: "Look at Poster 2: The cap is __________ the pillow.",
+            options: ["on", "under", "behind", "between"],
+            answerIndex: 1,
+            fullSentence: "The cap is under the pillow.",
+            explanation: "Mô tả bức tranh mục 4: 'The cap is under the pillow' (Chiếc mũ ở dưới gối).",
+            grammarRule: "Describing pictures: under = dưới."
+          },
+          {
+            id: 406,
+            category: "Short Answer",
+            contextVN: "Trả lời ngắn khẳng định cho câu hỏi 'Is there a shower in your bathroom?'",
+            questionEN: "Is there a shower in your bathroom? - Yes, __________.",
+            options: ["there is", "there are", "it is", "there isn't"],
+            answerIndex: 0,
+            fullSentence: "Is there a shower in your bathroom? - Yes, there is.",
+            explanation: "Câu hỏi 'Is there...?' trả lời khẳng định là 'Yes, there is'.",
+            grammarRule: "Short answer: Is there...? -> Yes, there is."
+          },
+          {
+            id: 407,
+            category: "Short Answer",
+            contextVN: "Trả lời ngắn phủ định cho câu hỏi 'Are there any cupboards in the hall?'",
+            questionEN: "Are there any cupboards in the hall? - No, __________.",
+            options: ["there are", "there aren't", "there is", "they aren't"],
+            answerIndex: 1,
+            fullSentence: "Are there any cupboards in the hall? - No, there aren't.",
+            explanation: "Câu hỏi 'Are there...?' trả lời phủ định là 'No, there aren't'.",
+            grammarRule: "Short answer: Are there...? -> No, there aren't."
+          },
+          {
+            id: 408,
+            category: "Describing Pictures",
+            contextVN: "Nhìn tranh mô tả: Chiếc cặp sách màu xanh ở TRÊN bàn.",
+            questionEN: "Look at Poster 2: The bag is __________ the table.",
+            options: ["under", "on", "behind", "in"],
+            answerIndex: 1,
+            fullSentence: "The bag is on the table.",
+            explanation: "Mô tả bức tranh mục 4: 'The bag is on the table' (Cặp sách ở trên bàn).",
+            grammarRule: "Describing pictures: on the table."
+          },
+          {
+            id: 409,
+            category: "Everyday English",
+            contextVN: "Nói về phòng yêu thích nhất trong ngôi nhà.",
+            questionEN: "Which room do you like best? - I like my __________ best because it is cozy.",
+            options: ["bedroom", "toilet", "hall", "sink"],
+            answerIndex: 0,
+            fullSentence: "I like my bedroom best because it is cozy.",
+            explanation: "Phòng ngủ (bedroom) là nơi thư giãn cá nhân ấm cúng.",
+            grammarRule: "Preference: I like my [room] best."
+          },
+          {
+            id: 410,
+            category: "Collocation & Preposition",
+            contextVN: "Ngồi trên ghế sofa xem TV cùng gia đình ở phòng khách.",
+            questionEN: "We sit __________ the sofa in the living room.",
+            options: ["on", "in", "under", "behind"],
+            answerIndex: 0,
+            fullSentence: "We sit on the sofa in the living room.",
+            explanation: "Cụm từ: 'sit on the sofa' (ngồi trên ghế sofa).",
+            grammarRule: "Preposition: sit on the sofa."
+          }
+        ]
+      },
+
+      {
+        id: 5,
+        title: "Game 5: Ultimate Challenge",
+        subtitle: "Siêu Thách Thức Tổng Hợp",
+        icon: "fa-bolt",
+        color: "rose",
+        description: "Bài tập tổng hợp viết lại câu, tìm lỗi sai và phân tích ngữ cảnh nâng cao Unit 2.",
+        questions: [
+          {
+            id: 501,
+            category: "Sentence Transformation",
+            contextVN: "Viết lại câu sao cho nghĩa không đổi: 'My house has four rooms.'",
+            questionEN: "My house has four rooms. -> There __________ four rooms in my house.",
+            options: ["is", "are", "have", "has"],
+            answerIndex: 1,
+            fullSentence: "There are four rooms in my house.",
+            explanation: "Chuyển đổi câu: 'S + has + [Danh từ số nhiều]' = 'There are + [Danh từ số nhiều]'.",
+            grammarRule: "Transformation: S + has... = There is/are..."
+          },
+          {
+            id: 502,
+            category: "Error Identification",
+            contextVN: "Tìm lỗi sai ngữ pháp trong câu sau: 'There are a big fridge in the kitchen.'",
+            questionEN: "Find the error: 'There are a big fridge in the kitchen.'",
+            options: ["are", "a big fridge", "in", "the kitchen"],
+            answerIndex: 0,
+            fullSentence: "There is a big fridge in the kitchen.",
+            explanation: "'a big fridge' là danh từ số ít nên phải dùng 'There is', sai ở từ 'are'.",
+            grammarRule: "Error Correction: 'are' -> 'is' (Do đằng sau là danh từ số ít)."
+          },
+          {
+            id: 503,
+            category: "Grammar Selection",
+            contextVN: "Chọn câu viết CHUẨN ngữ pháp sở hữu cách nhất.",
+            questionEN: "Which sentence is grammatically CORRECT?",
+            options: [
+              "Nick computer is on the table.",
+              "Nick's computer is on the table.",
+              "Nick computer's is on table.",
+              "Computer of Nick is on table."
+            ],
+            answerIndex: 1,
+            fullSentence: "Nick's computer is on the table.",
+            explanation: "Cấu trúc sở hữu cách chuẩn: Danh từ tên người + 's + Vật sở hữu -> Nick's computer.",
+            grammarRule: "Possessive Case: Noun + 's + Noun."
+          },
+          {
+            id: 504,
+            category: "Reading Comprehension",
+            contextVN: "Đọc đoạn văn ngắn: 'Linh lives in a country house in Ninh Binh. Her house has a big garden in front of it.' Khu vườn nằm ở đâu?",
+            questionEN: "Where is the garden in Linh's house?",
+            options: [
+              "Behind her house",
+              "In front of her house",
+              "Under her house",
+              "Between her house"
+            ],
+            answerIndex: 1,
+            fullSentence: "There is a big garden in front of Linh's house.",
+            explanation: "Đoạn văn ghi rõ: 'has a big garden in front of it' -> Khu vườn ở phía trước nhà.",
+            grammarRule: "Reading skills & Preposition: in front of = phía trước."
+          },
+          {
+            id: 505,
+            category: "Combined Prepositions",
+            contextVN: "Có một cái bàn Ở GIỮA hai chiếc ghế và một cái đèn Ở TRÊN bàn.",
+            questionEN: "There is a table __________ two chairs and a lamp __________ the table.",
+            options: ["between / on", "on / under", "behind / in", "next to / behind"],
+            answerIndex: 0,
+            fullSentence: "There is a table between two chairs and a lamp on the table.",
+            explanation: "Bàn nằm ở giữa 2 ghế -> dùng 'between'. Đèn nằm ở trên bàn -> dùng 'on'.",
+            grammarRule: "Prepositions: between... and... / on..."
+          },
+          {
+            id: 506,
+            category: "Sentence Unscramble",
+            contextVN: "Sắp xếp từ thành câu hoàn chỉnh: 'house / live / a / in / town / I / .'",
+            questionEN: "Rearrange: house / live / a / in / town / I / .",
+            options: [
+              "I live in a town house.",
+              "I live a town house in.",
+              "In a town house I live.",
+              "Live I in a house town."
+            ],
+            answerIndex: 0,
+            fullSentence: "I live in a town house.",
+            explanation: "Cấu trúc câu khẳng định Hiện tại đơn: S + V + Prep Phrase -> I live in a town house.",
+            grammarRule: "Syntax: S + live in + a [house type]."
+          },
+          {
+            id: 507,
+            category: "Vocabulary Odd One Out",
+            contextVN: "Từ nào KHÔNG thuộc cùng nhóm với các từ còn lại?",
+            questionEN: "Which word does NOT belong to the same group?",
+            options: ["kitchen", "bedroom", "bathroom", "dishwasher"],
+            answerIndex: 3,
+            fullSentence: "Dishwasher is furniture, while kitchen, bedroom, and bathroom are rooms.",
+            explanation: "Kitchen, bedroom, bathroom là tên các phòng (Rooms). Dishwasher (máy rửa bát) là đồ nội thất/thiết bị (Furniture).",
+            grammarRule: "Categorization: Rooms vs. Furniture."
+          },
+          {
+            id: 508,
+            category: "Question Word",
+            contextVN: "Điền từ hỏi số lượng thích hợp.",
+            questionEN: "__________ rooms are there in Nick's house? - There are six.",
+            options: ["How much", "How many", "Where", "Who"],
+            answerIndex: 1,
+            fullSentence: "How many rooms are there in Nick's house?",
+            explanation: "Hỏi số lượng danh từ đếm được số nhiều (rooms) ta dùng 'How many'.",
+            grammarRule: "Question word: How many + Plural Countable Noun."
+          },
+          {
+            id: 509,
+            category: "Present Simple",
+            contextVN: "Chia động từ thì Hiện tại đơn cho chủ ngữ số ít 'She'.",
+            questionEN: "She __________ a big country house with a swimming pool.",
+            options: ["have", "has", "haves", "is having"],
+            answerIndex: 1,
+            fullSentence: "She has a big country house with a swimming pool.",
+            explanation: "Thì Hiện tại đơn với chủ ngữ 'She' (số ít), động từ 'have' chuyển thành 'has'.",
+            grammarRule: "Present Simple: He / She / It + has..."
+          },
+          {
+            id: 510,
+            category: "Synthesis",
+            contextVN: "Hoàn thành cụm từ chỉ hoạt động buổi tối của gia đình.",
+            questionEN: "In the evening, my family members gather to __________ TV on the soft sofa.",
+            options: ["watch", "read", "brush", "sleep"],
+            answerIndex: 0,
+            fullSentence: "In the evening, my family members gather to watch TV on the soft sofa.",
+            explanation: "Cụm từ giải trí phổ biến: watch TV on the sofa = xem TV trên ghế sofa.",
+            grammarRule: "Unit 2 Collocations: watch TV on the sofa."
+          }
+        ]
+      }
+    ];
+
+    // ==========================================
+    // 2. STATE MANAGEMENT
+    // ==========================================
+    let userScores = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+    let gamesCompleted = { 1: false, 2: false, 3: false, 4: false, 5: false };
+    
+    let currentGameId = null;
+    let currentQuestionIndex = 0;
+    let currentScore = 0;
+    let currentCorrectCount = 0;
+    let questionAnswered = false;
+
+    // Speech Synthesis Global Instance
+    const synth = window.speechSynthesis;
+
+    // ==========================================
+    // 3. INITIALIZATION & DASHBOARD RENDER
+    // ==========================================
+    window.addEventListener('DOMContentLoaded', () => {
+      renderGameCards();
+      updateDashboardStats();
+    });
+
+    function renderGameCards() {
+      const container = document.getElementById('gameCardsContainer');
+      container.innerHTML = '';
+
+      GAMES_DATA.forEach(game => {
+        const isFinished = gamesCompleted[game.id];
+        const score = userScores[game.id];
+
+        const card = document.createElement('div');
+        card.className = `bg-white rounded-2xl p-5 border border-slate-200 shadow-sm hover:shadow-md transition-all duration-200 flex flex-col justify-between relative overflow-hidden group`;
+        
+        card.innerHTML = `
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="w-10 h-10 rounded-xl bg-${game.color}-100 text-${game.color}-700 flex items-center justify-center font-bold text-lg">
+                <i class="fas ${game.icon}"></i>
+              </span>
+              ${isFinished 
+                ? `<span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2.5 py-1 rounded-full flex items-center gap-1"><i class="fas fa-check-circle"></i> ${score}/100 Pts</span>`
+                : `<span class="bg-slate-100 text-slate-600 text-xs font-semibold px-2.5 py-1 rounded-full">10 Câu Hỏi</span>`
+              }
+            </div>
+
+            <div>
+              <h4 class="font-extrabold text-slate-800 group-hover:text-blue-900 transition text-base">${game.title}</h4>
+              <p class="text-xs font-semibold text-indigo-600 mb-1">${game.subtitle}</p>
+              <p class="text-xs text-slate-500 leading-relaxed">${game.description}</p>
+            </div>
+          </div>
+
+          <div class="pt-4 mt-2 border-t border-slate-100 flex items-center justify-between">
+            <span class="text-xs text-slate-400 font-medium"><i class="fas fa-clock"></i> ~5 phút</span>
+            <button onclick="startGame(${game.id})" class="bg-blue-900 hover:bg-blue-950 text-white font-bold text-xs px-4 py-2 rounded-xl transition flex items-center gap-1.5 shadow-sm">
+              <span>${isFinished ? 'Thử lại' : 'Vào Game'}</span>
+              <i class="fas fa-play text-amber-400 text-xs"></i>
+            </button>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    function updateDashboardStats() {
+      const totalScore = Object.values(userScores).reduce((a, b) => a + b, 0);
+      const finishedCount = Object.values(gamesCompleted).filter(Boolean).length;
+
+      document.getElementById('totalScoreText').innerText = `${totalScore} / 500`;
+      document.getElementById('gamesCompletedText').innerText = `${finishedCount} / 5`;
+
+      // Badge logic
+      let badge = "🌱 Tập Sự";
+      if (totalScore >= 450) badge = "🏆 Bậc Thầy Unit 2";
+      else if (totalScore >= 350) badge = "⭐ Cao Thủ Tiếng Anh";
+      else if (totalScore >= 200) badge = "📚 Học Sinh Chăm Chỉ";
+
+      document.getElementById('badgeText').innerText = badge;
+    }
+
+    // ==========================================
+    // 4. GAMEPLAY ENGINE
+    // ==========================================
+    function startGame(gameId) {
+      currentGameId = gameId;
+      currentQuestionIndex = 0;
+      currentScore = 0;
+      currentCorrectCount = 0;
+
+      document.getElementById('dashboardView').classList.add('hidden');
+      document.getElementById('gameCompleteView').classList.add('hidden');
+      document.getElementById('gamePlayView').classList.remove('hidden');
+
+      const game = GAMES_DATA.find(g => g.id === gameId);
+      document.getElementById('currentGameBadge').innerText = game.title;
+
+      loadQuestion();
+    }
+
+    function loadQuestion() {
+      questionAnswered = false;
+      const game = GAMES_DATA.find(g => g.id === currentGameId);
+      const q = game.questions[currentQuestionIndex];
+
+      // Update UI Header Progress
+      document.getElementById('questionProgressText').innerText = `Câu ${currentQuestionIndex + 1} / ${game.questions.length}`;
+      document.getElementById('currentGameScoreText').innerText = currentScore;
+
+      const progressPercent = ((currentQuestionIndex + 1) / game.questions.length) * 100;
+      document.getElementById('progressBarFill').style.width = `${progressPercent}%`;
+
+      // Question content
+      document.getElementById('questionCategoryTag').innerText = q.category;
+      document.getElementById('questionContextVN').innerText = q.contextVN;
+      document.getElementById('questionTextEN').innerText = q.questionEN;
+
+      // Hide Explanation Panel
+      const expPanel = document.getElementById('explanationPanel');
+      expPanel.classList.add('hidden');
+      expPanel.className = "hidden rounded-xl p-5 border transition-all duration-300 space-y-3";
+
+      // Render Options
+      const optionsContainer = document.getElementById('optionsContainer');
+      optionsContainer.innerHTML = '';
+
+      q.options.forEach((optText, idx) => {
+        const btn = document.createElement('div');
+        btn.className = "bg-slate-50 hover:bg-blue-50/80 border-2 border-slate-200 hover:border-blue-400 rounded-xl p-3.5 cursor-pointer transition-all flex items-center justify-between group shadow-sm";
+        btn.onclick = () => selectOption(idx);
+
+        const optionLetters = ['A', 'B', 'C', 'D'];
+
+        btn.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="w-7 h-7 rounded-lg bg-slate-200 group-hover:bg-blue-600 group-hover:text-white text-slate-700 font-extrabold text-xs flex items-center justify-center flex-shrink-0 transition">
+              ${optionLetters[idx]}
+            </span>
+            <span class="font-bold text-slate-800 text-sm md:text-base">${optText}</span>
+          </div>
+          <button onclick="event.stopPropagation(); speakText('${escapeSingleQuotes(optText)}')" class="p-1.5 text-slate-400 hover:text-amber-600 rounded-lg hover:bg-white transition" title="Nghe đáp án">
+            <i class="fas fa-volume-high text-xs"></i>
+          </button>
+        `;
+
+        optionsContainer.appendChild(btn);
+      });
+
+      // Auto read question audio if desired
+      speakText(q.questionEN);
+    }
+
+    function selectOption(selectedIndex) {
+      if (questionAnswered) return;
+      questionAnswered = true;
+
+      const game = GAMES_DATA.find(g => g.id === currentGameId);
+      const q = game.questions[currentQuestionIndex];
+
+      const isCorrect = (selectedIndex === q.answerIndex);
+      const optionElements = document.getElementById('optionsContainer').children;
+
+      // Play audio chime feedback
+      playAudioFeedback(isCorrect);
+
+      // Highlight options
+      for (let i = 0; i < optionElements.length; i++) {
+        const el = optionElements[i];
+        el.onclick = null; // disable further clicks
+        
+        if (i === q.answerIndex) {
+          el.className = "bg-emerald-50 border-2 border-emerald-500 rounded-xl p-3.5 flex items-center justify-between shadow-sm";
+          el.querySelector('span').className = "w-7 h-7 rounded-lg bg-emerald-600 text-white font-extrabold text-xs flex items-center justify-center flex-shrink-0";
+        } else if (i === selectedIndex && !isCorrect) {
+          el.className = "bg-rose-50 border-2 border-rose-400 rounded-xl p-3.5 flex items-center justify-between shadow-sm";
+          el.querySelector('span').className = "w-7 h-7 rounded-lg bg-rose-500 text-white font-extrabold text-xs flex items-center justify-center flex-shrink-0";
+        } else {
+          el.className = "bg-slate-50 border border-slate-200 opacity-50 rounded-xl p-3.5 flex items-center justify-between";
+        }
+      }
+
+      // Update Score
+      if (isCorrect) {
+        currentScore += 10;
+        currentCorrectCount += 1;
+        document.getElementById('currentGameScoreText').innerText = currentScore;
+      }
+
+      // Show Explanation Panel
+      showExplanation(isCorrect, q);
+    }
+
+    function showExplanation(isCorrect, q) {
+      const expPanel = document.getElementById('explanationPanel');
+      const statusText = document.getElementById('resultStatusText');
+
+      expPanel.classList.remove('hidden');
+
+      if (isCorrect) {
+        expPanel.className = "rounded-xl p-5 border border-emerald-300 bg-emerald-50/80 space-y-3";
+        statusText.className = "font-extrabold text-base text-emerald-800 flex items-center gap-2";
+        statusText.innerHTML = `<i class="fas fa-check-circle text-xl text-emerald-600"></i> CHÍNH XÁC! (+10 Điểm)`;
+      } else {
+        expPanel.className = "rounded-xl p-5 border border-rose-300 bg-rose-50/80 space-y-3";
+        statusText.className = "font-extrabold text-base text-rose-800 flex items-center gap-2";
+        statusText.innerHTML = `<i class="fas fa-times-circle text-xl text-rose-600"></i> CHƯA CHÍNH XÁC! (Đáp án đúng: ${q.options[q.answerIndex]})`;
+      }
+
+      document.getElementById('explanationText').innerText = q.explanation;
+      document.getElementById('grammarRuleText').innerText = q.grammarRule;
+
+      // Update button text if last question
+      const btnNext = document.getElementById('btnNextQuestion');
+      if (currentQuestionIndex === 9) {
+        btnNext.innerHTML = `<span>Xem Kết Quả Game</span> <i class="fas fa-trophy text-amber-400"></i>`;
+      } else {
+        btnNext.innerHTML = `<span>Câu tiếp theo</span> <i class="fas fa-arrow-right"></i>`;
+      }
+    }
+
+    function nextQuestion() {
+      if (currentQuestionIndex < 9) {
+        currentQuestionIndex++;
+        loadQuestion();
+      } else {
+        finishGame();
+      }
+    }
+
+    function finishGame() {
+      // Save progress
+      userScores[currentGameId] = Math.max(userScores[currentGameId], currentScore);
+      gamesCompleted[currentGameId] = true;
+
+      updateDashboardStats();
+      renderGameCards();
+
+      // Show Complete View
+      document.getElementById('gamePlayView').classList.add('hidden');
+      document.getElementById('gameCompleteView').classList.remove('hidden');
+
+      const game = GAMES_DATA.find(g => g.id === currentGameId);
+      document.getElementById('gameCompleteTitle').innerText = game.title + " - " + game.subtitle;
+      document.getElementById('finalCorrectCount').innerText = `${currentCorrectCount} / 10`;
+      document.getElementById('finalScore').innerText = `${currentScore} Pts`;
+
+      // Teacher praise message
+      const feedbackBox = document.getElementById('teacherFeedbackBox');
+      if (currentScore === 100) {
+        feedbackBox.className = "bg-emerald-50 border border-emerald-300 p-4 rounded-xl text-emerald-900 text-sm font-bold";
+        feedbackBox.innerHTML = `🌟 XUẤT SẮC CỦA MS. LILY! Em đã đạt điểm tuyệt đối 100/100! Kỹ năng Unit 2 của em cực kỳ vững vàng!`;
+      } else if (currentScore >= 70) {
+        feedbackBox.className = "bg-blue-50 border border-blue-300 p-4 rounded-xl text-blue-900 text-sm font-bold";
+        feedbackBox.innerHTML = `👏 RẤT TỐT! Em đạt ${currentScore} điểm. Hãy ôn lại một chút phần lý thuyết để đạt 100 điểm tuyệt đối nhé!`;
+      } else {
+        feedbackBox.className = "bg-amber-50 border border-amber-300 p-4 rounded-xl text-amber-900 text-sm font-bold";
+        feedbackBox.innerHTML = `💪 CỐ GẮNG LÊN EM NHÉ! Em đạt ${currentScore} điểm. Bấm vào nút "Xem Lý Thuyết Unit 2" ở trên để ôn lại bài rồi thử lại nha!`;
+      }
+    }
+
+    function retryCurrentGame() {
+      if (currentGameId) {
+        startGame(currentGameId);
+      }
+    }
+
+    function showDashboard() {
+      document.getElementById('gamePlayView').classList.add('hidden');
+      document.getElementById('gameCompleteView').classList.add('hidden');
+      document.getElementById('dashboardView').classList.remove('hidden');
+    }
+
+    // ==========================================
+    // 5. TEXT-TO-SPEECH (TTS) & AUDIO FEEDBACK
+    // ==========================================
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) {
+        alert("Trình duyệt của bạn không hỗ trợ tính năng phát âm thanh (Speech Synthesis).");
+        return;
+      }
+
+      synth.cancel(); // Stop current speech if playing
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.88; // Slightly slower speed for Grade 6 learners
+      utterance.pitch = 1.0;
+
+      synth.speak(utterance);
+    }
+
+    function speakCurrentQuestion() {
+      const game = GAMES_DATA.find(g => g.id === currentGameId);
+      const q = game.questions[currentQuestionIndex];
+      speakText(q.questionEN);
+    }
+
+    function speakFullSentence() {
+      const game = GAMES_DATA.find(g => g.id === currentGameId);
+      const q = game.questions[currentQuestionIndex];
+      speakText(q.fullSentence);
+    }
+
+    function playAudioFeedback(isCorrect) {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        
+        const ctx = new AudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        if (isCorrect) {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(523.25, ctx.currentTime); // C5
+          osc.frequency.setValueAtTime(659.25, ctx.currentTime + 0.1); // E5
+          osc.frequency.setValueAtTime(783.99, ctx.currentTime + 0.2); // G5
+          gain.gain.setValueAtTime(0.15, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.4);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.4);
+        } else {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(300, ctx.currentTime);
+          osc.frequency.setValueAtTime(180, ctx.currentTime + 0.15);
+          gain.gain.setValueAtTime(0.15, ctx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.35);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.35);
+        }
+      } catch (e) {
+        console.log("Audio feedback error or blocked:", e);
+      }
+    }
+
+    // Modal Toggle
+    function toggleTheoryModal() {
+      const modal = document.getElementById('theoryModal');
+      modal.classList.toggle('hidden');
+    }
+
+    // Helper
+    function escapeSingleQuotes(str) {
+      return str.replace(/'/g, "\\'");
+    }
+  </script>
+</body>
+</html>

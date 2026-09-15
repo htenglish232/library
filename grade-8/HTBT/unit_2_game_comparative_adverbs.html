@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HT English - Comparative Adverbs Game (Unit 2 - Grade 8)</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      background: linear-gradient(135deg, #ecfdf5 0%, #fef3c7 50%, #e0f2fe 100%);
+      min-height: 100vh;
+    }
+    .game-card {
+      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .game-card:hover {
+      transform: translateY(-4px);
+    }
+    .pulse-btn:hover {
+      transform: scale(1.03);
+    }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #10b981;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="text-slate-800 antialiased p-3 md:p-6">
+
+  <!-- TOP HEADER / BRANDING -->
+  <header class="max-w-6xl mx-auto bg-white/95 backdrop-blur shadow-xl rounded-3xl p-5 mb-6 border-2 border-emerald-200">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-4 text-center md:text-left">
+        <div class="w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-700 flex items-center justify-center text-white text-3xl shadow-lg shadow-emerald-200 font-extrabold">
+          🌾
+        </div>
+        <div>
+          <div class="flex items-center justify-center md:justify-start gap-2">
+            <h1 class="text-2xl md:text-3xl font-black tracking-tight text-emerald-900">HT ENGLISH</h1>
+            <span class="bg-amber-400 text-amber-950 text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">Ms. Lily</span>
+          </div>
+          <p class="text-sm font-bold text-slate-600">Unit 2: Life in the Countryside • Comparative Adverbs</p>
+          <div class="flex flex-wrap items-center justify-center md:justify-start gap-3 mt-1 text-xs text-slate-500">
+            <span>📞 0963.422.940 - 0962.240.866</span>
+            <span>📍 Thôn Đạo Đường, xã Ninh Cường, Ninh Bình</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Control & Global Stats -->
+      <div class="flex items-center gap-3">
+        <div class="bg-emerald-50 border border-emerald-200 rounded-2xl px-4 py-2 text-center">
+          <div class="text-xs font-bold text-emerald-700 uppercase">Tổng Điểm</div>
+          <div id="global-score-badge" class="text-2xl font-black text-emerald-600">0</div>
+        </div>
+        <button onclick="toggleGlobalAudio()" id="btn-sound-toggle" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-2xl text-xs font-bold transition flex items-center gap-1.5 border border-slate-300">
+          <span id="sound-icon">🔊</span> Giọng Nữ US: <span id="sound-status" class="text-emerald-600">Bật</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- NAVIGATION TABS FOR 5 GAMES + HANDBOOK -->
+  <nav class="max-w-6xl mx-auto mb-6">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 bg-white/80 p-2 rounded-2xl shadow-sm border border-emerald-100">
+      <button onclick="switchTab('handbook')" id="tab-handbook" class="tab-btn py-2.5 px-3 rounded-xl font-extrabold text-xs transition flex items-center justify-center gap-1.5 bg-emerald-600 text-white shadow-md">
+        📖 Cẩm Nang
+      </button>
+      <button onclick="switchTab('game1')" id="tab-game1" class="tab-btn py-2.5 px-3 rounded-xl font-extrabold text-xs transition flex items-center justify-center gap-1.5 text-slate-700 hover:bg-emerald-50">
+        🏎️ Game 1 (20c)
+      </button>
+      <button onclick="switchTab('game2')" id="tab-game2" class="tab-btn py-2.5 px-3 rounded-xl font-extrabold text-xs transition flex items-center justify-center gap-1.5 text-slate-700 hover:bg-emerald-50">
+        🎈 Game 2 (20c)
+      </button>
+      <button onclick="switchTab('game3')" id="tab-game3" class="tab-btn py-2.5 px-3 rounded-xl font-extrabold text-xs transition flex items-center justify-center gap-1.5 text-slate-700 hover:bg-emerald-50">
+        🚜 Game 3 (20c)
+      </button>
+      <button onclick="switchTab('game4')" id="tab-game4" class="tab-btn py-2.5 px-3 rounded-xl font-extrabold text-xs transition flex items-center justify-center gap-1.5 text-slate-700 hover:bg-emerald-50">
+        🔍 Game 4 (20c)
+      </button>
+      <button onclick="switchTab('game5')" id="tab-game5" class="tab-btn py-2.5 px-3 rounded-xl font-extrabold text-xs transition flex items-center justify-center gap-1.5 text-slate-700 hover:bg-emerald-50">
+        🌾 Game 5 (20c)
+      </button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-6xl mx-auto">
+
+    <!-- ==================== TAB: GRAMMAR HANDBOOK ==================== -->
+    <section id="pane-handbook" class="space-y-6">
+      <div class="bg-white rounded-3xl p-6 md:p-8 shadow-xl border border-emerald-100">
+        <div class="flex items-center justify-between border-b pb-4 mb-6 border-slate-100">
+          <div>
+            <h2 class="text-2xl font-black text-emerald-900 flex items-center gap-2">
+              <span>🌾</span> Cẩm Nang Ngữ Pháp: So Sánh Hơn Của Trạng Từ
+            </h2>
+            <p class="text-sm text-slate-500 font-semibold mt-1">Comparative Forms of Adverbs (English 8 - Unit 2: Life in the Countryside)</p>
+          </div>
+          <button onclick="speakText('Comparative Forms of Adverbs. Unit two, Life in the Countryside.')" class="p-3 bg-emerald-100 hover:bg-emerald-200 text-emerald-800 rounded-2xl text-xl shadow-sm transition">
+            🔊
+          </button>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Short Adverbs -->
+          <div class="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 rounded-2xl p-5 shadow-sm">
+            <div class="flex items-center justify-between mb-3">
+              <span class="bg-amber-500 text-white font-black text-xs px-3 py-1 rounded-full uppercase">1. Trạng Từ Ngắn</span>
+              <button onclick="speakText('Short adverbs. Add E R. fast, faster. hard, harder. early, earlier.')" class="text-amber-700 hover:scale-110 transition">🔊</button>
+            </div>
+            <p class="text-xs text-amber-900 font-bold mb-2">Đa phần có dạng giống tính từ, thêm đuôi <b>-er</b>:</p>
+            <div class="bg-white/80 p-3 rounded-xl text-xs space-y-1.5 border border-amber-200 text-slate-700 font-mono">
+              <div class="flex justify-between"><span>fast → <b>faster</b></span> <button onclick="speakText('fast, faster')">🔊</button></div>
+              <div class="flex justify-between"><span>hard → <b>harder</b></span> <button onclick="speakText('hard, harder')">🔊</button></div>
+              <div class="flex justify-between"><span>high → <b>higher</b></span> <button onclick="speakText('high, higher')">🔊</button></div>
+              <div class="flex justify-between"><span>late → <b>later</b></span> <button onclick="speakText('late, later')">🔊</button></div>
+              <div class="flex justify-between"><span>near → <b>nearer</b></span> <button onclick="speakText('near, nearer')">🔊</button></div>
+              <div class="flex justify-between"><span>early → <b>earlier</b> (y → ier)</span> <button onclick="speakText('early, earlier')">🔊</button></div>
+            </div>
+            <div class="mt-3 text-xs bg-amber-100 text-amber-900 p-2 rounded-lg font-bold">
+              Công thức: $S + V + \text{Adv-er} + \text{than} \dots$
+            </div>
+          </div>
+
+          <!-- Long Adverbs -->
+          <div class="bg-gradient-to-br from-emerald-50 to-teal-50 border-2 border-emerald-200 rounded-2xl p-5 shadow-sm">
+            <div class="flex items-center justify-between mb-3">
+              <span class="bg-emerald-600 text-white font-black text-xs px-3 py-1 rounded-full uppercase">2. Trạng Từ Dài</span>
+              <button onclick="speakText('Long adverbs. Use more plus adverb. more carefully, more quickly, more beautifully.')" class="text-emerald-700 hover:scale-110 transition">🔊</button>
+            </div>
+            <p class="text-xs text-emerald-900 font-bold mb-2">Trạng từ có 2 âm tiết trở lên (thường tận cùng đuôi <b>-ly</b>), dùng <b>more</b>:</p>
+            <div class="bg-white/80 p-3 rounded-xl text-xs space-y-1.5 border border-emerald-200 text-slate-700 font-mono">
+              <div class="flex justify-between"><span>carefully → <b>more carefully</b></span> <button onclick="speakText('more carefully')">🔊</button></div>
+              <div class="flex justify-between"><span>quickly → <b>more quickly</b></span> <button onclick="speakText('more quickly')">🔊</button></div>
+              <div class="flex justify-between"><span>beautifully → <b>more beautifully</b></span> <button onclick="speakText('more beautifully')">🔊</button></div>
+              <div class="flex justify-between"><span>quietly → <b>more quietly</b></span> <button onclick="speakText('more quietly')">🔊</button></div>
+              <div class="flex justify-between"><span>soundly → <b>more soundly</b></span> <button onclick="speakText('more soundly')">🔊</button></div>
+              <div class="flex justify-between"><span>fluently → <b>more fluently</b></span> <button onclick="speakText('more fluently')">🔊</button></div>
+            </div>
+            <div class="mt-3 text-xs bg-emerald-100 text-emerald-900 p-2 rounded-lg font-bold">
+              Công thức: $S + V + \text{more} + \text{Adv} + \text{than} \dots$
+            </div>
+          </div>
+
+          <!-- Irregular Adverbs -->
+          <div class="bg-gradient-to-br from-purple-50 to-indigo-50 border-2 border-purple-200 rounded-2xl p-5 shadow-sm">
+            <div class="flex items-center justify-between mb-3">
+              <span class="bg-purple-600 text-white font-black text-xs px-3 py-1 rounded-full uppercase">3. Trạng Từ Bất Quy Tắc</span>
+              <button onclick="speakText('Irregular adverbs. well becomes better. badly becomes worse. far becomes farther or further.')" class="text-purple-700 hover:scale-110 transition">🔊</button>
+            </div>
+            <p class="text-xs text-purple-900 font-bold mb-2">Biến đổi đặc biệt, bắt buộc học thuộc lòng:</p>
+            <div class="bg-white/80 p-3 rounded-xl text-xs space-y-1.5 border border-purple-200 text-slate-700 font-mono">
+              <div class="flex justify-between"><span>well → <b>better</b></span> <button onclick="speakText('well, better')">🔊</button></div>
+              <div class="flex justify-between"><span>badly → <b>worse</b></span> <button onclick="speakText('badly, worse')">🔊</button></div>
+              <div class="flex justify-between"><span>far → <b>farther / further</b></span> <button onclick="speakText('far, farther, further')">🔊</button></div>
+              <div class="flex justify-between"><span>much → <b>more</b></span> <button onclick="speakText('much, more')">🔊</button></div>
+              <div class="flex justify-between"><span>little → <b>less</b></span> <button onclick="speakText('little, less')">🔊</button></div>
+            </div>
+            <div class="mt-3 text-xs bg-purple-100 text-purple-900 p-2 rounded-lg font-bold">
+              ⚠️ Tuyệt đối không dùng: <i>more well, more badly, more faster</i>!
+            </div>
+          </div>
+        </div>
+
+        <!-- Vocabulary Unit 2 Showcase -->
+        <div class="mt-8 bg-slate-50 border border-slate-200 rounded-2xl p-5">
+          <h3 class="font-extrabold text-slate-800 text-sm mb-3 flex items-center justify-between">
+            <span>🌱 Từ Vựng Unit 2 Cần Nhớ (Life in the Countryside):</span>
+            <button onclick="speakText('harvest time, combine harvester, herd buffaloes, paddy field, peaceful, hospitable')" class="text-xs text-emerald-700 font-bold hover:underline">🔊 Nghe toàn bộ cụm</button>
+          </h3>
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 text-xs">
+            <div class="p-2.5 bg-white rounded-xl border border-slate-200 text-center font-bold text-slate-700">🌾 harvest time<br><span class="font-normal text-slate-500">vụ mùa</span></div>
+            <div class="p-2.5 bg-white rounded-xl border border-slate-200 text-center font-bold text-slate-700">🚜 harvester<br><span class="font-normal text-slate-500">máy gặt</span></div>
+            <div class="p-2.5 bg-white rounded-xl border border-slate-200 text-center font-bold text-slate-700">🐃 herd cattle<br><span class="font-normal text-slate-500">chăn trâu/bò</span></div>
+            <div class="p-2.5 bg-white rounded-xl border border-slate-200 text-center font-bold text-slate-700">🏞️ paddy field<br><span class="font-normal text-slate-500">cánh đồng lúa</span></div>
+            <div class="p-2.5 bg-white rounded-xl border border-slate-200 text-center font-bold text-slate-700">🏡 hospitable<br><span class="font-normal text-slate-500">hiếu khách</span></div>
+            <div class="p-2.5 bg-white rounded-xl border border-slate-200 text-center font-bold text-slate-700">🪁 fly kites<br><span class="font-normal text-slate-500">thả diều</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== GENERIC GAME PLAY VIEW ==================== -->
+    <section id="pane-game" class="hidden">
+      <div class="bg-white rounded-3xl p-5 md:p-8 shadow-xl border-2 border-emerald-200 relative">
+        
+        <!-- Game Header Bar -->
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4 mb-6">
+          <div class="flex items-center gap-3">
+            <span id="game-icon" class="text-3xl">🏎️</span>
+            <div>
+              <h2 id="game-title" class="text-xl md:text-2xl font-black text-emerald-950">Game Name</h2>
+              <p id="game-desc" class="text-xs font-bold text-slate-500">Mô tả game</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <div class="bg-amber-100 border border-amber-300 px-3 py-1.5 rounded-xl text-xs font-black text-amber-900">
+              Câu: <span id="current-q-index" class="text-emerald-700 text-sm font-black">1</span>/20
+            </div>
+            <div class="bg-emerald-100 border border-emerald-300 px-3 py-1.5 rounded-xl text-xs font-black text-emerald-900">
+              Điểm game: <span id="current-game-score" class="text-emerald-700 text-sm font-black">0</span>/200
+            </div>
+          </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden mb-6">
+          <div id="game-progress-bar" class="bg-gradient-to-r from-emerald-500 to-teal-600 h-full rounded-full transition-all duration-300" style="width: 5%;"></div>
+        </div>
+
+        <!-- Question Card Box -->
+        <div class="bg-gradient-to-br from-slate-50 to-emerald-50/40 border-2 border-slate-200 rounded-3xl p-6 md:p-8 mb-6 shadow-inner relative">
+          <div class="flex items-start justify-between gap-3 mb-4">
+            <span class="bg-emerald-600 text-white font-extrabold text-xs px-3 py-1 rounded-full uppercase tracking-wider">
+              Câu hỏi <span id="display-q-num">1</span>
+            </span>
+            <button onclick="speakCurrentQuestion()" class="flex items-center gap-1.5 bg-white border border-emerald-200 text-emerald-800 hover:bg-emerald-100 px-3 py-1.5 rounded-xl text-xs font-black shadow-sm transition">
+              <span>🔊</span> Nghe câu hỏi
+            </button>
+          </div>
+
+          <div id="question-text" class="text-lg md:text-xl font-black text-slate-800 leading-relaxed min-h-[50px] flex items-center">
+            Question text goes here...
+          </div>
+        </div>
+
+        <!-- Options Grid -->
+        <div id="options-grid" class="grid sm:grid-cols-2 gap-3.5 mb-6">
+          <!-- Dynamically injected option buttons -->
+        </div>
+
+        <!-- Feedback & Explanation Box (Initially Hidden) -->
+        <div id="explanation-box" class="hidden p-5 rounded-2xl mb-6 border-2 transition-all">
+          <div class="flex items-start justify-between gap-3 mb-2">
+            <div class="flex items-center gap-2">
+              <span id="feedback-icon" class="text-2xl">🎉</span>
+              <span id="feedback-title" class="font-black text-base md:text-lg">Chính xác!</span>
+            </div>
+            <button onclick="speakExplanation()" class="text-xs font-bold px-3 py-1 rounded-lg bg-white/80 hover:bg-white text-slate-700 border border-slate-300 transition">
+              🔊 Nghe lời giải
+            </button>
+          </div>
+          <p id="explanation-text" class="text-xs md:text-sm text-slate-700 font-medium leading-relaxed">
+            Giải thích...
+          </p>
+        </div>
+
+        <!-- Bottom Controls -->
+        <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+          <button onclick="previousQuestion()" id="btn-prev" class="px-4 py-2.5 rounded-xl font-bold text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 transition disabled:opacity-40 disabled:cursor-not-allowed">
+            ← Câu trước
+          </button>
+          <button onclick="nextOrFinishQuestion()" id="btn-next" class="px-6 py-2.5 rounded-xl font-extrabold text-xs bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-200 transition">
+            Tiếp theo →
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== GAME SUMMARY & REPORT CARD ==================== -->
+    <section id="pane-summary" class="hidden">
+      <div class="bg-white rounded-3xl p-6 md:p-10 shadow-2xl border-2 border-emerald-300 text-center max-w-3xl mx-auto">
+        <div class="w-24 h-24 bg-gradient-to-tr from-amber-400 to-yellow-300 rounded-3xl mx-auto flex items-center justify-center text-5xl shadow-xl shadow-amber-100 mb-4 animate-bounce">
+          🏆
+        </div>
+        <h2 class="text-2xl md:text-3xl font-black text-slate-800 mb-1">Chúc Mừng Em Đã Hoàn Thành!</h2>
+        <p class="text-sm font-bold text-emerald-700 mb-6">Trung Tâm Tiếng Anh HT English - Ms. Lily</p>
+
+        <div class="grid grid-cols-3 gap-3 bg-emerald-50/70 border border-emerald-200 rounded-2xl p-4 mb-6">
+          <div>
+            <div class="text-xs font-bold text-slate-500 uppercase">Điểm Số</div>
+            <div id="sum-score" class="text-2xl font-black text-emerald-700">0/200</div>
+          </div>
+          <div>
+            <div class="text-xs font-bold text-slate-500 uppercase">Độ Chính Xác</div>
+            <div id="sum-accuracy" class="text-2xl font-black text-amber-600">0%</div>
+          </div>
+          <div>
+            <div class="text-xs font-bold text-slate-500 uppercase">Xếp Hạng</div>
+            <div id="sum-rank" class="text-xl font-black text-purple-600">Xuất Sắc ⭐</div>
+          </div>
+        </div>
+
+        <div class="text-left bg-slate-50 border border-slate-200 rounded-2xl p-4 mb-6 text-xs text-slate-600 space-y-1">
+          <div class="font-black text-slate-800 text-sm mb-1">💌 Lời phê của Ms. Lily:</div>
+          <p id="sum-teacher-comment">Em nắm rất chắc cấu trúc trạng từ so sánh hơn trong Unit 2 rồi nhé!</p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-wrap items-center justify-center gap-3">
+          <button onclick="reviewCurrentGame()" class="px-5 py-2.5 rounded-xl font-black text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 transition">
+            📋 Xem lại toàn bộ câu hỏi & đáp án
+          </button>
+          <button onclick="restartCurrentGame()" class="px-5 py-2.5 rounded-xl font-black text-xs bg-amber-500 hover:bg-amber-600 text-white shadow-md transition">
+            🔄 Chơi lại game này
+          </button>
+          <button onclick="switchTab('handbook')" class="px-5 py-2.5 rounded-xl font-black text-xs bg-emerald-600 hover:bg-emerald-700 text-white shadow-md transition">
+            🎮 Chọn Game khác
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- SOUND EFFECT WEB AUDIO ENGINE & LOGIC SCRIPT -->
+  <script>
+    /* ==========================================================================
+       AUDIO & SPEECH SYNTHESIS ENGINE (US FEMALE AUDIO)
+       ========================================================================== */
+    let isSoundEnabled = true;
+    let audioCtx = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, type, duration) {
+      if (!isSoundEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        if (ctx.state === 'suspended') ctx.resume();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(0.2, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch(e) {}
+    }
+
+    function playCorrectSound() {
+      playTone(587.33, 'sine', 0.15); // D5
+      setTimeout(() => playTone(880, 'sine', 0.25), 120); // A5
+    }
+
+    function playWrongSound() {
+      playTone(220, 'sawtooth', 0.25);
+      setTimeout(() => playTone(180, 'sawtooth', 0.3), 150);
+    }
+
+    function speakText(text) {
+      if (!isSoundEnabled) return;
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel(); // cancel previous
+      const cleanText = text.replace(/[_]/g, ' blank ').replace(/[*#]/g, '');
+      const utter = new SpeechSynthesisUtterance(cleanText);
+      utter.lang = 'en-US';
+      utter.rate = 0.88; // clear pace for secondary school students
+
+      // Choose female US voice if available
+      const voices = window.speechSynthesis.getVoices();
+      const femaleUS = voices.find(v => (v.lang === 'en-US' || v.lang === 'en_US') && 
+        (v.name.includes('Female') || v.name.includes('Samantha') || v.name.includes('Zira') || v.name.includes('Google US English') || v.name.includes('Victoria')));
+      if (femaleUS) utter.voice = femaleUS;
+
+      window.speechSynthesis.speak(utter);
+    }
+
+    function toggleGlobalAudio() {
+      isSoundEnabled = !isSoundEnabled;
+      const statusEl = document.getElementById('sound-status');
+      const iconEl = document.getElementById('sound-icon');
+      if (isSoundEnabled) {
+        statusEl.textContent = "Bật";
+        statusEl.className = "text-emerald-600";
+        iconEl.textContent = "🔊";
+      } else {
+        statusEl.textContent = "Tắt";
+        statusEl.className = "text-red-500";
+        iconEl.textContent = "🔇";
+        window.speechSynthesis.cancel();
+      }
+    }
+
+    /* ==========================================================================
+       DATA: 5 GAMES WITH 20 QUESTIONS EACH (TOTAL 100 HIGH-QUALITY QUESTIONS)
+       TOPIC: Comparative Adverbs & Unit 2: Life in the Countryside (English 8)
+       ========================================================================== */
+    const GAMES_DATA = {
+      game1: {
+        title: "Game 1: Đua Xe Đồng Quê (Highway Racer)",
+        desc: "Chọn dạng so sánh hơn của trạng từ thích hợp trong ngữ cảnh nông thôn!",
+        icon: "🏎️",
+        questions: [
+          {
+            q: "A horse can run ________ than a buffalo.",
+            options: ["more fast", "faster", "fastly", "fastest"],
+            answer: 1,
+            explain: "Trạng từ 'fast' là trạng từ ngắn đặc biệt (giống tính từ). So sánh hơn ta thêm đuôi -er -> 'faster'. Tuyệt đối không dùng 'more fast'."
+          },
+          {
+            q: "In the countryside, farmers usually have to work ________ than people in the city.",
+            options: ["more harder", "harder", "hardlier", "more hard"],
+            answer: 1,
+            explain: "Trạng từ 'hard' (chăm chỉ) là trạng từ ngắn. Dạng so sánh hơn là 'harder'. Lưu ý: 'hardly' có nghĩa là 'hầu như không', không dùng trong so sánh này."
+          },
+          {
+            q: "The villagers welcomed the guests ________ than we expected.",
+            options: ["more hospitably", "hospitably", "hospitabler", "more hospitable"],
+            answer: 0,
+            explain: "Trạng từ 'hospitably' (hiếu khách) là trạng từ dài kết thúc bằng đuôi -ly. Cấu trúc so sánh hơn: more + adv -> 'more hospitably'."
+          },
+          {
+            q: "Now you are driving too fast. Please drive ________.",
+            options: ["careful", "more carefully", "carefullier", "more careful"],
+            answer: 1,
+            explain: "Bổ nghĩa cho động từ 'drive' ta dùng trạng từ. Trạng từ 'carefully' là trạng từ dài, so sánh hơn là 'more carefully'."
+          },
+          {
+            q: "The farmers started harvesting their crops ________ than last year.",
+            options: ["more early", "earlyer", "earlier", "more earlier"],
+            answer: 2,
+            explain: "Trạng từ 'early' kết thúc bằng 'y'. Khi chuyển sang so sánh hơn, đổi 'y' thành 'i' rồi thêm -er -> 'earlier'."
+          },
+          {
+            q: "A combine harvester cuts rice much ________ than five workers do.",
+            options: ["more quickly", "quicklier", "quicker", "more quick"],
+            answer: 0,
+            explain: "Trạng từ 'quickly' có 2 âm tiết và tận cùng là -ly. Dạng so sánh chuẩn là 'more quickly'. Có thể dùng 'much' phía trước để nhấn mạnh."
+          },
+          {
+            q: "Lan dances ________ than anyone else in our village dance club.",
+            options: ["more beautifully", "beautifuler", "more beautiful", "most beautifully"],
+            answer: 0,
+            explain: "'Beautifully' là trạng từ dài (4 âm tiết), bổ nghĩa cho động từ 'dance'. So sánh hơn dùng: more + beautifully."
+          },
+          {
+            q: "After a hard working day on the paddy fields, they slept ________ than ever before.",
+            options: ["more soundly", "soundlier", "sounder", "more sound"],
+            answer: 0,
+            explain: "Cụm 'sleep soundly' (ngủ say sưa). Trạng từ 'soundly' là trạng từ dài, so sánh hơn dùng 'more soundly'."
+          },
+          {
+            q: "The kids in my village can ride horses ________ than the city children.",
+            options: ["well", "better", "more well", "gooder"],
+            answer: 1,
+            explain: "Trạng từ của 'good' là 'well'. 'Well' là trạng từ bất quy tắc, chuyển sang so sánh hơn là 'better'."
+          },
+          {
+            q: "The workers arrived at the farm ________ than the manager.",
+            options: ["later", "more late", "lately", "more later"],
+            answer: 0,
+            explain: "'Late' (muộn/trễ) là trạng từ ngắn. Dạng so sánh hơn là 'later'. Chú ý: 'lately' mang nghĩa là 'dạo gần đây', không phải so sánh hơn của late."
+          },
+          {
+            q: "Can you speak a bit ________? The baby is sleeping in the bamboo hut.",
+            options: ["quietlier", "more quietly", "more quiet", "quietier"],
+            answer: 1,
+            explain: "Bổ nghĩa cho động từ 'speak' ta dùng trạng từ 'quietly' (yên lặng, nhỏ tiếng). 'Quietly' là trạng từ dài -> 'more quietly'."
+          },
+          {
+            q: "This tractor plows the fields ________ than the old buffalo.",
+            options: ["more effectively", "effectivelier", "more effective", "effectivest"],
+            answer: 0,
+            explain: "Trạng từ 'effectively' (hiệu quả) là trạng từ dài -> so sánh hơn dùng 'more effectively'."
+          },
+          {
+            q: "My brother gets up ________ than anyone else in the family to feed the cattle.",
+            options: ["earlyer", "more early", "earlier", "earliest"],
+            answer: 2,
+            explain: "Quy tắc chính tả: 'early' -> chuyển 'y' thành 'i' và thêm '-er' -> 'earlier'."
+          },
+          {
+            q: "During harvest time, trucks carry rice away ________ than usual.",
+            options: ["more frequently", "frequentlier", "more frequent", "frequenter"],
+            answer: 0,
+            explain: "Trạng từ 'frequently' (thường xuyên) là trạng từ dài -> so sánh hơn là 'more frequently'."
+          },
+          {
+            q: "Because of the heavy rain, the river rose ________ than yesterday.",
+            options: ["higher", "more high", "highlier", "more highly"],
+            answer: 0,
+            explain: "'High' vừa là tính từ vừa là trạng từ ngắn. So sánh hơn ta thêm đuôi -er -> 'higher'."
+          },
+          {
+            q: "You performed ________ than you did in the village rehearsal yesterday.",
+            options: ["badder", "worse", "more badly", "worser"],
+            answer: 1,
+            explain: "'Badly' là trạng từ bất quy tắc. Dạng so sánh hơn bắt buộc là 'worse' (tồi tệ hơn). Không có 'badder' hay 'more badly'."
+          },
+          {
+            q: "The kite flies ________ into the blue sky than I thought.",
+            options: ["farther", "more far", "farly", "farer"],
+            answer: 0,
+            explain: "'Far' là trạng từ bất quy tắc chỉ khoảng cách. So sánh hơn là 'farther' hoặc 'further'."
+          },
+          {
+            q: "City people seem to live ________ than countryside folks.",
+            options: ["busier", "more busily", "busily", "more busy"],
+            answer: 1,
+            explain: "Bổ nghĩa cho động từ 'live' ta cần một trạng từ: 'busily' -> so sánh hơn là 'more busily'."
+          },
+          {
+            q: "Please explain the milking process ________ so the children can understand.",
+            options: ["clearly", "more clearly", "clearlier", "more clear"],
+            answer: 1,
+            explain: "'Clearly' là trạng từ có đuôi -ly -> so sánh hơn là 'more clearly'."
+          },
+          {
+            q: "Grandpa walks ________ than he did five years ago.",
+            options: ["more slowly", "slowlier", "slow", "slowerly"],
+            answer: 0,
+            explain: "'Slowly' là trạng từ thường gặp. Dạng so sánh hơn chuẩn mực là 'more slowly'."
+          }
+        ]
+      },
+
+      game2: {
+        title: "Game 2: Bắn Bóng Trạng Từ (Balloon Pop Master)",
+        desc: "Xác định nhanh dạng so sánh hơn đúng của các trạng từ Unit 2!",
+        icon: "🎈",
+        questions: [
+          {
+            q: "Dạng so sánh hơn đúng của trạng từ 'well' là gì?",
+            options: ["more well", "gooder", "better", "best"],
+            answer: 2,
+            explain: "'Well' là trạng từ bất quy tắc: well -> better -> best."
+          },
+          {
+            q: "Dạng so sánh hơn của trạng từ 'early' là gì?",
+            options: ["more early", "earlier", "earlyer", "more earlier"],
+            answer: 1,
+            explain: "'Early' chuyển 'y' thành 'i' rồi thêm '-er' -> 'earlier'."
+          },
+          {
+            q: "Dạng so sánh hơn của trạng từ 'badly' là gì?",
+            options: ["badder", "worse", "more badly", "worst"],
+            answer: 1,
+            explain: "'Badly' là trạng từ bất quy tắc: badly -> worse -> worst."
+          },
+          {
+            q: "Dạng so sánh hơn của trạng từ 'fast' là gì?",
+            options: ["faster", "more fast", "fastly", "more faster"],
+            answer: 0,
+            explain: "'Fast' là trạng từ ngắn. Dạng so sánh hơn thêm đuôi -er -> 'faster'."
+          },
+          {
+            q: "Dạng so sánh hơn của trạng từ 'hard' là gì?",
+            options: ["more hard", "harder", "hardlier", "more harder"],
+            answer: 1,
+            explain: "'Hard' là trạng từ ngắn -> so sánh hơn là 'harder'."
+          },
+          {
+            q: "Dạng so sánh hơn của trạng từ 'carefully' là gì?",
+            options: ["carefullier", "more carefully", "carefuler", "more careful"],
+            answer: 1,
+            explain: "'Carefully' là trạng từ dài -> 'more carefully'."
+          },
+          {
+            q: "Dạng so sánh hơn của trạng từ 'late' là gì?",
+            options: ["lately", "more late", "later", "latier"],
+            answer: 2,
+            explain: "'Late' thêm đuôi -r -> 'later'."
+          },
+          {
+            q: "Dạng so sánh hơn của trạng từ 'fluently' là gì?",
+            options: ["fluentlier", "more fluently", "fluenter", "more fluent"],
+            answer: 1,
+            explain: "'Fluently' có 3 âm tiết -> 'more fluently'."
+          },
+          {
+            q: "Dạng so sánh hơn của trạng từ 'far' là gì?",
+            options: ["farther / further", "more far", "farer", "farly"],
+            answer: 0,
+            explain: "'Far' biến đổi bất quy tắc thành 'farther' hoặc 'further'."
+          },
+          {
+            q: "Dạng so sánh hơn của trạng từ 'quietly' là gì?",
+            options: ["quietlier", "more quietly", "quietier", "more quiet"],
+            answer: 1,
+            explain: "'Quietly' là trạng từ dài -> 'more quietly'."
+          },
+          {
+            q: "Dạng so sánh hơn của trạng từ 'heavily' là gì?",
+            options: ["heavilier", "more heavily", "heavier", "more heavier"],
+            answer: 1,
+            explain: "'Heavily' là trạng từ (như rain heavily) -> 'more heavily'."
+          },
+          {
+            q: "Dạng so sánh hơn của trạng từ 'soundly' là gì?",
+            options: ["sounder", "more soundly", "soundlier", "more sound"],
+            answer: 1,
+            explain: "'Soundly' là trạng từ dài -> 'more soundly'."
+          },
+          {
+            q: "Dạng so sánh hơn của trạng từ 'little' là gì?",
+            options: ["littler", "less", "more little", "least"],
+            answer: 1,
+            explain: "'Little' là trạng từ bất quy tắc: little -> less -> least."
+          },
+          {
+            q: "Dạng so sánh hơn của trạng từ 'much' là gì?",
+            options: ["mucher", "more", "many", "most"],
+            answer: 1,
+            explain: "'Much' biến đổi thành 'more'."
+          },
+          {
+            q: "Dạng so sánh hơn của trạng từ 'long' là gì?",
+            options: ["longer", "more long", "longlier", "more longer"],
+            answer: 0,
+            explain: "'Long' là trạng từ ngắn -> 'longer'."
+          },
+          {
+            q: "Dạng so sánh hơn của trạng từ 'high' là gì?",
+            options: ["more high", "higher", "highlier", "more highly"],
+            answer: 1,
+            explain: "'High' là trạng từ ngắn -> 'higher'."
+          },
+          {
+            q: "Dạng so sánh hơn của trạng từ 'generously' là gì?",
+            options: ["generouslier", "more generously", "generouser", "more generous"],
+            answer: 1,
+            explain: "'Generously' (hào phóng) là trạng từ dài -> 'more generously'."
+          },
+          {
+            q: "Dạng so sánh hơn của trạng từ 'peacefully' là gì?",
+            options: ["peacefullier", "more peacefully", "peacefuler", "more peaceful"],
+            answer: 1,
+            explain: "'Peacefully' là trạng từ dài -> 'more peacefully'."
+          },
+          {
+            q: "Dạng so sánh hơn của trạng từ 'neatly' là gì?",
+            options: ["neatlier", "more neatly", "neater", "more neater"],
+            answer: 1,
+            explain: "'Neatly' (gọn gàng) -> 'more neatly'."
+          },
+          {
+            q: "Dạng so sánh hơn của trạng từ 'traditional' chuyển sang trạng từ so sánh hơn là gì?",
+            options: ["traditionallier", "more traditionally", "traditionaller", "more traditional"],
+            answer: 1,
+            explain: "Trạng từ là 'traditionally' -> so sánh hơn dùng 'more traditionally'."
+          }
+        ]
+      },
+
+      game3: {
+        title: "Game 3: Bác Nông Dân Thu Hoạch (Sentence Builder)",
+        desc: "Hoàn thiện câu ghép ngữ pháp chuẩn mực về cuộc sống nông thôn!",
+        icon: "🚜",
+        questions: [
+          {
+            q: "Life in the countryside moves ________ than in big cities.",
+            options: ["more leisurely", "leisurelier", "more leisure", "leisured"],
+            answer: 0,
+            explain: "Động từ 'move' đi với trạng từ 'more leisurely' (thong thả hơn, từ tốn hơn)."
+          },
+          {
+            q: "The local children can climb trees much ________ than I can.",
+            options: ["skillfully", "more skillfully", "skillfullier", "skillful"],
+            answer: 1,
+            explain: "'Climb' là động từ hành động -> dùng trạng từ 'more skillfully' (khéo léo hơn)."
+          },
+          {
+            q: "If you want to harvest all the rice before the storm, you must work ________.",
+            options: ["harder", "more harder", "more hardly", "hard"],
+            answer: 0,
+            explain: "Work harder = làm việc chăm chỉ, tích cực hơn."
+          },
+          {
+            q: "Today it is raining ________ than it was yesterday morning.",
+            options: ["more heavily", "heavier", "heavilier", "more heavy"],
+            answer: 0,
+            explain: "Mưa to hơn: 'rain more heavily'."
+          },
+          {
+            q: "The combine harvester loaded the rice onto the truck ________ than the workers.",
+            options: ["more quickly", "quicklier", "quicker", "more quick"],
+            answer: 0,
+            explain: "Trạng từ 'quickly' -> 'more quickly'."
+          },
+          {
+            q: "Our village football team played ________ than the neighboring team.",
+            options: ["better", "more well", "gooder", "best"],
+            answer: 0,
+            explain: "Play well -> so sánh hơn là 'play better'."
+          },
+          {
+            q: "My grandfather walks ________ than my grandmother.",
+            options: ["more slowly", "slowlier", "slower", "more slow"],
+            answer: 0,
+            explain: "'Walk more slowly' = đi bộ chậm rãi hơn."
+          },
+          {
+            q: "The buffalo was plowing the field ________ than usual because of the hot weather.",
+            options: ["more tiredly", "tiredlier", "tired", "more tired"],
+            answer: 0,
+            explain: "Trạng từ 'tiredly' (mệt mỏi) -> 'more tiredly'."
+          },
+          {
+            q: "You should drive ________ when passing through narrow village paths.",
+            options: ["carefully", "more carefully", "carefullier", "most carefully"],
+            answer: 1,
+            explain: "Qua đường làng hẹp nên lái xe cẩn thận hơn: 'drive more carefully'."
+          },
+          {
+            q: "The ducks swam across the canal ________ than the puppies.",
+            options: ["faster", "more fast", "fastly", "more faster"],
+            answer: 0,
+            explain: "Fast -> faster."
+          },
+          {
+            q: "The sun shines ________ in summer than in winter.",
+            options: ["more brightly", "brightlier", "brighter", "more bright"],
+            answer: 0,
+            explain: "'Shine more brightly' = tỏa sáng rực rỡ hơn."
+          },
+          {
+            q: "The children shouted ________ when their kites flew up into the sky.",
+            options: ["more excitedly", "excitedlier", "more excited", "excitedest"],
+            answer: 0,
+            explain: "'Shout more excitedly' = reo hò hào hứng hơn."
+          },
+          {
+            q: "He speaks English much ________ than he did last semester.",
+            options: ["more fluently", "fluentlier", "more fluent", "fluenter"],
+            answer: 0,
+            explain: "'Speak English more fluently' = nói tiếng Anh trôi chảy hơn."
+          },
+          {
+            q: "The farmers dry the paddy ________ on sunny days.",
+            options: ["more easily", "easier", "easilier", "more easy"],
+            answer: 0,
+            explain: "Phơi thóc dễ dàng hơn: 'dry the paddy more easily'."
+          },
+          {
+            q: "They decorated the communal house ________ than last festival.",
+            options: ["more beautifully", "beautifuler", "more beautiful", "most beautifully"],
+            answer: 0,
+            explain: "'Decorate more beautifully' = trang trí đẹp hơn."
+          },
+          {
+            q: "A trained horse jumps ________ than an untrained one.",
+            options: ["higher", "more high", "highlier", "more higher"],
+            answer: 0,
+            explain: "Jump higher = nhảy cao hơn (high là trạng từ ngắn)."
+          },
+          {
+            q: "In the countryside, people usually sleep ________ because there is no traffic noise.",
+            options: ["more soundly", "soundlier", "sounder", "more sound"],
+            answer: 0,
+            explain: "Sleep more soundly = ngủ ngon giấc, say sưa hơn."
+          },
+          {
+            q: "We finished unloading the hay ________ than we expected.",
+            options: ["earlier", "more early", "earlyer", "more earlier"],
+            answer: 0,
+            explain: "Early -> earlier = sớm hơn."
+          },
+          {
+            q: "The villagers treated the visitors ________ than any other place I've visited.",
+            options: ["more generously", "generouslier", "generouser", "more generous"],
+            answer: 0,
+            explain: "'Treat someone more generously' = đối đãi hào phóng hơn."
+          },
+          {
+            q: "The small tractor operates ________ than the big one in small gardens.",
+            options: ["more effectively", "effectivelier", "more effective", "effectiver"],
+            answer: 0,
+            explain: "'Operate more effectively' = vận hành hiệu quả hơn."
+          }
+        ]
+      },
+
+      game4: {
+        title: "Game 4: Thám Tử Bắt Lỗi Sai (Error Detective)",
+        desc: "Phát hiện và sửa những bẫy lỗi sai trạng từ so sánh hơn kinh điển!",
+        icon: "🔍",
+        questions: [
+          {
+            q: "Tìm lỗi sai: 'A cheetah runs [A] much [B] more faster [C] than a deer [D].'",
+            options: ["much", "more faster", "than", "deer"],
+            answer: 1,
+            explain: "Lỗi sai là 'more faster'. 'Fast' là trạng từ ngắn nên chỉ dùng 'faster', không được thêm 'more'."
+          },
+          {
+            q: "Tìm lỗi sai: 'Minh drives [A] quicklier [B] than his father [C] does [D].'",
+            options: ["drives", "quicklier", "his father", "does"],
+            answer: 1,
+            explain: "Không có từ 'quicklier'. So sánh hơn của trạng từ 'quickly' là 'more quickly'."
+          },
+          {
+            q: "Tìm lỗi sai: 'She speaks [A] English [B] more good [C] than her sister [D].'",
+            options: ["speaks", "English", "more good", "her sister"],
+            answer: 2,
+            explain: "'Good' là tính từ. Bổ nghĩa cho động từ 'speak' phải dùng trạng từ 'well', và so sánh hơn của 'well' là 'better'."
+          },
+          {
+            q: "Tìm lỗi sai: 'The farmers got up [A] earlyer [B] than usual to harvest [C] the rice [D].'",
+            options: ["got up", "earlyer", "than", "the rice"],
+            answer: 1,
+            explain: "Sai chính tả: 'earlyer' phải sửa thành 'earlier' (đổi y thành i rồi thêm -er)."
+          },
+          {
+            q: "Tìm lỗi sai: 'He worked [A] hardlier [B] than before to pass [C] the exam [D].'",
+            options: ["worked", "hardlier", "than", "the exam"],
+            answer: 1,
+            explain: "'Hard' là trạng từ ngắn -> so sánh hơn là 'harder'. 'Hardlier' là từ hoàn toàn sai."
+          },
+          {
+            q: "Tìm lỗi sai: 'The eagle flies [A] more higher [B] than any other bird [C] in the mountains [D].'",
+            options: ["flies", "more higher", "bird", "in the mountains"],
+            answer: 1,
+            explain: "'High' là trạng từ ngắn, chỉ dùng 'higher', không thêm 'more'."
+          },
+          {
+            q: "Tìm lỗi sai: 'They sang [A] more badly [B] than they did [C] yesterday [D].'",
+            options: ["sang", "more badly", "did", "yesterday"],
+            answer: 1,
+            explain: "So sánh hơn của trạng từ 'badly' là 'worse', không dùng 'more badly'."
+          },
+          {
+            q: "Tìm lỗi sai: 'Please write [A] your name [B] more clearer [C] on the form [D].'",
+            options: ["write", "your name", "more clearer", "on the form"],
+            answer: 2,
+            explain: "Trạng từ của clear là 'clearly'. Dạng so sánh hơn đúng là 'more clearly', không dùng 'more clearer'."
+          },
+          {
+            q: "Tìm lỗi sai: 'Can you speak [A] a bit [B] more quiet [C] please [D]?'",
+            options: ["speak", "a bit", "more quiet", "please"],
+            answer: 2,
+            explain: "Bổ nghĩa cho động từ 'speak' phải dùng trạng từ 'more quietly', không dùng tính từ 'more quiet'."
+          },
+          {
+            q: "Tìm lỗi sai: 'The horse jumped [A] more far [B] than the bull [C] in the show [D].'",
+            options: ["jumped", "more far", "the bull", "in the show"],
+            answer: 1,
+            explain: "'Far' là trạng từ bất quy tắc -> phải sửa thành 'farther' hoặc 'further', không dùng 'more far'."
+          },
+          {
+            q: "Tìm lỗi sai: 'He solved [A] the puzzle [B] more easily [C] as his friend [D].'",
+            options: ["solved", "the puzzle", "more easily", "as his friend"],
+            answer: 3,
+            explain: "Trong cấu trúc so sánh hơn, từ nối bắt buộc là 'than', không dùng 'as'. Sửa 'as his friend' thành 'than his friend'."
+          },
+          {
+            q: "Tìm lỗi sai: 'The villagers live [A] more peaceful [B] than people [C] in crowded cities [D].'",
+            options: ["live", "more peaceful", "people", "crowded cities"],
+            answer: 1,
+            explain: "Bổ nghĩa cho động từ 'live' cần dùng trạng từ 'more peacefully', không dùng tính từ 'peaceful'."
+          },
+          {
+            q: "Tìm lỗi sai: 'The tractor moves [A] slower [B] than the truck [C] on the highway [D].'",
+            options: ["moves", "slower", "than", "on the highway"],
+            answer: 1,
+            explain: "Để bổ nghĩa cho động từ 'move' theo chuẩn ngữ pháp SGK 8, nên dùng trạng từ 'more slowly' thay vì 'slower'."
+          },
+          {
+            q: "Tìm lỗi sai: 'She arrived [A] at the station [B] more late [C] than her classmates [D].'",
+            options: ["arrived", "at the station", "more late", "her classmates"],
+            answer: 2,
+            explain: "'Late' là trạng từ ngắn -> so sánh hơn phải là 'later', không dùng 'more late'."
+          },
+          {
+            q: "Tìm lỗi sai: 'The children listened [A] more attentive [B] than usual [C] to the story [D].'",
+            options: ["listened", "more attentive", "than usual", "to the story"],
+            answer: 1,
+            explain: "Bổ nghĩa cho động từ 'listened' phải dùng trạng từ 'more attentively'."
+          },
+          {
+            q: "Tìm lỗi sai: 'He drives [A] more dangerous [B] than he did [C] last year [D].'",
+            options: ["drives", "more dangerous", "he did", "last year"],
+            answer: 1,
+            explain: "Động từ 'drive' cần trạng từ 'more dangerously', không dùng tính từ 'dangerous'."
+          },
+          {
+            q: "Tìm lỗi sai: 'The crops grew [A] more well [B] thanks to the new [C] irrigation system [D].'",
+            options: ["grew", "more well", "thanks to", "irrigation system"],
+            answer: 1,
+            explain: "Không tồn tại 'more well'. Trạng từ so sánh hơn của 'well' là 'better'."
+          },
+          {
+            q: "Tìm lỗi sai: 'The new combine harvester works [A] much more fast [B] than the old [C] machine [D].'",
+            options: ["works", "much more fast", "than", "old machine"],
+            answer: 1,
+            explain: "Sai ở 'much more fast' -> phải sửa thành 'much faster'."
+          },
+          {
+            q: "Tìm lỗi sai: 'Nam can run [A] fastly [B] than any boy [C] in our class [D].'",
+            options: ["can run", "fastly", "than any boy", "in our class"],
+            answer: 1,
+            explain: "Không có từ 'fastly' trong tiếng Anh. Dạng so sánh hơn ở đây phải là 'faster'."
+          },
+          {
+            q: "Tìm lỗi sai: 'She behaved [A] more polite [B] than her brother [C] did yesterday [D].'",
+            options: ["behaved", "more polite", "her brother", "yesterday"],
+            answer: 1,
+            explain: "Bổ nghĩa cho động từ 'behaved' phải dùng trạng từ 'more politely'."
+          }
+        ]
+      },
+
+      game5: {
+        title: "Game 5: Đấu Trí Nông Trại Vui Vẻ (Farm Showdown)",
+        desc: "Thử thách đỉnh cao: Phân biệt Tính từ vs Trạng từ và cấu trúc nâng cao!",
+        icon: "🌾",
+        questions: [
+          {
+            q: "Phân biệt Từ Loại: 'Lan is a ________ runner than Mai. She runs ________.'",
+            options: ["faster / faster", "more fast / faster", "fastly / faster", "faster / more fast"],
+            answer: 0,
+            explain: "'Fast' vừa là tính từ (faster runner), vừa là trạng từ (runs faster)."
+          },
+          {
+            q: "Phân biệt Từ Loại: 'He is a ________ worker than Tom. He works ________.'",
+            options: ["harder / harder", "more hard / harder", "hardlier / harder", "hard / hardlier"],
+            answer: 0,
+            explain: "'Hard' vừa là tính từ vừa là trạng từ. So sánh hơn đều là 'harder'."
+          },
+          {
+            q: "Phân biệt: 'Nam is a ________ speaker than Ba. Nam speaks English ________.'",
+            options: ["better / better", "more well / better", "gooder / better", "better / more well"],
+            answer: 0,
+            explain: "Tính từ so sánh hơn của good là 'better'. Trạng từ so sánh hơn của well cũng là 'better'."
+          },
+          {
+            q: "Which sentence is grammatically CORRECT?",
+            options: [
+              "A horse runs more faster than a camel.",
+              "A horse runs faster than a camel.",
+              "A horse runs fastly than a camel.",
+              "A horse runs more fast than a camel."
+            ],
+            answer: 1,
+            explain: "Câu đúng duy nhất là: 'A horse runs faster than a camel.' (fast là trạng từ ngắn, thêm -er)."
+          },
+          {
+            q: "Which sentence is grammatically CORRECT?",
+            options: [
+              "The farmers work more carefully than the machines.",
+              "The farmers work carefullier than the machines.",
+              "The farmers work more careful than the machines.",
+              "The farmers work careful than the machines."
+            ],
+            answer: 0,
+            explain: "'More carefully' là dạng so sánh hơn chuẩn xác của trạng từ dài 'carefully'."
+          },
+          {
+            q: "The villagers load rice ________ than before thanks to the new machine.",
+            options: ["more easily", "easier", "easilier", "more easy"],
+            answer: 0,
+            explain: "Bổ nghĩa cho động từ 'load' là trạng từ 'easily' -> so sánh hơn là 'more easily'."
+          },
+          {
+            q: "Country life is peaceful. People there seem to live ________.",
+            options: ["peacefully", "more peacefully", "peacefullier", "peaceful"],
+            answer: 1,
+            explain: "So sánh ngầm với nơi khác: sống thanh bình hơn -> 'live more peacefully'."
+          },
+          {
+            q: "A buffalo plows ________ than a cow.",
+            options: ["heavily", "more heavily", "heavier", "heavilier"],
+            answer: 1,
+            explain: "'Plow more heavily' = cày bừa nặng nhọc/sâu hơn."
+          },
+          {
+            q: "Can you ride your bicycle ________? The muddy road is slippery.",
+            options: ["more slowly", "slowlier", "slowerly", "more slow"],
+            answer: 0,
+            explain: "'Ride more slowly' = đạp xe chậm lại một chút."
+          },
+          {
+            q: "The children flew their kites ________ than the adults did.",
+            options: ["higher", "more high", "highlier", "more higher"],
+            answer: 0,
+            explain: "'Fly higher' = bay cao hơn."
+          },
+          {
+            q: "The combine harvester collects rice ________ than twenty workers.",
+            options: ["more efficiently", "efficientlier", "more efficient", "efficienter"],
+            answer: 0,
+            explain: "Trạng từ dài 'efficiently' (hiệu quả) -> 'more efficiently'."
+          },
+          {
+            q: "In winter, darkness falls ________ than in summer.",
+            options: ["earlier", "earlyer", "more early", "more earlier"],
+            answer: 0,
+            explain: "'Fall earlier' = màn đêm buông xuống sớm hơn."
+          },
+          {
+            q: "I can understand the village elder ________ when he speaks slowly.",
+            options: ["better", "more well", "gooder", "best"],
+            answer: 0,
+            explain: "'Understand better' = hiểu rõ hơn (so sánh hơn của well)."
+          },
+          {
+            q: "The cattle graze ________ on green pastures than on dry grass.",
+            options: ["more happily", "happilier", "happier", "more happy"],
+            answer: 0,
+            explain: "Gặm cỏ vui vẻ hơn: 'graze more happily'."
+          },
+          {
+            q: "The little girl smiled ________ than anyone else at the harvest festival.",
+            options: ["more brightly", "brightlier", "brighter", "more bright"],
+            answer: 0,
+            explain: "Mỉm cười rạng rỡ hơn: 'smile more brightly'."
+          },
+          {
+            q: "He behaved ________ than his classmates during the farm trip.",
+            options: ["more politely", "politelier", "more polite", "politer"],
+            answer: 0,
+            explain: "Cư xử lịch sự hơn: 'behave more politely'."
+          },
+          {
+            q: "The river water flows ________ after the summer storm.",
+            options: ["more rapidly", "rapidlier", "rapider", "more rapid"],
+            answer: 0,
+            explain: "Dòng nước chảy xiết hơn: 'flow more rapidly'."
+          },
+          {
+            q: "Nobody in the village can herd sheep ________ than Uncle Tom.",
+            options: ["better", "more well", "gooder", "best"],
+            answer: 0,
+            explain: "'Herd sheep better' = chăn cừu giỏi hơn."
+          },
+          {
+            q: "The birds sing ________ in the early morning than in the afternoon.",
+            options: ["more cheerfully", "cheerfullier", "cheerfuler", "more cheerful"],
+            answer: 0,
+            explain: "Hót líu lo vui vẻ hơn: 'sing more cheerfully'."
+          },
+          {
+            q: "She weaves traditional baskets ________ than her mother did at her age.",
+            options: ["more skillfully", "skillfullier", "skillfuler", "more skillful"],
+            answer: 0,
+            explain: "Đan giỏ khéo léo hơn: 'weave more skillfully'."
+          }
+        ]
+      }
+    };
+
+    /* ==========================================================================
+       GAME STATE MANAGEMENT
+       ========================================================================== */
+    let currentTab = 'handbook'; // handbook, game1, game2, game3, game4, game5
+    let currentGameKey = 'game1';
+    let currentQuestionIdx = 0;
+    let userAnswers = {}; // { qIdx: selectedOptionIdx }
+    let gameScores = { game1: 0, game2: 0, game3: 0, game4: 0, game5: 0 };
+
+    function switchTab(tabKey) {
+      currentTab = tabKey;
+      // Update nav button styles
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-emerald-600', 'text-white', 'shadow-md');
+        btn.classList.add('text-slate-700');
+      });
+      const activeBtn = document.getElementById(`tab-${tabKey}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('text-slate-700');
+        activeBtn.classList.add('bg-emerald-600', 'text-white', 'shadow-md');
+      }
+
+      const paneHandbook = document.getElementById('pane-handbook');
+      const paneGame = document.getElementById('pane-game');
+      const paneSummary = document.getElementById('pane-summary');
+
+      if (tabKey === 'handbook') {
+        paneHandbook.classList.remove('hidden');
+        paneGame.classList.add('hidden');
+        paneSummary.classList.add('hidden');
+      } else {
+        paneHandbook.classList.add('hidden');
+        paneGame.classList.remove('hidden');
+        paneSummary.classList.add('hidden');
+        loadGame(tabKey);
+      }
+    }
+
+    function loadGame(gameKey) {
+      currentGameKey = gameKey;
+      currentQuestionIdx = 0;
+      userAnswers = {};
+
+      const gData = GAMES_DATA[gameKey];
+      document.getElementById('game-title').textContent = gData.title;
+      document.getElementById('game-desc').textContent = gData.desc;
+      document.getElementById('game-icon').textContent = gData.icon;
+
+      renderQuestion();
+    }
+
+    function renderQuestion() {
+      const gData = GAMES_DATA[currentGameKey];
+      const q = gData.questions[currentQuestionIdx];
+
+      // Update question indicator
+      document.getElementById('current-q-index').textContent = currentQuestionIdx + 1;
+      document.getElementById('display-q-num').textContent = currentQuestionIdx + 1;
+      document.getElementById('current-game-score').textContent = calculateCurrentScore();
+      document.getElementById('global-score-badge').textContent = getGlobalScore();
+
+      // Progress bar
+      const pct = ((currentQuestionIdx + 1) / gData.questions.length) * 100;
+      document.getElementById('game-progress-bar').style.width = `${pct}%`;
+
+      // Question text
+      document.getElementById('question-text').innerHTML = q.q;
+
+      // Render Options
+      const grid = document.getElementById('options-grid');
+      grid.innerHTML = '';
+      const letters = ['A', 'B', 'C', 'D'];
+
+      const answered = userAnswers.hasOwnProperty(currentQuestionIdx);
+      const selectedChoice = userAnswers[currentQuestionIdx];
+
+      q.options.forEach((optText, optIdx) => {
+        const btn = document.createElement('button');
+        btn.className = `p-4 rounded-2xl border-2 text-left font-bold text-sm transition flex items-center justify-between gap-3 game-card `;
+        
+        let borderClass = 'border-slate-200 hover:border-emerald-400 bg-white hover:bg-emerald-50/50 text-slate-800';
+
+        if (answered) {
+          if (optIdx === q.answer) {
+            borderClass = 'border-emerald-500 bg-emerald-50 text-emerald-900 font-extrabold ring-2 ring-emerald-400';
+          } else if (optIdx === selectedChoice) {
+            borderClass = 'border-rose-400 bg-rose-50 text-rose-900 line-through';
+          } else {
+            borderClass = 'border-slate-100 bg-slate-50 text-slate-400 opacity-60';
+          }
+        }
+
+        btn.className += borderClass;
+        btn.innerHTML = `
+          <div class="flex items-center gap-3">
+            <span class="w-8 h-8 rounded-xl bg-slate-100 flex items-center justify-center text-xs font-black text-slate-700 border border-slate-200">
+              ${letters[optIdx]}
+            </span>
+            <span>${optText}</span>
+          </div>
+          <span class="text-base cursor-pointer hover:scale-110 p-1" onclick="event.stopPropagation(); speakText('${optText.replace(/'/g, "\\'")}')">🔊</span>
+        `;
+
+        if (!answered) {
+          btn.onclick = () => selectOption(optIdx);
+        }
+
+        grid.appendChild(btn);
+      });
+
+      // Explanation Box
+      const expBox = document.getElementById('explanation-box');
+      if (answered) {
+        expBox.classList.remove('hidden');
+        const isCorrect = (selectedChoice === q.answer);
+        if (isCorrect) {
+          expBox.className = "p-5 rounded-2xl mb-6 border-2 bg-emerald-50 border-emerald-300 text-emerald-950";
+          document.getElementById('feedback-icon').textContent = "🎉";
+          document.getElementById('feedback-title').textContent = "Chính xác! Xuất sắc!";
+        } else {
+          expBox.className = "p-5 rounded-2xl mb-6 border-2 bg-rose-50 border-rose-300 text-rose-950";
+          document.getElementById('feedback-icon').textContent = "💡";
+          document.getElementById('feedback-title').textContent = `Chưa đúng! Đáp án là: ${letters[q.answer]}. ${q.options[q.answer]}`;
+        }
+        document.getElementById('explanation-text').innerHTML = `<b>Giải thích:</b> ${q.explain}`;
+      } else {
+        expBox.classList.add('hidden');
+      }
+
+      // Prev & Next Buttons
+      document.getElementById('btn-prev').disabled = (currentQuestionIdx === 0);
+      const btnNext = document.getElementById('btn-next');
+      if (currentQuestionIdx === gData.questions.length - 1) {
+        btnNext.textContent = "Xem Kết Quả 🏆";
+        btnNext.className = "px-6 py-2.5 rounded-xl font-extrabold text-xs bg-amber-500 hover:bg-amber-600 text-white shadow-md shadow-amber-200 transition";
+      } else {
+        btnNext.textContent = "Câu tiếp theo →";
+        btnNext.className = "px-6 py-2.5 rounded-xl font-extrabold text-xs bg-emerald-600 hover:bg-emerald-700 text-white shadow-md shadow-emerald-200 transition";
+      }
+    }
+
+    function selectOption(choiceIdx) {
+      if (userAnswers.hasOwnProperty(currentQuestionIdx)) return;
+      userAnswers[currentQuestionIdx] = choiceIdx;
+      const q = GAMES_DATA[currentGameKey].questions[currentQuestionIdx];
+      
+      if (choiceIdx === q.answer) {
+        playCorrectSound();
+      } else {
+        playWrongSound();
+      }
+
+      renderQuestion();
+    }
+
+    function previousQuestion() {
+      if (currentQuestionIdx > 0) {
+        currentQuestionIdx--;
+        renderQuestion();
+      }
+    }
+
+    function nextOrFinishQuestion() {
+      const gData = GAMES_DATA[currentGameKey];
+      if (currentQuestionIdx < gData.questions.length - 1) {
+        currentQuestionIdx++;
+        renderQuestion();
+      } else {
+        finishGame();
+      }
+    }
+
+    function calculateCurrentScore() {
+      const gData = GAMES_DATA[currentGameKey];
+      let correct = 0;
+      Object.keys(userAnswers).forEach(qIdx => {
+        if (userAnswers[qIdx] === gData.questions[qIdx].answer) {
+          correct++;
+        }
+      });
+      return correct * 10;
+    }
+
+    function getGlobalScore() {
+      let total = 0;
+      Object.keys(gameScores).forEach(k => total += gameScores[k]);
+      return total;
+    }
+
+    function finishGame() {
+      const gData = GAMES_DATA[currentGameKey];
+      let correct = 0;
+      gData.questions.forEach((q, idx) => {
+        if (userAnswers[idx] === q.answer) correct++;
+      });
+      const score = correct * 10;
+      gameScores[currentGameKey] = score;
+      document.getElementById('global-score-badge').textContent = getGlobalScore();
+
+      document.getElementById('pane-game').classList.add('hidden');
+      document.getElementById('pane-summary').classList.remove('hidden');
+
+      const pct = Math.round((correct / gData.questions.length) * 100);
+      document.getElementById('sum-score').textContent = `${score}/200`;
+      document.getElementById('sum-accuracy').textContent = `${pct}%`;
+
+      let rank = "Cần Cố Gắng Thêm 💪";
+      let comment = "Em hãy ôn lại cẩm nang trạng từ ngắn và dài để không bị nhầm lẫn nhé!";
+      if (pct >= 90) {
+        rank = "Bậc Thầy Ngữ Pháp 🌟";
+        comment = "Ms. Lily chúc mừng em! Em đã nắm cực kỳ vững chắc toàn bộ quy tắc so sánh hơn của trạng từ Unit 2!";
+      } else if (pct >= 70) {
+        rank = "Học Sinh Khá Giỏi ⭐";
+        comment = "Làm tốt lắm! Chỉ còn vài lỗi nhỏ ở các trạng từ bất quy tắc thôi, em chú ý ôn lại nhé!";
+      }
+
+      document.getElementById('sum-rank').textContent = rank;
+      document.getElementById('sum-teacher-comment').textContent = comment;
+
+      // Speak congratulation
+      speakText(`Congratulations! You scored ${score} out of 200 points.`);
+    }
+
+    function restartCurrentGame() {
+      userAnswers = {};
+      currentQuestionIdx = 0;
+      document.getElementById('pane-summary').classList.add('hidden');
+      document.getElementById('pane-game').classList.remove('hidden');
+      renderQuestion();
+    }
+
+    function reviewCurrentGame() {
+      document.getElementById('pane-summary').classList.add('hidden');
+      document.getElementById('pane-game').classList.remove('hidden');
+      currentQuestionIdx = 0;
+      renderQuestion();
+    }
+
+    function speakCurrentQuestion() {
+      const q = GAMES_DATA[currentGameKey].questions[currentQuestionIdx];
+      speakText(q.q);
+    }
+
+    function speakExplanation() {
+      const q = GAMES_DATA[currentGameKey].questions[currentQuestionIdx];
+      speakText(q.explain);
+    }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', () => {
+      switchTab('handbook');
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.onvoiceschanged = () => {
+          // Pre-warm voices
+        };
+      }
+    });
+  </script>
+</body>
+</html>

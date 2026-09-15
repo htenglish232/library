@@ -1,0 +1,1623 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit 6 Grammar - Should / Shouldn't & Some / Any | HT English</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Lexend:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            heading: ['"Lexend"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              red: '#DC2626',
+              gold: '#D97706',
+              amber: '#F59E0B',
+              dark: '#1E1B4B',
+              light: '#FEF2F2'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #F8FAFC;
+    }
+    .tet-gradient {
+      background: linear-gradient(135deg, #DC2626 0%, #B91C1C 50%, #991B1B 100%);
+    }
+    .gold-gradient {
+      background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 9999px;
+    }
+    .speaker-btn {
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .speaker-btn:hover {
+      transform: scale(1.12);
+    }
+    .speaker-btn:active {
+      transform: scale(0.95);
+    }
+    .pulse-glow {
+      animation: pulseGlow 2s infinite;
+    }
+    @keyframes pulseGlow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); }
+      50% { box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); }
+    }
+  </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- HEADER & BRAND IDENTITY -->
+  <header class="tet-gradient text-white shadow-xl sticky top-0 z-40 border-b-4 border-amber-400">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-4">
+        <div class="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur border border-white/20 flex items-center justify-center shadow-inner text-amber-300 text-3xl">
+          <i class="fa-solid fa-graduation-cap"></i>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="bg-amber-400 text-red-900 font-extrabold text-xs px-2.5 py-0.5 rounded-full uppercase tracking-wider">Lớp 6 Chuẩn</span>
+            <h1 class="text-2xl sm:text-3xl font-heading font-extrabold tracking-tight text-white drop-shadow">HT English</h1>
+          </div>
+          <p class="text-amber-200 text-sm font-medium flex items-center gap-1.5 mt-0.5">
+            <span>Giáo viên phụ trách: <strong>Ms. Lily</strong></span>
+            <span>•</span>
+            <span>Hotline: <strong class="text-white">0963.422.940 - 0962.240.866</strong></span>
+          </p>
+        </div>
+      </div>
+      <div class="text-right hidden md:block text-xs text-red-100 bg-red-950/40 px-4 py-2 rounded-xl border border-white/10">
+        <p class="font-semibold text-amber-300"><i class="fa-solid fa-location-dot mr-1"></i> Cơ sở đào tạo:</p>
+        <p>Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 flex-1 w-full">
+    
+    <!-- Title banner -->
+    <div class="bg-white rounded-3xl p-6 shadow-sm border border-slate-200 mb-6 flex flex-col md:flex-row justify-between items-center gap-4">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 text-red-700 text-xs font-bold uppercase tracking-wider mb-2">
+          <i class="fa-solid fa-book-open"></i> Tiếng Anh 6 - Global Success
+        </div>
+        <h2 class="text-xl sm:text-2xl lg:text-3xl font-heading font-black text-slate-900">
+          Unit 6 Grammar - Modal Verb Should / Shouldn't & Quantifiers Some / Any
+        </h2>
+        <p class="text-slate-600 text-sm mt-1">
+          Hệ thống cẩm nang ngữ pháp chuyên sâu & 5 đấu trường game chinh phục điểm 10 cùng Ms. Lily
+        </p>
+      </div>
+      
+      <!-- Audio status button -->
+      <button onclick="testSpeaker()" class="flex items-center gap-2 bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 px-4 py-2.5 rounded-2xl text-sm font-semibold transition">
+        <i class="fa-solid fa-volume-high text-amber-600 animate-pulse"></i>
+        <span>Giọng nữ US chuẩn</span>
+      </button>
+    </div>
+
+    <!-- NAVIGATION TABS -->
+    <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-6 custom-scrollbar text-sm font-bold">
+      <button onclick="switchTab('theory')" id="tab-btn-theory" class="tab-btn px-5 py-3 rounded-2xl flex items-center gap-2.5 transition whitespace-nowrap bg-red-600 text-white shadow-md shadow-red-200">
+        <i class="fa-solid fa-lightbulb"></i>
+        <span>📖 Cẩm Nang Lý Thuyết</span>
+      </button>
+      <button onclick="switchTab('game1')" id="tab-btn-game1" class="tab-btn px-5 py-3 rounded-2xl flex items-center gap-2.5 transition whitespace-nowrap bg-white text-slate-700 border border-slate-200 hover:bg-slate-50">
+        <i class="fa-solid fa-fire text-red-500"></i>
+        <span>Game 1: Sứ Giả Tết Văn Minh (Should / Shouldn't)</span>
+      </button>
+      <button onclick="switchTab('game2')" id="tab-btn-game2" class="tab-btn px-5 py-3 rounded-2xl flex items-center gap-2.5 transition whitespace-nowrap bg-white text-slate-700 border border-slate-200 hover:bg-slate-50">
+        <i class="fa-solid fa-basket-shopping text-emerald-600"></i>
+        <span>Game 2: Cân Đong Lượng Từ (Some / Any)</span>
+      </button>
+      <button onclick="switchTab('game3')" id="tab-btn-game3" class="tab-btn px-5 py-3 rounded-2xl flex items-center gap-2.5 transition whitespace-nowrap bg-white text-slate-700 border border-slate-200 hover:bg-slate-50">
+        <i class="fa-solid fa-gift text-amber-500"></i>
+        <span>Game 3: Bẫy Lời Mời Lịch Sự</span>
+      </button>
+      <button onclick="switchTab('game4')" id="tab-btn-game4" class="tab-btn px-5 py-3 rounded-2xl flex items-center gap-2.5 transition whitespace-nowrap bg-white text-slate-700 border border-slate-200 hover:bg-slate-50">
+        <i class="fa-solid fa-magnifying-glass text-indigo-500"></i>
+        <span>Game 4: Thám Tử Săn Lỗi Sai</span>
+      </button>
+      <button onclick="switchTab('game5')" id="tab-btn-game5" class="tab-btn px-5 py-3 rounded-2xl flex items-center gap-2.5 transition whitespace-nowrap bg-white text-slate-700 border border-slate-200 hover:bg-slate-50">
+        <i class="fa-solid fa-crown text-yellow-500"></i>
+        <span>Game 5: Đấu Trường Quán Quân</span>
+      </button>
+    </div>
+
+    <!-- TAB CONTENT: THEORY HANDBOOK -->
+    <div id="tab-theory" class="tab-pane space-y-6">
+      
+      <!-- Theory Card 1: Should & Shouldn't -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+          <div class="flex items-center gap-3">
+            <span class="w-10 h-10 rounded-xl bg-red-100 text-red-600 flex items-center justify-center font-bold text-lg">1</span>
+            <div>
+              <h3 class="text-xl font-heading font-extrabold text-slate-900">Động từ khuyết thiếu: Should & Shouldn't (Lời khuyên)</h3>
+              <p class="text-sm text-slate-500">Dùng để khuyên ai đó NÊN hoặc KHÔNG NÊN làm việc gì</p>
+            </div>
+          </div>
+          <button onclick="speak('We use should for things that are good to do, and shouldn\'t for things that are not good to do. Remember: should and shouldn\'t are followed by a base verb.')" class="speaker-btn p-2.5 bg-red-50 text-red-600 rounded-xl hover:bg-red-100">
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Should -->
+          <div class="bg-emerald-50/70 border border-emerald-200 rounded-2xl p-5">
+            <div class="flex items-center justify-between mb-3">
+              <span class="bg-emerald-600 text-white font-black text-xs px-3 py-1 rounded-full uppercase tracking-wider">SHOULD (Nên)</span>
+              <span class="text-emerald-700 font-bold text-xs">Việc tốt nên làm</span>
+            </div>
+            <p class="text-slate-700 text-sm mb-3">
+              <strong class="text-emerald-800">Cấu trúc:</strong> <code class="bg-white px-2 py-0.5 rounded text-emerald-900 font-bold border border-emerald-200">S + should + V (nguyên thể)</code>
+            </p>
+            <ul class="text-sm space-y-2 text-slate-700">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i>
+                <span>Children <strong>should behave well</strong> at Tet. (Trẻ em nên ngoan ngoãn ngày Tết.)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-circle-check text-emerald-600 mt-1"></i>
+                <span>You <strong>should help</strong> your parents decorate the house. (Bạn nên giúp bố mẹ trang trí nhà.)</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Shouldn't -->
+          <div class="bg-rose-50/70 border border-rose-200 rounded-2xl p-5">
+            <div class="flex items-center justify-between mb-3">
+              <span class="bg-rose-600 text-white font-black text-xs px-3 py-1 rounded-full uppercase tracking-wider">SHOULDN'T (Không nên)</span>
+              <span class="text-rose-700 font-bold text-xs">Việc xấu / Không nên làm</span>
+            </div>
+            <p class="text-slate-700 text-sm mb-3">
+              <strong class="text-rose-800">Cấu trúc:</strong> <code class="bg-white px-2 py-0.5 rounded text-rose-900 font-bold border border-rose-200">S + shouldn't + V (nguyên thể)</code>
+            </p>
+            <ul class="text-sm space-y-2 text-slate-700">
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-circle-xmark text-rose-600 mt-1"></i>
+                <span>You <strong>shouldn't break</strong> things at Tet. (Không nên làm vỡ đồ đạc vào dịp Tết.)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fa-solid fa-circle-xmark text-rose-600 mt-1"></i>
+                <span>Children <strong>shouldn't eat</strong> lots of sweets. (Trẻ em không nên ăn quá nhiều đồ ngọt.)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Warning memo -->
+        <div class="mt-4 bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-2xl text-xs sm:text-sm text-amber-900 flex items-start gap-3">
+          <i class="fa-solid fa-triangle-exclamation text-amber-600 text-lg mt-0.5"></i>
+          <div>
+            <strong>LƯU Ý VÀNG CỦA MS. LILY:</strong> Sau <em>should</em> và <em>shouldn't</em>, động từ <strong>LUÔN LUÔN Ở DẠNG NGUYÊN THỂ</strong> (không chia -s/-es, không chia V-ing, không có "to"). 
+            <span class="text-red-700 font-bold">Sai:</span> <em>He should to go</em> / <em>She shouldn't eats</em> ➔ <span class="text-emerald-700 font-bold">Đúng:</span> <em>He should go</em> / <em>She shouldn't eat</em>.
+          </div>
+        </div>
+      </div>
+
+      <!-- Theory Card 2: Some & Any -->
+      <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+          <div class="flex items-center gap-3">
+            <span class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-lg">2</span>
+            <div>
+              <h3 class="text-xl font-heading font-extrabold text-slate-900">Lượng từ: SOME và ANY (Một vài / Một chút)</h3>
+              <p class="text-sm text-slate-500">Dùng trước cả danh từ đếm được số nhiều và danh từ không đếm được</p>
+            </div>
+          </div>
+          <button onclick="speak('Some is used in affirmative sentences and polite offers. Any is used in negative sentences and regular questions.')" class="speaker-btn p-2.5 bg-amber-50 text-amber-700 rounded-xl hover:bg-amber-100">
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-sm border-collapse">
+            <thead>
+              <tr class="bg-slate-100 text-slate-800 uppercase font-black text-xs tracking-wider">
+                <th class="p-4 rounded-l-2xl">Lượng từ</th>
+                <th class="p-4">Loại câu</th>
+                <th class="p-4">Ví dụ chuẩn SGK Unit 6</th>
+                <th class="p-4 rounded-r-2xl">Lưu ý đặc biệt</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200 text-slate-700">
+              <tr class="hover:bg-amber-50/50 transition">
+                <td class="p-4 font-black text-amber-700 text-base">SOME</td>
+                <td class="p-4 font-semibold">
+                  <span class="bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded text-xs">Khẳng định (+)</span><br>
+                  <span class="bg-blue-100 text-blue-800 px-2 py-0.5 rounded text-xs mt-1 inline-block">Lời mời / Đề nghị (?)</span>
+                </td>
+                <td class="p-4">
+                  • I need <strong>some colour paper</strong>.<br>
+                  • There are <strong>some cucumbers</strong> in the fridge.<br>
+                  • <em>Would you like <strong>some orange juice</strong>?</em> (Lời mời)
+                </td>
+                <td class="p-4 text-xs text-slate-600">
+                  <span class="font-bold text-red-600">Bẫy đề thi:</span> Câu hỏi dùng để <strong>MỜI hoặc XIN</strong> ("Would you like...", "Can I have...") phải dùng <strong>SOME</strong>!
+                </td>
+              </tr>
+              <tr class="hover:bg-amber-50/50 transition">
+                <td class="p-4 font-black text-blue-700 text-base">ANY</td>
+                <td class="p-4 font-semibold">
+                  <span class="bg-rose-100 text-rose-800 px-2 py-0.5 rounded text-xs">Phủ định (-)</span><br>
+                  <span class="bg-purple-100 text-purple-800 px-2 py-0.5 rounded text-xs mt-1 inline-block">Nghi vấn thông thường (?)</span>
+                </td>
+                <td class="p-4">
+                  • There is not <strong>any ice cream</strong>.<br>
+                  • I can't answer <strong>any questions</strong>.<br>
+                  • Do you have <strong>any sugar</strong>?<br>
+                  • Are there <strong>any interesting activities</strong>?
+                </td>
+                <td class="p-4 text-xs text-slate-600">
+                  Xuất hiện khi có từ phủ định <em>not, isn't, aren't, don't</em> hoặc câu hỏi nghi vấn tìm kiếm thông tin thông thường.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- GAME CONTAINERS (TABS 1 to 5) -->
+    <div id="game-container-wrapper">
+      <!-- Games will be rendered dynamically by JavaScript -->
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-slate-900 text-slate-400 text-xs sm:text-sm py-8 border-t border-slate-800 mt-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-red-600 text-white flex items-center justify-center font-bold text-lg">
+          HT
+        </div>
+        <div>
+          <p class="font-bold text-slate-200">TRUNG TÂM TIẾNG ANH HT ENGLISH - MS. LILY</p>
+          <p class="text-slate-400 text-xs">Chuyên sâu Bồi dưỡng Ngữ pháp & Luyện thi Tiếng Anh THCS</p>
+        </div>
+      </div>
+      <div class="text-center md:text-right space-y-1">
+        <p><i class="fa-solid fa-phone text-amber-400 mr-1"></i> Hotline: <strong class="text-slate-200">0963.422.940 - 0962.240.866</strong></p>
+        <p><i class="fa-solid fa-map-location-dot text-amber-400 mr-1"></i> Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL CONTAINER (No window.alert / confirm) -->
+  <div id="custom-modal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-200 text-center animate-bounce-short">
+      <div id="modal-icon" class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mx-auto mb-4">
+        <i class="fa-solid fa-trophy"></i>
+      </div>
+      <h3 id="modal-title" class="text-2xl font-heading font-extrabold text-slate-900 mb-2">Chúc Mừng!</h3>
+      <p id="modal-message" class="text-slate-600 text-sm mb-6 leading-relaxed">Em đã hoàn thành xuất sắc trò chơi.</p>
+      <div class="flex justify-center gap-3">
+        <button onclick="closeModal()" class="px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white font-bold rounded-2xl transition shadow-md shadow-red-200">
+          Đồng ý & Tiếp tục
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Audio engine using Web Speech API with US Female Preference
+    let usFemaleVoice = null;
+
+    function initVoices() {
+      if (!('speechSynthesis' in window)) return;
+      const voices = window.speechSynthesis.getVoices();
+      // Priority list for female US voices
+      usFemaleVoice = voices.find(v => (v.lang === 'en-US' || v.lang.startsWith('en')) && 
+        (v.name.includes('Female') || v.name.includes('Zira') || v.name.includes('Samantha') || 
+         v.name.includes('Google US English') || v.name.includes('Natural') || v.name.includes('Jenny') || 
+         v.name.includes('Victoria') || v.name.includes('Karen') || v.name.includes('Ava'))
+      ) || voices.find(v => v.lang === 'en-US') || voices.find(v => v.lang.startsWith('en'));
+    }
+
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = initVoices;
+      initVoices();
+    }
+
+    function speak(text) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.88; // clear & suitable speed for secondary students
+      if (usFemaleVoice) utterance.voice = usFemaleVoice;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function testSpeaker() {
+      speak("Welcome to HT English with Ms. Lily! Let's master modal verbs should and shouldn't, and some and any!");
+    }
+
+    // Web Audio Synthesizer for gamified chimes
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    function playSfx(type) {
+      if (!audioCtx) return;
+      try {
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        if (type === 'correct') {
+          osc.frequency.setValueAtTime(523.25, now); // C5
+          osc.frequency.exponentialRampToValueAtTime(659.25, now + 0.1); // E5
+          osc.frequency.exponentialRampToValueAtTime(783.99, now + 0.2); // G5
+          gain.gain.setValueAtTime(0.2, now);
+          gain.gain.linearRampToValueAtTime(0.01, now + 0.35);
+          osc.start(now);
+          osc.stop(now + 0.35);
+        } else {
+          osc.frequency.setValueAtTime(280, now);
+          osc.frequency.exponentialRampToValueAtTime(180, now + 0.2);
+          gain.gain.setValueAtTime(0.25, now);
+          gain.gain.linearRampToValueAtTime(0.01, now + 0.25);
+          osc.start(now);
+          osc.stop(now + 0.25);
+        }
+      } catch (e) {
+        // audio fail silent
+      }
+    }
+
+    // 5 GAMES x 20 QUESTIONS = 100 HIGH-QUALITY GRAMMAR QUESTIONS
+    const gameDatabase = [
+      {
+        id: "game1",
+        title: "Game 1: Sứ Giả Tết Văn Minh (Should / Shouldn't)",
+        subtitle: "Luyện chuyên sâu lời khuyên chuẩn mực dịp Tết và nội quy theo bài học Unit 6",
+        badge: "Should & Shouldn't",
+        questions: [
+          {
+            q: "Children __________ behave well when visiting relatives at Tet.",
+            options: ["should", "shouldn't", "should to", "should behaving"],
+            ans: 0,
+            full: "Children should behave well when visiting relatives at Tet.",
+            reason: "Hành động 'behave well' (ngoan ngoãn, cư xử đúng mực) là việc tốt trẻ em NÊN làm trong dịp Tết. Cấu trúc: S + should + V(nguyên thể).",
+            rule: "S + should + V-inf (Khuyên nên làm việc tốt)"
+          },
+          {
+            q: "You __________ break things during Tet because it brings bad luck.",
+            options: ["should", "shouldn't", "don't should", "should not to"],
+            ans: 1,
+            full: "You shouldn't break things during Tet because it brings bad luck.",
+            reason: "Làm vỡ đồ đạc (break things) là điều kiêng kỵ trong ngày Tết mang lại xui xẻo, vì thế KHÔNG NÊN làm. Dùng 'shouldn't'.",
+            rule: "S + shouldn't + V-inf (Khuyên không nên làm điều xấu/kiêng kỵ)"
+          },
+          {
+            q: "We __________ plant some trees around our garden this spring.",
+            options: ["should", "shouldn't", "should to plant", "should planting"],
+            ans: 0,
+            full: "We should plant some trees around our garden this spring.",
+            reason: "Trồng cây vào mùa xuân (Tết trồng cây) là hoạt động tốt đẹp NÊN làm. Sau should là động từ nguyên thể 'plant'.",
+            rule: "S + should + V-inf"
+          },
+          {
+            q: "Children __________ eat too lots of sweets; it is not good for their teeth.",
+            options: ["should", "shouldn't", "should not to", "aren't should"],
+            ans: 1,
+            full: "Children shouldn't eat too lots of sweets; it is not good for their teeth.",
+            reason: "Ăn quá nhiều kẹo ngọt gây sâu răng là điều KHÔNG NÊN. Ta chọn 'shouldn't'.",
+            rule: "S + shouldn't + V-inf"
+          },
+          {
+            q: "You __________ help your parents with housework before Tet.",
+            options: ["should", "shouldn't", "should helping", "should to help"],
+            ans: 0,
+            full: "You should help your parents with housework before Tet.",
+            reason: "Giúp đỡ bố mẹ dọn dẹp nhà cửa đón Tết là hành động tốt NÊN làm.",
+            rule: "S + should + V-inf"
+          },
+          {
+            q: "We __________ fight with our brothers or sisters at Tet.",
+            options: ["should", "shouldn't", "should to fight", "not should"],
+            ans: 1,
+            full: "We shouldn't fight with our brothers or sisters at Tet.",
+            reason: "Cãi cọ, đánh nhau (fight) là hành vi xấu, ngày Tết phải hòa thuận nên KHÔNG ĐƯỢC/KHÔNG NÊN làm.",
+            rule: "S + shouldn't + V-inf"
+          },
+          {
+            q: "You are in the library. You __________ keep quiet.",
+            options: ["should", "shouldn't", "should keeping", "should to keep"],
+            ans: 0,
+            full: "You are in the library. You should keep quiet.",
+            reason: "Ở thư viện, nội quy yêu cầu NÊN giữ trật tự (keep quiet). Cấu trúc: should + V-inf.",
+            rule: "S + should + V-inf"
+          },
+          {
+            q: "You __________ run in the school library or hospital corridors.",
+            options: ["should", "shouldn't", "should not to", "should running"],
+            ans: 1,
+            full: "You shouldn't run in the school library or hospital corridors.",
+            reason: "Chạy nhảy trong thư viện hoặc hành lang bệnh viện là việc KHÔNG NÊN làm vì gây ồn và nguy hiểm.",
+            rule: "S + shouldn't + V-inf"
+          },
+          {
+            q: "Visitors __________ knock before entering someone's room.",
+            options: ["should", "shouldn't", "should to knock", "should knocking"],
+            ans: 0,
+            full: "Visitors should knock before entering someone's room.",
+            reason: "Gõ cửa trước khi vào phòng là phép lịch sự NÊN làm. Dùng should + V(nguyên thể).",
+            rule: "S + should + V-inf"
+          },
+          {
+            q: "You __________ eat or drink inside the reading room of the library.",
+            options: ["should", "shouldn't", "should to eat", "not should"],
+            ans: 1,
+            full: "You shouldn't eat or drink inside the reading room of the library.",
+            reason: "Biển cấm đồ ăn thức uống tại phòng đọc thư viện ➔ Bạn KHÔNG NÊN ăn uống tại đây.",
+            rule: "S + shouldn't + V-inf"
+          },
+          {
+            q: "Nam, you __________ come into the house with your wet raincoat on!",
+            options: ["should", "shouldn't", "should to come", "shouldn't to come"],
+            ans: 1,
+            full: "Nam, you shouldn't come into the house with your wet raincoat on!",
+            reason: "Mặc áo mưa ướt đi vào nhà sẽ làm ướt sàn nhà (hình minh họa SGK trang 61) ➔ Mẹ khuyên KHÔNG NÊN mặc áo mưa vào nhà.",
+            rule: "S + shouldn't + V-inf"
+          },
+          {
+            q: "At New Year's Eve, people __________ make a wish for good health and luck.",
+            options: ["should", "shouldn't", "should making", "should to make"],
+            ans: 0,
+            full: "At New Year's Eve, people should make a wish for good health and luck.",
+            reason: "Ước những điều tốt lành đêm giao thừa là nét đẹp truyền thống NÊN làm.",
+            rule: "S + should + V-inf"
+          },
+          {
+            q: "You __________ stay up too late playing video games on Tet holiday.",
+            options: ["should", "shouldn't", "should to stay", "should staying"],
+            ans: 1,
+            full: "You shouldn't stay up too late playing video games on Tet holiday.",
+            reason: "Thức quá khuya chơi điện tử có hại cho sức khỏe ➔ KHÔNG NÊN làm.",
+            rule: "S + shouldn't + V-inf"
+          },
+          {
+            q: "Students __________ say 'Happy New Year' when they meet their teachers.",
+            options: ["should", "shouldn't", "should saying", "should to say"],
+            ans: 0,
+            full: "Students should say 'Happy New Year' when they meet their teachers.",
+            reason: "Chúc mừng năm mới thầy cô là điều lễ phép NÊN làm.",
+            rule: "S + should + V-inf"
+          },
+          {
+            q: "You __________ ask for lucky money from adults; wait until they give it to you.",
+            options: ["should", "shouldn't", "should to ask", "should asking"],
+            ans: 1,
+            full: "You shouldn't ask for lucky money from adults; wait until they give it to you.",
+            reason: "Tự ý đòi tiền mừng tuổi từ người lớn là hành vi bất lịch sự ➔ KHÔNG NÊN làm.",
+            rule: "S + shouldn't + V-inf"
+          },
+          {
+            q: "Children __________ dress in clean, bright clothes on the first day of Tet.",
+            options: ["should", "shouldn't", "should dressing", "should to dress"],
+            ans: 0,
+            full: "Children should dress in clean, bright clothes on the first day of Tet.",
+            reason: "Mặc quần áo sáng màu, sạch sẽ ngày đầu năm mang lại may mắn ➔ NÊN làm.",
+            rule: "S + should + V-inf"
+          },
+          {
+            q: "People __________ buy too much food that they cannot finish eating.",
+            options: ["should", "shouldn't", "should to buy", "should buying"],
+            ans: 1,
+            full: "People shouldn't buy too much food that they cannot finish eating.",
+            reason: "Mua quá nhiều đồ ăn không dùng hết gây lãng phí ➔ KHÔNG NÊN làm.",
+            rule: "S + shouldn't + V-inf"
+          },
+          {
+            q: "We __________ visit our grandparents on the first days of the Lunar New Year.",
+            options: ["should", "shouldn't", "should visiting", "should to visit"],
+            ans: 0,
+            full: "We should visit our grandparents on the first days of the Lunar New Year.",
+            reason: "Thăm ông bà vào những ngày đầu năm mới là truyền thống hiếu thảo NÊN làm.",
+            rule: "S + should + V-inf"
+          },
+          {
+            q: "You __________ throw rubbish on the streets during the spring festival.",
+            options: ["should", "shouldn't", "should to throw", "should throwing"],
+            ans: 1,
+            full: "You shouldn't throw rubbish on the streets during the spring festival.",
+            reason: "Vứt rác bừa bãi ra đường phố làm ô nhiễm môi trường ➔ KHÔNG NÊN làm.",
+            rule: "S + shouldn't + V-inf"
+          },
+          {
+            q: "We __________ take care of the flowers and peach blossom trees in the living room.",
+            options: ["should", "shouldn't", "should to take", "should taking"],
+            ans: 0,
+            full: "We should take care of the flowers and peach blossom trees in the living room.",
+            reason: "Chăm sóc cành đào, cây cảnh trong phòng khách giúp không khí Tết tươi đẹp ➔ NÊN làm.",
+            rule: "S + should + V-inf"
+          }
+        ]
+      },
+      {
+        id: "game2",
+        title: "Game 2: Cân Đong Lượng Từ (Some / Any)",
+        subtitle: "Phân biệt câu khẳng định (+) dùng SOME và câu phủ định (-), nghi vấn (?) dùng ANY",
+        badge: "Some vs. Any",
+        questions: [
+          {
+            q: "I need __________ colour paper to decorate my classroom.",
+            options: ["some", "any", "a", "an"],
+            ans: 0,
+            full: "I need some colour paper to decorate my classroom.",
+            reason: "Câu khẳng định (+), 'paper' là danh từ không đếm được ➔ Ta dùng lượng từ 'some'.",
+            rule: "Some + Uncountable Noun trong câu khẳng định (+)"
+          },
+          {
+            q: "Do you have __________ free time for traditional sports at Tet?",
+            options: ["some", "any", "a", "many"],
+            ans: 1,
+            full: "Do you have any free time for traditional sports at Tet?",
+            reason: "Câu hỏi nghi vấn thông thường (?) với trợ động từ 'Do you have...' ➔ Ta dùng 'any'.",
+            rule: "Any dùng trong câu hỏi nghi vấn (?)"
+          },
+          {
+            q: "There are __________ beautiful peach blossoms in my living room.",
+            options: ["some", "any", "a", "much"],
+            ans: 0,
+            full: "There are some beautiful peach blossoms in my living room.",
+            reason: "Câu khẳng định (+) với danh từ đếm được số nhiều 'peach blossoms' ➔ Ta dùng 'some'.",
+            rule: "Some + Plural Countable Noun trong câu khẳng định (+)"
+          },
+          {
+            q: "There isn't __________ ice cream left in the freezer.",
+            options: ["some", "any", "a", "many"],
+            ans: 1,
+            full: "There isn't any ice cream left in the freezer.",
+            reason: "Câu có chứa từ phủ định 'isn't' (-) ➔ Ta bắt buộc dùng 'any'.",
+            rule: "Any dùng trong câu phủ định (-)"
+          },
+          {
+            q: "My mother bought __________ fresh fruits at the supermarket yesterday.",
+            options: ["some", "any", "a", "an"],
+            ans: 0,
+            full: "My mother bought some fresh fruits at the supermarket yesterday.",
+            reason: "Câu khẳng định (+) thì quá khứ đơn, 'fruits' là danh từ số nhiều ➔ Dùng 'some'.",
+            rule: "Some dùng trong câu khẳng định (+)"
+          },
+          {
+            q: "Are there __________ traditional games like human chess during Tet?",
+            options: ["some", "any", "a", "much"],
+            ans: 1,
+            full: "Are there any traditional games like human chess during Tet?",
+            reason: "Câu hỏi nghi vấn 'Are there...?' (?) để hỏi thông tin ➔ Dùng 'any'.",
+            rule: "Any dùng trong câu hỏi nghi vấn (?)"
+          },
+          {
+            q: "Yes, there are __________ exciting games like tug of war and cooking rice.",
+            options: ["some", "any", "an", "much"],
+            ans: 0,
+            full: "Yes, there are some exciting games like tug of war and cooking rice.",
+            reason: "Câu trả lời khẳng định 'Yes, there are...' (+) ➔ Dùng 'some'.",
+            rule: "Some dùng trong câu khẳng định (+)"
+          },
+          {
+            q: "We don't have __________ banh chung left on the dining table.",
+            options: ["some", "any", "a", "an"],
+            ans: 1,
+            full: "We don't have any banh chung left on the dining table.",
+            reason: "Câu phủ định có 'don't have' (-) ➔ Bắt buộc dùng lượng từ 'any'.",
+            rule: "Any dùng trong câu phủ định (-)"
+          },
+          {
+            q: "There are __________ cucumbers in the vegetable compartment of the fridge.",
+            options: ["some", "any", "a", "an"],
+            ans: 0,
+            full: "There are some cucumbers in the vegetable compartment of the fridge.",
+            reason: "Câu khẳng định (+) với danh từ đếm được số nhiều 'cucumbers' ➔ Dùng 'some'.",
+            rule: "Some dùng trong câu khẳng định (+)"
+          },
+          {
+            q: "Is there __________ milk in the carton? I want to make a cake.",
+            options: ["some", "any", "many", "a"],
+            ans: 1,
+            full: "Is there any milk in the carton? I want to make a cake.",
+            reason: "Câu hỏi nghi vấn 'Is there...?' (?) đối với danh từ không đếm được 'milk' ➔ Dùng 'any'.",
+            rule: "Any dùng trong câu hỏi nghi vấn (?)"
+          },
+          {
+            q: "My brother doesn't want __________ sweets because he has a toothache.",
+            options: ["some", "any", "a", "much"],
+            ans: 1,
+            full: "My brother doesn't want any sweets because he has a toothache.",
+            reason: "Câu phủ định có 'doesn't want' (-) ➔ Dùng lượng từ 'any'.",
+            rule: "Any dùng trong câu phủ định (-)"
+          },
+          {
+            q: "My father needs __________ red envelopes to put lucky money in.",
+            options: ["some", "any", "a", "much"],
+            ans: 0,
+            full: "My father needs some red envelopes to put lucky money in.",
+            reason: "Câu khẳng định (+) với danh từ đếm được số nhiều 'red envelopes' ➔ Dùng 'some'.",
+            rule: "Some dùng trong câu khẳng định (+)"
+          },
+          {
+            q: "There aren't __________ apples in the fruit basket on the fridge.",
+            options: ["some", "any", "a", "much"],
+            ans: 1,
+            full: "There aren't any apples in the fruit basket on the fridge.",
+            reason: "Câu phủ định có 'aren't' (-) ➔ Bắt buộc dùng 'any'.",
+            rule: "Any dùng trong câu phủ định (-)"
+          },
+          {
+            q: "Look! There is __________ cheese on the top shelf of the fridge.",
+            options: ["some", "any", "a", "many"],
+            ans: 0,
+            full: "Look! There is some cheese on the top shelf of the fridge.",
+            reason: "Câu khẳng định (+) với danh từ không đếm được 'cheese' ➔ Dùng 'some'.",
+            rule: "Some + Uncountable Noun trong câu khẳng định (+)"
+          },
+          {
+            q: "Did you buy __________ new clothes for the New Year festival?",
+            options: ["some", "any", "a", "much"],
+            ans: 1,
+            full: "Did you buy any new clothes for the New Year festival?",
+            reason: "Câu hỏi nghi vấn ở thì quá khứ đơn 'Did you buy...?' (?) ➔ Dùng 'any'.",
+            rule: "Any dùng trong câu hỏi nghi vấn (?)"
+          },
+          {
+            q: "Grandmother told us __________ fascinating stories about ancient Tet.",
+            options: ["some", "any", "a", "an"],
+            ans: 0,
+            full: "Grandmother told us some fascinating stories about ancient Tet.",
+            reason: "Câu khẳng định (+) với danh từ số nhiều 'stories' ➔ Dùng 'some'.",
+            rule: "Some dùng trong câu khẳng định (+)"
+          },
+          {
+            q: "We don't need __________ sugar for this tea; it is already sweet.",
+            options: ["some", "any", "a", "many"],
+            ans: 1,
+            full: "We don't need any sugar for this tea; it is already sweet.",
+            reason: "Câu phủ định có 'don't need' (-) ➔ Dùng lượng từ 'any'.",
+            rule: "Any dùng trong câu phủ định (-)"
+          },
+          {
+            q: "There are __________ yellow apricot flowers in front of our house.",
+            options: ["some", "any", "a", "an"],
+            ans: 0,
+            full: "There are some yellow apricot flowers in front of our house.",
+            reason: "Câu khẳng định (+) với danh từ số nhiều 'flowers' ➔ Dùng 'some'.",
+            rule: "Some dùng trong câu khẳng định (+)"
+          },
+          {
+            q: "Can you see __________ fireworks in the sky right now?",
+            options: ["some", "any", "a", "much"],
+            ans: 1,
+            full: "Can you see any fireworks in the sky right now?",
+            reason: "Câu hỏi nghi vấn hỏi khả năng nhìn thấy (?) ➔ Dùng 'any'.",
+            rule: "Any dùng trong câu hỏi nghi vấn (?)"
+          },
+          {
+            q: "I have __________ close friends coming over to visit my family tomorrow.",
+            options: ["some", "any", "a", "much"],
+            ans: 0,
+            full: "I have some close friends coming over to visit my family tomorrow.",
+            reason: "Câu khẳng định (+) với danh từ đếm được số nhiều 'friends' ➔ Dùng 'some'.",
+            rule: "Some dùng trong câu khẳng định (+)"
+          }
+        ]
+      },
+      {
+        id: "game3",
+        title: "Game 3: Bẫy Lời Mời & Đề Nghị Lịch Sự",
+        subtitle: "Chinh phục bẫy đề thi: Khi nào câu hỏi (?) lại dùng SOME thay vì ANY?",
+        badge: "Offers & Requests",
+        questions: [
+          {
+            q: "Would you like __________ warm green tea with ginger?",
+            options: ["some", "any", "a", "an"],
+            ans: 0,
+            full: "Would you like some warm green tea with ginger?",
+            reason: "Mẫu câu 'Would you like...?' là lời MỜI lịch sự, người nói kỳ vọng câu trả lời 'Yes' ➔ Bắt buộc dùng 'some', KHÔNG dùng 'any'.",
+            rule: "Would you like + SOME + N...? (Lời mời lịch sự)"
+          },
+          {
+            q: "Can I have __________ biscuits, please?",
+            options: ["some", "any", "a", "an"],
+            ans: 0,
+            full: "Can I have some biscuits, please?",
+            reason: "Mẫu câu 'Can I have...?' là lời YÊU CẦU / XIN PHÉP lịch sự ➔ Dùng 'some'.",
+            rule: "Can I have + SOME + N, please? (Lời xin phép/đề nghị lịch sự)"
+          },
+          {
+            q: "Do you have __________ sticky rice cakes in the kitchen?",
+            options: ["some", "any", "a", "much"],
+            ans: 1,
+            full: "Do you have any sticky rice cakes in the kitchen?",
+            reason: "Đây là câu hỏi THÔNG THƯỜNG nhằm tìm kiếm thông tin có hay không, không phải lời mời ➔ Dùng 'any'.",
+            rule: "Do you have + ANY + N...? (Câu hỏi thông thường)"
+          },
+          {
+            q: "Would you like __________ banh chung with pickled onions?",
+            options: ["some", "any", "a", "an"],
+            ans: 0,
+            full: "Would you like some banh chung with pickled onions?",
+            reason: "Lời mời ăn món bánh chưng dưa hành ngày Tết: 'Would you like...' ➔ Dùng 'some'.",
+            rule: "Would you like + SOME...?"
+          },
+          {
+            q: "Could you give me __________ paper to draw a lucky dragon?",
+            options: ["some", "any", "a", "many"],
+            ans: 0,
+            full: "Could you give me some paper to draw a lucky dragon?",
+            reason: "Mẫu câu nhờ vả, đề nghị lịch sự: 'Could you give me...' ➔ Dùng 'some'.",
+            rule: "Could you give/pass me + SOME...?"
+          },
+          {
+            q: "Are there __________ people waiting outside the temple?",
+            options: ["some", "any", "a", "much"],
+            ans: 1,
+            full: "Are there any people waiting outside the temple?",
+            reason: "Câu hỏi nghi vấn thông thường 'Are there...?' ➔ Dùng 'any'.",
+            rule: "Are there + ANY + Plural Noun...?"
+          },
+          {
+            q: "Would you like __________ orange juice or water?",
+            options: ["some", "any", "a", "many"],
+            ans: 0,
+            full: "Would you like some orange juice or water?",
+            reason: "Lời mời đồ uống lịch sự: 'Would you like...' ➔ Chọn 'some'.",
+            rule: "Would you like + SOME...?"
+          },
+          {
+            q: "May I have __________ more melon seeds, please?",
+            options: ["some", "any", "a", "much"],
+            ans: 0,
+            full: "May I have some more melon seeds, please?",
+            reason: "Lời xin phép lịch sự 'May I have...' ➔ Dùng 'some'.",
+            rule: "May I have + SOME...?"
+          },
+          {
+            q: "Is there __________ fruit juice left in the fridge?",
+            options: ["some", "any", "many", "a"],
+            ans: 1,
+            full: "Is there any fruit juice left in the fridge?",
+            reason: "Câu hỏi nghi vấn hỏi sự tồn tại của nước trái cây trong tủ lạnh ➔ Dùng 'any'.",
+            rule: "Is there + ANY + Uncountable Noun...?"
+          },
+          {
+            q: "Would you like __________ sweets, children?",
+            options: ["some", "any", "a", "an"],
+            ans: 0,
+            full: "Would you like some sweets, children?",
+            reason: "Người lớn mời các em nhỏ ăn bánh kẹo ngày Tết ➔ Dùng 'some'.",
+            rule: "Would you like + SOME...?"
+          },
+          {
+            q: "Do you need __________ help with cooking the Tet feast?",
+            options: ["any", "some", "a", "an"],
+            ans: 0,
+            full: "Do you need any help with cooking the Tet feast?",
+            reason: "Câu hỏi thông thường 'Do you need...?' ➔ Dùng 'any'.",
+            rule: "Do you need + ANY...?"
+          },
+          {
+            q: "Can you pass me __________ salt, please? The soup is a bit plain.",
+            options: ["some", "any", "a", "many"],
+            ans: 0,
+            full: "Can you pass me some salt, please? The soup is a bit plain.",
+            reason: "Lời nhờ vả trên bàn ăn 'Can you pass me...' ➔ Dùng 'some'.",
+            rule: "Can you pass me + SOME...?"
+          },
+          {
+            q: "Has Nam got __________ new books about Vietnamese festivals?",
+            options: ["some", "any", "a", "much"],
+            ans: 1,
+            full: "Has Nam got any new books about Vietnamese festivals?",
+            reason: "Câu hỏi nghi vấn thì hiện tại hoàn thành / sở hữu 'Has... got...?' ➔ Dùng 'any'.",
+            rule: "Has/Have + S + got + ANY...?"
+          },
+          {
+            q: "Would you like __________ peach blossom tea, Ms. Lily?",
+            options: ["some", "any", "a", "an"],
+            ans: 0,
+            full: "Would you like some peach blossom tea, Ms. Lily?",
+            reason: "Mời cô giáo Ms. Lily dùng trà hoa đào lịch sự ➔ Dùng 'some'.",
+            rule: "Would you like + SOME...?"
+          },
+          {
+            q: "Could I borrow __________ lucky red pens for my calligraphy class?",
+            options: ["some", "any", "a", "much"],
+            ans: 0,
+            full: "Could I borrow some lucky red pens for my calligraphy class?",
+            reason: "Lời mượn đồ/đề nghị lịch sự 'Could I borrow...' ➔ Dùng 'some'.",
+            rule: "Could I borrow + SOME...?"
+          },
+          {
+            q: "Are you taking __________ photos of the spring flower market?",
+            options: ["some", "any", "a", "much"],
+            ans: 1,
+            full: "Are you taking any photos of the spring flower market?",
+            reason: "Câu hỏi nghi vấn thì hiện tại tiếp diễn (?) ➔ Dùng 'any'.",
+            rule: "Any trong câu hỏi nghi vấn (?)"
+          },
+          {
+            q: "How about __________ fresh fruits after the meal?",
+            options: ["some", "any", "a", "an"],
+            ans: 0,
+            full: "How about some fresh fruits after the meal?",
+            reason: "Lời gợi ý, mời ăn trái cây 'How about + some + N...?' ➔ Dùng 'some'.",
+            rule: "How about + SOME...?"
+          },
+          {
+            q: "Does your family have __________ kumquat trees in the garden?",
+            options: ["some", "any", "a", "much"],
+            ans: 1,
+            full: "Does your family have any kumquat trees in the garden?",
+            reason: "Câu hỏi nghi vấn hỏi thông tin (?) ➔ Dùng 'any'.",
+            rule: "Does + S + have + ANY...?"
+          },
+          {
+            q: "Can I try __________ candied coconut ribbons? They smell delicious!",
+            options: ["some", "any", "a", "an"],
+            ans: 0,
+            full: "Can I try some candied coconut ribbons? They smell delicious!",
+            reason: "Lời xin phép nếm thử mứt dừa ngày Tết ➔ Dùng 'some'.",
+            rule: "Can I try + SOME...?"
+          },
+          {
+            q: "Do you have __________ plans for travelling during the Tet vacation?",
+            options: ["some", "any", "a", "much"],
+            ans: 1,
+            full: "Do you have any plans for travelling during the Tet vacation?",
+            reason: "Câu hỏi thông thường về kế hoạch đi chơi Tết ➔ Dùng 'any'.",
+            rule: "Do you have + ANY + N...?"
+          }
+        ]
+      },
+      {
+        id: "game4",
+        title: "Game 4: Thám Tử Săn Lỗi Sai Ngữ Pháp",
+        subtitle: "Vạch trần các lỗi sai kinh điển về Should, Shouldn't, Some và Any",
+        badge: "Error Detective",
+        questions: [
+          {
+            q: "Tìm phần gạch chân sai: 'You shouldn't to break things on the first day of Tet.'",
+            options: ["shouldn't", "to break", "things", "first day"],
+            ans: 1,
+            full: "You shouldn't break things on the first day of Tet.",
+            reason: "Sau 'shouldn't' là động từ nguyên thể KHÔNG có 'to' (bare infinitive). Sửa 'to break' ➔ 'break'.",
+            rule: "shouldn't + V-inf (KHÔNG dùng to-V)"
+          },
+          {
+            q: "Tìm phần gạch chân sai: 'Children should behaves politely when receiving lucky money.'",
+            options: ["Children", "should", "behaves", "receiving"],
+            ans: 2,
+            full: "Children should behave politely when receiving lucky money.",
+            reason: "Sau 'should' động từ giữ nguyên mẫu, không chia thêm 's' hay 'es'. Sửa 'behaves' ➔ 'behave'.",
+            rule: "should + V-inf (KHÔNG chia -s/-es)"
+          },
+          {
+            q: "Tìm phần gạch chân sai: 'There isn't some orange juice left in the glass bottle.'",
+            options: ["isn't", "some", "juice", "bottle"],
+            ans: 1,
+            full: "There isn't any orange juice left in the glass bottle.",
+            reason: "Trong câu phủ định có 'isn't' (-), ta phải dùng 'any' thay cho 'some'. Sửa 'some' ➔ 'any'.",
+            rule: "Câu phủ định dùng ANY"
+          },
+          {
+            q: "Tìm phần gạch chân sai: 'Would you like any sweet biscuits with your tea, grandmother?'",
+            options: ["Would", "any", "biscuits", "with"],
+            ans: 1,
+            full: "Would you like some sweet biscuits with your tea, grandmother?",
+            reason: "Mẫu câu 'Would you like...?' là lời mời lịch sự ➔ Phải dùng 'some', không dùng 'any'. Sửa 'any' ➔ 'some'.",
+            rule: "Would you like + SOME (Lời mời)"
+          },
+          {
+            q: "Tìm phần gạch chân sai: 'You shouldn't eating lots of sweets before dinner.'",
+            options: ["shouldn't", "eating", "sweets", "before"],
+            ans: 1,
+            full: "You shouldn't eat lots of sweets before dinner.",
+            reason: "Sau 'shouldn't' phải là động từ nguyên thể 'eat', không dùng dạng V-ing 'eating'.",
+            rule: "shouldn't + V-inf (KHÔNG dùng V-ing)"
+          },
+          {
+            q: "Tìm phần gạch chân sai: 'We need any colour paper to decorate our front door.'",
+            options: ["need", "any", "paper", "to decorate"],
+            ans: 1,
+            full: "We need some colour paper to decorate our front door.",
+            reason: "Đây là câu khẳng định (+), ta phải dùng 'some' chứ không dùng 'any'. Sửa 'any' ➔ 'some'.",
+            rule: "Câu khẳng định dùng SOME"
+          },
+          {
+            q: "Tìm phần gạch chân sai: 'Students don't should fight with their classmates.'",
+            options: ["Students", "don't should", "fight", "classmates"],
+            ans: 1,
+            full: "Students shouldn't fight with their classmates.",
+            reason: "Phủ định của 'should' là 'shouldn't' (should not), tuyệt đối không dùng trợ động từ 'don't should'.",
+            rule: "Dạng phủ định là SHOULDN'T"
+          },
+          {
+            q: "Tìm phần gạch chân sai: 'Are there some cucumbers in the refrigerator, Mum?'",
+            options: ["Are there", "some", "cucumbers", "refrigerator"],
+            ans: 1,
+            full: "Are there any cucumbers in the refrigerator, Mum?",
+            reason: "Câu hỏi nghi vấn tìm kiếm thông tin thông thường 'Are there...?' ➔ Phải dùng 'any'. Sửa 'some' ➔ 'any'.",
+            rule: "Câu hỏi nghi vấn dùng ANY"
+          },
+          {
+            q: "Tìm phần gạch chân sai: 'You should knocks on the door before you enter the room.'",
+            options: ["should", "knocks", "before", "enter"],
+            ans: 1,
+            full: "You should knock on the door before you enter the room.",
+            reason: "Sau động từ khuyết thiếu 'should', động từ phải ở nguyên thể không chia. Sửa 'knocks' ➔ 'knock'.",
+            rule: "should + V-inf"
+          },
+          {
+            q: "Tìm phần gạch chân sai: 'My mother didn't buy some meat for the New Year soup.'",
+            options: ["didn't", "buy", "some", "for"],
+            ans: 2,
+            full: "My mother didn't buy any meat for the New Year soup.",
+            reason: "Câu phủ định ở quá khứ 'didn't buy' (-) ➔ Bắt buộc dùng 'any'. Sửa 'some' ➔ 'any'.",
+            rule: "Phủ định (-) dùng ANY"
+          },
+          {
+            q: "Tìm phần gạch chân sai: 'You shouldn't staying up late playing video games.'",
+            options: ["shouldn't", "staying", "playing", "games"],
+            ans: 1,
+            full: "You shouldn't stay up late playing video games.",
+            reason: "Sau 'shouldn't' dùng V nguyên thể. Sửa 'staying' ➔ 'stay'.",
+            rule: "shouldn't + V-inf"
+          },
+          {
+            q: "Tìm phần gạch chân sai: 'Can I have any water, please? I am very thirsty.'",
+            options: ["Can I", "have", "any", "thirsty"],
+            ans: 2,
+            full: "Can I have some water, please? I am very thirsty.",
+            reason: "Lời xin phép / đề nghị lịch sự 'Can I have...?' ➔ Phải dùng 'some'. Sửa 'any' ➔ 'some'.",
+            rule: "Can I have + SOME (Lời xin phép)"
+          },
+          {
+            q: "Tìm phần gạch chân sai: 'He shouldn't to ask for lucky money from guests.'",
+            options: ["shouldn't to", "ask for", "lucky money", "guests"],
+            ans: 0,
+            full: "He shouldn't ask for lucky money from guests.",
+            reason: "Lỗi dùng thừa 'to'. Sau shouldn't là bare infinitive. Sửa 'shouldn't to' ➔ 'shouldn't'.",
+            rule: "shouldn't + V-inf"
+          },
+          {
+            q: "Tìm phần gạch chân sai: 'We don't have some banh chung in our kitchen.'",
+            options: ["don't have", "some", "banh chung", "kitchen"],
+            ans: 1,
+            full: "We don't have any banh chung in our kitchen.",
+            reason: "Câu phủ định 'don't have' (-) ➔ Dùng 'any'. Sửa 'some' ➔ 'any'.",
+            rule: "Câu phủ định dùng ANY"
+          },
+          {
+            q: "Tìm phần gạch chân sai: 'You should keeping quiet when reading in the library.'",
+            options: ["should", "keeping", "reading", "library"],
+            ans: 1,
+            full: "You should keep quiet when reading in the library.",
+            reason: "Sau 'should' là động từ nguyên thể 'keep', không dùng 'keeping'.",
+            rule: "should + V-inf"
+          },
+          {
+            q: "Tìm phần gạch chân sai: 'Do you want any more cake? - No, thank you.'",
+            options: ["Do you", "want", "any", "thank you"],
+            ans: 2,
+            full: "Do you want some more cake? - No, thank you.",
+            reason: "Lời mời ăn thêm bánh 'Do you want some more...' ➔ Dùng 'some'.",
+            rule: "Lời mời dùng SOME"
+          },
+          {
+            q: "Tìm phần gạch chân sai: 'Nam should helpings his parents clean the house.'",
+            options: ["should", "helpings", "clean", "the house"],
+            ans: 1,
+            full: "Nam should help his parents clean the house.",
+            reason: "Sửa 'helpings' ➔ 'help'. Sau should là động từ nguyên thể.",
+            rule: "should + V-inf"
+          },
+          {
+            q: "Tìm phần gạch chân sai: 'There aren't some red envelopes on the desk.'",
+            options: ["aren't", "some", "red envelopes", "on"],
+            ans: 1,
+            full: "There aren't any red envelopes on the desk.",
+            reason: "Câu phủ định có 'aren't' (-) ➔ Sửa 'some' thành 'any'.",
+            rule: "Phủ định (-) dùng ANY"
+          },
+          {
+            q: "Tìm phần gạch chân sai: 'You shouldn't wearing your wet raincoat inside.'",
+            options: ["shouldn't", "wearing", "raincoat", "inside"],
+            ans: 1,
+            full: "You shouldn't wear your wet raincoat inside.",
+            reason: "Sau 'shouldn't' dùng V nguyên mẫu. Sửa 'wearing' ➔ 'wear'.",
+            rule: "shouldn't + V-inf"
+          },
+          {
+            q: "Tìm phần gạch chân sai: 'My mother has bought any fresh flowers for Tet.'",
+            options: ["has", "bought", "any", "for"],
+            ans: 2,
+            full: "My mother has bought some fresh flowers for Tet.",
+            reason: "Câu khẳng định (+) ➔ Phải dùng 'some', không dùng 'any'. Sửa 'any' ➔ 'some'.",
+            rule: "Khẳng định (+) dùng SOME"
+          }
+        ]
+      },
+      {
+        id: "game5",
+        title: "Game 5: Đấu Trường Quán Quân - Thách Thức Điểm 10",
+        subtitle: "Tổng hợp biến đổi câu, viết lại câu đồng nghĩa và ngữ cảnh nâng cao Unit 6",
+        badge: "Champion Grand Arena",
+        questions: [
+          {
+            q: "Viết lại câu đồng nghĩa: 'It is a good idea for you to visit your grandparents at Tet.'",
+            options: [
+              "You should visit your grandparents at Tet.",
+              "You shouldn't visit your grandparents at Tet.",
+              "You must to visit your grandparents at Tet.",
+              "You should to visit your grandparents at Tet."
+            ],
+            ans: 0,
+            full: "You should visit your grandparents at Tet.",
+            reason: "Cấu trúc 'It is a good idea to V...' tương đương với lời khuyên 'S + should + V-inf'.",
+            rule: "It is a good idea to V = S + should + V-inf"
+          },
+          {
+            q: "Viết lại câu đồng nghĩa: 'It is not good for children to eat too many sweets.'",
+            options: [
+              "Children shouldn't eat too many sweets.",
+              "Children should eat too many sweets.",
+              "Children shouldn't eating too many sweets.",
+              "Children don't should eat too many sweets."
+            ],
+            ans: 0,
+            full: "Children shouldn't eat too many sweets.",
+            reason: "'It is not good to V...' (Làm gì là không tốt) viết lại bằng 'S + shouldn't + V-inf'.",
+            rule: "It is not good to V = S + shouldn't + V-inf"
+          },
+          {
+            q: "Chọn câu viết lại đúng: 'There is no milk left in the fridge.'",
+            options: [
+              "There isn't any milk left in the fridge.",
+              "There isn't some milk left in the fridge.",
+              "There is any milk left in the fridge.",
+              "There aren't any milk left in the fridge."
+            ],
+            ans: 0,
+            full: "There isn't any milk left in the fridge.",
+            reason: "'There is no + Uncountable Noun' = 'There isn't any + Uncountable Noun'. 'Milk' là danh từ không đếm được nên đi với 'isn't any'.",
+            rule: "There is no + N(U) = There isn't any + N(U)"
+          },
+          {
+            q: "Chọn câu viết lại đúng: 'There are no apples in the fruit basket.'",
+            options: [
+              "There aren't any apples in the fruit basket.",
+              "There aren't some apples in the fruit basket.",
+              "There isn't any apples in the fruit basket.",
+              "There are any apples in the fruit basket."
+            ],
+            ans: 0,
+            full: "There aren't any apples in the fruit basket.",
+            reason: "'There are no + Plural Noun' = 'There aren't any + Plural Noun'. 'Apples' là danh từ số nhiều nên dùng 'aren't any'.",
+            rule: "There are no + N(plural) = There aren't any + N(plural)"
+          },
+          {
+            q: "Hoàn thành đối thoại: - 'I am hungry, Mum.' - 'Would you like __________ hot chicken soup?'",
+            options: ["some", "any", "a", "an"],
+            ans: 0,
+            full: "Would you like some hot chicken soup?",
+            reason: "Mẹ đưa ra lời mời lịch sự 'Would you like...?' ➔ Dùng 'some'.",
+            rule: "Would you like + SOME...?"
+          },
+          {
+            q: "Biển báo tại thư viện: 'KNOCK BEFORE ENTERING' có nghĩa là:",
+            options: [
+              "You should knock before you enter.",
+              "You shouldn't knock before you enter.",
+              "You should entering without knocking.",
+              "You don't should knock."
+            ],
+            ans: 0,
+            full: "You should knock before you enter.",
+            reason: "Biển nhắc nhở gõ cửa trước khi vào nghĩa là bạn NÊN gõ cửa: 'You should knock before you enter'.",
+            rule: "Biển chỉ dẫn = Lời khuyên NÊN (should + V-inf)"
+          },
+          {
+            q: "Biển báo cấm: Biển tròn viền đỏ gạch chéo hình đồ ăn thức uống có nghĩa là:",
+            options: [
+              "You shouldn't eat or drink here.",
+              "You should eat or drink here.",
+              "You should eating fast food.",
+              "You shouldn't to eat or drink."
+            ],
+            ans: 0,
+            full: "You shouldn't eat or drink here.",
+            reason: "Biển cấm màu đỏ có nghĩa là KHÔNG NÊN / KHÔNG ĐƯỢC ăn uống: 'You shouldn't eat or drink here'.",
+            rule: "Biển cấm = Lời khuyên KHÔNG NÊN (shouldn't + V-inf)"
+          },
+          {
+            q: "Chọn câu đúng ngữ pháp nhất:",
+            options: [
+              "You should help your parents decorate the house.",
+              "You should to help your parents decorate the house.",
+              "You should helping your parents decorate the house.",
+              "You should helps your parents decorate the house."
+            ],
+            ans: 0,
+            full: "You should help your parents decorate the house.",
+            reason: "Quy tắc cốt lõi: 'should + V(nguyên thể)'. Phương án A là câu duy nhất chuẩn xác 100%.",
+            rule: "S + should + V-inf"
+          },
+          {
+            q: "Chọn câu đúng ngữ pháp nhất:",
+            options: [
+              "We shouldn't break things during Tet holiday.",
+              "We shouldn't to break things during Tet holiday.",
+              "We don't should break things during Tet holiday.",
+              "We shouldn't breaking things during Tet holiday."
+            ],
+            ans: 0,
+            full: "We shouldn't break things during Tet holiday.",
+            reason: "Cấu trúc phủ định chuẩn: 'shouldn't + V-inf'. Không dùng to-V, không dùng V-ing, không dùng don't should.",
+            rule: "S + shouldn't + V-inf"
+          },
+          {
+            q: "Hoàn thành câu: 'Do we have __________ fruit juice in the fridge? No, we don't have __________.'",
+            options: ["any - any", "some - any", "any - some", "some - some"],
+            ans: 0,
+            full: "Do we have any fruit juice in the fridge? No, we don't have any.",
+            reason: "Vế 1 là câu hỏi thông thường (?) ➔ dùng 'any'. Vế 2 là câu trả lời phủ định (-) 'don't have' ➔ dùng 'any'.",
+            rule: "Cả nghi vấn (?) và phủ định (-) đều dùng ANY"
+          },
+          {
+            q: "Hoàn thành câu: 'I would like __________ tea, but I don't want __________ sugar in it.'",
+            options: ["some - any", "any - some", "some - some", "any - any"],
+            ans: 0,
+            full: "I would like some tea, but I don't want any sugar in it.",
+            reason: "'I would like...' là câu khẳng định bày tỏ mong muốn ➔ dùng 'some'. Vế sau có 'don't want' (-) ➔ dùng 'any'.",
+            rule: "Khẳng định (+) dùng SOME; Phủ định (-) dùng ANY"
+          },
+          {
+            q: "Điền cặp từ thích hợp: 'You look tired. You __________ work so hard; you __________ take a rest.'",
+            options: ["shouldn't - should", "should - shouldn't", "should - should", "shouldn't - shouldn't"],
+            ans: 0,
+            full: "You look tired. You shouldn't work so hard; you should take a rest.",
+            reason: "Trông bạn mệt mỏi: Bạn KHÔNG NÊN (shouldn't) làm việc quá sức; bạn NÊN (should) nghỉ ngơi.",
+            rule: "Ngữ cảnh lời khuyên: shouldn't + V, should + V"
+          },
+          {
+            q: "Chọn câu đúng khi mời bạn bè nếm bánh mứt Tết:",
+            options: [
+              "Would you like some candied coconut ribbons?",
+              "Would you like any candied coconut ribbons?",
+              "Do you like any candied coconut ribbons?",
+              "Are you like some candied coconut ribbons?"
+            ],
+            ans: 0,
+            full: "Would you like some candied coconut ribbons?",
+            reason: "Lời mời lịch sự chuẩn mực: 'Would you like some + N...?'.",
+            rule: "Would you like some + N...?"
+          },
+          {
+            q: "Biến đổi câu: 'Don't fight with your friends.' tương đương với:",
+            options: [
+              "You shouldn't fight with your friends.",
+              "You should fight with your friends.",
+              "You shouldn't to fight with your friends.",
+              "You don't should fight with your friends."
+            ],
+            ans: 0,
+            full: "You shouldn't fight with your friends.",
+            reason: "Mệnh lệnh phủ định 'Don't + V...' khuyên ai đó không nên làm gì = 'You shouldn't + V-inf'.",
+            rule: "Don't + V = You shouldn't + V-inf"
+          },
+          {
+            q: "Biến đổi câu: 'Please keep quiet in the library.' tương đương với:",
+            options: [
+              "You should keep quiet in the library.",
+              "You shouldn't keep quiet in the library.",
+              "You should to keep quiet in the library.",
+              "You shouldn't keeping quiet in the library."
+            ],
+            ans: 0,
+            full: "You should keep quiet in the library.",
+            reason: "Lời yêu cầu lịch sự 'Please + V...' tương đương lời khuyên nên làm = 'You should + V-inf'.",
+            rule: "Please + V = You should + V-inf"
+          },
+          {
+            q: "Tìm lỗi sai duy nhất: 'Are there some traditional games in your village during Tet?'",
+            options: ["Are there", "some", "games", "during"],
+            ans: 1,
+            full: "Are there any traditional games in your village during Tet?",
+            reason: "Câu hỏi nghi vấn tìm hiểu thông tin phải dùng 'any' thay vì 'some'.",
+            rule: "Câu hỏi nghi vấn (?) dùng ANY"
+          },
+          {
+            q: "Tìm lỗi sai duy nhất: 'You shouldn't throwing water at people on New Year's Day.'",
+            options: ["shouldn't", "throwing", "people", "New Year's Day"],
+            ans: 1,
+            full: "You shouldn't throw water at people on New Year's Day.",
+            reason: "Sau 'shouldn't' là động từ nguyên thể 'throw', không dùng 'throwing'.",
+            rule: "shouldn't + V-inf"
+          },
+          {
+            q: "Hoàn thành câu: 'Can I have __________ more melon seeds, please?' - 'Sure, here you are.'",
+            options: ["some", "any", "a", "an"],
+            ans: 0,
+            full: "Can I have some more melon seeds, please?",
+            reason: "Lời xin phép, đề nghị lịch sự có 'Can I have... please?' ➔ Bắt buộc dùng 'some'.",
+            rule: "Can I have + SOME...?"
+          },
+          {
+            q: "Câu nào dưới đây diễn đạt đúng ý: 'Không có quả chuối nào trong tủ lạnh.'?",
+            options: [
+              "There aren't any bananas in the fridge.",
+              "There isn't any bananas in the fridge.",
+              "There aren't some bananas in the fridge.",
+              "There are no any bananas in the fridge."
+            ],
+            ans: 0,
+            full: "There aren't any bananas in the fridge.",
+            reason: "'Bananas' là danh từ đếm được số nhiều, câu phủ định dùng 'There aren't any bananas...'.",
+            rule: "There aren't any + Plural Noun"
+          },
+          {
+            q: "Câu nào dưới đây diễn đạt đúng lời khuyên của Ms. Lily về ngày Tết?",
+            options: [
+              "We should smile more and wish everyone good luck at Tet.",
+              "We should to smile more and wish everyone good luck at Tet.",
+              "We shouldn't smile more and wish everyone good luck at Tet.",
+              "We should smiling more and wish everyone good luck at Tet."
+            ],
+            ans: 0,
+            full: "We should smile more and wish everyone good luck at Tet.",
+            reason: "Cười nhiều và chúc mọi người may mắn là điều rất NÊN làm (should + V-inf).",
+            rule: "S + should + V-inf"
+          }
+        ]
+      }
+    ];
+
+    // Active tab and state management
+    let currentTab = 'theory';
+    // User answer state: { gameId: { qIndex: selectedOptionIndex } }
+    const userAnswers = {
+      game1: {},
+      game2: {},
+      game3: {},
+      game4: {},
+      game5: {}
+    };
+    // Score submitted state: { gameId: boolean }
+    const submittedGames = {
+      game1: false,
+      game2: false,
+      game3: false,
+      game4: false,
+      game5: false
+    };
+
+    function switchTab(tabId) {
+      currentTab = tabId;
+      // update tab button styles
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-red-600', 'text-white', 'shadow-md', 'shadow-red-200');
+        btn.classList.add('bg-white', 'text-slate-700', 'border', 'border-slate-200');
+      });
+
+      const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-white', 'text-slate-700', 'border', 'border-slate-200');
+        activeBtn.classList.add('bg-red-600', 'text-white', 'shadow-md', 'shadow-red-200');
+      }
+
+      // Hide theory tab
+      const theoryPane = document.getElementById('tab-theory');
+      if (tabId === 'theory') {
+        theoryPane.classList.remove('hidden');
+        document.getElementById('game-container-wrapper').innerHTML = '';
+      } else {
+        theoryPane.classList.add('hidden');
+        renderGame(tabId);
+      }
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function renderGame(gameId) {
+      const game = gameDatabase.find(g => g.id === gameId);
+      if (!game) return;
+
+      const isSubmitted = submittedGames[gameId];
+      const answers = userAnswers[gameId];
+      
+      // Calculate current score
+      let correctCount = 0;
+      let answeredCount = Object.keys(answers).length;
+      if (isSubmitted) {
+        game.questions.forEach((q, idx) => {
+          if (answers[idx] === q.ans) correctCount++;
+        });
+      }
+
+      const scorePercent = isSubmitted ? Math.round((correctCount / game.questions.length) * 100) : 0;
+
+      let html = `
+        <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 mb-6">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-100 pb-6 mb-6">
+            <div>
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100 text-red-700 text-xs font-bold uppercase tracking-wider mb-2">
+                <i class="fa-solid fa-gamepad"></i> ${game.badge}
+              </div>
+              <h3 class="text-2xl font-heading font-extrabold text-slate-900">${game.title}</h3>
+              <p class="text-slate-500 text-sm mt-1">${game.subtitle}</p>
+            </div>
+            
+            <div class="flex items-center gap-3">
+              <div class="bg-slate-50 border border-slate-200 rounded-2xl px-5 py-3 text-center min-w-[120px]">
+                <p class="text-xs text-slate-500 font-bold uppercase tracking-wider">Tiến độ</p>
+                <p class="text-xl font-heading font-extrabold text-slate-900">${answeredCount} / 20</p>
+              </div>
+              ${isSubmitted ? `
+              <div class="bg-red-50 border border-red-200 rounded-2xl px-5 py-3 text-center min-w-[140px] animate-pulse">
+                <p class="text-xs text-red-600 font-bold uppercase tracking-wider">Điểm số</p>
+                <p class="text-2xl font-heading font-extrabold text-red-700">${scorePercent} / 100</p>
+              </div>
+              ` : ''}
+            </div>
+          </div>
+
+          <!-- Questions list -->
+          <div class="space-y-6">
+      `;
+
+      game.questions.forEach((q, qIdx) => {
+        const userAnswer = answers[qIdx];
+        const isAnswered = userAnswer !== undefined;
+        const isCorrect = isAnswered && userAnswer === q.ans;
+        
+        let cardBorder = "border-slate-200 bg-slate-50/40";
+        if (isSubmitted) {
+          cardBorder = isCorrect ? "border-emerald-300 bg-emerald-50/30" : "border-rose-300 bg-rose-50/30";
+        }
+
+        html += `
+          <div class="rounded-2xl border ${cardBorder} p-5 sm:p-6 transition hover:shadow-sm">
+            <div class="flex items-start justify-between gap-3 mb-4">
+              <div class="flex items-start gap-3">
+                <span class="w-8 h-8 rounded-xl ${isSubmitted ? (isCorrect ? 'bg-emerald-600 text-white' : 'bg-rose-600 text-white') : 'bg-slate-200 text-slate-700'} flex items-center justify-center font-bold text-sm shrink-0 mt-0.5">
+                  ${qIdx + 1}
+                </span>
+                <div>
+                  <p class="font-heading font-bold text-base sm:text-lg text-slate-900 leading-snug">
+                    ${q.q}
+                  </p>
+                </div>
+              </div>
+              <!-- Audio button for question -->
+              <button onclick="speak('${escapeQuote(q.q.replace(/_{3,}/g, 'blank'))}')" title="Nghe giọng đọc câu hỏi" class="speaker-btn p-2 rounded-xl bg-white border border-slate-200 text-slate-600 hover:text-red-600 hover:border-red-200 shadow-sm shrink-0">
+                <i class="fa-solid fa-volume-high"></i>
+              </button>
+            </div>
+
+            <!-- Options Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-3">
+        `;
+
+        q.options.forEach((opt, optIdx) => {
+          const letter = String.fromCharCode(65 + optIdx);
+          let btnClass = "bg-white border-slate-200 text-slate-700 hover:border-red-300 hover:bg-red-50/50";
+          let badgeClass = "bg-slate-100 text-slate-600";
+
+          if (userAnswer === optIdx) {
+            btnClass = "bg-red-50 border-red-600 text-red-700 font-bold shadow-sm";
+            badgeClass = "bg-red-600 text-white";
+          }
+
+          if (isSubmitted) {
+            if (optIdx === q.ans) {
+              btnClass = "bg-emerald-100 border-emerald-600 text-emerald-900 font-extrabold shadow-sm";
+              badgeClass = "bg-emerald-600 text-white";
+            } else if (userAnswer === optIdx) {
+              btnClass = "bg-rose-100 border-rose-500 text-rose-900 font-bold line-through";
+              badgeClass = "bg-rose-600 text-white";
+            } else {
+              btnClass = "bg-white/60 border-slate-200 text-slate-400 opacity-60";
+            }
+          }
+
+          html += `
+            <div class="flex items-center gap-2 border rounded-xl p-2.5 transition ${btnClass}">
+              <button onclick="selectAnswer('${gameId}', ${qIdx}, ${optIdx})" ${isSubmitted ? 'disabled' : ''} class="flex-1 text-left flex items-center gap-3">
+                <span class="w-6 h-6 rounded-lg ${badgeClass} text-xs font-black flex items-center justify-center shrink-0">
+                  ${letter}
+                </span>
+                <span class="text-sm font-medium leading-tight">${opt}</span>
+              </button>
+              <button onclick="speak('${escapeQuote(opt)}')" title="Nghe phát âm đáp án" class="speaker-btn p-1.5 rounded-lg text-slate-400 hover:text-red-600 shrink-0">
+                <i class="fa-solid fa-volume-high text-xs"></i>
+              </button>
+            </div>
+          `;
+        });
+
+        html += `
+            </div>
+        `;
+
+        // Explanation section if submitted
+        if (isSubmitted) {
+          html += `
+            <div class="mt-4 pt-4 border-t border-slate-200/80 text-xs sm:text-sm space-y-2.5 animate-fadeIn">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="font-extrabold ${isCorrect ? 'text-emerald-700' : 'text-rose-700'}">
+                    ${isCorrect ? '✓ CHÍNH XÁC (+5 điểm)' : '✕ CHƯA ĐÚNG'}
+                  </span>
+                  <span class="text-slate-400">•</span>
+                  <span class="text-slate-700 font-bold">Đáp án đúng: <span class="text-emerald-700">${String.fromCharCode(65 + q.ans)}. ${q.options[q.ans]}</span></span>
+                </div>
+                <button onclick="speak('${escapeQuote(q.full)}')" class="speaker-btn flex items-center gap-1.5 px-3 py-1 bg-emerald-100 text-emerald-800 rounded-lg font-bold hover:bg-emerald-200 transition">
+                  <i class="fa-solid fa-volume-high"></i>
+                  <span>Nghe câu chuẩn</span>
+                </button>
+              </div>
+
+              <!-- Pedagogical Reason & Central Structure -->
+              <div class="bg-white rounded-xl p-3 border border-slate-200 text-slate-700 space-y-1.5">
+                <p><strong>💡 Tại sao chọn:</strong> ${q.reason}</p>
+                <p class="text-red-700 font-semibold"><strong>📌 Cấu trúc trọng tâm:</strong> <code>${q.rule}</code></p>
+              </div>
+            </div>
+          `;
+        }
+
+        html += `
+          </div>
+        `;
+      });
+
+      // Bottom Action Bar
+      html += `
+          </div>
+
+          <div class="mt-8 pt-6 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4">
+            <div class="text-slate-500 text-sm">
+              ${isSubmitted ? `Đã nộp bài. Em đạt <strong>${correctCount}/20 câu đúng</strong> (${scorePercent}%).` : `Em đã hoàn thành <strong>${answeredCount}/20 câu</strong>.`}
+            </div>
+            
+            <div class="flex items-center gap-3">
+              ${!isSubmitted ? `
+                <button onclick="submitGame('${gameId}')" class="px-8 py-3.5 bg-red-600 hover:bg-red-700 text-white font-extrabold rounded-2xl transition shadow-lg shadow-red-200 flex items-center gap-2">
+                  <i class="fa-solid fa-paper-plane"></i>
+                  <span>Nộp Bài & Chấm Điểm</span>
+                </button>
+              ` : `
+                <button onclick="resetGame('${gameId}')" class="px-6 py-3 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold rounded-2xl transition flex items-center gap-2">
+                  <i class="fa-solid fa-arrow-rotate-left"></i>
+                  <span>Làm Lại Lượt Mới</span>
+                </button>
+                <button onclick="goToNextGame('${gameId}')" class="px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-2xl transition shadow-md shadow-red-200 flex items-center gap-2">
+                  <span>Chơi Game Tiếp Theo</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </button>
+              `}
+            </div>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('game-container-wrapper').innerHTML = html;
+    }
+
+    function selectAnswer(gameId, qIdx, optIdx) {
+      if (submittedGames[gameId]) return;
+      userAnswers[gameId][qIdx] = optIdx;
+      playSfx('correct');
+      renderGame(gameId);
+    }
+
+    function submitGame(gameId) {
+      const game = gameDatabase.find(g => g.id === gameId);
+      const answers = userAnswers[gameId];
+      const answeredCount = Object.keys(answers).length;
+
+      if (answeredCount < game.questions.length) {
+        showModal(
+          "fa-circle-exclamation text-amber-500",
+          "Chưa Hoàn Thành Hết!",
+          `Em mới làm ${answeredCount}/20 câu. Hãy cố gắng hoàn thành tất cả các câu trước khi nộp bài để cô Lily chấm điểm nhé!`
+        );
+        return;
+      }
+
+      submittedGames[gameId] = true;
+      let correctCount = 0;
+      game.questions.forEach((q, idx) => {
+        if (answers[idx] === q.ans) correctCount++;
+      });
+      const score = Math.round((correctCount / game.questions.length) * 100);
+
+      playSfx(score >= 80 ? 'correct' : 'wrong');
+      renderGame(gameId);
+
+      // Congratulatory dialog
+      let message = `Em đạt <strong>${score}/100 điểm</strong> (${correctCount}/20 câu đúng). `;
+      if (score === 100) {
+        message += "Xuất sắc tuyệt đối! Em là bậc thầy ngữ pháp Unit 6!";
+      } else if (score >= 80) {
+        message += "Rất tốt! Hãy xem lại phần giải thích để khắc sâu kiến thức nhé!";
+      } else {
+        message += "Cố gắng lên nào! Hãy đọc kỹ phần giải thích đáp án và làm lại để đạt điểm 10 nha!";
+      }
+
+      showModal(
+        score >= 80 ? "fa-trophy text-amber-500" : "fa-award text-indigo-500",
+        `Kết Quả: ${score} Điểm!`,
+        message
+      );
+    }
+
+    function resetGame(gameId) {
+      userAnswers[gameId] = {};
+      submittedGames[gameId] = false;
+      renderGame(gameId);
+    }
+
+    function goToNextGame(currentGameId) {
+      const ids = ['game1', 'game2', 'game3', 'game4', 'game5'];
+      const currentIndex = ids.indexOf(currentGameId);
+      if (currentIndex < ids.length - 1) {
+        switchTab(ids[currentIndex + 1]);
+      } else {
+        switchTab('theory');
+      }
+    }
+
+    function showModal(iconClass, title, message) {
+      const modal = document.getElementById('custom-modal');
+      const iconEl = document.getElementById('modal-icon');
+      const titleEl = document.getElementById('modal-title');
+      const msgEl = document.getElementById('modal-message');
+
+      iconEl.className = `w-16 h-16 rounded-full bg-amber-50 flex items-center justify-center text-3xl mx-auto mb-4 ${iconClass.includes('emerald') ? 'bg-emerald-50' : 'bg-amber-50'}`;
+      iconEl.innerHTML = `<i class="fa-solid ${iconClass}"></i>`;
+      titleEl.innerText = title;
+      msgEl.innerHTML = message;
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('custom-modal').classList.add('hidden');
+    }
+
+    function escapeQuote(str) {
+      return str.replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    }
+
+    window.onload = function() {
+      // Default to theory view
+      switchTab('theory');
+    };
+  </script>
+</body>
+</html>

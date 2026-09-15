@@ -1,0 +1,1503 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HT English - Unit 8: Shopping Grammar Arcade</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #fdfbf7 0%, #ebf4ff 50%, #fef3c7 100%);
+            min-height: 100vh;
+        }
+        .heading-font {
+            font-family: 'Quicksand', sans-serif;
+        }
+        .card-candy {
+            background: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+            border: 3px solid #f1f5f9;
+            transition: all 0.25s ease;
+        }
+        .card-candy:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 30px -6px rgba(59, 130, 246, 0.12);
+        }
+        .btn-bounce:active {
+            transform: scale(0.96);
+        }
+        .speaker-btn {
+            transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .speaker-btn:hover {
+            transform: scale(1.18);
+        }
+        .tab-active {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8) !important;
+            color: #ffffff !important;
+            box-shadow: 0 8px 20px -4px rgba(37, 99, 235, 0.4);
+            border-color: #2563eb !important;
+        }
+        .chip {
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+        .chip:hover {
+            transform: translateY(-2px);
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+</head>
+<body class="p-2 sm:p-4 md:p-6 text-slate-800">
+
+    <!-- HEADER / BRANDING -->
+    <header class="max-w-6xl mx-auto mb-6 bg-white/90 backdrop-blur-md rounded-3xl p-4 sm:p-6 shadow-sm border-2 border-indigo-100 flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-4 text-center md:text-left">
+            <div class="w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-tr from-blue-600 via-indigo-600 to-purple-600 rounded-2xl flex items-center justify-center text-white text-3xl sm:text-4xl shadow-lg shadow-indigo-200">
+                <i class="fa-solid fa-cart-shopping animate-bounce"></i>
+            </div>
+            <div>
+                <div class="flex items-center gap-2 justify-center md:justify-start">
+                    <span class="bg-blue-100 text-blue-800 text-xs font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider">Tiếng Anh 8 Global Success</span>
+                    <span class="bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-0.5 rounded-full">Unit 8: Shopping</span>
+                </div>
+                <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 heading-font tracking-tight mt-1">
+                    TRUNG TÂM TIẾNG ANH HT ENGLISH
+                </h1>
+                <p class="text-indigo-600 font-bold text-sm sm:text-base flex items-center gap-2 justify-center md:justify-start">
+                    <i class="fa-solid fa-chalkboard-user"></i> Giáo viên: <span class="text-pink-600">Ms. Lily</span> | Hotline: <span class="text-emerald-600 font-black">0963.422.940 – 0962.240.866</span>
+                </p>
+                <p class="text-xs text-slate-500 flex items-center gap-1 justify-center md:justify-start mt-0.5">
+                    <i class="fa-solid fa-location-dot text-red-500"></i> Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình
+                </p>
+            </div>
+        </div>
+
+        <div class="flex flex-row md:flex-col items-center md:items-end gap-2 bg-indigo-50/80 px-4 py-3 rounded-2xl border border-indigo-100 w-full md:w-auto justify-around">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-trophy text-amber-500 text-xl"></i>
+                <span class="text-xs sm:text-sm font-bold text-slate-600">Tổng điểm:</span>
+                <span id="global-score" class="text-xl sm:text-2xl font-black text-blue-600">0</span>
+                <span class="text-xs text-slate-400">/ 100</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-fire text-orange-500 animate-pulse text-lg"></i>
+                <span class="text-xs font-bold text-slate-600">Streak:</span>
+                <span id="global-streak" class="text-sm sm:text-base font-black text-orange-600">0 🔥</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- NAVIGATION TABS -->
+    <div class="max-w-6xl mx-auto mb-6">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2 sm:gap-3">
+            <button onclick="switchTab('handbook')" id="tab-handbook" class="tab-btn p-3 rounded-2xl bg-white border-2 border-slate-200 font-extrabold text-xs sm:text-sm text-slate-700 flex flex-col items-center gap-1.5 transition-all">
+                <i class="fa-solid fa-book-open-reader text-indigo-500 text-lg sm:text-xl"></i>
+                <span>Bí Kíp Vàng</span>
+            </button>
+            <button onclick="switchTab('game1')" id="tab-game1" class="tab-btn p-3 rounded-2xl bg-white border-2 border-slate-200 font-extrabold text-xs sm:text-sm text-slate-700 flex flex-col items-center gap-1.5 transition-all">
+                <i class="fa-solid fa-gauge-high text-blue-500 text-lg sm:text-xl"></i>
+                <span>G1: Đua Xe Tần Suất</span>
+            </button>
+            <button onclick="switchTab('game2')" id="tab-game2" class="tab-btn p-3 rounded-2xl bg-white border-2 border-slate-200 font-extrabold text-xs sm:text-sm text-slate-700 flex flex-col items-center gap-1.5 transition-all">
+                <i class="fa-solid fa-calendar-check text-emerald-500 text-lg sm:text-xl"></i>
+                <span>G2: Bắn Bóng Lịch Trình</span>
+            </button>
+            <button onclick="switchTab('game3')" id="tab-game3" class="tab-btn p-3 rounded-2xl bg-white border-2 border-slate-200 font-extrabold text-xs sm:text-sm text-slate-700 flex flex-col items-center gap-1.5 transition-all">
+                <i class="fa-solid fa-magnifying-glass-arrow-right text-purple-500 text-lg sm:text-xl"></i>
+                <span>G3: Bắt Bẫy Ngữ Pháp</span>
+            </button>
+            <button onclick="switchTab('game4')" id="tab-game4" class="tab-btn p-3 rounded-2xl bg-white border-2 border-slate-200 font-extrabold text-xs sm:text-sm text-slate-700 flex flex-col items-center gap-1.5 transition-all">
+                <i class="fa-solid fa-shapes text-pink-500 text-lg sm:text-xl"></i>
+                <span>G4: Ghép Câu 1-Chạm</span>
+            </button>
+            <button onclick="switchTab('game5')" id="tab-game5" class="tab-btn p-3 rounded-2xl bg-white border-2 border-slate-200 font-extrabold text-xs sm:text-sm text-slate-700 flex flex-col items-center gap-1.5 transition-all">
+                <i class="fa-solid fa-cart-shopping text-amber-500 text-lg sm:text-xl"></i>
+                <span>G5: Đấu Trường Siêu Thị</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-6xl mx-auto">
+
+        <!-- TAB: STUDY HANDBOOK -->
+        <section id="pane-handbook" class="tab-pane hidden space-y-6">
+            <div class="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white p-6 sm:p-8 rounded-3xl shadow-md relative overflow-hidden">
+                <div class="relative z-10">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="bg-white/20 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">A Closer Look 2 - Page 85 & 86</span>
+                        <button onclick="speakText('Adverbs of frequency and Present simple for future events. Unit 8 Shopping.')" class="speaker-btn bg-white/20 hover:bg-white/30 text-white w-9 h-9 rounded-full flex items-center justify-center text-sm shadow">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </button>
+                    </div>
+                    <h2 class="text-2xl sm:text-3xl font-black heading-font">CẨM NANG NGỮ PHÁP TRỌNG TÂM UNIT 8</h2>
+                    <p class="text-blue-100 text-sm sm:text-base mt-1 font-medium">Bí kíp độc quyền từ Ms. Lily - HT English giúp học sinh làm chủ điểm 10 kiểm tra định kỳ</p>
+                </div>
+            </div>
+
+            <!-- 2 Core Grammar Sections -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Part 1: Adverbs of frequency -->
+                <div class="card-candy p-6 border-l-8 border-l-blue-500">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-black text-blue-700 flex items-center gap-2">
+                            <i class="fa-solid fa-clock-rotate-left"></i> I. Trạng Từ Tần Suất
+                        </h3>
+                        <button onclick="speakText('Adverbs of frequency: always, usually, often, sometimes, rarely, never.')" class="speaker-btn bg-blue-100 text-blue-600 w-8 h-8 rounded-full flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </button>
+                    </div>
+
+                    <div class="space-y-3 text-sm">
+                        <div class="bg-blue-50 p-3 rounded-xl border border-blue-200">
+                            <p class="font-extrabold text-blue-900 mb-1">1. Đứng TRƯỚC Động từ thường:</p>
+                            <p class="font-mono text-xs text-blue-800 bg-white px-2 py-1 rounded inline-block">S + adv + V(s/es)</p>
+                            <p class="text-slate-600 mt-1 italic flex items-center gap-2">
+                                <span>My mother <b>always shops</b> at the supermarket.</span>
+                                <button onclick="speakText('My mother always shops at the supermarket.')" class="speaker-btn text-blue-600 text-xs"><i class="fa-solid fa-volume-high"></i></button>
+                            </p>
+                        </div>
+
+                        <div class="bg-indigo-50 p-3 rounded-xl border border-indigo-200">
+                            <p class="font-extrabold text-indigo-900 mb-1">2. Đứng SAU Động từ To Be:</p>
+                            <p class="font-mono text-xs text-indigo-800 bg-white px-2 py-1 rounded inline-block">S + am/is/are + adv + ...</p>
+                            <p class="text-slate-600 mt-1 italic flex items-center gap-2">
+                                <span>Goods at this dollar store <b>are usually</b> cheaper.</span>
+                                <button onclick="speakText('Goods at this dollar store are usually cheaper.')" class="speaker-btn text-indigo-600 text-xs"><i class="fa-solid fa-volume-high"></i></button>
+                            </p>
+                        </div>
+
+                        <div class="bg-purple-50 p-3 rounded-xl border border-purple-200">
+                            <p class="font-extrabold text-purple-900 mb-1">3. Đứng SAU Trợ động từ / Modal Verb:</p>
+                            <p class="font-mono text-xs text-purple-800 bg-white px-2 py-1 rounded inline-block">S + can/do/does + adv + V-inf</p>
+                            <p class="text-slate-600 mt-1 italic flex items-center gap-2">
+                                <span>You can <b>never bargain</b> at a supermarket.</span>
+                                <button onclick="speakText('You can never bargain at a supermarket because prices are fixed.')" class="speaker-btn text-purple-600 text-xs"><i class="fa-solid fa-volume-high"></i></button>
+                            </p>
+                        </div>
+
+                        <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-xs text-amber-900">
+                            <p class="font-bold flex items-center gap-1 text-amber-800">
+                                <i class="fa-solid fa-triangle-exclamation text-amber-600"></i> Lưu ý vàng của Ms. Lily:
+                            </p>
+                            <p class="mt-1">Hầu hết các trạng từ có thể đứng đầu hoặc cuối câu (<i>Sometimes, Usually</i>) để nhấn mạnh, <b>NGOẠI TRỪ</b>: <i>always, rarely, never</i> không được đứng đầu câu!</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Part 2: Present Simple for Future Events -->
+                <div class="card-candy p-6 border-l-8 border-l-emerald-500">
+                    <div class="flex items-center justify-between mb-4">
+                        <h3 class="text-xl font-black text-emerald-700 flex items-center gap-2">
+                            <i class="fa-solid fa-calendar-days"></i> II. Hiện Tại Đơn Cho Tương Lai
+                        </h3>
+                        <button onclick="speakText('We use the present simple with a future meaning to talk about timetables or schedules.')" class="speaker-btn bg-emerald-100 text-emerald-600 w-8 h-8 rounded-full flex items-center justify-center text-xs">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </button>
+                    </div>
+
+                    <div class="space-y-3 text-sm">
+                        <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-200">
+                            <p class="font-extrabold text-emerald-900 mb-1">1. Định nghĩa chuẩn SGK:</p>
+                            <p class="text-slate-700">Dùng để diễn tả <b>lịch trình cố định, thời khóa biểu, chương trình đã lên lịch</b> (giờ xe buýt, giờ mở/đóng cửa siêu thị, lịch hội chợ, giờ khai mạc...).</p>
+                        </div>
+
+                        <div class="space-y-2">
+                            <div class="bg-white p-2.5 rounded-xl border border-slate-200 flex items-center justify-between">
+                                <div>
+                                    <span class="text-xs font-bold text-emerald-600 uppercase">Lịch trình xe / giờ tàu:</span>
+                                    <p class="font-semibold text-slate-800">The bus <b>leaves</b> at 9:00 tomorrow morning.</p>
+                                </div>
+                                <button onclick="speakText('The bus leaves at nine tomorrow morning.')" class="speaker-btn text-emerald-600 text-xs"><i class="fa-solid fa-volume-high"></i></button>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-xl border border-slate-200 flex items-center justify-between">
+                                <div>
+                                    <span class="text-xs font-bold text-emerald-600 uppercase">Giờ mở cửa siêu thị:</span>
+                                    <p class="font-semibold text-slate-800">The supermarket <b>opens</b> at 8 a.m. every day.</p>
+                                </div>
+                                <button onclick="speakText('The supermarket opens at eight a.m. every day.')" class="speaker-btn text-emerald-600 text-xs"><i class="fa-solid fa-volume-high"></i></button>
+                            </div>
+                            <div class="bg-white p-2.5 rounded-xl border border-slate-200 flex items-center justify-between">
+                                <div>
+                                    <span class="text-xs font-bold text-emerald-600 uppercase">Chương trình giảm giá:</span>
+                                    <p class="font-semibold text-slate-800">The summer sales <b>end</b> next Sunday.</p>
+                                </div>
+                                <button onclick="speakText('The summer sales end next Sunday.')" class="speaker-btn text-emerald-600 text-xs"><i class="fa-solid fa-volume-high"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="bg-rose-50 p-3 rounded-xl border border-rose-200 text-xs text-rose-900">
+                            <p class="font-bold flex items-center gap-1 text-rose-800">
+                                <i class="fa-solid fa-shield-halved text-rose-600"></i> Phân biệt bẫy WILL vs HIỆN TẠI ĐƠN:
+                            </p>
+                            <p class="mt-1">
+                                • <b>Lịch trình, thời khóa biểu (Timetable):</b> Dùng thì <b>Hiện tại đơn</b> (starts, ends, leaves).<br>
+                                • <b>Hành động tự phát, quyết định tức thì, dự đoán cá nhân (Unplanned action):</b> Dùng <b>WILL + V</b> (e.g. <i>Don't worry, I will make a shopping list</i>).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GAME PANES (Template Engine for Game 1, 2, 3, 4, 5) -->
+        <section id="game-arena" class="tab-pane">
+            <!-- Game Info Header -->
+            <div id="game-banner" class="card-candy p-4 sm:p-6 mb-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center gap-4">
+                    <div id="game-icon-badge" class="w-14 h-14 rounded-2xl flex items-center justify-center text-white text-2xl shadow-md">
+                        <!-- Icon injected by JS -->
+                    </div>
+                    <div>
+                        <h2 id="game-title" class="text-xl sm:text-2xl font-black heading-font text-slate-900">Tiêu đề Game</h2>
+                        <p id="game-desc" class="text-xs sm:text-sm text-slate-600 mt-0.5">Mô tả luật chơi và mục tiêu kiến thức ngữ pháp</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <div class="text-center px-4 py-2 bg-slate-100 rounded-xl">
+                        <span class="text-xs text-slate-500 font-bold block">Tiến độ</span>
+                        <span id="current-question-indicator" class="text-base sm:text-lg font-black text-indigo-600">1 / 20</span>
+                    </div>
+                    <div class="text-center px-4 py-2 bg-slate-100 rounded-xl">
+                        <span class="text-xs text-slate-500 font-bold block">Điểm game</span>
+                        <span id="game-score" class="text-base sm:text-lg font-black text-emerald-600">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full bg-slate-200 rounded-full h-3 mb-6 overflow-hidden">
+                <div id="progress-bar-fill" class="bg-gradient-to-r from-blue-500 to-indigo-600 h-3 rounded-full transition-all duration-300" style="width: 5%"></div>
+            </div>
+
+            <!-- Question Card Area -->
+            <div id="question-card" class="card-candy p-6 sm:p-8 relative">
+                <!-- Speaker button for question -->
+                <div class="flex items-center justify-between mb-4">
+                    <span id="question-tag" class="bg-indigo-100 text-indigo-800 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider">
+                        Câu hỏi 1
+                    </span>
+                    <button id="speak-question-btn" class="speaker-btn bg-indigo-100 hover:bg-indigo-200 text-indigo-700 w-10 h-10 rounded-full flex items-center justify-center text-base shadow-sm">
+                        <i class="fa-solid fa-volume-high"></i>
+                    </button>
+                </div>
+
+                <!-- Question Text -->
+                <h3 id="question-text" class="text-lg sm:text-xl md:text-2xl font-extrabold text-slate-800 mb-6 leading-relaxed">
+                    Nội dung câu hỏi hiển thị tại đây...
+                </h3>
+
+                <!-- Context Hint (if any) -->
+                <div id="context-hint" class="hidden mb-4 p-3 bg-amber-50 rounded-xl border border-amber-200 text-amber-900 text-xs sm:text-sm font-semibold flex items-center gap-2">
+                    <i class="fa-solid fa-lightbulb text-amber-500"></i>
+                    <span id="context-hint-text">Gợi ý ngữ cảnh...</span>
+                </div>
+
+                <!-- Options / Interactive Area -->
+                <div id="interactive-area" class="space-y-3">
+                    <!-- Injected dynamically by JS -->
+                </div>
+
+                <!-- Explanation Box (Appears after answer) -->
+                <div id="explanation-box" class="hidden mt-6 p-4 sm:p-5 rounded-2xl border-2 transition-all">
+                    <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center gap-2">
+                            <span id="result-badge" class="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider text-white"></span>
+                            <span class="font-bold text-sm text-slate-700">Giải thích chi tiết từ Ms. Lily</span>
+                        </div>
+                        <button id="speak-explanation-btn" class="speaker-btn bg-white text-slate-700 hover:text-indigo-600 w-8 h-8 rounded-full flex items-center justify-center text-xs shadow-sm border border-slate-200">
+                            <i class="fa-solid fa-volume-high"></i>
+                        </button>
+                    </div>
+                    <div id="explanation-content" class="text-sm space-y-1.5 mt-2">
+                        <!-- Explanation injected here -->
+                    </div>
+
+                    <!-- Next Question Button -->
+                    <div class="mt-4 pt-3 border-t border-slate-200/60 flex justify-end">
+                        <button id="next-btn" onclick="nextQuestion()" class="btn-bounce px-6 py-2.5 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-extrabold rounded-xl shadow-md hover:from-blue-700 hover:to-indigo-700 flex items-center gap-2 text-sm">
+                            <span>Câu tiếp theo</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game Summary Card (shown when finishing 20 questions) -->
+            <div id="game-summary" class="hidden card-candy p-6 sm:p-10 text-center">
+                <div class="w-20 h-20 mx-auto bg-amber-100 rounded-full flex items-center justify-center text-amber-500 text-4xl mb-4 shadow-inner">
+                    <i class="fa-solid fa-medal"></i>
+                </div>
+                <h3 class="text-2xl sm:text-3xl font-black heading-font text-slate-800">HOÀN THÀNH XUẤT SẮC!</h3>
+                <p class="text-slate-600 font-medium text-sm sm:text-base mt-1">Bạn vừa chinh phục 20 câu hỏi ngữ pháp cực chất của Unit 8!</p>
+
+                <div class="my-6 p-6 bg-slate-50 rounded-2xl max-w-md mx-auto border border-slate-200 grid grid-cols-2 gap-4">
+                    <div>
+                        <span class="text-xs font-bold text-slate-500 block">Số câu đúng</span>
+                        <span id="summary-correct" class="text-3xl font-black text-emerald-600">0/20</span>
+                    </div>
+                    <div>
+                        <span class="text-xs font-bold text-slate-500 block">Độ chính xác</span>
+                        <span id="summary-percent" class="text-3xl font-black text-blue-600">0%</span>
+                    </div>
+                </div>
+
+                <div id="summary-feedback" class="text-sm font-bold text-indigo-700 mb-6 bg-indigo-50 p-4 rounded-xl max-w-md mx-auto border border-indigo-100">
+                    <!-- Feedback message from Ms. Lily -->
+                </div>
+
+                <div class="flex flex-wrap justify-center gap-3">
+                    <button onclick="restartCurrentGame()" class="btn-bounce px-6 py-3 bg-indigo-600 text-white font-black rounded-xl shadow hover:bg-indigo-700 flex items-center gap-2 text-sm">
+                        <i class="fa-solid fa-rotate-right"></i> Chơi lại Game này
+                    </button>
+                    <button onclick="goToNextGame()" class="btn-bounce px-6 py-3 bg-emerald-600 text-white font-black rounded-xl shadow hover:bg-emerald-700 flex items-center gap-2 text-sm">
+                        <span>Sang Game kế tiếp</span> <i class="fa-solid fa-forward"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER / CENTER CONTACT -->
+    <footer class="max-w-6xl mx-auto mt-10 p-6 bg-white rounded-3xl border-2 border-slate-200 text-center text-xs sm:text-sm text-slate-600 space-y-2">
+        <p class="font-extrabold text-slate-800 text-base">TRUNG TÂM TIẾNG ANH HT ENGLISH – MS. LILY</p>
+        <p><i class="fa-solid fa-phone text-emerald-600"></i> Hotline: <b class="text-emerald-700">0963.422.940 – 0962.240.866</b></p>
+        <p><i class="fa-solid fa-map-pin text-rose-500"></i> Địa chỉ: <b>Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình</b></p>
+        <p class="text-slate-400 text-xs">Chương trình Tiếng Anh 8 Global Success • Độc quyền thiết kế bài tập & tương tác sư phạm</p>
+    </footer>
+
+    <!-- Audio Web API Synth Script -->
+    <script>
+        /* US Female Voice Text-To-Speech */
+        function speakText(text) {
+            if (!('speechSynthesis' in window)) {
+                alert("Trình duyệt của bạn chưa hỗ trợ Web Speech API!");
+                return;
+            }
+            window.speechSynthesis.cancel(); // Stop any pending speech
+            const cleanText = text.replace(/<[^>]*>?/gm, '').replace(/[_]{2,}/g, 'blank');
+            const utterance = new SpeechSynthesisUtterance(cleanText);
+            utterance.lang = 'en-US';
+            utterance.rate = 0.88; // Natural teaching pace
+
+            // Search for natural US female voice
+            const voices = window.speechSynthesis.getVoices();
+            const femaleVoice = voices.find(v => 
+                (v.lang === 'en-US' || v.lang === 'en_US') && 
+                (v.name.includes('Samantha') || v.name.includes('Zira') || v.name.includes('Jenny') || v.name.includes('Female') || v.name.includes('Google US English'))
+            ) || voices.find(v => v.lang.startsWith('en'));
+
+            if (femaleVoice) {
+                utterance.voice = femaleVoice;
+            }
+            window.speechSynthesis.speak(utterance);
+        }
+
+        // Web Audio API Sound Effects
+        const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        function playTone(freq, type, duration) {
+            try {
+                if (audioCtx.state === 'suspended') audioCtx.resume();
+                const osc = audioCtx.createOscillator();
+                const gain = audioCtx.createGain();
+                osc.type = type;
+                osc.frequency.value = freq;
+                gain.gain.setValueAtTime(0.15, audioCtx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + duration);
+                osc.connect(gain);
+                gain.connect(audioCtx.destination);
+                osc.start();
+                osc.stop(audioCtx.currentTime + duration);
+            } catch(e) {}
+        }
+        function playCorrectSound() {
+            playTone(523.25, 'sine', 0.15); // C5
+            setTimeout(() => playTone(659.25, 'sine', 0.25), 100); // E5
+        }
+        function playWrongSound() {
+            playTone(261.63, 'sawtooth', 0.25);
+        }
+
+        /* -------------------------------------------------------------
+           COMPREHENSIVE 100-QUESTION DATASET (5 GAMES x 20 QUESTIONS)
+           Focus: Grammar - Adverbs of frequency & Present simple for future events
+           Vocabulary: Unit 8 Shopping (Global Success 8)
+        ------------------------------------------------------------- */
+
+        const gamesData = {
+            game1: {
+                id: 'game1',
+                title: 'ĐUA XE TẦN SUẤT (SPEED RACER: ADVERBS OF FREQUENCY)',
+                desc: 'Luyện phản xạ vị trí & ý nghĩa của các trạng từ tần suất: always, usually, often, sometimes, rarely, never',
+                icon: 'fa-solid fa-gauge-high',
+                badgeBg: 'bg-blue-600',
+                questions: [
+                    {
+                        q: "My mother _______ shops at the supermarket. She never shops anywhere else.",
+                        options: ["always", "rarely", "sometimes", "never"],
+                        answer: 0,
+                        sentence: "My mother always shops at the supermarket. She never shops anywhere else.",
+                        explanation: "<b>Căn cứ:</b> Vế sau khẳng định 'She never shops anywhere else' (bà không bao giờ mua sắm ở nơi nào khác) -> mức độ là 100% (luôn luôn) -> chọn <b>always</b>.<br><b>Vị trí:</b> Đứng trước động từ thường 'shops'."
+                    },
+                    {
+                        q: "I _______ buy things online, just once or twice a year. I prefer to shop at the shopping mall.",
+                        options: ["always", "rarely", "usually", "often"],
+                        answer: 1,
+                        sentence: "I rarely buy things online, just once or twice a year. I prefer to shop at the shopping mall.",
+                        explanation: "<b>Căn cứ:</b> Chỉ mua 'once or twice a year' (1 hoặc 2 lần mỗi năm) thể hiện tần suất rất hiếm khi -> chọn <b>rarely</b> (hiếm khi).<br><b>Vị trí:</b> Đứng trước động từ thường 'buy'."
+                    },
+                    {
+                        q: "You can _______ bargain at a supermarket because the prices are fixed.",
+                        options: ["always", "usually", "never", "often"],
+                        answer: 2,
+                        sentence: "You can never bargain at a supermarket because the prices are fixed.",
+                        explanation: "<b>Căn cứ:</b> Vì giá cả ở siêu thị đã niêm yết cố định (prices are fixed) nên bạn <b>không bao giờ</b> có thể mặc cả -> chọn <b>never</b>.<br><b>Vị trí:</b> Đứng sau modal verb 'can' và trước động từ thường 'bargain'."
+                    },
+                    {
+                        q: "How _______ do you return things you buy online?",
+                        options: ["many", "often", "long", "much"],
+                        answer: 1,
+                        sentence: "How often do you return things you buy online?",
+                        explanation: "<b>Cấu trúc câu hỏi tần suất:</b> <i>How often + do/does + S + V...?</i> (Bạn có thường trả lại hàng đã mua trực tuyến không?)."
+                    },
+                    {
+                        q: "I don't often buy things at the dollar store. My mother only takes me there _______.",
+                        options: ["always", "sometimes", "never", "rarely"],
+                        answer: 1,
+                        sentence: "I don't often buy things at the dollar store. My mother only takes me there sometimes.",
+                        explanation: "<b>Căn cứ & Vị trí:</b> 'Sometimes' là trạng từ tần suất có thể đứng ở cuối câu để bổ nghĩa (thỉnh thoảng mẹ mới dẫn tôi tới đó). Các từ <i>always, never</i> không đứng ở vị trí cuối câu này."
+                    },
+                    {
+                        q: "Goods at convenience stores are _______ more expensive than those in open markets.",
+                        options: ["usually", "never", "rarely", "not"],
+                        answer: 0,
+                        sentence: "Goods at convenience stores are usually more expensive than those in open markets.",
+                        explanation: "<b>Vị trí:</b> Trạng từ tần suất đứng <b>SAU động từ To Be</b> (are usually). Theo thực tế, hàng ở cửa hàng tiện lợi thường đắt hơn ở chợ truyền thống."
+                    },
+                    {
+                        q: "She _______ complaints about the customer service because the staff is very polite.",
+                        options: ["makes rarely", "rarely makes", "is rarely", "rarely make"],
+                        answer: 1,
+                        sentence: "She rarely makes complaints about the customer service because the staff is very polite.",
+                        explanation: "<b>Quy tắc:</b> Trạng từ tần suất đứng TRƯỚC động từ thường. Chủ ngữ 'She' là ngôi thứ 3 số ít nên động từ thêm 's' -> <b>rarely makes</b>."
+                    },
+                    {
+                        q: "The shop assistants here _______ friendly and helpful to customers.",
+                        options: ["always are", "are always", "always do", "is always"],
+                        answer: 1,
+                        sentence: "The shop assistants here are always friendly and helpful to customers.",
+                        explanation: "<b>Quy tắc:</b> Trạng từ tần suất đứng SAU động từ To Be. Chủ ngữ 'The shop assistants' là số nhiều -> dùng <b>are always</b>."
+                    },
+                    {
+                        q: "Do you _______ check the price tag before buying clothes?",
+                        options: ["usually", "are usually", "usually do", "usually are"],
+                        answer: 0,
+                        sentence: "Do you usually check the price tag before buying clothes?",
+                        explanation: "<b>Cấu trúc câu hỏi:</b> <i>Do + S + adv + V-inf...?</i> -> Trạng từ 'usually' đứng ngay trước động từ thường 'check'."
+                    },
+                    {
+                        q: "My father _______ shopping online because he worries about security.",
+                        options: ["never likes", "likes never", "is never like", "never like"],
+                        answer: 0,
+                        sentence: "My father never likes shopping online because he worries about security.",
+                        explanation: "<b>Quy tắc:</b> S (My father - số ít) + adv (never) + V(s/es) (likes). Trạng từ tần suất luôn đứng TRƯỚC động từ thường."
+                    },
+                    {
+                        q: "Supermarkets are _______ crowded with shoppers on Saturday evenings.",
+                        options: ["often", "often are", "have often", "often do"],
+                        answer: 0,
+                        sentence: "Supermarkets are often crowded with shoppers on Saturday evenings.",
+                        explanation: "<b>Quy tắc:</b> Trạng từ tần suất 'often' đứng ngay sau động từ to be 'are' (S + be + adv + Adj)."
+                    },
+                    {
+                        q: "Mary _______ forgets to ask for a receipt when she pays for her items.",
+                        options: ["seldom", "is seldom", "seldom is", "does seldom"],
+                        answer: 0,
+                        sentence: "Mary seldom forgets to ask for a receipt when she pays for her items.",
+                        explanation: "<b>Quy tắc:</b> 'seldom' (= hiếm khi) đứng trước động từ thường 'forgets' (chia số ít theo Mary)."
+                    },
+                    {
+                        q: "_______ we go window shopping just for fun without buying anything.",
+                        options: ["Sometimes", "Always", "Never", "Rarely"],
+                        answer: 0,
+                        sentence: "Sometimes we go window shopping just for fun without buying anything.",
+                        explanation: "<b>Lưu ý:</b> Trong các trạng từ tần suất, <b>Sometimes</b> và <b>Usually</b> có thể đứng ở đầu câu để nhấn mạnh. <i>Always</i> và <i>Never</i> không đứng ở đầu câu khẳng định như thế này."
+                    },
+                    {
+                        q: "Customers _______ bargain when they buy things at an open-air market.",
+                        options: ["frequently", "are frequently", "frequently are", "do frequently"],
+                        answer: 0,
+                        sentence: "Customers frequently bargain when they buy things at an open-air market.",
+                        explanation: "<b>Vị trí:</b> 'Frequently' (thường xuyên) đứng trước động từ thường 'bargain' (mặc cả)."
+                    },
+                    {
+                        q: "Tom _______ uses discount codes because he does not know how to find them.",
+                        options: ["hardly ever", "is hardly", "hardly is", "hardly ever is"],
+                        answer: 0,
+                        sentence: "Tom hardly ever uses discount codes because he does not know how to find them.",
+                        explanation: "<b>Quy tắc:</b> 'hardly ever' (= hầu như không bao giờ) đứng trước động từ thường 'uses'."
+                    },
+                    {
+                        q: "We _______ late for the big sale at the department store.",
+                        options: ["are never", "never are", "never do", "do never"],
+                        answer: 0,
+                        sentence: "We are never late for the big sale at the department store.",
+                        explanation: "<b>Quy tắc:</b> Trạng từ đứng SAU động từ to be -> <b>are never</b> late."
+                    },
+                    {
+                        q: "Does your sister _______ buy clothes during end-of-season sales?",
+                        options: ["usually", "usually does", "is usually", "usually is"],
+                        answer: 0,
+                        sentence: "Does your sister usually buy clothes during end-of-season sales?",
+                        explanation: "<b>Cấu trúc câu hỏi:</b> <i>Does + S (your sister) + adv (usually) + V-inf (buy)...?</i>"
+                    },
+                    {
+                        q: "The farmers' market is _______ held on Sunday mornings in my hometown.",
+                        options: ["regularly", "regularly is", "is regularly", "regular"],
+                        answer: 0,
+                        sentence: "The farmers' market is regularly held on Sunday mornings in my hometown.",
+                        explanation: "<b>Vị trí:</b> Đứng giữa trợ động từ / to be 'is' và quá khứ phân từ 'held' (bị động)."
+                    },
+                    {
+                        q: "Local specialty food products are _______ sold out very quickly at the fair.",
+                        options: ["always", "always are", "always do", "are always not"],
+                        answer: 0,
+                        sentence: "Local specialty food products are always sold out very quickly at the fair.",
+                        explanation: "<b>Vị trí:</b> Đứng sau động từ to be 'are' (are always sold out)."
+                    },
+                    {
+                        q: "I _______ carry cash because I almost always pay with an e-wallet.",
+                        options: ["rarely", "always", "usually", "frequently"],
+                        answer: 0,
+                        sentence: "I rarely carry cash because I almost always pay with an e-wallet.",
+                        explanation: "<b>Căn cứ ngữ nghĩa:</b> Vế sau nói 'gần như luôn trả bằng ví điện tử' -> tôi <b>hiếm khi (rarely)</b> mang theo tiền mặt."
+                    }
+                ]
+            },
+
+            game2: {
+                id: 'game2',
+                title: 'BẮN BÓNG LỊCH TRÌNH (PRESENT SIMPLE FOR FUTURE EVENTS)',
+                desc: 'Phân biệt chính xác Thì Hiện tại đơn cho lịch trình/thời khóa biểu và WILL cho hành động tự phát',
+                icon: 'fa-solid fa-calendar-check',
+                badgeBg: 'bg-emerald-600',
+                questions: [
+                    {
+                        q: "The supermarket in my neighbourhood _______ longer hours than the one in yours.",
+                        options: ["opens", "will open", "is opening", "open"],
+                        answer: 0,
+                        sentence: "The supermarket in my neighbourhood opens longer hours than the one in yours.",
+                        explanation: "<b>Quy tắc SGK (trang 85, Bài 4):</b> Giờ mở cửa của siêu thị là lịch trình hoạt động cố định (schedule/timetable) -> Dùng <b>Hiện tại đơn</b> (The supermarket số ít -> <b>opens</b>)."
+                    },
+                    {
+                        q: "Don't worry. I _______ a shopping list, and you just give it to the shop owner.",
+                        options: ["make", "will make", "makes", "am making"],
+                        answer: 1,
+                        sentence: "Don't worry. I will make a shopping list, and you just give it to the shop owner.",
+                        explanation: "<b>Quy tắc SGK (trang 85, Bài 4):</b> Lời hứa hoặc quyết định đưa ra ngay tại thời điểm nói (unplanned action) -> Dùng <b>will make</b>."
+                    },
+                    {
+                        q: "We _______ a birthday cake this year. We can bake one at home instead.",
+                        options: ["don't buy", "won't buy", "not buy", "aren't buy"],
+                        answer: 1,
+                        sentence: "We won't buy a birthday cake this year. We can bake one at home instead.",
+                        explanation: "<b>Quy tắc SGK (trang 85, Bài 4):</b> Quyết định kế hoạch cá nhân không phải lịch trình cố định -> Dùng tương lai đơn phủ định: <b>won't buy</b>."
+                    },
+                    {
+                        q: "The bus schedule says that there _______ a bus to Aeon Mall at 10:05.",
+                        options: ["is", "will be", "are", "being"],
+                        answer: 0,
+                        sentence: "The bus schedule says that there is a bus to Aeon Mall at 10:05.",
+                        explanation: "<b>Quy tắc SGK:</b> 'The bus schedule says' (Lịch trình xe buýt thông báo) -> Lịch trình cố định phải dùng <b>Hiện tại đơn</b>: <b>is</b>."
+                    },
+                    {
+                        q: "Look at the advertisement! _______ the big sale start next Friday?",
+                        options: ["Does", "Will", "Is", "Do"],
+                        answer: 0,
+                        sentence: "Look at the advertisement! Does the big sale start next Friday?",
+                        explanation: "<b>Quy tắc SGK (trang 85, Bài 4):</b> Chương trình giảm giá đã lên lịch trên tờ quảng cáo (advertised schedule) -> Dùng <b>Hiện tại đơn</b> dạng câu hỏi: <i>Does + S (the big sale) + V-inf (start)...?</i>"
+                    },
+                    {
+                        q: "The summer sales at Costco _______ next Sunday.",
+                        options: ["end", "will end", "are ending", "ended"],
+                        answer: 0,
+                        sentence: "The summer sales at Costco end next Sunday.",
+                        explanation: "<b>Quy tắc SGK (trang 85, Bài 3):</b> Lịch trình sự kiện của chương trình khuyến mãi (timetable/schedule) -> Dùng thì <b>Hiện tại đơn</b>: <b>end</b> (sales là số nhiều)."
+                    },
+                    {
+                        q: "Listen to the announcement! The train _______ till 12:00. Let's get something to drink.",
+                        options: ["doesn't leave", "won't leave", "isn't leaving", "don't leave"],
+                        answer: 0,
+                        sentence: "Listen to the announcement! The train doesn't leave till 12:00. Let's get something to drink.",
+                        explanation: "<b>Quy tắc SGK (trang 85, Bài 3):</b> Thông báo lịch trình tàu hỏa (train timetable) -> Dùng <b>Hiện tại đơn</b> phủ định: <b>doesn't leave</b>."
+                    },
+                    {
+                        q: "We'll go to Costco to return this suitcase. — This sentence expresses _______.",
+                        options: ["an unplanned future action / decision", "a fixed timetable / schedule", "a past habit", "a routine fact"],
+                        answer: 0,
+                        sentence: "We'll go to Costco to return this suitcase. This refers to an unplanned future action.",
+                        explanation: "<b>Quy tắc SGK (trang 85, Bài 3):</b> 'We'll go...' dùng <i>will + V</i> biểu thị một dự định/quyết định tương lai không có thời khóa biểu cố định (unplanned future action)."
+                    },
+                    {
+                        q: "Look! We have a whole afternoon for shopping on the second day of our tour. — This refers to _______.",
+                        options: ["a timetable / schedule of the tour", "an unplanned instant action", "a past event", "a prediction without proof"],
+                        answer: 0,
+                        sentence: "Look! We have a whole afternoon for shopping on the second day of our tour. This refers to a tour schedule.",
+                        explanation: "<b>Quy tắc SGK:</b> Lịch trình của chuyến du lịch (tour schedule) dùng Hiện tại đơn (We have)."
+                    },
+                    {
+                        q: "I'm too busy today, so we _______ shopping on Tuesday.",
+                        options: ["will go", "go", "goes", "are going"],
+                        answer: 0,
+                        sentence: "I'm too busy today, so we will go shopping on Tuesday.",
+                        explanation: "<b>Quy tắc SGK (trang 85, Bài 3):</b> Quyết định tức thời đưa ra do hôm nay quá bận -> Dùng <b>will go</b>."
+                    },
+                    {
+                        q: "The electronics store _______ at 9 p.m. tonight, so we still have two hours to browse.",
+                        options: ["closes", "will close", "is closing", "closed"],
+                        answer: 0,
+                        sentence: "The electronics store closes at 9 p.m. tonight, so we still have two hours to browse.",
+                        explanation: "<b>Lịch trình:</b> Giờ đóng cửa hàng ngày của cửa hàng là một schedule cố định -> Dùng <b>Hiện tại đơn</b> (closes)."
+                    },
+                    {
+                        q: "What time _______ the shopping mall open tomorrow morning?",
+                        options: ["does", "will", "is", "did"],
+                        answer: 0,
+                        sentence: "What time does the shopping mall open tomorrow morning?",
+                        explanation: "<b>Câu hỏi lịch trình:</b> Hỏi về giờ mở cửa cố định của trung tâm thương mại dùng <b>Does ... open</b>."
+                    },
+                    {
+                        q: "The flight to Singapore for our shopping trip _______ off at 6:30 tomorrow.",
+                        options: ["takes", "will take", "is taking", "took"],
+                        answer: 0,
+                        sentence: "The flight to Singapore for our shopping trip takes off at 6:30 tomorrow.",
+                        explanation: "<b>Giờ bay:</b> Lịch trình chuyến bay (flight timetable) luôn dùng thì <b>Hiện tại đơn mang nghĩa tương lai</b> -> <b>takes</b> off."
+                    },
+                    {
+                        q: "Wait a minute! I _______ your heavy shopping bags for you.",
+                        options: ["will carry", "carry", "carries", "am carry"],
+                        answer: 0,
+                        sentence: "Wait a minute! I will carry your heavy shopping bags for you.",
+                        explanation: "<b>Đề nghị giúp đỡ / quyết định tức thì:</b> Hành động tự phát không theo lịch trình -> Dùng <b>will carry</b>."
+                    },
+                    {
+                        q: "According to the fair schedule, the food competition _______ at 11:00 on 1 April.",
+                        options: ["takes place", "will take place", "is taking place", "took place"],
+                        answer: 0,
+                        sentence: "According to the fair schedule, the food competition takes place at 11:00 on 1 April.",
+                        explanation: "<b>SGK trang 86:</b> Theo lịch trình hội chợ (fair schedule), cuộc thi nấu ăn diễn ra lúc 11:00 -> Dùng <b>Hiện tại đơn</b> (takes place)."
+                    },
+                    {
+                        q: "The opening ceremony of the new convenience store _______ at 8:30 next Monday.",
+                        options: ["starts", "will start", "starting", "started"],
+                        answer: 0,
+                        sentence: "The opening ceremony of the new convenience store starts at 8:30 next Monday.",
+                        explanation: "<b>Lịch trình sự kiện:</b> Giờ khai mạc đã lên chương trình cố định -> Dùng <b>Hiện tại đơn</b> (starts)."
+                    },
+                    {
+                        q: "If you don't like the color of the shirt, the customer desk _______ you an exchange.",
+                        options: ["will give", "gives", "give", "is giving"],
+                        answer: 0,
+                        sentence: "If you don't like the color of the shirt, the customer desk will give you an exchange.",
+                        explanation: "<b>Câu điều kiện loại 1:</b> Mệnh đề kết quả diễn tả sự việc có thể xảy ra ở tương lai -> Dùng <b>will give</b>."
+                    },
+                    {
+                        q: "The discount period _______ for another three days according to the poster.",
+                        options: ["lasts", "will last", "is lasting", "lasted"],
+                        answer: 0,
+                        sentence: "The discount period lasts for another three days according to the poster.",
+                        explanation: "<b>Thông tin trên áp phích:</b> Thời gian đợt giảm giá được ấn định theo lịch -> Dùng <b>Hiện tại đơn</b> (lasts)."
+                    },
+                    {
+                        q: "I promise I _______ you to the newly opened supermarket this weekend.",
+                        options: ["will take", "take", "takes", "am taking"],
+                        answer: 0,
+                        sentence: "I promise I will take you to the newly opened supermarket this weekend.",
+                        explanation: "<b>Lời hứa (Promise):</b> Luôn dùng <b>will + V-inf</b> (I will take)."
+                    },
+                    {
+                        q: "The ferry carrying tourists to the floating market _______ at 7:00 a.m.",
+                        options: ["departs", "will depart", "is departing", "departed"],
+                        answer: 0,
+                        sentence: "The ferry carrying tourists to the floating market departs at 7:00 a.m.",
+                        explanation: "<b>Giờ tàu phà:</b> Lịch trình di chuyển công cộng cố định dùng <b>Hiện tại đơn</b>: <b>departs</b>."
+                    }
+                ]
+            },
+
+            game3: {
+                id: 'game3',
+                title: 'BẮT BẪY NGỮ PHÁP (GRAMMAR TRAP DETECTIVE)',
+                desc: 'Phát hiện và tiêu diệt các lỗi sai kinh điển về vị trí trạng từ tần suất & lạm dụng WILL',
+                icon: 'fa-solid fa-magnifying-glass-arrow-right',
+                badgeBg: 'bg-purple-600',
+                questions: [
+                    {
+                        q: "Tìm lỗi sai trong câu sau: 'My sister [A] shops always [B] at the department store [C] on [D] weekends.'",
+                        options: ["[A] shops always", "[B] at", "[C] on", "[D] weekends"],
+                        answer: 0,
+                        sentence: "My sister always shops at the department store on weekends.",
+                        explanation: "<b>Lỗi sai:</b> [A] <i>shops always</i> ❌ -> Sửa thành <b>always shops</b> ✔️.<br><b>Quy tắc:</b> Trạng từ tần suất phải đứng TRƯỚC động từ thường."
+                    },
+                    {
+                        q: "Tìm lỗi sai: 'The sign [A] says that the [B] bakery will open [C] at 7 a.m. [D] every day.'",
+                        options: ["[A] says", "[B] bakery", "[C] will open", "[D] every day"],
+                        answer: 2,
+                        sentence: "The sign says that the bakery opens at 7 a.m. every day.",
+                        explanation: "<b>Lỗi sai:</b> [C] <i>will open</i> ❌ -> Sửa thành <b>opens</b> ✔️.<br><b>Quy tắc:</b> Giờ mở cửa cố định trên biển hiệu là thời khóa biểu (schedule), bắt buộc dùng thì Hiện tại đơn."
+                    },
+                    {
+                        q: "Tìm lỗi sai: 'He [A] is never [B] bargain [C] because he [D] is too shy.'",
+                        options: ["[A] is never", "[B] bargain", "[C] because", "[D] is too shy"],
+                        answer: 0,
+                        sentence: "He never bargains because he is too shy.",
+                        explanation: "<b>Lỗi sai:</b> [A] <i>is never</i> ❌ -> Động từ chính là 'bargain' (động từ thường), nên câu khẳng định dùng <b>never bargains</b> (không dùng to be 'is')."
+                    },
+                    {
+                        q: "Tìm lỗi sai: 'Never [A] my mother [B] returns items [C] bought from [D] local markets.'",
+                        options: ["[A] Never", "[B] returns", "[C] bought", "[D] local markets"],
+                        answer: 0,
+                        sentence: "My mother never returns items bought from local markets.",
+                        explanation: "<b>Lỗi sai:</b> [A] <i>Never</i> ❌ -> Trạng từ 'never' và 'always' không được đứng đầu câu thông thường. Sửa thành: <b>My mother never returns...</b>"
+                    },
+                    {
+                        q: "Tìm lỗi sai: 'The bus [A] leaves [B] at 9:00 tomorrow, [C] but don't worry, [D] I arrive early.'",
+                        options: ["[A] leaves", "[B] at", "[C] but", "[D] I arrive early"],
+                        answer: 3,
+                        sentence: "The bus leaves at 9:00 tomorrow, but don't worry, I will arrive early.",
+                        explanation: "<b>Lỗi sai:</b> [D] <i>I arrive early</i> ❌ -> Sửa thành <b>I will arrive early</b> ✔️ vì đây là lời hứa cá nhân (promise/unplanned action), không phải thời khóa biểu công cộng."
+                    },
+                    {
+                        q: "Tìm lỗi sai: 'Goods [A] in this boutique [B] rarely are [C] discounted [D] even on Black Friday.'",
+                        options: ["[A] in", "[B] rarely are", "[C] discounted", "[D] even"],
+                        answer: 1,
+                        sentence: "Goods in this boutique are rarely discounted even on Black Friday.",
+                        explanation: "<b>Lỗi sai:</b> [B] <i>rarely are</i> ❌ -> Sửa thành <b>are rarely</b> ✔️ vì trạng từ tần suất phải đứng SAU động từ to be."
+                    },
+                    {
+                        q: "Tìm lỗi sai: 'Does [A] the summer sale [B] ends [C] next Sunday [D] afternoon?'",
+                        options: ["[A] Does", "[B] ends", "[C] next Sunday", "[D] afternoon"],
+                        answer: 1,
+                        sentence: "Does the summer sale end next Sunday afternoon?",
+                        explanation: "<b>Lỗi sai:</b> [B] <i>ends</i> ❌ -> Sửa thành <b>end</b> (nguyên mẫu) ✔️ vì trong câu hỏi đã có trợ động từ 'Does'."
+                    },
+                    {
+                        q: "Tìm lỗi sai: 'We [A] usually can find [B] fresh fruits [C] in the [D] open-air market.'",
+                        options: ["[A] usually can find", "[B] fresh fruits", "[C] in", "[D] open-air market"],
+                        answer: 0,
+                        sentence: "We can usually find fresh fruits in the open-air market.",
+                        explanation: "<b>Lỗi sai:</b> [A] <i>usually can find</i> ❌ -> Sửa thành <b>can usually find</b> ✔️ vì trạng từ tần suất đứng SAU modal verb (can/could/should)."
+                    },
+                    {
+                        q: "Tìm lỗi sai: 'Listen! The supermarket [A] announcer says [B] that the store [C] will close [D] in ten minutes.'",
+                        options: ["[A] announcer", "[B] that", "[C] will close", "[D] in ten minutes"],
+                        answer: 2,
+                        sentence: "Listen! The supermarket announcer says that the store closes in ten minutes.",
+                        explanation: "<b>Lỗi sai:</b> [C] <i>will close</i> ❌ -> Lời thông báo giờ đóng cửa cố định của cửa hàng dùng thì Hiện tại đơn: <b>closes</b>."
+                    },
+                    {
+                        q: "Tìm lỗi sai: 'She [A] doesn't never [B] buy clothes [C] without trying [D] them on.'",
+                        options: ["[A] doesn't never", "[B] buy", "[C] without", "[D] them on"],
+                        answer: 0,
+                        sentence: "She never buys clothes without trying them on.",
+                        explanation: "<b>Lỗi sai phủ định kép:</b> [A] <i>doesn't never</i> ❌ -> 'Never' bản thân đã mang nghĩa phủ định. Sửa thành <b>never buys</b> hoặc <b>doesn't ever buy</b>."
+                    },
+                    {
+                        q: "Tìm lỗi sai: 'How [A] many [B] do you [C] visit the convenience store [D] near your house?'",
+                        options: ["[A] many", "[B] do you", "[C] visit", "[D] near"],
+                        answer: 0,
+                        sentence: "How often do you visit the convenience store near your house?",
+                        explanation: "<b>Lỗi sai:</b> [A] <i>many</i> ❌ -> Sửa thành <b>often</b> ✔️ để tạo thành cụm từ hỏi tần suất: <i>How often...?</i>"
+                    },
+                    {
+                        q: "Tìm lỗi sai: 'The community fair [A] will open [B] at 8:30 a.m. [C] on 1 April [D] according to the flyer.'",
+                        options: ["[A] will open", "[B] at 8:30 a.m.", "[C] on 1 April", "[D] according to"],
+                        answer: 0,
+                        sentence: "The community fair opens at 8:30 a.m. on 1 April according to the flyer.",
+                        explanation: "<b>Lỗi sai:</b> [A] <i>will open</i> ❌ -> Lịch trình hội chợ đã in trên tờ rơi (flyer) phải dùng thì Hiện tại đơn: <b>opens</b>."
+                    },
+                    {
+                        q: "Tìm lỗi sai: 'I [A] am often [B] forgetting [C] my eco-friendly bag [D] when shopping.'",
+                        options: ["[A] am often", "[B] forgetting", "[C] my eco-friendly bag", "[D] when shopping"],
+                        answer: 1,
+                        sentence: "I often forget my eco-friendly bag when shopping.",
+                        explanation: "<b>Lỗi sai thì:</b> [B] <i>forgetting</i> ❌ -> Diễn tả thói quen lặp đi lặp lại với 'often' dùng thì Hiện tại đơn: <b>often forget</b> (không dùng to be + V-ing)."
+                    },
+                    {
+                        q: "Tìm lỗi sai: 'The tour of [A] the chocolate factory [B] will start [C] at 10:30 [D] tomorrow morning.'",
+                        options: ["[A] the chocolate factory", "[B] will start", "[C] at 10:30", "[D] tomorrow morning"],
+                        answer: 1,
+                        sentence: "The tour of the chocolate factory starts at 10:30 tomorrow morning.",
+                        explanation: "<b>Lỗi sai (SGK trang 85, Bài 2):</b> Lịch trình chuyến tham quan nhà máy sô-cô-la đã lên lịch cố định (schedule) -> Sửa thành <b>starts</b> ✔️."
+                    },
+                    {
+                        q: "Tìm lỗi sai: 'They [A] always are [B] excited [C] when the shopping mall [D] has promotions.'",
+                        options: ["[A] always are", "[B] excited", "[C] when", "[D] has promotions"],
+                        answer: 0,
+                        sentence: "They are always excited when the shopping mall has promotions.",
+                        explanation: "<b>Lỗi sai:</b> [A] <i>always are</i> ❌ -> Sửa thành <b>are always</b> ✔️ (trạng từ đứng sau To Be)."
+                    },
+                    {
+                        q: "Tìm lỗi sai: 'What time [A] will the train [B] arrive [C] at the station [D] according to schedule?'",
+                        options: ["[A] will the train", "[B] arrive", "[C] at the station", "[D] according to schedule"],
+                        answer: 0,
+                        sentence: "What time does the train arrive at the station according to schedule?",
+                        explanation: "<b>Lỗi sai:</b> [A] <i>will the train</i> ❌ -> Hỏi lịch trình tàu xe cố định phải dùng Hiện tại đơn: <b>does the train arrive</b>."
+                    },
+                    {
+                        q: "Tìm lỗi sai: 'He [A] rarely [B] don't buy [C] expensive designer clothes [D] at boutiques.'",
+                        options: ["[A] rarely", "[B] don't buy", "[C] expensive", "[D] at boutiques"],
+                        answer: 1,
+                        sentence: "He rarely buys expensive designer clothes at boutiques.",
+                        explanation: "<b>Lỗi sai:</b> [B] <i>don't buy</i> ❌ -> 'Rarely' đã mang nghĩa bán phủ định (hiếm khi), không dùng thêm trợ động từ phủ định 'don't'. Sửa thành <b>rarely buys</b>."
+                    },
+                    {
+                        q: "Tìm lỗi sai: 'The students [A] return [B] to school [C] at 12:00 [D] yesterday.'",
+                        options: ["[A] return", "[B] to school", "[C] at 12:00", "[D] yesterday"],
+                        answer: 0,
+                        sentence: "The students returned to school at 12:00 yesterday.",
+                        explanation: "<b>Lỗi sai dấu hiệu:</b> 'yesterday' là quá khứ đơn, không thể dùng 'return' nguyên mẫu. Sửa thành <b>returned</b>."
+                    },
+                    {
+                        q: "Tìm lỗi sai: 'Look at [A] the notice! [B] The clothing store [C] will not open [D] on national holidays.'",
+                        options: ["[A] the notice", "[B] The clothing store", "[C] will not open", "[D] on national holidays"],
+                        answer: 2,
+                        sentence: "Look at the notice! The clothing store does not open on national holidays.",
+                        explanation: "<b>Lỗi sai:</b> [C] <i>will not open</i> ❌ -> Quy định, lịch làm việc trên thông báo (notice) dùng Hiện tại đơn: <b>does not open</b>."
+                    },
+                    {
+                        q: "Tìm lỗi sai: 'Always [A] be careful [B] when checking [C] the expiry date [D] on food packages.'",
+                        options: ["[A] Always", "[B] be careful", "[C] when checking", "[D] on food packages"],
+                        answer: 0,
+                        sentence: "Câu này ĐÚNG hoàn toàn vì 'Always' đứng đầu câu mệnh lệnh khuyên bảo (Always be careful!). Hãy chọn [A] nếu coi đây là câu trắc nghiệm kiểm tra nhận định.",
+                        explanation: "<b>Bẫy đặc biệt:</b> Trong câu mệnh lệnh (Imperative sentences), 'Always' hoặc 'Never' ĐƯỢC PHÉP đứng đầu câu (e.g. <i>Always be careful!</i> / <i>Never buy expired food!</i>)."
+                    }
+                ]
+            },
+
+            game4: {
+                id: 'game4',
+                title: 'GHÉP CÂU 1-CHẠM (WORD SCRAMBLE ARCHITECT)',
+                desc: 'Chạm các thẻ từ bị xáo trộn ngẫu nhiên để tạo thành câu hoàn chỉnh chuẩn trật tự ngữ pháp',
+                type: 'scramble',
+                icon: 'fa-solid fa-shapes',
+                badgeBg: 'bg-pink-600',
+                questions: [
+                    {
+                        words: ["My", "mother", "always", "shops", "at", "the", "supermarket."],
+                        sentence: "My mother always shops at the supermarket.",
+                        explanation: "<b>Trật tự chuẩn:</b> S (My mother) + adv (always) + V (shops) + giới từ & nơi chốn (at the supermarket)."
+                    },
+                    {
+                        words: ["You", "can", "never", "bargain", "at", "a", "supermarket."],
+                        sentence: "You can never bargain at a supermarket.",
+                        explanation: "<b>Trật tự chuẩn:</b> Modal verb (can) + adv (never) + V-inf (bargain) + nơi chốn (at a supermarket)."
+                    },
+                    {
+                        words: ["The", "bus", "leaves", "at", "nine", "tomorrow", "morning."],
+                        sentence: "The bus leaves at nine tomorrow morning.",
+                        explanation: "<b>Lịch trình:</b> Hiện tại đơn cho tương lai: S (The bus) + V-s (leaves) + thời gian (at nine tomorrow morning)."
+                    },
+                    {
+                        words: ["The", "summer", "sales", "end", "next", "Sunday."],
+                        sentence: "The summer sales end next Sunday.",
+                        explanation: "<b>Lịch trình khuyến mãi:</b> S (The summer sales) + V (end) + thời gian (next Sunday)."
+                    },
+                    {
+                        words: ["Goods", "at", "the", "dollar", "store", "are", "usually", "cheap."],
+                        sentence: "Goods at the dollar store are usually cheap.",
+                        explanation: "<b>Trạng từ sau To Be:</b> To be (are) + adv (usually) + adj (cheap)."
+                    },
+                    {
+                        words: ["The", "tour", "starts", "at", "ten", "thirty", "sharp."],
+                        sentence: "The tour starts at ten thirty sharp.",
+                        explanation: "<b>Thời khóa biểu:</b> S (The tour) + V-s (starts) + mốc giờ cố định (at ten thirty sharp)."
+                    },
+                    {
+                        words: ["How", "often", "do", "you", "return", "things", "online?"],
+                        sentence: "How often do you return things online?",
+                        explanation: "<b>Câu hỏi tần suất:</b> How often + do + S (you) + V (return) + O (things online)?"
+                    },
+                    {
+                        words: ["I", "will", "make", "a", "detailed", "shopping", "list."],
+                        sentence: "I will make a detailed shopping list.",
+                        explanation: "<b>Hành động tự phát / quyết định:</b> S (I) + will + V (make) + a detailed shopping list."
+                    },
+                    {
+                        words: ["The", "train", "doesn't", "leave", "until", "twelve", "o'clock."],
+                        sentence: "The train doesn't leave until twelve o'clock.",
+                        explanation: "<b>Lịch trình phủ định:</b> S (The train) + doesn't + V-inf (leave) + mốc thời gian."
+                    },
+                    {
+                        words: ["She", "rarely", "buys", "clothes", "at", "the", "mall."],
+                        sentence: "She rarely buys clothes at the mall.",
+                        explanation: "<b>Trạng từ trước V thường:</b> S (She) + adv (rarely) + V-s (buys) + O (clothes at the mall)."
+                    },
+                    {
+                        words: ["We", "have", "a", "whole", "afternoon", "for", "shopping."],
+                        sentence: "We have a whole afternoon for shopping.",
+                        explanation: "<b>Lịch trình tour du lịch:</b> Dùng Hiện tại đơn: We have a whole afternoon for shopping."
+                    },
+                    {
+                        words: ["The", "convenience", "store", "opens", "twenty-four", "hours", "daily."],
+                        sentence: "The convenience store opens twenty-four hours daily.",
+                        explanation: "<b>Giờ mở cửa cố định:</b> S (The convenience store) + opens + 24 hours daily."
+                    },
+                    {
+                        words: ["Sometimes", "we", "go", "window", "shopping", "together."],
+                        sentence: "Sometimes we go window shopping together.",
+                        explanation: "<b>Trạng từ đầu câu:</b> Sometimes đứng đầu câu để nhấn mạnh thói quen đi ngắm đồ."
+                    },
+                    {
+                        words: ["Customers", "seldom", "complain", "about", "the", "fair", "prices."],
+                        sentence: "Customers seldom complain about the fair prices.",
+                        explanation: "<b>Trạng từ trước V thường:</b> Customers + seldom + complain + about the fair prices."
+                    },
+                    {
+                        words: ["Does", "the", "big", "sale", "start", "next", "Friday?"],
+                        sentence: "Does the big sale start next Friday?",
+                        explanation: "<b>Câu hỏi lịch trình:</b> Does + the big sale + start next Friday?"
+                    },
+                    {
+                        words: ["Students", "arrive", "at", "the", "chocolate", "factory", "early."],
+                        sentence: "Students arrive at the chocolate factory early.",
+                        explanation: "<b>Lịch trình dã ngoại:</b> Students arrive at the chocolate factory early."
+                    },
+                    {
+                        words: ["I", "hardly", "ever", "bargain", "at", "specialty", "shops."],
+                        sentence: "I hardly ever bargain at specialty shops.",
+                        explanation: "<b>Trạng từ kép:</b> hardly ever đứng trước động từ thường bargain."
+                    },
+                    {
+                        words: ["The", "food", "competition", "takes", "place", "at", "eleven."],
+                        sentence: "The food competition takes place at eleven.",
+                        explanation: "<b>Lịch trình hội chợ:</b> The food competition + takes place + at eleven."
+                    },
+                    {
+                        words: ["We", "won't", "buy", "a", "cake", "this", "year."],
+                        sentence: "We won't buy a cake this year.",
+                        explanation: "<b>Quyết định cá nhân:</b> S + won't + V-inf + time expression."
+                    },
+                    {
+                        words: ["They", "are", "always", "friendly", "to", "every", "customer."],
+                        sentence: "They are always friendly to every customer.",
+                        explanation: "<b>Trạng từ sau To Be:</b> S (They) + are + always + adj (friendly) + to every customer."
+                    }
+                ]
+            },
+
+            game5: {
+                id: 'game5',
+                title: 'ĐẤU TRƯỜNG SIÊU THỊ THÔNG THÁI (SUPERMARKET SHOPPING SHOWDOWN)',
+                desc: 'Vận dụng ngữ pháp vào 20 tình huống mua sắm thực tế, đề bài tự chứa 100% ngữ cảnh độc lập không cần mở sách!',
+                icon: 'fa-solid fa-cart-shopping',
+                badgeBg: 'bg-amber-600',
+                questions: [
+                    {
+                        q: "Notice on the shopping mall door: 'Opening Hours: 9:00 a.m. daily'.\n→ The shopping mall _______ at 9:00 a.m. every morning.",
+                        options: ["opens", "will open", "is opening", "opened"],
+                        answer: 0,
+                        sentence: "The shopping mall opens at 9:00 a.m. every morning.",
+                        explanation: "<b>Căn cứ:</b> Biển thông báo giờ mở cửa cố định trên cửa ra vào là một lịch trình cố định (fixed schedule) → Dùng thì <b>Hiện tại đơn</b> (The shopping mall số ít → <b>opens</b>)."
+                    },
+                    {
+                        q: "Cashier: 'Your total bill is $35, sir.' — Customer: 'All right, I _______ by credit card.'",
+                        options: ["pay", "will pay", "pays", "paid"],
+                        answer: 1,
+                        sentence: "All right, I will pay by credit card.",
+                        explanation: "<b>Căn cứ:</b> Quyết định phương thức thanh toán được đưa ra ngay tại quầy thu ngân (quyết định tức thì, không có thời khóa biểu cố định) → Dùng <b>will + V-inf</b> (will pay)."
+                    },
+                    {
+                        q: "A: 'How _______ do you return damaged goods to online shops?' — B: 'Hardly ever, because I always read reviews carefully.'",
+                        options: ["often", "much", "many", "long"],
+                        answer: 0,
+                        sentence: "How often do you return damaged goods to online shops?",
+                        explanation: "<b>Căn cứ:</b> Vế trả lời là trạng từ tần suất 'Hardly ever' (hầu như không bao giờ) → Câu hỏi tần suất bắt buộc dùng: <i>How <b>often</b> + do/does + S + V...?</i>"
+                    },
+                    {
+                        q: "Shop assistant to a customer struggling with heavy boxes: 'Wait a second! I _______ those shopping bags to your car.'",
+                        options: ["will carry", "carry", "carries", "am carrying"],
+                        answer: 0,
+                        sentence: "Wait a second! I will carry those shopping bags to your car.",
+                        explanation: "<b>Căn cứ:</b> Lời đề nghị giúp đỡ tức thời đưa ra tại thời điểm nói (spontaneous offer) → Dùng <b>will carry</b>."
+                    },
+                    {
+                        q: "Look at the departure board! The shuttle bus to the discount outlet mall _______ at 10:15.",
+                        options: ["leaves", "will leave", "leave", "is leaving"],
+                        answer: 0,
+                        sentence: "The shuttle bus to the discount outlet mall leaves at 10:15.",
+                        explanation: "<b>Căn cứ:</b> Giờ khởi hành của xe buýt trên bảng điện tử là lịch trình phương tiện công cộng cố định (bus timetable) → Dùng thì <b>Hiện tại đơn</b>: <b>leaves</b>."
+                    },
+                    {
+                        q: "At supermarkets and department stores, price tags are fixed, so shoppers _______ bargain with the cashier.",
+                        options: ["can never", "can always", "never can", "always can"],
+                        answer: 0,
+                        sentence: "Shoppers can never bargain with the cashier at supermarkets.",
+                        explanation: "<b>Căn cứ & Vị trí:</b> Do giá đã cố định nên khách hàng 'không bao giờ có thể mặc cả'. Trạng từ tần suất 'never' đứng sau modal verb 'can' → <b>can never</b> bargain."
+                    },
+                    {
+                        q: "Speaker announcement in the store: 'Attention shoppers! Today's 50% flash sale _______ in thirty minutes.'",
+                        options: ["ends", "will end", "end", "ending"],
+                        answer: 0,
+                        sentence: "Today's 50% flash sale ends in thirty minutes.",
+                        explanation: "<b>Căn cứ:</b> Giờ kết thúc chương trình giảm giá được ấn định theo thời gian biểu của cửa hàng → Dùng <b>Hiện tại đơn</b> (ends)."
+                    },
+                    {
+                        q: "Mum: 'We are completely out of cooking oil.' — Nam: 'Don't worry, Mum. I _______ to the convenience store to buy a bottle.'",
+                        options: ["will go", "go", "goes", "am going to go"],
+                        answer: 0,
+                        sentence: "Don't worry, Mum. I will go to the convenience store to buy a bottle.",
+                        explanation: "<b>Căn cứ:</b> Quyết định đi mua dầu ăn được đưa ra ngay khi nghe mẹ nói (quyết định tức thời, chưa lên kế hoạch trước) → Dùng <b>will go</b>."
+                    },
+                    {
+                        q: "Linda checks the expiry date on dairy products 10 out of 10 times before paying. This means she _______ checks the date.",
+                        options: ["always", "rarely", "sometimes", "never"],
+                        answer: 0,
+                        sentence: "She always checks the date on dairy products before paying.",
+                        explanation: "<b>Căn cứ:</b> Tần suất 10/10 lần tương ứng mức độ 100% (luôn luôn) → chọn trạng từ <b>always</b> (đứng trước động từ thường 'checks')."
+                    },
+                    {
+                        q: "The flyer says: 'Grand opening ceremony of the new supermarket _______ at 8:00 a.m. next Monday.'",
+                        options: ["starts", "will start", "starting", "started"],
+                        answer: 0,
+                        sentence: "Grand opening ceremony of the new supermarket starts at 8:00 a.m. next Monday.",
+                        explanation: "<b>Căn cứ:</b> Lịch trình sự kiện đã in trên tờ rơi (promotional flyer) là một thời gian biểu cố định → Dùng <b>Hiện tại đơn</b>: <b>starts</b>."
+                    },
+                    {
+                        q: "Goods at convenience stores _______ open 24 hours a day are usually more expensive than those in open-air markets.",
+                        options: ["that are", "which will be", "are being", "to be"],
+                        answer: 0,
+                        sentence: "Goods at convenience stores that are open 24 hours a day are usually more expensive.",
+                        explanation: "<b>Căn cứ:</b> 'Goods at convenience stores are usually more expensive' (Trạng từ 'usually' đứng sau động từ to be để diễn tả thói quen/thực tế phổ biến)."
+                    },
+                    {
+                        q: "A: 'Why don't you buy clothes online?' — B: 'Because clothes from online stores _______ fit me properly.'",
+                        options: ["rarely", "always are", "rarely are", "are rarely not"],
+                        answer: 0,
+                        sentence: "Because clothes from online stores rarely fit me properly.",
+                        explanation: "<b>Vị trí & Ngữ nghĩa:</b> 'fit' là động từ thường nên trạng từ 'rarely' (hiếm khi) đứng ngay trước động từ thường."
+                    },
+                    {
+                        q: "Look at our itinerary for the weekend shopping trip! Our train to the mall _______ at 7:30 tomorrow morning.",
+                        options: ["departs", "will depart", "is departing", "departed"],
+                        answer: 0,
+                        sentence: "Our train to the mall departs at 7:30 tomorrow morning.",
+                        explanation: "<b>Căn cứ:</b> Lịch trình tàu du lịch mua sắm ghi trên hành trình (itinerary) là thời khóa biểu cố định → Dùng thì <b>Hiện tại đơn mang nghĩa tương lai</b> (departs)."
+                    },
+                    {
+                        q: "A: 'I bought two shirts, but they gave me the wrong size.' — B: 'Keep the receipt! The customer service desk _______ them for you.'",
+                        options: ["will exchange", "exchanges", "exchange", "are exchanging"],
+                        answer: 0,
+                        sentence: "The customer service desk will exchange them for you.",
+                        explanation: "<b>Căn cứ:</b> Lời dự đoán hoặc khẳng định về hành động xảy ra trong tương lai của quầy CSKH → Dùng <b>will exchange</b>."
+                    },
+                    {
+                        q: "Mark loves bargaining, so he _______ shops at open-air markets instead of supermarkets.",
+                        options: ["frequently", "is frequently", "frequently is", "frequent"],
+                        answer: 0,
+                        sentence: "Mark frequently shops at open-air markets instead of supermarkets.",
+                        explanation: "<b>Vị trí:</b> 'frequently' (thường xuyên) đứng trước động từ thường 'shops' (chia ngôi thứ 3 số ít theo Mark)."
+                    },
+                    {
+                        q: "The sign on the boutique window says: 'Our summer clearance sale _______ next Friday afternoon.'",
+                        options: ["ends", "will end", "end", "is ending"],
+                        answer: 0,
+                        sentence: "Our summer clearance sale ends next Friday afternoon.",
+                        explanation: "<b>Căn cứ:</b> Thông báo chính thức về lịch kết thúc đợt khuyến mãi trên cửa kính (fixed schedule) → Dùng thì <b>Hiện tại đơn</b>: <b>ends</b>."
+                    },
+                    {
+                        q: "Shop assistants in this bakery _______ polite and welcoming whenever customers enter.",
+                        options: ["are always", "always are", "always do", "is always"],
+                        answer: 0,
+                        sentence: "Shop assistants in this bakery are always polite and welcoming.",
+                        explanation: "<b>Quy tắc:</b> Trạng từ tần suất đứng SAU động từ To Be. Chủ ngữ 'Shop assistants' số nhiều → <b>are always</b>."
+                    },
+                    {
+                        q: "I promise I _______ you how to use the self-checkout barcode scanner next time we go shopping.",
+                        options: ["will show", "show", "shows", "am showing"],
+                        answer: 0,
+                        sentence: "I promise I will show you how to use the self-checkout barcode scanner next time.",
+                        explanation: "<b>Căn cứ:</b> Câu có dấu hiệu lời hứa <i>'I promise...'</i> → Luôn dùng thì tương lai đơn với <b>will + V-inf</b> (will show)."
+                    },
+                    {
+                        q: "Cinema ticket info: 'Screening time: 8:15 p.m.' → The movie at the shopping centre _______ at 8:15 tonight.",
+                        options: ["starts", "will start", "is starting", "started"],
+                        answer: 0,
+                        sentence: "The movie at the shopping centre starts at 8:15 tonight.",
+                        explanation: "<b>Căn cứ:</b> Suất chiếu phim in trên vé là thời gian biểu cố định (public timetable) → Dùng <b>Hiện tại đơn</b>: <b>starts</b>."
+                    },
+                    {
+                        q: "A: 'Do you ever forget to take your shopping bag with you?' — B: 'Yes, _______ when I go shopping in a hurry.'",
+                        options: ["sometimes", "never", "always not", "rarely never"],
+                        answer: 0,
+                        sentence: "Yes, sometimes when I go shopping in a hurry.",
+                        explanation: "<b>Căn cứ & Vị trí:</b> Đứng độc lập đầu câu trả lời ngắn để chỉ tần suất thi thoảng → Chọn <b>sometimes</b> (Thỉnh thoảng, mỗi khi tôi đi mua sắm vội vàng)."
+                    }
+                ]
+            }
+        };
+
+        /* -------------------------------------------------------------
+           GAME STATE MANAGEMENT
+        ------------------------------------------------------------- */
+        let currentTab = 'handbook';
+        let currentGameKey = 'game1';
+        let currentQuestionIdx = 0;
+        let gameScores = { game1: 0, game2: 0, game3: 0, game4: 0, game5: 0 };
+        let answeredQuestions = { game1: 0, game2: 0, game3: 0, game4: 0, game5: 0 };
+        let streak = 0;
+        let selectedWords = []; // For scramble builder
+
+        function updateGlobalScores() {
+            let total = 0;
+            for (let k in gameScores) {
+                total += gameScores[k];
+            }
+            document.getElementById('global-score').innerText = total;
+            document.getElementById('global-streak').innerText = streak + ' 🔥';
+        }
+
+        function switchTab(tabKey) {
+            currentTab = tabKey;
+            window.speechSynthesis.cancel();
+
+            // Update tab button styles
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('tab-active'));
+            const activeBtn = document.getElementById('tab-' + tabKey);
+            if (activeBtn) activeBtn.classList.add('tab-active');
+
+            if (tabKey === 'handbook') {
+                document.getElementById('pane-handbook').classList.remove('hidden');
+                document.getElementById('game-arena').classList.add('hidden');
+            } else {
+                document.getElementById('pane-handbook').classList.add('hidden');
+                document.getElementById('game-arena').classList.remove('hidden');
+                currentGameKey = tabKey;
+                loadGame(tabKey);
+            }
+        }
+
+        function loadGame(gameKey) {
+            const game = gamesData[gameKey];
+            currentQuestionIdx = 0;
+            selectedWords = [];
+
+            // Setup Header
+            document.getElementById('game-title').innerText = game.title;
+            document.getElementById('game-desc').innerText = game.desc;
+            const badge = document.getElementById('game-icon-badge');
+            badge.className = `w-14 h-14 rounded-2xl flex items-center justify-center text-white text-2xl shadow-md ${game.badgeBg}`;
+            badge.innerHTML = `<i class="${game.icon}"></i>`;
+
+            document.getElementById('game-summary').classList.add('hidden');
+            document.getElementById('question-card').classList.remove('hidden');
+
+            renderQuestion();
+        }
+
+        function renderQuestion() {
+            const game = gamesData[currentGameKey];
+            const qData = game.questions[currentQuestionIdx];
+            const totalQ = game.questions.length;
+
+            // Update status counters
+            document.getElementById('current-question-indicator').innerText = `${currentQuestionIdx + 1} / ${totalQ}`;
+            document.getElementById('game-score').innerText = `${gameScores[currentGameKey]} / ${totalQ}`;
+            const percent = ((currentQuestionIdx + 1) / totalQ) * 100;
+            document.getElementById('progress-bar-fill').style.width = `${percent}%`;
+
+            document.getElementById('question-tag').innerText = `Câu ${currentQuestionIdx + 1} (${game.title.split(' ')[0]})`;
+            document.getElementById('explanation-box').classList.add('hidden');
+
+            // Handle Question display & audio
+            const speakBtn = document.getElementById('speak-question-btn');
+            const interactiveArea = document.getElementById('interactive-area');
+            interactiveArea.innerHTML = '';
+
+            if (game.type === 'scramble') {
+                document.getElementById('question-text').innerText = "Nhấp vào các thẻ từ bên dưới theo đúng trật tự để hoàn chỉnh câu:";
+                speakBtn.onclick = () => speakText(qData.sentence);
+
+                renderScrambleGame(qData, interactiveArea);
+            } else {
+                document.getElementById('question-text').innerText = qData.q;
+                speakBtn.onclick = () => speakText(qData.q);
+
+                // Render 4 Multiple Choice Options
+                qData.options.forEach((opt, idx) => {
+                    const btn = document.createElement('button');
+                    btn.className = "w-full text-left p-4 rounded-2xl border-2 border-slate-200 bg-white hover:border-indigo-400 hover:bg-indigo-50/50 flex items-center justify-between gap-3 transition-all font-semibold text-slate-800 btn-bounce";
+                    btn.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-full bg-slate-100 text-slate-700 font-extrabold flex items-center justify-center text-sm">${String.fromCharCode(65 + idx)}</span>
+                            <span class="text-sm sm:text-base">${opt}</span>
+                        </div>
+                        <span class="speaker-btn text-slate-400 hover:text-indigo-600 p-1"><i class="fa-solid fa-volume-high"></i></span>
+                    `;
+                    // Speaker click on option
+                    btn.querySelector('.speaker-btn').addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        speakText(opt);
+                    });
+                    btn.addEventListener('click', () => handleOptionSelect(idx, btn, qData));
+                    interactiveArea.appendChild(btn);
+                });
+            }
+        }
+
+        function handleOptionSelect(selectedIdx, btnElement, qData) {
+            const allBtns = document.getElementById('interactive-area').querySelectorAll('button');
+            allBtns.forEach(b => b.disabled = true);
+
+            const isCorrect = (selectedIdx === qData.answer);
+            if (isCorrect) {
+                btnElement.classList.remove('border-slate-200', 'bg-white');
+                btnElement.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-900');
+                btnElement.querySelector('span').classList.replace('bg-slate-100', 'bg-emerald-500');
+                btnElement.querySelector('span').classList.add('text-white');
+                playCorrectSound();
+                gameScores[currentGameKey]++;
+                streak++;
+            } else {
+                btnElement.classList.remove('border-slate-200', 'bg-white');
+                btnElement.classList.add('border-rose-500', 'bg-rose-50', 'text-rose-900');
+                btnElement.querySelector('span').classList.replace('bg-slate-100', 'bg-rose-500');
+                btnElement.querySelector('span').classList.add('text-white');
+
+                // Highlight correct option
+                const correctBtn = allBtns[qData.answer];
+                if (correctBtn) {
+                    correctBtn.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-900');
+                }
+                playWrongSound();
+                streak = 0;
+            }
+
+            updateGlobalScores();
+            showExplanation(isCorrect, qData);
+        }
+
+        /* Scramble Game Renderer */
+        function renderScrambleGame(qData, container) {
+            selectedWords = [];
+
+            // Container for target sentence
+            const targetBox = document.createElement('div');
+            targetBox.id = 'target-sentence-box';
+            targetBox.className = "min-h-[70px] p-4 bg-indigo-50/60 rounded-2xl border-2 border-dashed border-indigo-300 flex flex-wrap gap-2 items-center mb-4";
+            targetBox.innerHTML = `<span class="text-xs text-indigo-400 font-bold italic" id="empty-prompt">Chạm vào các từ bên dưới để đưa vào đây...</span>`;
+            container.appendChild(targetBox);
+
+            // Scramble algorithm (Fisher-Yates) guaranteed not to match original order
+            let scrambled = [...qData.words];
+            let attempts = 0;
+            do {
+                for (let i = scrambled.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [scrambled[i], scrambled[j]] = [scrambled[j], scrambled[i]];
+                }
+                attempts++;
+            } while (scrambled.join(' ') === qData.words.join(' ') && attempts < 10);
+
+            // Container for source word chips
+            const chipsPool = document.createElement('div');
+            chipsPool.id = 'chips-pool';
+            chipsPool.className = "flex flex-wrap gap-2.5 p-4 bg-slate-50 rounded-2xl border border-slate-200";
+
+            scrambled.forEach((word, idx) => {
+                const chip = document.createElement('button');
+                chip.id = `chip-${idx}`;
+                chip.className = "chip px-4 py-2 bg-white rounded-xl border-2 border-slate-200 font-bold text-slate-800 shadow-sm text-sm hover:border-indigo-400 hover:bg-indigo-50/50 btn-bounce";
+                chip.innerText = word;
+                chip.onclick = () => {
+                    if (chip.classList.contains('opacity-25')) return;
+                    addWordToSentence(word, chip, qData);
+                };
+                chipsPool.appendChild(chip);
+            });
+            container.appendChild(chipsPool);
+
+            // Action buttons (Reset & Check)
+            const actions = document.createElement('div');
+            actions.className = "flex justify-between items-center mt-4";
+            actions.innerHTML = `
+                <button onclick="resetScramble()" class="px-4 py-2 bg-slate-200 text-slate-700 font-bold rounded-xl text-xs hover:bg-slate-300 flex items-center gap-1.5 btn-bounce">
+                    <i class="fa-solid fa-arrow-rotate-left"></i> Xếp lại từ đầu
+                </button>
+                <button id="check-scramble-btn" class="px-6 py-2.5 bg-indigo-600 text-white font-extrabold rounded-xl text-sm shadow hover:bg-indigo-700 flex items-center gap-2 btn-bounce">
+                    <span>Kiểm tra kết quả</span> <i class="fa-solid fa-check"></i>
+                </button>
+            `;
+            container.appendChild(actions);
+
+            document.getElementById('check-scramble-btn').onclick = () => checkScrambleAnswer(qData);
+        }
+
+        function addWordToSentence(word, chipElement, qData) {
+            const targetBox = document.getElementById('target-sentence-box');
+            const emptyPrompt = document.getElementById('empty-prompt');
+            if (emptyPrompt) emptyPrompt.remove();
+
+            // Mark source chip as used
+            chipElement.classList.add('opacity-25', 'pointer-events-none');
+
+            // Create target chip in sentence
+            const placedChip = document.createElement('span');
+            placedChip.className = "px-3.5 py-1.5 bg-indigo-600 text-white font-bold rounded-xl text-sm shadow-sm cursor-pointer hover:bg-rose-500 transition-all flex items-center gap-1.5";
+            placedChip.innerHTML = `<span>${word}</span> <i class="fa-solid fa-xmark text-xs opacity-75"></i>`;
+            
+            // Allow user to tap placed chip to return it to pool
+            placedChip.onclick = () => {
+                placedChip.remove();
+                chipElement.classList.remove('opacity-25', 'pointer-events-none');
+                const idx = selectedWords.indexOf(word);
+                if (idx > -1) selectedWords.splice(idx, 1);
+                if (targetBox.children.length === 0) {
+                    targetBox.innerHTML = `<span class="text-xs text-indigo-400 font-bold italic" id="empty-prompt">Chạm vào các từ bên dưới để đưa vào đây...</span>`;
+                }
+            };
+
+            targetBox.appendChild(placedChip);
+            selectedWords.push(word);
+        }
+
+        function resetScramble() {
+            const game = gamesData[currentGameKey];
+            const qData = game.questions[currentQuestionIdx];
+            const container = document.getElementById('interactive-area');
+            container.innerHTML = '';
+            renderScrambleGame(qData, container);
+        }
+
+        function checkScrambleAnswer(qData) {
+            const userSentence = selectedWords.join(' ').trim();
+            const correctSentence = qData.sentence.trim();
+            const isCorrect = (userSentence.toLowerCase().replace(/[.,?]/g, '') === correctSentence.toLowerCase().replace(/[.,?]/g, ''));
+
+            document.getElementById('check-scramble-btn').disabled = true;
+
+            if (isCorrect) {
+                playCorrectSound();
+                gameScores[currentGameKey]++;
+                streak++;
+            } else {
+                playWrongSound();
+                streak = 0;
+            }
+
+            updateGlobalScores();
+            showExplanation(isCorrect, qData);
+        }
+
+        function showExplanation(isCorrect, qData) {
+            const box = document.getElementById('explanation-box');
+            const badge = document.getElementById('result-badge');
+            const content = document.getElementById('explanation-content');
+            const speakExplBtn = document.getElementById('speak-explanation-btn');
+
+            box.classList.remove('hidden', 'bg-emerald-50', 'border-emerald-300', 'bg-rose-50', 'border-rose-300');
+
+            if (isCorrect) {
+                box.classList.add('bg-emerald-50', 'border-emerald-300');
+                badge.className = "px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-emerald-600 text-white";
+                badge.innerHTML = `<i class="fa-solid fa-circle-check"></i> Chính xác! (+1 điểm)`;
+            } else {
+                box.classList.add('bg-rose-50', 'border-rose-300');
+                badge.className = "px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-rose-600 text-white";
+                badge.innerHTML = `<i class="fa-solid fa-circle-xmark"></i> Chưa đúng rồi!`;
+            }
+
+            content.innerHTML = `
+                <div class="mb-2 p-2.5 bg-white/80 rounded-xl border border-slate-200">
+                    <span class="text-xs font-bold text-slate-500 block uppercase">Câu hoàn chỉnh chuẩn giọng Mỹ:</span>
+                    <p class="text-base font-extrabold text-indigo-900">${qData.sentence}</p>
+                </div>
+                <div class="text-slate-700 leading-relaxed">${qData.explanation}</div>
+            `;
+
+            speakExplBtn.onclick = () => speakText(qData.sentence);
+        }
+
+        function nextQuestion() {
+            const game = gamesData[currentGameKey];
+            if (currentQuestionIdx < game.questions.length - 1) {
+                currentQuestionIdx++;
+                renderQuestion();
+            } else {
+                showGameSummary();
+            }
+        }
+
+        function showGameSummary() {
+            document.getElementById('question-card').classList.add('hidden');
+            const summary = document.getElementById('game-summary');
+            summary.classList.remove('hidden');
+
+            const score = gameScores[currentGameKey];
+            const total = gamesData[currentGameKey].questions.length;
+            const percent = Math.round((score / total) * 100);
+
+            document.getElementById('summary-correct').innerText = `${score}/${total}`;
+            document.getElementById('summary-percent').innerText = `${percent}%`;
+
+            let msg = "";
+            if (percent >= 90) {
+                msg = "🎉 Xuất sắc vượt trội! Em đã nắm vững 100% ngữ pháp Adverbs of Frequency & Present Simple for Future Events!";
+            } else if (percent >= 70) {
+                msg = "🌟 Khá khen cho nỗ lực của em! Hãy xem lại các câu chưa đúng trong Cẩm Nang Bí Kíp để đạt điểm tuyệt đối nhé!";
+            } else {
+                msg = "💪 Em cần ôn tập thêm một chút về vị trí trạng từ và quy tắc thời khóa biểu ở phần Bí Kíp Vàng nhé!";
+            }
+            document.getElementById('summary-feedback').innerText = msg;
+        }
+
+        function restartCurrentGame() {
+            gameScores[currentGameKey] = 0;
+            updateGlobalScores();
+            loadGame(currentGameKey);
+        }
+
+        function goToNextGame() {
+            const gameKeys = ['game1', 'game2', 'game3', 'game4', 'game5'];
+            const currentIdx = gameKeys.indexOf(currentGameKey);
+            if (currentIdx < gameKeys.length - 1) {
+                switchTab(gameKeys[currentIdx + 1]);
+            } else {
+                switchTab('handbook');
+            }
+        }
+
+        // Initialize with Study Handbook Tab
+        window.addEventListener('DOMContentLoaded', () => {
+            switchTab('handbook');
+        });
+    </script>
+</body>
+</html>
