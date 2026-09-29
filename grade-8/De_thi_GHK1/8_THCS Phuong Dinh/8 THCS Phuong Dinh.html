@@ -42,6 +42,9 @@
       -webkit-user-select: none;
     }
   </style>
+<style id="modern-listening-player-style">
+.modern-listening-player{--mlp-accent:var(--color-primary,#0284c7);background:#fff;border:1px solid #bae6fd;border-radius:1rem;padding:1rem;box-shadow:0 4px 14px rgba(15,23,42,.08);display:grid;gap:.75rem;margin:.5rem 0}.mlp-header,.mlp-time,.mlp-volume{display:flex;align-items:center;justify-content:space-between;gap:.75rem}.mlp-header{color:#075985;font-size:.8rem}.mlp-status{color:#64748b;font-weight:600}.mlp-time{font-variant-numeric:tabular-nums;color:#475569;font-size:.8rem;font-weight:700}.mlp-progress,.mlp-volume-range{width:100%;accent-color:#0284c7;min-height:1.5rem;cursor:pointer}.mlp-controls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.5rem}.modern-listening-player button,.mlp-speed{min-height:44px;border:0;border-radius:.75rem;padding:.55rem .65rem;background:#e0f2fe;color:#075985;font-weight:700;cursor:pointer}.modern-listening-player button:hover{background:#bae6fd}.modern-listening-player .mlp-primary{background:#0284c7;color:#fff}.mlp-volume{flex-wrap:wrap}.mlp-volume-range{flex:1;min-width:8rem}.mlp-volume label{display:flex;align-items:center;gap:.4rem;color:#475569;font-size:.8rem;font-weight:700}@media(max-width:480px){.mlp-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.modern-listening-player{padding:.8rem}}
+</style>
 </head>
 <body class="min-h-screen flex flex-col bg-gradient-to-b from-sky-50 via-sky-100/40 to-blue-50/60 custom-scrollbar">
 
@@ -185,9 +188,23 @@
             
             <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-sky-100">
               <div class="flex items-center gap-2">
-                <button type="button" onclick="playAudioConversation('task1')" id="btnPlayTask1" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 active:scale-95 text-white text-xs sm:text-sm font-bold shadow-md shadow-sky-200 transition">
-                  <span class="text-base">🔊</span> <span id="btnTextTask1">Nghe Audio</span>
-                </button>
+                <div class="modern-listening-player" data-listening-player>
+  <div class="mlp-header"><strong>🎧 Audio 1</strong><span class="mlp-status">Sẵn sàng nghe</span></div>
+  <audio preload="metadata" src="task 1 listening..mp3"></audio>
+  <div class="mlp-time"><span class="mlp-current">00:00</span> / <span class="mlp-duration">00:00</span></div>
+  <input class="mlp-progress" type="range" min="0" max="0" value="0" step="0.1" aria-label="Thanh tiến trình Audio 1">
+  <div class="mlp-controls">
+    <button type="button" data-action="back" aria-label="Lùi 5 giây">↶ 5s</button>
+    <button type="button" data-action="play" class="mlp-primary" aria-label="Phát Audio 1">▶ Phát</button>
+    <button type="button" data-action="forward" aria-label="Tiến 5 giây">5s ↷</button>
+    <button type="button" data-action="replay" aria-label="Phát lại từ đầu">↺ Đầu</button>
+  </div>
+  <div class="mlp-volume">
+    <button type="button" data-action="mute" aria-label="Tắt tiếng">🔊</button>
+    <input class="mlp-volume-range" type="range" min="0" max="1" value="1" step="0.05" aria-label="Âm lượng">
+    <label>Tốc độ <select class="mlp-speed" aria-label="Tốc độ phát"><option value="0.75">0.75x</option><option value="1" selected>1x</option><option value="1.25">1.25x</option></select></label>
+  </div>
+</div>
                 <button type="button" onclick="stopAudio()" class="px-3 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-700 text-xs font-semibold transition">
                   ⏹ Dừng
                 </button>
@@ -480,9 +497,23 @@
             
             <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-sky-100">
               <div class="flex items-center gap-2">
-                <button type="button" onclick="playAudioConversation('task2')" id="btnPlayTask2" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 active:scale-95 text-white text-xs sm:text-sm font-bold shadow-md shadow-sky-200 transition">
-                  <span class="text-base">🔊</span> <span id="btnTextTask2">Nghe Audio</span>
-                </button>
+                <div class="modern-listening-player" data-listening-player>
+  <div class="mlp-header"><strong>🎧 Audio 2</strong><span class="mlp-status">Sẵn sàng nghe</span></div>
+  <audio preload="metadata" src="task 2 -Listening.mp3"></audio>
+  <div class="mlp-time"><span class="mlp-current">00:00</span> / <span class="mlp-duration">00:00</span></div>
+  <input class="mlp-progress" type="range" min="0" max="0" value="0" step="0.1" aria-label="Thanh tiến trình Audio 2">
+  <div class="mlp-controls">
+    <button type="button" data-action="back" aria-label="Lùi 5 giây">↶ 5s</button>
+    <button type="button" data-action="play" class="mlp-primary" aria-label="Phát Audio 2">▶ Phát</button>
+    <button type="button" data-action="forward" aria-label="Tiến 5 giây">5s ↷</button>
+    <button type="button" data-action="replay" aria-label="Phát lại từ đầu">↺ Đầu</button>
+  </div>
+  <div class="mlp-volume">
+    <button type="button" data-action="mute" aria-label="Tắt tiếng">🔊</button>
+    <input class="mlp-volume-range" type="range" min="0" max="1" value="1" step="0.05" aria-label="Âm lượng">
+    <label>Tốc độ <select class="mlp-speed" aria-label="Tốc độ phát"><option value="0.75">0.75x</option><option value="1" selected>1x</option><option value="1.25">1.25x</option></select></label>
+  </div>
+</div>
                 <button type="button" onclick="stopAudio()" class="px-3 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 active:scale-95 text-slate-700 text-xs font-semibold transition">
                   ⏹ Dừng
                 </button>
@@ -2146,5 +2177,47 @@
       updateProgress();
     });
   </script>
+<script id="modern-listening-player-script">
+(() => {
+  const formatTime = seconds => {
+    if (!Number.isFinite(seconds)) return '00:00';
+    const minutes = Math.floor(seconds / 60);
+    return `${String(minutes).padStart(2, '0')}:${String(Math.floor(seconds % 60)).padStart(2, '0')}`;
+  };
+  const players = [...document.querySelectorAll('[data-listening-player]')];
+  const pauseOthers = active => players.forEach(player => {
+    const other = player.querySelector('audio');
+    if (other !== active && !other.paused) other.pause();
+  });
+  players.forEach(player => {
+    const audio = player.querySelector('audio');
+    const play = player.querySelector('[data-action="play"]');
+    const progress = player.querySelector('.mlp-progress');
+    const current = player.querySelector('.mlp-current');
+    const duration = player.querySelector('.mlp-duration');
+    const status = player.querySelector('.mlp-status');
+    const mute = player.querySelector('[data-action="mute"]');
+    const volume = player.querySelector('.mlp-volume-range');
+    const speed = player.querySelector('.mlp-speed');
+    audio.playbackRate = 1;
+    play.addEventListener('click', () => audio.paused ? audio.play() : audio.pause());
+    player.querySelector('[data-action="back"]').addEventListener('click', () => { audio.currentTime = Math.max(0, audio.currentTime - 5); });
+    player.querySelector('[data-action="forward"]').addEventListener('click', () => { audio.currentTime = Math.min(Number.isFinite(audio.duration) ? audio.duration : audio.currentTime + 5, audio.currentTime + 5); });
+    player.querySelector('[data-action="replay"]').addEventListener('click', () => { pauseOthers(audio); audio.currentTime = 0; audio.play(); });
+    progress.addEventListener('input', () => { audio.currentTime = Number(progress.value); });
+    volume.addEventListener('input', () => { audio.volume = Number(volume.value); audio.muted = false; mute.textContent = '🔊'; });
+    mute.addEventListener('click', () => { audio.muted = !audio.muted; mute.textContent = audio.muted ? '🔇' : '🔊'; mute.setAttribute('aria-label', audio.muted ? 'Bật tiếng' : 'Tắt tiếng'); });
+    speed.addEventListener('change', () => { audio.playbackRate = Number(speed.value); });
+    const metadata = () => { if (Number.isFinite(audio.duration)) { progress.max = audio.duration; duration.textContent = formatTime(audio.duration); } };
+    audio.addEventListener('loadedmetadata', metadata);
+    audio.addEventListener('durationchange', metadata);
+    audio.addEventListener('timeupdate', () => { progress.value = audio.currentTime; current.textContent = formatTime(audio.currentTime); });
+    audio.addEventListener('play', () => { pauseOthers(audio); play.textContent = '⏸ Tạm dừng'; status.textContent = 'Đang phát'; });
+    audio.addEventListener('pause', () => { play.textContent = '▶ Phát'; status.textContent = audio.ended ? 'Đã phát xong' : 'Đã tạm dừng'; });
+    audio.addEventListener('ended', () => { play.textContent = '▶ Phát'; status.textContent = 'Đã phát xong'; });
+  });
+  document.querySelectorAll('[onclick*="playAudioFallback"], [onclick*="toggleAudio("], [onclick*="playAudioConversation"], [onclick="stopAudio()"]').forEach(button => { if (!button.closest('[data-listening-player]')) button.style.display = 'none'; });
+})();
+</script>
 </body>
 </html>
