@@ -68,6 +68,28 @@
     .audio-btn:active {
       transform: scale(0.95);
     }
+    .listening-player button {
+      min-height: 44px;
+      touch-action: manipulation;
+    }
+    .listening-player input[type="range"] {
+      accent-color: #0284c7;
+      cursor: pointer;
+      min-height: 28px;
+    }
+    .listening-player .audio-progress {
+      width: 100%;
+    }
+    @media (max-width: 480px) {
+      .listening-player .audio-controls {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+      .listening-player .audio-controls button {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+      }
+    }
   </style>
 </head>
 <body class="min-h-screen py-4 sm:py-8 px-2 sm:px-4 lg:px-8">
@@ -158,29 +180,36 @@
         <div class="mb-8">
           <div class="bg-sky-50/70 border border-sky-200 rounded-xl p-4 mb-5">
             <div class="font-bold text-sky-900 text-sm sm:text-base flex items-center justify-between flex-wrap gap-2">
-              <span>I. Listen and circle the best answer A, B, C or D. You will listen TWICE. (1.2 points)</span>
+              <span>I. Listen and circle the best answer A, B, C or D. (1.2 points)</span>
               <span class="text-xs text-sky-700 font-medium bg-white px-2 py-0.5 rounded border border-sky-200">0.2 điểm/câu</span>
             </div>
-            <p class="text-xs text-slate-600 mt-1 italic">Học sinh bấm nút nghe để nghe đoạn phỏng vấn giữa Interviewer và Mark về các hoạt động giải trí (phát 2 lần).</p>
+            <p class="text-xs text-slate-600 mt-1 italic">Học sinh sử dụng trình phát để nghe đoạn phỏng vấn giữa Interviewer và Mark về các hoạt động giải trí.</p>
 
             <!-- Audio & Transcript Grid Container (Switches to 2 columns side-by-side after grading) -->
             <div id="audioSectionGrid1" class="mt-3 grid grid-cols-1 gap-4 transition-all duration-300">
               <!-- Left Column: Audio Player Controls for Track 1 -->
-              <div class="bg-white p-4 rounded-xl border border-sky-200 shadow-sm flex flex-col justify-between space-y-3">
+              <div class="listening-player bg-white p-4 rounded-xl border border-sky-200 shadow-sm flex flex-col justify-between space-y-3" data-track="1">
                 <div class="flex items-center justify-between border-b border-sky-100 pb-2">
                   <span class="text-xs font-bold text-sky-800 uppercase tracking-wide">🎧 Trình phát Audio 1</span>
                   <span id="statusAudio1" class="text-xs font-medium text-slate-500">Sẵn sàng nghe</span>
                 </div>
-                <div class="flex items-center space-x-2">
-                  <button type="button" onclick="playAudioTrack(1)" id="btnAudio1" class="flex-1 flex items-center justify-center space-x-1.5 bg-sky-600 hover:bg-sky-700 text-white px-4 py-2.5 rounded-lg text-sm font-semibold transition shadow-sm active:scale-95">
-                    <span id="iconAudio1">▶️</span>
-                    <span id="labelAudio1">Nghe Audio 1 (2 lần)</span>
-                  </button>
-                  <button type="button" onclick="stopAudioTrack()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 px-3.5 py-2.5 rounded-lg text-sm font-semibold transition">
-                    ⏹ Dừng
-                  </button>
+                <audio id="nativeAudio1" src="GHK1 K8 - part 1.mp3" preload="metadata"></audio>
+                <div class="flex items-center justify-between text-xs font-semibold text-slate-600 tabular-nums">
+                  <span id="currentTimeAudio1">00:00</span><span id="durationAudio1">00:00</span>
                 </div>
-                <p class="text-[11px] text-slate-500 italic">Mẹo: Bài thi tự động phát lặp lại 2 lần kèm khoảng nghỉ ngắn theo đúng yêu cầu đề kiểm tra.</p>
+                <input id="progressAudio1" class="audio-progress" type="range" min="0" max="100" value="0" step="0.1" aria-label="Tiến trình Audio 1">
+                <div class="audio-controls flex gap-2">
+                  <button type="button" onclick="seekAudio(1, -5)" class="flex-1 bg-sky-50 hover:bg-sky-100 text-sky-800 px-3 py-2 rounded-lg text-sm font-semibold" aria-label="Lùi Audio 1 năm giây">↶ 5s</button>
+                  <button type="button" onclick="toggleAudio(1)" id="btnAudio1" class="flex-1 bg-sky-600 hover:bg-sky-700 text-white px-3 py-2 rounded-lg text-sm font-semibold shadow-sm" aria-label="Phát Audio 1"><span id="iconAudio1">▶</span> <span id="labelAudio1">Phát</span></button>
+                  <button type="button" onclick="seekAudio(1, 5)" class="flex-1 bg-sky-50 hover:bg-sky-100 text-sky-800 px-3 py-2 rounded-lg text-sm font-semibold" aria-label="Tiến Audio 1 năm giây">5s ↷</button>
+                  <button type="button" onclick="restartAudio(1)" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-2 rounded-lg text-sm font-semibold" aria-label="Phát lại Audio 1 từ đầu">↺ Đầu</button>
+                </div>
+                <div class="flex flex-wrap items-center gap-3 text-sm">
+                  <button type="button" onclick="toggleMute(1)" id="muteAudio1" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-2 rounded-lg font-semibold" aria-label="Tắt tiếng Audio 1">🔊</button>
+                  <input id="volumeAudio1" class="min-w-24 flex-1" type="range" min="0" max="1" value="1" step="0.05" aria-label="Âm lượng Audio 1">
+                  <label for="speedAudio1" class="font-semibold text-slate-600">Tốc độ</label>
+                  <select id="speedAudio1" class="min-h-11 border border-sky-200 rounded-lg bg-white px-2 font-semibold text-sky-800" aria-label="Tốc độ Audio 1"><option value="0.75">0.75x</option><option value="1" selected>1x</option><option value="1.25">1.25x</option></select>
+                </div>
               </div>
 
               <!-- Right Column: Side-by-side Transcript Box (Revealed strictly after submission beside audio) -->
@@ -396,26 +425,33 @@
               <span>II. Listen and tick true (T) or false (F) to the statement: (1.2 points)</span>
               <span class="text-xs text-sky-700 font-medium bg-white px-2 py-0.5 rounded border border-sky-200">0.2 điểm/câu</span>
             </div>
-            <p class="text-xs text-slate-600 mt-1 italic">Học sinh bấm nút nghe để nghe đoạn hội thoại giữa Todd và Mike về kỳ nghỉ tại Canada (phát 2 lần).</p>
+            <p class="text-xs text-slate-600 mt-1 italic">Học sinh sử dụng trình phát để nghe đoạn hội thoại giữa Todd và Mike về kỳ nghỉ tại Canada.</p>
 
             <!-- Audio & Transcript Grid Container (Switches to 2 columns side-by-side after grading) -->
             <div id="audioSectionGrid2" class="mt-3 grid grid-cols-1 gap-4 transition-all duration-300">
               <!-- Left Column: Audio Player Controls for Track 2 -->
-              <div class="bg-white p-4 rounded-xl border border-sky-200 shadow-sm flex flex-col justify-between space-y-3">
+              <div class="listening-player bg-white p-4 rounded-xl border border-sky-200 shadow-sm flex flex-col justify-between space-y-3" data-track="2">
                 <div class="flex items-center justify-between border-b border-sky-100 pb-2">
                   <span class="text-xs font-bold text-sky-800 uppercase tracking-wide">🎧 Trình phát Audio 2</span>
                   <span id="statusAudio2" class="text-xs font-medium text-slate-500">Sẵn sàng nghe</span>
                 </div>
-                <div class="flex items-center space-x-2">
-                  <button type="button" onclick="playAudioTrack(2)" id="btnAudio2" class="flex-1 flex items-center justify-center space-x-1.5 bg-sky-600 hover:bg-sky-700 text-white px-4 py-2.5 rounded-lg text-sm font-semibold transition shadow-sm active:scale-95">
-                    <span id="iconAudio2">▶️</span>
-                    <span id="labelAudio2">Nghe Audio 2 (2 lần)</span>
-                  </button>
-                  <button type="button" onclick="stopAudioTrack()" class="bg-slate-200 hover:bg-slate-300 text-slate-700 px-3.5 py-2.5 rounded-lg text-sm font-semibold transition">
-                    ⏹ Dừng
-                  </button>
+                <audio id="nativeAudio2" src="GHK1 K8 - part 2 .mp3" preload="metadata"></audio>
+                <div class="flex items-center justify-between text-xs font-semibold text-slate-600 tabular-nums">
+                  <span id="currentTimeAudio2">00:00</span><span id="durationAudio2">00:00</span>
                 </div>
-                <p class="text-[11px] text-slate-500 italic">Mẹo: Đoạn đối thoại được cấu hình tự động lặp lại 2 lần theo quy chuẩn thi.</p>
+                <input id="progressAudio2" class="audio-progress" type="range" min="0" max="100" value="0" step="0.1" aria-label="Tiến trình Audio 2">
+                <div class="audio-controls flex gap-2">
+                  <button type="button" onclick="seekAudio(2, -5)" class="flex-1 bg-sky-50 hover:bg-sky-100 text-sky-800 px-3 py-2 rounded-lg text-sm font-semibold" aria-label="Lùi Audio 2 năm giây">↶ 5s</button>
+                  <button type="button" onclick="toggleAudio(2)" id="btnAudio2" class="flex-1 bg-sky-600 hover:bg-sky-700 text-white px-3 py-2 rounded-lg text-sm font-semibold shadow-sm" aria-label="Phát Audio 2"><span id="iconAudio2">▶</span> <span id="labelAudio2">Phát</span></button>
+                  <button type="button" onclick="seekAudio(2, 5)" class="flex-1 bg-sky-50 hover:bg-sky-100 text-sky-800 px-3 py-2 rounded-lg text-sm font-semibold" aria-label="Tiến Audio 2 năm giây">5s ↷</button>
+                  <button type="button" onclick="restartAudio(2)" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-2 rounded-lg text-sm font-semibold" aria-label="Phát lại Audio 2 từ đầu">↺ Đầu</button>
+                </div>
+                <div class="flex flex-wrap items-center gap-3 text-sm">
+                  <button type="button" onclick="toggleMute(2)" id="muteAudio2" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-2 rounded-lg font-semibold" aria-label="Tắt tiếng Audio 2">🔊</button>
+                  <input id="volumeAudio2" class="min-w-24 flex-1" type="range" min="0" max="1" value="1" step="0.05" aria-label="Âm lượng Audio 2">
+                  <label for="speedAudio2" class="font-semibold text-slate-600">Tốc độ</label>
+                  <select id="speedAudio2" class="min-h-11 border border-sky-200 rounded-lg bg-white px-2 font-semibold text-sky-800" aria-label="Tốc độ Audio 2"><option value="0.75">0.75x</option><option value="1" selected>1x</option><option value="1.25">1.25x</option></select>
+                </div>
               </div>
 
               <!-- Right Column: Side-by-side Transcript Box (Revealed strictly after submission beside audio) -->
@@ -1536,10 +1572,6 @@
     </footer>
   </div>
 
-  <!-- Audio Elements for native files -->
-  <audio id="nativeAudio1" src="GHK1 K8 - part 1.mp3" preload="auto"></audio>
-  <audio id="nativeAudio2" src="GHK1 K8 - part 2 .mp3" preload="auto"></audio>
-
   <!-- Confirmation Dialog (Custom Tailwind Modal - No alert/confirm) -->
   <div id="confirmModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl border border-sky-100 overflow-hidden transform transition-all p-6 text-center">
@@ -1585,154 +1617,130 @@
       window.speechSynthesis.speak(utterance);
     }
 
-    /* Track 1 & 2 Dialog Fallback Engine */
-    const track1Script = [
-      { speaker: "Interviewer", text: "When do you usually have free time?" },
-      { speaker: "Mark", text: "I usually have free time at the weekend." },
-      { speaker: "Interviewer", text: "So how do you spend it?" },
-      { speaker: "Mark", text: "I spend time to connect with my family on Saturdays. We do puzzles, play board games or go camping." },
-      { speaker: "Interviewer", text: "What about Sundays?" },
-      { speaker: "Mark", text: "I usually spend Sundays with my friends. I have a group of friends and we do lots of things together." },
-      { speaker: "Interviewer", text: "For example?" },
-      { speaker: "Mark", text: "Sometimes I invite them to my house. We cook our favourite food and watch a video. It's fun and better than going to the cinema." },
-      { speaker: "Interviewer", text: "Do you do outdoor activities together?" },
-      { speaker: "Mark", text: "We love spending time outdoors. We go to the park to play volleyball or skateboard. It helps us stay in shape. Sometimes we go for a bike ride around our city. This gives us a chance to see different places in our city." },
-      { speaker: "Interviewer", text: "Thanks for answering my questions." }
-    ];
+    /* Independent MP3 players: only one Listening track can play at a time. */
+    const listeningTracks = [1, 2];
 
-    const track2Script = [
-      { speaker: "Todd", text: "Mike, I want to go to Canada for vacation. What would you recommend?" },
-      { speaker: "Mike", text: "Well, it really depends on the kind of holiday that you want. If you want to have a relaxing outdoors, back to nature, I'd recommend Vancouver. If you want experience, a different type of culture, Montreal. And if you wanted to go to a big multi-cultural city, with a lot of nightlife and things to do, with respect to entertainment, or sports, then Toronto." },
-      { speaker: "Todd", text: "So, have you been to all three cities?" },
-      { speaker: "Mike", text: "Yes. I actually have lived most of my life in Toronto and in Montreal, but I have spent some time in Vancouver as well. So, all three are very different in attitude and lifestyle, and in the way people live." },
-      { speaker: "Todd", text: "How so? How is somebody from Toronto different than somebody from Vancouver?" },
-      { speaker: "Mike", text: "Well, somebody from Toronto is a little bit more high paced, just because the pace of life in Toronto is a little bit faster. Vancouver is a lot more relaxed, easy-going. And Montreal has a strong French-Canadian influence, so in fact, it's mostly French-Canadian." }
-    ];
-
-    let currentTrackPlaying = null;
-    let trackTimeout = null;
-
-    function playAudioTrack(trackNum) {
-      stopAudioTrack();
-      currentTrackPlaying = trackNum;
-
-      const btnEl = document.getElementById(`btnAudio${trackNum}`);
-      const iconEl = document.getElementById(`iconAudio${trackNum}`);
-      const labelEl = document.getElementById(`labelAudio${trackNum}`);
-      const statusEl = document.getElementById(`statusAudio${trackNum}`);
-      const audioElement = document.getElementById(`nativeAudio${trackNum}`);
-
-      iconEl.innerText = "⏸";
-      labelEl.innerText = `Đang phát Audio ${trackNum}...`;
-      btnEl.classList.replace('bg-sky-600', 'bg-amber-600');
-      btnEl.classList.replace('hover:bg-sky-700', 'hover:bg-amber-700');
-
-      if (audioElement) {
-        let playCount = 1;
-        audioElement.currentTime = 0;
-
-        const playPromise = audioElement.play();
-        if (playPromise !== undefined) {
-          playPromise.then(() => {
-            statusEl.innerText = `[Lần nghe 1/2] Đang phát file audio ghi âm chính thức...`;
-
-            audioElement.onended = () => {
-              if (currentTrackPlaying !== trackNum) return;
-              if (playCount < 2) {
-                playCount++;
-                statusEl.innerText = `Lần nghe 2/2 sẽ bắt đầu sau 2 giây...`;
-                trackTimeout = setTimeout(() => {
-                  if (currentTrackPlaying === trackNum) {
-                    audioElement.currentTime = 0;
-                    audioElement.play();
-                    statusEl.innerText = `[Lần nghe 2/2] Đang phát file audio ghi âm chính thức...`;
-                  }
-                }, 2000);
-              } else {
-                stopAudioTrack();
-                statusEl.innerText = `Trạng thái: Đã nghe xong 2 lần.`;
-              }
-            };
-            return;
-          }).catch(() => {
-            startSpeechSynthesisFallback(trackNum);
-          });
-          return;
-        }
-      }
-      startSpeechSynthesisFallback(trackNum);
+    function formatAudioTime(seconds) {
+      if (!Number.isFinite(seconds)) return '00:00';
+      const minutes = Math.floor(seconds / 60);
+      const remainingSeconds = Math.floor(seconds % 60);
+      return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
     }
 
-    function startSpeechSynthesisFallback(trackNum) {
-      if (!('speechSynthesis' in window)) return;
-      const script = (trackNum === 1) ? track1Script : track2Script;
-      const statusEl = document.getElementById(`statusAudio${trackNum}`);
+    function setAudioButtonState(trackNum, isPlaying) {
+      document.getElementById(`iconAudio${trackNum}`).textContent = isPlaying ? '⏸' : '▶';
+      document.getElementById(`labelAudio${trackNum}`).textContent = isPlaying ? 'Tạm dừng' : 'Phát';
+      document.getElementById(`btnAudio${trackNum}`).setAttribute('aria-label', `${isPlaying ? 'Tạm dừng' : 'Phát'} Audio ${trackNum}`);
+      document.getElementById(`statusAudio${trackNum}`).textContent = isPlaying ? 'Đang phát' : 'Sẵn sàng nghe';
+    }
 
-      let currentLine = 0;
-      let loopCount = 1;
+    function pauseOtherAudio(activeTrack) {
+      listeningTracks.forEach(trackNum => {
+        if (trackNum === activeTrack) return;
+        const audio = document.getElementById(`nativeAudio${trackNum}`);
+        audio.pause();
+        setAudioButtonState(trackNum, false);
+      });
+    }
 
-      function speakNext() {
-        if (currentTrackPlaying !== trackNum) return;
-
-        if (currentLine >= script.length) {
-          if (loopCount < 2) {
-            loopCount++;
-            currentLine = 0;
-            statusEl.innerText = `Lần nghe 2 / 2 bắt đầu sau 2 giây...`;
-            trackTimeout = setTimeout(speakNext, 2000);
-            return;
-          } else {
-            stopAudioTrack();
-            statusEl.innerText = `Trạng thái: Đã nghe xong 2 lần.`;
-            return;
-          }
-        }
-
-        const line = script[currentLine];
-        statusEl.innerText = `[Lần ${loopCount}/2] ${line.speaker}: "${line.text.slice(0, 45)}..."`;
-        
-        const utter = new SpeechSynthesisUtterance(line.text);
-        utter.lang = 'en-US';
-        utter.rate = 0.9;
-        utter.pitch = (line.speaker === "Interviewer" || line.speaker === "Todd") ? 1.15 : 0.95;
-
-        utter.onend = () => {
-          currentLine++;
-          trackTimeout = setTimeout(speakNext, 350);
-        };
-        utter.onerror = () => {
-          stopAudioTrack();
-        };
-
-        window.speechSynthesis.speak(utter);
+    function toggleAudio(trackNum) {
+      const audio = document.getElementById(`nativeAudio${trackNum}`);
+      if (audio.paused) {
+        pauseOtherAudio(trackNum);
+        audio.play().catch(() => {
+          setAudioButtonState(trackNum, false);
+          document.getElementById(`statusAudio${trackNum}`).textContent = 'Không thể phát file audio';
+        });
+      } else {
+        audio.pause();
       }
+    }
 
-      speakNext();
+    function seekAudio(trackNum, seconds) {
+      const audio = document.getElementById(`nativeAudio${trackNum}`);
+      if (!Number.isFinite(audio.duration)) return;
+      audio.currentTime = Math.min(audio.duration, Math.max(0, audio.currentTime + seconds));
+    }
+
+    function restartAudio(trackNum) {
+      const audio = document.getElementById(`nativeAudio${trackNum}`);
+      pauseOtherAudio(trackNum);
+      audio.currentTime = 0;
+      audio.play().catch(() => {
+        setAudioButtonState(trackNum, false);
+        document.getElementById(`statusAudio${trackNum}`).textContent = 'Không thể phát file audio';
+      });
+    }
+
+    function toggleMute(trackNum) {
+      const audio = document.getElementById(`nativeAudio${trackNum}`);
+      audio.muted = !audio.muted;
+      const button = document.getElementById(`muteAudio${trackNum}`);
+      button.textContent = audio.muted ? '🔇' : '🔊';
+      button.setAttribute('aria-label', `${audio.muted ? 'Bật' : 'Tắt'} tiếng Audio ${trackNum}`);
     }
 
     function stopAudioTrack() {
-      if (window.speechSynthesis) window.speechSynthesis.cancel();
-      clearTimeout(trackTimeout);
-
-      [1, 2].forEach(n => {
-        const audioElement = document.getElementById(`nativeAudio${n}`);
-        if (audioElement) {
-          audioElement.pause();
-          audioElement.currentTime = 0;
-          audioElement.onended = null;
-        }
-        const btnEl = document.getElementById(`btnAudio${n}`);
-        const iconEl = document.getElementById(`iconAudio${n}`);
-        const labelEl = document.getElementById(`labelAudio${n}`);
-        if (btnEl) {
-          btnEl.classList.replace('bg-amber-600', 'bg-sky-600');
-          btnEl.classList.replace('hover:bg-amber-700', 'hover:bg-sky-700');
-        }
-        if (iconEl) iconEl.innerText = "▶️";
-        if (labelEl) labelEl.innerText = `Nghe Audio ${n} (2 lần)`;
+      listeningTracks.forEach(trackNum => {
+        const audio = document.getElementById(`nativeAudio${trackNum}`);
+        audio.pause();
+        setAudioButtonState(trackNum, false);
       });
-      currentTrackPlaying = null;
     }
+
+    function initializeListeningPlayer(trackNum) {
+      const audio = document.getElementById(`nativeAudio${trackNum}`);
+      const progress = document.getElementById(`progressAudio${trackNum}`);
+      const volume = document.getElementById(`volumeAudio${trackNum}`);
+      const speed = document.getElementById(`speedAudio${trackNum}`);
+      const currentTime = document.getElementById(`currentTimeAudio${trackNum}`);
+      const duration = document.getElementById(`durationAudio${trackNum}`);
+
+      audio.playbackRate = 1;
+      speed.value = '1';
+      audio.addEventListener('play', () => {
+        pauseOtherAudio(trackNum);
+        setAudioButtonState(trackNum, true);
+      });
+      audio.addEventListener('pause', () => setAudioButtonState(trackNum, false));
+      audio.addEventListener('ended', () => {
+        setAudioButtonState(trackNum, false);
+        document.getElementById(`statusAudio${trackNum}`).textContent = 'Đã phát xong';
+      });
+      audio.addEventListener('loadedmetadata', () => {
+        progress.max = audio.duration;
+        duration.textContent = formatAudioTime(audio.duration);
+      });
+      audio.addEventListener('durationchange', () => {
+        if (Number.isFinite(audio.duration)) {
+          progress.max = audio.duration;
+          duration.textContent = formatAudioTime(audio.duration);
+        }
+      });
+      audio.addEventListener('timeupdate', () => {
+        progress.value = audio.currentTime;
+        currentTime.textContent = formatAudioTime(audio.currentTime);
+      });
+      audio.addEventListener('volumechange', () => {
+        volume.value = audio.volume;
+        document.getElementById(`muteAudio${trackNum}`).textContent = audio.muted || audio.volume === 0 ? '🔇' : '🔊';
+      });
+      audio.addEventListener('error', () => {
+        document.getElementById(`statusAudio${trackNum}`).textContent = 'Lỗi tải file audio';
+      });
+      progress.addEventListener('input', () => {
+        if (Number.isFinite(audio.duration)) audio.currentTime = Number(progress.value);
+      });
+      volume.addEventListener('input', () => {
+        audio.volume = Number(volume.value);
+        audio.muted = false;
+      });
+      speed.addEventListener('change', () => {
+        audio.playbackRate = Number(speed.value);
+      });
+    }
+
+    listeningTracks.forEach(initializeListeningPlayer);
 
     function toggleTranscript(trackNum) {
       const content = document.getElementById(`transcriptContent${trackNum}`);

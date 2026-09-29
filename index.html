@@ -929,6 +929,16 @@ const DATA = [
             "href": "grade-8/HTBT/unit_12.html"
           }
         ]
+      },
+      {
+        "name": "Đề thi GHK1",
+        "type": "exam-folder",
+        "lessons": [
+          {
+            "title": "THCS Trực Tuấn",
+            "href": "grade-8/De_thi_GHK1/1_THCS Truc Tuan/1. THCS Truc Tuan.html"
+          }
+        ]
       }
     ]
   }
@@ -960,7 +970,7 @@ function render(q=''){
        sec.appendChild(folder);
      }
    } else {
-     const categories=[...new Set(g.units.map(u=>u.name.split(' · ')[0]))];
+     const categories=[...new Set(g.units.filter(u=>u.type!=='exam-folder').map(u=>u.name.split(' · ')[0]))];
      categories.forEach(category=>{
        const matchingUnits=g.units.filter(u=>u.name.startsWith(category+' · ')).map(u=>({u,lessons:u.lessons.filter((l,li)=>!q || (g.grade+' '+category+' '+u.name+' '+l.title+' '+(li+1)).toLowerCase().includes(needle))})).filter(x=>x.lessons.length);
        if(!matchingUnits.length) return;
@@ -979,6 +989,17 @@ function render(q=''){
          lessons.forEach(l=>{ const originalIndex=u.lessons.indexOf(l); const a=document.createElement('a'); a.className='lesson'; a.href=l.href; a.innerHTML=`<strong>${originalIndex+1}. ${l.title}</strong>`; grid.appendChild(a); });
          box.appendChild(grid); body.appendChild(box);
        });
+       sec.appendChild(folder);
+     });
+     g.units.filter(u=>u.type==='exam-folder').forEach(examFolder=>{
+       const lessons=examFolder.lessons.filter(l=>!q || (g.grade+' '+examFolder.name+' '+l.title).toLowerCase().includes(needle));
+       if(!lessons.length) return;
+       found=true;
+       const folder=document.createElement('div'); folder.className='folder'+(q?' open':'');
+       folder.innerHTML=`<div class="folder-head"><div class="folder-title"><span class="folder-icon">📁</span><h3>${examFolder.name}</h3></div><div><span class="badge">${lessons.length} đề</span> <span class="chev">›</span></div></div><div class="folder-body"><div class="grammar-list"></div></div>`;
+       folder.querySelector('.folder-head').onclick=()=>toggle(folder);
+       const list=folder.querySelector('.grammar-list');
+       lessons.forEach(l=>{ const a=document.createElement('a'); a.className='lesson'; a.href=l.href; a.innerHTML=`<strong>${l.title}</strong>`; list.appendChild(a); });
        sec.appendChild(folder);
      });
    }
