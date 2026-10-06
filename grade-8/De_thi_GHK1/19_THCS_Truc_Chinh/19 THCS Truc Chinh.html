@@ -1,0 +1,1685 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRƯỜNG THCS TRỰC CHÍNH - ĐỀ KIỂM TRA GIỮA HKI - MÔN: TIẾNG ANH LỚP 8</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              200: '#bae6fd',
+              300: '#7dd3fc',
+              400: '#38bdf8',
+              500: '#0ea5e9',
+              600: '#0284c7',
+              700: '#0369a1',
+              800: '#075985',
+              900: '#0c4a6e',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      background-color: #f8fafc;
+      color: #1e293b;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background-color: #94a3b8;
+      border-radius: 9999px;
+    }
+    .tap-target {
+      min-height: 44px;
+      touch-action: manipulation;
+    }
+    .badge-q {
+      background: linear-gradient(135deg, #0284c7, #0369a1);
+    }
+    .locked-input {
+      background-color: #f1f5f9 !important;
+      cursor: not-allowed !important;
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col bg-slate-50 text-slate-800 antialiased">
+
+  <!-- Top Center Information Header -->
+  <header class="bg-gradient-to-r from-sky-700 via-sky-600 to-sky-800 text-white shadow-md border-b-4 border-sky-400">
+    <div class="max-w-5xl mx-auto px-4 py-4 sm:px-6">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div class="flex items-center space-x-3">
+          <div class="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-2xl shadow-inner">
+            🎓
+          </div>
+          <div>
+            <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+              HT ENGLISH CENTER
+              <span class="text-xs bg-sky-400 text-sky-950 font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider">E-Learning</span>
+            </h1>
+            <p class="text-xs text-sky-100 flex flex-wrap gap-x-3 gap-y-1 mt-0.5">
+              <span>📍 Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình</span>
+              <span>•</span>
+              <span>👩‍🏫 GV: Ms. Lily</span>
+            </p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 text-xs bg-white/10 px-3 py-2 rounded-lg border border-white/20">
+          <span class="text-sky-200">📞 Hotline:</span>
+          <span class="font-semibold text-white">0963 422 940 - 0962 240 866</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="flex-1 max-w-5xl w-full mx-auto px-4 py-6 sm:px-6 space-y-6">
+    <!-- Official Exam Header Card -->
+    <div class="bg-white rounded-2xl shadow-sm border border-sky-100 p-6 text-center relative overflow-hidden">
+      <div class="absolute -right-8 -top-8 w-32 h-32 bg-sky-50 rounded-full opacity-60 pointer-events-none"></div>
+      <div class="inline-block px-3 py-1 bg-sky-100 text-sky-800 text-xs font-semibold rounded-full uppercase tracking-wider mb-2">
+        TRƯỜNG THCS TRỰC CHÍNH
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-sky-950 tracking-tight">
+        ĐỀ KIỂM TRA GIỮA HKI
+      </h2>
+      <p class="text-sm sm:text-base font-semibold text-sky-700 mt-1">
+        Môn: Tiếng Anh lớp 8 &nbsp;|&nbsp; Thời gian làm bài: 60 phút
+      </p>
+      <div class="mt-4 pt-4 border-t border-slate-100 flex flex-wrap items-center justify-center gap-4 text-xs text-slate-500">
+        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-500"></span> Tự động chấm điểm</span>
+        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-sky-500"></span> Hỗ trợ loa phát âm 🔊</span>
+        <span class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-amber-500"></span> Khóa nộp bài an toàn</span>
+      </div>
+    </div>
+
+    <!-- Student Name Input & Status Indicator -->
+    <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="w-full sm:w-auto flex-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+        <label for="studentNameInput" class="text-sm font-semibold text-slate-700 whitespace-nowrap">Họ và tên học sinh:</label>
+        <input type="text" id="studentNameInput" placeholder="Nhập họ tên của em..." 
+               class="px-3.5 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 w-full max-w-md transition">
+      </div>
+      <div id="statusBadge" class="flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full bg-sky-50 text-sky-700 border border-sky-200">
+        <span class="w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span>
+        <span>Đang làm bài</span>
+      </div>
+    </div>
+
+    <!-- Results Overview Banner (Shown after submission) -->
+    <div id="resultCard" class="hidden bg-gradient-to-br from-white to-sky-50 rounded-2xl shadow-md border-2 border-sky-400 p-6 transition-all duration-300">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pb-4 border-b border-sky-100">
+        <div>
+          <span class="px-2.5 py-1 text-xs font-bold rounded-md bg-emerald-100 text-emerald-800">BÀI ĐÃ ĐƯỢC NỘP</span>
+          <h3 class="text-xl font-bold text-sky-950 mt-1">Kết quả bài làm của bạn</h3>
+          <p class="text-xs text-slate-600">Đã khóa chỉnh sửa đáp án. Hãy cuộn xuống để xem chi tiết từng câu và lời giải sư phạm!</p>
+        </div>
+        <div class="flex items-center gap-4 text-center">
+          <div class="bg-white px-4 py-2 rounded-xl shadow-sm border border-sky-200">
+            <span class="text-xs text-slate-500 block">Điểm số</span>
+            <span id="scoreDisplay" class="text-2xl font-black text-sky-600">0.0 / 10</span>
+          </div>
+          <div class="bg-white px-4 py-2 rounded-xl shadow-sm border border-emerald-200">
+            <span class="text-xs text-emerald-600 block">Số câu đúng</span>
+            <span id="correctDisplay" class="text-2xl font-black text-emerald-600">0</span>
+          </div>
+          <div class="bg-white px-4 py-2 rounded-xl shadow-sm border border-rose-200">
+            <span class="text-xs text-rose-500 block">Số câu sai</span>
+            <span id="wrongDisplay" class="text-2xl font-black text-rose-600">0</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= PART A: LISTENING ================= -->
+    <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+      <div class="bg-gradient-to-r from-sky-600 to-sky-700 text-white px-6 py-4 flex items-center justify-between">
+        <div>
+          <h3 class="text-lg font-bold flex items-center gap-2">
+            <span>PART A: LISTENING</span>
+            <span class="text-xs font-normal bg-sky-500/50 px-2 py-0.5 rounded border border-white/20">(2,4 POINTS)</span>
+          </h3>
+          <p class="text-xs text-sky-100 mt-0.5">Kỹ năng nghe hiểu lớp 8</p>
+        </div>
+        <span class="text-2xl">🎧</span>
+      </div>
+
+      <div class="p-6 space-y-8">
+        <!-- Part A - Task I -->
+        <div class="space-y-4">
+          <div class="border-l-4 border-sky-500 pl-3">
+            <h4 class="font-bold text-sky-950 text-base">
+              I. Listen and tick true (T) or false (F) to the statement: (1,2 ps)
+            </h4>
+            <p class="text-xs text-slate-500 italic mt-0.5">
+              Nghe đoạn hội thoại về công việc của Sarah và đánh dấu Đúng (True) hoặc Sai (False).
+            </p>
+          </div>
+
+          <!-- Listening Audio Player 1 -->
+          <div class="bg-sky-50/70 border border-sky-200 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-3 w-full sm:w-auto">
+              <button type="button" id="btnPlayAudio1" onclick="toggleAudio('audio1')" 
+                      class="tap-target px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-semibold text-sm flex items-center gap-2 shadow-sm transition active:scale-95">
+                <span id="audio1Icon">▶</span> <span id="audio1Text">Nghe bài 1 (Sarah)</span>
+              </button>
+              <button type="button" onclick="stopAudio('audio1')" title="Dừng nghe"
+                      class="tap-target px-3 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 text-sm transition">
+                ⏹ Dừng
+              </button>
+            </div>
+            <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+              <span id="audio1Timer" class="text-xs font-mono text-sky-800 bg-white px-2.5 py-1 rounded border border-sky-200">00:00 / 00:54</span>
+              <button type="button" id="btnTranscript1" onclick="toggleTranscript('trans1')" 
+                      class="hidden text-xs bg-white hover:bg-sky-100 text-sky-700 border border-sky-300 px-3 py-1.5 rounded-lg transition font-medium">
+                📜 Xem transcript
+              </button>
+            </div>
+          </div>
+
+          <!-- Transcript 1 (Hidden while taking test) -->
+          <div id="trans1" class="hidden bg-slate-100 rounded-xl p-4 border border-slate-300 text-xs text-slate-700 space-y-1.5 leading-relaxed">
+            <p class="font-bold text-sky-900 mb-1">📝 Audio Transcript 1 (Sarah's Job):</p>
+            <p><span class="font-semibold text-sky-800">Man:</span> Hi Sarah, how's your new job?</p>
+            <p><span class="font-semibold text-sky-800">Sarah:</span> It's great! I love teaching and I really enjoy working with the children in my class, but it's hard work too.</p>
+            <p><span class="font-semibold text-sky-800">Man:</span> Do you start early in the morning?</p>
+            <p><span class="font-semibold text-sky-800">Sarah:</span> Yes, school starts at 9:00, but I always get there at half past 8. Then I have lessons all morning.</p>
+            <p><span class="font-semibold text-sky-800">Man:</span> Do you get a lunch break?</p>
+            <p><span class="font-semibold text-sky-800">Sarah:</span> Yes, I usually bring something with me from home, or sometimes I get a sandwich from the school canteen. Then I have a few more lessons in the afternoon, and school finishes at 4:00.</p>
+            <p><span class="font-semibold text-sky-800">Man:</span> Oh, that's good. You have your evenings free?</p>
+            <p><span class="font-semibold text-sky-800">Sarah:</span> Not really. I often have work to do.</p>
+            <p><span class="font-semibold text-sky-800">Man:</span> So you don't have much free time then?</p>
+            <p><span class="font-semibold text-sky-800">Sarah:</span> Well, I always go to the gym after work for about an hour. When I get home, I just finish my work and then watch TV or read a book.</p>
+            <p><span class="font-semibold text-sky-800">Man:</span> Do you go out during the week?</p>
+            <p><span class="font-semibold text-sky-800">Sarah:</span> Very rarely, because I like to go to bed early.</p>
+            <p><span class="font-semibold text-sky-800">Man:</span> I see. Well, at least you never work at weekends.</p>
+            <p><span class="font-semibold text-sky-800">Sarah:</span> That's true!</p>
+            <p><span class="font-semibold text-sky-800">Man:</span> Let's go to the cinema on Saturday night then.</p>
+            <p><span class="font-semibold text-sky-800">Sarah:</span> What a great idea!</p>
+          </div>
+
+          <!-- Table of statements -->
+          <div class="overflow-x-auto border border-slate-200 rounded-xl">
+            <table class="w-full text-left text-sm">
+              <thead class="bg-sky-50 text-sky-950 font-bold border-b border-slate-200 text-xs uppercase tracking-wider">
+                <tr>
+                  <th class="py-3 px-4 w-12 text-center">STT</th>
+                  <th class="py-3 px-4">Statements</th>
+                  <th class="py-3 px-4 w-24 text-center">True</th>
+                  <th class="py-3 px-4 w-24 text-center">False</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200" id="listA1Container">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Part A - Task II -->
+        <div class="space-y-4 pt-4 border-t border-slate-100">
+          <div class="border-l-4 border-sky-500 pl-3">
+            <h4 class="font-bold text-sky-950 text-base">
+              II. Listen and choose the best answer A, B or C (1,2 ps)
+            </h4>
+            <p class="text-xs text-slate-500 italic mt-0.5">
+              Nghe 3 người nói về cuộc sống ở nông thôn và chọn đáp án A, B hoặc C.
+            </p>
+          </div>
+
+          <!-- Listening Audio Player 2 -->
+          <div class="bg-sky-50/70 border border-sky-200 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-3 w-full sm:w-auto">
+              <button type="button" id="btnPlayAudio2" onclick="toggleAudio('audio2')" 
+                      class="tap-target px-4 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-semibold text-sm flex items-center gap-2 shadow-sm transition active:scale-95">
+                <span id="audio2Icon">▶</span> <span id="audio2Text">Nghe bài 2 (Life in the countryside)</span>
+              </button>
+              <button type="button" onclick="stopAudio('audio2')" title="Dừng nghe"
+                      class="tap-target px-3 py-2 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 text-sm transition">
+                ⏹ Dừng
+              </button>
+            </div>
+            <div class="flex items-center gap-2 w-full sm:w-auto justify-end">
+              <span id="audio2Timer" class="text-xs font-mono text-sky-800 bg-white px-2.5 py-1 rounded border border-sky-200">00:00 / 01:05</span>
+              <button type="button" id="btnTranscript2" onclick="toggleTranscript('trans2')" 
+                      class="hidden text-xs bg-white hover:bg-sky-100 text-sky-700 border border-sky-300 px-3 py-1.5 rounded-lg transition font-medium">
+                📜 Xem transcript
+              </button>
+            </div>
+          </div>
+
+          <!-- Transcript 2 (Hidden while taking test) -->
+          <div id="trans2" class="hidden bg-slate-100 rounded-xl p-4 border border-slate-300 text-xs text-slate-700 space-y-1.5 leading-relaxed">
+            <p class="font-bold text-sky-900 mb-1">📝 Audio Transcript 2 (Life in the countryside - 3 Speakers):</p>
+            <p><span class="font-semibold text-sky-800">Speaker 1:</span> I choose to live in a village because the relationships between people here are very good. There is a great sense of community here. The people welcome neighbors to their homes. They are always willing to help each other. They share almost everything with one another.</p>
+            <p><span class="font-semibold text-sky-800">Speaker 2:</span> There are many things I don't like about life in the countryside. There aren't many good schools or colleges. It's boring here because there aren't many places for entertainment, like theaters, cinemas, etc. Transportation is another big problem. There are few means of public transport. And in general, there are many things that we should do to improve the life of villagers.</p>
+            <p><span class="font-semibold text-sky-800">Speaker 3:</span> I love to live in the countryside. It is spacious. We can do many, many things that are hard to do in the city. We can go swimming, play football, fly kites, and do other interesting things. Life is also peaceful and simple here.</p>
+          </div>
+
+          <!-- Question list for Listening II -->
+          <div class="grid grid-cols-1 gap-4" id="listA2Container">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PART B: LANGUAGE FOCUS ================= -->
+    <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+      <div class="bg-gradient-to-r from-sky-600 to-sky-700 text-white px-6 py-4 flex items-center justify-between">
+        <div>
+          <h3 class="text-lg font-bold flex items-center gap-2">
+            <span>PART B: LANGUAGE FOCUS</span>
+            <span class="text-xs font-normal bg-sky-500/50 px-2 py-0.5 rounded border border-white/20">(2,6 POINTS)</span>
+          </h3>
+          <p class="text-xs text-sky-100 mt-0.5">Phát âm, trọng âm, từ vựng và ngữ pháp</p>
+        </div>
+        <span class="text-2xl">📚</span>
+      </div>
+
+      <div class="p-6 space-y-8">
+        <!-- Part B - Task I -->
+        <div class="space-y-4">
+          <div class="border-l-4 border-sky-500 pl-3">
+            <h4 class="font-bold text-sky-950 text-base">
+              I. Choose the best answer A, B, C or D to complete the sentences. (1,6 ps)
+            </h4>
+          </div>
+
+          <div class="space-y-5" id="listB1Container">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+
+        <!-- Part B - Task II -->
+        <div class="space-y-4 pt-6 border-t border-slate-100">
+          <div class="border-l-4 border-sky-500 pl-3">
+            <h4 class="font-bold text-sky-950 text-base">
+              II. Supply the correct tense or form of the verb in parentheses. (1,0 p)
+            </h4>
+            <p class="text-xs text-slate-500 italic mt-0.5">
+              Cho dạng hoặc thì đúng của động từ trong ngoặc.
+            </p>
+          </div>
+
+          <div class="space-y-4" id="listB2Container">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PART C: READING ================= -->
+    <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+      <div class="bg-gradient-to-r from-sky-600 to-sky-700 text-white px-6 py-4 flex items-center justify-between">
+        <div>
+          <h3 class="text-lg font-bold flex items-center gap-2">
+            <span>PART C: READING</span>
+            <span class="text-xs font-normal bg-sky-500/50 px-2 py-0.5 rounded border border-white/20">(2,6 POINTS)</span>
+          </h3>
+          <p class="text-xs text-sky-100 mt-0.5">Kỹ năng đọc hiểu & điền từ</p>
+        </div>
+        <span class="text-2xl">📖</span>
+      </div>
+
+      <div class="p-6 space-y-8">
+        <!-- Part C - Task I -->
+        <div class="space-y-4">
+          <div class="border-l-4 border-sky-500 pl-3">
+            <h4 class="font-bold text-sky-950 text-base">
+              I. Read the following passage and put a word in the box in each of the numbered blanks. (1,0 p)
+            </h4>
+          </div>
+
+          <!-- Reading passage 1 -->
+          <div class="bg-sky-50/50 border border-sky-100 rounded-xl p-5 text-slate-800 leading-relaxed text-sm">
+            Children in my hometown have <span class="font-bold text-sky-700 bg-sky-100 px-1.5 py-0.5 rounded">(1) _______</span> special way of having fun. They have a lot of space to play outside, so they are often very <span class="font-bold text-sky-700 bg-sky-100 px-1.5 py-0.5 rounded">(2) _______</span>. They like to play games like spinning tops and hide-and-seek. They also climb trees and swim in the river when it's warm. Sometimes they help their families <span class="font-bold text-sky-700 bg-sky-100 px-1.5 py-0.5 rounded">(3) _______</span> work on the farm. In the evening, they like to be with their friends and family. They <span class="font-bold text-sky-700 bg-sky-100 px-1.5 py-0.5 rounded">(4) _______</span> stories and look at the stars. They also play sports like soccer and basketball with other children. Living in the countryside helps children love nature and be close to their friends and family. They have a happy <span class="font-bold text-sky-700 bg-sky-100 px-1.5 py-0.5 rounded">(5) _______</span> with lots of exciting experiences.
+          </div>
+
+          <div class="space-y-4" id="listC1Container">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+
+        <!-- Part C - Task II -->
+        <div class="space-y-4 pt-6 border-t border-slate-100">
+          <div class="border-l-4 border-sky-500 pl-3">
+            <h4 class="font-bold text-sky-950 text-base">
+              II. Read the following passage and do the tasks below (1,6 ps)
+            </h4>
+          </div>
+
+          <!-- Reading passage 2 -->
+          <div class="bg-sky-50/50 border border-sky-100 rounded-xl p-5 text-slate-800 leading-relaxed text-sm">
+            Many teenagers love playing video games. Some enjoy playing them at home, while others prefer gaming in arcades. While these games are entertaining, players need to be cautious.<br><br>
+            Teenagers should limit the time they spend on video games because too much gaming can lead to tiredness, dizziness, and even obesity. Overusing the computer can prevent them from spending time with family and friends. Those addicted to video games tend to avoid joining clubs or playing sports. They prefer sitting in front of the computer all day.<br><br>
+            One doctor warns, “This habit is harmful to young people. It’s important for them to engage in group activities. Young people should play outside and improve their social skills. They need to be with peers of their own age and should only dedicate a small portion of their time to video games. They should not forget to participate in other activities as well.”
+          </div>
+
+          <!-- Sub-task A: True/False -->
+          <div class="space-y-3">
+            <h5 class="text-sm font-bold text-slate-800">A. True (T) or False (F) (0.4 ps)</h5>
+            <div class="overflow-x-auto border border-slate-200 rounded-xl">
+              <table class="w-full text-left text-sm">
+                <thead class="bg-sky-50 text-sky-950 font-bold border-b border-slate-200 text-xs uppercase">
+                  <tr>
+                    <th class="py-3 px-4 w-12 text-center">STT</th>
+                    <th class="py-3 px-4">Statements</th>
+                    <th class="py-3 px-4 w-24 text-center">T</th>
+                    <th class="py-3 px-4 w-24 text-center">F</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200" id="listC2AContainer">
+                  <!-- Injected via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Sub-task B: Questions -->
+          <div class="space-y-4 pt-3">
+            <h5 class="text-sm font-bold text-slate-800">B. Answer the questions below. (1,2 ps)</h5>
+            <div class="space-y-4" id="listC2BContainer">
+              <!-- Injected via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PART D: WRITING ================= -->
+    <!-- Notice: As per instruction 4, the final paragraph writing is excluded; rearrange & sentence transformation are kept -->
+    <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+      <div class="bg-gradient-to-r from-sky-600 to-sky-700 text-white px-6 py-4 flex items-center justify-between">
+        <div>
+          <h3 class="text-lg font-bold flex items-center gap-2">
+            <span>PART D: WRITING</span>
+            <span class="text-xs font-normal bg-sky-500/50 px-2 py-0.5 rounded border border-white/20">(TƯƠNG TÁC ĐIỆN TỬ)</span>
+          </h3>
+          <p class="text-xs text-sky-100 mt-0.5">Sắp xếp câu trong Box & Viết lại câu tương đương</p>
+        </div>
+        <span class="text-2xl">✍️</span>
+      </div>
+
+      <div class="p-6 space-y-8">
+        <!-- Part D - Task I: Rearrange with Box click -->
+        <div class="space-y-4">
+          <div class="border-l-4 border-sky-500 pl-3">
+            <h4 class="font-bold text-sky-950 text-base">
+              I. Rearrange these sentences into the right sentences (0,6 ps)
+            </h4>
+            <p class="text-xs text-slate-500 italic mt-0.5">
+              Chạm hoặc bấm vào các từ/cụm từ bên dưới theo đúng thứ tự để tạo thành câu hoàn chỉnh. Dấu câu cuối sẽ tự động được hệ thống thêm vào.
+            </p>
+          </div>
+
+          <div class="space-y-6" id="listD1Container">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+
+        <!-- Part D - Task II: Sentence Transformation -->
+        <div class="space-y-4 pt-6 border-t border-slate-100">
+          <div class="border-l-4 border-sky-500 pl-3">
+            <h4 class="font-bold text-sky-950 text-base">
+              II. Complete the second sentence so that it means the same as the sentence before (0,8 ps)
+            </h4>
+            <p class="text-xs text-slate-500 italic mt-0.5">
+              Viết tiếp câu thứ hai sao cho nghĩa không đổi so với câu cho trước.
+            </p>
+          </div>
+
+          <div class="space-y-4" id="listD2Container">
+            <!-- Injected via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Submit Button Floating/Bottom Area -->
+    <div class="sticky bottom-4 z-20 bg-white/95 backdrop-blur-md rounded-2xl shadow-lg border border-sky-200 p-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-xs text-slate-600 flex items-center gap-2">
+        <span class="w-3 h-3 rounded-full bg-sky-500 inline-block"></span>
+        <span id="answeredCounterText">Đã làm: 0/28 câu</span>
+      </div>
+      <div class="flex items-center gap-3 w-full sm:w-auto">
+        <button type="button" id="btnSubmitExam" onclick="openSubmitModal()" 
+                class="tap-target w-full sm:w-auto px-8 py-3 rounded-xl bg-gradient-to-r from-sky-600 to-sky-700 hover:from-sky-700 hover:to-sky-800 text-white font-bold text-base shadow-md transition transform active:scale-95 flex items-center justify-center gap-2">
+          <span>📤 Nộp bài</span>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Submit Confirmation Modal -->
+  <div id="confirmModal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-sky-100 space-y-4 animate-scaleUp">
+      <div class="w-12 h-12 rounded-full bg-sky-100 text-sky-600 flex items-center justify-center text-2xl mx-auto">
+        ❓
+      </div>
+      <div class="text-center">
+        <h4 id="modalTitle" class="text-lg font-bold text-slate-800">Xác nhận nộp bài</h4>
+        <p id="modalMessage" class="text-sm text-slate-600 mt-2 leading-relaxed">
+          Bạn có chắc chắn muốn nộp bài không? Sau khi nộp bài, bạn sẽ không thể thay đổi đáp án.
+        </p>
+      </div>
+      <div class="flex items-center justify-end gap-3 pt-3 border-t border-slate-100">
+        <button type="button" onclick="closeSubmitModal()" 
+                class="tap-target px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-sm transition">
+          Tiếp tục làm bài
+        </button>
+        <button type="button" onclick="finalizeSubmission()" 
+                class="tap-target px-5 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-semibold text-sm shadow-sm transition">
+          Nộp bài
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio Toast Notification -->
+  <div id="audioToast" class="fixed bottom-20 left-1/2 -translate-x-1/2 z-40 bg-slate-900/90 text-white px-4 py-2 rounded-full text-xs flex items-center gap-2 shadow-lg transition duration-300 opacity-0 pointer-events-none">
+    <span>🔊</span>
+    <span id="audioToastText">Đang phát âm...</span>
+  </div>
+
+  <script>
+    /* Question Data conforming strictly to ANH 8- GK1.docx */
+    const testData = {
+      title: "TRƯỜNG THCS TRỰC CHÍNH - ĐỀ KIỂM TRA GIỮA HKI - Môn: Tiếng Anh lớp 8 - Thời gian làm bài 60 phút",
+      center: {
+        name: "HT English",
+        hotline: "0963422940 - 0962240866",
+        address: "Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình",
+        teacher: "Ms. Lily"
+      },
+      partA1: [
+        {
+          id: "A1_1",
+          num: 1,
+          statement: "Sarah is a teacher.",
+          correct: "T",
+          explain: "Đúng (True). Trong bài nghe, người đàn ông hỏi: 'how's your new job?' và Sarah trả lời: 'It's great! I love teaching and I really enjoy working with the children in my class', chứng tỏ Sarah là một giáo viên."
+        },
+        {
+          id: "A1_2",
+          num: 2,
+          statement: "She usually arrives at work at nine o ’clock.",
+          correct: "F",
+          explain: "Sai (False). Trong bài nghe: 'School starts at 9:00, but I always get there at half past 8' (Trường học bắt đầu lúc 9:00 nhưng cô luôn đến lúc 8:30, không phải 9:00)."
+        },
+        {
+          id: "A1_3",
+          num: 3,
+          statement: "Sarah always brings a sandwich from home.",
+          correct: "F",
+          explain: "Sai (False). Trong bài nghe, Sarah nói: 'I usually bring something with me from home, or sometimes I get a sandwich from the school canteen' (Cô thường mang đồ từ nhà, hoặc THỈNH THOẢNG mua bánh sandwich ở căng-tin, không phải 'always brings a sandwich')."
+        },
+        {
+          id: "A1_4",
+          num: 4,
+          statement: "She often has work to do in the evening.",
+          correct: "T",
+          explain: "Đúng (True). Người đàn ông hỏi: 'You have your evenings free?' và Sarah đáp: 'Not really, I often have work to do' (Buổi tối cô thường vẫn có việc phải làm)."
+        },
+        {
+          id: "A1_5",
+          num: 5,
+          statement: "She never goes out during the week.",
+          correct: "F",
+          explain: "Sai (False). Người đàn ông hỏi: 'Do you go out during the week?' và Sarah trả lời: 'Very rarely' (Rất hiếm khi). 'Very rarely' khác với 'never' (hoàn toàn không bao giờ)."
+        },
+        {
+          id: "A1_6",
+          num: 6,
+          statement: "They will go to the cinema on Saturday night.",
+          correct: "T",
+          explain: "Đúng (True). Cuối bài, người đàn ông rủ: 'Let's go to the cinema on Saturday night then' và Sarah đồng ý: 'What a great idea!'."
+        }
+      ],
+      partA2: [
+        {
+          id: "A2_1",
+          num: 1,
+          question: "According to speaker 1, there is a great sense of ________ in his village.",
+          tag: "NB",
+          options: ["security", "duty", "community"],
+          correct: "C",
+          explain: "Đáp án đúng là C. community. Trong bài nghe, Speaker 1 nói trực tiếp: 'There is a great sense of community here' (Ở đây có ý thức cộng đồng rất cao)."
+        },
+        {
+          id: "A2_2",
+          num: 2,
+          question: "According to speaker 1, People in his village are always willing ____ each other.",
+          tag: "NB",
+          options: ["to save", "to help", "to fight"],
+          correct: "B",
+          explain: "Đáp án đúng là B. to help. Trong bài nghe: 'They are always willing to help each other' (Họ luôn sẵn lòng giúp đỡ lẫn nhau). Cấu trúc: be willing to V (sẵn lòng làm gì)."
+        },
+        {
+          id: "A2_3",
+          num: 3,
+          question: "In speaker 2’s opinion, it is boring in the countryside because there aren’t many ______ for entertainment.",
+          tag: "NB",
+          options: ["places", "areas", "zones"],
+          correct: "A",
+          explain: "Đáp án đúng là A. places. Trong bài nghe, Speaker 2 nói: 'It's boring here because there aren't many places for entertainment, like theaters, cinemas, etc.' (Không có nhiều địa điểm giải trí như rạp hát, rạp chiếu phim)."
+        },
+        {
+          id: "A2_4",
+          num: 4,
+          question: "Speaker 2 says that they should __________ in the countryside.",
+          tag: "",
+          options: ["improve the lives of people", "prevent crime", "protect nature"],
+          correct: "A",
+          explain: "Đáp án đúng là A. improve the lives of people. Trong bài nghe: '...there are many things that we should do to improve the life of villagers' (cần làm nhiều việc để cải thiện đời sống của người dân làng)."
+        },
+        {
+          id: "A2_5",
+          num: 5,
+          question: "Speaker 2 says that there are___________means of public transport.",
+          tag: "TH",
+          options: ["little", "few", "a lot of"],
+          correct: "B",
+          explain: "Đáp án đúng là B. few. Trong bài nghe: 'There are few means of public transport' (Có rất ít phương tiện giao thông công cộng). 'Means of transport' ở đây dùng số nhiều đếm được nên đi với 'few' mang nghĩa hầu như không có."
+        },
+        {
+          id: "A2_6",
+          num: "6. 4.",
+          question: "According to speaker 3, life in the countryside is peaceful and____________.",
+          tag: "NB",
+          options: ["slow", "safe", "simple"],
+          correct: "C",
+          explain: "Đáp án đúng là C. simple. Trong bài nghe, Speaker 3 nói rõ ở câu kết: 'Life is also peaceful and simple here' (Cuộc sống ở đây cũng thanh bình và giản dị)."
+        }
+      ],
+      partB1: [
+        {
+          id: "B1_1",
+          num: 1,
+          question: "Choose the word whose underlined part is pronounced differently. Circle the letter A, B, C or D",
+          tag: "NB",
+          options: ["food", "book", "look", "good"],
+          phonetics: ["/fuːd/", "/bʊk/", "/lʊk/", "/ɡʊd/"],
+          correct: "A",
+          explain: "Đáp án A đúng. Phần gạch chân 'oo' ở từ 'food' phát âm là âm dài /uː/, trong khi các từ còn lại ('book', 'look', 'good') phát âm là âm ngắn /ʊ/."
+        },
+        {
+          id: "B1_2",
+          num: 2,
+          question: "Choose the word whose main stressed syllable is placed differently from that of the other in each group.",
+          tag: "NB",
+          options: ["adore", "balance", "collect", "enjoy"],
+          phonetics: ["/əˈdɔːr/ (âm 2)", "/ˈbæləns/ (âm 1)", "/kəˈlekt/ (âm 2)", "/ɪnˈdʒɔɪ/ (âm 2)"],
+          correct: "B",
+          explain: "Đáp án B đúng. 'balance' /ˈbæləns/ có trọng âm rơi vào âm tiết thứ nhất. Ba từ còn lại: adore /əˈdɔːr/, collect /kəˈlekt/, enjoy /ɪnˈdʒɔɪ/ đều có trọng âm rơi vào âm tiết thứ hai."
+        },
+        {
+          id: "B1_3",
+          num: 3,
+          question: "My brother is fond of ______ models of airplanes in his free time.",
+          tag: "NB",
+          options: ["make", "making", "makes", "made"],
+          correct: "B",
+          explain: "Đáp án B đúng. Cấu trúc ngữ pháp chỉ sự yêu thích: be fond of + V-ing (thích làm gì). Sau giới từ 'of' ta phải dùng danh động từ 'making'."
+        },
+        {
+          id: "B1_4",
+          num: 4,
+          question: "Look! Some children are ____________the buffaloes",
+          tag: "NB",
+          options: ["picking", "herding", "driving", "playing"],
+          correct: "B",
+          explain: "Đáp án B đúng. Cụm từ cố định trong chủ đề đời sống nông thôn: 'herd the buffaloes' nghĩa là 'chăn trâu'. Các từ khác không phù hợp ngữ cảnh."
+        },
+        {
+          id: "B1_5",
+          num: 5,
+          question: "Hoa: You are wearing a nice dress, Thu.<br>&nbsp;&nbsp;&nbsp;&nbsp;Thu: _____________.",
+          tag: "TH",
+          options: ["I’m glad. You like it", "Yes, I do.", "It doesn’t fit you", "Not at all"],
+          correct: "A",
+          explain: "Đáp án A đúng. Khi nhận được một lời khen về trang phục, cách đáp lại lịch sự và tự nhiên nhất trong giao tiếp tiếng Anh là cảm ơn hoặc nói 'I'm glad you like it' (Mình rất vui vì bạn thích nó)."
+        },
+        {
+          id: "B1_6",
+          num: 6,
+          question: "______ I like living in the city, I sometimes miss the peace of the countryside.",
+          tag: "NB",
+          options: ["Because", "Although", "However", "Therefore"],
+          correct: "B",
+          explain: "Đáp án B đúng. Mệnh đề chỉ sự nhượng bộ: Although + S + V (Mặc dù...). Hai vế 'thích sống ở thành phố' và 'thỉnh thoảng nhớ sự yên bình ở quê' mang ý đối lập. 'However' và 'Therefore' là trạng từ liên kết, thường có dấu phẩy đi kèm."
+        },
+        {
+          id: "B1_7",
+          num: 7,
+          question: "To use Zalo, you need a phone number to create a (n) ______.",
+          tag: "TH",
+          options: ["account", "media", "forum", "website"],
+          correct: "A",
+          explain: "Đáp án A đúng. Cụm từ: 'create an account' (tạo một tài khoản). Để sử dụng mạng xã hội hoặc ứng dụng nhắn tin như Zalo thì ta cần đăng ký/tạo tài khoản bằng số điện thoại."
+        },
+        {
+          id: "B1_8",
+          num: 8,
+          question: "She speaks English __________ than her brother..",
+          tag: "TH",
+          options: ["fluent", "more fluently", "most fluently", "more fluent"],
+          correct: "B",
+          explain: "Đáp án B đúng. 'speaks' là động từ thường nên cần trạng từ bổ nghĩa là 'fluently'. So sánh hơn của trạng từ 2 âm tiết trở lên là: more + adv + than -> 'more fluently than'."
+        }
+      ],
+      partB2: [
+        {
+          id: "B2_1",
+          num: 1,
+          prompt: "I enjoy (listen) __________ to music while I study.",
+          tag: "NB",
+          correct: ["listening"],
+          explain: "Đáp án: listening. Cấu trúc ngữ pháp: enjoy + V-ing (thích làm gì)."
+        },
+        {
+          id: "B2_2",
+          num: 2,
+          prompt: "The food at this restaurant (be) __________ delicious.",
+          tag: "TH",
+          correct: ["is"],
+          explain: "Đáp án: is. 'The food' là danh từ không đếm được (đóng vai trò chủ ngữ số ít), câu diễn tả một sự thật/đặc điểm ở hiện tại nên động từ to be chia là 'is'."
+        },
+        {
+          id: "B2_3",
+          num: 3,
+          prompt: "What __________ your brother usually (do) ___________ in his leisure time?",
+          tag: "",
+          dual: true,
+          correct: ["does", "do"],
+          explain: "Đáp án: does ... do. Dấu hiệu 'usually' và câu hỏi về thói quen chỉ thì hiện tại đơn. Chủ ngữ 'your brother' là ngôi thứ 3 số ít nên dùng trợ động từ 'does', động từ chính đưa về nguyên thể 'do'."
+        },
+        {
+          id: "B2_4",
+          num: 4,
+          prompt: "My father (give) _______________ me a new phone for my birthday.",
+          tag: "TH",
+          correct: ["gave", "gives"],
+          explain: "Đáp án: gave (hoặc gives). Diễn tả hành động tặng quà nhân dịp sinh nhật, thường đã xảy ra trong quá khứ nên chia 'gave' (quá khứ đơn của give)."
+        },
+        {
+          id: "B2_5",
+          num: 5,
+          prompt: "It will take her a week (finish) _______________ the project .",
+          tag: "TH",
+          correct: ["to finish"],
+          explain: "Đáp án: to finish. Cấu trúc thời gian: It takes/will take + sb + time + to-V (Mất bao nhiêu thời gian để ai đó làm gì)."
+        }
+      ],
+      partC1: [
+        {
+          id: "C1_1",
+          num: 1,
+          tag: "NB",
+          options: ["a", "an", "the", "Ø"],
+          correct: "A",
+          explain: "Đáp án A đúng. Cụm từ 'a special way of...' (một cách đặc biệt để làm gì). Danh từ đếm được số ít 'special way' bắt đầu bằng phụ âm /s/ nên dùng mạo từ 'a'."
+        },
+        {
+          id: "C1_2",
+          num: 2,
+          tag: "TH",
+          options: ["active", "hospitable", "unhealthy", "tired"],
+          correct: "A",
+          explain: "Đáp án A đúng. 'active' (năng động, hoạt bát). Vì trẻ em có nhiều không gian chơi ngoài trời (play outside) nên chúng thường rất năng động ('active')."
+        },
+        {
+          id: "C1_3",
+          num: 3,
+          tag: "TH",
+          options: ["in", "on", "at", "with"],
+          correct: "D",
+          explain: "Đáp án D đúng. Cấu trúc: help somebody with something / work (giúp đỡ ai việc gì)."
+        },
+        {
+          id: "C1_4",
+          num: 4,
+          tag: "NB",
+          options: ["listen", "talk", "tell", "say"],
+          correct: "C",
+          explain: "Đáp án C đúng. Kết hợp từ cố định: 'tell stories' nghĩa là kể chuyện."
+        },
+        {
+          id: "C1_5",
+          num: 5,
+          tag: "NB",
+          options: ["childhood", "children", "childish", "childishness"],
+          correct: "A",
+          explain: "Đáp án A đúng. 'happy childhood' (tuổi thơ hạnh phúc). 'childhood' là danh từ chỉ thời thơ ấu, phù hợp bổ nghĩa cho tính từ 'happy'."
+        }
+      ],
+      partC2A: [
+        {
+          id: "C2A_1",
+          num: 1,
+          statement: "Most teenagers hate playing video games..",
+          correct: "F",
+          explain: "Sai (False). Dẫn chứng trong dòng 1 của bài đọc: 'Many teenagers love playing video games' (Rất nhiều thanh thiếu niên thích chơi trò chơi điện tử), hoàn toàn trái ngược với 'hate' (ghét)."
+        },
+        {
+          id: "C2A_2",
+          num: 2,
+          statement: "It’s essential for young people to spend time outdoors and improve their social skills.",
+          correct: "T",
+          explain: "Đúng (True). Dẫn chứng đoạn 3: Bác sĩ khuyên 'It’s important for them to engage in group activities. Young people should play outside and improve their social skills' ('essential' đồng nghĩa với 'important')."
+        }
+      ],
+      partC2B: [
+        {
+          id: "C2B_4",
+          num: 4,
+          question: "Why is it important for teenagers not to play too many video games? TH",
+          suggested: "Because too much gaming can lead to tiredness, dizziness, and even obesity. (Or: It can prevent them from spending time with family and friends).",
+          keywords: ["tiredness", "dizziness", "obesity", "tired", "dizzy", "obese", "prevent", "family"],
+          explain: "Dẫn chứng đoạn 2: '...because too much gaming can lead to tiredness, dizziness, and even obesity. Overusing the computer can prevent them from spending time with family and friends.'"
+        },
+        {
+          id: "C2B_5",
+          num: 5,
+          question: "What activities should they do to improve their social skills?VD",
+          suggested: "They should engage in group activities, play outside, and be with peers of their own age. (Or: join clubs, play sports).",
+          keywords: ["group", "outside", "peers", "sports", "clubs"],
+          explain: "Dẫn chứng đoạn 3: 'It’s important for them to engage in group activities. Young people should play outside and improve their social skills. They need to be with peers of their own age...'"
+        },
+        {
+          id: "C2B_6",
+          num: 6,
+          question: "How should teenagers balance their time playing video games?VD",
+          suggested: "They should only dedicate a small portion of their time to video games and participate in other activities.",
+          keywords: ["small", "portion", "little", "time", "other activities"],
+          explain: "Dẫn chứng đoạn 3: '...should only dedicate a small portion of their time to video games. They should not forget to participate in other activities as well.'"
+        }
+      ],
+      partD1: [
+        {
+          id: "D1_1",
+          num: 1,
+          rawTokens: ["as", "fluent", "she", "speaks", "not", "as", "English", "does", "her friends"],
+          punctuation: ".",
+          targetOrders: [
+            ["she", "does", "not", "speak", "English", "as", "fluent", "as", "her friends"],
+            ["she", "does", "not", "speaks", "English", "as", "fluent", "as", "her friends"],
+            ["she", "speaks", "English", "not", "as", "fluent", "as", "her friends", "does"],
+            ["she", "speaks", "English", "not", "as", "fluent", "as", "does", "her friends"],
+            ["she", "speaks", "not", "as", "fluent", "English", "as", "her friends", "does"]
+          ],
+          displaySentence: "She does not speak English as fluently (fluent) as her friends.",
+          explain: "Cấu trúc so sánh bằng: S + V (phủ định) + as + adj/adv + as + N/pronoun. Trong đề gốc: 'She does not speak English as fluent as her friends.' (hoặc biến thể cấu trúc tương đương)."
+        },
+        {
+          id: "D1_2",
+          num: 2,
+          rawTokens: ["every morning", "takes", "the dog", "John", "for a walk"],
+          extraTokens: ["it"],
+          punctuation: ".",
+          targetOrders: [
+            ["John", "takes", "the dog", "for a walk", "every morning"],
+            ["every morning", "John", "takes", "the dog", "for a walk"],
+            ["John", "takes", "it", "for a walk", "every morning"],
+            ["every morning", "John", "takes", "it", "for a walk"]
+          ],
+          displaySentence: "John takes the dog for a walk every morning.",
+          explain: "Cấu trúc câu trần thuật: Chủ ngữ (John) + Động từ (takes) + Tân ngữ (the dog / it) + Cụm từ chỉ mục đích (for a walk) + Trạng từ chỉ thời gian (every morning). Cụm 'for a walk' và 'every morning' được gom thành cụm tự nhiên."
+        },
+        {
+          id: "D1_3",
+          num: 3,
+          rawTokens: ["weekends", "playing", "at", "they", "enjoy", "games", "arcade", "the"],
+          punctuation: ".",
+          targetOrders: [
+            ["they", "enjoy", "playing", "arcade", "games", "at", "the", "weekends"],
+            ["they", "enjoy", "playing", "games", "at", "the", "arcade", "at", "weekends"],
+            ["at", "the", "weekends", "they", "enjoy", "playing", "arcade", "games"],
+            ["they", "enjoy", "playing", "arcade", "games", "at", "weekends"]
+          ],
+          displaySentence: "They enjoy playing arcade games at the weekends.",
+          explain: "Cấu trúc: Chủ ngữ (They) + enjoy + V-ing (playing) + tân ngữ (arcade games) + trạng từ chỉ thời gian/địa điểm (at the weekends / at the arcade)."
+        }
+      ],
+      partD2: [
+        {
+          id: "D2_1",
+          num: 1,
+          original: "I enjoy reading books in my free time.. TH",
+          prefix: "I am fond ",
+          correctPhrases: ["of reading books in my free time", "of reading books in my free time."],
+          explain: "Cấu trúc tương đương chỉ sở thích: S + enjoy + V-ing = S + be fond of + V-ing (thích làm gì). Viết tiếp: 'of reading books in my free time'."
+        },
+        {
+          id: "D2_2",
+          num: 2,
+          original: "Linh practices speaking English a lot, so she is very confident in class..NB",
+          prefix: "Because Linh ",
+          correctPhrases: [
+            "practices speaking English a lot, she is very confident in class",
+            "practices speaking English a lot, she is very confident in class."
+          ],
+          explain: "Chuyển câu dùng liên từ chỉ kết quả 'so' sang liên từ chỉ nguyên nhân 'Because': S + V, so + S + V <=> Because + S + V, S + V. (Lưu ý khi dùng 'Because' ở đầu thì giữa 2 mệnh đề có dấu phẩy và bỏ 'so')."
+        },
+        {
+          id: "D2_3",
+          num: 3,
+          original: "They spend three hours preparing for the school concert every Friday..VD",
+          prefix: "Every Friday, it took them ",
+          correctPhrases: [
+            "three hours to prepare for the school concert",
+            "three hours to prepare for the school concert."
+          ],
+          explain: "Cấu trúc biến đổi thì và tân ngữ thời gian: S + spend + time + V-ing <=> It takes/took + sb + time + to-V. Viết tiếp: 'three hours to prepare for the school concert'."
+        },
+        {
+          id: "D2_4",
+          num: 4,
+          original: "Anna is an excellent swimmer..VD",
+          prefix: "Anna swims ",
+          correctPhrases: ["very well", "excellently", "very well.", "excellently."],
+          explain: "Biến đổi câu từ Tính từ + Danh từ sang Động từ + Trạng từ: S + be + a/an + adj + noun <=> S + verb + adverb. 'an excellent swimmer' đổi thành 'swims excellently' hoặc 'swims very well'."
+        }
+      ]
+    };
+
+    /* State Management */
+    let userAnswers = {};
+    let isSubmitted = false;
+    let arrangeBoxesState = {};
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderPartA1();
+      renderPartA2();
+      renderPartB1();
+      renderPartB2();
+      renderPartC1();
+      renderPartC2A();
+      renderPartC2B();
+      renderPartD1();
+      renderPartD2();
+      updateAnswerCounter();
+    });
+
+    /* Rendering Helpers */
+    function renderPartA1() {
+      const container = document.getElementById('listA1Container');
+      container.innerHTML = testData.partA1.map(item => `
+        <tr class="hover:bg-slate-50 transition" id="row_${item.id}">
+          <td class="py-3 px-4 font-bold text-sky-800 text-center">${item.num}</td>
+          <td class="py-3 px-4 text-slate-800 font-medium">${item.statement}</td>
+          <td class="py-3 px-4 text-center">
+            <label class="inline-flex items-center justify-center p-2 rounded-lg cursor-pointer hover:bg-sky-100">
+              <input type="radio" name="ans_${item.id}" value="T" onchange="recordAnswer('${item.id}', 'T')" 
+                     class="w-4 h-4 text-sky-600 focus:ring-sky-500 border-slate-300">
+            </label>
+          </td>
+          <td class="py-3 px-4 text-center">
+            <label class="inline-flex items-center justify-center p-2 rounded-lg cursor-pointer hover:bg-sky-100">
+              <input type="radio" name="ans_${item.id}" value="F" onchange="recordAnswer('${item.id}', 'F')" 
+                     class="w-4 h-4 text-sky-600 focus:ring-sky-500 border-slate-300">
+            </label>
+          </td>
+        </tr>
+        <tr id="exp_row_${item.id}" class="hidden bg-sky-50/50">
+          <td colspan="4" class="p-4 text-xs space-y-1">
+            <div id="exp_text_${item.id}" class="rounded-lg p-3 border"></div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function renderPartA2() {
+      const container = document.getElementById('listA2Container');
+      container.innerHTML = testData.partA2.map(item => `
+        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/40" id="card_${item.id}">
+          <div class="flex items-start gap-2 mb-3">
+            <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-sky-100 text-sky-800 font-bold text-xs shrink-0 mt-0.5">
+              ${item.num}
+            </span>
+            <div class="text-sm font-semibold text-slate-800 leading-snug">
+              ${item.question}
+              ${item.tag ? `<span class="text-xs text-slate-400 font-normal ml-1">(${item.tag})</span>` : ''}
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 ml-0 sm:ml-9">
+            ${item.options.map((opt, idx) => {
+              const letter = String.fromCharCode(65 + idx);
+              return `
+                <label class="flex items-center justify-between p-3 rounded-xl border border-slate-200 bg-white hover:border-sky-400 cursor-pointer transition shadow-xs text-sm" id="label_${item.id}_${letter}">
+                  <div class="flex items-center gap-2">
+                    <input type="radio" name="ans_${item.id}" value="${letter}" onchange="recordAnswer('${item.id}', '${letter}')" 
+                           class="w-4 h-4 text-sky-600 focus:ring-sky-500 border-slate-300">
+                    <span class="font-bold text-sky-800">${letter}.</span>
+                    <span class="text-slate-700">${opt}</span>
+                  </div>
+                  <!-- Audio button for single isolated word -->
+                  <button type="button" onclick="speakIsolatedWord(event, '${opt.replace(/'/g, "\\'")}')" 
+                          class="p-1 text-slate-400 hover:text-sky-600 rounded-md hover:bg-sky-50 transition" title="Nghe phát âm từ '${opt}'">
+                    🔊
+                  </button>
+                </label>
+              `;
+            }).join('')}
+          </div>
+          <div id="exp_${item.id}" class="hidden mt-3 p-3 text-xs rounded-lg border"></div>
+        </div>
+      `).join('');
+    }
+
+    function renderPartB1() {
+      const container = document.getElementById('listB1Container');
+      container.innerHTML = testData.partB1.map(item => `
+        <div class="border border-slate-200 rounded-xl p-4 bg-white shadow-xs" id="card_${item.id}">
+          <div class="flex items-start gap-2.5 mb-3">
+            <span class="inline-flex items-center justify-center w-7 h-7 rounded-lg bg-sky-600 text-white font-bold text-xs shrink-0 mt-0.5">
+              ${item.num}
+            </span>
+            <div class="text-sm font-semibold text-slate-800 leading-snug">
+              ${item.question}
+              ${item.tag ? `<span class="text-xs text-slate-400 font-normal ml-1">(${item.tag})</span>` : ''}
+            </div>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 ml-0 sm:ml-9">
+            ${item.options.map((opt, idx) => {
+              const letter = String.fromCharCode(65 + idx);
+              const cleanWord = opt.replace(/[^a-zA-Z\s]/g, '').trim();
+              const isShort = cleanWord.split(' ').length <= 2;
+              return `
+                <label class="flex items-center justify-between p-3 rounded-xl border border-slate-200 bg-slate-50/50 hover:bg-sky-50/50 hover:border-sky-300 cursor-pointer transition text-sm" id="label_${item.id}_${letter}">
+                  <div class="flex items-center gap-2">
+                    <input type="radio" name="ans_${item.id}" value="${letter}" onchange="recordAnswer('${item.id}', '${letter}')" 
+                           class="w-4 h-4 text-sky-600 focus:ring-sky-500 border-slate-300">
+                    <span class="font-bold text-sky-800">${letter}.</span>
+                    <span class="text-slate-800 font-medium">${opt}</span>
+                  </div>
+                  ${isShort ? `
+                    <button type="button" onclick="speakIsolatedWord(event, '${cleanWord.replace(/'/g, "\\'")}')" 
+                            class="p-1 text-slate-400 hover:text-sky-600 rounded-md hover:bg-white transition" title="Nghe phát âm">
+                      🔊
+                    </button>
+                  ` : ''}
+                </label>
+              `;
+            }).join('')}
+          </div>
+          <div id="exp_${item.id}" class="hidden mt-3 p-3 text-xs rounded-lg border"></div>
+        </div>
+      `).join('');
+    }
+
+    function renderPartB2() {
+      const container = document.getElementById('listB2Container');
+      container.innerHTML = testData.partB2.map(item => {
+        if (item.dual) {
+          return `
+            <div class="p-3.5 rounded-xl border border-slate-200 bg-white" id="card_${item.id}">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2 text-sm">
+                <span class="font-bold text-sky-800 w-6">${item.num}.</span>
+                <span class="text-slate-800 font-medium flex-1">What</span>
+                <input type="text" id="input_${item.id}_1" oninput="recordAnswer('${item.id}', getDualValue('${item.id}'))" 
+                       placeholder="trợ động từ..." class="w-32 px-2.5 py-1.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                <span class="text-slate-800 font-medium">your brother usually</span>
+                <input type="text" id="input_${item.id}_2" oninput="recordAnswer('${item.id}', getDualValue('${item.id}'))" 
+                       placeholder="động từ chính..." class="w-32 px-2.5 py-1.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none">
+                <span class="text-slate-800 font-medium">in his leisure time?</span>
+              </div>
+              <div id="exp_${item.id}" class="hidden mt-2 p-2.5 text-xs rounded-lg border"></div>
+            </div>
+          `;
+        }
+        return `
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-sm" id="card_${item.id}">
+            <div class="flex items-center gap-2 flex-1">
+              <span class="font-bold text-sky-800 w-6">${item.num}.</span>
+              <span class="text-slate-800 font-medium">${item.prompt}</span>
+            </div>
+            <div class="w-full sm:w-60">
+              <input type="text" id="input_${item.id}" oninput="recordAnswer('${item.id}', this.value)" 
+                     placeholder="Nhập dạng đúng của từ..." 
+                     class="w-full px-3 py-1.5 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none">
+            </div>
+          </div>
+          <div id="exp_${item.id}" class="hidden p-2.5 text-xs rounded-lg border mb-2"></div>
+        `;
+      }).join('');
+    }
+
+    function getDualValue(id) {
+      const v1 = document.getElementById(`input_${id}_1`)?.value.trim() || '';
+      const v2 = document.getElementById(`input_${id}_2`)?.value.trim() || '';
+      return `${v1} ... ${v2}`;
+    }
+
+    function renderPartC1() {
+      const container = document.getElementById('listC1Container');
+      container.innerHTML = testData.partC1.map(item => `
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-3 rounded-xl border border-slate-200 bg-white gap-3" id="card_${item.id}">
+          <div class="flex items-center gap-2">
+            <span class="inline-flex items-center justify-center w-6 h-6 rounded-md bg-sky-100 text-sky-800 font-bold text-xs">
+              ${item.num}
+            </span>
+            <span class="text-xs text-slate-500 font-medium">Chọn từ điền vị trí (${item.num}):</span>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            ${item.options.map((opt, idx) => {
+              const letter = String.fromCharCode(65 + idx);
+              return `
+                <label class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 bg-slate-50 hover:bg-sky-50 cursor-pointer text-xs font-medium" id="label_${item.id}_${letter}">
+                  <input type="radio" name="ans_${item.id}" value="${letter}" onchange="recordAnswer('${item.id}', '${letter}')" 
+                         class="w-3.5 h-3.5 text-sky-600 focus:ring-sky-500 border-slate-300">
+                  <span class="font-bold text-sky-800">${letter}.</span>
+                  <span>${opt}</span>
+                </label>
+              `;
+            }).join('')}
+          </div>
+        </div>
+        <div id="exp_${item.id}" class="hidden p-2.5 text-xs rounded-lg border mb-2"></div>
+      `).join('');
+    }
+
+    function renderPartC2A() {
+      const container = document.getElementById('listC2AContainer');
+      container.innerHTML = testData.partC2A.map(item => `
+        <tr class="hover:bg-slate-50 transition" id="row_${item.id}">
+          <td class="py-3 px-4 font-bold text-sky-800 text-center">${item.num}</td>
+          <td class="py-3 px-4 text-slate-800 font-medium">${item.statement}</td>
+          <td class="py-3 px-4 text-center">
+            <label class="inline-flex items-center justify-center p-2 rounded-lg cursor-pointer hover:bg-sky-100">
+              <input type="radio" name="ans_${item.id}" value="T" onchange="recordAnswer('${item.id}', 'T')" 
+                     class="w-4 h-4 text-sky-600 focus:ring-sky-500 border-slate-300">
+            </label>
+          </td>
+          <td class="py-3 px-4 text-center">
+            <label class="inline-flex items-center justify-center p-2 rounded-lg cursor-pointer hover:bg-sky-100">
+              <input type="radio" name="ans_${item.id}" value="F" onchange="recordAnswer('${item.id}', 'F')" 
+                     class="w-4 h-4 text-sky-600 focus:ring-sky-500 border-slate-300">
+            </label>
+          </td>
+        </tr>
+        <tr id="exp_row_${item.id}" class="hidden bg-sky-50/50">
+          <td colspan="4" class="p-4 text-xs space-y-1">
+            <div id="exp_text_${item.id}" class="rounded-lg p-3 border"></div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function renderPartC2B() {
+      const container = document.getElementById('listC2BContainer');
+      container.innerHTML = testData.partC2B.map(item => `
+        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-2.5" id="card_${item.id}">
+          <div class="text-sm font-semibold text-slate-800 flex items-start gap-2">
+            <span class="inline-flex items-center justify-center w-6 h-6 rounded-md bg-sky-100 text-sky-800 font-bold text-xs shrink-0">
+              ${item.num}
+            </span>
+            <span>${item.question}</span>
+          </div>
+          <textarea id="input_${item.id}" rows="2" oninput="recordAnswer('${item.id}', this.value)" 
+                    placeholder="Viết câu trả lời của em bằng tiếng Anh..." 
+                    class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none transition"></textarea>
+          <div id="exp_${item.id}" class="hidden p-3 text-xs rounded-lg border"></div>
+        </div>
+      `).join('');
+    }
+
+    function renderPartD1() {
+      const container = document.getElementById('listD1Container');
+      container.innerHTML = testData.partD1.map(item => {
+        arrangeBoxesState[item.id] = {
+          selected: [],
+          available: [...item.rawTokens]
+        };
+
+        return `
+          <div class="border-2 border-slate-200 rounded-2xl p-4 sm:p-5 bg-white shadow-xs space-y-4" id="card_${item.id}">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-2">
+              <span class="text-xs font-bold text-sky-800 uppercase tracking-wider">Câu ${item.num} (Sắp xếp từ thành câu)</span>
+              <button type="button" onclick="resetArrange('${item.id}')" 
+                      class="text-xs text-sky-600 hover:text-sky-800 font-semibold flex items-center gap-1 hover:underline">
+                🔄 Làm lại câu này
+              </button>
+            </div>
+
+            <!-- Target Construction Area -->
+            <div>
+              <span class="text-xs text-slate-400 font-medium block mb-1">Vùng ghép câu của em:</span>
+              <div id="target_${item.id}" 
+                   class="min-h-[56px] p-2.5 rounded-xl border-2 border-dashed border-sky-300 bg-sky-50/40 flex flex-wrap items-center gap-2">
+                <span class="text-xs text-slate-400 italic pointer-events-none" id="placeholder_${item.id}">Chạm các từ bên dưới theo thứ tự...</span>
+              </div>
+            </div>
+
+            <!-- Available Word Pool -->
+            <div>
+              <span class="text-xs text-slate-400 font-medium block mb-1">Các từ / cụm từ cho sẵn (Chạm để chọn):</span>
+              <div id="pool_${item.id}" class="flex flex-wrap gap-2">
+                <!-- Word boxes rendered here -->
+              </div>
+            </div>
+
+            <div id="exp_${item.id}" class="hidden p-3 text-xs rounded-lg border"></div>
+          </div>
+        `;
+      }).join('');
+
+      testData.partD1.forEach(item => updateArrangeView(item.id));
+    }
+
+    function updateArrangeView(qId) {
+      const state = arrangeBoxesState[qId];
+      const poolContainer = document.getElementById(`pool_${qId}`);
+      const targetContainer = document.getElementById(`target_${qId}`);
+      const placeholder = document.getElementById(`placeholder_${qId}`);
+
+      if (!poolContainer || !targetContainer) return;
+
+      // Render Available Pool
+      poolContainer.innerHTML = state.available.map((token, idx) => `
+        <button type="button" ${isSubmitted ? 'disabled' : ''} onclick="chooseWord('${qId}', ${idx})" 
+                class="tap-target px-3.5 py-1.5 rounded-xl border-2 border-sky-300 bg-white hover:bg-sky-50 active:bg-sky-100 text-sky-900 font-semibold text-sm shadow-xs transition transform hover:-translate-y-0.5">
+          ${token}
+        </button>
+      `).join('');
+
+      // Render Target Selected Area
+      targetContainer.innerHTML = '';
+      if (state.selected.length === 0) {
+        targetContainer.innerHTML = `<span class="text-xs text-slate-400 italic pointer-events-none" id="placeholder_${qId}">Chạm các từ bên dưới theo thứ tự...</span>`;
+      } else {
+        state.selected.forEach((token, idx) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          if (isSubmitted) btn.disabled = true;
+          btn.className = "tap-target px-3 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white font-semibold text-sm shadow-xs transition flex items-center gap-1.5 group";
+          btn.innerHTML = `<span>${token}</span><span class="text-xs text-sky-200 group-hover:text-white">✕</span>`;
+          btn.onclick = () => unchooseWord(qId, idx);
+          targetContainer.appendChild(btn);
+        });
+
+        // Automatically append trailing period marker at the end
+        const periodSpan = document.createElement('span');
+        periodSpan.className = "font-black text-sky-800 text-base ml-0.5 select-none";
+        periodSpan.textContent = ".";
+        targetContainer.appendChild(periodSpan);
+      }
+
+      // Record answer
+      const assembledSentence = state.selected.join(' ').toLowerCase();
+      recordAnswer(qId, assembledSentence);
+    }
+
+    function chooseWord(qId, index) {
+      if (isSubmitted) return;
+      const state = arrangeBoxesState[qId];
+      const token = state.available.splice(index, 1)[0];
+      state.selected.push(token);
+      updateArrangeView(qId);
+    }
+
+    function unchooseWord(qId, index) {
+      if (isSubmitted) return;
+      const state = arrangeBoxesState[qId];
+      const token = state.selected.splice(index, 1)[0];
+      state.available.push(token);
+      updateArrangeView(qId);
+    }
+
+    function resetArrange(qId) {
+      if (isSubmitted) return;
+      const item = testData.partD1.find(i => i.id === qId);
+      if (!item) return;
+      arrangeBoxesState[qId] = {
+        selected: [],
+        available: [...item.rawTokens]
+      };
+      updateArrangeView(qId);
+    }
+
+    function renderPartD2() {
+      const container = document.getElementById('listD2Container');
+      container.innerHTML = testData.partD2.map(item => `
+        <div class="p-4 rounded-xl border border-slate-200 bg-white space-y-3" id="card_${item.id}">
+          <div class="text-sm font-semibold text-slate-700 flex items-start gap-2">
+            <span class="inline-flex items-center justify-center w-6 h-6 rounded-md bg-sky-100 text-sky-800 font-bold text-xs shrink-0">
+              ${item.num}
+            </span>
+            <span>${item.original}</span>
+          </div>
+          <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+            <span class="text-sm font-bold text-sky-800 whitespace-nowrap pl-8 sm:pl-8">➔ ${item.prefix}</span>
+            <input type="text" id="input_${item.id}" oninput="recordAnswer('${item.id}', this.value)" 
+                   placeholder="Viết tiếp phần còn lại của câu..." 
+                   class="flex-1 px-3.5 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-sky-500 focus:outline-none">
+          </div>
+          <div id="exp_${item.id}" class="hidden p-3 text-xs rounded-lg border"></div>
+        </div>
+      `).join('');
+    }
+
+    function recordAnswer(questionId, value) {
+      if (isSubmitted) return;
+      if (typeof value === 'string' && value.trim() === '') {
+        delete userAnswers[questionId];
+      } else {
+        userAnswers[questionId] = value;
+      }
+      updateAnswerCounter();
+    }
+
+    function getTotalQuestionsCount() {
+      return (
+        testData.partA1.length +
+        testData.partA2.length +
+        testData.partB1.length +
+        testData.partB2.length +
+        testData.partC1.length +
+        testData.partC2A.length +
+        testData.partC2B.length +
+        testData.partD1.length +
+        testData.partD2.length
+      );
+    }
+
+    function updateAnswerCounter() {
+      const answered = Object.keys(userAnswers).length;
+      const total = getTotalQuestionsCount();
+      const el = document.getElementById('answeredCounterText');
+      if (el) {
+        el.textContent = `Đã làm: ${answered}/${total} câu`;
+      }
+    }
+
+    function speakIsolatedWord(e, word) {
+      if (e) e.stopPropagation();
+      if (!('speechSynthesis' in window)) {
+        showToast("Trình duyệt không hỗ trợ phát âm!");
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+      const cleanWord = word.replace(/[^a-zA-Z\s]/g, '').trim();
+      const utterance = new SpeechSynthesisUtterance(cleanWord);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.85;
+
+      const voices = window.speechSynthesis.getVoices();
+      const enVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha')));
+      if (enVoice) utterance.voice = enVoice;
+
+      showToast(`🔊 Đang phát âm: "${cleanWord}"`);
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('audioToast');
+      const text = document.getElementById('audioToastText');
+      if (!toast || !text) return;
+      text.textContent = message;
+      toast.classList.remove('opacity-0');
+      toast.classList.add('opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0');
+      }, 2000);
+    }
+
+    let currentAudioId = null;
+    let audioInterval = null;
+    let audioSecs = { audio1: 0, audio2: 0 };
+    const audioDurations = { audio1: 54, audio2: 65 };
+
+    const audioTranscriptsText = {
+      audio1: "Hi Sarah. How's your new job? It's great! I love teaching and I really enjoy working with the children in my class, but it's hard work too. Do you start early in the morning? Yes, school starts at 9:00, but I always get there at half past 8. Then I have lessons all morning. Do you get a lunch break? Yes, I usually bring something with me from home, or sometimes I get a sandwich from the school canteen. Then I have a few more lessons in the afternoon, and school finishes at 4:00. Oh, that's good. You have your evenings free? Not really. I often have work to do. So you don't have much free time then? Well, I always go to the gym after work for about an hour. When I get home, I just finish my work and then watch TV or read a book. Do you go out during the week? Very rarely, because I like to go to bed early. I see. Well, at least you never work at weekends. That's true! Let's go to the cinema on Saturday night then. What a great idea!",
+      audio2: "Speaker 1: I choose to live in a village because the relationships between people here are very good. There is a great sense of community here. The people welcome neighbors to their homes. They are always willing to help each other. They share almost everything with one another. Speaker 2: There are many things I don't like about life in the countryside. There aren't many good schools or colleges. It's boring here because there aren't many places for entertainment, like theaters, cinemas, etc. Transportation is another big problem. There are few means of public transport. And in general, there are many things that we should do to improve the life of villagers. Speaker 3: I love to live in the countryside. It is spacious. We can do many, many things that are hard to do in the city. We can go swimming, play football, fly kites, and do other interesting things. Life is also peaceful and simple here."
+    };
+
+    function toggleAudio(trackId) {
+      if (currentAudioId === trackId) {
+        stopAudio(trackId);
+        return;
+      }
+      if (currentAudioId) {
+        stopAudio(currentAudioId);
+      }
+      playListeningSimulation(trackId);
+    }
+
+    function playListeningSimulation(trackId) {
+      currentAudioId = trackId;
+      document.getElementById(`${trackId}Icon`).textContent = '⏸';
+      document.getElementById(`${trackId}Text`).textContent = 'Đang phát âm thanh...';
+
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const text = audioTranscriptsText[trackId];
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.9;
+        utterance.onend = () => stopAudio(trackId);
+        window.speechSynthesis.speak(utterance);
+      }
+
+      audioInterval = setInterval(() => {
+        audioSecs[trackId]++;
+        const cur = formatTime(audioSecs[trackId]);
+        const dur = formatTime(audioDurations[trackId]);
+        document.getElementById(`${trackId}Timer`).textContent = `${cur} / ${dur}`;
+
+        if (audioSecs[trackId] >= audioDurations[trackId]) {
+          stopAudio(trackId);
+        }
+      }, 1000);
+    }
+
+    function stopAudio(trackId) {
+      if (currentAudioId === trackId) {
+        currentAudioId = null;
+        clearInterval(audioInterval);
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+        document.getElementById(`${trackId}Icon`).textContent = '▶';
+        document.getElementById(`${trackId}Text`).textContent = trackId === 'audio1' ? 'Nghe bài 1 (Sarah)' : 'Nghe bài 2 (Life in the countryside)';
+      }
+    }
+
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = sec % 60;
+      return `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+    }
+
+    function toggleTranscript(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.toggle('hidden');
+      }
+    }
+
+    function openSubmitModal() {
+      if (isSubmitted) return;
+      const answered = Object.keys(userAnswers).length;
+      const total = getTotalQuestionsCount();
+      const modal = document.getElementById('confirmModal');
+      const title = document.getElementById('modalTitle');
+      const msg = document.getElementById('modalMessage');
+
+      if (answered < total) {
+        title.textContent = "Chưa hoàn thành bài làm";
+        msg.innerHTML = `Bạn mới hoàn thành <strong class="text-sky-700">${answered}/${total}</strong> câu hỏi. Bạn vẫn còn <strong class="text-rose-600">${total - answered}</strong> câu chưa làm.<br><br>Bạn có chắc chắn muốn nộp bài không?`;
+      } else {
+        title.textContent = "Xác nhận nộp bài";
+        msg.innerHTML = "Bạn đã hoàn thành đủ các câu hỏi! Bạn có chắc chắn muốn nộp bài không? Sau khi nộp bài, bạn sẽ không thể thay đổi đáp án.";
+      }
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeSubmitModal() {
+      document.getElementById('confirmModal').classList.add('hidden');
+    }
+
+    function finalizeSubmission() {
+      closeSubmitModal();
+      isSubmitted = true;
+
+      // Lock all form elements
+      document.querySelectorAll('input, textarea, select').forEach(el => {
+        el.disabled = true;
+        el.classList.add('locked-input');
+      });
+
+      // Lock status badge
+      const badge = document.getElementById('statusBadge');
+      badge.className = "flex items-center gap-2 text-xs font-bold px-3 py-1.5 rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300";
+      badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-600"></span> Bài đã được nộp – Không thể chỉnh sửa đáp án`;
+
+      // Hide floating submit button
+      const submitBtn = document.getElementById('btnSubmitExam');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        submitBtn.innerHTML = `<span>🔒 Đã nộp bài</span>`;
+      }
+
+      // Show transcript buttons
+      document.getElementById('btnTranscript1')?.classList.remove('hidden');
+      document.getElementById('btnTranscript2')?.classList.remove('hidden');
+
+      // Update arrange boxes view with locked buttons
+      testData.partD1.forEach(item => updateArrangeView(item.id));
+
+      // Calculate score and show explanations
+      gradeExam();
+    }
+
+    function gradeExam() {
+      let correctCount = 0;
+      let wrongCount = 0;
+      let totalItems = 0;
+
+      // 1. Grade Part A1 (6 questions)
+      testData.partA1.forEach(item => {
+        totalItems++;
+        const userChoice = userAnswers[item.id];
+        const isCorrect = userChoice === item.correct;
+        if (isCorrect) correctCount++; else wrongCount++;
+
+        const expRow = document.getElementById(`exp_row_${item.id}`);
+        const expBox = document.getElementById(`exp_text_${item.id}`);
+        expRow?.classList.remove('hidden');
+        if (expBox) {
+          expBox.className = `p-3 rounded-lg border text-xs leading-relaxed ${isCorrect ? 'bg-emerald-50 border-emerald-300 text-emerald-950' : 'bg-rose-50 border-rose-300 text-rose-950'}`;
+          expBox.innerHTML = `
+            <div class="font-bold flex items-center gap-2 mb-1">
+              <span>${isCorrect ? '✅ Bạn làm ĐÚNG' : '❌ Bạn làm CHƯA ĐÚNG'}</span>
+              <span>• Đáp án đúng: <strong>${item.correct}</strong></span>
+              ${userChoice ? `<span>(Bạn chọn: ${userChoice})</span>` : '<span class="italic text-slate-500">(Bạn chưa chọn)</span>'}
+            </div>
+            <p><strong>Giải thích sư phạm:</strong> ${item.explain}</p>
+          `;
+        }
+      });
+
+      // 2. Grade Part A2 (6 questions)
+      testData.partA2.forEach(item => {
+        totalItems++;
+        const userChoice = userAnswers[item.id];
+        const isCorrect = userChoice === item.correct;
+        if (isCorrect) correctCount++; else wrongCount++;
+
+        highlightChoice(item.id, userChoice, item.correct);
+        showExplanation(item.id, isCorrect, item.correct, userChoice, item.explain);
+      });
+
+      // 3. Grade Part B1 (8 questions)
+      testData.partB1.forEach(item => {
+        totalItems++;
+        const userChoice = userAnswers[item.id];
+        const isCorrect = userChoice === item.correct;
+        if (isCorrect) correctCount++; else wrongCount++;
+
+        highlightChoice(item.id, userChoice, item.correct);
+        showExplanation(item.id, isCorrect, item.correct, userChoice, item.explain);
+      });
+
+      // 4. Grade Part B2 (5 questions)
+      testData.partB2.forEach(item => {
+        totalItems++;
+        let isCorrect = false;
+        let userText = "";
+
+        if (item.dual) {
+          const v1 = (document.getElementById(`input_${item.id}_1`)?.value || '').trim().toLowerCase();
+          const v2 = (document.getElementById(`input_${item.id}_2`)?.value || '').trim().toLowerCase();
+          userText = `${v1} ... ${v2}`;
+          isCorrect = (v1 === item.correct[0] && v2 === item.correct[1]);
+        } else {
+          userText = (document.getElementById(`input_${item.id}`)?.value || '').trim().toLowerCase();
+          isCorrect = item.correct.map(c => c.toLowerCase()).includes(userText);
+        }
+
+        if (isCorrect) correctCount++; else wrongCount++;
+        showTextExplanation(item.id, isCorrect, item.correct.join(' / '), userText, item.explain);
+      });
+
+      // 5. Grade Part C1 (5 questions)
+      testData.partC1.forEach(item => {
+        totalItems++;
+        const userChoice = userAnswers[item.id];
+        const isCorrect = userChoice === item.correct;
+        if (isCorrect) correctCount++; else wrongCount++;
+
+        highlightChoice(item.id, userChoice, item.correct);
+        showExplanation(item.id, isCorrect, item.correct, userChoice, item.explain);
+      });
+
+      // 6. Grade Part C2A (2 questions)
+      testData.partC2A.forEach(item => {
+        totalItems++;
+        const userChoice = userAnswers[item.id];
+        const isCorrect = userChoice === item.correct;
+        if (isCorrect) correctCount++; else wrongCount++;
+
+        const expRow = document.getElementById(`exp_row_${item.id}`);
+        const expBox = document.getElementById(`exp_text_${item.id}`);
+        expRow?.classList.remove('hidden');
+        if (expBox) {
+          expBox.className = `p-3 rounded-lg border text-xs leading-relaxed ${isCorrect ? 'bg-emerald-50 border-emerald-300 text-emerald-950' : 'bg-rose-50 border-rose-300 text-rose-950'}`;
+          expBox.innerHTML = `
+            <div class="font-bold flex items-center gap-2 mb-1">
+              <span>${isCorrect ? '✅ Bạn làm ĐÚNG' : '❌ Bạn làm CHƯA ĐÚNG'}</span>
+              <span>• Đáp án đúng: <strong>${item.correct}</strong></span>
+              ${userChoice ? `<span>(Bạn chọn: ${userChoice})</span>` : '<span class="italic text-slate-500">(Bạn chưa chọn)</span>'}
+            </div>
+            <p><strong>Dẫn chứng bài đọc:</strong> ${item.explain}</p>
+          `;
+        }
+      });
+
+      // 7. Grade Part C2B (3 questions)
+      testData.partC2B.forEach(item => {
+        totalItems++;
+        const val = (document.getElementById(`input_${item.id}`)?.value || '').trim().toLowerCase();
+        let matchScore = 0;
+        item.keywords.forEach(kw => {
+          if (val.includes(kw.toLowerCase())) matchScore++;
+        });
+        const isPass = matchScore >= 1 || val.length > 25;
+        if (isPass) correctCount++; else wrongCount++;
+
+        showTextExplanation(item.id, isPass, item.suggested, val, item.explain);
+      });
+
+      // 8. Grade Part D1 Rearrange (3 questions)
+      testData.partD1.forEach(item => {
+        totalItems++;
+        const state = arrangeBoxesState[item.id];
+        const studentSentence = (state?.selected || []).map(w => w.toLowerCase()).join(' ').replace(/[.,!?]/g, '').trim();
+        const validNormalized = item.targetOrders.map(arr => arr.join(' ').toLowerCase().replace(/[.,!?]/g, '').trim());
+
+        const isCorrect = validNormalized.includes(studentSentence);
+        if (isCorrect) correctCount++; else wrongCount++;
+
+        showArrangeExplanation(item.id, isCorrect, item.displaySentence, state.selected.join(' '), item.explain);
+      });
+
+      // 9. Grade Part D2 (4 questions)
+      testData.partD2.forEach(item => {
+        totalItems++;
+        const raw = (document.getElementById(`input_${item.id}`)?.value || '').trim().toLowerCase().replace(/[.]+$/, '');
+        const isCorrect = item.correctPhrases.some(p => p.toLowerCase().replace(/[.]+$/, '') === raw);
+
+        if (isCorrect) correctCount++; else wrongCount++;
+        showTextExplanation(item.id, isCorrect, item.correctPhrases[0], raw, item.explain);
+      });
+
+      // Calculate Final Scaled Score out of 10
+      const score = ((correctCount / totalItems) * 10).toFixed(1);
+      document.getElementById('scoreDisplay').textContent = `${score} / 10`;
+      document.getElementById('correctDisplay').textContent = `${correctCount}`;
+      document.getElementById('wrongDisplay').textContent = `${wrongCount}`;
+
+      const resCard = document.getElementById('resultCard');
+      resCard.classList.remove('hidden');
+      resCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function highlightChoice(qId, userChoice, correctLetter) {
+      ['A', 'B', 'C', 'D'].forEach(letter => {
+        const label = document.getElementById(`label_${qId}_${letter}`);
+        if (!label) return;
+
+        if (letter === correctLetter) {
+          label.classList.add('border-emerald-500', 'bg-emerald-50', 'ring-2', 'ring-emerald-400');
+        } else if (letter === userChoice && userChoice !== correctLetter) {
+          label.classList.add('border-rose-400', 'bg-rose-50', 'line-through');
+        }
+      });
+    }
+
+    function showExplanation(qId, isCorrect, correctLetter, userChoice, explainText) {
+      const expBox = document.getElementById(`exp_${qId}`);
+      if (!expBox) return;
+      expBox.classList.remove('hidden');
+      expBox.className = `mt-3 p-3.5 rounded-xl border text-xs leading-relaxed ${isCorrect ? 'bg-emerald-50 border-emerald-300 text-emerald-950' : 'bg-rose-50 border-rose-300 text-rose-950'}`;
+      expBox.innerHTML = `
+        <div class="font-bold flex items-center gap-2 mb-1.5">
+          <span>${isCorrect ? '✅ Bạn trả lời ĐÚNG!' : '❌ Bạn trả lời CHƯA ĐÚNG'}</span>
+          <span>• Đáp án đúng: <strong>${correctLetter}</strong></span>
+          ${userChoice ? `<span>(Bạn chọn: ${userChoice})</span>` : '<span class="italic text-slate-500">(Bạn chưa chọn)</span>'}
+        </div>
+        <p><strong>Giải thích chi tiết:</strong> ${explainText}</p>
+      `;
+    }
+
+    function showTextExplanation(qId, isCorrect, correctAnswer, userText, explainText) {
+      const expBox = document.getElementById(`exp_${qId}`);
+      if (!expBox) return;
+      expBox.classList.remove('hidden');
+      expBox.className = `mt-2.5 p-3.5 rounded-xl border text-xs leading-relaxed ${isCorrect ? 'bg-emerald-50 border-emerald-300 text-emerald-950' : 'bg-rose-50 border-rose-300 text-rose-950'}`;
+      expBox.innerHTML = `
+        <div class="font-bold flex items-center gap-2 mb-1.5">
+          <span>${isCorrect ? '✅ Câu trả lời CHÍNH XÁC' : '❌ Chưa chính xác'}</span>
+          <span>• Đáp án chuẩn: <strong>${correctAnswer}</strong></span>
+        </div>
+        <p class="mb-1 text-slate-700"><strong>Bài làm của bạn:</strong> ${userText || '<span class="italic text-slate-400">(Bỏ trống)</span>'}</p>
+        <p><strong>Ghi nhớ kiến thức:</strong> ${explainText}</p>
+      `;
+    }
+
+    function showArrangeExplanation(qId, isCorrect, correctSentence, studentSentence, explainText) {
+      const expBox = document.getElementById(`exp_${qId}`);
+      if (!expBox) return;
+      expBox.classList.remove('hidden');
+      expBox.className = `p-3.5 rounded-xl border text-xs leading-relaxed ${isCorrect ? 'bg-emerald-50 border-emerald-300 text-emerald-950' : 'bg-rose-50 border-rose-300 text-rose-950'}`;
+      expBox.innerHTML = `
+        <div class="font-bold flex items-center gap-2 mb-1.5">
+          <span>${isCorrect ? '✅ Sắp xếp HOÀN TOÀN CHÍNH XÁC' : '❌ Thứ tự sắp xếp chưa đúng'}</span>
+        </div>
+        <p class="mb-1"><strong>Câu đúng hoàn chỉnh:</strong> <span class="font-bold text-sky-900">${correctSentence}</span></p>
+        <p class="mb-1 text-slate-700"><strong>Câu bạn đã xếp:</strong> ${studentSentence ? studentSentence + '.' : '<span class="italic text-slate-400">(Chưa xếp đủ)</span>'}</p>
+        <p><strong>Phân tích ngữ pháp:</strong> ${explainText}</p>
+      `;
+    }
+  </script>
+</body>
+</html>
