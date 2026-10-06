@@ -1488,61 +1488,12 @@
 
     /* Dừng mọi luồng âm thanh */
     function stopAudio() {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-      }
-      const b1 = document.getElementById('btnTextTask1');
-      const b2 = document.getElementById('btnTextTask2');
-      if (b1) b1.innerText = "Nghe Audio";
-      if (b2) b2.innerText = "Nghe Audio";
+      document.querySelectorAll('[data-listening-player] audio').forEach(audio => {audio.pause();audio.currentTime = 0;});
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
     }
 
     /* Phát Audio nguyên bản cho bài Listening */
-    function playAudioConversation(task) {
-      if (!('speechSynthesis' in window)) return;
-      window.speechSynthesis.cancel();
-
-      let textToRead = "";
-      let btn = null;
-
-      if (task === 'task1') {
-        btn = document.getElementById('btnTextTask1');
-        btn.innerText = "Đang phát...";
-        textToRead = "Miss Hoa said we can discuss the stress we have in our lives on the class forum. So, what stress do you have? "
-          + "I am tired of trying to meet my parents' expectations. They want me to study well and be good at many things. So they send me to many classes like maths, English, piano, and karate. "
-          + "Why don't you tell them your interests and abilities, Minh? I talked to my parents about this, so they no longer send me to classes I don't like. Now, I just focus on my health and try to lose some weight. "
-          + "You look fit, Ann. You should feel good about your body. "
-          + "Are you kidding me? I still need to lose a few more kilos. How about you, Mi? "
-          + "Actually, I don't get on with my sister. She is jealous of anything I have, and always starts arguments. So I had to talk to my mom.";
-      } else if (task === 'task2') {
-        btn = document.getElementById('btnTextTask2');
-        btn.innerText = "Đang phát...";
-        textToRead = "Were you sporty as a child? "
-          + "No, I always felt sick and weak. I had allergies, too. So I always had a runny nose and itchy skin. "
-          + "When did that change? "
-          + "My friends started doing sports. I wanted to, too. My sports instructor said, do more exercise or continue to feel sick. It is up to you. "
-          + "Was it easy? "
-          + "No, it was hard. I did more exercise so my body ached, but slowly I felt better. "
-          + "What do you do now? "
-          + "I do triathlons around the world. It is a tough competition. You have to swim, run, and ride a bike. I use around 6,500 calories in one event. "
-          + "How do you prepare? "
-          + "Three great things to do before the race are: eat more healthy food, sleep more, and do more exercise. Then you will be ready.";
-      }
-
-      const utter = new SpeechSynthesisUtterance(textToRead);
-      utter.lang = 'en-US';
-      utter.rate = 0.88;
-      utter.pitch = 1.0;
-
-      utter.onend = function() {
-        if (btn) btn.innerText = "Nghe Audio";
-      };
-      utter.onerror = function() {
-        if (btn) btn.innerText = "Nghe Audio";
-      };
-
-      window.speechSynthesis.speak(utter);
-    }
+    function playAudioConversation(task) { /* Main Listening is handled by the MP3 players. */ }
 
     /* Đóng / Mở Transcript sau khi nộp bài */
     function toggleTranscript(boxId, btnElem) {
@@ -2189,6 +2140,8 @@
     const other = player.querySelector('audio');
     if (other !== active && !other.paused) other.pause();
   });
+  const unlockPlayerControls = () => document.querySelectorAll('[data-listening-player] input, [data-listening-player] select').forEach(el => el.disabled = false);
+  document.addEventListener('click', () => setTimeout(unlockPlayerControls, 0));
   players.forEach(player => {
     const audio = player.querySelector('audio');
     const play = player.querySelector('[data-action="play"]');
@@ -2200,7 +2153,7 @@
     const volume = player.querySelector('.mlp-volume-range');
     const speed = player.querySelector('.mlp-speed');
     audio.playbackRate = 1;
-    play.addEventListener('click', () => audio.paused ? audio.play() : audio.pause());
+    play.addEventListener('click', () => audio.paused ? audio.play().catch(() => { status.textContent = 'Không phát được file nghe. Vui lòng thử lại.'; }) : audio.pause());
     player.querySelector('[data-action="back"]').addEventListener('click', () => { audio.currentTime = Math.max(0, audio.currentTime - 5); });
     player.querySelector('[data-action="forward"]').addEventListener('click', () => { audio.currentTime = Math.min(Number.isFinite(audio.duration) ? audio.duration : audio.currentTime + 5, audio.currentTime + 5); });
     player.querySelector('[data-action="replay"]').addEventListener('click', () => { pauseOthers(audio); audio.currentTime = 0; audio.play(); });
@@ -2212,11 +2165,11 @@
     audio.addEventListener('loadedmetadata', metadata);
     audio.addEventListener('durationchange', metadata);
     audio.addEventListener('timeupdate', () => { progress.value = audio.currentTime; current.textContent = formatTime(audio.currentTime); });
-    audio.addEventListener('play', () => { pauseOthers(audio); play.textContent = '⏸ Tạm dừng'; status.textContent = 'Đang phát'; });
+    audio.addEventListener('play', () => { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); pauseOthers(audio); play.textContent = '⏸ Tạm dừng'; status.textContent = 'Đang phát'; });
     audio.addEventListener('pause', () => { play.textContent = '▶ Phát'; status.textContent = audio.ended ? 'Đã phát xong' : 'Đã tạm dừng'; });
     audio.addEventListener('ended', () => { play.textContent = '▶ Phát'; status.textContent = 'Đã phát xong'; });
   });
-  document.querySelectorAll('[onclick*="playAudioFallback"], [onclick*="toggleAudio("], [onclick*="playAudioConversation"], [onclick="stopAudio()"]').forEach(button => { if (!button.closest('[data-listening-player]')) button.style.display = 'none'; });
+  document.querySelectorAll('[onclick*="playAudioFallback"], [onclick*="toggleAudio("], [onclick*="playAudioConversation"]').forEach(button => { if (!button.closest('[data-listening-player]')) button.style.display = 'none'; });
 })();
 </script>
 </body>
