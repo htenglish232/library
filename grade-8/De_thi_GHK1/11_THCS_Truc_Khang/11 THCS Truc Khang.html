@@ -35,6 +35,31 @@
       background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
     }
   </style>
+
+<style id="ht-exam-ui">
+body{font-family:'Noto Sans',sans-serif;background:linear-gradient(#f0f9ff,#f0f7ff);color:#1e293b}
+header{background:#ffffffF2!important;backdrop-filter:blur(12px);border-bottom:1px solid #bae6fd!important;box-shadow:0 4px 12px #0c4a6e12}
+main{max-width:64rem!important;width:100%;min-width:0}
+main section{border-radius:1.5rem}
+.ht-title-card{background:linear-gradient(110deg,#0369a1,#0284c7,#1d4ed8)!important;border-radius:1.5rem;box-shadow:0 12px 24px #0284c722}
+.ht-title-card h1,.ht-title-card h2,.ht-title-card h3{color:white!important}
+.ht-title-card label{color:#e0f2fe!important}.ht-title-card input,.ht-title-card textarea,.ht-title-card select{background:#fff!important;color:#1e293b!important;border-color:#bae6fd!important}
+.ht-title-card>div.absolute{display:none}
+header #examStatusBadge,header #statusBadge,header #liveStatusBadge,header #exam-status-badge{display:none!important}
+#htStatus{padding:.4rem .65rem;border:1px solid #fcd34d;border-radius:.75rem;background:#fffbeb;color:#92400e;font-weight:700}
+.ht-header-tools{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;padding:.65rem 1rem;max-width:64rem;margin:auto;border-top:1px solid #e0f2fe;font-size:.75rem}
+.ht-progress{font-weight:800;color:#075985}.ht-home{color:#0369a1;font-weight:700;padding:.65rem;border:1px solid #bae6fd;border-radius:.75rem}
+.ht-listening-player{background:white;border:1px solid #bae6fd;border-radius:1rem;padding:1rem;margin:.75rem 0;display:grid;gap:.75rem;width:100%;min-width:0;box-shadow:0 4px 14px #0f172a14}
+.ht-player-header,.ht-player-times{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;color:#075985;font-size:.8rem}
+.ht-player-controls{display:flex;flex-wrap:wrap;gap:.5rem}.ht-listening-player button,.ht-listening-player select{min-height:44px;border-radius:.75rem;padding:.5rem .75rem;background:#e0f2fe;color:#075985;font-weight:700;border:0}
+.ht-listening-player .ht-play{background:#0284c7;color:white}.ht-listening-player input{width:100%;accent-color:#0284c7}
+.ht-audio-slot{width:100%;flex:1 1 100%;min-width:0}
+.ht-audio-slot-parent{flex-wrap:wrap!important;min-width:0}
+.ht-player-status{color:#64748b}.ht-school{color:#075985;font-weight:800}
+button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%}
+.ht-table-scroll{overflow-x:auto;max-width:100%}
+@media(max-width:640px){header>div{min-width:0}header .flex{flex-wrap:wrap}main{padding-left:.75rem!important;padding-right:.75rem!important}main section{padding-left:1rem!important;padding-right:1rem!important}h1,h2,h3,h4,p,label,td,th{overflow-wrap:anywhere}main .flex>div{min-width:0}button{white-space:normal}header{position:relative!important}}
+</style>
 </head>
 <body class="min-h-screen flex flex-col justify-between antialiased">
 
@@ -64,7 +89,7 @@
         </div>
       </div>
     </div>
-  </header>
+  <div class="ht-header-tools"><span class="ht-school">HT ENGLISH CENTER · THCS Trực Khang</span><span id="htStatus">🟡 Đang làm bài</span><span class="ht-progress" id="htProgress" aria-live="polite"></span><a class="ht-home" href="../../../index.html">⌂ Thư viện bài tập</a></div></header>
 
   <main class="max-w-5xl w-full mx-auto px-4 py-6 sm:py-8 flex-1">
     <!-- Exam Title Card -->
@@ -111,11 +136,18 @@
       </button>
     </div>
 
-    <section class="mb-8">
+    <section class="mb-8"><div class="ht-audio-slot"><div class="ht-listening-player" data-listening-player>
+ <div class="ht-player-header"><strong>🎧 FILE NGHE – LISTENING</strong><span class="ht-player-status" role="status">Chưa phát</span></div>
+ <audio preload="metadata" src="8 -Anh nghe.mp3"></audio>
+ <div class="ht-player-times"><span class="ht-current">0:00</span><span class="ht-duration">0:00</span></div>
+ <input class="ht-seek" type="range" min="0" max="0" step="0.1" value="0" aria-label="Tiến trình FILE NGHE – LISTENING">
+ <div class="ht-player-controls"><button type="button" class="ht-back" aria-label="Lùi 5 giây">↶ 5s</button><button type="button" class="ht-play">🔊 Nghe Audio</button><button type="button" class="ht-forward" aria-label="Tiến 5 giây">5s ↷</button><button type="button" class="ht-stop">⏹ Dừng</button>
+ <select class="ht-speed" aria-label="Tốc độ phát"><option value="0.75">0.75x</option><option value="1" selected>1x</option><option value="1.25">1.25x</option></select></div>
+ </div></div>
       <div class="bg-gradient-to-r from-sky-700 to-sky-600 text-white px-6 py-4 rounded-2xl shadow-sm mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
         <div>
           <h3 class="text-lg font-bold">PART A &ndash; LISTENING (2,4 pts)</h3>
-          <p class="text-xs text-sky-100">Kỹ năng nghe hiểu với 2 đoạn audio độc thoại/hội thoại</p>
+          <p class="text-xs text-sky-100">Các phần Listening dùng chung một file nghe</p>
         </div>
         <span class="text-xs bg-white/20 px-3 py-1 rounded-full font-medium">12 câu &bull; 2,4 điểm</span>
       </div>
@@ -130,20 +162,9 @@
             <span class="text-xs font-semibold text-sky-700 bg-sky-50 border border-sky-200 px-2.5 py-0.5 rounded-full">0.2 đ/câu</span>
           </div>
           <!-- Audio Player Controller -->
-          <div class="mt-4 p-4 rounded-2xl bg-sky-50/70 border border-sky-100 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <div class="flex items-center gap-3">
-              <button type="button" id="btnAudio1" onclick="toggleAudio(1)" class="w-11 h-11 rounded-2xl bg-sky-600 hover:bg-sky-700 text-white flex items-center justify-center font-bold text-lg shadow-md shadow-sky-200 transition">
-                ▶
-              </button>
-              <div>
-                <p class="font-semibold text-slate-800 text-sm">Bản ghi âm 1: Richard &amp; Marie</p>
-                <p class="text-xs text-slate-500" id="audio1Status">Bấm để nghe đoạn hội thoại (chuẩn tiếng Anh)</p>
-              </div>
-            </div>
-            <button type="button" id="btnTranscript1" onclick="toggleTranscript(1)" class="hidden text-xs font-semibold text-sky-700 hover:text-sky-800 bg-white border border-sky-200 px-3 py-1.5 rounded-xl shadow-sm transition">
+          <button type="button" id="btnTranscript1" onclick="toggleTranscript(1)" class="hidden text-xs font-semibold text-sky-700 hover:text-sky-800 bg-white border border-sky-200 px-3 py-1.5 rounded-xl shadow-sm transition">
               📝 Xem transcript
             </button>
-          </div>
           <!-- Transcript Box (Hidden during test) -->
           <div id="transcript1" class="hidden mt-3 p-4 bg-slate-50 rounded-2xl border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-1.5">
             <p class="font-bold text-sky-800">Transcript:</p>
@@ -373,20 +394,9 @@
           </div>
 
           <!-- Audio Player 2 -->
-          <div class="mt-4 p-4 rounded-2xl bg-sky-50/70 border border-sky-100 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <div class="flex items-center gap-3">
-              <button type="button" id="btnAudio2" onclick="toggleAudio(2)" class="w-11 h-11 rounded-2xl bg-sky-600 hover:bg-sky-700 text-white flex items-center justify-center font-bold text-lg shadow-md shadow-sky-200 transition">
-                ▶
-              </button>
-              <div>
-                <p class="font-semibold text-slate-800 text-sm">Bản ghi âm 2: Interview with Mark</p>
-                <p class="text-xs text-slate-500" id="audio2Status">Bấm để nghe đoạn phỏng vấn (tối đa 2 từ mỗi chỗ trống)</p>
-              </div>
-            </div>
-            <button type="button" id="btnTranscript2" onclick="toggleTranscript(2)" class="hidden text-xs font-semibold text-sky-700 hover:text-sky-800 bg-white border border-sky-200 px-3 py-1.5 rounded-xl shadow-sm transition">
+          <button type="button" id="btnTranscript2" onclick="toggleTranscript(2)" class="hidden text-xs font-semibold text-sky-700 hover:text-sky-800 bg-white border border-sky-200 px-3 py-1.5 rounded-xl shadow-sm transition">
               📝 Xem transcript
             </button>
-          </div>
           <!-- Transcript Box 2 -->
           <div id="transcript2" class="hidden mt-3 p-4 bg-slate-50 rounded-2xl border border-slate-200 text-xs text-slate-700 leading-relaxed space-y-1.5">
             <p class="font-bold text-sky-800">Transcript:</p>
@@ -1757,60 +1767,7 @@
     }
 
     let currentPlaying = null;
-    function toggleAudio(partNum) {
-      const btn = document.getElementById(`btnAudio${partNum}`);
-      const status = document.getElementById(`audio${partNum}Status`);
-
-      if (currentPlaying === partNum) {
-        window.speechSynthesis.cancel();
-        btn.innerHTML = "▶";
-        btn.classList.remove('bg-rose-600', 'hover:bg-rose-700');
-        btn.classList.add('bg-sky-600', 'hover:bg-sky-700');
-        status.textContent = "Đã tạm dừng âm thanh.";
-        currentPlaying = null;
-        return;
-      }
-
-      window.speechSynthesis.cancel();
-      if (currentPlaying) {
-        const prevBtn = document.getElementById(`btnAudio${currentPlaying}`);
-        prevBtn.innerHTML = "▶";
-        prevBtn.classList.remove('bg-rose-600', 'hover:bg-rose-700');
-        prevBtn.classList.add('bg-sky-600', 'hover:bg-sky-700');
-      }
-
-      currentPlaying = partNum;
-      btn.innerHTML = "⏹";
-      btn.classList.remove('bg-sky-600', 'hover:bg-sky-700');
-      btn.classList.add('bg-rose-600', 'hover:bg-rose-700');
-      status.textContent = "🔊 Đang phát âm thanh bài nghe...";
-
-      let textToRead = "";
-      if (partNum === 1) {
-        textToRead = `Hi Richard, let me introduce you to my brother, John. Oh, hi Mary! Hi John, nice to meet you. Hi Richard, I heard you play basketball quite well. I’ve been playing for five years, and I’m also looking for new teammates for my basketball club. That’s great! You two should play together sometimes. John, are you playing for any clubs? Currently, I’m playing for my high school basketball club, but I’m graduating soon so I have been looking for a few friends to play together and sharpen up some skills. We can play together, and see if we could form a club! Wow, you two seem to get along well. What about setting a date for the basketball play-off? Next Saturday, nine a.m. at the City Sport Center. How does that sound, John? Exactly the time I was about to suggest. See you there next Saturday then!`;
-      } else {
-        textToRead = `When do you usually have free time? I usually have free time at the weekend. So how do you spend it? I spend time to connect with my family on Saturdays. We do puzzles, play board games, or go camping. What about Sundays? I usually spend Sundays with my friends. I have a group of friends, and we do lots of things together. For example? Sometimes, I invite them to my house. We cook our favourite food and watch a video. It's fun, and better than going to the cinema. Do you do outdoor activities together? Yes, we love spending time outdoors. We go to the park to play volleyball or skateboard. It helps us stay in shape. Sometimes we go for a bike ride around our city. This gives us a chance to see different places in our city. Thanks for letting us interview you.`;
-      }
-
-      const utterance = new SpeechSynthesisUtterance(textToRead);
-      utterance.lang = 'en-US';
-      utterance.rate = 0.88;
-      utterance.onend = function() {
-        btn.innerHTML = "▶";
-        btn.classList.remove('bg-rose-600', 'hover:bg-rose-700');
-        btn.classList.add('bg-sky-600', 'hover:bg-sky-700');
-        status.textContent = "Đã phát xong. Bấm để nghe lại.";
-        currentPlaying = null;
-      };
-      utterance.onerror = function() {
-        btn.innerHTML = "▶";
-        btn.classList.remove('bg-rose-600', 'hover:bg-rose-700');
-        btn.classList.add('bg-sky-600', 'hover:bg-sky-700');
-        status.textContent = "Lỗi âm thanh trình duyệt. Bấm để thử lại.";
-        currentPlaying = null;
-      };
-      window.speechSynthesis.speak(utterance);
-    }
+    function toggleAudio(partNum) { /* Listening uses the real audio players below. */ }
 
     function toggleTranscript(partNum) {
       if (!isSubmitted) return;
@@ -2191,5 +2148,63 @@
       initRearrangePools();
     });
   </script>
+
+<script id="ht-exam-runtime">
+(function(){
+const players=[...document.querySelectorAll('.ht-listening-player')];
+const time=n=>Number.isFinite(n)?Math.floor(n/60)+':'+String(Math.floor(n%60)).padStart(2,'0'):'0:00';
+window.htStopListening=function(){players.forEach(p=>{const a=p.querySelector('audio');a.pause();a.currentTime=0;});};
+players.forEach(p=>{
+ const a=p.querySelector('audio'),btn=p.querySelector('.ht-play'),status=p.querySelector('.ht-player-status'),seek=p.querySelector('.ht-seek');
+ function sync(){btn.textContent=a.paused?'🔊 Nghe Audio':'⏸ Tạm dừng';seek.max=Number.isFinite(a.duration)?a.duration:0;seek.value=a.currentTime;p.querySelector('.ht-current').textContent=time(a.currentTime);p.querySelector('.ht-duration').textContent=time(a.duration);}
+ btn.addEventListener('click',()=>{
+  if(!a.paused){a.pause();return;}
+  document.querySelectorAll('audio').forEach(other=>{if(other!==a)other.pause();});
+  if('speechSynthesis' in window)window.speechSynthesis.cancel();
+  a.play().catch(()=>{status.textContent='Không phát được file nghe. Vui lòng thử lại.';sync();});
+ });
+ p.querySelector('.ht-stop').addEventListener('click',()=>{a.pause();a.currentTime=0;status.textContent='Đã dừng';sync();});
+ p.querySelector('.ht-back').addEventListener('click',()=>{a.currentTime=Math.max(0,a.currentTime-5);});
+ p.querySelector('.ht-forward').addEventListener('click',()=>{if(Number.isFinite(a.duration))a.currentTime=Math.min(a.duration,a.currentTime+5);});
+ seek.addEventListener('input',()=>{if(Number.isFinite(a.duration))a.currentTime=Number(seek.value);});
+ p.querySelector('.ht-speed').addEventListener('change',e=>{a.playbackRate=Number(e.target.value);});
+ a.addEventListener('play',()=>{status.textContent='Đang phát';sync();});
+ a.addEventListener('pause',()=>{status.textContent='Tạm dừng';sync();});
+ a.addEventListener('ended',()=>{status.textContent='Đã phát xong';sync();});
+ a.addEventListener('error',()=>{status.textContent='Không tải được file nghe. Vui lòng kiểm tra kết nối.';});
+ ['timeupdate','loadedmetadata','durationchange'].forEach(event=>a.addEventListener(event,sync));sync();
+});
+// Keep audio usable when an existing grader locks all inputs.
+function submitted(){return isSubmitted;}
+function arrangeItems(){return Object.values(rearrangeData).map(x=>x.userOrder);}
+const answerFields=()=>[...document.querySelectorAll('main input:not([type=radio]):not([type=range]):not([type=hidden]),main textarea,main select')].filter(el=>!el.closest('.ht-listening-player')&&!/student|name|class/i.test(el.id));
+function counts(){
+ const radios=[...new Set([...document.querySelectorAll('main input[type=radio]')].map(el=>el.name))];
+ const fields=answerFields(),arrange=arrangeItems();
+ return {total:radios.length+fields.length+arrange.length,answered:radios.filter(name=>[...document.getElementsByName(name)].some(el=>el.checked)).length+fields.filter(el=>el.value.trim()).length+arrange.filter(a=>a.length>0).length};
+}
+let locked=false;
+function refresh(){
+ const c=counts(),el=document.getElementById('htProgress');if(el)el.textContent=c.answered+' / '+c.total+' câu';
+ const badge=document.getElementById('htStatus');if(badge)badge.textContent=submitted()?'🔒 Đã nộp bài':'🟡 Đang làm bài';
+ if(submitted()&&!locked){
+  locked=true;window.htStopListening();
+  document.querySelectorAll('main input,main select,main textarea').forEach(el=>{if(!el.closest('.ht-listening-player'))el.disabled=true;});
+  document.querySelectorAll('main input[type=radio]').forEach(el=>el.disabled=true);
+  document.querySelectorAll('.ht-listening-player input,.ht-listening-player select,.ht-listening-player button').forEach(el=>{el.disabled=false;el.classList.remove('opacity-75','cursor-not-allowed');});
+  document.querySelectorAll('[id]').forEach(el=>{if(/transcript|^trans[12]$/i.test(el.id)&&!/(notice|btn|button|lbl|label)/i.test(el.id)&&!/modal/i.test(el.id)){el.classList.remove('hidden');if(el.tagName==='DETAILS')el.open=true;}});
+ }
+}
+document.addEventListener('input',refresh);document.addEventListener('change',refresh);
+document.addEventListener('click',()=>setTimeout(refresh,0));
+document.querySelectorAll('table').forEach(table=>{const wrap=document.createElement('div');wrap.className='ht-table-scroll';table.parentNode.insertBefore(wrap,table);wrap.appendChild(table);});
+document.querySelectorAll('.ht-audio-slot').forEach(slot=>{slot.parentElement.classList.add('ht-audio-slot-parent');});
+const firstHeading=document.querySelector('main h1,main h2');if(firstHeading){let card=firstHeading.parentElement;while(card.parentElement&&card.parentElement.tagName!=='MAIN'&&!card.className.includes('rounded'))card=card.parentElement;card.classList.add('ht-title-card');}
+document.addEventListener('DOMContentLoaded',()=>setTimeout(refresh,0));
+const originalSubmit=window['confirmSubmitTest'];window['confirmSubmitTest']=function(){if(submitted())return;const result=originalSubmit.apply(this,arguments);refresh();return result;};
+document.addEventListener('click',event=>{if(!submitted())return;const el=event.target.closest('[onclick]');if(el&&/^(selectChip|unselectChip|resetChips|selectBox|removeBox|undoBox|clearBox|pickWord|removeWord|resetRearrange|addChunk|removeChunk|selectWord|removeSelectedWord|undoWord|resetWords|chooseWord|unchooseWord|resetArrange|selectWordArrangement|deselectWord|resetWordArrangement)/.test(el.getAttribute('onclick')||'')){event.preventDefault();event.stopImmediatePropagation();}},true);
+refresh();
+})();
+</script>
 </body>
 </html>

@@ -1762,50 +1762,11 @@
       track2: "Mi: Ms Hoa said we can discuss the stress we have in our lives on the class forum. So, what stress do you have? Minh: I'm tired of trying to meet my parents' expectations. They want me to study well, and be good at many things, so they send me to many classes like maths, English, piano and karate. Ann: Why don't you tell them your interests and abilities, Minh? I talked to my parents about this, so they no longer send me to classes I don't like. Now I just focus on my health and try to lose some weight. Mi: You look fit, Ann. You should feel good about your body. Ann: Are you kidding, Mi? I still need to lose a few more kilos. How about you, Mi? Mi: Actually, I don't get on with my sister. She is jealous of anything I have and always starts arguments. So I had to talk to my mum."
     };
 
-    function playAudioFallback(trackKey) {
-      stopAudio();
-      if (!('speechSynthesis' in window)) return;
-
-      const btn1 = document.getElementById('track1BtnText');
-      const btn2 = document.getElementById('track2BtnText');
-
-      if (trackKey === 'track1') {
-        btn1.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang đọc...';
-        btn2.innerHTML = 'Đọc giọng chuẩn 🔊';
-      } else {
-        btn2.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Đang đọc...';
-        btn1.innerHTML = 'Đọc giọng chuẩn 🔊';
-      }
-
-      const text = audioScripts[trackKey];
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'en-US';
-      utterance.rate = 0.88;
-      utterance.pitch = 1.0;
-
-      utterance.onend = () => {
-        btn1.innerHTML = 'Đọc giọng chuẩn 🔊';
-        btn2.innerHTML = 'Đọc giọng chuẩn 🔊';
-      };
-      utterance.onerror = () => {
-        btn1.innerHTML = 'Đọc giọng chuẩn 🔊';
-        btn2.innerHTML = 'Đọc giọng chuẩn 🔊';
-      };
-
-      synth.speak(utterance);
-    }
+    function playAudioFallback(trackKey) { /* Main Listening is handled by the MP3 players. */ }
 
     function stopAudio() {
-      if (synth) synth.cancel();
-      const a1 = document.getElementById('nativeAudio1');
-      const a2 = document.getElementById('nativeAudio2');
-      if (a1) a1.pause();
-      if (a2) a2.pause();
-
-      const btn1 = document.getElementById('track1BtnText');
-      const btn2 = document.getElementById('track2BtnText');
-      if (btn1) btn1.innerHTML = 'Đọc giọng chuẩn 🔊';
-      if (btn2) btn2.innerHTML = 'Đọc giọng chuẩn 🔊';
+      document.querySelectorAll('[data-listening-player] audio').forEach(audio => {audio.pause();audio.currentTime = 0;});
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
     }
 
     /* =======================================================
@@ -2422,6 +2383,8 @@
     const other = player.querySelector('audio');
     if (other !== active && !other.paused) other.pause();
   });
+  const unlockPlayerControls = () => document.querySelectorAll('[data-listening-player] input, [data-listening-player] select').forEach(el => el.disabled = false);
+  document.addEventListener('click', () => setTimeout(unlockPlayerControls, 0));
   players.forEach(player => {
     const audio = player.querySelector('audio');
     const play = player.querySelector('[data-action="play"]');
@@ -2433,7 +2396,7 @@
     const volume = player.querySelector('.mlp-volume-range');
     const speed = player.querySelector('.mlp-speed');
     audio.playbackRate = 1;
-    play.addEventListener('click', () => audio.paused ? audio.play() : audio.pause());
+    play.addEventListener('click', () => audio.paused ? audio.play().catch(() => { status.textContent = 'Không phát được file nghe. Vui lòng thử lại.'; }) : audio.pause());
     player.querySelector('[data-action="back"]').addEventListener('click', () => { audio.currentTime = Math.max(0, audio.currentTime - 5); });
     player.querySelector('[data-action="forward"]').addEventListener('click', () => { audio.currentTime = Math.min(Number.isFinite(audio.duration) ? audio.duration : audio.currentTime + 5, audio.currentTime + 5); });
     player.querySelector('[data-action="replay"]').addEventListener('click', () => { pauseOthers(audio); audio.currentTime = 0; audio.play(); });
@@ -2445,11 +2408,11 @@
     audio.addEventListener('loadedmetadata', metadata);
     audio.addEventListener('durationchange', metadata);
     audio.addEventListener('timeupdate', () => { progress.value = audio.currentTime; current.textContent = formatTime(audio.currentTime); });
-    audio.addEventListener('play', () => { pauseOthers(audio); play.textContent = '⏸ Tạm dừng'; status.textContent = 'Đang phát'; });
+    audio.addEventListener('play', () => { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); pauseOthers(audio); play.textContent = '⏸ Tạm dừng'; status.textContent = 'Đang phát'; });
     audio.addEventListener('pause', () => { play.textContent = '▶ Phát'; status.textContent = audio.ended ? 'Đã phát xong' : 'Đã tạm dừng'; });
     audio.addEventListener('ended', () => { play.textContent = '▶ Phát'; status.textContent = 'Đã phát xong'; });
   });
-  document.querySelectorAll('[onclick*="playAudioFallback"], [onclick*="toggleAudio("], [onclick*="playAudioConversation"], [onclick="stopAudio()"]').forEach(button => { if (!button.closest('[data-listening-player]')) button.style.display = 'none'; });
+  document.querySelectorAll('[onclick*="playAudioFallback"], [onclick*="toggleAudio("], [onclick*="playAudioConversation"]').forEach(button => { if (!button.closest('[data-listening-player]')) button.style.display = 'none'; });
 })();
 </script>
 </body>

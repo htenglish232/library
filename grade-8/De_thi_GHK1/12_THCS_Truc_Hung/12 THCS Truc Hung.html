@@ -67,6 +67,31 @@
       border-radius: 4px;
     }
   </style>
+
+<style id="ht-exam-ui">
+body{font-family:'Noto Sans',sans-serif;background:linear-gradient(#f0f9ff,#f0f7ff);color:#1e293b}
+header{background:#ffffffF2!important;backdrop-filter:blur(12px);border-bottom:1px solid #bae6fd!important;box-shadow:0 4px 12px #0c4a6e12}
+main{max-width:64rem!important;width:100%;min-width:0}
+main section{border-radius:1.5rem}
+.ht-title-card{background:linear-gradient(110deg,#0369a1,#0284c7,#1d4ed8)!important;border-radius:1.5rem;box-shadow:0 12px 24px #0284c722}
+.ht-title-card h1,.ht-title-card h2,.ht-title-card h3{color:white!important}
+.ht-title-card label{color:#e0f2fe!important}.ht-title-card input,.ht-title-card textarea,.ht-title-card select{background:#fff!important;color:#1e293b!important;border-color:#bae6fd!important}
+.ht-title-card>div.absolute{display:none}
+header #examStatusBadge,header #statusBadge,header #liveStatusBadge,header #exam-status-badge{display:none!important}
+#htStatus{padding:.4rem .65rem;border:1px solid #fcd34d;border-radius:.75rem;background:#fffbeb;color:#92400e;font-weight:700}
+.ht-header-tools{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;padding:.65rem 1rem;max-width:64rem;margin:auto;border-top:1px solid #e0f2fe;font-size:.75rem}
+.ht-progress{font-weight:800;color:#075985}.ht-home{color:#0369a1;font-weight:700;padding:.65rem;border:1px solid #bae6fd;border-radius:.75rem}
+.ht-listening-player{background:white;border:1px solid #bae6fd;border-radius:1rem;padding:1rem;margin:.75rem 0;display:grid;gap:.75rem;width:100%;min-width:0;box-shadow:0 4px 14px #0f172a14}
+.ht-player-header,.ht-player-times{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;color:#075985;font-size:.8rem}
+.ht-player-controls{display:flex;flex-wrap:wrap;gap:.5rem}.ht-listening-player button,.ht-listening-player select{min-height:44px;border-radius:.75rem;padding:.5rem .75rem;background:#e0f2fe;color:#075985;font-weight:700;border:0}
+.ht-listening-player .ht-play{background:#0284c7;color:white}.ht-listening-player input{width:100%;accent-color:#0284c7}
+.ht-audio-slot{width:100%;flex:1 1 100%;min-width:0}
+.ht-audio-slot-parent{flex-wrap:wrap!important;min-width:0}
+.ht-player-status{color:#64748b}.ht-school{color:#075985;font-weight:800}
+button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%}
+.ht-table-scroll{overflow-x:auto;max-width:100%}
+@media(max-width:640px){header>div{min-width:0}header .flex{flex-wrap:wrap}main{padding-left:.75rem!important;padding-right:.75rem!important}main section{padding-left:1rem!important;padding-right:1rem!important}h1,h2,h3,h4,p,label,td,th{overflow-wrap:anywhere}main .flex>div{min-width:0}button{white-space:normal}header{position:relative!important}}
+</style>
 </head>
 <body class="min-h-screen flex flex-col bg-slate-50 text-slate-800">
 
@@ -95,7 +120,7 @@
         </div>
       </div>
     </div>
-  </header>
+  <div class="ht-header-tools"><span class="ht-school">HT ENGLISH CENTER · THCS Trực Hùng</span><span id="htStatus">🟡 Đang làm bài</span><span class="ht-progress" id="htProgress" aria-live="polite"></span><a class="ht-home" href="../../../index.html">⌂ Thư viện bài tập</a></div></header>
 
   <main class="flex-grow max-w-5xl w-full mx-auto px-3 sm:px-6 py-6 space-y-6">
     <!-- Test Title Card -->
@@ -110,7 +135,7 @@
       <p class="text-sm sm:text-base text-slate-500 mt-2">
         Thời gian làm bài: 60 phút &bull; Môn: Tiếng Anh 8 &bull; Giáo viên: Ms. Lily
       </p>
-      
+
       <!-- Submission Lock Notification -->
       <div id="lockedBanner" class="hidden mt-4 p-3 bg-amber-50 border border-amber-200 rounded-xl text-amber-800 text-sm font-medium flex items-center justify-center gap-2">
         <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
@@ -167,7 +192,14 @@
       </div>
 
       <div class="p-5 sm:p-6 space-y-8">
-        <!-- Part A - Section I -->
+        <div class="ht-audio-slot"><div class="ht-listening-player" data-listening-player>
+ <div class="ht-player-header"><strong>🎧 FILE NGHE – LISTENING</strong><span class="ht-player-status" role="status">Chưa phát</span></div>
+ <audio preload="metadata" src="FILE NGHE.mp3"></audio>
+ <div class="ht-player-times"><span class="ht-current">0:00</span><span class="ht-duration">0:00</span></div>
+ <input class="ht-seek" type="range" min="0" max="0" step="0.1" value="0" aria-label="Tiến trình FILE NGHE – LISTENING">
+ <div class="ht-player-controls"><button type="button" class="ht-back" aria-label="Lùi 5 giây">↶ 5s</button><button type="button" class="ht-play">🔊 Nghe Audio</button><button type="button" class="ht-forward" aria-label="Tiến 5 giây">5s ↷</button><button type="button" class="ht-stop">⏹ Dừng</button>
+ <select class="ht-speed" aria-label="Tốc độ phát"><option value="0.75">0.75x</option><option value="1" selected>1x</option><option value="1.25">1.25x</option></select></div>
+ </div></div><!-- Part A - Section I -->
         <div class="space-y-4">
           <div class="border-b border-slate-100 pb-3">
             <h4 class="text-base sm:text-lg font-bold text-slate-800 flex items-center gap-2">
@@ -182,13 +214,8 @@
           <!-- Audio Player for Section I -->
           <div class="bg-sky-50/70 border border-sky-200 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
             <div class="flex items-center gap-3 w-full sm:w-auto">
-              <button type="button" id="btnAudioSec1" onclick="toggleListeningAudio('sec1')" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 active:bg-sky-800 text-white rounded-xl font-medium text-sm flex items-center gap-2 shadow-sm transition">
-                <svg id="iconSec1Play" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
-                <span id="textSec1Play">Nghe bài nói (Speaker 1, 2, 3) 🔊</span>
-              </button>
-              <button type="button" onclick="stopListeningAudio('sec1')" class="px-3 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl text-xs font-medium transition">
-                Dừng
-              </button>
+
+
             </div>
             <!-- Transcript Button (Hidden before submit) -->
             <button type="button" id="btnTranscriptSec1" onclick="toggleTranscript('transcriptSec1')" class="hidden px-3.5 py-1.5 bg-sky-100 hover:bg-sky-200 text-sky-800 text-xs font-semibold rounded-lg border border-sky-300 transition">
@@ -393,13 +420,8 @@
           <!-- Audio Player for Section II -->
           <div class="bg-sky-50/70 border border-sky-200 rounded-xl p-4 flex flex-col sm:flex-row items-center justify-between gap-3">
             <div class="flex items-center gap-3 w-full sm:w-auto">
-              <button type="button" id="btnAudioSec2" onclick="toggleListeningAudio('sec2')" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 active:bg-sky-800 text-white rounded-xl font-medium text-sm flex items-center gap-2 shadow-sm transition">
-                <svg id="iconSec2Play" class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/></svg>
-                <span id="textSec2Play">Nghe khảo sát giới trẻ (Survey) 🔊</span>
-              </button>
-              <button type="button" onclick="stopListeningAudio('sec2')" class="px-3 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-xl text-xs font-medium transition">
-                Dừng
-              </button>
+
+
             </div>
             <!-- Transcript Button (Hidden before submit) -->
             <button type="button" id="btnTranscriptSec2" onclick="toggleTranscript('transcriptSec2')" class="hidden px-3.5 py-1.5 bg-sky-100 hover:bg-sky-200 text-sky-800 text-xs font-semibold rounded-lg border border-sky-300 transition">
@@ -1886,66 +1908,13 @@
     let activeListeningKey = null;
     let isPlayingListening = false;
 
-    function toggleListeningAudio(secKey) {
-      if (isPlayingListening && activeListeningKey === secKey) {
-        stopListeningAudio(secKey);
-        return;
-      }
-      playListeningScript(secKey);
-    }
+    function toggleListeningAudio(secKey) { /* Listening uses the real audio players below. */ }
 
-    function playListeningScript(secKey) {
-      synth.cancel();
-      activeListeningKey = secKey;
-      isPlayingListening = true;
-      updateListeningPlayButtons();
+    function playListeningScript(secKey) { /* Listening uses the real audio players below. */ }
 
-      const scriptLines = listeningScripts[secKey];
-      let lineIndex = 0;
+    function stopListeningAudio(secKey) { if (window.htStopListening) window.htStopListening(); if ('speechSynthesis' in window) window.speechSynthesis.cancel(); }
 
-      function speakNextLine() {
-        if (!isPlayingListening || lineIndex >= scriptLines.length) {
-          stopListeningAudio(secKey);
-          return;
-        }
-
-        const line = scriptLines[lineIndex];
-        const utterance = new SpeechSynthesisUtterance(line.text);
-        utterance.lang = 'en-US';
-        utterance.rate = 0.92;
-
-        utterance.onend = () => {
-          lineIndex++;
-          speakNextLine();
-        };
-
-        utterance.onerror = () => {
-          stopListeningAudio(secKey);
-        };
-
-        synth.speak(utterance);
-      }
-
-      speakNextLine();
-    }
-
-    function stopListeningAudio(secKey) {
-      synth.cancel();
-      isPlayingListening = false;
-      activeListeningKey = null;
-      updateListeningPlayButtons();
-    }
-
-    function updateListeningPlayButtons() {
-      const btn1 = document.getElementById('textSec1Play');
-      const btn2 = document.getElementById('textSec2Play');
-      if (btn1) {
-        btn1.textContent = (isPlayingListening && activeListeningKey === 'sec1') ? 'Đang phát bài nói... (Bấm để tạm dừng)' : 'Nghe bài nói (Speaker 1, 2, 3) 🔊';
-      }
-      if (btn2) {
-        btn2.textContent = (isPlayingListening && activeListeningKey === 'sec2') ? 'Đang phát khảo sát... (Bấm để tạm dừng)' : 'Nghe khảo sát giới trẻ (Survey) 🔊';
-      }
-    }
+    function updateListeningPlayButtons() { if (window.htStopListening) window.htStopListening(); if ('speechSynthesis' in window) window.speechSynthesis.cancel(); }
 
     function toggleTranscript(elemId) {
       const elem = document.getElementById(elemId);
@@ -2114,7 +2083,7 @@
           // Fill-in text (Verb forms, Wh-questions, Rewrite)
           const inputElem = card.querySelector('input[type="text"]');
           const userVal = inputElem ? inputElem.value.trim().toLowerCase() : '';
-          
+
           let isCorrect = false;
           if (userVal.length > 0) {
             isCorrect = item.correctKeywords.some(keyword => userVal.includes(keyword.toLowerCase()));
@@ -2155,7 +2124,7 @@
           });
           const userConstructed = userWords.join(' ').trim() + qObj.punctuation;
           const targetAnswer = item.correctText.trim();
-          
+
           // Case-insensitive normalization for comparison
           const normalize = str => str.replace(/\s+/g, ' ').toLowerCase().trim();
           const isCorrect = normalize(userConstructed) === normalize(targetAnswer);
@@ -2208,5 +2177,63 @@
       initRearrangeUI();
     });
   </script>
+
+<script id="ht-exam-runtime">
+(function(){
+const players=[...document.querySelectorAll('.ht-listening-player')];
+const time=n=>Number.isFinite(n)?Math.floor(n/60)+':'+String(Math.floor(n%60)).padStart(2,'0'):'0:00';
+window.htStopListening=function(){players.forEach(p=>{const a=p.querySelector('audio');a.pause();a.currentTime=0;});};
+players.forEach(p=>{
+ const a=p.querySelector('audio'),btn=p.querySelector('.ht-play'),status=p.querySelector('.ht-player-status'),seek=p.querySelector('.ht-seek');
+ function sync(){btn.textContent=a.paused?'🔊 Nghe Audio':'⏸ Tạm dừng';seek.max=Number.isFinite(a.duration)?a.duration:0;seek.value=a.currentTime;p.querySelector('.ht-current').textContent=time(a.currentTime);p.querySelector('.ht-duration').textContent=time(a.duration);}
+ btn.addEventListener('click',()=>{
+  if(!a.paused){a.pause();return;}
+  document.querySelectorAll('audio').forEach(other=>{if(other!==a)other.pause();});
+  if('speechSynthesis' in window)window.speechSynthesis.cancel();
+  a.play().catch(()=>{status.textContent='Không phát được file nghe. Vui lòng thử lại.';sync();});
+ });
+ p.querySelector('.ht-stop').addEventListener('click',()=>{a.pause();a.currentTime=0;status.textContent='Đã dừng';sync();});
+ p.querySelector('.ht-back').addEventListener('click',()=>{a.currentTime=Math.max(0,a.currentTime-5);});
+ p.querySelector('.ht-forward').addEventListener('click',()=>{if(Number.isFinite(a.duration))a.currentTime=Math.min(a.duration,a.currentTime+5);});
+ seek.addEventListener('input',()=>{if(Number.isFinite(a.duration))a.currentTime=Number(seek.value);});
+ p.querySelector('.ht-speed').addEventListener('change',e=>{a.playbackRate=Number(e.target.value);});
+ a.addEventListener('play',()=>{status.textContent='Đang phát';sync();});
+ a.addEventListener('pause',()=>{status.textContent='Tạm dừng';sync();});
+ a.addEventListener('ended',()=>{status.textContent='Đã phát xong';sync();});
+ a.addEventListener('error',()=>{status.textContent='Không tải được file nghe. Vui lòng kiểm tra kết nối.';});
+ ['timeupdate','loadedmetadata','durationchange'].forEach(event=>a.addEventListener(event,sync));sync();
+});
+// Keep audio usable when an existing grader locks all inputs.
+function submitted(){return isSubmitted;}
+function arrangeItems(){return Object.values(rearrangeData).map(x=>x.selectedIds);}
+const answerFields=()=>[...document.querySelectorAll('main input:not([type=radio]):not([type=range]):not([type=hidden]),main textarea,main select')].filter(el=>!el.closest('.ht-listening-player')&&!/student|name|class/i.test(el.id));
+function counts(){
+ const radios=[...new Set([...document.querySelectorAll('main input[type=radio]')].map(el=>el.name))];
+ const fields=answerFields(),arrange=arrangeItems();
+ return {total:radios.length+fields.length+arrange.length,answered:radios.filter(name=>[...document.getElementsByName(name)].some(el=>el.checked)).length+fields.filter(el=>el.value.trim()).length+arrange.filter(a=>a.length>0).length};
+}
+let locked=false;
+function refresh(){
+ const c=counts(),el=document.getElementById('htProgress');if(el)el.textContent=c.answered+' / '+c.total+' câu';
+ const badge=document.getElementById('htStatus');if(badge)badge.textContent=submitted()?'🔒 Đã nộp bài':'🟡 Đang làm bài';
+ if(submitted()&&!locked){
+  locked=true;window.htStopListening();
+  document.querySelectorAll('main input,main select,main textarea').forEach(el=>{if(!el.closest('.ht-listening-player'))el.disabled=true;});
+  document.querySelectorAll('main input[type=radio]').forEach(el=>el.disabled=true);
+  document.querySelectorAll('.ht-listening-player input,.ht-listening-player select,.ht-listening-player button').forEach(el=>{el.disabled=false;el.classList.remove('opacity-75','cursor-not-allowed');});
+  document.querySelectorAll('[id]').forEach(el=>{if(/transcript|^trans[12]$/i.test(el.id)&&!/(notice|btn|button|lbl|label)/i.test(el.id)&&!/modal/i.test(el.id)){el.classList.remove('hidden');if(el.tagName==='DETAILS')el.open=true;}});
+ }
+}
+document.addEventListener('input',refresh);document.addEventListener('change',refresh);
+document.addEventListener('click',()=>setTimeout(refresh,0));
+document.querySelectorAll('table').forEach(table=>{const wrap=document.createElement('div');wrap.className='ht-table-scroll';table.parentNode.insertBefore(wrap,table);wrap.appendChild(table);});
+document.querySelectorAll('.ht-audio-slot').forEach(slot=>{slot.parentElement.classList.add('ht-audio-slot-parent');});
+const firstHeading=document.querySelector('main h1,main h2');if(firstHeading){let card=firstHeading.parentElement;while(card.parentElement&&card.parentElement.tagName!=='MAIN'&&!card.className.includes('rounded'))card=card.parentElement;card.classList.add('ht-title-card');}
+document.addEventListener('DOMContentLoaded',()=>setTimeout(refresh,0));
+const originalSubmit=window['finalizeSubmission'];window['finalizeSubmission']=function(){if(submitted())return;const result=originalSubmit.apply(this,arguments);refresh();return result;};
+document.addEventListener('click',event=>{if(!submitted())return;const el=event.target.closest('[onclick]');if(el&&/^(selectChip|unselectChip|resetChips|selectBox|removeBox|undoBox|clearBox|pickWord|removeWord|resetRearrange|addChunk|removeChunk|selectWord|removeSelectedWord|undoWord|resetWords|chooseWord|unchooseWord|resetArrange|selectWordArrangement|deselectWord|resetWordArrangement)/.test(el.getAttribute('onclick')||'')){event.preventDefault();event.stopImmediatePropagation();}},true);
+refresh();
+})();
+</script>
 </body>
 </html>

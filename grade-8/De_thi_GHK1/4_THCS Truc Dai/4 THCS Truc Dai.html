@@ -1586,37 +1586,11 @@
       }
     }
 
-    function playListeningAudio(track) {
-      stopAudio();
-      const audioSrc = track === 'A1' ? 'Nghe A.I.mp3' : 'Nghe A.II.mp3';
-      currentAudioObj = new Audio(audioSrc);
-
-      currentAudioObj.play().catch(() => {
-        // Fallback to SpeechSynthesis if MP3 asset is not reachable
-        if ('speechSynthesis' in window) {
-          let script = "";
-          if (track === 'A1') {
-            script = "My grandparents live in the countryside. Every year, I spend my whole summer vacation with them. There are many things I like about life there, like the open space, the friendly villagers, and the traditional games children play. There is one thing which is very different from city life. That is the village open-air market, where the villagers sell their homemade or home-grown products. Not many people in the village have a fridge, so they go to the market every day to buy food and other necessary things. They all come from the same village, so almost everybody knows one another. The market is not just a place for buying and selling. It is also a place for the villagers to meet and talk. The market brings the people in the village closer.";
-          } else {
-            script = "What's your favourite hobby at the moment, Matthew? - I don't know. But Christina, she's in my class, is in the mountains this week. She loves snowboarding. - That's an exciting hobby. What about Jason? Does he still enjoy drawing cartoons? - It's funny. He prefers being in the kitchen now. He loves making strange biscuits and things. Some of them taste terrible! - Do you remember Tania? - Oh, the girl who played guitar at your party? - That's right. She spends hours practising that. She wants to be a real musician one day. - And what about Steven? Isn't he good at volleyball? - No, he just loves sending messages to everyone on the computer. - Well, I'm the same. - Molly's always out on one of her bikes somewhere. She'll help repair them too. If you've got a problem, she'll know what to do. - That's useful. - And Ivan enjoys entering competitions. He loves difficult science questions most. He reads different science magazines online. - He must be very clever. - Yes, he is.";
-          }
-          const utter = new SpeechSynthesisUtterance(script);
-          utter.lang = 'en-US';
-          utter.rate = 0.88;
-          window.speechSynthesis.speak(utter);
-        }
-      });
-    }
+    function playListeningAudio(track) { /* Main Listening is handled by the MP3 players. */ }
 
     function stopAudio() {
-      if (currentAudioObj) {
-        currentAudioObj.pause();
-        currentAudioObj.currentTime = 0;
-        currentAudioObj = null;
-      }
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-      }
+      document.querySelectorAll('[data-listening-player] audio').forEach(audio => {audio.pause();audio.currentTime = 0;});
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
     }
 
     function toggleElement(elemId) {
@@ -2248,6 +2222,8 @@
     const other = player.querySelector('audio');
     if (other !== active && !other.paused) other.pause();
   });
+  const unlockPlayerControls = () => document.querySelectorAll('[data-listening-player] input, [data-listening-player] select').forEach(el => el.disabled = false);
+  document.addEventListener('click', () => setTimeout(unlockPlayerControls, 0));
   players.forEach(player => {
     const audio = player.querySelector('audio');
     const play = player.querySelector('[data-action="play"]');
@@ -2259,7 +2235,7 @@
     const volume = player.querySelector('.mlp-volume-range');
     const speed = player.querySelector('.mlp-speed');
     audio.playbackRate = 1;
-    play.addEventListener('click', () => audio.paused ? audio.play() : audio.pause());
+    play.addEventListener('click', () => audio.paused ? audio.play().catch(() => { status.textContent = 'Không phát được file nghe. Vui lòng thử lại.'; }) : audio.pause());
     player.querySelector('[data-action="back"]').addEventListener('click', () => { audio.currentTime = Math.max(0, audio.currentTime - 5); });
     player.querySelector('[data-action="forward"]').addEventListener('click', () => { audio.currentTime = Math.min(Number.isFinite(audio.duration) ? audio.duration : audio.currentTime + 5, audio.currentTime + 5); });
     player.querySelector('[data-action="replay"]').addEventListener('click', () => { pauseOthers(audio); audio.currentTime = 0; audio.play(); });
@@ -2271,11 +2247,11 @@
     audio.addEventListener('loadedmetadata', metadata);
     audio.addEventListener('durationchange', metadata);
     audio.addEventListener('timeupdate', () => { progress.value = audio.currentTime; current.textContent = formatTime(audio.currentTime); });
-    audio.addEventListener('play', () => { pauseOthers(audio); play.textContent = '⏸ Tạm dừng'; status.textContent = 'Đang phát'; });
+    audio.addEventListener('play', () => { if ('speechSynthesis' in window) window.speechSynthesis.cancel(); pauseOthers(audio); play.textContent = '⏸ Tạm dừng'; status.textContent = 'Đang phát'; });
     audio.addEventListener('pause', () => { play.textContent = '▶ Phát'; status.textContent = audio.ended ? 'Đã phát xong' : 'Đã tạm dừng'; });
     audio.addEventListener('ended', () => { play.textContent = '▶ Phát'; status.textContent = 'Đã phát xong'; });
   });
-  document.querySelectorAll('[onclick*="playAudioFallback"], [onclick*="toggleAudio("], [onclick*="playAudioConversation"], [onclick="stopAudio()"]').forEach(button => { if (!button.closest('[data-listening-player]')) button.style.display = 'none'; });
+  document.querySelectorAll('[onclick*="playAudioFallback"], [onclick*="toggleAudio("], [onclick*="playAudioConversation"]').forEach(button => { if (!button.closest('[data-listening-player]')) button.style.display = 'none'; });
 })();
 </script>
 </body>

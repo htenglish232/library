@@ -69,6 +69,31 @@
       cursor: not-allowed;
     }
   </style>
+
+<style id="ht-exam-ui">
+body{font-family:'Noto Sans',sans-serif;background:linear-gradient(#f0f9ff,#f0f7ff);color:#1e293b}
+header{background:#ffffffF2!important;backdrop-filter:blur(12px);border-bottom:1px solid #bae6fd!important;box-shadow:0 4px 12px #0c4a6e12}
+main{max-width:64rem!important;width:100%;min-width:0}
+main section{border-radius:1.5rem}
+.ht-title-card{background:linear-gradient(110deg,#0369a1,#0284c7,#1d4ed8)!important;border-radius:1.5rem;box-shadow:0 12px 24px #0284c722}
+.ht-title-card h1,.ht-title-card h2,.ht-title-card h3{color:white!important}
+.ht-title-card label{color:#e0f2fe!important}.ht-title-card input,.ht-title-card textarea,.ht-title-card select{background:#fff!important;color:#1e293b!important;border-color:#bae6fd!important}
+.ht-title-card>div.absolute{display:none}
+header #examStatusBadge,header #statusBadge,header #liveStatusBadge,header #exam-status-badge{display:none!important}
+#htStatus{padding:.4rem .65rem;border:1px solid #fcd34d;border-radius:.75rem;background:#fffbeb;color:#92400e;font-weight:700}
+.ht-header-tools{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.75rem;padding:.65rem 1rem;max-width:64rem;margin:auto;border-top:1px solid #e0f2fe;font-size:.75rem}
+.ht-progress{font-weight:800;color:#075985}.ht-home{color:#0369a1;font-weight:700;padding:.65rem;border:1px solid #bae6fd;border-radius:.75rem}
+.ht-listening-player{background:white;border:1px solid #bae6fd;border-radius:1rem;padding:1rem;margin:.75rem 0;display:grid;gap:.75rem;width:100%;min-width:0;box-shadow:0 4px 14px #0f172a14}
+.ht-player-header,.ht-player-times{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;color:#075985;font-size:.8rem}
+.ht-player-controls{display:flex;flex-wrap:wrap;gap:.5rem}.ht-listening-player button,.ht-listening-player select{min-height:44px;border-radius:.75rem;padding:.5rem .75rem;background:#e0f2fe;color:#075985;font-weight:700;border:0}
+.ht-listening-player .ht-play{background:#0284c7;color:white}.ht-listening-player input{width:100%;accent-color:#0284c7}
+.ht-audio-slot{width:100%;flex:1 1 100%;min-width:0}
+.ht-audio-slot-parent{flex-wrap:wrap!important;min-width:0}
+.ht-player-status{color:#64748b}.ht-school{color:#075985;font-weight:800}
+button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%}
+.ht-table-scroll{overflow-x:auto;max-width:100%}
+@media(max-width:640px){header>div{min-width:0}header .flex{flex-wrap:wrap}main{padding-left:.75rem!important;padding-right:.75rem!important}main section{padding-left:1rem!important;padding-right:1rem!important}h1,h2,h3,h4,p,label,td,th{overflow-wrap:anywhere}main .flex>div{min-width:0}button{white-space:normal}header{position:relative!important}}
+</style>
 </head>
 <body class="min-h-screen pb-24">
 
@@ -105,7 +130,7 @@
         </p>
       </div>
     </div>
-  </header>
+  <div class="ht-header-tools"><span class="ht-school">HT ENGLISH CENTER · THCS Trực Nội</span><span id="htStatus">🟡 Đang làm bài</span><span class="ht-progress" id="htProgress" aria-live="polite"></span><a class="ht-home" href="../../../index.html">⌂ Thư viện bài tập</a></div></header>
 
   <!-- Sticky Exam Controls & Student Status Bar -->
   <div class="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-sky-100 shadow-sm transition-all">
@@ -138,7 +163,7 @@
       </div>
       <h3 class="text-xl sm:text-2xl font-bold text-slate-800">Bài thi đã hoàn thành & Đã chấm tự động</h3>
       <p class="text-xs sm:text-sm text-slate-500 mt-1">Hệ thống đã khóa phiếu làm bài. Mời bạn xem điểm và lời giải chi tiết từng câu bên dưới.</p>
-      
+
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 max-w-2xl mx-auto">
         <div class="bg-brand-50 border border-brand-200 rounded-xl p-3">
           <p class="text-xs text-brand-700 font-semibold uppercase">Điểm số (Thang 10)</p>
@@ -163,7 +188,14 @@
   <!-- Main Content Exam Container -->
   <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 space-y-8" id="test-form">
 
-    <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
+    <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden"><div class="ht-audio-slot"><div class="ht-listening-player" data-listening-player>
+ <div class="ht-player-header"><strong>🎧 FILE NGHE – LISTENING</strong><span class="ht-player-status" role="status">Chưa phát</span></div>
+ <audio preload="metadata" src="FILE NGHE LOP 8.mp3"></audio>
+ <div class="ht-player-times"><span class="ht-current">0:00</span><span class="ht-duration">0:00</span></div>
+ <input class="ht-seek" type="range" min="0" max="0" step="0.1" value="0" aria-label="Tiến trình FILE NGHE – LISTENING">
+ <div class="ht-player-controls"><button type="button" class="ht-back" aria-label="Lùi 5 giây">↶ 5s</button><button type="button" class="ht-play">🔊 Nghe Audio</button><button type="button" class="ht-forward" aria-label="Tiến 5 giây">5s ↷</button><button type="button" class="ht-stop">⏹ Dừng</button>
+ <select class="ht-speed" aria-label="Tốc độ phát"><option value="0.75">0.75x</option><option value="1" selected>1x</option><option value="1.25">1.25x</option></select></div>
+ </div></div>
       <div class="bg-gradient-to-r from-brand-600 to-sky-600 text-white px-5 py-4 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
         <div>
           <span class="text-xs uppercase font-bold tracking-wider text-sky-200">Kỹ năng Nghe</span>
@@ -187,12 +219,8 @@
             </div>
             <!-- Audio Controller for Part I -->
             <div class="flex items-center gap-2">
-              <button type="button" onclick="playAudioTrack('audio-part-1')" class="px-3.5 py-2 bg-brand-50 hover:bg-brand-100 active:bg-brand-200 text-brand-700 rounded-lg text-xs font-semibold border border-brand-200 flex items-center gap-1.5 shadow-sm">
-                <span id="btn-icon-part1">▶️</span> <span id="btn-text-part1">Phát Audio Phần I</span>
-              </button>
-              <button type="button" onclick="stopAudioTrack()" class="px-2.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-lg text-xs font-semibold">
-                ⏹ Dừng
-              </button>
+
+
             </div>
           </div>
 
@@ -211,7 +239,7 @@
 
           <!-- Question 1 to 6 -->
           <div class="space-y-6 mt-4">
-            
+
             <!-- Q1 -->
             <div class="question-item bg-slate-50/70 p-4 rounded-xl border border-slate-200" id="q-container-L1">
               <div class="flex items-start justify-between gap-2">
@@ -429,12 +457,8 @@
             </div>
             <!-- Audio Controller for Part II -->
             <div class="flex items-center gap-2">
-              <button type="button" onclick="playAudioTrack('audio-part-2')" class="px-3.5 py-2 bg-brand-50 hover:bg-brand-100 active:bg-brand-200 text-brand-700 rounded-lg text-xs font-semibold border border-brand-200 flex items-center gap-1.5 shadow-sm">
-                <span id="btn-icon-part2">▶️</span> <span id="btn-text-part2">Phát Audio Phần II</span>
-              </button>
-              <button type="button" onclick="stopAudioTrack()" class="px-2.5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-lg text-xs font-semibold">
-                ⏹ Dừng
-              </button>
+
+
             </div>
           </div>
 
@@ -1061,7 +1085,7 @@
           <p class="text-xs text-slate-500 mb-4">Điền dạng đúng của động từ trong ngoặc vào ô trống.</p>
 
           <div class="space-y-4">
-            
+
             <!-- Verb 1 -->
             <div class="question-item bg-slate-50/70 p-4 rounded-xl border border-slate-200" id="q-container-VF1">
               <div class="flex items-start justify-between gap-2">
@@ -1114,7 +1138,7 @@
       </div>
 
       <div class="p-5 sm:p-6 space-y-8">
-        
+
         <!-- Cloze Reading Passage -->
         <div class="border-b border-slate-100 pb-8">
           <h3 class="font-bold text-slate-800 text-base mb-3">
@@ -1127,7 +1151,7 @@
 
           <!-- 5 Cloze Questions -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            
+
             <!-- Cloze 1 -->
             <div class="question-item bg-white p-4 rounded-xl border border-slate-200 shadow-xs" id="q-container-CR1">
               <div class="flex items-center justify-between mb-2">
@@ -1281,7 +1305,7 @@
           <!-- Task A: Multiple Choice -->
           <div class="mb-6">
             <h4 class="font-bold text-brand-800 text-sm uppercase tracking-wide mb-3">A. Choose the best answer (0,4 pts)</h4>
-            
+
             <div class="space-y-4">
               <!-- Q1 -->
               <div class="question-item bg-slate-50/70 p-4 rounded-xl border border-slate-200" id="q-container-RA1">
@@ -1346,7 +1370,7 @@
           <!-- Task B: Answer the questions -->
           <div>
             <h4 class="font-bold text-brand-800 text-sm uppercase tracking-wide mb-3">B. Answer the following questions (1,2 pts)</h4>
-            
+
             <div class="space-y-4">
               <!-- Question 1 -->
               <div class="question-item bg-slate-50/70 p-4 rounded-xl border border-slate-200" id="q-container-RB1">
@@ -1406,7 +1430,7 @@
       </div>
 
       <div class="p-5 sm:p-6 space-y-8">
-        
+
         <!-- Section I: Rearrangement with Clickable Boxes -->
         <div class="border-b border-slate-100 pb-8">
           <div class="mb-3">
@@ -1426,7 +1450,7 @@
               </span>
               <span class="status-icon text-sm"></span>
             </div>
-            
+
             <!-- Result Box -->
             <div class="p-3 bg-white rounded-xl border-2 border-brand-200 min-h-[52px] flex flex-wrap items-center gap-2 mb-3 shadow-inner">
               <span class="text-xs text-slate-400 font-medium select-none" id="placeholder-rearr-1">Chạm vào các ô từ bên dưới để đưa vào đây...</span>
@@ -1455,7 +1479,7 @@
               </span>
               <span class="status-icon text-sm"></span>
             </div>
-            
+
             <!-- Result Box -->
             <div class="p-3 bg-white rounded-xl border-2 border-brand-200 min-h-[52px] flex flex-wrap items-center gap-2 mb-3 shadow-inner">
               <span class="text-xs text-slate-400 font-medium select-none" id="placeholder-rearr-2">Chạm vào các ô từ bên dưới để đưa vào đây...</span>
@@ -1482,7 +1506,7 @@
               </span>
               <span class="status-icon text-sm"></span>
             </div>
-            
+
             <!-- Result Box -->
             <div class="p-3 bg-white rounded-xl border-2 border-brand-200 min-h-[52px] flex flex-wrap items-center gap-2 mb-3 shadow-inner">
               <span class="text-xs text-slate-400 font-medium select-none" id="placeholder-rearr-3">Chạm vào các ô từ bên dưới để đưa vào đây...</span>
@@ -1510,7 +1534,7 @@
           <p class="text-xs text-slate-500 mb-4">Điền phần tiếp theo của câu vào ô trống để hoàn thành câu viết lại.</p>
 
           <div class="space-y-4">
-            
+
             <!-- RW 1 -->
             <div class="question-item bg-slate-50/70 p-4 rounded-xl border border-slate-200" id="q-container-RW1">
               <div class="flex items-start justify-between gap-2">
@@ -1604,7 +1628,7 @@
       <p class="text-sm text-slate-600 text-center mt-2 leading-relaxed" id="modal-message">
         Bạn có chắc chắn muốn nộp bài không? Sau khi nộp bài, bạn sẽ không thể thay đổi đáp án.
       </p>
-      
+
       <div id="unanswered-warning" class="hidden mt-3 p-3 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-800">
         <strong>Lưu ý:</strong> Bạn vẫn còn <span id="modal-unanswered-count" class="font-bold text-amber-900">0</span> câu hỏi chưa hoàn thành!
       </div>
@@ -1870,7 +1894,7 @@
       const sourceBox = document.getElementById(`source-box-${qNum}`);
       const data = rearrangeData[qNum];
       sourceBox.innerHTML = '';
-      
+
       data.chips.forEach((word, index) => {
         const btn = document.createElement('button');
         btn.type = 'button';
@@ -1915,7 +1939,7 @@
       if (isSubmitted) return;
       const data = rearrangeData[qNum];
       if (data.selected.length === 0) return;
-      
+
       const last = data.selected.pop();
       const sourceBox = document.getElementById(`source-box-${qNum}`);
       const originalBtn = sourceBox.querySelector(`button[data-index="${last.index}"]`);
@@ -2002,82 +2026,9 @@
     }
 
     // Listening Audio tracks via speech synthesis simulation of authentic dialogues
-    function playAudioTrack(trackId) {
-      if (!('speechSynthesis' in window)) {
-        alert('Trình duyệt của bạn không hỗ trợ tính năng phát âm thanh.');
-        return;
-      }
-      window.speechSynthesis.cancel();
+    function playAudioTrack(trackId) { /* Listening uses the real audio players below. */ }
 
-      let textToRead = "";
-      let iconId = "";
-      let textId = "";
-
-      if (trackId === 'audio-part-1') {
-        iconId = 'btn-icon-part1';
-        textId = 'btn-text-part1';
-        textToRead = `Part 1. Listen and choose the correct answer A, B, or C. 
-        Speaker one: I choose to live in a village because the relationships between people here are very good. There is a great sense of community here. The people welcome neighbors to their homes. They are always willing to help each other. They share almost everything with one another.
-        Speaker two: There are many things I don't like about life in the countryside. There aren't many good schools or colleges. It's boring here because there aren't many places for entertainment, like theaters, cinemas, etcetera. Transportation is another big problem. There are few means of public transport. And in general, there are many things that we should do to improve the life of villagers.
-        Speaker three: I love to live in the countryside. It is spacious. We can do many, many things that are hard to do in the city. We can go swimming, play football, fly kites and do other interesting things. Life is also peaceful and simple here.`;
-      } else {
-        iconId = 'btn-icon-part2';
-        textId = 'btn-text-part2';
-        textToRead = `Part 2. Listen to Matthew talking to his aunt about his friends. What hobby does each of Matthew's friends enjoy?
-        Aunt: What's your favourite hobby at the moment, Matthew?
-        Matthew: I don't know, but Christina, she's in my class, is in the mountains this week. She loves snowboarding.
-        Aunt: That's an exciting hobby. What about Jason? Does he still enjoy drawing cartoons?
-        Matthew: It's funny. He prefers being in the kitchen now. He loves making strange biscuits and things. Some of them taste terrible!
-        Aunt: Do you remember Tanya?
-        Matthew: Oh, the girl who played guitar at your party? That's right. She spends hours practicing that. She wants to be a real musician one day.
-        Aunt: And what about Steven? Isn't he good at volleyball?
-        Matthew: No, he just loves sending messages to everyone on the computer.
-        Aunt: Well, I'm the same!
-        Matthew: Molly's always out on one of her bikes somewhere. She'll help repair them too. If you've got a problem, she'll know what to do.
-        Aunt: That's useful!
-        Matthew: And Ivan enjoys entering competitions. He loves difficult science questions most. He reads different science magazines online.
-        Aunt: He must be very clever!
-        Matthew: Yes, he is.`;
-      }
-
-      const utterance = new SpeechSynthesisUtterance(textToRead);
-      utterance.lang = 'en-US';
-      utterance.rate = 0.95;
-
-      const iconEl = document.getElementById(iconId);
-      const textEl = document.getElementById(textId);
-
-      if (iconEl && textEl) {
-        iconEl.innerText = "🔊";
-        textEl.innerText = "Đang phát...";
-      }
-
-      utterance.onend = () => {
-        if (iconEl && textEl) {
-          iconEl.innerText = "▶️";
-          textEl.innerText = (trackId === 'audio-part-1') ? "Phát Audio Phần I" : "Phát Audio Phần II";
-        }
-      };
-
-      utterance.onerror = () => {
-        if (iconEl && textEl) {
-          iconEl.innerText = "▶️";
-          textEl.innerText = (trackId === 'audio-part-1') ? "Phát Audio Phần I" : "Phát Audio Phần II";
-        }
-      };
-
-      window.speechSynthesis.speak(utterance);
-    }
-
-    function stopAudioTrack() {
-      if ('speechSynthesis' in window) {
-        window.speechSynthesis.cancel();
-      }
-      document.getElementById('btn-icon-part1').innerText = "▶️";
-      document.getElementById('btn-text-part1').innerText = "Phát Audio Phần I";
-      document.getElementById('btn-icon-part2').innerText = "▶️";
-      document.getElementById('btn-text-part2').innerText = "Phát Audio Phần II";
-    }
+    function stopAudioTrack() { if (window.htStopListening) window.htStopListening(); if ('speechSynthesis' in window) window.speechSynthesis.cancel(); }
 
     function promptSubmit() {
       if (isSubmitted) return;
@@ -2366,5 +2317,63 @@
       scoreCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
   </script>
+
+<script id="ht-exam-runtime">
+(function(){
+const players=[...document.querySelectorAll('.ht-listening-player')];
+const time=n=>Number.isFinite(n)?Math.floor(n/60)+':'+String(Math.floor(n%60)).padStart(2,'0'):'0:00';
+window.htStopListening=function(){players.forEach(p=>{const a=p.querySelector('audio');a.pause();a.currentTime=0;});};
+players.forEach(p=>{
+ const a=p.querySelector('audio'),btn=p.querySelector('.ht-play'),status=p.querySelector('.ht-player-status'),seek=p.querySelector('.ht-seek');
+ function sync(){btn.textContent=a.paused?'🔊 Nghe Audio':'⏸ Tạm dừng';seek.max=Number.isFinite(a.duration)?a.duration:0;seek.value=a.currentTime;p.querySelector('.ht-current').textContent=time(a.currentTime);p.querySelector('.ht-duration').textContent=time(a.duration);}
+ btn.addEventListener('click',()=>{
+  if(!a.paused){a.pause();return;}
+  document.querySelectorAll('audio').forEach(other=>{if(other!==a)other.pause();});
+  if('speechSynthesis' in window)window.speechSynthesis.cancel();
+  a.play().catch(()=>{status.textContent='Không phát được file nghe. Vui lòng thử lại.';sync();});
+ });
+ p.querySelector('.ht-stop').addEventListener('click',()=>{a.pause();a.currentTime=0;status.textContent='Đã dừng';sync();});
+ p.querySelector('.ht-back').addEventListener('click',()=>{a.currentTime=Math.max(0,a.currentTime-5);});
+ p.querySelector('.ht-forward').addEventListener('click',()=>{if(Number.isFinite(a.duration))a.currentTime=Math.min(a.duration,a.currentTime+5);});
+ seek.addEventListener('input',()=>{if(Number.isFinite(a.duration))a.currentTime=Number(seek.value);});
+ p.querySelector('.ht-speed').addEventListener('change',e=>{a.playbackRate=Number(e.target.value);});
+ a.addEventListener('play',()=>{status.textContent='Đang phát';sync();});
+ a.addEventListener('pause',()=>{status.textContent='Tạm dừng';sync();});
+ a.addEventListener('ended',()=>{status.textContent='Đã phát xong';sync();});
+ a.addEventListener('error',()=>{status.textContent='Không tải được file nghe. Vui lòng kiểm tra kết nối.';});
+ ['timeupdate','loadedmetadata','durationchange'].forEach(event=>a.addEventListener(event,sync));sync();
+});
+// Keep audio usable when an existing grader locks all inputs.
+function submitted(){return isSubmitted;}
+function arrangeItems(){return Object.values(rearrangeData).map(x=>x.selected);}
+const answerFields=()=>[...document.querySelectorAll('main input:not([type=radio]):not([type=range]):not([type=hidden]),main textarea,main select')].filter(el=>!el.closest('.ht-listening-player')&&!/student|name|class/i.test(el.id));
+function counts(){
+ const radios=[...new Set([...document.querySelectorAll('main input[type=radio]')].map(el=>el.name))];
+ const fields=answerFields(),arrange=arrangeItems();
+ return {total:radios.length+fields.length+arrange.length,answered:radios.filter(name=>[...document.getElementsByName(name)].some(el=>el.checked)).length+fields.filter(el=>el.value.trim()).length+arrange.filter(a=>a.length>0).length};
+}
+let locked=false;
+function refresh(){
+ const c=counts(),el=document.getElementById('htProgress');if(el)el.textContent=c.answered+' / '+c.total+' câu';
+ const badge=document.getElementById('htStatus');if(badge)badge.textContent=submitted()?'🔒 Đã nộp bài':'🟡 Đang làm bài';
+ if(submitted()&&!locked){
+  locked=true;window.htStopListening();
+  document.querySelectorAll('main input,main select,main textarea').forEach(el=>{if(!el.closest('.ht-listening-player'))el.disabled=true;});
+  document.querySelectorAll('main input[type=radio]').forEach(el=>el.disabled=true);
+  document.querySelectorAll('.ht-listening-player input,.ht-listening-player select,.ht-listening-player button').forEach(el=>{el.disabled=false;el.classList.remove('opacity-75','cursor-not-allowed');});
+  document.querySelectorAll('[id]').forEach(el=>{if(/transcript|^trans[12]$/i.test(el.id)&&!/(notice|btn|button|lbl|label)/i.test(el.id)&&!/modal/i.test(el.id)){el.classList.remove('hidden');if(el.tagName==='DETAILS')el.open=true;}});
+ }
+}
+document.addEventListener('input',refresh);document.addEventListener('change',refresh);
+document.addEventListener('click',()=>setTimeout(refresh,0));
+document.querySelectorAll('table').forEach(table=>{const wrap=document.createElement('div');wrap.className='ht-table-scroll';table.parentNode.insertBefore(wrap,table);wrap.appendChild(table);});
+document.querySelectorAll('.ht-audio-slot').forEach(slot=>{slot.parentElement.classList.add('ht-audio-slot-parent');});
+const firstHeading=document.querySelector('main h1,main h2');if(firstHeading){let card=firstHeading.parentElement;while(card.parentElement&&card.parentElement.tagName!=='MAIN'&&!card.className.includes('rounded'))card=card.parentElement;card.classList.add('ht-title-card');}
+document.addEventListener('DOMContentLoaded',()=>setTimeout(refresh,0));
+const originalSubmit=window['executeFinalSubmit'];window['executeFinalSubmit']=function(){if(submitted())return;const result=originalSubmit.apply(this,arguments);refresh();return result;};
+document.addEventListener('click',event=>{if(!submitted())return;const el=event.target.closest('[onclick]');if(el&&/^(selectChip|unselectChip|resetChips|selectBox|removeBox|undoBox|clearBox|pickWord|removeWord|resetRearrange|addChunk|removeChunk|selectWord|removeSelectedWord|undoWord|resetWords|chooseWord|unchooseWord|resetArrange|selectWordArrangement|deselectWord|resetWordArrangement)/.test(el.getAttribute('onclick')||'')){event.preventDefault();event.stopImmediatePropagation();}},true);
+refresh();
+})();
+</script>
 </body>
 </html>
