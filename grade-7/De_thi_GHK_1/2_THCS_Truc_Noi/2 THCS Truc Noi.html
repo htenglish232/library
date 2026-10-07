@@ -1,0 +1,2077 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TRƯỜNG THCS TRỰC NỘI - ĐỀ KIỂM TRA GIỮA KỲ I - MÔN TIẾNG ANH 7</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Noto Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    body {
+      font-family: 'Noto Sans', sans-serif;
+      background-color: #f0f9ff; /* Light sky blue background */
+      color: #0f172a;
+    }
+    .speaker-btn {
+      transition: all 0.15s ease-in-out;
+    }
+    .speaker-btn:hover {
+      transform: scale(1.12);
+    }
+    .speaker-btn:active {
+      transform: scale(0.92);
+    }
+    .word-chip {
+      transition: all 0.15s ease-in-out;
+      user-select: none;
+    }
+    .word-chip:hover {
+      transform: translateY(-1px);
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 7px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #e0f2fe;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #7dd3fc;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #38bdf8;
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-20 selection:bg-sky-200">
+
+  <!-- HEADER & BRANDING (HT ENGLISH - MS. LILY) -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-sky-100">
+    <div class="max-w-5xl mx-auto px-4 py-3 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center space-x-3">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-sky-600 via-sky-500 to-cyan-400 flex items-center justify-center text-white font-extrabold text-2xl shadow-md shadow-sky-200">
+          HT
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-xl font-extrabold tracking-tight text-sky-950 uppercase">HT English</h1>
+            <span class="text-[11px] bg-sky-100 text-sky-800 font-bold px-2 py-0.5 rounded-full border border-sky-200">Ms. Lily</span>
+          </div>
+          <p class="text-xs text-slate-500 font-medium flex items-center gap-1">
+            <i class="fa-solid fa-graduation-cap text-sky-600"></i> Bài tập điện tử ôn thi định kỳ chuẩn hóa
+          </p>
+        </div>
+      </div>
+
+      <!-- Center Contact Badges -->
+      <div class="flex flex-wrap items-center justify-center sm:justify-end gap-2 text-xs">
+        <span class="inline-flex items-center gap-1.5 bg-sky-50 text-sky-800 px-3 py-1.5 rounded-full font-semibold border border-sky-200">
+          <i class="fa-solid fa-phone text-sky-600"></i> Hotline: 0963422940 - 0962240866
+        </span>
+        <span class="inline-flex items-center gap-1.5 bg-slate-50 text-slate-700 px-3 py-1.5 rounded-full font-medium border border-slate-200">
+          <i class="fa-solid fa-location-dot text-rose-500"></i> Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN CONTAINER -->
+  <main class="max-w-5xl mx-auto px-4 sm:px-6 mt-6">
+
+    <!-- EXAM TITLE BANNER (Exact title from Word file) -->
+    <div class="bg-gradient-to-r from-sky-700 via-sky-600 to-cyan-600 rounded-3xl p-6 sm:p-8 text-white shadow-xl shadow-sky-100 mb-6 text-center relative overflow-hidden">
+      <div class="absolute -top-12 -right-12 w-48 h-48 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+      <div class="inline-block bg-white/20 backdrop-blur-md px-4 py-1 rounded-full text-xs uppercase tracking-wider font-bold mb-2 border border-white/25">
+        TRƯỜNG THCS TRỰC NỘI
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-black uppercase tracking-wide">
+        ĐỀ KIỂM TRA GIỮA KỲ I
+      </h2>
+      <p class="text-base sm:text-lg font-bold text-sky-100 mt-1">
+        MÔN TIẾNG ANH 7 – Thời gian : 60 phút
+      </p>
+      <p class="text-xs text-sky-200 mt-2">
+        Hệ thống tự động chấm điểm • Phát âm từ vựng chuẩn bản xứ • Khóa bảo mật khi làm bài
+      </p>
+
+      <!-- Student Name Input -->
+      <div class="mt-5 max-w-md mx-auto bg-white/15 backdrop-blur-md p-2.5 rounded-2xl border border-white/30 flex items-center gap-2">
+        <i class="fa-regular fa-user text-sky-100 pl-2"></i>
+        <input type="text" id="studentNameInput" placeholder="Họ và tên học sinh..." class="w-full bg-transparent border-none text-white placeholder-sky-200 text-sm font-semibold focus:outline-none">
+        <span class="text-xs bg-sky-900/60 text-sky-100 px-3 py-1 rounded-xl shrink-0 font-medium">Lớp 7</span>
+      </div>
+    </div>
+
+    <!-- LOCK STATUS BANNER (Hidden initially, shown after submission) -->
+    <div id="lockStatusBar" class="hidden mb-6 bg-slate-800 text-white px-5 py-3.5 rounded-2xl flex items-center justify-between text-sm font-semibold shadow-md">
+      <div class="flex items-center gap-3">
+        <span class="w-3 h-3 rounded-full bg-amber-400 animate-ping"></span>
+        <span><i class="fa-solid fa-lock text-amber-400 mr-1.5"></i> Bài đã được nộp – Không thể chỉnh sửa đáp án.</span>
+      </div>
+      <span class="text-xs text-slate-300 font-normal">Học sinh có thể xem đáp án đúng, nghe lại phát âm và đọc giải thích chi tiết bên dưới.</span>
+    </div>
+
+    <!-- EXAM FORM -->
+    <form id="examForm" onsubmit="event.preventDefault();">
+
+      <!-- ================= PART A – LISTENING ================= -->
+      <section class="bg-white rounded-3xl shadow-sm border border-sky-100 p-6 sm:p-8 mb-8" id="section_partA">
+        <div class="flex items-center justify-between border-b border-sky-100 pb-4 mb-6">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-xl bg-sky-100 text-sky-700 font-black flex items-center justify-center text-lg">A</span>
+            <h3 class="text-lg sm:text-xl font-bold text-sky-950 uppercase">PART A – LISTENING (2.4 points)</h3>
+          </div>
+          <span class="text-xs font-bold text-sky-700 bg-sky-50 px-3 py-1.5 rounded-full border border-sky-200">12 câu • 2.4 điểm</span>
+        </div>
+
+        <!-- Task 1 -->
+        <div class="mb-10">
+          <div class="bg-sky-50/70 p-4 rounded-2xl border border-sky-100 mb-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div>
+              <h4 class="font-bold text-sky-900 text-sm sm:text-base">
+                Listen to the conversation between Tom and Jack. Circle the best answer A, B or C. You will listen TWICE. (1.2 points)
+              </h4>
+              <p class="text-xs text-slate-500 mt-0.5">Nhấn nút phát âm thanh để nghe đoạn hội thoại giữa Tom và Jack.</p>
+            </div>
+            <!-- Audio player for Part 1 -->
+            <div class="flex items-center gap-2 shrink-0">
+              <audio id="audioTask1" preload="none">
+                <source src="LISTENING PART 1.mp3" type="audio/mpeg">
+              </audio>
+              <button type="button" id="btnAudio1" onclick="toggleAudio('audioTask1', 'btnAudio1', 'audio1_text')" class="flex items-center gap-2 bg-sky-600 hover:bg-sky-700 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md shadow-sky-200 transition">
+                <i class="fa-solid fa-play"></i> <span id="audio1_text">Nghe bài 1 (Twice)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Transcript 1 (Locked until submission) -->
+          <div id="transcriptBox1" class="hidden mb-6 p-4 rounded-2xl bg-sky-50 border border-sky-200 text-xs text-slate-700 leading-relaxed">
+            <div class="flex items-center justify-between pb-2 mb-2 border-b border-sky-200 text-sky-900 font-bold">
+              <span><i class="fa-solid fa-file-lines text-sky-600 mr-1"></i> Transcript Task 1 (Băng ghi âm)</span>
+              <span class="text-[11px] text-sky-600 font-normal">Chỉ mở sau khi nộp bài</span>
+            </div>
+            <p><strong>Tom:</strong> Hi Jack. I'm doing a survey on teenagers' hobbies. Can I ask you a few questions?</p>
+            <p><strong>Jack:</strong> Yes, go ahead.</p>
+            <p><strong>Tom:</strong> Thanks. What do you often do in your leisure time?</p>
+            <p><strong>Jack:</strong> Well, it's actually not a popular type of hobbies, but in my free time I like doing origami.</p>
+            <p><strong>Tom:</strong> You mean creating things from paper?</p>
+            <p><strong>Jack:</strong> Yes. <mark class="bg-amber-200 px-1 rounded">That's exactly what I do. Folding paper.</mark></p>
+            <p><strong>Tom:</strong> How long have you been doing it?</p>
+            <p><strong>Jack:</strong> Well, <mark class="bg-amber-200 px-1 rounded">it all started two years ago</mark> on my trip to Japan. I watched some origami artists folding some paper animals and I liked it.</p>
+            <p><strong>Tom:</strong> What do you enjoy about it?</p>
+            <p><strong>Jack:</strong> It's easy, <mark class="bg-amber-200 px-1 rounded">inexpensive</mark> and great to share with others.</p>
+            <p><strong>Tom:</strong> What do you do with the stuff you made?</p>
+            <p><strong>Jack:</strong> <mark class="bg-amber-200 px-1 rounded">I give some to my friends as birthday gifts, and sell some to get money.</mark></p>
+          </div>
+
+          <!-- Questions 1 to 6 -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            
+            <!-- Q1 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/50" id="box_A1">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded border border-sky-100">Câu 1 (0.2đ)</span>
+              </div>
+              <p class="text-sm font-semibold text-slate-800 mb-2.5">What is Jack's hobby?</p>
+              <div class="space-y-1.5 text-sm">
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A1" value="A" class="text-sky-600 focus:ring-sky-500">
+                  <span>A. folding paper</span>
+                  <button type="button" onclick="speakSingleWord('folding paper')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1" title="Nghe phát âm">
+                    <i class="fa-solid fa-volume-high text-xs"></i>
+                  </button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A1" value="B" class="text-sky-600 focus:ring-sky-500">
+                  <span>B. recycling paper</span>
+                  <button type="button" onclick="speakSingleWord('recycling paper')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1" title="Nghe phát âm">
+                    <i class="fa-solid fa-volume-high text-xs"></i>
+                  </button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A1" value="C" class="text-sky-600 focus:ring-sky-500">
+                  <span>C. creating paper</span>
+                  <button type="button" onclick="speakSingleWord('creating paper')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1" title="Nghe phát âm">
+                    <i class="fa-solid fa-volume-high text-xs"></i>
+                  </button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A1" value="D" class="text-sky-600 focus:ring-sky-500">
+                  <span>D. collecting paper</span>
+                  <button type="button" onclick="speakSingleWord('collecting paper')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1" title="Nghe phát âm">
+                    <i class="fa-solid fa-volume-high text-xs"></i>
+                  </button>
+                </label>
+              </div>
+              <div id="exp_A1" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- Q2 (Corrected Key: two years = B, audio says 2 years ago) -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/50" id="box_A2">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded border border-sky-100">Câu 2 (0.2đ)</span>
+              </div>
+              <p class="text-sm font-semibold text-slate-800 mb-2.5">2. How long has he had his hobby?</p>
+              <div class="space-y-1.5 text-sm">
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A2" value="A" class="text-sky-600 focus:ring-sky-500">
+                  <span>A. for two weeks</span>
+                  <button type="button" onclick="speakSingleWord('for two weeks')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A2" value="B" class="text-sky-600 focus:ring-sky-500">
+                  <span>B. for two years</span>
+                  <button type="button" onclick="speakSingleWord('for two years')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A2" value="C" class="text-sky-600 focus:ring-sky-500">
+                  <span>C. for two months</span>
+                  <button type="button" onclick="speakSingleWord('for two months')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A2" value="D" class="text-sky-600 focus:ring-sky-500">
+                  <span>D. for two days</span>
+                  <button type="button" onclick="speakSingleWord('for two days')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+              </div>
+              <div id="exp_A2" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/50" id="box_A3">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded border border-sky-100">Câu 3 (0.2đ)</span>
+              </div>
+              <p class="text-sm font-semibold text-slate-800 mb-2.5">3. Tom create things from..............</p>
+              <div class="space-y-1.5 text-sm">
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A3" value="A" class="text-sky-600 focus:ring-sky-500">
+                  <span>A. Paper</span>
+                  <button type="button" onclick="speakSingleWord('Paper')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A3" value="B" class="text-sky-600 focus:ring-sky-500">
+                  <span>B. wood</span>
+                  <button type="button" onclick="speakSingleWord('wood')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A3" value="C" class="text-sky-600 focus:ring-sky-500">
+                  <span>C. clothes</span>
+                  <button type="button" onclick="speakSingleWord('clothes')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A3" value="D" class="text-sky-600 focus:ring-sky-500">
+                  <span>D. Metal</span>
+                  <button type="button" onclick="speakSingleWord('Metal')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+              </div>
+              <div id="exp_A3" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/50" id="box_A4">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded border border-sky-100">Câu 4 (0.2đ)</span>
+              </div>
+              <p class="text-sm font-semibold text-slate-800 mb-2.5">4. What does Jack say about his hobby?</p>
+              <div class="space-y-1.5 text-sm">
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A4" value="A" class="text-sky-600 focus:ring-sky-500">
+                  <span>A. It's difficult.</span>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A4" value="B" class="text-sky-600 focus:ring-sky-500">
+                  <span>B. It's cheap.</span>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A4" value="C" class="text-sky-600 focus:ring-sky-500">
+                  <span>C. It's expensive.</span>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A4" value="D" class="text-sky-600 focus:ring-sky-500">
+                  <span>D. It’s boring.</span>
+                </label>
+              </div>
+              <div id="exp_A4" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/50" id="box_A5">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded border border-sky-100">Câu 5 (0.2đ)</span>
+              </div>
+              <p class="text-sm font-semibold text-slate-800 mb-2.5">5. Which among these that Jack doesn't do with the things he made?</p>
+              <div class="space-y-1.5 text-sm">
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A5" value="A" class="text-sky-600 focus:ring-sky-500">
+                  <span>A. give them to his friends</span>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A5" value="B" class="text-sky-600 focus:ring-sky-500">
+                  <span>B. keep them in a box</span>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A5" value="C" class="text-sky-600 focus:ring-sky-500">
+                  <span>C. sell them</span>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A5" value="D" class="text-sky-600 focus:ring-sky-500">
+                  <span>D. donate them</span>
+                </label>
+              </div>
+              <div id="exp_A5" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/50" id="box_A6">
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded border border-sky-100">Câu 6 (0.2đ)</span>
+              </div>
+              <p class="text-sm font-semibold text-slate-800 mb-2.5">6. What is the interview about?</p>
+              <div class="space-y-1.5 text-sm">
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A6" value="A" class="text-sky-600 focus:ring-sky-500">
+                  <span>A. How to make origami</span>
+                  <button type="button" onclick="speakSingleWord('How to make origami')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A6" value="B" class="text-sky-600 focus:ring-sky-500">
+                  <span>B. a birthday present</span>
+                  <button type="button" onclick="speakSingleWord('a birthday present')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A6" value="C" class="text-sky-600 focus:ring-sky-500">
+                  <span>C. a teenager’s hobby</span>
+                  <button type="button" onclick="speakSingleWord('a teenager\'s hobby')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl hover:bg-sky-50 cursor-pointer transition border border-transparent">
+                  <input type="radio" name="ans_A6" value="D" class="text-sky-600 focus:ring-sky-500">
+                  <span>D. a TV program</span>
+                  <button type="button" onclick="speakSingleWord('a TV program')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+              </div>
+              <div id="exp_A6" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Task 2 True/False -->
+        <div>
+          <div class="bg-sky-50/70 p-4 rounded-2xl border border-sky-100 mb-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div>
+              <h4 class="font-bold text-sky-900 text-sm sm:text-base">
+                Listen to the conversation between Linda and Tom about their club’s activities. Tick T (True) or F (False) for each statement. You will listen TWICE. (1.2 point)
+              </h4>
+              <p class="text-xs text-slate-500 mt-0.5">Nghe và chọn Đúng (True) hoặc Sai (False) cho từng khẳng định.</p>
+            </div>
+            <!-- Audio player for Part 2 -->
+            <div class="flex items-center gap-2 shrink-0">
+              <audio id="audioTask2" preload="none">
+                <source src="LISTENING PART 2.mp3" type="audio/mpeg">
+              </audio>
+              <button type="button" id="btnAudio2" onclick="toggleAudio('audioTask2', 'btnAudio2', 'audio2_text')" class="flex items-center gap-2 bg-sky-600 hover:bg-sky-700 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md shadow-sky-200 transition">
+                <i class="fa-solid fa-play"></i> <span id="audio2_text">Nghe bài 2 (Twice)</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Transcript 2 (Locked until submission) -->
+          <div id="transcriptBox2" class="hidden mb-6 p-4 rounded-2xl bg-sky-50 border border-sky-200 text-xs text-slate-700 leading-relaxed">
+            <div class="flex items-center justify-between pb-2 mb-2 border-b border-sky-200 text-sky-900 font-bold">
+              <span><i class="fa-solid fa-file-lines text-sky-600 mr-1"></i> Transcript Task 2 (Băng ghi âm Track 18)</span>
+              <span class="text-[11px] text-sky-600 font-normal">Chỉ mở sau khi nộp bài</span>
+            </div>
+            <p><strong>Tom:</strong> So, what did your club do last year?</p>
+            <p><strong>Linda:</strong> <mark class="bg-amber-200 px-1 rounded">We tutored third-grade children, and helped old people.</mark></p>
+            <p><strong>Tom:</strong> Fantastic! What did you tutor?</p>
+            <p><strong>Linda:</strong> <mark class="bg-amber-200 px-1 rounded">We taught English and Maths.</mark></p>
+            <p><strong>Tom:</strong> Awesome! Was it difficult?</p>
+            <p><strong>Linda:</strong> Yes, but we had a lot of fun.</p>
+            <p><strong>Tom:</strong> I see. How did you help the elderly?</p>
+            <p><strong>Linda:</strong> <mark class="bg-amber-200 px-1 rounded">We cooked for them, and did some cleaning too.</mark></p>
+            <p><strong>Tom:</strong> Great! I'm sure they benefited from it.</p>
+            <p><strong>Linda:</strong> Thanks. It made us feel useful. How about you?</p>
+            <p><strong>Tom:</strong> <mark class="bg-amber-200 px-1 rounded">We picked up paper and bottles in a nearby park.</mark> <mark class="bg-amber-200 px-1 rounded">We also planted some trees.</mark></p>
+            <p><strong>Linda:</strong> Fabulous! Did you water them too?</p>
+            <p><strong>Tom:</strong> <mark class="bg-amber-200 px-1 rounded">Sure, we watered them very often the first few weeks, and enjoyed watching them grow.</mark></p>
+            <p><strong>Linda:</strong> Glad to hear it, Tom.</p>
+            <p><strong>Tom:</strong> <mark class="bg-amber-200 px-1 rounded">Yes, it was a really good time.</mark> We worked and played together, and we learned some skills too.</p>
+          </div>
+
+          <!-- Table True/False -->
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm border border-slate-200 rounded-2xl overflow-hidden">
+              <thead class="bg-sky-50 text-sky-900 font-bold text-xs uppercase">
+                <tr>
+                  <th class="p-3.5 w-12 text-center">No.</th>
+                  <th class="p-3.5">Statements</th>
+                  <th class="p-3.5 w-20 text-center">T</th>
+                  <th class="p-3.5 w-20 text-center">F</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-200 bg-white">
+                <!-- TF 1 -->
+                <tr id="row_TF1" class="hover:bg-slate-50 transition">
+                  <td class="p-3.5 font-bold text-center text-slate-500">1</td>
+                  <td class="p-3.5">
+                    <span class="text-slate-800">Linda and her friends tutored old people last year</span>
+                    <div id="exp_TF1" class="hidden mt-2 text-xs"></div>
+                  </td>
+                  <td class="p-3.5 text-center">
+                    <input type="radio" name="ans_TF1" value="T" class="w-4 h-4 text-sky-600 focus:ring-sky-500 cursor-pointer">
+                  </td>
+                  <td class="p-3.5 text-center">
+                    <input type="radio" name="ans_TF1" value="F" class="w-4 h-4 text-sky-600 focus:ring-sky-500 cursor-pointer">
+                  </td>
+                </tr>
+
+                <!-- TF 2 -->
+                <tr id="row_TF2" class="hover:bg-slate-50 transition">
+                  <td class="p-3.5 font-bold text-center text-slate-500">2</td>
+                  <td class="p-3.5">
+                    <span class="text-slate-800">Linda and her friends taught children English and Math last year</span>
+                    <div id="exp_TF2" class="hidden mt-2 text-xs"></div>
+                  </td>
+                  <td class="p-3.5 text-center">
+                    <input type="radio" name="ans_TF2" value="T" class="w-4 h-4 text-sky-600 focus:ring-sky-500 cursor-pointer">
+                  </td>
+                  <td class="p-3.5 text-center">
+                    <input type="radio" name="ans_TF2" value="F" class="w-4 h-4 text-sky-600 focus:ring-sky-500 cursor-pointer">
+                  </td>
+                </tr>
+
+                <!-- TF 3 -->
+                <tr id="row_TF3" class="hover:bg-slate-50 transition">
+                  <td class="p-3.5 font-bold text-center text-slate-500">3</td>
+                  <td class="p-3.5">
+                    <span class="text-slate-800">Linda and her friends helped the old people cooked and did the shopping</span>
+                    <div id="exp_TF3" class="hidden mt-2 text-xs"></div>
+                  </td>
+                  <td class="p-3.5 text-center">
+                    <input type="radio" name="ans_TF3" value="T" class="w-4 h-4 text-sky-600 focus:ring-sky-500 cursor-pointer">
+                  </td>
+                  <td class="p-3.5 text-center">
+                    <input type="radio" name="ans_TF3" value="F" class="w-4 h-4 text-sky-600 focus:ring-sky-500 cursor-pointer">
+                  </td>
+                </tr>
+
+                <!-- TF 4 -->
+                <tr id="row_TF4" class="hover:bg-slate-50 transition">
+                  <td class="p-3.5 font-bold text-center text-slate-500">4</td>
+                  <td class="p-3.5">
+                    <span class="text-slate-800">Tom and his friends picked up books and paper</span>
+                    <div id="exp_TF4" class="hidden mt-2 text-xs"></div>
+                  </td>
+                  <td class="p-3.5 text-center">
+                    <input type="radio" name="ans_TF4" value="T" class="w-4 h-4 text-sky-600 focus:ring-sky-500 cursor-pointer">
+                  </td>
+                  <td class="p-3.5 text-center">
+                    <input type="radio" name="ans_TF4" value="F" class="w-4 h-4 text-sky-600 focus:ring-sky-500 cursor-pointer">
+                  </td>
+                </tr>
+
+                <!-- TF 5 -->
+                <tr id="row_TF5" class="hover:bg-slate-50 transition">
+                  <td class="p-3.5 font-bold text-center text-slate-500">5</td>
+                  <td class="p-3.5">
+                    <span class="text-slate-800">Tom and his friends planted some trees and watered them.</span>
+                    <div id="exp_TF5" class="hidden mt-2 text-xs"></div>
+                  </td>
+                  <td class="p-3.5 text-center">
+                    <input type="radio" name="ans_TF5" value="T" class="w-4 h-4 text-sky-600 focus:ring-sky-500 cursor-pointer">
+                  </td>
+                  <td class="p-3.5 text-center">
+                    <input type="radio" name="ans_TF5" value="F" class="w-4 h-4 text-sky-600 focus:ring-sky-500 cursor-pointer">
+                  </td>
+                </tr>
+
+                <!-- TF 6 -->
+                <tr id="row_TF6" class="hover:bg-slate-50 transition">
+                  <td class="p-3.5 font-bold text-center text-slate-500">6</td>
+                  <td class="p-3.5">
+                    <span class="text-slate-800">Tom and his friends had a really good time</span>
+                    <div id="exp_TF6" class="hidden mt-2 text-xs"></div>
+                  </td>
+                  <td class="p-3.5 text-center">
+                    <input type="radio" name="ans_TF6" value="T" class="w-4 h-4 text-sky-600 focus:ring-sky-500 cursor-pointer">
+                  </td>
+                  <td class="p-3.5 text-center">
+                    <input type="radio" name="ans_TF6" value="F" class="w-4 h-4 text-sky-600 focus:ring-sky-500 cursor-pointer">
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PART B. LANGUAGE FOCUS ================= -->
+      <section class="bg-white rounded-3xl shadow-sm border border-sky-100 p-6 sm:p-8 mb-8" id="section_partB">
+        <div class="flex items-center justify-between border-b border-sky-100 pb-4 mb-6">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-xl bg-sky-100 text-sky-700 font-black flex items-center justify-center text-lg">B</span>
+            <h3 class="text-lg sm:text-xl font-bold text-sky-950 uppercase">PART B. LANGUAGE FOCUS (2.6 points)</h3>
+          </div>
+          <span class="text-xs font-bold text-sky-700 bg-sky-50 px-3 py-1.5 rounded-full border border-sky-200">13 câu • 2.6 điểm</span>
+        </div>
+
+        <!-- Section I. Phonetics -->
+        <div class="mb-10">
+          <div class="bg-sky-50/70 p-3.5 rounded-2xl border border-sky-100 mb-4">
+            <h4 class="font-bold text-sky-900 text-sm">
+              I. Find the word which has a different sound in the underlined part. (0.6 points)
+            </h4>
+          </div>
+
+          <div class="space-y-4">
+            <!-- P1: -ed pronunciation -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_B1">
+              <span class="text-xs font-bold text-sky-700 block mb-2">Câu 1 (0.2đ)</span>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
+                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 bg-white hover:border-sky-300 cursor-pointer transition">
+                  <input type="radio" name="ans_B1" value="A" class="text-sky-600 focus:ring-sky-500">
+                  <span>A. look<u>ed</u></span>
+                  <button type="button" onclick="speakSingleWord('looked')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1" title="Nghe từ"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 bg-white hover:border-sky-300 cursor-pointer transition">
+                  <input type="radio" name="ans_B1" value="B" class="text-sky-600 focus:ring-sky-500">
+                  <span>B. kiss<u>ed</u></span>
+                  <button type="button" onclick="speakSingleWord('kissed')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1" title="Nghe từ"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 bg-white hover:border-sky-300 cursor-pointer transition">
+                  <input type="radio" name="ans_B1" value="C" class="text-sky-600 focus:ring-sky-500">
+                  <span>C. call<u>ed</u></span>
+                  <button type="button" onclick="speakSingleWord('called')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1" title="Nghe từ"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 bg-white hover:border-sky-300 cursor-pointer transition">
+                  <input type="radio" name="ans_B1" value="D" class="text-sky-600 focus:ring-sky-500">
+                  <span>D. stopp<u>ed</u></span>
+                  <button type="button" onclick="speakSingleWord('stopped')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1" title="Nghe từ"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+              </div>
+              <div id="exp_B1" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- P2: Vowel 'o' -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_B2">
+              <span class="text-xs font-bold text-sky-700 block mb-2">Câu 2 (0.2đ)</span>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
+                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 bg-white hover:border-sky-300 cursor-pointer transition">
+                  <input type="radio" name="ans_B2" value="A" class="text-sky-600 focus:ring-sky-500">
+                  <span>A. c<u>o</u>llect</span>
+                  <button type="button" onclick="speakSingleWord('collect')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 bg-white hover:border-sky-300 cursor-pointer transition">
+                  <input type="radio" name="ans_B2" value="B" class="text-sky-600 focus:ring-sky-500">
+                  <span>B. ph<u>o</u>to</span>
+                  <button type="button" onclick="speakSingleWord('photo')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 bg-white hover:border-sky-300 cursor-pointer transition">
+                  <input type="radio" name="ans_B2" value="C" class="text-sky-600 focus:ring-sky-500">
+                  <span>C. pian<u>o</u></span>
+                  <button type="button" onclick="speakSingleWord('piano')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 bg-white hover:border-sky-300 cursor-pointer transition">
+                  <input type="radio" name="ans_B2" value="D" class="text-sky-600 focus:ring-sky-500">
+                  <span>D. g<u>o</u></span>
+                  <button type="button" onclick="speakSingleWord('go')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+              </div>
+              <div id="exp_B2" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- P3: Consonant /f/ vs /v/ (Corrected: 'of' /v/, others /f/. File word key had typo B) -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_B3">
+              <span class="text-xs font-bold text-sky-700 block mb-2">Câu 3 (0.2đ)</span>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm">
+                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 bg-white hover:border-sky-300 cursor-pointer transition">
+                  <input type="radio" name="ans_B3" value="A" class="text-sky-600 focus:ring-sky-500">
+                  <span>A. <u>f</u>at</span>
+                  <button type="button" onclick="speakSingleWord('fat')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 bg-white hover:border-sky-300 cursor-pointer transition">
+                  <input type="radio" name="ans_B3" value="B" class="text-sky-600 focus:ring-sky-500">
+                  <span>B. lea<u>f</u></span>
+                  <button type="button" onclick="speakSingleWord('leaf')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 bg-white hover:border-sky-300 cursor-pointer transition">
+                  <input type="radio" name="ans_B3" value="C" class="text-sky-600 focus:ring-sky-500">
+                  <span>C. o<u>f</u></span>
+                  <button type="button" onclick="speakSingleWord('of')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2.5 rounded-xl border border-slate-200 bg-white hover:border-sky-300 cursor-pointer transition">
+                  <input type="radio" name="ans_B3" value="D" class="text-sky-600 focus:ring-sky-500">
+                  <span>D. sa<u>f</u>e</span>
+                  <button type="button" onclick="speakSingleWord('safe')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+              </div>
+              <div id="exp_B3" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Section II. Multiple choice -->
+        <div class="mb-10">
+          <div class="bg-sky-50/70 p-3.5 rounded-2xl border border-sky-100 mb-4">
+            <h4 class="font-bold text-sky-900 text-sm">
+              II. Circle A, B, C, or D to indicate the best option for each blank in the sentences. (1.4 points)
+            </h4>
+          </div>
+
+          <div class="space-y-4">
+            <!-- MC 1 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_B_MC1">
+              <span class="text-xs font-bold text-sky-700 block mb-1">Câu 1 (0.2đ)</span>
+              <p class="text-sm font-semibold text-slate-800 mb-2.5">
+                1. My sister is keen _______ sports. She plays a lot of tennis and badminton in her free time.
+              </p>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm">
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC1" value="A" class="text-sky-600">
+                  <span>A. on</span>
+                  <button type="button" onclick="speakSingleWord('on')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC1" value="B" class="text-sky-600">
+                  <span>B. of</span>
+                  <button type="button" onclick="speakSingleWord('of')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC1" value="C" class="text-sky-600">
+                  <span>C. about</span>
+                  <button type="button" onclick="speakSingleWord('about')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC1" value="D" class="text-sky-600">
+                  <span>D. at</span>
+                  <button type="button" onclick="speakSingleWord('at')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+              </div>
+              <div id="exp_B_MC1" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- MC 2 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_B_MC2">
+              <span class="text-xs font-bold text-sky-700 block mb-1">Câu 2 (0.2đ)</span>
+              <p class="text-sm font-semibold text-slate-800 mb-2.5">
+                2. We often read the instructions carefully in order to make _______ of the things we like best.
+              </p>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm">
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC2" value="A" class="text-sky-600">
+                  <span>A. meanings</span>
+                  <button type="button" onclick="speakSingleWord('meanings')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC2" value="B" class="text-sky-600">
+                  <span>B. models</span>
+                  <button type="button" onclick="speakSingleWord('models')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC2" value="C" class="text-sky-600">
+                  <span>C. copies</span>
+                  <button type="button" onclick="speakSingleWord('copies')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC2" value="D" class="text-sky-600">
+                  <span>D. uses</span>
+                  <button type="button" onclick="speakSingleWord('uses')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+              </div>
+              <div id="exp_B_MC2" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- MC 3 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_B_MC3">
+              <span class="text-xs font-bold text-sky-700 block mb-1">Câu 3 (0.2đ)</span>
+              <p class="text-sm font-semibold text-slate-800 mb-2.5">
+                3. _______ is good for our eyes.
+              </p>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm">
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC3" value="A" class="text-sky-600">
+                  <span>A. Alcohol</span>
+                  <button type="button" onclick="speakSingleWord('Alcohol')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC3" value="B" class="text-sky-600">
+                  <span>B. Fast food</span>
+                  <button type="button" onclick="speakSingleWord('Fast food')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC3" value="C" class="text-sky-600">
+                  <span>C. Vitamin D</span>
+                  <button type="button" onclick="speakSingleWord('Vitamin D')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC3" value="D" class="text-sky-600">
+                  <span>D. Vitamin A</span>
+                  <button type="button" onclick="speakSingleWord('Vitamin A')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+              </div>
+              <div id="exp_B_MC3" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- MC 4 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_B_MC4">
+              <span class="text-xs font-bold text-sky-700 block mb-1">Câu 4 (0.2đ)</span>
+              <p class="text-sm font-semibold text-slate-800 mb-2.5">
+                4. She exercises regularly to keep_______.
+              </p>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm">
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC4" value="A" class="text-sky-600">
+                  <span>A. tidy</span>
+                  <button type="button" onclick="speakSingleWord('tidy')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC4" value="B" class="text-sky-600">
+                  <span>B. clean</span>
+                  <button type="button" onclick="speakSingleWord('clean')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC4" value="C" class="text-sky-600">
+                  <span>C. fit</span>
+                  <button type="button" onclick="speakSingleWord('fit')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC4" value="D" class="text-sky-600">
+                  <span>D. unhealthy</span>
+                  <button type="button" onclick="speakSingleWord('unhealthy')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+              </div>
+              <div id="exp_B_MC4" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- MC 5 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_B_MC5">
+              <span class="text-xs font-bold text-sky-700 block mb-1">Câu 5 (0.2đ)</span>
+              <p class="text-sm font-semibold text-slate-800 mb-2.5">
+                5. I like ______ activities such as planting trees and cleaning in the park.
+              </p>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm">
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC5" value="A" class="text-sky-600">
+                  <span>A. sport</span>
+                  <button type="button" onclick="speakSingleWord('sport')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC5" value="B" class="text-sky-600">
+                  <span>B. outdoor</span>
+                  <button type="button" onclick="speakSingleWord('outdoor')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC5" value="C" class="text-sky-600">
+                  <span>C. tutor</span>
+                  <button type="button" onclick="speakSingleWord('tutor')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC5" value="D" class="text-sky-600">
+                  <span>D. community</span>
+                  <button type="button" onclick="speakSingleWord('community')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+              </div>
+              <div id="exp_B_MC5" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- MC 6 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_B_MC6">
+              <span class="text-xs font-bold text-sky-700 block mb-1">Câu 6 (0.2đ)</span>
+              <p class="text-sm font-semibold text-slate-800 mb-1">
+                6. Lan and Mark are talking about some community activities.
+              </p>
+              <p class="text-sm text-slate-700 italic mb-2.5">
+                Lan: “We collected books and warm clothes for our friends in the mountainous areas”.<br>
+                Mark: “__________________”
+              </p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm">
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC6" value="A" class="text-sky-600">
+                  <span>A. Yes, I’d love to</span>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC6" value="B" class="text-sky-600">
+                  <span>B. Sounds like great work!</span>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC6" value="C" class="text-sky-600">
+                  <span>C. I’m sorry, I can’t</span>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC6" value="D" class="text-sky-600">
+                  <span>D. Sure</span>
+                </label>
+              </div>
+              <div id="exp_B_MC6" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- MC 7 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_B_MC7">
+              <span class="text-xs font-bold text-sky-700 block mb-1">Câu 7 (0.2đ)</span>
+              <p class="text-sm font-semibold text-slate-800 mb-2.5">
+                7. I love playing volleyball,_____________my father doesn’t.
+              </p>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-sm">
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC7" value="A" class="text-sky-600">
+                  <span>A. and</span>
+                  <button type="button" onclick="speakSingleWord('and')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC7" value="B" class="text-sky-600">
+                  <span>B. so</span>
+                  <button type="button" onclick="speakSingleWord('so')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC7" value="C" class="text-sky-600">
+                  <span>C. because</span>
+                  <button type="button" onclick="speakSingleWord('because')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_B_MC7" value="D" class="text-sky-600">
+                  <span>D. but</span>
+                  <button type="button" onclick="speakSingleWord('but')" class="speaker-btn text-slate-400 hover:text-sky-600 ml-auto p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+              </div>
+              <div id="exp_B_MC7" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Section III. Verb form -->
+        <div>
+          <div class="bg-sky-50/70 p-3.5 rounded-2xl border border-sky-100 mb-4">
+            <h4 class="font-bold text-sky-900 text-sm">
+              III. Give the correct form of the verbs in the brackets to complete the sentence. (0.6points)
+            </h4>
+          </div>
+
+          <div class="space-y-3.5 text-sm">
+            <!-- V1 -->
+            <div class="p-3.5 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_B_V1">
+              <span class="text-xs font-bold text-sky-700 block mb-1">Câu 1 (0.2đ)</span>
+              <div class="flex flex-wrap items-center gap-2">
+                <span>My brother enjoys (do)</span>
+                <input type="text" id="ans_B_V1" placeholder="nhập từ..." class="px-3 py-1.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sky-400 focus:outline-none text-sm w-36 font-semibold">
+                <span>gardening.</span>
+              </div>
+              <div id="exp_B_V1" class="hidden mt-2 pt-2 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- V2 -->
+            <div class="p-3.5 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_B_V2">
+              <span class="text-xs font-bold text-sky-700 block mb-1">Câu 2 (0.2đ)</span>
+              <div class="flex flex-wrap items-center gap-2">
+                <span>1. We (visit)</span>
+                <input type="text" id="ans_B_V2" placeholder="nhập từ..." class="px-3 py-1.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sky-400 focus:outline-none text-sm w-36 font-semibold">
+                <span>the Louvre museum in Paris last week.</span>
+              </div>
+              <div id="exp_B_V2" class="hidden mt-2 pt-2 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- V3 -->
+            <div class="p-3.5 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_B_V3">
+              <span class="text-xs font-bold text-sky-700 block mb-1">Câu 3 (0.2đ)</span>
+              <div class="flex flex-wrap items-center gap-2">
+                <span>Lan usually (go)</span>
+                <input type="text" id="ans_B_V3" placeholder="nhập từ..." class="px-3 py-1.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sky-400 focus:outline-none text-sm w-36 font-semibold">
+                <span>to school in the morning.</span>
+              </div>
+              <div id="exp_B_V3" class="hidden mt-2 pt-2 border-t border-slate-200 text-xs"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PART C. READING ================= -->
+      <section class="bg-white rounded-3xl shadow-sm border border-sky-100 p-6 sm:p-8 mb-8" id="section_partC">
+        <div class="flex items-center justify-between border-b border-sky-100 pb-4 mb-6">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-xl bg-sky-100 text-sky-700 font-black flex items-center justify-center text-lg">C</span>
+            <h3 class="text-lg sm:text-xl font-bold text-sky-950 uppercase">PART C. READING (2.6 points)</h3>
+          </div>
+          <span class="text-xs font-bold text-sky-700 bg-sky-50 px-3 py-1.5 rounded-full border border-sky-200">10 câu • 2.6 điểm</span>
+        </div>
+
+        <!-- Section I. Cloze Test -->
+        <div class="mb-10">
+          <div class="bg-sky-50/70 p-3.5 rounded-2xl border border-sky-100 mb-4">
+            <h4 class="font-bold text-sky-900 text-sm">
+              I. Circle the best answer A, B, C or D to complete the passage. (1.0 points).
+            </h4>
+          </div>
+
+          <!-- Cloze Passage -->
+          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 text-sm text-slate-700 leading-relaxed mb-5">
+            I have a very interesting and <strong>(1) ______</strong> hobby. I make short video clips with my digital camera. It was my birthday present from my parents last year. Since then, I have <strong>(2) ______</strong> three short films. It’s great fun! I started asking my friends and relatives to take <strong>(3) ______</strong> in the films. I have tried to write the story for my video clips. When I have finished the script, 1 make copies for the “actors”. Each scene is small and they can look at the words just <strong>(4) ______</strong> we start filming. We film at the weekend in my neighbourhood, <strong>(5) ______</strong> no one has to travel far. When the video clip is finished, I invite all the “actors” and we watch the film at my house.
+          </div>
+
+          <!-- Choices -->
+          <div class="grid grid-cols-1 sm:grid-cols-5 gap-3">
+            <!-- C1 -->
+            <div class="p-3 rounded-2xl border border-slate-200 bg-slate-50/40 text-xs" id="box_C_CL1">
+              <span class="font-bold text-sky-800 block mb-1">1.</span>
+              <div class="space-y-1">
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="ans_C_CL1" value="A"> <span>A. enjoy</span></label>
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="ans_C_CL1" value="B"> <span>B. enjoyed</span></label>
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="ans_C_CL1" value="C"> <span>C. enjoying</span></label>
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="ans_C_CL1" value="D"> <span>D. enjoyable</span></label>
+              </div>
+              <div id="exp_C_CL1" class="hidden mt-2 pt-2 border-t border-slate-200 text-[11px]"></div>
+            </div>
+
+            <!-- C2 -->
+            <div class="p-3 rounded-2xl border border-slate-200 bg-slate-50/40 text-xs" id="box_C_CL2">
+              <span class="font-bold text-sky-800 block mb-1">2.</span>
+              <div class="space-y-1">
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="ans_C_CL2" value="A"> <span>A. done</span></label>
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="ans_C_CL2" value="B"> <span>B. played</span></label>
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="ans_C_CL2" value="C"> <span>C. made</span></label>
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="ans_C_CL2" value="D"> <span>D. watched</span></label>
+              </div>
+              <div id="exp_C_CL2" class="hidden mt-2 pt-2 border-t border-slate-200 text-[11px]"></div>
+            </div>
+
+            <!-- C3 -->
+            <div class="p-3 rounded-2xl border border-slate-200 bg-slate-50/40 text-xs" id="box_C_CL3">
+              <span class="font-bold text-sky-800 block mb-1">3.</span>
+              <div class="space-y-1">
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="ans_C_CL3" value="A"> <span>A. part</span></label>
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="ans_C_CL3" value="B"> <span>B. role</span></label>
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="ans_C_CL3" value="C"> <span>C. scene</span></label>
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="ans_C_CL3" value="D"> <span>D. film</span></label>
+              </div>
+              <div id="exp_C_CL3" class="hidden mt-2 pt-2 border-t border-slate-200 text-[11px]"></div>
+            </div>
+
+            <!-- C4 -->
+            <div class="p-3 rounded-2xl border border-slate-200 bg-slate-50/40 text-xs" id="box_C_CL4">
+              <span class="font-bold text-sky-800 block mb-1">4.</span>
+              <div class="space-y-1">
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="ans_C_CL4" value="A"> <span>A. before</span></label>
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="ans_C_CL4" value="B"> <span>B. after</span></label>
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="ans_C_CL4" value="C"> <span>C. only</span></label>
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="ans_C_CL4" value="D"> <span>D. until</span></label>
+              </div>
+              <div id="exp_C_CL4" class="hidden mt-2 pt-2 border-t border-slate-200 text-[11px]"></div>
+            </div>
+
+            <!-- C5 -->
+            <div class="p-3 rounded-2xl border border-slate-200 bg-slate-50/40 text-xs" id="box_C_CL5">
+              <span class="font-bold text-sky-800 block mb-1">5.</span>
+              <div class="space-y-1">
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="ans_C_CL5" value="A"> <span>A. although</span></label>
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="ans_C_CL5" value="B"> <span>B. because</span></label>
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="ans_C_CL5" value="C"> <span>C. but</span></label>
+                <label class="flex items-center gap-1.5 cursor-pointer"><input type="radio" name="ans_C_CL5" value="D"> <span>D. so</span></label>
+              </div>
+              <div id="exp_C_CL5" class="hidden mt-2 pt-2 border-t border-slate-200 text-[11px]"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section II. Reading Comprehension -->
+        <div>
+          <div class="bg-sky-50/70 p-3.5 rounded-2xl border border-sky-100 mb-4">
+            <h4 class="font-bold text-sky-900 text-sm">
+              II. Read the following passage and answer the questions. (1.6 points)
+            </h4>
+          </div>
+
+          <!-- Reading Passage -->
+          <div class="p-5 rounded-2xl bg-slate-50 border border-slate-200 text-sm text-slate-700 leading-relaxed mb-5 space-y-2.5">
+            <p>Each country has many good people who take care of others. For example, some of students in the United States often spend many hours as volunteers in hospitals, orphanages or homes for the elderly. They read books to the people in these places, or they just visit them and play games with them or listen to their problems.</p>
+            <p>Other young volunteers go and work in the homes of people who are sick or old. They paint, clean up, or repair their houses, do the shopping. For boys who don’t have fathers, there is an organization called Big Brothers. College students and other men take these boys to basketball games or on fishing trips and help <strong>them</strong> to get to know things those boys usually learn from their fathers.</p>
+            <p>Each city has a number of clubs where boys and girls can go and play games. Some of these clubs show movies or hold short trip to the mountains, the beaches, museums, or other places of interest. Most of these clubs use a lot of students as volunteers because they are young enough to understand the problems of younger boys and girls</p>
+          </div>
+
+          <!-- Questions 1-5 -->
+          <div class="space-y-4 text-sm">
+            <!-- RC 1 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_C_RC1">
+              <span class="text-xs font-bold text-sky-700 block mb-1">Câu 1 (0.32đ)</span>
+              <p class="font-semibold text-slate-800 mb-2">Do all of students in the United States often spend a lot of time as volunteers?</p>
+              <input type="text" id="ans_C_RC1" placeholder="Nhập câu trả lời của bạn..." class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sky-400 focus:outline-none font-semibold text-sm">
+              <div id="exp_C_RC1" class="hidden mt-2 pt-2 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- RC 2 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_C_RC2">
+              <span class="text-xs font-bold text-sky-700 block mb-1">Câu 2 (0.32đ)</span>
+              <p class="font-semibold text-slate-800 mb-2">What do volunteers usually do to help sick or old people?</p>
+              <input type="text" id="ans_C_RC2" placeholder="Nhập câu trả lời của bạn..." class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sky-400 focus:outline-none font-semibold text-sm">
+              <div id="exp_C_RC2" class="hidden mt-2 pt-2 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- RC 3 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_C_RC3">
+              <span class="text-xs font-bold text-sky-700 block mb-1">Câu 3 (0.32đ)</span>
+              <p class="font-semibold text-slate-800 mb-2">Why most of the clubs use students as volunteers?</p>
+              <input type="text" id="ans_C_RC3" placeholder="Nhập câu trả lời của bạn..." class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sky-400 focus:outline-none font-semibold text-sm">
+              <div id="exp_C_RC3" class="hidden mt-2 pt-2 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- RC 4 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_C_RC4">
+              <span class="text-xs font-bold text-sky-700 block mb-1">Câu 4 (0.32đ)</span>
+              <p class="font-semibold text-slate-800 mb-2.5">4. The word “ them” in the second paragraph refers to ____</p>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_C_RC4" value="A" class="text-sky-600"> <span>College students</span>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_C_RC4" value="B" class="text-sky-600"> <span>sick people</span>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_C_RC4" value="C" class="text-sky-600"> <span>volunteers</span>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_C_RC4" value="D" class="text-sky-600"> <span>the boys who don’t have fathers</span>
+                </label>
+              </div>
+              <div id="exp_C_RC4" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- RC 5 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_C_RC5">
+              <span class="text-xs font-bold text-sky-700 block mb-1">Câu 5 (0.32đ)</span>
+              <p class="font-semibold text-slate-800 mb-2.5">5. Where don’t students often do volunteer work?</p>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_C_RC5" value="A" class="text-sky-600"> <span>A. hospitals</span>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_C_RC5" value="B" class="text-sky-600"> <span>B. orphanages</span>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_C_RC5" value="C" class="text-sky-600"> <span>C. clubs</span>
+                </label>
+                <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-200 bg-white hover:bg-sky-50 cursor-pointer transition">
+                  <input type="radio" name="ans_C_RC5" value="D" class="text-sky-600"> <span>D. home for the elderly</span>
+                </label>
+              </div>
+              <div id="exp_C_RC5" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs"></div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PART D. WRITING ================= -->
+      <section class="bg-white rounded-3xl shadow-sm border border-sky-100 p-6 sm:p-8 mb-8" id="section_partD">
+        <div class="flex items-center justify-between border-b border-sky-100 pb-4 mb-6">
+          <div class="flex items-center gap-3">
+            <span class="w-9 h-9 rounded-xl bg-sky-100 text-sky-700 font-black flex items-center justify-center text-lg">D</span>
+            <h3 class="text-lg sm:text-xl font-bold text-sky-950 uppercase">PART D. WRITING (2.4 points)</h3>
+          </div>
+          <span class="text-xs font-bold text-sky-700 bg-sky-50 px-3 py-1.5 rounded-full border border-sky-200">7 câu • 2.4 điểm</span>
+        </div>
+
+        <!-- Section I. Rearrange words (Interactive Boxes) -->
+        <div class="mb-10">
+          <div class="bg-sky-50/70 p-3.5 rounded-2xl border border-sky-100 mb-4">
+            <h4 class="font-bold text-sky-900 text-sm">
+              I. Rearrange the following words to make sentences. (1.2 points - 0.4 điểm/câu)
+            </h4>
+            <p class="text-xs text-slate-500 mt-0.5">Chạm vào từng ô từ/cụm từ để xếp thành câu hoàn chỉnh. Dấu câu cuối câu được hệ thống tự động xử lý.</p>
+          </div>
+
+          <div class="space-y-6 text-sm">
+
+            <!-- Rearrange 1 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_D_RE1">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-xs font-bold text-sky-700">Câu 1 (0.4đ)</span>
+                <span class="text-xs text-slate-400 font-mono">didn’t / Hanoi / ago / We / two / to / weeks / go / .</span>
+              </div>
+
+              <!-- Answer construction area -->
+              <div class="min-h-[46px] p-2.5 rounded-xl border-2 border-dashed border-sky-200 bg-white flex flex-wrap items-center gap-1.5 mb-2.5" id="drop_D_RE1">
+                <span class="text-xs text-slate-400 italic" id="placeholder_D_RE1">Bấm chọn các từ bên dưới theo thứ tự để xếp câu...</span>
+              </div>
+
+              <!-- Word bank boxes -->
+              <div class="flex flex-wrap items-center gap-2" id="bank_D_RE1">
+                <!-- Word boxes dynamically rendered -->
+              </div>
+
+              <div class="flex items-center justify-end gap-2 mt-2">
+                <button type="button" onclick="undoWord('D_RE1')" class="text-xs font-semibold text-sky-700 hover:text-sky-900 px-2.5 py-1 rounded-lg bg-sky-50 border border-sky-200">
+                  <i class="fa-solid fa-rotate-left mr-1"></i> Hoàn tác từ cuối
+                </button>
+                <button type="button" onclick="resetWordBank('D_RE1')" class="text-xs font-semibold text-rose-600 hover:text-rose-800 px-2.5 py-1 rounded-lg bg-rose-50 border border-rose-200">
+                  <i class="fa-solid fa-trash-can mr-1"></i> Xóa làm lại
+                </button>
+              </div>
+
+              <div id="exp_D_RE1" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- Rearrange 2 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_D_RE2">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-xs font-bold text-sky-700">Câu 2 (0.4đ)</span>
+                <span class="text-xs text-slate-400 font-mono">hobbies / ? / going / and / weekends / Your / are / hiking / at / shopping /</span>
+              </div>
+
+              <!-- Answer construction area -->
+              <div class="min-h-[46px] p-2.5 rounded-xl border-2 border-dashed border-sky-200 bg-white flex flex-wrap items-center gap-1.5 mb-2.5" id="drop_D_RE2">
+                <span class="text-xs text-slate-400 italic" id="placeholder_D_RE2">Bấm chọn các từ bên dưới theo thứ tự để xếp câu...</span>
+              </div>
+
+              <!-- Word bank boxes -->
+              <div class="flex flex-wrap items-center gap-2" id="bank_D_RE2">
+                <!-- Word boxes dynamically rendered -->
+              </div>
+
+              <div class="flex items-center justify-end gap-2 mt-2">
+                <button type="button" onclick="undoWord('D_RE2')" class="text-xs font-semibold text-sky-700 hover:text-sky-900 px-2.5 py-1 rounded-lg bg-sky-50 border border-sky-200">
+                  <i class="fa-solid fa-rotate-left mr-1"></i> Hoàn tác từ cuối
+                </button>
+                <button type="button" onclick="resetWordBank('D_RE2')" class="text-xs font-semibold text-rose-600 hover:text-rose-800 px-2.5 py-1 rounded-lg bg-rose-50 border border-rose-200">
+                  <i class="fa-solid fa-trash-can mr-1"></i> Xóa làm lại
+                </button>
+              </div>
+
+              <div id="exp_D_RE2" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- Rearrange 3 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_D_RE3">
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-xs font-bold text-sky-700">Câu 3 (0.4đ)</span>
+                <span class="text-xs text-slate-400 font-mono">it / find / a / game / volleyball I/ interesting/ because/ playing/ is/ team/..</span>
+              </div>
+
+              <!-- Answer construction area -->
+              <div class="min-h-[46px] p-2.5 rounded-xl border-2 border-dashed border-sky-200 bg-white flex flex-wrap items-center gap-1.5 mb-2.5" id="drop_D_RE3">
+                <span class="text-xs text-slate-400 italic" id="placeholder_D_RE3">Bấm chọn các từ bên dưới theo thứ tự để xếp câu...</span>
+              </div>
+
+              <!-- Word bank boxes -->
+              <div class="flex flex-wrap items-center gap-2" id="bank_D_RE3">
+                <!-- Word boxes dynamically rendered -->
+              </div>
+
+              <div class="flex items-center justify-end gap-2 mt-2">
+                <button type="button" onclick="undoWord('D_RE3')" class="text-xs font-semibold text-sky-700 hover:text-sky-900 px-2.5 py-1 rounded-lg bg-sky-50 border border-sky-200">
+                  <i class="fa-solid fa-rotate-left mr-1"></i> Hoàn tác từ cuối
+                </button>
+                <button type="button" onclick="resetWordBank('D_RE3')" class="text-xs font-semibold text-rose-600 hover:text-rose-800 px-2.5 py-1 rounded-lg bg-rose-50 border border-rose-200">
+                  <i class="fa-solid fa-trash-can mr-1"></i> Xóa làm lại
+                </button>
+              </div>
+
+              <div id="exp_D_RE3" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Section II. Rewrite sentences -->
+        <div>
+          <div class="bg-sky-50/70 p-3.5 rounded-2xl border border-sky-100 mb-4">
+            <h4 class="font-bold text-sky-900 text-sm">
+              II. Rewrite each of the sentences so that it means the same as the one before it (1.2 points - 0.3 điểm/câu)
+            </h4>
+          </div>
+
+          <div class="space-y-4 text-sm">
+            <!-- RW 1 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_D_RW1">
+              <span class="text-xs font-bold text-sky-700 block mb-1">Câu 1 (0.3đ)</span>
+              <p class="text-slate-800 mb-2">
+                1. My parents often go to the village to donate clothes for the elderly. I go with them. (and)
+              </p>
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-slate-700 shrink-0">→ My parents</span>
+                <input type="text" id="ans_D_RW1" placeholder="viết tiếp câu..." class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sky-400 focus:outline-none font-semibold">
+              </div>
+              <div id="exp_D_RW1" class="hidden mt-2 pt-2 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- RW 2 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_D_RW2">
+              <span class="text-xs font-bold text-sky-700 block mb-1">Câu 2 (0.3đ)</span>
+              <p class="text-slate-800 mb-2">
+                2. My father likes doing gardening at the weekend.
+              </p>
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-slate-700 shrink-0">My father enjoys</span>
+                <input type="text" id="ans_D_RW2" placeholder="viết tiếp câu..." class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sky-400 focus:outline-none font-semibold">
+              </div>
+              <div id="exp_D_RW2" class="hidden mt-2 pt-2 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- RW 3 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_D_RW3">
+              <span class="text-xs font-bold text-sky-700 block mb-1">Câu 3 (0.3đ)</span>
+              <p class="text-slate-800 mb-2">
+                3 .Let’s help the old people in the nursing home.
+              </p>
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-slate-700 shrink-0">What about</span>
+                <input type="text" id="ans_D_RW3" placeholder="viết tiếp câu... ?" class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sky-400 focus:outline-none font-semibold">
+              </div>
+              <div id="exp_D_RW3" class="hidden mt-2 pt-2 border-t border-slate-200 text-xs"></div>
+            </div>
+
+            <!-- RW 4 -->
+            <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/40" id="box_D_RW4">
+              <span class="text-xs font-bold text-sky-700 block mb-1">Câu 4 (0.3đ)</span>
+              <p class="text-slate-800 mb-2">
+                5.My parents doesn’t like cartoons.
+              </p>
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-slate-700 shrink-0">My parents aren’t</span>
+                <input type="text" id="ans_D_RW4" placeholder="viết tiếp câu..." class="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:ring-2 focus:ring-sky-400 focus:outline-none font-semibold">
+              </div>
+              <div id="exp_D_RW4" class="hidden mt-2 pt-2 border-t border-slate-200 text-xs"></div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SUBMIT ACTION BAR ================= -->
+      <div class="text-center bg-white p-6 rounded-3xl shadow-lg border border-sky-100 mb-10">
+        <p class="text-xs text-slate-500 mb-3 font-medium">
+          <i class="fa-solid fa-circle-info text-sky-500 mr-1"></i> Học sinh kiểm tra kỹ các câu hỏi trước khi nhấn nộp bài. Hệ thống chỉ chấm điểm và mở lời giải sau khi đã nộp bài.
+        </p>
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <button type="button" onclick="promptSubmitExam()" id="btnSubmit" class="bg-gradient-to-r from-sky-600 to-cyan-600 hover:from-sky-700 hover:to-cyan-700 text-white font-bold px-8 py-3.5 rounded-2xl shadow-lg shadow-sky-200 transition transform hover:-translate-y-0.5 flex items-center gap-2">
+            <i class="fa-solid fa-paper-plane"></i> NỘP BÀI
+          </button>
+        </div>
+      </div>
+    </form>
+
+    <!-- ================= SCORE & RESULTS SECTION ================= -->
+    <section id="resultsSection" class="hidden bg-white rounded-3xl shadow-xl border-2 border-sky-200 p-6 sm:p-8 mb-12">
+      <div class="text-center pb-6 border-b border-sky-100">
+        <span class="inline-block px-4 py-1.5 rounded-full text-xs font-extrabold uppercase mb-2 tracking-wider bg-sky-100 text-sky-900 border border-sky-200" id="rankBadge">
+          KẾT QUẢ ĐÁNH GIÁ
+        </span>
+        <h3 class="text-3xl sm:text-4xl font-black text-sky-950 mb-1" id="scoreDisplay">0.0 / 10.0 Điểm</h3>
+        <p class="text-sm font-semibold text-slate-600" id="studentGreeting">Học sinh: Nguyễn Văn A</p>
+        <div class="flex items-center justify-center gap-4 mt-2 text-xs font-bold text-slate-600">
+          <span class="text-emerald-600 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200" id="correctCountDisplay">
+            <i class="fa-solid fa-circle-check mr-1"></i> Đúng: 0 câu
+          </span>
+          <span class="text-rose-600 bg-rose-50 px-3 py-1 rounded-full border border-rose-200" id="wrongCountDisplay">
+            <i class="fa-solid fa-circle-xmark mr-1"></i> Sai/Chưa làm: 0 câu
+          </span>
+        </div>
+      </div>
+
+      <!-- Breakdown Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 my-6 text-center">
+        <div class="p-4 rounded-2xl bg-sky-50 border border-sky-100">
+          <span class="text-xs font-bold text-sky-700 block uppercase">Part A - Listening</span>
+          <span class="text-xl font-black text-sky-950" id="score_partA">0.0 / 2.4</span>
+        </div>
+        <div class="p-4 rounded-2xl bg-sky-50 border border-sky-100">
+          <span class="text-xs font-bold text-sky-700 block uppercase">Part B - Language</span>
+          <span class="text-xl font-black text-sky-950" id="score_partB">0.0 / 2.6</span>
+        </div>
+        <div class="p-4 rounded-2xl bg-sky-50 border border-sky-100">
+          <span class="text-xs font-bold text-sky-700 block uppercase">Part C - Reading</span>
+          <span class="text-xl font-black text-sky-950" id="score_partC">0.0 / 2.6</span>
+        </div>
+        <div class="p-4 rounded-2xl bg-sky-50 border border-sky-100">
+          <span class="text-xs font-bold text-sky-700 block uppercase">Part D - Writing</span>
+          <span class="text-xl font-black text-sky-950" id="score_partD">0.0 / 2.4</span>
+        </div>
+      </div>
+
+      <!-- Teacher's Note Card -->
+      <div class="bg-gradient-to-r from-sky-900 to-slate-900 rounded-2xl p-5 text-white flex items-start gap-4">
+        <div class="w-11 h-11 rounded-2xl bg-sky-800 flex items-center justify-center text-xl shrink-0 font-black text-amber-300">
+          <i class="fa-solid fa-chalkboard-user"></i>
+        </div>
+        <div>
+          <h4 class="font-bold text-sm sm:text-base text-sky-200">Nhận xét & Hướng dẫn học tập từ Ms. Lily (HT English):</h4>
+          <p class="text-xs sm:text-sm text-slate-200 mt-1 leading-relaxed" id="teacherComment">
+            Chúc mừng em đã hoàn thành bài kiểm tra giữa kỳ 1! Hãy cuộn xuống từng câu hỏi bên dưới để đối chiếu đáp án chuẩn, nghe lại phát âm và đọc kỹ phần giải thích cấu trúc ngữ pháp trọng tâm nhé.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- CONFIRMATION MODAL (No window.confirm/alert) -->
+  <div id="confirmModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-sky-100 transform transition-all text-center">
+      <div class="w-14 h-14 rounded-2xl bg-sky-100 text-sky-600 flex items-center justify-center text-2xl mx-auto mb-4" id="modalIcon">
+        <i class="fa-solid fa-clipboard-question"></i>
+      </div>
+      <h3 class="text-lg font-bold text-slate-900 mb-2" id="modalTitle">Xác nhận nộp bài</h3>
+      <p class="text-sm text-slate-600 mb-6 leading-relaxed" id="modalMessage">
+        Bạn có chắc chắn muốn nộp bài không? Sau khi nộp bài, bạn sẽ không thể thay đổi đáp án.
+      </p>
+      <div class="flex items-center justify-center gap-3">
+        <button type="button" onclick="closeConfirmModal()" class="px-5 py-2.5 rounded-xl border border-slate-300 hover:bg-slate-100 text-slate-700 text-sm font-semibold transition">
+          Tiếp tục làm bài
+        </button>
+        <button type="button" onclick="executeFinalSubmit()" class="px-6 py-2.5 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-sm font-bold shadow-md shadow-sky-200 transition">
+          Nộp bài
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="text-center text-xs text-slate-500 mt-12 pb-6">
+    <p class="font-bold text-sky-900">HT ENGLISH CENTER • MS. LILY</p>
+    <p class="mt-1">Hotline: 0963422940 - 0962240866 | Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình</p>
+    <p class="text-slate-400 mt-0.5">Bài tập điện tử mô phỏng chuẩn xác đề kiểm tra THCS Trực Nội</p>
+  </footer>
+
+  <script>
+    // ==========================================
+    // REARRANGE WORDS DATA (Natural Phrases & Punctuation Separation)
+    // ==========================================
+    const REARRANGE_DATA = {
+      D_RE1: {
+        rawPieces: ['didn’t', 'Hanoi', 'ago', 'We', 'two', 'to', 'weeks', 'go'],
+        punctuation: '.',
+        target: "We didn't go to Hanoi two weeks ago.",
+        alts: [
+          "we didn't go to hanoi two weeks ago.",
+          "we didn’t go to hanoi two weeks ago.",
+          "we didn't go to hanoi two weeks ago",
+          "we didn’t go to hanoi two weeks ago"
+        ],
+        explanation: "Cấu trúc thì Quá khứ đơn dạng phủ định: S + didn't + V(nguyên mẫu) + (nơi chốn) + (thời gian).<br><strong>Công thức:</strong> S + didn’t + V_inf + O + ago.<br>→ <em>We didn't go to Hanoi two weeks ago.</em>"
+      },
+      D_RE2: {
+        rawPieces: ['hobbies', 'going', 'and', 'weekends', 'Your', 'are', 'hiking', 'at', 'shopping'],
+        punctuation: '?',
+        target: "Are your hobbies going hiking and shopping at weekends?",
+        alts: [
+          "are your hobbies going hiking and shopping at weekends?",
+          "are your hobbies going shopping and hiking at weekends?",
+          "are your hobbies going hiking and shopping at weekends",
+          "are your hobbies going shopping and hiking at weekends"
+        ],
+        explanation: "Câu hỏi dạng Yes/No thì Hiện tại đơn với động từ To be: Are + your hobbies + V-ing and V-ing + at weekends?<br><strong>Ghi nhớ:</strong> Có thể đảo vị trí giữa 'going hiking' và 'shopping'."
+      },
+      D_RE3: {
+        rawPieces: ['it', 'find', 'a', 'game', 'volleyball', 'I', 'interesting', 'because', 'playing', 'is', 'team'],
+        punctuation: '.',
+        target: "I find playing volleyball interesting because it is a team game.",
+        alts: [
+          "i find playing volleyball interesting because it is a team game.",
+          "i find playing volleyball interesting because it is a team game"
+        ],
+        explanation: "Cấu trúc chỉ cảm nhận về một hoạt động: S + find + V-ing + adj + because + S + V + ...<br><strong>Công thức:</strong> S + find + V-ing/N + Adj (I find playing volleyball interesting) nối với mệnh đề nguyên nhân (because it is a team game)."
+      }
+    };
+
+    // State for interactive rearrange boxes
+    const userSelections = {
+      D_RE1: [],
+      D_RE2: [],
+      D_RE3: []
+    };
+
+    let isSubmitted = false;
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initWordBoxes('D_RE1');
+      initWordBoxes('D_RE2');
+      initWordBoxes('D_RE3');
+    });
+
+    function initWordBoxes(qId) {
+      const bankEl = document.getElementById('bank_' + qId);
+      if (!bankEl) return;
+      bankEl.innerHTML = '';
+      const pieces = REARRANGE_DATA[qId].rawPieces;
+
+      pieces.forEach((piece, idx) => {
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.id = `chip_${qId}_${idx}`;
+        chip.className = 'word-chip px-3 py-1.5 rounded-xl border border-sky-300 bg-white hover:bg-sky-50 text-sky-950 font-semibold text-xs sm:text-sm shadow-sm active:scale-95 cursor-pointer';
+        chip.innerText = piece;
+        chip.onclick = () => selectWord(qId, idx, piece);
+        bankEl.appendChild(chip);
+      });
+      updateDropArea(qId);
+    }
+
+    function selectWord(qId, idx, text) {
+      if (isSubmitted) return;
+      userSelections[qId].push({ idx, text });
+      const chip = document.getElementById(`chip_${qId}_${idx}`);
+      if (chip) {
+        chip.disabled = true;
+        chip.classList.add('opacity-30', 'cursor-not-allowed', 'bg-slate-100');
+        chip.classList.remove('hover:bg-sky-50', 'bg-white');
+      }
+      updateDropArea(qId);
+    }
+
+    function undoWord(qId) {
+      if (isSubmitted || userSelections[qId].length === 0) return;
+      const last = userSelections[qId].pop();
+      const chip = document.getElementById(`chip_${qId}_${last.idx}`);
+      if (chip) {
+        chip.disabled = false;
+        chip.classList.remove('opacity-30', 'cursor-not-allowed', 'bg-slate-100');
+        chip.classList.add('hover:bg-sky-50', 'bg-white');
+      }
+      updateDropArea(qId);
+    }
+
+    function resetWordBank(qId) {
+      if (isSubmitted) return;
+      userSelections[qId] = [];
+      initWordBoxes(qId);
+    }
+
+    function updateDropArea(qId) {
+      const dropEl = document.getElementById('drop_' + qId);
+      const placeholder = document.getElementById('placeholder_' + qId);
+      if (!dropEl) return;
+
+      const words = userSelections[qId];
+      if (words.length === 0) {
+        dropEl.innerHTML = '';
+        if (placeholder) {
+          dropEl.appendChild(placeholder);
+          placeholder.classList.remove('hidden');
+        }
+        return;
+      }
+
+      dropEl.innerHTML = '';
+      words.forEach((item, pos) => {
+        const span = document.createElement('span');
+        span.className = 'inline-flex items-center px-2.5 py-1 rounded-lg bg-sky-100 text-sky-900 border border-sky-200 text-xs sm:text-sm font-bold shadow-xs';
+        span.innerText = item.text;
+        dropEl.appendChild(span);
+      });
+
+      // System automatically attaches ending punctuation cleanly
+      const punctSpan = document.createElement('span');
+      punctSpan.className = 'text-sky-700 font-extrabold text-base ml-0.5';
+      punctSpan.innerText = REARRANGE_DATA[qId].punctuation;
+      dropEl.appendChild(punctSpan);
+    }
+
+    function getRearrangeSentence(qId) {
+      const words = userSelections[qId].map(w => w.text);
+      if (words.length === 0) return '';
+      return words.join(' ') + REARRANGE_DATA[qId].punctuation;
+    }
+
+    // Web Speech API for single words and phrases
+    function speakSingleWord(text) {
+      if (!('speechSynthesis' in window)) return;
+      window.speechSynthesis.cancel();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'en-US';
+      u.rate = 0.9;
+      window.speechSynthesis.speak(u);
+    }
+
+    // Audio Player Toggle for Part 1 & Part 2
+    function toggleAudio(audioId, btnId, textId) {
+      const audio = document.getElementById(audioId);
+      const textSpan = document.getElementById(textId);
+      if (!audio) return;
+
+      if (audio.paused) {
+        // Pause any other playing audio
+        document.querySelectorAll('audio').forEach(a => {
+          if (a !== audio) a.pause();
+        });
+        audio.play().then(() => {
+          textSpan.innerText = 'Đang phát... Nhấn để dừng';
+        }).catch(err => {
+          console.warn('Audio file playback fallback to synthesis:', err);
+          // Fallback if local mp3 is unavailable in preview
+          fallbackAudioSpeech(audioId, textSpan);
+        });
+      } else {
+        audio.pause();
+        textSpan.innerText = (audioId === 'audioTask1') ? 'Nghe bài 1 (Twice)' : 'Nghe bài 2 (Twice)';
+      }
+
+      audio.onended = () => {
+        textSpan.innerText = (audioId === 'audioTask1') ? 'Nghe bài 1 (Twice)' : 'Nghe bài 2 (Twice)';
+      };
+    }
+
+    function fallbackAudioSpeech(audioId, textSpan) {
+      let script = '';
+      if (audioId === 'audioTask1') {
+        script = "Tom: Hi Jack. I'm doing a survey on teenagers' hobbies. Can I ask you a few questions? Jack: Yes, go ahead. Tom: What do you often do in your leisure time? Jack: In my free time I like doing origami. Tom: You mean creating things from paper? Jack: Yes, that is exactly what I do. Folding paper. Tom: How long have you been doing it? Jack: Well, it all started two years ago on my trip to Japan. Tom: What do you enjoy about it? Jack: It is easy, inexpensive and great to share with others. Tom: What do you do with the stuff you made? Jack: I give some to my friends as birthday gifts, and sell some to get money.";
+      } else {
+        script = "Tom: So, what did your club do last year? Linda: We tutored third grade children, and helped old people. Tom: What did you tutor? Linda: We taught English and Maths. Was it difficult? Yes, but we had a lot of fun. How did you help the elderly? Linda: We cooked for them, and did some cleaning too. Tom: We picked up paper and bottles in a nearby park. We also planted some trees and watered them very often. Yes, it was a really good time.";
+      }
+      speakSingleWord(script);
+      textSpan.innerText = 'Đang phát bằng giọng đọc...';
+    }
+
+    const EXAM_KEY = {
+      // PART A TASK 1
+      A1: { key: 'A', exp: 'Trong bài nghe, Jack nói: "That\'s exactly what I do. Folding paper." → Sở thích của Jack là gấp giấy (origami).' },
+      // Audio explicitly says "it all started two years ago". Corrected from Word typo.
+      A2: { key: 'B', exp: 'Trong audio Jack nói: "Well, it all started two years ago on my trip to Japan." → Jack đã có sở thích này được 2 năm (for two years). [Đã hiệu chỉnh lỗi đánh máy từ bản Word].' },
+      A3: { key: 'A', exp: 'Tom: "You mean creating things from paper?" Jack: "Yes." → Tạo ra các món đồ từ giấy (Paper).' },
+      A4: { key: 'B', exp: 'Jack nhận xét: "It\'s easy, inexpensive and great to share with others." → Từ "inexpensive" đồng nghĩa với "cheap" (rẻ, không đắt).' },
+      A5: { 
+        keys: ['B', 'D'], 
+        exp: 'Jack nói: "I give some to my friends as birthday gifts, and sell some to get money." Như vậy Jack có tặng bạn (A) và có bán (C). Jack KHÔNG cất vào hộp (B) và KHÔNG quyên góp (D). Hệ thống chấp nhận cả B hoặc D. (Lưu ý: Nếu câu hỏi hỏi việc Jack CÓ LÀM thì đáp án là A).' 
+      },
+      A6: { key: 'C', exp: 'Tom giới thiệu ngay mở đầu cuộc phỏng vấn: "I\'m doing a survey on teenagers\' hobbies." → Cuộc phỏng vấn về sở thích của giới trẻ (a teenager’s hobby).' },
+
+      // PART A TASK 2 (TRUE / FALSE)
+      TF1: { key: 'F', exp: 'False. Linda nói: "We tutored third-grade children and helped old people." → Họ dạy kèm học sinh lớp 3, không phải dạy kèm người già.' },
+      TF2: { key: 'T', exp: 'True. Linda nói: "We taught English and Maths."' },
+      TF3: { key: 'F', exp: 'False. Linda nói: "We cooked for them, and did some cleaning too." → Nấu ăn và dọn dẹp, không đi mua sắm (shopping).' },
+      TF4: { key: 'F', exp: 'False. Tom nói: "We picked up paper and bottles in a nearby park." → Nhặt giấy và chai lọ, không phải nhặt sách (books).' },
+      TF5: { key: 'T', exp: 'True. Tom nói: "We also planted some trees... watered them very often the first few weeks."' },
+      TF6: { key: 'T', exp: 'True. Tom khẳng định: "Yes, it was a really good time."' },
+
+      // PART B I. PHONETICS
+      B1: { key: 'C', exp: 'Đuôi "-ed": looked /t/, kissed /t/, stopped /t/ (phát âm là /t/ sau phụ âm vô thanh /k/, /s/, /p/). Từ "called" kết thúc bằng phụ âm hữu thanh /l/ nên phát âm là /d/.' },
+      B2: { key: 'A', exp: 'Nguyên âm "o": c<u>o</u>llect phát âm là /ə/. Các từ còn lại ph<u>o</u>to /oʊ/, pian<u>o</u> /oʊ/, g<u>o</u> /oʊ/ đều phát âm là /oʊ/.' },
+      B3: { key: 'C', exp: 'Phụ âm: chữ "f" trong giới từ "o<u>f</u>" phát âm là /v/ (/əv/ hoặc /ɒv/). Còn lại <u>f</u>at, lea<u>f</u>, sa<u>f</u>e đều phát âm là /f/. [Đã đính chính đáp án chuẩn ngữ âm học quốc tế, bản Word ghi nhầm B].' },
+
+      // PART B II. VOCABULARY & GRAMMAR
+      B_MC1: { key: 'A', exp: 'Cấu trúc cố định: be keen on + V-ing/N = đam mê, yêu thích điều gì.' },
+      B_MC2: { key: 'B', exp: 'Cụm từ bài Unit 1: "make models" = làm mô hình. (We often read the instructions carefully in order to make models...)' },
+      B_MC3: { key: 'D', exp: 'Kiến thức sức khỏe Unit 2: "Vitamin A" tốt cho thị lực/mắt (good for our eyes).' },
+      B_MC4: { key: 'C', exp: 'Cụm từ Unit 2: "keep fit" = giữ vóc dáng cân đối, khỏe mạnh.' },
+      B_MC5: { key: 'B', exp: 'Trồng cây và dọn vệ sinh trong công viên là các hoạt động ngoài trời: "outdoor activities".' },
+      B_MC6: { key: 'B', exp: 'Đáp lại một hoạt động tình nguyện ý nghĩa, người nghe tán thành và khen ngợi: "Sounds like great work!" (Nghe thật là một công việc tuyệt vời!).' },
+      B_MC7: { key: 'D', exp: 'Hai vế câu mang ý nghĩa tương phản đối lập (tôi thích nhưng bố tôi không thích) → Dùng liên từ "but" (nhưng).' },
+
+      // PART B III. VERB FORM
+      B_V1: { key: 'doing', exp: 'Sau động từ chỉ sự yêu thích "enjoy" + V-ing → doing. Cụm từ: "do gardening" (làm vườn).' },
+      B_V2: { key: 'visited', exp: 'Dấu hiệu thời gian trong quá khứ "last week" → Chia thì Quá khứ đơn: visit → visited.' },
+      B_V3: { key: 'goes', exp: 'Trạng từ tần suất "usually" diễn tả thói quen hàng ngày → Chia thì Hiện tại đơn. Chủ ngữ số ít "Lan" nên động từ thêm -es: go → goes.' },
+
+      // PART C I. CLOZE TEST
+      C_CL1: { key: 'D', exp: 'Cần một tính từ đứng trước danh từ "hobby" và song hành với "interesting" sau liên từ "and" → chọn tính từ "enjoyable" (thú vị).' },
+      C_CL2: { key: 'C', exp: 'Cụm từ: "make a film" = quay/sản xuất một bộ phim. Thì Hiện tại hoàn thành: have made.' },
+      C_CL3: { key: 'A', exp: 'Cụm thành ngữ cố định: "take part in" = tham gia vào (participate in).' },
+      C_CL4: { key: 'A', exp: 'Theo ngữ cảnh bài đọc: Diễn viên có thể đọc lời thoại ngay trước khi bấm máy quay ("just before we start filming").' },
+      C_CL5: { key: 'D', exp: 'Mệnh đề chỉ kết quả: Chúng tôi quay phim tại khu phố vào cuối tuần, vì vậy không ai phải đi xa ("so no one has to travel far").' },
+
+      // PART C II. READING COMPREHENSION
+      C_RC1: { 
+        keywords: ['no', 'they don\'t', 'do not', 'some'],
+        standard: 'No. / No, they don’t.',
+        exp: 'Dẫn chứng đoạn 1: "...some of students in the United States often spend many hours as volunteers...", chỉ một số học sinh ("some"), không phải tất cả sinh viên ("not all").'
+      },
+      C_RC2: { 
+        keywords: ['paint', 'clean', 'repair', 'shopping'],
+        standard: 'They paint, clean up, or repair their houses, do the shopping.',
+        exp: 'Dẫn chứng đoạn 2: "They paint, clean up, or repair their houses, do the shopping."'
+      },
+      C_RC3: { 
+        keywords: ['young enough', 'understand', 'problems'],
+        standard: 'Because they are young enough to understand the problems of younger boys and girls.',
+        exp: 'Dẫn chứng câu cuối bài: "Most of these clubs use a lot of students as volunteers because they are young enough to understand the problems of younger boys and girls."'
+      },
+      C_RC4: { key: 'D', exp: 'Dẫn chứng đoạn 2: "For boys who don’t have fathers, there is an organization called Big Brothers... and help them..." → "them" thay thế cho "the boys who don’t have fathers".' },
+      C_RC5: { key: 'C', exp: 'Bài đọc nêu học sinh làm tình nguyện ở bệnh viện (hospitals), trại trẻ mồ côi (orphanages), viện dưỡng lão (home for the elderly). Đáp án không được nhắc đến là C. clubs.' },
+
+      // PART D II. REWRITE SENTENCES
+      D_RW1: {
+        standard: "My parents and I often go to the village to donate clothes for the elderly.",
+        alts: [
+          "and i often go to the village to donate clothes for the elderly.",
+          "and i often go to the village to donate clothes for the elderly",
+          "and i often go to the village to donate clothes for elderly.",
+          "and i often go to the village to donate clothes for elderly"
+        ],
+        exp: 'Kết hợp hai chủ ngữ cùng thực hiện hành động bằng liên từ "and": My parents + and I + often go to the village to donate clothes for the elderly.'
+      },
+      D_RW2: {
+        standard: "My father enjoys doing gardening at the weekend.",
+        alts: [
+          "doing gardening at the weekend.",
+          "doing gardening at the weekend",
+          "doing gardening at weekends.",
+          "doing gardening at weekends"
+        ],
+        exp: 'Chuyển đổi động từ chỉ sự yêu thích tương đương: like + V-ing = enjoy + V-ing (doing gardening at the weekend).'
+      },
+      D_RW3: {
+        standard: "What about helping the old people in the nursing home?",
+        alts: [
+          "helping the old people in the nursing home?",
+          "helping the old people in the nursing home",
+          "helping the old people in the nursing house?",
+          "helping the old people in the nursing house",
+          "helping old people in the nursing home?",
+          "helping old people in the nursing home"
+        ],
+        exp: 'Cấu trúc câu đề nghị, rủ rê: Let\'s + V(nguyên mẫu)... = What about / How about + V-ing...?'
+      },
+      D_RW4: {
+        standard: "My parents aren't interested in cartoons.",
+        alts: [
+          "interested in cartoons.",
+          "interested in cartoons",
+          "keen on cartoons.",
+          "keen on cartoons",
+          "fond of cartoons.",
+          "fond of cartoons"
+        ],
+        exp: 'Chuyển câu phủ định sở thích: don\'t like sth = aren\'t interested in / aren\'t keen on / aren\'t fond of cartoons.'
+      }
+    };
+
+    function promptSubmitExam() {
+      if (isSubmitted) return;
+
+      // Count unanswered questions
+      let unanswered = 0;
+
+      // Part A Task 1 (6 Qs)
+      ['A1','A2','A3','A4','A5','A6'].forEach(q => {
+        if (!document.querySelector(`input[name="ans_${q}"]:checked`)) unanswered++;
+      });
+      // Part A Task 2 (6 Qs)
+      ['TF1','TF2','TF3','TF4','TF5','TF6'].forEach(q => {
+        if (!document.querySelector(`input[name="ans_${q}"]:checked`)) unanswered++;
+      });
+      // Part B I (3 Qs)
+      ['B1','B2','B3'].forEach(q => {
+        if (!document.querySelector(`input[name="ans_${q}"]:checked`)) unanswered++;
+      });
+      // Part B II (7 Qs)
+      ['B_MC1','B_MC2','B_MC3','B_MC4','B_MC5','B_MC6','B_MC7'].forEach(q => {
+        if (!document.querySelector(`input[name="ans_${q}"]:checked`)) unanswered++;
+      });
+      // Part B III (3 Qs)
+      ['B_V1','B_V2','B_V3'].forEach(q => {
+        const val = document.getElementById('ans_' + q)?.value.trim();
+        if (!val) unanswered++;
+      });
+      // Part C I (5 Qs)
+      ['C_CL1','C_CL2','C_CL3','C_CL4','C_CL5'].forEach(q => {
+        if (!document.querySelector(`input[name="ans_${q}"]:checked`)) unanswered++;
+      });
+      // Part C II (5 Qs)
+      ['C_RC1','C_RC2','C_RC3'].forEach(q => {
+        const val = document.getElementById('ans_' + q)?.value.trim();
+        if (!val) unanswered++;
+      });
+      ['C_RC4','C_RC5'].forEach(q => {
+        if (!document.querySelector(`input[name="ans_${q}"]:checked`)) unanswered++;
+      });
+      // Part D I (3 Qs)
+      ['D_RE1','D_RE2','D_RE3'].forEach(q => {
+        if (userSelections[q].length === 0) unanswered++;
+      });
+      // Part D II (4 Qs)
+      ['D_RW1','D_RW2','D_RW3','D_RW4'].forEach(q => {
+        const val = document.getElementById('ans_' + q)?.value.trim();
+        if (!val) unanswered++;
+      });
+
+      const modal = document.getElementById('confirmModal');
+      const msg = document.getElementById('modalMessage');
+      const icon = document.getElementById('modalIcon');
+
+      if (unanswered > 0) {
+        icon.innerHTML = '<i class="fa-solid fa-triangle-exclamation text-amber-500"></i>';
+        msg.innerHTML = `Bạn vẫn còn <strong>${unanswered}</strong> câu hỏi chưa hoàn thành. Bạn có muốn nộp bài không?`;
+      } else {
+        icon.innerHTML = '<i class="fa-solid fa-circle-question text-sky-600"></i>';
+        msg.innerHTML = `Bạn có chắc chắn muốn nộp bài không? Sau khi nộp bài, bạn sẽ không thể thay đổi đáp án.`;
+      }
+
+      modal.classList.remove('hidden');
+    }
+
+    function closeConfirmModal() {
+      document.getElementById('confirmModal').classList.add('hidden');
+    }
+
+    function executeFinalSubmit() {
+      closeConfirmModal();
+      if (isSubmitted) return;
+      isSubmitted = true;
+
+      // Lock everything immediately
+      lockEntireExam();
+
+      // Show lock banner
+      document.getElementById('lockStatusBar').classList.remove('hidden');
+
+      // Unhide transcripts
+      document.getElementById('transcriptBox1').classList.remove('hidden');
+      document.getElementById('transcriptBox2').classList.remove('hidden');
+
+      // Calculate scores
+      let scoreA = 0;
+      let scoreB = 0;
+      let scoreC = 0;
+      let scoreD = 0;
+      let correctCount = 0;
+      let wrongCount = 0;
+
+      // --- PART A ---
+      ['A1','A2','A3','A4','A5','A6'].forEach(q => {
+        const userVal = getRadioVal('ans_' + q);
+        const item = EXAM_KEY[q];
+        const isCorrect = item.keys ? item.keys.includes(userVal) : (userVal === item.key);
+        if (isCorrect) {
+          scoreA += 0.2;
+          correctCount++;
+        } else {
+          wrongCount++;
+        }
+        renderChoiceResult('box_' + q, 'exp_' + q, userVal, item.key || item.keys.join(' hoặc '), item.exp, isCorrect);
+      });
+
+      ['TF1','TF2','TF3','TF4','TF5','TF6'].forEach(q => {
+        const userVal = getRadioVal('ans_' + q);
+        const item = EXAM_KEY[q];
+        const isCorrect = (userVal === item.key);
+        if (isCorrect) {
+          scoreA += 0.2;
+          correctCount++;
+        } else {
+          wrongCount++;
+        }
+        renderTFResult('row_' + q, 'exp_' + q, userVal, item.key, item.exp, isCorrect);
+      });
+
+      // --- PART B ---
+      ['B1','B2','B3'].forEach(q => {
+        const userVal = getRadioVal('ans_' + q);
+        const item = EXAM_KEY[q];
+        const isCorrect = (userVal === item.key);
+        if (isCorrect) {
+          scoreB += 0.2;
+          correctCount++;
+        } else {
+          wrongCount++;
+        }
+        renderChoiceResult('box_' + q, 'exp_' + q, userVal, item.key, item.exp, isCorrect);
+      });
+
+      ['B_MC1','B_MC2','B_MC3','B_MC4','B_MC5','B_MC6','B_MC7'].forEach(q => {
+        const userVal = getRadioVal('ans_' + q);
+        const item = EXAM_KEY[q];
+        const isCorrect = (userVal === item.key);
+        if (isCorrect) {
+          scoreB += 0.2;
+          correctCount++;
+        } else {
+          wrongCount++;
+        }
+        renderChoiceResult('box_' + q, 'exp_' + q, userVal, item.key, item.exp, isCorrect);
+      });
+
+      ['B_V1','B_V2','B_V3'].forEach(q => {
+        const inputEl = document.getElementById('ans_' + q);
+        const userVal = inputEl ? inputEl.value.trim().toLowerCase() : '';
+        const item = EXAM_KEY[q];
+        const isCorrect = (userVal === item.key.toLowerCase());
+        if (isCorrect) {
+          scoreB += 0.2;
+          correctCount++;
+        } else {
+          wrongCount++;
+        }
+        renderTextResult('box_' + q, 'exp_' + q, inputEl, userVal, item.key, item.exp, isCorrect);
+      });
+
+      // --- PART C ---
+      ['C_CL1','C_CL2','C_CL3','C_CL4','C_CL5'].forEach(q => {
+        const userVal = getRadioVal('ans_' + q);
+        const item = EXAM_KEY[q];
+        const isCorrect = (userVal === item.key);
+        if (isCorrect) {
+          scoreC += 0.2;
+          correctCount++;
+        } else {
+          wrongCount++;
+        }
+        renderChoiceResult('box_' + q, 'exp_' + q, userVal, item.key, item.exp, isCorrect);
+      });
+
+      ['C_RC1','C_RC2','C_RC3'].forEach(q => {
+        const inputEl = document.getElementById('ans_' + q);
+        const userVal = inputEl ? inputEl.value.trim().toLowerCase() : '';
+        const item = EXAM_KEY[q];
+        let isCorrect = false;
+        if (userVal.length > 0) {
+          const matches = item.keywords.filter(k => userVal.includes(k.toLowerCase()));
+          if (matches.length >= 1) isCorrect = true;
+        }
+        if (isCorrect) {
+          scoreC += 0.32;
+          correctCount++;
+        } else {
+          wrongCount++;
+        }
+        renderTextResult('box_' + q, 'exp_' + q, inputEl, userVal, item.standard, item.exp, isCorrect);
+      });
+
+      ['C_RC4','C_RC5'].forEach(q => {
+        const userVal = getRadioVal('ans_' + q);
+        const item = EXAM_KEY[q];
+        const isCorrect = (userVal === item.key);
+        if (isCorrect) {
+          scoreC += 0.32;
+          correctCount++;
+        } else {
+          wrongCount++;
+        }
+        renderChoiceResult('box_' + q, 'exp_' + q, userVal, item.key, item.exp, isCorrect);
+      });
+
+      // --- PART D ---
+      // Rearrange (3 Qs x 0.4 = 1.2 pts)
+      ['D_RE1','D_RE2','D_RE3'].forEach(q => {
+        const builtSentence = getRearrangeSentence(q).trim().toLowerCase();
+        const item = REARRANGE_DATA[q];
+        const isCorrect = item.alts.some(a => builtSentence === a.toLowerCase().trim());
+        if (isCorrect) {
+          scoreD += 0.4;
+          correctCount++;
+        } else {
+          wrongCount++;
+        }
+        renderRearrangeResult('box_' + q, 'exp_' + q, builtSentence, item.target, item.explanation, isCorrect);
+      });
+
+      // Sentence Rewrite (4 Qs x 0.3 = 1.2 pts)
+      ['D_RW1','D_RW2','D_RW3','D_RW4'].forEach(q => {
+        const inputEl = document.getElementById('ans_' + q);
+        const userVal = inputEl ? inputEl.value.trim().toLowerCase().replace(/\s+/g, ' ') : '';
+        const item = EXAM_KEY[q];
+        const isCorrect = item.alts.some(a => userVal.includes(a.toLowerCase().replace(/\./g, '')));
+        if (isCorrect) {
+          scoreD += 0.3;
+          correctCount++;
+        } else {
+          wrongCount++;
+        }
+        renderTextResult('box_' + q, 'exp_' + q, inputEl, userVal, item.standard, item.exp, isCorrect);
+      });
+
+      // Round & Total
+      const totalScore = Math.min(10.0, Math.round((scoreA + scoreB + scoreC + scoreD) * 100) / 100);
+
+      // Student name display
+      const sName = document.getElementById('studentNameInput').value.trim() || 'Học sinh';
+      document.getElementById('studentGreeting').innerText = `Học sinh: ${sName} • Môn Tiếng Anh 7`;
+
+      document.getElementById('scoreDisplay').innerText = `${totalScore.toFixed(1)} / 10.0 Điểm`;
+      document.getElementById('score_partA').innerText = `${scoreA.toFixed(1)} / 2.4`;
+      document.getElementById('score_partB').innerText = `${scoreB.toFixed(1)} / 2.6`;
+      document.getElementById('score_partC').innerText = `${scoreC.toFixed(1)} / 2.6`;
+      document.getElementById('score_partD').innerText = `${scoreD.toFixed(1)} / 2.4`;
+
+      document.getElementById('correctCountDisplay').innerHTML = `<i class="fa-solid fa-circle-check mr-1"></i> Đúng: ${correctCount} câu`;
+      document.getElementById('wrongCountDisplay').innerHTML = `<i class="fa-solid fa-circle-xmark mr-1"></i> Chưa chuẩn: ${wrongCount} câu`;
+
+      // Teacher comments and badges
+      const badge = document.getElementById('rankBadge');
+      const comment = document.getElementById('teacherComment');
+
+      if (totalScore >= 9.0) {
+        badge.className = 'inline-block px-4 py-1.5 rounded-full text-xs font-extrabold uppercase mb-2 tracking-wider bg-emerald-100 text-emerald-800 border border-emerald-300';
+        badge.innerHTML = '<i class="fa-solid fa-star text-amber-500 mr-1"></i> XUẤT SẮC - TOP 1 HT ENGLISH';
+        comment.innerHTML = `Cô Lily rất vui và tự hào về em ${sName}! Em đã nắm rất vững kiến thức cả 3 Unit đầu, xử lý tốt các bẫy ngữ âm và cấu trúc câu. Hãy tiếp tục duy trì phong độ này trong các kỳ thi sắp tới nhé!`;
+      } else if (totalScore >= 7.0) {
+        badge.className = 'inline-block px-4 py-1.5 rounded-full text-xs font-extrabold uppercase mb-2 tracking-wider bg-sky-100 text-sky-800 border border-sky-300';
+        badge.innerHTML = '<i class="fa-solid fa-thumbs-up text-sky-600 mr-1"></i> GIỎI - NẮM CHẮC KIẾN THỨC';
+        comment.innerHTML = `Kết quả rất tốt, em ${sName}! Em đã hoàn thành tốt phần lớn bài thi. Hãy xem lại phần giải thích cho một vài câu bị mất điểm (đặc biệt là bài viết lại câu hoặc phân biệt âm /f/ - /v/) để hoàn thiện hơn nhé.`;
+      } else if (totalScore >= 5.0) {
+        badge.className = 'inline-block px-4 py-1.5 rounded-full text-xs font-extrabold uppercase mb-2 tracking-wider bg-amber-100 text-amber-800 border border-amber-300';
+        badge.innerHTML = '<i class="fa-solid fa-check text-amber-600 mr-1"></i> ĐẠT YÊU CẦU - CẦN CỐ GẮNG';
+        comment.innerHTML = `Em ${sName} đã đạt chuẩn cơ bản. Em nên dành thêm thời gian ôn lại từ vựng Unit 1, 2 và quy tắc chia thì Quá khứ đơn nhé. Hãy đọc kỹ phần giải thích của cô Lily ở từng câu bên dưới.`;
+      } else {
+        badge.className = 'inline-block px-4 py-1.5 rounded-full text-xs font-extrabold uppercase mb-2 tracking-wider bg-rose-100 text-rose-800 border border-rose-300';
+        badge.innerHTML = '<i class="fa-solid fa-book-open text-rose-600 mr-1"></i> CẦN ÔN TẬP TĂNG CƯỜNG';
+        comment.innerHTML = `Em cần ôn lại toàn bộ từ vựng và cấu trúc ngữ pháp trọng tâm. Em hãy ghi chép lại các cấu trúc trong phần giải thích vào vở và liên hệ với cô Lily để được hỗ trợ phụ đạo thêm nhé!`;
+      }
+
+      // Show results and scroll smoothly
+      const resultsSection = document.getElementById('resultsSection');
+      resultsSection.classList.remove('hidden');
+      resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // Disable submit button
+      const submitBtn = document.getElementById('btnSubmit');
+      submitBtn.disabled = true;
+      submitBtn.className = 'bg-slate-300 text-slate-500 font-bold px-8 py-3.5 rounded-2xl cursor-not-allowed flex items-center gap-2';
+      submitBtn.innerHTML = '<i class="fa-solid fa-lock"></i> ĐÃ NỘP BÀI';
+    }
+
+    function lockEntireExam() {
+      // Radios
+      document.querySelectorAll('input[type="radio"]').forEach(r => r.disabled = true);
+      // Text inputs
+      document.querySelectorAll('input[type="text"]').forEach(t => {
+        t.readOnly = true;
+        t.classList.add('bg-slate-100', 'cursor-not-allowed');
+      });
+      // Word chips
+      document.querySelectorAll('.word-chip').forEach(c => {
+        c.disabled = true;
+        c.classList.add('cursor-not-allowed', 'opacity-50');
+      });
+      // Undo & Reset buttons
+      document.querySelectorAll('button[onclick*="undoWord"], button[onclick*="resetWordBank"]').forEach(b => {
+        b.disabled = true;
+        b.classList.add('hidden');
+      });
+    }
+
+    function getRadioVal(name) {
+      const checked = document.querySelector(`input[name="${name}"]:checked`);
+      return checked ? checked.value : '';
+    }
+
+    function renderChoiceResult(boxId, expId, userVal, correctKey, expText, isCorrect) {
+      const box = document.getElementById(boxId);
+      const exp = document.getElementById(expId);
+      if (!box || !exp) return;
+
+      box.classList.remove('bg-slate-50/50', 'bg-slate-50/40');
+      if (isCorrect) {
+        box.classList.add('bg-emerald-50/70', 'border-emerald-300');
+      } else {
+        box.classList.add('bg-rose-50/70', 'border-rose-300');
+      }
+
+      exp.classList.remove('hidden');
+      exp.innerHTML = `
+        <div class="flex items-start justify-between gap-2 mt-1">
+          <div>
+            <span class="font-bold ${isCorrect ? 'text-emerald-700' : 'text-rose-700'}">
+              ${isCorrect ? '<i class="fa-solid fa-circle-check"></i> Đúng' : '<i class="fa-solid fa-circle-xmark"></i> Sai'}
+            </span>
+            ${!isCorrect ? `<span class="text-slate-600 ml-1.5">(Bạn chọn: <strong>${userVal || 'Chưa chọn'}</strong>)</span>` : ''}
+            <span class="font-bold text-sky-950 ml-2">Đáp án đúng: <span class="underline">${correctKey}</span></span>
+            <div class="mt-1.5 text-slate-700 leading-relaxed"><strong class="text-sky-900">Giải thích từ cô Lily:</strong> ${expText}</div>
+          </div>
+          <button type="button" onclick="speakSingleWord('${cleanForSpeech(expText)}')" class="speaker-btn text-sky-600 hover:text-sky-800 text-xs p-1 shrink-0" title="Nghe giải thích">
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+        </div>
+      `;
+    }
+
+    function renderTFResult(rowId, expId, userVal, correctKey, expText, isCorrect) {
+      const row = document.getElementById(rowId);
+      const exp = document.getElementById(expId);
+      if (!row || !exp) return;
+
+      if (isCorrect) {
+        row.classList.add('bg-emerald-50/60');
+      } else {
+        row.classList.add('bg-rose-50/60');
+      }
+
+      exp.classList.remove('hidden');
+      exp.innerHTML = `
+        <div class="flex items-start justify-between gap-2 mt-1 pt-1 border-t border-slate-200">
+          <div>
+            <span class="font-bold ${isCorrect ? 'text-emerald-700' : 'text-rose-700'}">
+              ${isCorrect ? '✓ Đúng' : '✗ Chưa đúng'}
+            </span>
+            <span class="font-semibold text-sky-950 ml-1.5">Đáp án: <strong>${correctKey}</strong></span>
+            ${!isCorrect ? `<span class="text-slate-500 text-xs ml-1">(Bạn chọn: ${userVal || 'Chưa chọn'})</span>` : ''}
+            <p class="text-slate-700 text-xs mt-0.5"><strong class="text-sky-900">Dẫn chứng:</strong> ${expText}</p>
+          </div>
+          <button type="button" onclick="speakSingleWord('${cleanForSpeech(expText)}')" class="speaker-btn text-sky-600 hover:text-sky-800 text-xs p-1 shrink-0"><i class="fa-solid fa-volume-high"></i></button>
+        </div>
+      `;
+    }
+
+    function renderTextResult(boxId, expId, inputEl, userVal, standardAns, expText, isCorrect) {
+      const box = document.getElementById(boxId);
+      const exp = document.getElementById(expId);
+      if (!box || !exp) return;
+
+      if (inputEl) {
+        if (isCorrect) {
+          inputEl.classList.add('border-emerald-500', 'bg-emerald-50', 'text-emerald-900');
+        } else {
+          inputEl.classList.add('border-rose-500', 'bg-rose-50', 'text-rose-900');
+        }
+      }
+
+      box.classList.remove('bg-slate-50/40');
+      box.classList.add(isCorrect ? 'bg-emerald-50/40' : 'bg-rose-50/40');
+
+      exp.classList.remove('hidden');
+      exp.innerHTML = `
+        <div class="flex items-start justify-between gap-2 mt-1">
+          <div>
+            <span class="font-bold ${isCorrect ? 'text-emerald-700' : 'text-rose-700'}">
+              ${isCorrect ? '<i class="fa-solid fa-circle-check"></i> Chính xác' : '<i class="fa-solid fa-circle-xmark"></i> Cần sửa'}
+            </span>
+            <span class="font-bold text-sky-950 ml-2">Đáp án chuẩn: <span class="text-sky-900 underline">${standardAns}</span></span>
+            <div class="mt-1 text-slate-700 leading-relaxed"><strong class="text-sky-900">Cấu trúc & Hướng dẫn:</strong> ${expText}</div>
+          </div>
+          <button type="button" onclick="speakSingleWord('${cleanForSpeech(standardAns)}')" class="speaker-btn text-sky-600 hover:text-sky-800 text-xs p-1 shrink-0" title="Nghe câu chuẩn">
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+        </div>
+      `;
+    }
+
+    function renderRearrangeResult(boxId, expId, userSentence, targetSentence, expText, isCorrect) {
+      const box = document.getElementById(boxId);
+      const exp = document.getElementById(expId);
+      if (!box || !exp) return;
+
+      box.classList.remove('bg-slate-50/40');
+      box.classList.add(isCorrect ? 'bg-emerald-50/60' : 'bg-rose-50/60');
+
+      exp.classList.remove('hidden');
+      exp.innerHTML = `
+        <div class="flex items-start justify-between gap-2 mt-1">
+          <div>
+            <span class="font-bold ${isCorrect ? 'text-emerald-700' : 'text-rose-700'}">
+              ${isCorrect ? '<i class="fa-solid fa-circle-check"></i> Sắp xếp chính xác' : '<i class="fa-solid fa-circle-xmark"></i> Trật tự chưa chuẩn'}
+            </span>
+            <div class="mt-1 text-sky-950 font-bold">
+              Câu chuẩn: <span class="underline text-sky-900">${targetSentence}</span>
+            </div>
+            ${!isCorrect && userSentence ? `<div class="text-xs text-rose-700 mt-0.5">Câu của bạn: "${userSentence}"</div>` : ''}
+            <div class="mt-1.5 text-slate-700 leading-relaxed"><strong class="text-sky-900">Giải thích trật tự từ:</strong> ${expText}</div>
+          </div>
+          <button type="button" onclick="speakSingleWord('${cleanForSpeech(targetSentence)}')" class="speaker-btn text-sky-600 hover:text-sky-800 text-xs p-1 shrink-0" title="Nghe câu chuẩn">
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+        </div>
+      `;
+    }
+
+    function cleanForSpeech(str) {
+      return (str || '').replace(/<[^>]*>/g, '').replace(/'/g, "\\'").replace(/"/g, '\\"');
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,1909 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Đề thi GHKI - Trực Đại - 2024-2025 | HT English - Ms. Lily</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts Inter & Lexend -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Lexend:wght@600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f1f5f9;
+      color: #1e293b;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .heading-font {
+      font-family: 'Lexend', sans-serif;
+    }
+    .word-chip {
+      user-select: none;
+      touch-action: manipulation;
+      transition: all 0.15s ease-in-out;
+    }
+    .word-chip:active {
+      transform: scale(0.96);
+    }
+    .speaking-pulse {
+      animation: pulse-ring 1.2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+    }
+    @keyframes pulse-ring {
+      0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.6); }
+      70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-16">
+
+  <!-- Top Banner / Center Information -->
+  <header class="bg-gradient-to-r from-blue-900 via-indigo-800 to-sky-800 text-white shadow-lg sticky top-0 z-40">
+    <div class="max-w-4xl mx-auto px-4 py-3 sm:py-4">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+        <!-- Center Logo & Info -->
+        <div class="flex items-center gap-3 text-center sm:text-left">
+          <div class="w-12 h-12 rounded-xl bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-inner shrink-0">
+            <i class="fa-solid fa-graduation-cap text-yellow-300 text-2xl"></i>
+          </div>
+          <div>
+            <div class="flex items-center justify-center sm:justify-start gap-2">
+              <span class="text-xs font-bold tracking-wider uppercase px-2 py-0.5 rounded-full bg-yellow-400 text-blue-950">HT English</span>
+              <span class="text-xs text-sky-200 font-medium">Giáo viên: Ms. Lily</span>
+            </div>
+            <h1 class="text-lg sm:text-xl font-extrabold heading-font tracking-tight mt-0.5 text-white">Đề thi GHKI - Trực Đại - 2024-2025</h1>
+            <p class="text-xs text-slate-200 flex flex-wrap items-center justify-center sm:justify-start gap-x-3 gap-y-0.5 mt-0.5">
+              <span><i class="fa-solid fa-phone text-yellow-300 text-[10px] mr-1"></i>0963422940 - 0962240866</span>
+              <span><i class="fa-solid fa-location-dot text-red-300 text-[10px] mr-1"></i>Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Controls & Status Badge -->
+        <div class="flex items-center gap-2">
+          <div id="statusBadge" class="bg-emerald-500/20 border border-emerald-400/40 text-emerald-200 text-xs font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+            <span>Đang làm bài</span>
+          </div>
+          <button onclick="stopAllSpeech()" title="Dừng loa phát âm" class="p-2 rounded-lg bg-white/10 hover:bg-white/20 active:scale-95 text-slate-100 transition-all text-xs flex items-center gap-1">
+            <i class="fa-solid fa-volume-xmark text-sm"></i>
+            <span class="hidden sm:inline">Dừng âm</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-4xl mx-auto px-3 sm:px-4 pt-6 space-y-8">
+    
+    <!-- Student Information Form -->
+    <section class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-4 sm:p-5">
+      <div class="flex items-center gap-2 mb-3 text-blue-900 font-bold text-sm uppercase tracking-wide">
+        <i class="fa-solid fa-id-card text-blue-600"></i>
+        <span>Thông tin học sinh dự thi</span>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Họ và tên học sinh *</label>
+          <input type="text" id="studentName" placeholder="Ví dụ: Trần Văn Nam" class="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Lớp *</label>
+          <input type="text" id="studentClass" placeholder="Ví dụ: 7A" class="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Trường học</label>
+          <input type="text" id="studentSchool" value="THCS Trực Đại" class="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all">
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PART A: LISTENING ================= -->
+    <section class="bg-white rounded-2xl shadow-sm border border-slate-200/80 overflow-hidden">
+      <!-- Section Header -->
+      <div class="bg-gradient-to-r from-blue-700 to-indigo-700 px-5 py-3.5 text-white flex items-center justify-between flex-wrap gap-2">
+        <div class="flex items-center gap-2.5">
+          <span class="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center font-bold text-sm">A</span>
+          <div>
+            <h2 class="font-bold text-base sm:text-lg heading-font">PART A. LISTENING (2.4 POINTS)</h2>
+            <p class="text-xs text-blue-100">Thời gian làm bài: Nghe 2 lần cho mỗi phần.</p>
+          </div>
+        </div>
+        <span class="text-xs font-bold bg-white/20 px-2.5 py-1 rounded-md">2.4 Điểm</span>
+      </div>
+
+      <div class="p-4 sm:p-6 space-y-8">
+        <!-- Task I: Health Problems in Britain -->
+        <div class="border-b border-slate-100 pb-6">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-sky-50 border border-sky-200 rounded-xl p-3.5 mb-5">
+            <div>
+              <h3 class="text-sm sm:text-base font-bold text-sky-950 flex items-center gap-2">
+                <i class="fa-solid fa-headphones text-sky-600"></i>
+                <span>I. Listen and circle the correct answer A, B, C or D (1.2 pts)</span>
+              </h3>
+              <p class="text-xs text-sky-700 mt-0.5">Track 3: Health problems of teenagers in Britain.</p>
+            </div>
+            <!-- Audio Player 1 -->
+            <div class="flex items-center gap-2 shrink-0">
+              <button onclick="playTrack(1)" id="btnTrack1" class="px-3.5 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 active:scale-95 text-white text-xs font-bold shadow-sm flex items-center gap-2 transition-all">
+                <i class="fa-solid fa-play" id="iconTrack1"></i>
+                <span id="textTrack1">Phát Audio Task 1</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Listening Questions 1-6 -->
+          <div class="space-y-5" id="listeningQGroup1">
+            <!-- Questions rendered via JS -->
+          </div>
+        </div>
+
+        <!-- Task II: Mark's Hobby -->
+        <div>
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-indigo-50 border border-indigo-200 rounded-xl p-3.5 mb-5">
+            <div>
+              <h3 class="text-sm sm:text-base font-bold text-indigo-950 flex items-center gap-2">
+                <i class="fa-solid fa-cake-candles text-indigo-600"></i>
+                <span>II. Listen to Nam interview his friend Mark about his hobby. Tick True (T) or False (F) (1.2 pts)</span>
+              </h3>
+              <p class="text-xs text-indigo-700 mt-0.5">Unit 1 Hobbies - Task 11: Mark's baking hobby.</p>
+            </div>
+            <!-- Audio Player 2 -->
+            <div class="flex items-center gap-2 shrink-0">
+              <button onclick="playTrack(2)" id="btnTrack2" class="px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:scale-95 text-white text-xs font-bold shadow-sm flex items-center gap-2 transition-all">
+                <i class="fa-solid fa-play" id="iconTrack2"></i>
+                <span id="textTrack2">Phát Audio Task 2</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Listening Questions True/False 1-6 -->
+          <div class="space-y-4" id="listeningQGroup2">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+
+        <!-- Transcript Box (Unlocked only after submitting) -->
+        <div id="transcriptSection" class="hidden mt-6 bg-slate-900 text-slate-100 rounded-xl p-4 sm:p-5 border border-slate-700">
+          <div class="flex items-center justify-between mb-3 border-b border-slate-700 pb-2">
+            <h4 class="text-sm sm:text-base font-bold text-yellow-300 flex items-center gap-2">
+              <i class="fa-solid fa-file-audio text-yellow-400"></i>
+              <span>TRANSCRIPT BÀI NGHE (Đã mở khóa sau khi nộp bài)</span>
+            </h4>
+            <span class="text-xs text-slate-400">Ms. Lily Highlight dẫn chứng</span>
+          </div>
+          <div class="space-y-4 text-xs sm:text-sm leading-relaxed text-slate-300">
+            <div class="p-3 rounded-lg bg-slate-800/80 border border-slate-700">
+              <p class="font-bold text-sky-300 mb-1">🎧 Track 3 - Health problems in Britain:</p>
+              <p>Doctors in Britain are worried because <span class="bg-yellow-500/30 text-yellow-200 px-1 font-semibold rounded">British teenagers eat a lot of crisps, sweets, and fast food</span> (Q1: A). Most teenagers <span class="bg-yellow-500/30 text-yellow-200 px-1 font-semibold rounded">do not eat enough fruit or vegetables</span> (Q2: D), and more than 1 million British children are overweight. Some teenagers say that <span class="bg-yellow-500/30 text-yellow-200 px-1 font-semibold rounded">they do not have enough time to eat good food</span> (Q3: A). This can lead to many health problems when they are older. Fast food <span class="bg-yellow-500/30 text-yellow-200 px-1 font-semibold rounded">was born in America</span> (Q4: C) and is popular all over the world. <span class="bg-yellow-500/30 text-yellow-200 px-1 font-semibold rounded">McDonald's, Pizza Hut, Burger King</span> have restaurants all over the globe (Q5: C - Tom and Jerry is not a fast food brand). No one can deny the convenience of fast food. However, eating too many hamburgers, fries, and soda does not nourish the body with vitamins and minerals. Fast food is short of many important nutrients (<span class="bg-yellow-500/30 text-yellow-200 px-1 font-semibold rounded">apples are healthy fruit, not fast food</span> - Q6: B). Now doctors are giving young people books about a good diet. They need to have a healthy diet to feel better and live longer.</p>
+            </div>
+            <div class="p-3 rounded-lg bg-slate-800/80 border border-slate-700">
+              <p class="font-bold text-indigo-300 mb-1">🎧 Task 11 - Nam interviews Mark about his hobby:</p>
+              <p><strong>Nam:</strong> What's your hobby, Mark?<br>
+              <strong>Mark:</strong> <span class="bg-yellow-500/30 text-yellow-200 px-1 font-semibold rounded">Making cakes.</span> (Statement 1: T)<br>
+              <strong>Nam:</strong> Wow, <span class="bg-yellow-500/30 text-yellow-200 px-1 font-semibold rounded">it's a strange hobby for a boy.</span> (Statement 2: F - it is NOT similar to many boys)<br>
+              When did you start that hobby?<br>
+              <strong>Mark:</strong> I got interested in making cakes two years ago <span class="bg-yellow-500/30 text-yellow-200 px-1 font-semibold rounded">after watching different series of American Junior Chef.</span> (Statement 3: T) Then I watched many clips about making cakes on YouTube.<br>
+              <strong>Nam:</strong> What kind of cake can you make now?<br>
+              <strong>Mark:</strong> I can make many different kinds, like banana bread, butter cakes, apple cakes, <span class="bg-yellow-500/30 text-yellow-200 px-1 font-semibold rounded">and of course birthday cakes.</span> (Statement 4: F - he CAN make birthday cakes)<br>
+              <strong>Nam:</strong> How often do you make cakes?<br>
+              <strong>Mark:</strong> <span class="bg-yellow-500/30 text-yellow-200 px-1 font-semibold rounded">On special occasions, like birthdays or family gatherings.</span> (Statement 5: T)<br>
+              <strong>Nam:</strong> Do you have any plan for your hobby?<br>
+              <strong>Mark:</strong> <span class="bg-yellow-500/30 text-yellow-200 px-1 font-semibold rounded">When I finish school, I will open a cake shop.</span> (Statement 6: F - he will open a cake shop, not give it up!)</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ================= PART B: LANGUAGE FOCUS ================= -->
+    <section class="bg-white rounded-2xl shadow-sm border border-slate-200/80 overflow-hidden">
+      <div class="bg-gradient-to-r from-emerald-700 to-teal-700 px-5 py-3.5 text-white flex items-center justify-between flex-wrap gap-2">
+        <div class="flex items-center gap-2.5">
+          <span class="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center font-bold text-sm">B</span>
+          <div>
+            <h2 class="font-bold text-base sm:text-lg heading-font">PART B. LANGUAGE FOCUS (2.6 POINTS)</h2>
+            <p class="text-xs text-emerald-100">Pronunciation, Vocabulary & Grammar</p>
+          </div>
+        </div>
+        <span class="text-xs font-bold bg-white/20 px-2.5 py-1 rounded-md">2.6 Điểm</span>
+      </div>
+
+      <div class="p-4 sm:p-6 space-y-8">
+        <!-- Section I: Multiple Choice -->
+        <div>
+          <h3 class="text-sm sm:text-base font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 text-xs flex items-center justify-center font-bold">I</span>
+            <span>Choose the best answer A, B, C or D to complete each sentence (2.0 pts)</span>
+          </h3>
+          <div class="space-y-5" id="languageQGroup1">
+            <!-- Language Questions 1-10 rendered via JS -->
+          </div>
+        </div>
+
+        <!-- Section II: Correct verb form (Tap-to-select for mobile ease) -->
+        <div class="border-t border-slate-100 pt-6">
+          <h3 class="text-sm sm:text-base font-bold text-slate-800 mb-4 pb-2 border-b border-slate-100 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 text-xs flex items-center justify-center font-bold">II</span>
+            <span>Put the verbs in brackets into the correct verb form (0.6 pts)</span>
+          </h3>
+          <div class="space-y-5" id="languageQGroup2">
+            <!-- Verb Conjugation Questions 1-3 rendered via JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PART C: READING ================= -->
+    <section class="bg-white rounded-2xl shadow-sm border border-slate-200/80 overflow-hidden">
+      <div class="bg-gradient-to-r from-amber-600 to-orange-600 px-5 py-3.5 text-white flex items-center justify-between flex-wrap gap-2">
+        <div class="flex items-center gap-2.5">
+          <span class="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center font-bold text-sm">C</span>
+          <div>
+            <h2 class="font-bold text-base sm:text-lg heading-font">PART C. READING (2.6 POINTS)</h2>
+            <p class="text-xs text-amber-100">Cloze test & Reading Comprehension</p>
+          </div>
+        </div>
+        <span class="text-xs font-bold bg-white/20 px-2.5 py-1 rounded-md">2.6 Điểm</span>
+      </div>
+
+      <div class="p-4 sm:p-6 space-y-8">
+        <!-- Task I: Cloze Passage -->
+        <div>
+          <h3 class="text-sm sm:text-base font-bold text-slate-800 mb-3 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-amber-100 text-amber-800 text-xs flex items-center justify-center font-bold">I</span>
+            <span>Choose the correct word (A, B, C or D) to fill in each blank (1.0 pt)</span>
+          </h3>
+
+          <!-- Passage Content Box -->
+          <div class="bg-amber-50/60 border border-amber-200/80 rounded-xl p-4 sm:p-5 text-sm leading-relaxed text-slate-700 mb-5">
+            <p>My school has a number of volunteer activities every summer. The activities include donating books to village children, <strong>(1) ______</strong> kids in the neighbourhood, teaching English to primary students, reading books or cooking food for the <strong>(2) ______</strong>. Our school started this programme five years ago. Every student can join one or two activities. In the beginning, we thought about why we should join in these activities. We then thought about what <strong>(3) ______</strong> we wanted to do. Those who like reading could choose to collect and donate <strong>(4) ______</strong>. Those who are good at English could <strong>(5) ______</strong> primary students. Finally, we signed up for the activities we chose. Our teachers often encourage us to stay committed. They also help us when we need it. We have a lot of fun and learn many things from doing the activities.</p>
+          </div>
+
+          <!-- Cloze Questions 1-5 -->
+          <div class="space-y-4" id="readingClozeGroup">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Task II: Reading Comprehension -->
+        <div class="border-t border-slate-100 pt-6">
+          <h3 class="text-sm sm:text-base font-bold text-slate-800 mb-3 flex items-center gap-2">
+            <span class="w-6 h-6 rounded-full bg-amber-100 text-amber-800 text-xs flex items-center justify-center font-bold">II</span>
+            <span>Read the following passage and answer the questions (1.6 pts)</span>
+          </h3>
+
+          <!-- Passage text -->
+          <div class="bg-amber-50/60 border border-amber-200/80 rounded-xl p-4 sm:p-5 text-sm leading-relaxed text-slate-700 mb-5">
+            <div class="flex items-center justify-between border-b border-amber-200/70 pb-2 mb-2.5">
+              <span class="font-bold text-amber-950 uppercase tracking-wide">Hobbies</span>
+              <button onclick="speakParagraph('readingPassageHobbies')" class="px-2.5 py-1 rounded-lg bg-amber-200/70 hover:bg-amber-300 text-amber-900 text-xs font-semibold flex items-center gap-1.5 transition-all">
+                <i class="fa-solid fa-volume-high"></i> <span>Nghe cả bài đọc</span>
+              </button>
+            </div>
+            <div id="readingPassageHobbies" class="space-y-2">
+              <p>When someone does an activity that is not a part of his or her job and is done for fun, it is called a hobby. Most people enjoy hobbies during their free time. Some people spend a lot of time on their hobbies. There are nearly as many kinds of hobbies, as there are people. A hobby can be about making or collecting things, or enjoying an experience.</p>
+              <p>Creative hobbies are popular. Some creative hobbies are writing, drawing, and making pottery. A lot of people like making jewelry or clothes. People who do these kinds of hobbies sometimes become writers or artists when they retire. Collecting is also popular. Most collectors used to buy coins, stamps, or baseball cards. Today, toys, games, and model cars are trendy. Collectors buy and sell things on the Internet. They also shop online in stores all around the world. Enjoying an experience is a hobby, too. Some people listen to music. Others watch movies or read books. Many people travel or play sports. Helping people is a hobby. There are places you can help build houses for poor families. You can help feed the homeless at soup kitchens. You can also tutor children or help the elderly.</p>
+              <p>A hobby is something that is done for fun. With so many choices, there is no reason not to enjoy a hobby.</p>
+            </div>
+          </div>
+
+          <!-- Section A & B Multiple Choice Questions -->
+          <div class="space-y-5" id="readingQuestionsGroup">
+            <!-- Rendered by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PART D: WRITING ================= -->
+    <section class="bg-white rounded-2xl shadow-sm border border-slate-200/80 overflow-hidden">
+      <div class="bg-gradient-to-r from-purple-700 to-pink-700 px-5 py-3.5 text-white flex items-center justify-between flex-wrap gap-2">
+        <div class="flex items-center gap-2.5">
+          <span class="w-8 h-8 rounded-lg bg-white/20 flex items-center justify-center font-bold text-sm">D</span>
+          <div>
+            <h2 class="font-bold text-base sm:text-lg heading-font">PART D. WRITING (2.4 POINTS)</h2>
+            <p class="text-xs text-purple-100">Chạm chọn hoặc kéo thả thẻ từ để tạo câu đúng (Tối ưu hóa cho điện thoại)</p>
+          </div>
+        </div>
+        <span class="text-xs font-bold bg-white/20 px-2.5 py-1 rounded-md">2.4 Điểm</span>
+      </div>
+
+      <div class="p-4 sm:p-6 space-y-8">
+        <!-- Part D - Section I: Reorder words -->
+        <div>
+          <div class="flex items-center justify-between mb-3 border-b border-slate-100 pb-2">
+            <h3 class="text-sm sm:text-base font-bold text-slate-800 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-purple-100 text-purple-800 text-xs flex items-center justify-center font-bold">I</span>
+              <span>Reorder the words to make sentences (3 câu × 0.4 = 1.2 pts)</span>
+            </h3>
+          </div>
+          <p class="text-xs text-slate-500 mb-4 italic">💡 Chạm vào từng thẻ từ bên dưới để xếp câu. Chạm vào thẻ trong câu để trả lại vị trí cũ.</p>
+          <div class="space-y-6" id="writingReorderGroup">
+            <!-- Reorder widgets rendered by JS -->
+          </div>
+        </div>
+
+        <!-- Part D - Section II: Rewrite sentences -->
+        <div class="border-t border-slate-100 pt-6">
+          <div class="flex items-center justify-between mb-3 border-b border-slate-100 pb-2">
+            <h3 class="text-sm sm:text-base font-bold text-slate-800 flex items-center gap-2">
+              <span class="w-6 h-6 rounded-full bg-purple-100 text-purple-800 text-xs flex items-center justify-center font-bold">II</span>
+              <span>Write the second sentence so that it has the same meaning (4 câu × 0.3 = 1.2 pts)</span>
+            </h3>
+          </div>
+          <p class="text-xs text-slate-500 mb-4 italic">💡 Chọn các thẻ từ thích hợp ghép tiếp vào vế đầu câu gợi ý.</p>
+          <div class="space-y-6" id="writingRewriteGroup">
+            <!-- Rewrite widgets rendered by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Action / Submit Buttons Area -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 py-4">
+      <button onclick="submitExam()" id="submitBtn" class="w-full sm:w-auto px-8 py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-600 hover:from-blue-700 hover:to-sky-700 text-white font-bold text-base shadow-lg shadow-blue-500/25 active:scale-95 transition-all flex items-center justify-center gap-2.5">
+        <i class="fa-solid fa-paper-plane"></i>
+        <span>NỘP BÀI & CHẤM ĐIỂM</span>
+      </button>
+
+      <button onclick="resetExam()" id="resetBtn" class="hidden w-full sm:w-auto px-6 py-3.5 rounded-2xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-base active:scale-95 transition-all flex items-center justify-center gap-2">
+        <i class="fa-solid fa-arrow-rotate-right"></i>
+        <span>LÀM LẠI ĐỀ THI</span>
+      </button>
+    </div>
+
+    <!-- Modal / Result Card Container -->
+    <div id="resultModal" class="hidden">
+      <!-- Injected after submission -->
+    </div>
+  </main>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-slate-900/90 text-white text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-2xl border border-slate-700 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300 z-50 flex items-center gap-2">
+    <i class="fa-solid fa-circle-info text-blue-400"></i>
+    <span id="toastMsg">Thông báo</span>
+  </div>
+
+<script>
+/* =========================================================
+   EXAM DATA CONFIGURATION & ANSWER KEYS
+   Standardized 100% with pedagogical explanations
+   ========================================================= */
+
+const EXAM_DATA = {
+  listening1: [
+    {
+      id: "l1_1",
+      question: "1. What are doctors in Britain worried about?",
+      readPrompt: "Question 1: What are doctors in Britain worried about?",
+      options: [
+        { key: "A", text: "health of teenagers" },
+        { key: "B", text: "health of the older" },
+        { key: "C", text: "health of children" },
+        { key: "D", text: "health of the doctors themselves" }
+      ],
+      answer: "A",
+      points: 0.2,
+      explain: "Bác sĩ tại Anh lo lắng về sức khỏe của thanh thiếu niên. Dẫn chứng: 'Doctors in Britain are worried because British teenagers eat a lot of crisps, sweets, and fast food.'",
+      targetSentence: "Doctors in Britain are worried about the health of teenagers."
+    },
+    {
+      id: "l1_2",
+      question: "2. What do teenagers not eat much?",
+      readPrompt: "Question 2: What do teenagers not eat much?",
+      options: [
+        { key: "A", text: "chips" },
+        { key: "B", text: "crisps" },
+        { key: "C", text: "fast food" },
+        { key: "D", text: "vegetables" }
+      ],
+      answer: "D",
+      points: 0.2,
+      explain: "Thanh thiếu niên không ăn đủ rau quả củ. Dẫn chứng: 'Most teenagers do not eat enough fruit or vegetables...'",
+      targetSentence: "Most teenagers do not eat enough fruit or vegetables."
+    },
+    {
+      id: "l1_3",
+      question: "3. Why do teenagers not eat good food?",
+      readPrompt: "Question 3: Why do teenagers not eat good food?",
+      options: [
+        { key: "A", text: "they do not have enough time" },
+        { key: "B", text: "it is expensive" },
+        { key: "C", text: "it is unhealthy" },
+        { key: "D", text: "it is dirty" }
+      ],
+      answer: "A",
+      points: 0.2,
+      explain: "Một số thanh thiếu niên nói rằng họ không có đủ thời gian để ăn đồ ăn tốt cho sức khỏe. Dẫn chứng: 'Some teenagers say that they do not have enough time to eat good food.' (Đã chuẩn hóa phương án A khớp chính xác 100% với lời thoại bài nghe).",
+      targetSentence: "Some teenagers say that they do not have enough time to eat good food."
+    },
+    {
+      id: "l1_4",
+      question: "4. Where did fast food originate?",
+      readPrompt: "Question 4: Where did fast food originate?",
+      options: [
+        { key: "A", text: "England" },
+        { key: "B", text: "Australia" },
+        { key: "C", text: "America" },
+        { key: "D", text: "Vietnam" }
+      ],
+      answer: "C",
+      points: 0.2,
+      explain: "Thức ăn nhanh bắt nguồn từ nước Mỹ. Dẫn chứng: 'Fast food was born in America and is popular all over the world.'",
+      targetSentence: "Fast food was born in America."
+    },
+    {
+      id: "l1_5",
+      question: "5. What is not one of the fast food brands?",
+      readPrompt: "Question 5: What is not one of the fast food brands?",
+      options: [
+        { key: "A", text: "McDonald’s" },
+        { key: "B", text: "Pizza Hut" },
+        { key: "C", text: "Tom and Jerry" },
+        { key: "D", text: "Burger King" }
+      ],
+      answer: "C",
+      points: 0.2,
+      explain: "Tom and Jerry là tên phim hoạt hình nổi tiếng, không phải thương hiệu thức ăn nhanh. Dẫn chứng: 'McDonald's, Pizza Hut, Burger King have restaurants all over the globe.'",
+      targetSentence: "Tom and Jerry is a cartoon, not a fast food brand."
+    },
+    {
+      id: "l1_6",
+      question: "6. What is not a type of fast food?",
+      readPrompt: "Question 6: What is not a type of fast food?",
+      options: [
+        { key: "A", text: "hamburgers" },
+        { key: "B", text: "apples" },
+        { key: "C", text: "fries" },
+        { key: "D", text: "sandwiches" }
+      ],
+      answer: "B",
+      points: 0.2,
+      explain: "Táo (apples) là trái cây tươi giàu vitamin, không phải là đồ ăn nhanh (fast food). Dẫn chứng: '...eating too many hamburgers, fries, and soda does not nourish the body...'",
+      targetSentence: "Apples are healthy fruit, not fast food."
+    }
+  ],
+
+  listening2: [
+    {
+      id: "l2_1",
+      statement: "1. His hobby is making cakes.",
+      readPrompt: "Statement 1: His hobby is making cakes.",
+      answer: "T",
+      points: 0.2,
+      explain: "Đúng (True). Nam hỏi sở thích của Mark và cậu trả lời: 'Making cakes.'",
+      targetSentence: "Mark's hobby is making cakes."
+    },
+    {
+      id: "l2_2",
+      statement: "2. Mark’s hobby is similar to many boys.",
+      readPrompt: "Statement 2: Mark’s hobby is similar to many boys.",
+      answer: "F",
+      points: 0.2,
+      explain: "Sai (False). Nam nhận xét: 'Wow, it's a strange hobby for a boy.' (Nó là một sở thích lạ đối với một bạn nam, tức là không giống đa số các bạn nam khác).",
+      targetSentence: "It is a strange hobby for a boy, not similar to many boys."
+    },
+    {
+      id: "l2_3",
+      statement: "3. He loved making cakes after watching Junior Chef programmes.",
+      readPrompt: "Statement 3: He loved making cakes after watching Junior Chef programmes.",
+      answer: "T",
+      points: 0.2,
+      explain: "Đúng (True). Mark nói: 'I got interested in making cakes two years ago after watching different series of American Junior Chef.'",
+      targetSentence: "He loved making cakes after watching American Junior Chef."
+    },
+    {
+      id: "l2_4",
+      statement: "4. He can not make birthday cakes.",
+      readPrompt: "Statement 4: He can not make birthday cakes.",
+      answer: "F",
+      points: 0.2,
+      explain: "Sai (False). Mark có thể làm được bánh sinh nhật: '...and of course birthday cakes.'",
+      targetSentence: "Mark can make birthday cakes."
+    },
+    {
+      id: "l2_5",
+      statement: "5. He makes cakes on special occasions like family gatherings.",
+      readPrompt: "Statement 5: He makes cakes on special occasions like family gatherings.",
+      answer: "T",
+      points: 0.2,
+      explain: "Đúng (True). Mark nói: 'On special occasions, like birthdays or family gatherings.'",
+      targetSentence: "He makes cakes on special occasions like birthdays or family gatherings."
+    },
+    {
+      id: "l2_6",
+      statement: "6. He will give up this hobby when he graduates from school.",
+      readPrompt: "Statement 6: He will give up this hobby when he graduates from school.",
+      answer: "F",
+      points: 0.2,
+      explain: "Sai (False). Mark không hề từ bỏ sở thích mà cậu dự định mở tiệm bánh: 'When I finish school, I will open a cake shop.'",
+      targetSentence: "When he finishes school, he will open a cake shop."
+    }
+  ],
+
+  language1: [
+    {
+      id: "b1_1",
+      question: "1. Choose the word whose underlined part has a different sound.",
+      readPrompt: "Question 1: Choose the word whose underlined part has a different sound: hurry, thursday, furniture, urban.",
+      options: [
+        { key: "A", text: "hurry" },
+        { key: "B", text: "thursday" },
+        { key: "C", text: "furniture" },
+        { key: "D", text: "urban" }
+      ],
+      answer: "A",
+      points: 0.2,
+      explain: "Phần gạch chân chữ 'u': 'hurry' phát âm là /ʌ/ (/ˈhʌri/), trong khi 'thursday' (/ˈθɜːzdeɪ/), 'furniture' (/ˈfɜːnɪtʃə/), 'urban' (/ˈɜːbən/) đều phát âm là /ɜː/.",
+      targetSentence: "The letter 'u' in 'hurry' is pronounced /ʌ/, while the others are pronounced /ɜː/."
+    },
+    {
+      id: "b1_2",
+      question: "2. Choose the word which has different stress.",
+      readPrompt: "Question 2: Choose the word which has different stress: sunburn, homeless, collect, hobby.",
+      options: [
+        { key: "A", text: "sunburn" },
+        { key: "B", text: "homeless" },
+        { key: "C", text: "collect" },
+        { key: "D", text: "hobby" }
+      ],
+      answer: "C",
+      points: 0.2,
+      explain: "'collect' /kəˈlekt/ có trọng âm rơi vào âm tiết thứ 2 (động từ 2 âm tiết). Các từ còn lại có trọng âm rơi vào âm tiết thứ 1: 'sunburn' /ˈsʌnbɜːn/, 'homeless' /ˈhəʊmləs/, 'hobby' /ˈhɒbi/.",
+      targetSentence: "'Collect' has stress on the second syllable; the others on the first."
+    },
+    {
+      id: "b1_3",
+      question: "3. My sister ______ yoga every day, so she is in good shape.",
+      readPrompt: "Question 3: My sister blank yoga every day, so she is in good shape.",
+      options: [
+        { key: "A", text: "plays" },
+        { key: "B", text: "does" },
+        { key: "C", text: "goes" },
+        { key: "D", text: "takes" }
+      ],
+      answer: "B",
+      points: 0.2,
+      explain: "Cụm cố định: 'do yoga' (tập yoga). Chủ ngữ ngôi thứ ba số ít 'My sister' ở thì Hiện tại đơn chia động từ thêm -es: 'does yoga'.",
+      targetSentence: "My sister does yoga every day, so she is in good shape."
+    },
+    {
+      id: "b1_4",
+      question: "4. We usually _________ garbage in our neighbourhood on Sunday morning.",
+      readPrompt: "Question 4: We usually blank garbage in our neighbourhood on Sunday morning.",
+      options: [
+        { key: "A", text: "pick up" },
+        { key: "B", text: "look for" },
+        { key: "C", text: "hand in" },
+        { key: "D", text: "tidy up" }
+      ],
+      answer: "A",
+      points: 0.2,
+      explain: "Cụm động từ: 'pick up garbage/litter' có nghĩa là nhặt rác. 'look for' (tìm kiếm), 'hand in' (nộp bài), 'tidy up' (dọn dẹp).",
+      targetSentence: "We usually pick up garbage in our neighbourhood on Sunday morning."
+    },
+    {
+      id: "b1_5",
+      question: "5. Look at the schedule. We __________ IT lessons next month.",
+      readPrompt: "Question 5: Look at the schedule. We blank IT lessons next month.",
+      options: [
+        { key: "A", text: "have" },
+        { key: "B", text: "had" },
+        { key: "C", text: "has" },
+        { key: "D", text: "will have" }
+      ],
+      answer: "D",
+      points: 0.2,
+      explain: "Có trạng từ chỉ thời gian trong tương lai 'next month' -> sử dụng thì Tương lai đơn (Future simple): S + will + V-inf ('will have').",
+      targetSentence: "Look at the schedule. We will have IT lessons next month."
+    },
+    {
+      id: "b1_6",
+      question: "6. __________ is not good for our health. Avoid it.",
+      readPrompt: "Question 6: Blank is not good for our health. Avoid it.",
+      options: [
+        { key: "A", text: "Soft drink" },
+        { key: "B", text: "Fruit juice" },
+        { key: "C", text: "Water" },
+        { key: "D", text: "Yogurt" }
+      ],
+      answer: "A",
+      points: 0.2,
+      explain: "'Soft drink' (nước ngọt có ga) chứa nhiều đường hóa học và chất phụ gia không tốt cho sức khỏe. Các đồ uống còn lại (nước ép hoa quả, nước lọc, sữa chua) đều tốt cho cơ thể.",
+      targetSentence: "Soft drink is not good for our health. Avoid it."
+    },
+    {
+      id: "b1_7",
+      question: "7. Once a month, we visit the ________ and read to old people.",
+      readPrompt: "Question 7: Once a month, we visit the blank and read to old people.",
+      options: [
+        { key: "A", text: "park" },
+        { key: "B", text: "community library" },
+        { key: "C", text: "nursing home" },
+        { key: "D", text: "school" }
+      ],
+      answer: "C",
+      points: 0.2,
+      explain: "'nursing home' (viện dưỡng lão) là nơi chăm sóc người cao tuổi ('old people'). Cụm từ: 'visit the nursing home and read to old people'.",
+      targetSentence: "Once a month, we visit the nursing home and read to old people."
+    },
+    {
+      id: "b1_8",
+      question: "8. A: We collected a lot of books for poor children. — B: _______________.",
+      readPrompt: "Question 8: A: We collected a lot of books for poor children. B: Blank.",
+      options: [
+        { key: "A", text: "me too" },
+        { key: "B", text: "Sounds like great work" },
+        { key: "C", text: "Yes, please" },
+        { key: "D", text: "I like it a lot" }
+      ],
+      answer: "B",
+      points: 0.2,
+      explain: "Để đáp lại một hoạt động tình nguyện đóng góp cho cộng đồng tích cực, ta dùng câu khen ngợi: 'Sounds like great work' (Nghe có vẻ là một công việc tuyệt vời đấy!).",
+      targetSentence: "Sounds like great work."
+    },
+    {
+      id: "b1_9",
+      question: "9. Next year, all students in my school ____________ the Green Campaign.",
+      readPrompt: "Question 9: Next year, all students in my school blank the Green Campaign.",
+      options: [
+        { key: "A", text: "join" },
+        { key: "B", text: "joining" },
+        { key: "C", text: "joined" },
+        { key: "D", text: "will join" }
+      ],
+      answer: "D",
+      points: 0.2,
+      explain: "Có dấu hiệu thì tương lai 'Next year' (Năm tới) -> dùng thì Tương lai đơn: will + V-inf ('will join').",
+      targetSentence: "Next year, all students in my school will join the Green Campaign."
+    },
+    {
+      id: "b1_10",
+      question: "10. ___ you (attend) ___ the concert to raise money for the Children’s Fund last night?",
+      readPrompt: "Question 10: Blank you attend the concert to raise money for the Children’s Fund last night?",
+      options: [
+        { key: "A", text: "Did / attend" },
+        { key: "B", text: "Were / attend" },
+        { key: "C", text: "Do / attend" },
+        { key: "D", text: "Will / attend" }
+      ],
+      answer: "A",
+      points: 0.2,
+      explain: "Có dấu hiệu 'last night' (tối qua) -> câu hỏi thì Quá khứ đơn với động từ thường 'attend'. Cấu trúc câu hỏi: Did + S + V-inf? -> 'Did you attend'.",
+      targetSentence: "Did you attend the concert to raise money for the Children’s Fund last night?"
+    }
+  ],
+
+  language2: [
+    {
+      id: "v1",
+      sentence: "1. I often (drink) ____________ coca cola.",
+      readPrompt: "Sentence 1: I often drink coca cola.",
+      options: [
+        { key: "A", text: "drink" },
+        { key: "B", text: "drinks" },
+        { key: "C", text: "drank" },
+        { key: "D", text: "is drinking" }
+      ],
+      answer: "A",
+      points: 0.2,
+      explain: "Có trạng từ tần suất 'often' chỉ thói quen ở hiện tại -> thì Hiện tại đơn. Chủ ngữ 'I' đi với động từ nguyên mẫu: 'drink'.",
+      targetSentence: "I often drink coca cola."
+    },
+    {
+      id: "v2",
+      sentence: "2. Joana likes (collect) ______________ old books.",
+      readPrompt: "Sentence 2: Joana likes collect old books.",
+      options: [
+        { key: "A", text: "collects" },
+        { key: "B", text: "collecting" },
+        { key: "C", text: "collected" },
+        { key: "D", text: "to collecting" }
+      ],
+      answer: "B",
+      points: 0.2,
+      explain: "Sau động từ chỉ sở thích 'like' ta dùng danh động từ V-ing: like + V-ing -> 'collecting'.",
+      targetSentence: "Joana likes collecting old books."
+    },
+    {
+      id: "v3",
+      sentence: "3. My father (watch) ________________ TV now.",
+      readPrompt: "Sentence 3: My father watch TV now.",
+      options: [
+        { key: "A", text: "watches" },
+        { key: "B", text: "is watching" },
+        { key: "C", text: "watched" },
+        { key: "D", text: "are watching" }
+      ],
+      answer: "B",
+      points: 0.2,
+      explain: "Có dấu hiệu 'now' (bây giờ) -> dùng thì Hiện tại tiếp diễn: S + am/is/are + V-ing. Chủ ngữ 'My father' (ngôi thứ 3 số ít) đi với 'is watching'.",
+      targetSentence: "My father is watching TV now."
+    }
+  ],
+
+  readingCloze: [
+    {
+      id: "rc1",
+      num: 1,
+      options: [
+        { key: "A", text: "tutor" },
+        { key: "B", text: "tutored" },
+        { key: "C", text: "tutoring" },
+        { key: "D", text: "is tutoring" }
+      ],
+      answer: "C",
+      points: 0.2,
+      explain: "Cấu trúc song hành (parallel structure): 'The activities include donating books..., tutoring kids..., teaching English..., reading books or cooking food...' -> các động từ sau 'include' đều ở dạng V-ing.",
+      targetSentence: "The activities include donating books to village children, tutoring kids in the neighbourhood..."
+    },
+    {
+      id: "rc2",
+      num: 2,
+      options: [
+        { key: "A", text: "rich" },
+        { key: "B", text: "needy" },
+        { key: "C", text: "young" },
+        { key: "D", text: "old" }
+      ],
+      answer: "D", // D (old) is standard pedagogy; B (needy) also accepted
+      points: 0.2,
+      explain: "'the old' / 'the elderly' có nghĩa là những người già/cao tuổi, hoàn toàn ăn khớp với ngữ cảnh 'reading books or cooking food for the old' (đọc sách hoặc nấu ăn cho người già). (HDC bản Word ghi nhầm 2.C 'young', đã hiệu chỉnh chuẩn xác để tránh sai sót).",
+      targetSentence: "...reading books or cooking food for the old."
+    },
+    {
+      id: "rc3",
+      num: 3,
+      options: [
+        { key: "A", text: "activities" },
+        { key: "B", text: "jobs" },
+        { key: "C", text: "work" },
+        { key: "D", text: "active" }
+      ],
+      answer: "A",
+      points: 0.2,
+      explain: "Theo ngữ cảnh: 'We then thought about what activities we wanted to do' (Sau đó chúng tôi nghĩ xem những hoạt động nào mà chúng tôi muốn tham gia).",
+      targetSentence: "We then thought about what activities we wanted to do."
+    },
+    {
+      id: "rc4",
+      num: 4,
+      options: [
+        { key: "A", text: "clothes" },
+        { key: "B", text: "books" },
+        { key: "C", text: "vegetables" },
+        { key: "D", text: "magazine" }
+      ],
+      answer: "B",
+      points: 0.2,
+      explain: "Dựa vào vế trước: 'Those who like reading could choose to collect and donate books' (Những ai thích đọc sách thì có thể chọn thu gom và quyên góp sách).",
+      targetSentence: "Those who like reading could choose to collect and donate books."
+    },
+    {
+      id: "rc5",
+      num: 5,
+      options: [
+        { key: "A", text: "learn" },
+        { key: "B", text: "talk" },
+        { key: "C", text: "tutor" },
+        { key: "D", text: "studying" }
+      ],
+      answer: "C",
+      points: 0.2,
+      explain: "Sau động từ khuyết thiếu 'could' ta dùng động từ nguyên thể V-inf: 'tutor primary students' (gia sư/dạy kèm cho các em học sinh tiểu học).",
+      targetSentence: "Those who are good at English could tutor primary students."
+    }
+  ],
+
+  readingComp: [
+    {
+      id: "rq1",
+      question: "1. What can a hobby be about?",
+      readPrompt: "Question 1: What can a hobby be about?",
+      options: [
+        { key: "A", text: "It can be about making or collecting things, or enjoying an experience." },
+        { key: "B", text: "It is always a full-time job to earn money." },
+        { key: "C", text: "It only means staying at home and sleeping." }
+      ],
+      answer: "A",
+      points: 0.4,
+      explain: "Dẫn chứng trong đoạn 1: 'A hobby can be about making or collecting things, or enjoying an experience.' (Sở thích có thể là về làm đồ vật, sưu tầm đồ vật hoặc tận hưởng một trải nghiệm).",
+      targetSentence: "A hobby can be about making or collecting things, or enjoying an experience."
+    },
+    {
+      id: "rq2",
+      question: "2. What are some creative hobbies?",
+      readPrompt: "Question 2: What are some creative hobbies?",
+      options: [
+        { key: "A", text: "Traveling and watching movies." },
+        { key: "B", text: "Writing, drawing, and making pottery." },
+        { key: "C", text: "Buying coins, stamps, or baseball cards." }
+      ],
+      answer: "B",
+      points: 0.4,
+      explain: "Dẫn chứng trong đoạn 2: 'Some creative hobbies are writing, drawing, and making pottery.' (Một số sở thích sáng tạo là viết lách, vẽ tranh và làm đồ gốm).",
+      targetSentence: "Some creative hobbies are writing, drawing, and making pottery."
+    },
+    {
+      id: "rq3",
+      question: "3. Is enjoying an experience a hobby?",
+      readPrompt: "Question 3: Is enjoying an experience a hobby?",
+      options: [
+        { key: "A", text: "Yes, it is." },
+        { key: "B", text: "No, it is not." },
+        { key: "C", text: "Only when people retire." }
+      ],
+      answer: "A",
+      points: 0.4,
+      explain: "Dẫn chứng trong đoạn 2: 'Enjoying an experience is a hobby, too.' (Tận hưởng một trải nghiệm cũng là một sở thích). Trả lời ngắn: Yes, it is.",
+      targetSentence: "Yes, enjoying an experience is a hobby, too."
+    },
+    {
+      id: "rq4",
+      question: "4. What is a popular type of creative hobby?",
+      readPrompt: "Question 4: What is a popular type of creative hobby?",
+      options: [
+        { key: "A", text: "Traveling" },
+        { key: "B", text: "Collecting coins" },
+        { key: "C", text: "Making pottery" },
+        { key: "D", text: "Watching movies" }
+      ],
+      answer: "C",
+      points: 0.2,
+      explain: "Dẫn chứng trong đoạn 2: 'Some creative hobbies are writing, drawing, and making pottery.' -> 'Making pottery' (làm đồ gốm) là một loại sở thích sáng tạo.",
+      targetSentence: "Making pottery is a creative hobby."
+    },
+    {
+      id: "rq5",
+      question: "5. Which of the following is considered a hobby?",
+      readPrompt: "Question 5: Which of the following is considered a hobby?",
+      options: [
+        { key: "A", text: "Helping poor families" },
+        { key: "B", text: "Doing a full-time job" },
+        { key: "C", text: "Going to school" },
+        { key: "D", text: "Sleeping" }
+      ],
+      answer: "A",
+      points: 0.2,
+      explain: "Dẫn chứng trong đoạn 2: 'Helping people is a hobby. There are places you can help build houses for poor families.' (Giúp đỡ mọi người là một sở thích... giúp xây nhà cho các gia đình nghèo).",
+      targetSentence: "Helping poor families is considered a hobby."
+    }
+  ],
+
+  writingReorder: [
+    {
+      id: "wr1",
+      promptTokens: ["our", "fruits", "provide", "vitamin C", "bodies", "a lot of", "with"],
+      readPrompt: "Reorder: our, fruits, provide, vitamin C, bodies, a lot of, with.",
+      correctOrder: ["Fruits", "provide", "our", "bodies", "with", "a lot of", "vitamin C."],
+      targets: [
+        "Fruits provide our bodies with a lot of vitamin C.",
+        "Fruits provide our bodies with a lot of vitamin C"
+      ],
+      points: 0.4,
+      explain: "Cấu trúc: provide somebody with something (cung cấp cho ai cái gì). Câu hoàn chỉnh: 'Fruits provide our bodies with a lot of vitamin C.' (Hoa quả cung cấp cho cơ thể chúng ta nhiều vitamin C).",
+      targetSentence: "Fruits provide our bodies with a lot of vitamin C."
+    },
+    {
+      id: "wr2",
+      promptTokens: ["jogging", "outdoor", "favourite", "her", "activity", "is"],
+      readPrompt: "Reorder: jogging, outdoor, favourite, her, activity, is.",
+      correctOrder: ["Her", "favourite", "outdoor", "activity", "is", "jogging."],
+      targets: [
+        "Her favourite outdoor activity is jogging.",
+        "Her favourite outdoor activity is jogging",
+        "Jogging is her favourite outdoor activity.",
+        "Jogging is her favourite outdoor activity"
+      ],
+      points: 0.4,
+      explain: "Chủ ngữ là cụm danh từ 'Her favourite outdoor activity' đi với động từ to be 'is' và danh động từ 'jogging' (hoặc đảo 'Jogging is her favourite outdoor activity'). Cả 2 cách đều chính xác 100%.",
+      targetSentence: "Her favourite outdoor activity is jogging."
+    },
+    {
+      id: "wr3",
+      promptTokens: ["they", "community", "People", "because", "volunteer", "want", "to", "improve", "their"],
+      readPrompt: "Reorder: they, community, People, because, volunteer, want, to, improve, their.",
+      correctOrder: ["People", "volunteer", "because", "they", "want", "to", "improve", "their", "community."],
+      targets: [
+        "People volunteer because they want to improve their community.",
+        "People volunteer because they want to improve their community"
+      ],
+      points: 0.4,
+      explain: "Lưu ý quan trọng: HDC trong file Word bị dán nhầm đáp án của đề khác. Đề bài gồm các từ 'People / volunteer / because / they / want / to / improve / their / community.'. Câu ghép hoàn chỉnh: 'People volunteer because they want to improve their community.' (Mọi người làm tình nguyện vì họ muốn cải thiện cộng đồng của mình).",
+      targetSentence: "People volunteer because they want to improve their community."
+    }
+  ],
+
+  writingRewrite: [
+    {
+      id: "wt1",
+      given: "1. Why don’t we go camping?",
+      leadIn: "How about",
+      readPrompt: "Rewrite: Why don't we go camping? Lead in: How about.",
+      tokens: ["going", "camping", "?"],
+      correctOrder: ["going", "camping?"],
+      targets: [
+        "going camping?",
+        "going camping"
+      ],
+      fullTarget: "How about going camping?",
+      points: 0.3,
+      explain: "Cấu trúc đưa ra lời đề nghị: 'Why don't we + V-inf...?' tương đương với 'How about + V-ing...?' -> 'How about going camping?'",
+      targetSentence: "How about going camping?"
+    },
+    {
+      id: "wt2",
+      given: "2. Linda likes reading books in her free time.",
+      leadIn: "Linda’s hobby is",
+      readPrompt: "Rewrite: Linda likes reading books in her free time. Lead in: Linda's hobby is.",
+      tokens: ["reading", "books", "in her free time."],
+      correctOrder: ["reading", "books", "in her free time."],
+      targets: [
+        "reading books in her free time.",
+        "reading books in her free time",
+        "reading books.",
+        "reading books"
+      ],
+      fullTarget: "Linda’s hobby is reading books in her free time.",
+      points: 0.3,
+      explain: "Chuyển từ cấu trúc 'S + like + V-ing' sang 'S's hobby is + V-ing' -> 'Linda's hobby is reading books in her free time.' (hoặc 'Linda's hobby is reading books.')",
+      targetSentence: "Linda's hobby is reading books in her free time."
+    },
+    {
+      id: "wt3",
+      given: "3. It is a good idea to review your notes before an exam.",
+      leadIn: "You should",
+      readPrompt: "Rewrite: It is a good idea to review your notes before an exam. Lead in: You should.",
+      tokens: ["review", "your notes", "before an exam."],
+      correctOrder: ["review", "your notes", "before an exam."],
+      targets: [
+        "review your notes before an exam.",
+        "review your notes before an exam"
+      ],
+      fullTarget: "You should review your notes before an exam.",
+      points: 0.3,
+      explain: "Cấu trúc đưa ra lời khuyên: 'It is a good idea to + V-inf' tương đương với 'S + should + V-inf' -> 'You should review your notes before an exam.'",
+      targetSentence: "You should review your notes before an exam."
+    },
+    {
+      id: "wt4",
+      given: "4. The Japanese work hard, and they exercise regularly.",
+      leadIn: "The Japanese",
+      readPrompt: "Rewrite: The Japanese work hard, and they exercise regularly. Lead in: The Japanese.",
+      tokens: ["work hard", "and", "exercise regularly."],
+      correctOrder: ["work hard", "and", "exercise regularly."],
+      targets: [
+        "work hard and exercise regularly.",
+        "work hard and exercise regularly"
+      ],
+      fullTarget: "The Japanese work hard and exercise regularly.",
+      points: 0.3,
+      explain: "Rút gọn hai mệnh đề có chung chủ ngữ 'The Japanese' bằng liên từ nối 'and': 'The Japanese work hard and exercise regularly.' (Người Nhật làm việc chăm chỉ và tập thể dục đều đặn).",
+      targetSentence: "The Japanese work hard and exercise regularly."
+    }
+  ]
+};
+
+/* Interactive User State */
+const userSelections = {
+  radio: {},
+  writingWords: {
+    wr1: [],
+    wr2: [],
+    wr3: [],
+    wt1: [],
+    wt2: [],
+    wt3: [],
+    wt4: []
+  }
+};
+
+let isSubmitted = false;
+let currentTrackPlaying = null;
+
+function stopAllSpeech() {
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.cancel();
+  }
+  document.querySelectorAll('.speaking-pulse').forEach(el => el.classList.remove('speaking-pulse'));
+  const btn1 = document.getElementById('textTrack1');
+  if (btn1) btn1.innerText = "Phát Audio Task 1";
+  const btn2 = document.getElementById('textTrack2');
+  if (btn2) btn2.innerText = "Phát Audio Task 2";
+  const icon1 = document.getElementById('iconTrack1');
+  if (icon1) icon1.className = "fa-solid fa-play";
+  const icon2 = document.getElementById('iconTrack2');
+  if (icon2) icon2.className = "fa-solid fa-play";
+}
+
+function speakText(text, btnElement = null) {
+  if (!('speechSynthesis' in window)) {
+    showToast("Trình duyệt không hỗ trợ Web Speech!");
+    return;
+  }
+  window.speechSynthesis.cancel();
+
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = 'en-US';
+  utterance.rate = 0.9;
+
+  if (btnElement) {
+    btnElement.classList.add('speaking-pulse');
+    utterance.onend = () => btnElement.classList.remove('speaking-pulse');
+    utterance.onerror = () => btnElement.classList.remove('speaking-pulse');
+  }
+
+  window.speechSynthesis.speak(utterance);
+}
+
+function speakParagraph(elementId) {
+  const el = document.getElementById(elementId);
+  if (el) {
+    speakText(el.innerText);
+  }
+}
+
+function playTrack(trackNumber) {
+  if (!('speechSynthesis' in window)) {
+    showToast("Trình duyệt không hỗ trợ phát âm!");
+    return;
+  }
+
+  if (window.speechSynthesis.speaking && currentTrackPlaying === trackNumber) {
+    window.speechSynthesis.cancel();
+    stopAllSpeech();
+    currentTrackPlaying = null;
+    return;
+  }
+
+  window.speechSynthesis.cancel();
+  currentTrackPlaying = trackNumber;
+
+  let trackScript = "";
+  let textId = trackNumber === 1 ? "textTrack1" : "textTrack2";
+  let iconId = trackNumber === 1 ? "iconTrack1" : "iconTrack2";
+
+  document.getElementById(textId).innerText = "Đang phát... (Bấm để dừng)";
+  document.getElementById(iconId).className = "fa-solid fa-pause";
+
+  if (trackNumber === 1) {
+    trackScript = "Track 3. Health problem in Britain. Doctors in Britain are worried because British teenagers eat a lot of crisps, sweets, and fast food. Most teenagers do not eat enough fruit or vegetables, and more than one million British children are overweight. Some teenagers say that they do not have enough time to eat good food. This can lead to many health problems when they are older. Fast food was born in America and is popular all over the world. McDonald's, Pizza Hut, Burger King have restaurants all over the globe. No one can deny the convenience of fast food. However, eating too many hamburgers, fries, and soda does not nourish the body with vitamins and minerals. Fast food is short of many important nutrients. Now doctors are giving young people books about a good diet. They need to have a healthy diet to feel better and live longer.";
+  } else {
+    trackScript = "Unit 1 Hobbies. Task 11. Listen to Nam interview his friend Mark about his hobby, and tick if each statement is true or false. Nam: What's your hobby, Mark? Mark: Making cakes. Nam: Wow, it's a strange hobby for a boy. When did you start that hobby? Mark: I got interested in making cakes two years ago, after watching different series of American Junior Chef. Then I watched many clips about making cakes on YouTube. Nam: What kind of cake can you make now? Mark: I can make many different kinds, like banana bread, butter cakes, apple cakes, and of course, birthday cakes. Nam: How often do you make cakes? Mark: On special occasions, like birthdays or family gatherings. Nam: Do you have any plan for your hobby? Mark: When I finish school, I will open a cake shop.";
+  }
+
+  const utterance = new SpeechSynthesisUtterance(trackScript);
+  utterance.lang = 'en-US';
+  utterance.rate = 0.88;
+
+  utterance.onend = () => {
+    document.getElementById(textId).innerText = `Phát Audio Task ${trackNumber}`;
+    document.getElementById(iconId).className = "fa-solid fa-play";
+    currentTrackPlaying = null;
+  };
+
+  utterance.onerror = () => {
+    document.getElementById(textId).innerText = `Phát Audio Task ${trackNumber}`;
+    document.getElementById(iconId).className = "fa-solid fa-play";
+    currentTrackPlaying = null;
+  };
+
+  window.speechSynthesis.speak(utterance);
+}
+
+function renderListeningSection() {
+  const container1 = document.getElementById('listeningQGroup1');
+  container1.innerHTML = EXAM_DATA.listening1.map((q, idx) => `
+    <div id="card_${q.id}" class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 sm:p-4 transition-all">
+      <div class="flex items-start justify-between gap-2 mb-2.5">
+        <div class="flex items-center gap-2">
+          <span class="w-6 h-6 rounded-full bg-sky-100 text-sky-800 text-xs font-bold flex items-center justify-center shrink-0">${idx + 1}</span>
+          <p class="font-semibold text-sm text-slate-800">${q.question}</p>
+        </div>
+        <button onclick="speakText('${q.readPrompt.replace(/'/g, "\\'")}', this)" class="p-1.5 rounded-lg bg-sky-100 hover:bg-sky-200 text-sky-800 text-xs transition-all shrink-0" title="Nghe câu hỏi">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
+        ${q.options.map(opt => `
+          <label class="option-label flex items-center justify-between p-2.5 rounded-lg border border-slate-200 bg-white hover:bg-sky-50/50 cursor-pointer transition-all" data-qid="${q.id}" data-opt="${opt.key}">
+            <div class="flex items-center gap-2.5">
+              <input type="radio" name="${q.id}" value="${opt.key}" onchange="selectRadio('${q.id}', '${opt.key}')" class="w-4 h-4 text-blue-600 focus:ring-blue-500">
+              <span class="text-xs sm:text-sm font-medium text-slate-700"><strong>${opt.key}.</strong> ${opt.text}</span>
+            </div>
+            <button type="button" onclick="event.stopPropagation(); speakText('${opt.text.replace(/'/g, "\\'")}', this)" class="p-1 text-slate-400 hover:text-sky-600 transition-all text-xs" title="Phát âm đáp án">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+          </label>
+        `).join('')}
+      </div>
+
+      <div id="explain_${q.id}" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs text-slate-700 leading-relaxed"></div>
+    </div>
+  `).join('');
+
+  const container2 = document.getElementById('listeningQGroup2');
+  container2.innerHTML = EXAM_DATA.listening2.map((q, idx) => `
+    <div id="card_${q.id}" class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 sm:p-4 transition-all">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="flex items-start gap-2.5">
+          <span class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-800 text-xs font-bold flex items-center justify-center shrink-0 mt-0.5">${idx + 1}</span>
+          <div>
+            <p class="font-semibold text-sm text-slate-800">${q.statement}</p>
+          </div>
+          <button onclick="speakText('${q.readPrompt.replace(/'/g, "\\'")}', this)" class="p-1.5 rounded-lg bg-indigo-100 hover:bg-indigo-200 text-indigo-800 text-xs transition-all shrink-0 ml-1" title="Nghe câu">
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+        </div>
+
+        <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
+          <label class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-indigo-50 cursor-pointer text-xs font-bold" data-qid="${q.id}" data-opt="T">
+            <input type="radio" name="${q.id}" value="T" onchange="selectRadio('${q.id}', 'T')" class="text-indigo-600">
+            <span>TRUE (T)</span>
+          </label>
+          <label class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-indigo-50 cursor-pointer text-xs font-bold" data-qid="${q.id}" data-opt="F">
+            <input type="radio" name="${q.id}" value="F" onchange="selectRadio('${q.id}', 'F')" class="text-indigo-600">
+            <span>FALSE (F)</span>
+          </label>
+        </div>
+      </div>
+
+      <div id="explain_${q.id}" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs text-slate-700 leading-relaxed"></div>
+    </div>
+  `).join('');
+}
+
+function renderLanguageSection() {
+  const container1 = document.getElementById('languageQGroup1');
+  container1.innerHTML = EXAM_DATA.language1.map((q, idx) => `
+    <div id="card_${q.id}" class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 sm:p-4 transition-all">
+      <div class="flex items-start justify-between gap-2 mb-2.5">
+        <div class="flex items-center gap-2">
+          <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold flex items-center justify-center shrink-0">${idx + 1}</span>
+          <p class="font-semibold text-sm text-slate-800">${q.question}</p>
+        </div>
+        <button onclick="speakText('${q.readPrompt.replace(/'/g, "\\'")}', this)" class="p-1.5 rounded-lg bg-emerald-100 hover:bg-emerald-200 text-emerald-800 text-xs transition-all shrink-0" title="Nghe câu hỏi">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
+        ${q.options.map(opt => `
+          <label class="option-label flex items-center justify-between p-2.5 rounded-lg border border-slate-200 bg-white hover:bg-emerald-50/50 cursor-pointer transition-all" data-qid="${q.id}" data-opt="${opt.key}">
+            <div class="flex items-center gap-2.5">
+              <input type="radio" name="${q.id}" value="${opt.key}" onchange="selectRadio('${q.id}', '${opt.key}')" class="w-4 h-4 text-emerald-600 focus:ring-emerald-500">
+              <span class="text-xs sm:text-sm font-medium text-slate-700"><strong>${opt.key}.</strong> ${opt.text}</span>
+            </div>
+            <button type="button" onclick="event.stopPropagation(); speakText('${opt.text.replace(/'/g, "\\'")}', this)" class="p-1 text-slate-400 hover:text-emerald-600 transition-all text-xs" title="Phát âm từ">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+          </label>
+        `).join('')}
+      </div>
+
+      <div id="explain_${q.id}" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs text-slate-700 leading-relaxed"></div>
+    </div>
+  `).join('');
+
+  const container2 = document.getElementById('languageQGroup2');
+  container2.innerHTML = EXAM_DATA.language2.map((q, idx) => `
+    <div id="card_${q.id}" class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 sm:p-4 transition-all">
+      <div class="flex items-start justify-between gap-2 mb-2.5">
+        <div class="flex items-center gap-2">
+          <span class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold flex items-center justify-center shrink-0">${idx + 1}</span>
+          <p class="font-semibold text-sm text-slate-800">${q.sentence}</p>
+        </div>
+        <button onclick="speakText('${q.readPrompt.replace(/'/g, "\\'")}', this)" class="p-1.5 rounded-lg bg-emerald-100 hover:bg-emerald-200 text-emerald-800 text-xs transition-all shrink-0" title="Nghe câu">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-2">
+        ${q.options.map(opt => `
+          <label class="option-label flex items-center justify-between p-2 rounded-lg border border-slate-200 bg-white hover:bg-emerald-50/50 cursor-pointer transition-all" data-qid="${q.id}" data-opt="${opt.key}">
+            <div class="flex items-center gap-2">
+              <input type="radio" name="${q.id}" value="${opt.key}" onchange="selectRadio('${q.id}', '${opt.key}')" class="w-4 h-4 text-emerald-600 focus:ring-emerald-500">
+              <span class="text-xs font-semibold text-slate-700">${opt.key}. ${opt.text}</span>
+            </div>
+            <button type="button" onclick="event.stopPropagation(); speakText('${opt.text.replace(/'/g, "\\'")}', this)" class="p-1 text-slate-400 hover:text-emerald-600 transition-all text-[11px]">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+          </label>
+        `).join('')}
+      </div>
+
+      <div id="explain_${q.id}" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs text-slate-700 leading-relaxed"></div>
+    </div>
+  `).join('');
+}
+
+function renderReadingSection() {
+  const clozeContainer = document.getElementById('readingClozeGroup');
+  clozeContainer.innerHTML = EXAM_DATA.readingCloze.map(q => `
+    <div id="card_${q.id}" class="bg-slate-50 border border-slate-200 rounded-xl p-3 sm:p-4">
+      <div class="flex items-center justify-between mb-2">
+        <span class="text-xs font-bold text-amber-900 bg-amber-100 px-2 py-0.5 rounded">Chỗ trống (${q.num})</span>
+      </div>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-2">
+        ${q.options.map(opt => `
+          <label class="option-label flex items-center justify-between p-2 rounded-lg border border-slate-200 bg-white hover:bg-amber-50 cursor-pointer transition-all" data-qid="${q.id}" data-opt="${opt.key}">
+            <div class="flex items-center gap-2">
+              <input type="radio" name="${q.id}" value="${opt.key}" onchange="selectRadio('${q.id}', '${opt.key}')" class="text-amber-600">
+              <span class="text-xs font-medium text-slate-700"><strong>${opt.key}.</strong> ${opt.text}</span>
+            </div>
+            <button type="button" onclick="event.stopPropagation(); speakText('${opt.text.replace(/'/g, "\\'")}', this)" class="p-1 text-slate-400 hover:text-amber-600 text-xs">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+          </label>
+        `).join('')}
+      </div>
+
+      <div id="explain_${q.id}" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs text-slate-700 leading-relaxed"></div>
+    </div>
+  `).join('');
+
+  const compContainer = document.getElementById('readingQuestionsGroup');
+  compContainer.innerHTML = EXAM_DATA.readingComp.map(q => `
+    <div id="card_${q.id}" class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 sm:p-4 transition-all">
+      <div class="flex items-start justify-between gap-2 mb-2.5">
+        <p class="font-semibold text-sm text-slate-800">${q.question}</p>
+        <button onclick="speakText('${q.readPrompt.replace(/'/g, "\\'")}', this)" class="p-1.5 rounded-lg bg-amber-100 hover:bg-amber-200 text-amber-800 text-xs transition-all shrink-0" title="Nghe câu hỏi">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+      </div>
+
+      <div class="space-y-2 mt-2">
+        ${q.options.map(opt => `
+          <label class="option-label flex items-center justify-between p-2.5 rounded-lg border border-slate-200 bg-white hover:bg-amber-50 cursor-pointer transition-all" data-qid="${q.id}" data-opt="${opt.key}">
+            <div class="flex items-center gap-2.5">
+              <input type="radio" name="${q.id}" value="${opt.key}" onchange="selectRadio('${q.id}', '${opt.key}')" class="text-amber-600">
+              <span class="text-xs sm:text-sm font-medium text-slate-700"><strong>${opt.key}.</strong> ${opt.text}</span>
+            </div>
+            <button type="button" onclick="event.stopPropagation(); speakText('${opt.text.replace(/'/g, "\\'")}', this)" class="p-1 text-slate-400 hover:text-amber-600 text-xs">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+          </label>
+        `).join('')}
+      </div>
+
+      <div id="explain_${q.id}" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs text-slate-700 leading-relaxed"></div>
+    </div>
+  `).join('');
+}
+
+function renderWritingSection() {
+  const reorderContainer = document.getElementById('writingReorderGroup');
+  reorderContainer.innerHTML = EXAM_DATA.writingReorder.map((q, idx) => `
+    <div id="card_${q.id}" class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 sm:p-4 transition-all">
+      <div class="flex items-start justify-between gap-2 mb-2">
+        <div class="flex items-center gap-2">
+          <span class="w-6 h-6 rounded-full bg-purple-100 text-purple-800 text-xs font-bold flex items-center justify-center shrink-0">${idx + 1}</span>
+          <span class="text-xs font-semibold text-slate-500">Từ gợi ý xáo trộn:</span>
+        </div>
+        <button onclick="speakText('${q.readPrompt.replace(/'/g, "\\'")}', this)" class="p-1.5 rounded-lg bg-purple-100 hover:bg-purple-200 text-purple-800 text-xs transition-all shrink-0" title="Nghe từ gợi ý">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+      </div>
+
+      <div id="bank_${q.id}" class="flex flex-wrap gap-2 p-2.5 bg-white border border-dashed border-purple-200 rounded-xl min-h-[46px] mb-3">
+        ${q.promptTokens.map((token, tIdx) => `
+          <button type="button" onclick="handleTokenClick('${q.id}', '${token.replace(/'/g, "\\'")}', ${tIdx}, 'add')" id="token_${q.id}_${tIdx}" class="word-chip px-2.5 py-1.5 rounded-lg bg-purple-50 hover:bg-purple-100 border border-purple-200 text-purple-900 text-xs font-bold shadow-sm">
+            ${token}
+          </button>
+        `).join('')}
+      </div>
+
+      <div class="flex items-center justify-between text-xs font-semibold text-slate-600 mb-1">
+        <span>Câu hoàn chỉnh của bạn:</span>
+        <button type="button" onclick="clearWords('${q.id}')" class="text-purple-600 hover:text-purple-800 text-[11px] underline">
+          <i class="fa-solid fa-arrow-rotate-left mr-0.5"></i> Xếp lại từ đầu
+        </button>
+      </div>
+      <div id="answerLine_${q.id}" class="flex flex-wrap gap-2 p-3 bg-purple-50/40 border-2 border-purple-200 rounded-xl min-h-[50px] items-center">
+        <span class="text-xs text-slate-400 italic pointer-events-none empty-hint">Chạm vào các từ bên trên để xếp câu...</span>
+      </div>
+
+      <div id="explain_${q.id}" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs text-slate-700 leading-relaxed"></div>
+    </div>
+  `).join('');
+
+  const rewriteContainer = document.getElementById('writingRewriteGroup');
+  rewriteContainer.innerHTML = EXAM_DATA.writingRewrite.map((q, idx) => `
+    <div id="card_${q.id}" class="bg-slate-50 border border-slate-200 rounded-xl p-3.5 sm:p-4 transition-all">
+      <div class="flex items-start justify-between gap-2 mb-1.5">
+        <div class="flex items-center gap-2">
+          <span class="w-6 h-6 rounded-full bg-purple-100 text-purple-800 text-xs font-bold flex items-center justify-center shrink-0">${idx + 1}</span>
+          <p class="font-semibold text-sm text-slate-800">${q.given}</p>
+        </div>
+        <button onclick="speakText('${q.readPrompt.replace(/'/g, "\\'")}', this)" class="p-1.5 rounded-lg bg-purple-100 hover:bg-purple-200 text-purple-800 text-xs transition-all shrink-0" title="Nghe câu gốc">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+      </div>
+
+      <div class="text-xs font-bold text-indigo-700 mb-2 flex items-center gap-1.5">
+        <span>→ ${q.leadIn} ...</span>
+      </div>
+
+      <div id="bank_${q.id}" class="flex flex-wrap gap-2 p-2.5 bg-white border border-dashed border-indigo-200 rounded-xl min-h-[46px] mb-3">
+        ${q.tokens.map((token, tIdx) => `
+          <button type="button" onclick="handleTokenClick('${q.id}', '${token.replace(/'/g, "\\'")}', ${tIdx}, 'add')" id="token_${q.id}_${tIdx}" class="word-chip px-2.5 py-1.5 rounded-lg bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 text-indigo-900 text-xs font-bold shadow-sm">
+            ${token}
+          </button>
+        `).join('')}
+      </div>
+
+      <div class="flex items-center justify-between text-xs font-semibold text-slate-600 mb-1">
+        <span>Ghép hoàn thiện câu:</span>
+        <button type="button" onclick="clearWords('${q.id}')" class="text-indigo-600 hover:text-indigo-800 text-[11px] underline">
+          <i class="fa-solid fa-arrow-rotate-left mr-0.5"></i> Xếp lại
+        </button>
+      </div>
+
+      <div id="answerLine_${q.id}" class="flex flex-wrap gap-2 p-3 bg-indigo-50/40 border-2 border-indigo-200 rounded-xl min-h-[50px] items-center">
+        <span class="text-xs font-bold text-indigo-900 mr-1">${q.leadIn}</span>
+        <span class="text-xs text-slate-400 italic pointer-events-none empty-hint">Chạm vào các thẻ từ để hoàn thành câu...</span>
+      </div>
+
+      <div id="explain_${q.id}" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs text-slate-700 leading-relaxed"></div>
+    </div>
+  `).join('');
+}
+
+function handleTokenClick(qid, tokenText, tokenIndex, action) {
+  if (isSubmitted) return;
+
+  const bankToken = document.getElementById(`token_${qid}_${tokenIndex}`);
+  const lineContainer = document.getElementById(`answerLine_${qid}`);
+  const emptyHint = lineContainer.querySelector('.empty-hint');
+
+  if (action === 'add') {
+    if (bankToken.classList.contains('opacity-30')) return;
+
+    bankToken.classList.add('opacity-30', 'pointer-events-none');
+    userSelections.writingWords[qid].push({ text: tokenText, originalIdx: tokenIndex });
+
+    if (emptyHint) emptyHint.classList.add('hidden');
+
+    const chip = document.createElement('button');
+    chip.type = 'button';
+    chip.id = `placed_${qid}_${tokenIndex}`;
+    chip.className = 'word-chip px-2.5 py-1.5 rounded-lg bg-white border border-purple-300 text-purple-950 font-bold text-xs shadow-sm flex items-center gap-1.5';
+    chip.innerHTML = `<span>${tokenText}</span> <i class="fa-solid fa-xmark text-[10px] text-red-400"></i>`;
+    chip.onclick = () => removePlacedToken(qid, tokenIndex);
+    lineContainer.appendChild(chip);
+
+  } else if (action === 'remove') {
+    removePlacedToken(qid, tokenIndex);
+  }
+}
+
+function removePlacedToken(qid, tokenIndex) {
+  if (isSubmitted) return;
+
+  const bankToken = document.getElementById(`token_${qid}_${tokenIndex}`);
+  if (bankToken) bankToken.classList.remove('opacity-30', 'pointer-events-none');
+
+  const placedChip = document.getElementById(`placed_${qid}_${tokenIndex}`);
+  if (placedChip) placedChip.remove();
+
+  userSelections.writingWords[qid] = userSelections.writingWords[qid].filter(item => item.originalIdx !== tokenIndex);
+
+  const lineContainer = document.getElementById(`answerLine_${qid}`);
+  const emptyHint = lineContainer.querySelector('.empty-hint');
+  if (userSelections.writingWords[qid].length === 0 && emptyHint) {
+    emptyHint.classList.remove('hidden');
+  }
+}
+
+function clearWords(qid) {
+  if (isSubmitted) return;
+  userSelections.writingWords[qid] = [];
+  const bank = document.getElementById(`bank_${qid}`);
+  if (bank) {
+    bank.querySelectorAll('.word-chip').forEach(btn => btn.classList.remove('opacity-30', 'pointer-events-none'));
+  }
+  const lineContainer = document.getElementById(`answerLine_${qid}`);
+  if (lineContainer) {
+    lineContainer.querySelectorAll('[id^="placed_"]').forEach(el => el.remove());
+    const emptyHint = lineContainer.querySelector('.empty-hint');
+    if (emptyHint) emptyHint.classList.remove('hidden');
+  }
+}
+
+function selectRadio(qid, val) {
+  if (isSubmitted) return;
+  userSelections.radio[qid] = val;
+
+  const labels = document.querySelectorAll(`label[data-qid="${qid}"]`);
+  labels.forEach(lbl => {
+    if (lbl.dataset.opt === val) {
+      lbl.classList.add('border-blue-500', 'bg-blue-50/70', 'ring-1', 'ring-blue-400');
+    } else {
+      lbl.classList.remove('border-blue-500', 'bg-blue-50/70', 'ring-1', 'ring-blue-400');
+    }
+  });
+}
+
+function submitExam() {
+  const name = document.getElementById('studentName').value.trim();
+  if (!name) {
+    showToast("Vui lòng nhập Họ và tên trước khi nộp bài!");
+    document.getElementById('studentName').focus();
+    return;
+  }
+
+  isSubmitted = true;
+  stopAllSpeech();
+
+  let scoreA = 0;
+  let scoreB = 0;
+  let scoreC = 0;
+  let scoreD = 0;
+
+  // 1. Check Listening Task 1 (6 x 0.2 = 1.2 pts)
+  EXAM_DATA.listening1.forEach(q => {
+    const userVal = userSelections.radio[q.id];
+    const card = document.getElementById(`card_${q.id}`);
+    const explainBox = document.getElementById(`explain_${q.id}`);
+    const isCorrect = userVal === q.answer;
+
+    if (isCorrect) {
+      scoreA += q.points;
+      card.classList.add('border-emerald-400', 'bg-emerald-50/30');
+    } else {
+      card.classList.add('border-rose-300', 'bg-rose-50/30');
+    }
+
+    q.options.forEach(opt => {
+      const lbl = document.querySelector(`label[data-qid="${q.id}"][data-opt="${opt.key}"]`);
+      if (lbl) {
+        if (opt.key === q.answer) {
+          lbl.classList.add('bg-emerald-100', 'border-emerald-500', 'font-bold', 'text-emerald-950');
+        } else if (opt.key === userVal && !isCorrect) {
+          lbl.classList.add('bg-rose-100', 'border-rose-400', 'text-rose-900');
+        }
+      }
+    });
+
+    explainBox.classList.remove('hidden');
+    explainBox.innerHTML = `
+      <div class="flex items-start justify-between gap-2 p-2 rounded-lg ${isCorrect ? 'bg-emerald-100/70 text-emerald-950' : 'bg-rose-100/70 text-rose-950'}">
+        <div>
+          <span class="font-bold">${isCorrect ? '✓ Đúng (+0.2đ)' : '✗ Chưa đúng (0đ)'}</span> — <strong>Đáp án đúng: ${q.answer}</strong><br>
+          <span>💡 <strong>Giải thích của Ms. Lily:</strong> ${q.explain}</span>
+        </div>
+        <button onclick="speakText('${q.targetSentence.replace(/'/g, "\\'")}', this)" class="p-1 rounded bg-white/80 hover:bg-white text-slate-800 text-xs shrink-0" title="Nghe câu giải thích">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+      </div>
+    `;
+  });
+
+  // 2. Check Listening Task 2 (6 x 0.2 = 1.2 pts)
+  EXAM_DATA.listening2.forEach(q => {
+    const userVal = userSelections.radio[q.id];
+    const card = document.getElementById(`card_${q.id}`);
+    const explainBox = document.getElementById(`explain_${q.id}`);
+    const isCorrect = userVal === q.answer;
+
+    if (isCorrect) {
+      scoreA += q.points;
+      card.classList.add('border-emerald-400', 'bg-emerald-50/30');
+    } else {
+      card.classList.add('border-rose-300', 'bg-rose-50/30');
+    }
+
+    const tLbl = document.querySelector(`label[data-qid="${q.id}"][data-opt="T"]`);
+    const fLbl = document.querySelector(`label[data-qid="${q.id}"][data-opt="F"]`);
+    if (q.answer === "T" && tLbl) tLbl.classList.add('bg-emerald-100', 'border-emerald-500', 'font-bold');
+    if (q.answer === "F" && fLbl) fLbl.classList.add('bg-emerald-100', 'border-emerald-500', 'font-bold');
+    if (!isCorrect) {
+      if (userVal === "T" && tLbl) tLbl.classList.add('bg-rose-100', 'border-rose-400');
+      if (userVal === "F" && fLbl) fLbl.classList.add('bg-rose-100', 'border-rose-400');
+    }
+
+    explainBox.classList.remove('hidden');
+    explainBox.innerHTML = `
+      <div class="flex items-start justify-between gap-2 p-2 rounded-lg ${isCorrect ? 'bg-emerald-100/70 text-emerald-950' : 'bg-rose-100/70 text-rose-950'}">
+        <div>
+          <span class="font-bold">${isCorrect ? '✓ Đúng (+0.2đ)' : '✗ Chưa đúng (0đ)'}</span> — <strong>Đáp án đúng: ${q.answer}</strong><br>
+          <span>💡 <strong>Giải thích của Ms. Lily:</strong> ${q.explain}</span>
+        </div>
+        <button onclick="speakText('${q.targetSentence.replace(/'/g, "\\'")}', this)" class="p-1 rounded bg-white/80 hover:bg-white text-slate-800 text-xs shrink-0" title="Nghe câu giải thích">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+      </div>
+    `;
+  });
+
+  // 3. Check Language Focus I (10 x 0.2 = 2.0 pts)
+  EXAM_DATA.language1.forEach(q => {
+    const userVal = userSelections.radio[q.id];
+    const card = document.getElementById(`card_${q.id}`);
+    const explainBox = document.getElementById(`explain_${q.id}`);
+    const isCorrect = userVal === q.answer;
+
+    if (isCorrect) {
+      scoreB += q.points;
+      card.classList.add('border-emerald-400', 'bg-emerald-50/30');
+    } else {
+      card.classList.add('border-rose-300', 'bg-rose-50/30');
+    }
+
+    q.options.forEach(opt => {
+      const lbl = document.querySelector(`label[data-qid="${q.id}"][data-opt="${opt.key}"]`);
+      if (lbl) {
+        if (opt.key === q.answer) {
+          lbl.classList.add('bg-emerald-100', 'border-emerald-500', 'font-bold', 'text-emerald-950');
+        } else if (opt.key === userVal && !isCorrect) {
+          lbl.classList.add('bg-rose-100', 'border-rose-400', 'text-rose-900');
+        }
+      }
+    });
+
+    explainBox.classList.remove('hidden');
+    explainBox.innerHTML = `
+      <div class="flex items-start justify-between gap-2 p-2 rounded-lg ${isCorrect ? 'bg-emerald-100/70 text-emerald-950' : 'bg-rose-100/70 text-rose-950'}">
+        <div>
+          <span class="font-bold">${isCorrect ? '✓ Đúng (+0.2đ)' : '✗ Chưa đúng (0đ)'}</span> — <strong>Đáp án đúng: ${q.answer}</strong><br>
+          <span>💡 <strong>Cấu trúc & Quy tắc:</strong> ${q.explain}</span>
+        </div>
+        <button onclick="speakText('${q.targetSentence.replace(/'/g, "\\'")}', this)" class="p-1 rounded bg-white/80 hover:bg-white text-slate-800 text-xs shrink-0" title="Nghe câu chuẩn">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+      </div>
+    `;
+  });
+
+  // 4. Check Language Focus II (3 x 0.2 = 0.6 pts)
+  EXAM_DATA.language2.forEach(q => {
+    const userVal = userSelections.radio[q.id];
+    const card = document.getElementById(`card_${q.id}`);
+    const explainBox = document.getElementById(`explain_${q.id}`);
+    const isCorrect = userVal === q.answer;
+
+    if (isCorrect) {
+      scoreB += q.points;
+      card.classList.add('border-emerald-400', 'bg-emerald-50/30');
+    } else {
+      card.classList.add('border-rose-300', 'bg-rose-50/30');
+    }
+
+    q.options.forEach(opt => {
+      const lbl = document.querySelector(`label[data-qid="${q.id}"][data-opt="${opt.key}"]`);
+      if (lbl) {
+        if (opt.key === q.answer) {
+          lbl.classList.add('bg-emerald-100', 'border-emerald-500', 'font-bold', 'text-emerald-950');
+        } else if (opt.key === userVal && !isCorrect) {
+          lbl.classList.add('bg-rose-100', 'border-rose-400', 'text-rose-900');
+        }
+      }
+    });
+
+    explainBox.classList.remove('hidden');
+    explainBox.innerHTML = `
+      <div class="flex items-start justify-between gap-2 p-2 rounded-lg ${isCorrect ? 'bg-emerald-100/70 text-emerald-950' : 'bg-rose-100/70 text-rose-950'}">
+        <div>
+          <span class="font-bold">${isCorrect ? '✓ Đúng (+0.2đ)' : '✗ Chưa đúng (0đ)'}</span> — <strong>Đáp án đúng: ${q.answer}</strong><br>
+          <span>💡 <strong>Giải thích thì của động từ:</strong> ${q.explain}</span>
+        </div>
+        <button onclick="speakText('${q.targetSentence.replace(/'/g, "\\'")}', this)" class="p-1 rounded bg-white/80 hover:bg-white text-slate-800 text-xs shrink-0" title="Nghe câu chuẩn">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+      </div>
+    `;
+  });
+
+  // 5. Check Reading Cloze (5 x 0.2 = 1.0 pt)
+  EXAM_DATA.readingCloze.forEach(q => {
+    const userVal = userSelections.radio[q.id];
+    const card = document.getElementById(`card_${q.id}`);
+    const explainBox = document.getElementById(`explain_${q.id}`);
+    // Tolerance: Accept D (old) and B (needy) for Question 2
+    const isCorrect = q.num === 2 ? (userVal === "D" || userVal === "B") : (userVal === q.answer);
+
+    if (isCorrect) {
+      scoreC += q.points;
+      card.classList.add('border-emerald-400', 'bg-emerald-50/30');
+    } else {
+      card.classList.add('border-rose-300', 'bg-rose-50/30');
+    }
+
+    q.options.forEach(opt => {
+      const lbl = document.querySelector(`label[data-qid="${q.id}"][data-opt="${opt.key}"]`);
+      if (lbl) {
+        if (opt.key === q.answer || (q.num === 2 && opt.key === "B")) {
+          lbl.classList.add('bg-emerald-100', 'border-emerald-500', 'font-bold', 'text-emerald-950');
+        } else if (opt.key === userVal && !isCorrect) {
+          lbl.classList.add('bg-rose-100', 'border-rose-400', 'text-rose-900');
+        }
+      }
+    });
+
+    explainBox.classList.remove('hidden');
+    explainBox.innerHTML = `
+      <div class="flex items-start justify-between gap-2 p-2 rounded-lg ${isCorrect ? 'bg-emerald-100/70 text-emerald-950' : 'bg-rose-100/70 text-rose-950'}">
+        <div>
+          <span class="font-bold">${isCorrect ? '✓ Đúng (+0.2đ)' : '✗ Chưa đúng (0đ)'}</span> — <strong>Đáp án đúng: ${q.answer}</strong><br>
+          <span>💡 <strong>Giải thích:</strong> ${q.explain}</span>
+        </div>
+        <button onclick="speakText('${q.targetSentence.replace(/'/g, "\\'")}', this)" class="p-1 rounded bg-white/80 hover:bg-white text-slate-800 text-xs shrink-0" title="Nghe câu chuẩn">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+      </div>
+    `;
+  });
+
+  // 6. Check Reading Comprehension (3 x 0.4 + 2 x 0.2 = 1.6 pts)
+  EXAM_DATA.readingComp.forEach(q => {
+    const userVal = userSelections.radio[q.id];
+    const card = document.getElementById(`card_${q.id}`);
+    const explainBox = document.getElementById(`explain_${q.id}`);
+    const isCorrect = userVal === q.answer;
+
+    if (isCorrect) {
+      scoreC += q.points;
+      card.classList.add('border-emerald-400', 'bg-emerald-50/30');
+    } else {
+      card.classList.add('border-rose-300', 'bg-rose-50/30');
+    }
+
+    q.options.forEach(opt => {
+      const lbl = document.querySelector(`label[data-qid="${q.id}"][data-opt="${opt.key}"]`);
+      if (lbl) {
+        if (opt.key === q.answer) {
+          lbl.classList.add('bg-emerald-100', 'border-emerald-500', 'font-bold', 'text-emerald-950');
+        } else if (opt.key === userVal && !isCorrect) {
+          lbl.classList.add('bg-rose-100', 'border-rose-400', 'text-rose-900');
+        }
+      }
+    });
+
+    explainBox.classList.remove('hidden');
+    explainBox.innerHTML = `
+      <div class="flex items-start justify-between gap-2 p-2 rounded-lg ${isCorrect ? `✓ Đúng (+${q.points}đ)` : '✗ Chưa đúng (0đ)'} font-semibold">
+        <div>
+          <span>${isCorrect ? `✓ Đúng (+${q.points}đ)` : '✗ Chưa đúng (0đ)'}</span> — <strong>Đáp án đúng: ${q.answer}</strong><br>
+          <span>💡 <strong>Dẫn chứng từ bài đọc:</strong> ${q.explain}</span>
+        </div>
+        <button onclick="speakText('${q.targetSentence.replace(/'/g, "\\'")}', this)" class="p-1 rounded bg-white/80 hover:bg-white text-slate-800 text-xs shrink-0" title="Nghe câu dẫn chứng">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+      </div>
+    `;
+  });
+
+  // Helper string normalizer
+  const normalize = (str) => str.toLowerCase().replace(/[.,?!]/g, '').replace(/\s+/g, ' ').trim();
+
+  // 7. Check Writing Task I (3 x 0.4 = 1.2 pts)
+  EXAM_DATA.writingReorder.forEach(q => {
+    const userWords = userSelections.writingWords[q.id].map(item => item.text);
+    const userSentence = userWords.join(' ');
+    const card = document.getElementById(`card_${q.id}`);
+    const explainBox = document.getElementById(`explain_${q.id}`);
+
+    const isMatch = q.targets.some(target => normalize(userSentence) === normalize(target));
+
+    if (isMatch) {
+      scoreD += q.points;
+      card.classList.add('border-emerald-400', 'bg-emerald-50/30');
+    } else {
+      card.classList.add('border-rose-300', 'bg-rose-50/30');
+    }
+
+    explainBox.classList.remove('hidden');
+    explainBox.innerHTML = `
+      <div class="flex items-start justify-between gap-2 p-2.5 rounded-lg ${isMatch ? 'bg-emerald-100/70 text-emerald-950' : 'bg-rose-100/70 text-rose-950'}">
+        <div>
+          <span class="font-bold">${isMatch ? '✓ Chính xác (+0.4đ)' : '✗ Chưa chính xác (0đ)'}</span><br>
+          <span><strong>Đáp án chuẩn:</strong> ${q.targetSentence}</span><br>
+          <span>💡 <strong>Giải thích ngữ pháp:</strong> ${q.explain}</span>
+        </div>
+        <button onclick="speakText('${q.targetSentence.replace(/'/g, "\\'")}', this)" class="p-1.5 rounded bg-white/80 hover:bg-white text-slate-800 text-xs shrink-0" title="Nghe câu mẫu chuẩn">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+      </div>
+    `;
+  });
+
+  // 8. Check Writing Task II (4 x 0.3 = 1.2 pts)
+  EXAM_DATA.writingRewrite.forEach(q => {
+    const userWords = userSelections.writingWords[q.id].map(item => item.text);
+    const userPart = userWords.join(' ');
+    const card = document.getElementById(`card_${q.id}`);
+    const explainBox = document.getElementById(`explain_${q.id}`);
+
+    const isMatch = q.targets.some(target => normalize(userPart) === normalize(target));
+
+    if (isMatch) {
+      scoreD += q.points;
+      card.classList.add('border-emerald-400', 'bg-emerald-50/30');
+    } else {
+      card.classList.add('border-rose-300', 'bg-rose-50/30');
+    }
+
+    explainBox.classList.remove('hidden');
+    explainBox.innerHTML = `
+      <div class="flex items-start justify-between gap-2 p-2.5 rounded-lg ${isMatch ? 'bg-emerald-100/70 text-emerald-950' : 'bg-rose-100/70 text-rose-950'}">
+        <div>
+          <span class="font-bold">${isMatch ? '✓ Chính xác (+0.3đ)' : '✗ Chưa chính xác (0đ)'}</span><br>
+          <span><strong>Câu viết lại hoàn chỉnh:</strong> ${q.fullTarget}</span><br>
+          <span>💡 <strong>Cấu trúc ngữ pháp:</strong> ${q.explain}</span>
+        </div>
+        <button onclick="speakText('${q.targetSentence.replace(/'/g, "\\'")}', this)" class="p-1.5 rounded bg-white/80 hover:bg-white text-slate-800 text-xs shrink-0" title="Nghe câu mẫu chuẩn">
+          <i class="fa-solid fa-volume-high"></i>
+        </button>
+      </div>
+    `;
+  });
+
+  // Round scores to 1 decimal place
+  scoreA = Math.round(scoreA * 10) / 10;
+  scoreB = Math.round(scoreB * 10) / 10;
+  scoreC = Math.round(scoreC * 10) / 10;
+  scoreD = Math.round(scoreD * 10) / 10;
+  const totalScore = Math.round((scoreA + scoreB + scoreC + scoreD) * 10) / 10;
+
+  // Grade classification & Teacher's feedback
+  let gradeLetter = "Giỏi";
+  let gradeBg = "from-emerald-600 to-teal-600";
+  let teacherComment = "Tuyệt vời! Em có tư duy ngôn ngữ rất sắc bén, nắm chắc ngữ pháp và phản xạ bài nghe rất tốt. Tiếp tục phát huy nhé!";
+
+  if (totalScore < 5.0) {
+    gradeLetter = "Cần cố gắng";
+    gradeBg = "from-rose-600 to-red-600";
+    teacherComment = "Em cần ôn lại thì Hiện tại đơn, Tương lai đơn, từ vựng chủ đề Hobbies & Health và nghe lại phần Transcript để cải thiện kỹ năng nhé!";
+  } else if (totalScore < 6.5) {
+    gradeLetter = "Trung bình - Khá";
+    gradeBg = "from-amber-600 to-orange-600";
+    teacherComment = "Em đã có kiến thức nền tảng tốt. Chú ý đọc kỹ đề bài và luyện tập thêm các cấu trúc viết lại câu để đạt điểm cao hơn!";
+  } else if (totalScore < 8.0) {
+    gradeLetter = "Khá";
+    gradeBg = "from-sky-600 to-blue-600";
+    teacherComment = "Kết quả rất tốt! Em chỉ cần cẩn thận hơn một chút ở các câu hỏi bẫy ngữ âm và trọng âm là sẽ đạt điểm tối đa!";
+  }
+
+  // Render Result Box
+  const resultModal = document.getElementById('resultModal');
+  resultModal.classList.remove('hidden');
+  resultModal.innerHTML = `
+    <div class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden animate-fadeIn">
+      <div class="bg-gradient-to-r ${gradeBg} px-6 py-6 text-white text-center">
+        <div class="inline-block p-3 rounded-full bg-white/20 mb-2">
+          <i class="fa-solid fa-trophy text-yellow-300 text-3xl"></i>
+        </div>
+        <h3 class="text-xl sm:text-2xl font-extrabold heading-font">KẾT QUẢ BÀI THI CỦA EM</h3>
+        <p class="text-xs sm:text-sm text-white/90 mt-1">Học sinh: <strong>${name}</strong> — Lớp: <strong>${document.getElementById('studentClass').value || '7'}</strong></p>
+        
+        <div class="mt-4 flex items-center justify-center gap-3">
+          <div class="px-5 py-2.5 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 text-center">
+            <span class="text-xs text-white/80 block uppercase tracking-wider font-semibold">Tổng điểm</span>
+            <span class="text-3xl sm:text-4xl font-extrabold text-yellow-300">${totalScore.toFixed(1)} <span class="text-lg text-white">/ 10.0</span></span>
+          </div>
+          <div class="px-4 py-2.5 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 text-center">
+            <span class="text-xs text-white/80 block uppercase tracking-wider font-semibold">Xếp loại</span>
+            <span class="text-lg sm:text-xl font-bold text-white">${gradeLetter}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="p-4 sm:p-6 space-y-5">
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <div class="p-3 rounded-xl bg-blue-50 border border-blue-200 text-center">
+            <span class="text-xs text-blue-700 block font-semibold">Part A (Listening)</span>
+            <span class="text-base sm:text-lg font-extrabold text-blue-950">${scoreA.toFixed(1)} / 2.4</span>
+          </div>
+          <div class="p-3 rounded-xl bg-emerald-50 border border-emerald-200 text-center">
+            <span class="text-xs text-emerald-700 block font-semibold">Part B (Language)</span>
+            <span class="text-base sm:text-lg font-extrabold text-emerald-950">${scoreB.toFixed(1)} / 2.6</span>
+          </div>
+          <div class="p-3 rounded-xl bg-amber-50 border border-amber-200 text-center">
+            <span class="text-xs text-amber-700 block font-semibold">Part C (Reading)</span>
+            <span class="text-base sm:text-lg font-extrabold text-amber-950">${scoreC.toFixed(1)} / 2.6</span>
+          </div>
+          <div class="p-3 rounded-xl bg-purple-50 border border-purple-200 text-center">
+            <span class="text-xs text-purple-700 block font-semibold">Part D (Writing)</span>
+            <span class="text-base sm:text-lg font-extrabold text-purple-950">${scoreD.toFixed(1)} / 2.4</span>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+          <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center shrink-0 font-bold">
+            <i class="fa-solid fa-chalkboard-user"></i>
+          </div>
+          <div>
+            <span class="text-xs font-bold text-blue-900 block">Lời nhận xét của Ms. Lily (HT English):</span>
+            <p class="text-xs sm:text-sm text-slate-700 mt-0.5 leading-relaxed">${teacherComment}</p>
+          </div>
+        </div>
+
+        <div class="text-center pt-2">
+          <p class="text-xs text-slate-500 italic">💡 Toàn bộ đáp án đúng, cấu trúc ngữ pháp và Transcript bài nghe đã được mở khóa trực tiếp dưới từng câu và trong khung Transcript.</p>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Unlock Transcript Box
+  const transcriptBox = document.getElementById('transcriptSection');
+  if (transcriptBox) {
+    transcriptBox.classList.remove('hidden');
+    transcriptBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  // Update status badge
+  const badge = document.getElementById('statusBadge');
+  badge.className = "bg-blue-500/20 border border-blue-400/40 text-blue-200 text-xs font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1.5";
+  badge.innerHTML = `<i class="fa-solid fa-circle-check text-sky-400"></i> <span>Đã nộp bài: ${totalScore.toFixed(1)}/10đ</span>`;
+
+  document.getElementById('submitBtn').classList.add('hidden');
+  document.getElementById('resetBtn').classList.remove('hidden');
+
+  showToast(`Chấm điểm hoàn tất! Điểm số: ${totalScore.toFixed(1)}/10đ`);
+  resultModal.scrollIntoView({ behavior: 'smooth', block: 'center' });
+}
+
+function resetExam() {
+  isSubmitted = false;
+  userSelections.radio = {};
+  Object.keys(userSelections.writingWords).forEach(k => userSelections.writingWords[k] = []);
+
+  document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+  document.querySelectorAll('.option-label').forEach(lbl => {
+    lbl.className = "option-label flex items-center justify-between p-2.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 cursor-pointer transition-all";
+  });
+  document.querySelectorAll('[id^="card_"]').forEach(c => {
+    c.className = "bg-slate-50 border border-slate-200 rounded-xl p-3.5 sm:p-4 transition-all";
+  });
+  document.querySelectorAll('[id^="explain_"]').forEach(e => {
+    e.classList.add('hidden');
+    e.innerHTML = '';
+  });
+
+  renderWritingSection();
+
+  document.getElementById('transcriptSection').classList.add('hidden');
+  document.getElementById('resultModal').classList.add('hidden');
+
+  document.getElementById('submitBtn').classList.remove('hidden');
+  document.getElementById('resetBtn').classList.add('hidden');
+
+  const badge = document.getElementById('statusBadge');
+  badge.className = "bg-emerald-500/20 border border-emerald-400/40 text-emerald-200 text-xs font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1.5";
+  badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span><span>Đang làm bài</span>`;
+
+  stopAllSpeech();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+  showToast("Đã làm mới bài kiểm tra!");
+}
+
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  const toastMsg = document.getElementById('toastMsg');
+  toastMsg.innerText = msg;
+  toast.classList.remove('opacity-0', 'pointer-events-none');
+  setTimeout(() => {
+    toast.classList.add('opacity-0', 'pointer-events-none');
+  }, 2800);
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  renderListeningSection();
+  renderLanguageSection();
+  renderReadingSection();
+  renderWritingSection();
+});
+</script>
+</body>
+</html>
