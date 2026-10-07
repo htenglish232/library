@@ -1,0 +1,26 @@
+/* Rewrite and Listening True/False components. */
+.question-card.rewrite-card,.question-card.listening-tf-card { display:block; padding:20px!important; margin:16px 0!important; border:1px solid #cbd5e1; border-radius:18px!important; background:#f8fafc; box-shadow:0 2px 5px #0c4a6e08; min-width:0; }
+.question-card .rewrite-original,.question-card .tf-statement p { margin:0; font-size:16px!important; line-height:1.7; color:#334155; overflow-wrap:anywhere; }
+.question-number { color:#075985; font-weight:800; }
+.rewrite-line { display:flex; flex-wrap:wrap; align-items:baseline; gap:8px; margin-top:14px; color:#075985; }
+.rewrite-prefix { font-weight:750; font-size:16px; overflow-wrap:anywhere; }
+#examContent .question-card input.rewrite-input { flex:1 1 240px; width:auto; min-width:0; max-width:100%; min-height:46px; padding:10px 12px; background:#fff; color:#334155; border:0; border-bottom:2px solid #38bdf8; border-radius:6px 6px 3px 3px; font:inherit; font-size:16px; }
+#examContent .question-card input.rewrite-input::placeholder { color:#94a3b8; font-size:14px; }
+.tf-statement { display:flex; align-items:baseline; gap:12px; }
+.tf-statement>.question-number { flex-shrink:0; }
+.tf-choices { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-top:14px; max-width:360px; }
+.tf-choice { position:relative; display:block; min-width:0; cursor:pointer; }
+.tf-choice .tf-radio { position:absolute; opacity:0; width:1px; height:1px; margin:0; padding:0; }
+.tf-choice>span { display:flex; align-items:center; justify-content:center; min-height:46px; border:1px solid #cbd5e1; border-radius:12px; background:#fff; color:#475569; font-size:16px; font-weight:700; padding:8px 16px; }
+.tf-choice:hover>span { border-color:#7dd3fc; }
+.tf-radio:checked+span { color:#075985; background:#e0f2fe; border-color:#38bdf8; box-shadow:inset 0 0 0 1px #38bdf8; }
+.tf-radio:checked+span::before { content:'✓'; margin-right:8px; }
+.tf-radio:focus-visible+span { outline:3px solid #38bdf8; outline-offset:3px; }
+.tf-choice:has(input:disabled) { cursor:default; }
+.exam-table-table:has(.listening-tf-card)>.exam-table-thead { display:none; }
+.rewrite-card .feedback-box,.listening-tf-card .feedback-box { line-height:1.6; overflow-wrap:anywhere; }
+@media(max-width:640px) {
+  .question-card.rewrite-card,.question-card.listening-tf-card { padding:16px!important; }
+  #examContent .question-card input.rewrite-input { flex-basis:100%; width:100%; }
+  .tf-choices { max-width:none; }
+}
