@@ -20,81 +20,8 @@ const Grade7Exam = (() => {
     if (text !== undefined) node.textContent = text;
     return node;
   }
-  // Controls are attached only to audio elements already present in the exam.
-  // No sources are created, replaced or inferred, and there is no speech fallback.
   function initExistingPlayers() {
-    document.querySelectorAll('#examContent audio').forEach((audio, index) => {
-      const player = element('div', 'listening-player');
-      player.append(element('p', 'widget-label', `🎧 Audio ${index + 1}`));
-      const status = element('p', 'audio-status', 'Sử dụng nguồn audio hiện có trong đề.');
-      player.append(status);
-      const time = element('p', 'audio-time', '00:00 / 00:00');
-      player.append(time);
-      function range(label, min, max, step, value) {
-        const input = element('input');
-        Object.assign(input, {type: 'range', min, max, step, value});
-        input.setAttribute('aria-label', label);
-        return input;
-      }
-      const progress = range('Tiến trình audio', 0, 100, 0.1, 0);
-      player.append(progress);
-      const controls = element('div', 'audio-controls');
-      function control(text, action) {
-        const button = element('button', '', text);
-        button.type = 'button';
-        button.addEventListener('click', action);
-        controls.append(button);
-        return button;
-      }
-      function seek(delta) {
-        if (Number.isFinite(audio.duration)) audio.currentTime = Math.max(0, Math.min(audio.duration, audio.currentTime + delta));
-      }
-      control('↶ 5s', () => seek(-5));
-      const play = control('▶ Phát', async () => {
-        if (!audio.paused) { audio.pause(); return; }
-        try { await audio.play(); }
-        catch { status.textContent = 'Không phát được nguồn audio hiện có. Đường dẫn được giữ nguyên.'; }
-      });
-      control('⏸ Tạm dừng', () => audio.pause());
-      control('5s ↷', () => seek(5));
-      control('↺ Đầu', () => { audio.currentTime = 0; });
-      player.append(controls);
-      const settings = element('div', 'audio-settings');
-      const mute = element('button', '', '🔊');
-      mute.type = 'button';
-      mute.setAttribute('aria-label', 'Tắt / bật tiếng audio');
-      mute.addEventListener('click', () => { audio.muted = !audio.muted; mute.textContent = audio.muted ? '🔇' : '🔊'; });
-      settings.append(mute);
-      const volume = range('Âm lượng audio', 0, 1, 0.05, audio.volume);
-      volume.addEventListener('input', () => { audio.volume = Number(volume.value); });
-      settings.append(volume);
-      const speed = element('select');
-      speed.setAttribute('aria-label', 'Tốc độ audio');
-      [0.75, 1, 1.25, 1.5].forEach(rate => {
-        const option = element('option', '', rate + 'x');
-        option.value = rate;
-        option.selected = rate === 1;
-        speed.append(option);
-      });
-      speed.addEventListener('change', () => { audio.playbackRate = Number(speed.value); });
-      settings.append(speed);
-      player.append(settings);
-      function format(seconds) {
-        if (!Number.isFinite(seconds)) return '00:00';
-        return String(Math.floor(seconds / 60)).padStart(2, '0') + ':' + String(Math.floor(seconds % 60)).padStart(2, '0');
-      }
-      function update() {
-        time.textContent = format(audio.currentTime) + ' / ' + format(audio.duration);
-        progress.value = Number.isFinite(audio.duration) && audio.duration > 0 ? audio.currentTime / audio.duration * 100 : 0;
-        play.textContent = audio.paused ? '▶ Phát' : '▶ Đang phát';
-      }
-      progress.addEventListener('input', () => {
-        if (Number.isFinite(audio.duration)) audio.currentTime = Number(progress.value) / 100 * audio.duration;
-      });
-      ['timeupdate', 'loadedmetadata', 'play', 'pause', 'ended'].forEach(name => audio.addEventListener(name, update));
-      audio.addEventListener('error', () => { status.textContent = 'Nguồn audio hiện có chưa khả dụng. Đường dẫn được giữ nguyên.'; });
-      audio.after(player);
-    });
+    Grade7Listening.init();
   }
   function init(normalize) {
     initExistingPlayers();
