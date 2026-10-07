@@ -38,11 +38,13 @@ const Grade7Exam = (() => {
     function fields(q) {
       return [...cards.get(q.id).querySelectorAll('[data-answer-field]')];
     }
+    function isRewrite(q) { return cards.get(q.id).classList.contains('rewrite-card'); }
     function sentence(q) {
       const selected = rearrangeState[q.id];
       return selected.length ? selected.map(index => q.tokens[index]).join(' ') + q.punctuation : '';
     }
     function readResponse(q) {
+      if (isRewrite(q)) return fields(q)[0].value.trim();
       if (q.kind === 'chips') return sentence(q);
       const inputs = fields(q);
       if (q.kind === 'choice') return inputs.find(input => input.checked)?.value || '';
@@ -50,6 +52,7 @@ const Grade7Exam = (() => {
       return inputs[0]?.value.trim() || '';
     }
     function completed(q) {
+      if (isRewrite(q)) return !!readResponse(q);
       if (q.kind === 'chips') return rearrangeState[q.id].length === q.tokens.length;
       return fields(q).length > 0 && (q.kind === 'choice' ? !!readResponse(q) : fields(q).every(f => f.value.trim()));
     }
@@ -91,7 +94,7 @@ const Grade7Exam = (() => {
     data.questions.forEach(q => {
       const card = cards.get(q.id);
       if (!card) throw new Error('Missing question card: ' + q.id);
-      if (q.kind === 'chips') {
+      if (q.kind === 'chips' && !isRewrite(q)) {
         rearrangeState[q.id] = [];
         card.querySelector('[data-action="undo"]').addEventListener('click', () => {
           if (isSubmitted) return;
@@ -129,12 +132,14 @@ const Grade7Exam = (() => {
       if (!raw) return false;
       if (q.kind === 'choice') return q.accepted.includes(raw);
       if (q.parts) return fields(q).every((f, i) => q.parts[i].includes(f.value.trim().toLowerCase()));
-      let value = normalize(raw);
-      if (q.prefix && value.startsWith(normalize(q.prefix))) value = value.slice(normalize(q.prefix).length).trim();
+      // Rewrite inputs use the original rubric, with consistent whitespace only.
+      const compare = text => normalize(isRewrite(q) ? String(text).trim().replace(/\s+/g, ' ') : text);
+      let value = compare(raw);
+      if (q.prefix && value.startsWith(compare(q.prefix))) value = value.slice(compare(q.prefix).length).trim();
       if (q.match === 'startsYes') return value.startsWith('yes');
       if (q.groups) return q.groups.every(group => group.some(word => value.includes(normalize(word))));
       return q.accepted.some(answer => {
-        const expected = normalize(String(answer));
+        const expected = compare(String(answer));
         if (q.match === 'contains') return value.includes(expected.replace(/\./g, ''));
         if (q.match === 'overlap') return value === expected || (value.length > 5 && expected.includes(value)) || (expected.length > 5 && value.includes(expected));
         return value === expected;
@@ -148,8 +153,16 @@ const Grade7Exam = (() => {
       status.textContent = right ? 'Đúng' : 'Sai';
       const box = card.querySelector('.feedback-box');
       box.hidden = false;
-      const ownLabel = q.kind === 'chips' ? 'Câu em đã sắp xếp: ' : 'Đáp án học sinh: ';
-      box.append(element('p', '', ownLabel + (raw || 'Chưa trả lời')));
+      const rewrite = isRewrite(q);
+      const tf = card.classList.contains('listening-tf-card');
+      const prefix = rewrite ? card.querySelector('.rewrite-prefix').textContent.trim() : '';
+      function fullSentence(text) {
+        if (!text || !prefix) return text;
+        return text.toLowerCase().startsWith(prefix.toLowerCase()) ? text : prefix + ' ' + text;
+      }
+      const ownLabel = rewrite ? 'Câu em viết: ' : tf ? 'Đáp án của em: ' : q.kind === 'chips' ? 'Câu em đã sắp xếp: ' : 'Đáp án học sinh: ';
+      const own = rewrite ? fullSentence(raw) : tf ? ({T: 'True', F: 'False'}[raw] || raw) : raw;
+      box.append(element('p', '', ownLabel + (own || 'Chưa trả lời')));
       let display = q.display;
       if (q.kind === 'choice') {
         const texts = q.accepted.map(answer => {
@@ -159,7 +172,7 @@ const Grade7Exam = (() => {
         });
         display = texts.join(' / ');
       }
-      box.append(element('p', 'correct-response', 'Đáp án đúng: ' + display));
+      box.append(element('p', 'correct-response', 'Đáp án đúng: ' + (rewrite ? fullSentence(display) : display)));
       const explanation = element('div', 'explanation');
       // Only trusted, repository-provided explanation markup is rendered as HTML.
       explanation.innerHTML = '<strong>Giải thích: </strong>' + q.explanation;
@@ -186,7 +199,7 @@ const Grade7Exam = (() => {
         const right = matches(q, responses[index]);
         if (right) { points += q.points; rightCount++; }
         showFeedback(q, responses[index], right);
-        if (q.kind === 'chips') renderChips(q);
+        if (q.kind === 'chips' && !isRewrite(q)) renderChips(q);
       });
       document.querySelectorAll('.exam-shell input,.exam-shell textarea,.exam-shell select,.chip-actions button').forEach(control => { if (!control.closest('.listening-player')) control.disabled = true; });
       submit.disabled = true;
