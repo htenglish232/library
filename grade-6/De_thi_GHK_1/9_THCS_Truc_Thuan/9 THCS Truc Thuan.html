@@ -47,6 +47,28 @@
       to { transform: scale(1.2); }
     }
   </style>
+<style id="ht-audio-player-styles">
+/* HT Listening controls: all selectors are scoped to the player. */
+.ht-audio-player{box-sizing:border-box;width:100%;min-width:0;margin:.75rem 0;padding:1rem;border:1px solid var(--ht-border);border-radius:var(--ht-radius, .75rem);background:var(--ht-surface);color:var(--ht-text);font-family:inherit;font-size:.875rem;flex:1 1 100%}
+.ht-audio-player .ht-audio-title{font-weight:700;margin:0 0 .65rem}
+.ht-audio-player .ht-audio-actions{display:flex;flex-wrap:wrap;gap:.5rem}
+.ht-audio-player .ht-audio-actions button{font:inherit;font-weight:600;border:1px solid var(--ht-border);border-radius:var(--ht-radius,.75rem);padding:.55rem .7rem;min-height:44px;background:var(--ht-surface);color:var(--ht-accent);cursor:pointer;transition:filter .15s,transform .15s}
+.ht-audio-player .ht-audio-actions button[data-action="play"]{background:var(--ht-accent);color:var(--ht-on-accent);border-color:var(--ht-accent)}
+.ht-audio-player .ht-audio-actions button:hover:not(:disabled){filter:brightness(.95)}
+.ht-audio-player .ht-audio-actions button:active:not(:disabled){transform:scale(.97)}
+.ht-audio-player .ht-audio-actions button:disabled{opacity:.45;cursor:not-allowed}
+.ht-audio-player button:focus-visible,.ht-audio-player input:focus-visible{outline:2px solid var(--ht-accent);outline-offset:3px}
+.ht-audio-player .ht-audio-timeline{display:flex;align-items:center;gap:.65rem;margin-top:.7rem}
+.ht-audio-player input[type="range"]{accent-color:var(--ht-accent);min-width:0;min-height:32px;cursor:pointer}
+.ht-audio-player .ht-audio-progress{flex:1;width:100%}
+.ht-audio-player .ht-audio-time{font-variant-numeric:tabular-nums;white-space:nowrap;font-size:.8rem}
+.ht-audio-player .ht-audio-volume{display:flex;align-items:center;flex-wrap:wrap;gap:.5rem;font-size:.8rem}
+.ht-audio-player .ht-audio-volume input{width:7rem}
+.ht-audio-player .ht-audio-status{display:block;font-size:.8rem;min-height:1.2em;margin-top:.4rem;overflow-wrap:anywhere}
+.ht-audio-player audio{display:none}
+@media(max-width:480px){.ht-audio-player{padding:.75rem}.ht-audio-player .ht-audio-actions button{flex:1 1 auto}.ht-audio-player .ht-audio-timeline{flex-wrap:wrap}.ht-audio-player .ht-audio-progress{flex-basis:100%}}
+@media print{.ht-audio-player{display:none}}
+</style>
 </head>
 <body class="bg-slate-100 text-slate-800 antialiased min-h-screen pb-16">
 
@@ -146,10 +168,28 @@
           </div>
           <!-- Audio Player Button -->
           <div class="flex items-center gap-2">
-            <button onclick="playListen1Audio()" id="btnPlayL1" class="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white text-xs font-semibold rounded-xl flex items-center gap-2 shadow-sm transition">
+            <!-- HT audio: relative source verified against this exam folder. -->
+<div class="ht-audio-player" role="group" aria-label="Listening Part 1" style="--ht-accent:#4f46e5;--ht-surface:#eef2ff;--ht-border:#c7d2fe;--ht-text:#1e293b;--ht-on-accent:#fff;--ht-radius:.75rem">
+  <button hidden aria-hidden="true" tabindex="-1" style="display:none" data-ht-original onclick="playListen1Audio()" id="btnPlayL1" class="px-3.5 py-2 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white text-xs font-semibold rounded-xl flex items-center gap-2 shadow-sm transition">
               <i class="fa-solid fa-circle-play text-sm"></i>
               <span>Phát bài nghe 1</span>
             </button>
+  <p class="ht-audio-title">Listening Part 1</p>
+  <audio id="ht-listening-1" preload="metadata" src="MIDTERM%20TEST%206%20-%20PART%20I.mp3"></audio>
+  <div class="ht-audio-actions">
+    <button type="button" data-action="play" aria-label="Phát bài nghe"><span aria-hidden="true">▶︎</span> Phát</button>
+    <button type="button" data-action="pause" aria-label="Tạm dừng bài nghe" disabled><span aria-hidden="true">⏸︎</span> Tạm dừng</button>
+    <button type="button" data-action="replay" aria-label="Phát lại từ đầu" disabled>↺ Phát lại</button>
+    <button type="button" data-action="back" aria-label="Tua lùi 5 giây" disabled>−5 giây</button>
+    <button type="button" data-action="forward" aria-label="Tua tiến 5 giây" disabled>+5 giây</button>
+  </div>
+  <div class="ht-audio-timeline">
+    <input class="ht-audio-progress" type="range" min="0" max="0" value="0" step="0.1" aria-label="Vị trí phát bài nghe" disabled>
+    <span class="ht-audio-time">0:00 / --:--</span>
+  </div>
+  <label class="ht-audio-volume">Âm lượng <input type="range" min="0" max="1" step="0.05" value="1" aria-label="Âm lượng bài nghe"></label>
+  <span class="ht-audio-status" role="status" aria-live="polite">Đang tải thông tin file nghe…</span>
+</div>
             <button onclick="stopTTS()" class="px-2.5 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-medium rounded-xl transition" title="Dừng âm thanh">
               <i class="fa-solid fa-stop"></i>
             </button>
@@ -393,10 +433,28 @@
             <p class="text-xs text-slate-500 mt-0.5">Bấm nút "Phát bài nghe 2" để nghe Henry nói về trường mới.</p>
           </div>
           <div class="flex items-center gap-2">
-            <button onclick="playListen2Audio()" id="btnPlayL2" class="px-3.5 py-2 bg-sky-600 hover:bg-sky-700 active:bg-sky-800 text-white text-xs font-semibold rounded-xl flex items-center gap-2 shadow-sm transition">
+            <!-- HT audio: relative source verified against this exam folder. -->
+<div class="ht-audio-player" role="group" aria-label="Listening Part 2" style="--ht-accent:#0284c7;--ht-surface:#f0f9ff;--ht-border:#bae6fd;--ht-text:#1e293b;--ht-on-accent:#fff;--ht-radius:.75rem">
+  <button hidden aria-hidden="true" tabindex="-1" style="display:none" data-ht-original onclick="playListen2Audio()" id="btnPlayL2" class="px-3.5 py-2 bg-sky-600 hover:bg-sky-700 active:bg-sky-800 text-white text-xs font-semibold rounded-xl flex items-center gap-2 shadow-sm transition">
               <i class="fa-solid fa-circle-play text-sm"></i>
               <span>Phát bài nghe 2</span>
             </button>
+  <p class="ht-audio-title">Listening Part 2</p>
+  <audio id="ht-listening-2" preload="metadata" src="MIDTERM%20TEST%206%20-%20PART%20II.mp3"></audio>
+  <div class="ht-audio-actions">
+    <button type="button" data-action="play" aria-label="Phát bài nghe"><span aria-hidden="true">▶︎</span> Phát</button>
+    <button type="button" data-action="pause" aria-label="Tạm dừng bài nghe" disabled><span aria-hidden="true">⏸︎</span> Tạm dừng</button>
+    <button type="button" data-action="replay" aria-label="Phát lại từ đầu" disabled>↺ Phát lại</button>
+    <button type="button" data-action="back" aria-label="Tua lùi 5 giây" disabled>−5 giây</button>
+    <button type="button" data-action="forward" aria-label="Tua tiến 5 giây" disabled>+5 giây</button>
+  </div>
+  <div class="ht-audio-timeline">
+    <input class="ht-audio-progress" type="range" min="0" max="0" value="0" step="0.1" aria-label="Vị trí phát bài nghe" disabled>
+    <span class="ht-audio-time">0:00 / --:--</span>
+  </div>
+  <label class="ht-audio-volume">Âm lượng <input type="range" min="0" max="1" step="0.05" value="1" aria-label="Âm lượng bài nghe"></label>
+  <span class="ht-audio-status" role="status" aria-live="polite">Đang tải thông tin file nghe…</span>
+</div>
             <button onclick="stopTTS()" class="px-2.5 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-medium rounded-xl transition" title="Dừng âm thanh">
               <i class="fa-solid fa-stop"></i>
             </button>
@@ -2015,5 +2073,101 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>
+<script id="ht-audio-player-script">
+/* HTML5 controls isolated from the exam and grading scripts. */
+(() => {
+  'use strict';
+  const players = [...document.querySelectorAll('.ht-audio-player')];
+  const format = seconds => {
+    if (!Number.isFinite(seconds)) return '--:--';
+    const value = Math.max(0, Math.floor(seconds));
+    return `${Math.floor(value / 60)}:${String(value % 60).padStart(2, '0')}`;
+  };
+  players.forEach(root => {
+    const audio = root.querySelector('audio');
+    const progress = root.querySelector('.ht-audio-progress');
+    const time = root.querySelector('.ht-audio-time');
+    const status = root.querySelector('.ht-audio-status');
+    const volume = root.querySelector('.ht-audio-volume input');
+    const button = action => root.querySelector(`[data-action="${action}"]`);
+    const canSeek = () => {
+      if (!Number.isFinite(audio.duration) || audio.duration <= 0) return false;
+      for (let index = 0; index < audio.seekable.length; index++) {
+        if (audio.seekable.end(index) > audio.seekable.start(index)) return true;
+      }
+      return false;
+    };
+    const update = () => {
+      const seeking = canSeek();
+      progress.disabled = !seeking;
+      ['back', 'forward', 'replay'].forEach(action => { button(action).disabled = !seeking; });
+      progress.max = Number.isFinite(audio.duration) ? audio.duration : 0;
+      progress.value = audio.currentTime;
+      progress.setAttribute('aria-valuetext', `${format(audio.currentTime)} / ${format(audio.duration)}`);
+      time.textContent = `${format(audio.currentTime)} / ${format(audio.duration)}`;
+      button('pause').disabled = audio.paused;
+      button('play').disabled = !audio.paused;
+    };
+    const seek = target => {
+      if (!canSeek()) return false;
+      target = Math.max(0, Math.min(audio.duration, target));
+      let nearest = audio.seekable.start(0), distance = Infinity;
+      for (let index = 0; index < audio.seekable.length; index++) {
+        const start = audio.seekable.start(index), end = audio.seekable.end(index);
+        if (target >= start && target <= end) { audio.currentTime = target; update(); return true; }
+        for (const edge of [start, end]) {
+          if (Math.abs(target - edge) < distance) { nearest = edge; distance = Math.abs(target - edge); }
+        }
+      }
+      audio.currentTime = nearest; update(); return true;
+    };
+    const play = async () => {
+      try { await audio.play(); }
+      catch (error) {
+        status.textContent = error.name === 'NotAllowedError'
+          ? 'Trình duyệt chưa cho phép phát. Hãy bấm Phát lần nữa.'
+          : 'Không thể phát file nghe. Kiểm tra đường dẫn hoặc kết nối rồi thử lại.';
+        update();
+      }
+    };
+    button('play').addEventListener('click', play);
+    button('pause').addEventListener('click', () => audio.pause());
+    button('replay').addEventListener('click', () => { if (seek(0)) play(); });
+    button('back').addEventListener('click', () => seek(Math.max(0, audio.currentTime - 5)));
+    button('forward').addEventListener('click', () => seek(Math.min(audio.duration, audio.currentTime + 5)));
+    progress.addEventListener('input', () => seek(Number(progress.value)));
+    volume.addEventListener('input', () => { audio.volume = Number(volume.value); });
+    audio.addEventListener('volumechange', () => { volume.value = audio.volume; });
+    audio.addEventListener('play', () => {
+      document.querySelectorAll('audio').forEach(other => { if (other !== audio) other.pause(); });
+      if (window.speechSynthesis) window.speechSynthesis.cancel();
+      status.textContent = 'Đang phát'; update();
+    });
+    audio.addEventListener('pause', () => { if (!audio.error) status.textContent = audio.ended ? 'Đã nghe xong' : 'Đã tạm dừng'; update(); });
+    audio.addEventListener('ended', () => { status.textContent = 'Đã nghe xong'; update(); });
+    audio.addEventListener('loadstart', () => { status.textContent = 'Đang tải file nghe…'; update(); });
+    audio.addEventListener('waiting', () => { status.textContent = 'Đang tải thêm âm thanh…'; });
+    audio.addEventListener('playing', () => { status.textContent = 'Đang phát'; });
+    audio.addEventListener('canplay', () => { status.textContent = audio.paused ? 'Sẵn sàng phát' : 'Đang phát'; update(); });
+    audio.addEventListener('error', () => {
+      status.textContent = 'Không tải được file nghe. Kiểm tra đường dẫn, định dạng file hoặc kết nối.';
+      update();
+    });
+    ['loadedmetadata', 'durationchange', 'progress', 'timeupdate', 'seeked', 'emptied'].forEach(event => audio.addEventListener(event, update));
+    // The authored palette comes from this page's original listening button.
+    // Reuse its computed styling when the original CSS is available.
+    const original = root.querySelector('[data-ht-original]');
+    if (original) {
+      const css = getComputedStyle(original);
+      if (css.backgroundColor !== 'rgb(239, 239, 239)' && css.backgroundColor !== 'rgba(0, 0, 0, 0)') {
+        root.style.setProperty('--ht-accent', css.backgroundColor);
+        root.style.setProperty('--ht-on-accent', css.color);
+        root.style.setProperty('--ht-radius', css.borderRadius);
+      }
+    }
+    update();
+  });
+})();
+</script>
 </body>
 </html>
