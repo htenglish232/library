@@ -1,0 +1,2613 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Đề thi GHKI - Trực Cường - 2024-2025 | HT English - Ms. Lily</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Nunito:wght@600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Nunito', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#2563eb',
+              600: '#1d4ed8',
+              700: '#1e40af',
+              800: '#1e3a8a',
+            },
+            accent: {
+              500: '#f59e0b',
+              600: '#d97706',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background-color: #cbd5e1;
+      border-radius: 9999px;
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .audio-playing {
+      animation: pulse-ring 1.5s infinite ease-in-out;
+    }
+    .chip-bounce {
+      transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .chip-bounce:active {
+      transform: scale(0.92);
+    }
+  </style>
+</head>
+
+<body class="bg-slate-100 text-slate-800 antialiased min-h-screen flex flex-col pb-20">
+
+  <!-- Top Center Information Header -->
+  <header class="bg-gradient-to-r from-blue-900 via-indigo-900 to-blue-800 text-white shadow-lg sticky top-0 z-40">
+    <div class="max-w-5xl mx-auto px-4 py-3 sm:py-4">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3">
+        <!-- Logo & Center Info -->
+        <div class="flex items-center space-x-3 text-center sm:text-left">
+          <div class="w-12 h-12 rounded-2xl bg-amber-400 text-blue-900 flex items-center justify-center font-black text-2xl shadow-md border-2 border-white flex-shrink-0">
+            HT
+          </div>
+          <div>
+            <div class="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+              <h1 class="font-display font-black text-lg sm:text-xl tracking-wide text-amber-300 uppercase">
+                HT ENGLISH CENTER
+              </h1>
+              <span class="bg-blue-700/80 text-xs px-2.5 py-0.5 rounded-full font-semibold border border-blue-400/30">
+                Ms. Lily
+              </span>
+            </div>
+            <p class="text-xs text-blue-100 mt-0.5 flex flex-wrap items-center justify-center sm:justify-start gap-x-3 gap-y-1">
+              <span><i class="fa-solid fa-phone text-amber-400 mr-1"></i>0963.422.940 - 0962.240.866</span>
+              <span><i class="fa-solid fa-location-dot text-rose-400 mr-1"></i>Thôn Đạo Đường, xã Ninh Cường, Ninh Bình</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Timer & Quick Status -->
+        <div class="flex items-center space-x-3 bg-white/10 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-white/20">
+          <div class="text-center">
+            <span class="text-[10px] uppercase font-bold tracking-wider text-blue-200 block">Thời gian</span>
+            <div id="exam-timer" class="font-mono font-black text-lg sm:text-xl text-amber-300">
+              60:00
+            </div>
+          </div>
+          <button id="toggle-sound-ambient" onclick="toggleMuteAll()" class="p-2 text-blue-200 hover:text-white rounded-lg hover:bg-white/10 transition" title="Bật/Tắt âm thanh">
+            <i id="mute-icon" class="fa-solid fa-volume-high text-lg"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exam Sub-Banner -->
+    <div class="bg-blue-950/70 border-t border-blue-800/60 px-4 py-2 text-center">
+      <div class="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between text-xs text-blue-200 gap-1.5 font-medium">
+        <span class="font-bold text-white text-sm">TRƯỜNG THCS TRỰC CƯỜNG - ĐỀ THI GHKI (2024-2025)</span>
+        <span>Môn: Tiếng Anh 7 • Thời gian: 60 phút • Phiếu điện tử Tương tác</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto w-full px-3 sm:px-6 mt-4 sm:mt-6 flex-grow">
+    
+    <!-- Student Information Card -->
+    <section class="bg-white rounded-2xl shadow-sm border border-slate-200/80 p-4 sm:p-5 mb-5 transition">
+      <div class="flex items-center space-x-2 text-blue-700 font-bold mb-3 border-b pb-2">
+        <i class="fa-solid fa-user-graduate text-lg"></i>
+        <h2 class="text-sm uppercase tracking-wider font-display">Thông tin học sinh làm bài</h2>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Họ và tên học sinh <span class="text-red-500">*</span></label>
+          <input type="text" id="student-name" placeholder="Ví dụ: Nguyễn Văn An" class="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Lớp</label>
+          <input type="text" id="student-class" placeholder="Ví dụ: 7A1" class="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Trường THCS</label>
+          <input type="text" id="student-school" value="THCS Trực Cường" class="w-full px-3.5 py-2 text-sm border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 font-medium bg-slate-50">
+        </div>
+      </div>
+      <div class="mt-3 flex items-center justify-between text-xs text-slate-500 bg-amber-50 rounded-xl p-2.5 border border-amber-200">
+        <span class="flex items-center gap-1.5 text-amber-800">
+          <i class="fa-solid fa-circle-info text-amber-600"></i>
+          Ấn vào biểu tượng <b><i class="fa-solid fa-volume-high mx-1"></i></b> để nghe phát âm từng câu hỏi và đáp án!
+        </span>
+        <span id="answered-counter" class="font-bold text-blue-700 bg-white px-2 py-0.5 rounded-lg border border-amber-200">
+          Đã làm: 0/34 câu
+        </span>
+      </div>
+    </section>
+
+    <!-- Post-Submission Result Dashboard (Hidden Initially) -->
+    <section id="results-dashboard" class="hidden bg-white rounded-2xl shadow-xl border-2 border-emerald-500 p-5 sm:p-7 mb-6 transition">
+      <div class="text-center pb-5 border-b border-slate-100">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 mb-3 text-2xl shadow-inner">
+          <i class="fa-solid fa-award"></i>
+        </div>
+        <h2 class="text-2xl font-black text-slate-800 font-display">KẾT QUẢ BÀI KIỂM TRA</h2>
+        <p class="text-sm text-slate-500 mt-1">Đề thi Giữa Kì 1 - Tiếng Anh 7 (HT English - Ms. Lily)</p>
+        
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto mt-5">
+          <div class="bg-blue-50 border border-blue-200 p-3 rounded-xl">
+            <span class="text-xs text-blue-700 block font-semibold">Điểm số</span>
+            <span id="final-score" class="text-2xl sm:text-3xl font-black text-blue-800">0.0</span>
+            <span class="text-[11px] text-blue-600 block">Thang điểm 10</span>
+          </div>
+          <div class="bg-emerald-50 border border-emerald-200 p-3 rounded-xl">
+            <span class="text-xs text-emerald-700 block font-semibold">Số câu đúng</span>
+            <span id="correct-count" class="text-2xl sm:text-3xl font-black text-emerald-700">0</span>
+            <span id="total-questions-count" class="text-[11px] text-emerald-600 block">/ 34 câu</span>
+          </div>
+          <div class="bg-purple-50 border border-purple-200 p-3 rounded-xl">
+            <span class="text-xs text-purple-700 block font-semibold">Tỷ lệ chính xác</span>
+            <span id="accuracy-rate" class="text-2xl sm:text-3xl font-black text-purple-700">0%</span>
+            <span class="text-[11px] text-purple-600 block">Độ hoàn thành</span>
+          </div>
+          <div class="bg-amber-50 border border-amber-200 p-3 rounded-xl">
+            <span class="text-xs text-amber-700 block font-semibold">Đánh giá</span>
+            <span id="grade-badge" class="text-base sm:text-lg font-black text-amber-800 mt-1 block">Xuất sắc</span>
+            <span class="text-[11px] text-amber-600 block">Học lực</span>
+          </div>
+        </div>
+
+        <div class="mt-4 flex flex-wrap justify-center gap-3">
+          <button onclick="scrollToReview()" class="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm shadow-md transition flex items-center gap-2">
+            <i class="fa-solid fa-list-check"></i> Xem lại đáp án & Giải thích chi tiết
+          </button>
+          <button onclick="location.reload()" class="px-5 py-2.5 rounded-xl bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold text-sm transition flex items-center gap-2">
+            <i class="fa-solid fa-rotate-right"></i> Làm lại đề thi
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FORM BODY -->
+    <form id="quiz-form" onsubmit="event.preventDefault(); submitQuiz();">
+      
+      <!-- ================= PART A: LISTENING ================= -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-4 sm:p-6 mb-6">
+        <div class="flex items-center justify-between border-b pb-3 mb-4">
+          <div class="flex items-center gap-2.5">
+            <span class="bg-blue-600 text-white text-xs font-black px-3 py-1 rounded-lg">PART A</span>
+            <h2 class="text-base sm:text-lg font-bold text-slate-800 font-display">LISTENING (2.4 points)</h2>
+          </div>
+          <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">12 câu hỏi</span>
+        </div>
+
+        <!-- Task 1 -->
+        <div class="bg-blue-50/60 rounded-xl p-3.5 sm:p-4 border border-blue-100 mb-6">
+          <div class="flex flex-col gap-3 mb-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <div>
+                <h3 class="font-bold text-blue-900 text-sm sm:text-base flex items-center gap-2">
+                  <span>Task 1: Listen to the conversation between Tom and Jack. Circle the best answer A, B, C or D. (1.2 pts)</span>
+                </h3>
+                <p class="text-xs text-slate-500 italic mt-0.5">You will listen TWICE. Có thể tạm dừng bất kỳ lúc nào để học sinh kịp làm bài.</p>
+              </div>
+              
+              <!-- Speed Selector -->
+              <div class="flex items-center gap-1.5 bg-white px-2.5 py-1 rounded-lg border border-blue-200 text-xs self-start sm:self-center">
+                <span class="text-slate-500 font-semibold text-[11px]"><i class="fa-solid fa-gauge mr-1"></i>Tốc độ:</span>
+                <button type="button" onclick="setSpeed('task1', 0.8)" id="btn-speed-task1-slow" class="px-2 py-0.5 rounded font-bold transition bg-amber-500 text-white">0.8x (Chậm)</button>
+                <button type="button" onclick="setSpeed('task1', 1.0)" id="btn-speed-task1-normal" class="px-2 py-0.5 rounded font-bold text-slate-600 hover:bg-slate-100 transition">1.0x</button>
+              </div>
+            </div>
+
+            <!-- Interactive Smart Audio Controller Task 1 -->
+            <div class="bg-white/90 p-3 rounded-xl border border-blue-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-2.5">
+              <div class="flex items-center gap-2 w-full sm:w-auto flex-wrap">
+                <!-- Play / Pause / Resume Button -->
+                <button type="button" id="btn-main-task1" onclick="togglePlayPause('task1')" class="px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs flex items-center gap-2 shadow-sm transition active:scale-95">
+                  <i id="icon-main-task1" class="fa-solid fa-play text-sm"></i>
+                  <span id="text-main-task1">Phát bài nghe</span>
+                </button>
+                
+                <!-- Repeat current sentence -->
+                <button type="button" id="btn-repeat-task1" onclick="repeatCurrentSentence('task1')" class="px-3 py-2 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 font-semibold text-xs border border-blue-200 flex items-center gap-1.5 transition active:scale-95" title="Nghe lại câu vừa dừng">
+                  <i class="fa-solid fa-rotate-left text-xs"></i>
+                  <span>Nghe lại câu này</span>
+                </button>
+
+                <!-- Stop button -->
+                <button type="button" onclick="stopTaskAudio('task1')" class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-200 flex items-center gap-1.5 transition" title="Dừng và về đầu bài">
+                  <i class="fa-solid fa-stop text-xs"></i>
+                  <span>Dừng hẳn</span>
+                </button>
+              </div>
+
+              <!-- Live Status and Sentence Progress -->
+              <div class="flex items-center gap-2 text-xs text-slate-600 w-full sm:w-auto justify-between sm:justify-end">
+                <span id="status-task1" class="px-2.5 py-1 rounded-lg bg-slate-100 font-medium text-slate-600 flex items-center gap-1.5 border">
+                  <span class="w-2 h-2 rounded-full bg-slate-400"></span> Sẵn sàng
+                </span>
+                <label class="cursor-pointer text-[11px] text-blue-600 hover:underline flex items-center gap-1" title="Tải file mp3 nếu thầy cô có file bài nghe trên máy">
+                  <i class="fa-solid fa-file-audio"></i> Nạp MP3
+                  <input type="file" accept="audio/*" class="hidden" onchange="loadCustomAudio(event, 'task1')">
+                </label>
+              </div>
+            </div>
+
+            <!-- Native Audio Player (hidden unless MP3 file loaded) -->
+            <div id="mp3-player-task1-container" class="hidden bg-amber-50 p-2.5 rounded-xl border border-amber-200">
+              <div class="text-[11px] font-bold text-amber-900 mb-1 flex items-center gap-1.5">
+                <i class="fa-solid fa-circle-check text-emerald-600"></i> Đang phát từ file MP3 đã nạp (Có thể tua & dừng theo ý muốn):
+              </div>
+              <audio id="mp3-player-task1" controls class="w-full h-8"></audio>
+            </div>
+          </div>
+
+          <!-- Transcript Button for Task 1 (Visible after submit or review) -->
+          <div id="transcript-task1-container" class="hidden mt-3 pt-3 border-t border-blue-200">
+            <button type="button" onclick="toggleTranscript('task1-text')" class="text-xs font-bold text-blue-700 flex items-center gap-1.5 hover:underline">
+              <i class="fa-solid fa-file-lines text-amber-500"></i>
+              <span>Xem Tape Script (Nội dung bài nghe Task 1)</span>
+              <i id="icon-transcript-task1" class="fa-solid fa-chevron-down text-[10px]"></i>
+            </button>
+            <div id="task1-text" class="hidden mt-2 p-3 bg-white rounded-lg border text-xs text-slate-700 space-y-1.5 leading-relaxed font-sans">
+              <p class="font-semibold text-blue-800">Transcript Task 1:</p>
+              <p><b>Tom:</b> Hi Jack. I'm doing a survey on teenagers' hobbies. Can I ask you a few questions?</p>
+              <p><b>Jack:</b> Yes, go ahead.</p>
+              <p><b>Tom:</b> Thanks. What do you often do in your leisure time?</p>
+              <p><b>Jack:</b> Well, it's actually not a popular type of hobbies, but in my free time I like doing origami.</p>
+              <p><b>Tom:</b> You mean creating things from paper?</p>
+              <p><b>Jack:</b> Yes. That's exactly what I do: folding paper.</p>
+              <p><b>Tom:</b> How long have you been doing it?</p>
+              <p><b>Jack:</b> Well, it all started two years ago on my trip to Japan. I watched some origami artists folding some paper animals and I liked it.</p>
+              <p><b>Tom:</b> What do you enjoy about it?</p>
+              <p><b>Jack:</b> It's easy, inexpensive and great to share with others.</p>
+              <p><b>Tom:</b> What do you do with the stuff you made?</p>
+              <p><b>Jack:</b> I give some to my friends as birthday gifts, and sell some to get money.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Task 1 Questions: 1 -> 6 -->
+        <div class="space-y-4" id="task1-questions">
+          <!-- Q1 -->
+          <div class="question-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="q1" data-correct="A">
+            <div class="flex items-start justify-between gap-2 mb-2.5">
+              <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-md bg-blue-100 text-blue-800 flex items-center justify-center text-xs font-black">1</span>
+                <span>What is Jack's hobby?</span>
+              </span>
+              <button type="button" onclick="speakText('What is Jack\'s hobby?')" class="text-blue-600 hover:text-blue-800 p-1.5 rounded-lg hover:bg-blue-50 transition" title="Nghe câu hỏi">
+                <i class="fa-solid fa-volume-high"></i>
+              </button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q1" value="A" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">A. folding paper</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('folding paper')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q1" value="B" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">B. recycling paper</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('recycling paper')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q1" value="C" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">C. creating paper</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('creating paper')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q1" value="D" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">D. collecting paper</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('collecting paper')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+          </div>
+
+          <!-- Q2 -->
+          <div class="question-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="q2" data-correct="B">
+            <div class="flex items-start justify-between gap-2 mb-2.5">
+              <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-md bg-blue-100 text-blue-800 flex items-center justify-center text-xs font-black">2</span>
+                <span>What does he often do in his leisure time?</span>
+              </span>
+              <button type="button" onclick="speakText('What does he often do in his leisure time?')" class="text-blue-600 hover:text-blue-800 p-1.5 rounded-lg hover:bg-blue-50 transition">
+                <i class="fa-solid fa-volume-high"></i>
+              </button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q2" value="A" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">A. making paper</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('making paper')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q2" value="B" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">B. doing Origami</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('doing Origami')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q2" value="C" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">C. reading books</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('reading books')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q2" value="D" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">D. collecting</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('collecting')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+          </div>
+
+          <!-- Q3 -->
+          <div class="question-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="q3" data-correct="D">
+            <div class="flex items-start justify-between gap-2 mb-2.5">
+              <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-md bg-blue-100 text-blue-800 flex items-center justify-center text-xs font-black">3</span>
+                <span>How long has he had his hobby?</span>
+              </span>
+              <button type="button" onclick="speakText('How long has he had his hobby?')" class="text-blue-600 hover:text-blue-800 p-1.5 rounded-lg hover:bg-blue-50 transition">
+                <i class="fa-solid fa-volume-high"></i>
+              </button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q3" value="A" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">A. for two weeks</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('for two weeks')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q3" value="B" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">B. for two days</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('for two days')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q3" value="C" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">C. for two months</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('for two months')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q3" value="D" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">D. for two years</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('for two years')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+          </div>
+
+          <!-- Q4 -->
+          <div class="question-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="q4" data-correct="B">
+            <div class="flex items-start justify-between gap-2 mb-2.5">
+              <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-md bg-blue-100 text-blue-800 flex items-center justify-center text-xs font-black">4</span>
+                <span>What does Jack say about his hobby?</span>
+              </span>
+              <button type="button" onclick="speakText('What does Jack say about his hobby?')" class="text-blue-600 hover:text-blue-800 p-1.5 rounded-lg hover:bg-blue-50 transition">
+                <i class="fa-solid fa-volume-high"></i>
+              </button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q4" value="A" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">A. It's difficult.</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('It is difficult')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q4" value="B" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">B. It's cheap.</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('It is cheap')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q4" value="C" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">C. It's expensive.</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('It is expensive')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q4" value="D" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">D. It's boring.</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('It is boring')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+          </div>
+
+          <!-- Q5 (Corrected & standardized from the docx file) -->
+          <div class="question-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="q5" data-correct="A">
+            <div class="flex items-start justify-between gap-2 mb-2.5">
+              <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-md bg-blue-100 text-blue-800 flex items-center justify-center text-xs font-black">5</span>
+                <span>What does Jack do with the things he made?</span>
+              </span>
+              <button type="button" onclick="speakText('What does Jack do with the things he made?')" class="text-blue-600 hover:text-blue-800 p-1.5 rounded-lg hover:bg-blue-50 transition">
+                <i class="fa-solid fa-volume-high"></i>
+              </button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q5" value="A" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">A. give them to his friends</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('give them to his friends')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q5" value="B" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">B. keep them in a box</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('keep them in a box')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q5" value="C" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">C. throw them away</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('throw them away')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q5" value="D" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">D. donate them</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('donate them')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+          </div>
+
+          <!-- Q6 -->
+          <div class="question-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="q6" data-correct="C">
+            <div class="flex items-start justify-between gap-2 mb-2.5">
+              <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-md bg-blue-100 text-blue-800 flex items-center justify-center text-xs font-black">6</span>
+                <span>What is the interview about?</span>
+              </span>
+              <button type="button" onclick="speakText('What is the interview about?')" class="text-blue-600 hover:text-blue-800 p-1.5 rounded-lg hover:bg-blue-50 transition">
+                <i class="fa-solid fa-volume-high"></i>
+              </button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q6" value="A" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">A. How to make origami</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('How to make origami')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q6" value="B" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">B. A birthday present</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('A birthday present')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q6" value="C" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">C. A teenager’s hobby</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('A teenager’s hobby')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="q6" value="D" class="w-4 h-4 text-blue-600 mr-2.5" onchange="markAnswered()">
+                <span class="flex-grow">D. A TV program</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('A TV program')" class="text-slate-400 hover:text-blue-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+          </div>
+        </div>
+
+        <!-- Task 2 (True / False) -->
+        <div class="mt-8 pt-6 border-t border-slate-200">
+          <div class="bg-blue-50/60 rounded-xl p-3.5 sm:p-4 border border-blue-100 mb-4">
+            <div class="flex flex-col gap-3 mb-3">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div>
+                  <h3 class="font-bold text-blue-900 text-sm sm:text-base flex items-center gap-2">
+                    <span>Task 2: Listen to the conversation between Linda and Tom about their club’s activities. Tick T (True) or F (False). (1.2 pts)</span>
+                  </h3>
+                  <p class="text-xs text-slate-500 italic mt-0.5">Unit 3: Community service - Skills 2. Có thể tạm dừng để học sinh suy nghĩ.</p>
+                </div>
+                
+                <!-- Speed Selector -->
+                <div class="flex items-center gap-1.5 bg-white px-2.5 py-1 rounded-lg border border-indigo-200 text-xs self-start sm:self-center">
+                  <span class="text-slate-500 font-semibold text-[11px]"><i class="fa-solid fa-gauge mr-1"></i>Tốc độ:</span>
+                  <button type="button" onclick="setSpeed('task2', 0.8)" id="btn-speed-task2-slow" class="px-2 py-0.5 rounded font-bold transition bg-indigo-600 text-white">0.8x (Chậm)</button>
+                  <button type="button" onclick="setSpeed('task2', 1.0)" id="btn-speed-task2-normal" class="px-2 py-0.5 rounded font-bold text-slate-600 hover:bg-slate-100 transition">1.0x</button>
+                </div>
+              </div>
+
+              <!-- Interactive Smart Audio Controller Task 2 -->
+              <div class="bg-white/90 p-3 rounded-xl border border-indigo-200 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-2.5">
+                <div class="flex items-center gap-2 w-full sm:w-auto flex-wrap">
+                  <!-- Play / Pause / Resume Button -->
+                  <button type="button" id="btn-main-task2" onclick="togglePlayPause('task2')" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs flex items-center gap-2 shadow-sm transition active:scale-95">
+                    <i id="icon-main-task2" class="fa-solid fa-play text-sm"></i>
+                    <span id="text-main-task2">Phát bài nghe</span>
+                  </button>
+                  
+                  <!-- Repeat current sentence -->
+                  <button type="button" id="btn-repeat-task2" onclick="repeatCurrentSentence('task2')" class="px-3 py-2 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 font-semibold text-xs border border-indigo-200 flex items-center gap-1.5 transition active:scale-95" title="Nghe lại câu vừa dừng">
+                    <i class="fa-solid fa-rotate-left text-xs"></i>
+                    <span>Nghe lại câu này</span>
+                  </button>
+
+                  <!-- Stop button -->
+                  <button type="button" onclick="stopTaskAudio('task2')" class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold border border-slate-200 flex items-center gap-1.5 transition" title="Dừng và về đầu bài">
+                    <i class="fa-solid fa-stop text-xs"></i>
+                    <span>Dừng hẳn</span>
+                  </button>
+                </div>
+
+                <!-- Live Status and Sentence Progress -->
+                <div class="flex items-center gap-2 text-xs text-slate-600 w-full sm:w-auto justify-between sm:justify-end">
+                  <span id="status-task2" class="px-2.5 py-1 rounded-lg bg-slate-100 font-medium text-slate-600 flex items-center gap-1.5 border">
+                    <span class="w-2 h-2 rounded-full bg-slate-400"></span> Sẵn sàng
+                  </span>
+                  <label class="cursor-pointer text-[11px] text-indigo-600 hover:underline flex items-center gap-1" title="Tải file mp3 nếu thầy cô có file bài nghe trên máy">
+                    <i class="fa-solid fa-file-audio"></i> Nạp MP3
+                    <input type="file" accept="audio/*" class="hidden" onchange="loadCustomAudio(event, 'task2')">
+                  </label>
+                </div>
+              </div>
+
+              <!-- Native Audio Player (hidden unless MP3 file loaded) -->
+              <div id="mp3-player-task2-container" class="hidden bg-indigo-50 p-2.5 rounded-xl border border-indigo-200">
+                <div class="text-[11px] font-bold text-indigo-900 mb-1 flex items-center gap-1.5">
+                  <i class="fa-solid fa-circle-check text-emerald-600"></i> Đang phát từ file MP3 đã nạp (Có thể tua & dừng theo ý muốn):
+                </div>
+                <audio id="mp3-player-task2" controls class="w-full h-8"></audio>
+              </div>
+            </div>
+
+            <!-- Transcript Button for Task 2 (Visible after submit or review) -->
+            <div id="transcript-task2-container" class="hidden mt-3 pt-3 border-t border-blue-200">
+              <button type="button" onclick="toggleTranscript('task2-text')" class="text-xs font-bold text-indigo-700 flex items-center gap-1.5 hover:underline">
+                <i class="fa-solid fa-file-lines text-indigo-500"></i>
+                <span>Xem Tape Script (Nội dung bài nghe Task 2)</span>
+                <i id="icon-transcript-task2" class="fa-solid fa-chevron-down text-[10px]"></i>
+              </button>
+              <div id="task2-text" class="hidden mt-2 p-3 bg-white rounded-lg border text-xs text-slate-700 space-y-1.5 leading-relaxed font-sans">
+                <p class="font-semibold text-indigo-800">Transcript Task 2 (Community Service):</p>
+                <p><b>Tom:</b> So, what did your club do last year?</p>
+                <p><b>Linda:</b> We tutored third-grade children and helped old people.</p>
+                <p><b>Tom:</b> Fantastic! What did you tutor?</p>
+                <p><b>Linda:</b> We taught English and Maths.</p>
+                <p><b>Tom:</b> Awesome! Was it difficult?</p>
+                <p><b>Linda:</b> Yes, but we had a lot of fun.</p>
+                <p><b>Tom:</b> I see. How did you help the elderly?</p>
+                <p><b>Linda:</b> We cooked for them, and did some cleaning too.</p>
+                <p><b>Tom:</b> Great! I'm sure they benefited from it.</p>
+                <p><b>Linda:</b> Thanks. It made us feel useful. How about you?</p>
+                <p><b>Tom:</b> We picked up paper and bottles in a nearby park. We also planted some trees.</p>
+                <p><b>Linda:</b> Fabulous! Did you water them too?</p>
+                <p><b>Tom:</b> Sure, we watered them very often the first few weeks, and enjoyed watching them grow.</p>
+                <p><b>Linda:</b> Glad to hear it, Tom.</p>
+                <p><b>Tom:</b> Yes, it was a really good time. We worked and played together, and we learnt some skills, too.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- True/False Statements Table / Mobile Cards -->
+          <div class="space-y-3" id="task2-questions">
+            
+            <!-- TF 1 -->
+            <div class="question-card p-3.5 rounded-xl border border-slate-200 bg-white" data-qid="tf1" data-correct="T">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div class="flex items-start gap-2 text-xs sm:text-sm font-medium text-slate-800 flex-grow">
+                  <span class="w-6 h-6 rounded-md bg-indigo-100 text-indigo-800 flex items-center justify-center text-xs font-black flex-shrink-0">1</span>
+                  <span>Linda and her friends taught children English and Math last year.</span>
+                  <button type="button" onclick="speakText('Linda and her friends taught children English and Math last year')" class="text-blue-600 p-1 flex-shrink-0"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </div>
+                <div class="flex items-center gap-3 self-end sm:self-center">
+                  <label class="inline-flex items-center px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50 cursor-pointer">
+                    <input type="radio" name="tf1" value="T" class="text-blue-600" onchange="markAnswered()">
+                    <span class="ml-1.5 text-xs font-bold text-emerald-700">T (True)</span>
+                  </label>
+                  <label class="inline-flex items-center px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50 cursor-pointer">
+                    <input type="radio" name="tf1" value="F" class="text-blue-600" onchange="markAnswered()">
+                    <span class="ml-1.5 text-xs font-bold text-rose-700">F (False)</span>
+                  </label>
+                </div>
+              </div>
+              <div class="explanation-box hidden mt-2.5 p-2.5 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+            <!-- TF 2 -->
+            <div class="question-card p-3.5 rounded-xl border border-slate-200 bg-white" data-qid="tf2" data-correct="F">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div class="flex items-start gap-2 text-xs sm:text-sm font-medium text-slate-800 flex-grow">
+                  <span class="w-6 h-6 rounded-md bg-indigo-100 text-indigo-800 flex items-center justify-center text-xs font-black flex-shrink-0">2</span>
+                  <span>Linda and her friends helped the old people cooked and did the shopping.</span>
+                  <button type="button" onclick="speakText('Linda and her friends helped the old people cooked and did the shopping')" class="text-blue-600 p-1 flex-shrink-0"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </div>
+                <div class="flex items-center gap-3 self-end sm:self-center">
+                  <label class="inline-flex items-center px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50 cursor-pointer">
+                    <input type="radio" name="tf2" value="T" class="text-blue-600" onchange="markAnswered()">
+                    <span class="ml-1.5 text-xs font-bold text-emerald-700">T (True)</span>
+                  </label>
+                  <label class="inline-flex items-center px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50 cursor-pointer">
+                    <input type="radio" name="tf2" value="F" class="text-blue-600" onchange="markAnswered()">
+                    <span class="ml-1.5 text-xs font-bold text-rose-700">F (False)</span>
+                  </label>
+                </div>
+              </div>
+              <div class="explanation-box hidden mt-2.5 p-2.5 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+            <!-- TF 3 -->
+            <div class="question-card p-3.5 rounded-xl border border-slate-200 bg-white" data-qid="tf3" data-correct="F">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div class="flex items-start gap-2 text-xs sm:text-sm font-medium text-slate-800 flex-grow">
+                  <span class="w-6 h-6 rounded-md bg-indigo-100 text-indigo-800 flex items-center justify-center text-xs font-black flex-shrink-0">3</span>
+                  <span>Helping the elderly made them feel unuseful.</span>
+                  <button type="button" onclick="speakText('Helping the elderly made them feel unuseful')" class="text-blue-600 p-1 flex-shrink-0"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </div>
+                <div class="flex items-center gap-3 self-end sm:self-center">
+                  <label class="inline-flex items-center px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50 cursor-pointer">
+                    <input type="radio" name="tf3" value="T" class="text-blue-600" onchange="markAnswered()">
+                    <span class="ml-1.5 text-xs font-bold text-emerald-700">T (True)</span>
+                  </label>
+                  <label class="inline-flex items-center px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50 cursor-pointer">
+                    <input type="radio" name="tf3" value="F" class="text-blue-600" onchange="markAnswered()">
+                    <span class="ml-1.5 text-xs font-bold text-rose-700">F (False)</span>
+                  </label>
+                </div>
+              </div>
+              <div class="explanation-box hidden mt-2.5 p-2.5 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+            <!-- TF 4 -->
+            <div class="question-card p-3.5 rounded-xl border border-slate-200 bg-white" data-qid="tf4" data-correct="F">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div class="flex items-start gap-2 text-xs sm:text-sm font-medium text-slate-800 flex-grow">
+                  <span class="w-6 h-6 rounded-md bg-indigo-100 text-indigo-800 flex items-center justify-center text-xs font-black flex-shrink-0">4</span>
+                  <span>Tom and his friends picked up books and paper.</span>
+                  <button type="button" onclick="speakText('Tom and his friends picked up books and paper')" class="text-blue-600 p-1 flex-shrink-0"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </div>
+                <div class="flex items-center gap-3 self-end sm:self-center">
+                  <label class="inline-flex items-center px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50 cursor-pointer">
+                    <input type="radio" name="tf4" value="T" class="text-blue-600" onchange="markAnswered()">
+                    <span class="ml-1.5 text-xs font-bold text-emerald-700">T (True)</span>
+                  </label>
+                  <label class="inline-flex items-center px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50 cursor-pointer">
+                    <input type="radio" name="tf4" value="F" class="text-blue-600" onchange="markAnswered()">
+                    <span class="ml-1.5 text-xs font-bold text-rose-700">F (False)</span>
+                  </label>
+                </div>
+              </div>
+              <div class="explanation-box hidden mt-2.5 p-2.5 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+            <!-- TF 5 -->
+            <div class="question-card p-3.5 rounded-xl border border-slate-200 bg-white" data-qid="tf5" data-correct="T">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div class="flex items-start gap-2 text-xs sm:text-sm font-medium text-slate-800 flex-grow">
+                  <span class="w-6 h-6 rounded-md bg-indigo-100 text-indigo-800 flex items-center justify-center text-xs font-black flex-shrink-0">5</span>
+                  <span>Tom and his friends planted some trees and watered them.</span>
+                  <button type="button" onclick="speakText('Tom and his friends planted some trees and watered them')" class="text-blue-600 p-1 flex-shrink-0"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </div>
+                <div class="flex items-center gap-3 self-end sm:self-center">
+                  <label class="inline-flex items-center px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50 cursor-pointer">
+                    <input type="radio" name="tf5" value="T" class="text-blue-600" onchange="markAnswered()">
+                    <span class="ml-1.5 text-xs font-bold text-emerald-700">T (True)</span>
+                  </label>
+                  <label class="inline-flex items-center px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50 cursor-pointer">
+                    <input type="radio" name="tf5" value="F" class="text-blue-600" onchange="markAnswered()">
+                    <span class="ml-1.5 text-xs font-bold text-rose-700">F (False)</span>
+                  </label>
+                </div>
+              </div>
+              <div class="explanation-box hidden mt-2.5 p-2.5 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+            <!-- TF 6 -->
+            <div class="question-card p-3.5 rounded-xl border border-slate-200 bg-white" data-qid="tf6" data-correct="T">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div class="flex items-start gap-2 text-xs sm:text-sm font-medium text-slate-800 flex-grow">
+                  <span class="w-6 h-6 rounded-md bg-indigo-100 text-indigo-800 flex items-center justify-center text-xs font-black flex-shrink-0">6</span>
+                  <span>Tom and his friends learnt some skills.</span>
+                  <button type="button" onclick="speakText('Tom and his friends learnt some skills')" class="text-blue-600 p-1 flex-shrink-0"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </div>
+                <div class="flex items-center gap-3 self-end sm:self-center">
+                  <label class="inline-flex items-center px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50 cursor-pointer">
+                    <input type="radio" name="tf6" value="T" class="text-blue-600" onchange="markAnswered()">
+                    <span class="ml-1.5 text-xs font-bold text-emerald-700">T (True)</span>
+                  </label>
+                  <label class="inline-flex items-center px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50 cursor-pointer">
+                    <input type="radio" name="tf6" value="F" class="text-blue-600" onchange="markAnswered()">
+                    <span class="ml-1.5 text-xs font-bold text-rose-700">F (False)</span>
+                  </label>
+                </div>
+              </div>
+              <div class="explanation-box hidden mt-2.5 p-2.5 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= PART B: LANGUAGE FOCUS ================= -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-4 sm:p-6 mb-6">
+        <div class="flex items-center justify-between border-b pb-3 mb-4">
+          <div class="flex items-center gap-2.5">
+            <span class="bg-purple-600 text-white text-xs font-black px-3 py-1 rounded-lg">PART B</span>
+            <h2 class="text-base sm:text-lg font-bold text-slate-800 font-display">LANGUAGE FOCUS (2.6 points)</h2>
+          </div>
+          <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">13 câu hỏi</span>
+        </div>
+
+        <h3 class="font-bold text-slate-700 text-sm mb-3">
+          I. Choose the best option (A, B, C or D) to complete these sentences. (2.0 pts)
+        </h3>
+
+        <div class="space-y-4" id="lang-focus-i">
+          
+          <!-- B1 -->
+          <div class="question-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="b1" data-correct="A">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-md bg-purple-100 text-purple-800 flex items-center justify-center text-xs font-black">1</span>
+                <span>Choose the word whose underlined part is pronounced differently:</span>
+              </span>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs sm:text-sm">
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b1" value="A" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()">
+                <span class="flex-grow">A. volunteer<u>ed</u></span>
+                <button type="button" onclick="event.stopPropagation(); speakText('volunteered')" class="text-slate-400 hover:text-purple-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b1" value="B" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()">
+                <span class="flex-grow">B. affect<u>ed</u></span>
+                <button type="button" onclick="event.stopPropagation(); speakText('affected')" class="text-slate-400 hover:text-purple-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b1" value="C" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()">
+                <span class="flex-grow">C. decid<u>ed</u></span>
+                <button type="button" onclick="event.stopPropagation(); speakText('decided')" class="text-slate-400 hover:text-purple-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b1" value="D" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()">
+                <span class="flex-grow">D. donat<u>ed</u></span>
+                <button type="button" onclick="event.stopPropagation(); speakText('donated')" class="text-slate-400 hover:text-purple-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+          </div>
+
+          <!-- B2 -->
+          <div class="question-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="b2" data-correct="C">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-md bg-purple-100 text-purple-800 flex items-center justify-center text-xs font-black">2</span>
+                <span>Choose the word whose underlined part is pronounced differently:</span>
+              </span>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs sm:text-sm">
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b2" value="A" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()">
+                <span class="flex-grow">A. swimm<u>er</u></span>
+                <button type="button" onclick="event.stopPropagation(); speakText('swimmer')" class="text-slate-400 hover:text-purple-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b2" value="B" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()">
+                <span class="flex-grow">B. sist<u>er</u></span>
+                <button type="button" onclick="event.stopPropagation(); speakText('sister')" class="text-slate-400 hover:text-purple-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b2" value="C" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()">
+                <span class="flex-grow">C. pref<u>er</u></span>
+                <button type="button" onclick="event.stopPropagation(); speakText('prefer')" class="text-slate-400 hover:text-purple-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b2" value="D" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()">
+                <span class="flex-grow">D. work<u>er</u></span>
+                <button type="button" onclick="event.stopPropagation(); speakText('worker')" class="text-slate-400 hover:text-purple-600 p-1"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+          </div>
+
+          <!-- B3 -->
+          <div class="question-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="b3" data-correct="B">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-md bg-purple-100 text-purple-800 flex items-center justify-center text-xs font-black">3</span>
+                <span>I find _____________ a useful sport for my health.</span>
+              </span>
+              <button type="button" onclick="speakText('I find ... a useful sport for my health.')" class="text-purple-600 p-1"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs sm:text-sm">
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b3" value="A" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">A. swim</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b3" value="B" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">B. swimming</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b3" value="C" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">C. swimmer</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b3" value="D" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">D. swam</span>
+              </label>
+            </div>
+            <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+          </div>
+
+          <!-- B4 -->
+          <div class="question-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="b4" data-correct="A">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-md bg-purple-100 text-purple-800 flex items-center justify-center text-xs font-black">4</span>
+                <span>_________ is your favourite hobby?</span>
+              </span>
+              <button type="button" onclick="speakText('What is your favourite hobby?')" class="text-purple-600 p-1"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs sm:text-sm">
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b4" value="A" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">A. What</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b4" value="B" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">B. Where</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b4" value="C" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">C. Which</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b4" value="D" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">D. When</span>
+              </label>
+            </div>
+            <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+          </div>
+
+          <!-- B5 -->
+          <div class="question-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="b5" data-correct="D">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-md bg-purple-100 text-purple-800 flex items-center justify-center text-xs font-black">5</span>
+                <span>It is really hot and sunny at noon, so you might get _________</span>
+              </span>
+              <button type="button" onclick="speakText('It is really hot and sunny at noon, so you might get sunburn')" class="text-purple-600 p-1"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs sm:text-sm">
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b5" value="A" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">A. stomachache</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b5" value="B" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">B. earache</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b5" value="C" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">C. chapped lips</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b5" value="D" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">D. sunburn</span>
+              </label>
+            </div>
+            <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+          </div>
+
+          <!-- B6 -->
+          <div class="question-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="b6" data-correct="C">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-md bg-purple-100 text-purple-800 flex items-center justify-center text-xs font-black">6</span>
+                <span>___________ girls have acnes than the boys.</span>
+              </span>
+              <button type="button" onclick="speakText('More girls have acne than the boys.')" class="text-purple-600 p-1"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs sm:text-sm">
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b6" value="A" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">A. Little</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b6" value="B" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">B. Few</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b6" value="C" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">C. More</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b6" value="D" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">D. A lot</span>
+              </label>
+            </div>
+            <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+          </div>
+
+          <!-- B7 -->
+          <div class="question-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="b7" data-correct="B">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-md bg-purple-100 text-purple-800 flex items-center justify-center text-xs font-black">7</span>
+                <span>We helped the elderly in a village _________.</span>
+              </span>
+              <button type="button" onclick="speakText('We helped the elderly in a village last week.')" class="text-purple-600 p-1"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs sm:text-sm">
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b7" value="A" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">A. next week</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b7" value="B" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">B. last week</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b7" value="C" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">C. tomorrow</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b7" value="D" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">D. now</span>
+              </label>
+            </div>
+            <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+          </div>
+
+          <!-- B8 -->
+          <div class="question-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="b8" data-correct="D">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-md bg-purple-100 text-purple-800 flex items-center justify-center text-xs font-black">8</span>
+                <span>Lan wants to join clean-up activities _________ these activities make our neighbor cleaner.</span>
+              </span>
+              <button type="button" onclick="speakText('Lan wants to join clean up activities because these activities make our neighbor cleaner')" class="text-purple-600 p-1"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs sm:text-sm">
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b8" value="A" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">A. so</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b8" value="B" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">B. and</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b8" value="C" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">C. for</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b8" value="D" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">D. because</span>
+              </label>
+            </div>
+            <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+          </div>
+
+          <!-- B9 -->
+          <div class="question-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="b9" data-correct="B">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-md bg-purple-100 text-purple-800 flex items-center justify-center text-xs font-black">9</span>
+                <span>You ___________ eat too much fast food.</span>
+              </span>
+              <button type="button" onclick="speakText('You shouldn\'t eat too much fast food.')" class="text-purple-600 p-1"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs sm:text-sm">
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b9" value="A" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">A. should</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b9" value="B" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">B. shouldn't</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b9" value="C" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">C. will</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b9" value="D" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">D. won't</span>
+              </label>
+            </div>
+            <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+          </div>
+
+          <!-- B10 -->
+          <div class="question-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="b10" data-correct="A">
+            <div class="flex items-start justify-between gap-2 mb-2">
+              <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                <span class="w-6 h-6 rounded-md bg-purple-100 text-purple-800 flex items-center justify-center text-xs font-black">10</span>
+                <span>Nam: "Let’s go swimming this weekend." – Nga: "____________."</span>
+              </span>
+              <button type="button" onclick="speakText('Nam: Let’s go swimming this weekend. Nga: That’s a good idea.')" class="text-purple-600 p-1"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b10" value="A" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">A. That’s a good idea.</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b10" value="B" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">B. You’re welcome.</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b10" value="C" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">C. Yes, you’re right.</span>
+              </label>
+              <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                <input type="radio" name="b10" value="D" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">D. No, I don’t.</span>
+              </label>
+            </div>
+            <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+          </div>
+
+        </div>
+
+        <!-- Section II: Verb forms (Converted to mobile-optimized multiple choice) -->
+        <div class="mt-8 pt-6 border-t border-slate-200">
+          <h3 class="font-bold text-slate-700 text-sm mb-3">
+            II. Give the correct form of the verbs in the brackets to complete the sentence. (0.6 pts)
+          </h3>
+
+          <div class="space-y-4" id="lang-focus-ii">
+            <!-- V1 -->
+            <div class="question-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="v1" data-correct="cycles">
+              <div class="flex items-start justify-between gap-2 mb-2">
+                <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-md bg-purple-100 text-purple-800 flex items-center justify-center text-xs font-black">1</span>
+                  <span>Every day my mother (cycle) ________________ to the market.</span>
+                </span>
+                <button type="button" onclick="speakText('Every day my mother cycles to the market.')" class="text-purple-600 p-1"><i class="fa-solid fa-volume-high"></i></button>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs sm:text-sm">
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="v1" value="cycles" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">A. cycles</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="v1" value="cycling" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">B. cycling</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="v1" value="cycled" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">C. cycled</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="v1" value="cycle" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">D. cycle</span>
+                </label>
+              </div>
+              <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+            <!-- V2 -->
+            <div class="question-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="v2" data-correct="making">
+              <div class="flex items-start justify-between gap-2 mb-2">
+                <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-md bg-purple-100 text-purple-800 flex items-center justify-center text-xs font-black">2</span>
+                  <span>Mr. John doesn’t like (make) _________________ models.</span>
+                </span>
+                <button type="button" onclick="speakText('Mr John doesn’t like making models.')" class="text-purple-600 p-1"><i class="fa-solid fa-volume-high"></i></button>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs sm:text-sm">
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="v2" value="make" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">A. make</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="v2" value="making" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">B. making</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="v2" value="makes" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">C. makes</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="v2" value="made" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">D. made</span>
+                </label>
+              </div>
+              <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+            <!-- V3 -->
+            <div class="question-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="v3" data-correct="gave">
+              <div class="flex items-start justify-between gap-2 mb-2">
+                <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-md bg-purple-100 text-purple-800 flex items-center justify-center text-xs font-black">3</span>
+                  <span>They (give) ________________ warm clothes to homeless people last week.</span>
+                </span>
+                <button type="button" onclick="speakText('They gave warm clothes to homeless people last week.')" class="text-purple-600 p-1"><i class="fa-solid fa-volume-high"></i></button>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs sm:text-sm">
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="v3" value="give" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">A. give</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="v3" value="gives" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">B. gives</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="v3" value="gave" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">C. gave</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="v3" value="giving" class="w-4 h-4 text-purple-600 mr-2" onchange="markAnswered()"><span class="flex-grow">D. is giving</span>
+                </label>
+              </div>
+              <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= PART C: READING ================= -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-4 sm:p-6 mb-6">
+        <div class="flex items-center justify-between border-b pb-3 mb-4">
+          <div class="flex items-center gap-2.5">
+            <span class="bg-emerald-600 text-white text-xs font-black px-3 py-1 rounded-lg">PART C</span>
+            <h2 class="text-base sm:text-lg font-bold text-slate-800 font-display">READING (2.6 points)</h2>
+          </div>
+          <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">10 câu hỏi</span>
+        </div>
+
+        <!-- Section I: Cloze Test -->
+        <div class="mb-8">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="font-bold text-slate-700 text-sm">
+              I. Circle the best answer A, B, C or D to complete the passage. (1.0 pt)
+            </h3>
+            <button type="button" onclick="speakPassage('cloze-passage-text')" class="text-xs text-emerald-700 font-semibold hover:underline flex items-center gap-1">
+              <i class="fa-solid fa-volume-high"></i> Đọc cả bài
+            </button>
+          </div>
+
+          <!-- Reading passage container -->
+          <div id="cloze-passage-text" class="bg-emerald-50/50 p-4 rounded-xl border border-emerald-100 text-slate-700 text-xs sm:text-sm leading-relaxed mb-4">
+            <h4 class="font-bold text-center text-emerald-900 mb-2 uppercase text-xs tracking-wider">Volunteer Work among Vietnamese Students</h4>
+            <p class="mb-2">
+              <b>Hue, 17 years old:</b> Being able to make a difference in the lives of people is a wonderful thing to me. That’s why I take part <b>(1)</b> __________ volunteer work. I’ve been a volunteer for over three years. Once or twice a week, usually on weekends, I teach English <b>(2)</b> __________ Math to poor children in Long Bien district. My friends and I also encourage other people to donate books to them. We also tutor some young children who can’t go to school.
+            </p>
+            <p>
+              <b>Ngan, 13 years old:</b> My family spends one Saturday morning a month <b>(3)</b> __________ rubbish or planting trees in our neighborhood. We are not forced or paid to do it, but we enjoy it. In our village, most families volunteer to do this once <b>(4)</b> __________ month. We cook and give food to patients in some hospitals. My parents also donate their blood once or twice a year to <b>(5)</b> __________ sick people. At the end of each year, people in my village raise money for poor and homeless people. We love helping others.
+            </p>
+          </div>
+
+          <div class="space-y-4" id="cloze-questions">
+            <!-- C1 -->
+            <div class="question-card p-3 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="c1" data-correct="A">
+              <div class="flex items-start justify-between gap-2 mb-2">
+                <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-md bg-emerald-100 text-emerald-800 flex items-center justify-center text-xs font-black">(1)</span>
+                  <span>take part _________ volunteer work</span>
+                </span>
+                <button type="button" onclick="speakText('take part in volunteer work')" class="text-emerald-600 p-1"><i class="fa-solid fa-volume-high"></i></button>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs sm:text-sm">
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="c1" value="A" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">A. in</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="c1" value="B" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">B. on</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="c1" value="C" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">C. at</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="c1" value="D" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">D. off</span>
+                </label>
+              </div>
+              <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+            <!-- C2 -->
+            <div class="question-card p-3 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="c2" data-correct="B">
+              <div class="flex items-start justify-between gap-2 mb-2">
+                <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-md bg-emerald-100 text-emerald-800 flex items-center justify-center text-xs font-black">(2)</span>
+                  <span>teach English _________ Math to poor children</span>
+                </span>
+                <button type="button" onclick="speakText('teach English and Math')" class="text-emerald-600 p-1"><i class="fa-solid fa-volume-high"></i></button>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs sm:text-sm">
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="c2" value="A" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">A. but</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="c2" value="B" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">B. and</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="c2" value="C" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">C. so</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="c2" value="D" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">D. or</span>
+                </label>
+              </div>
+              <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+            <!-- C3 -->
+            <div class="question-card p-3 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="c3" data-correct="A">
+              <div class="flex items-start justify-between gap-2 mb-2">
+                <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-md bg-emerald-100 text-emerald-800 flex items-center justify-center text-xs font-black">(3)</span>
+                  <span>spends one Saturday morning a month ___________ rubbish</span>
+                </span>
+                <button type="button" onclick="speakText('spends one Saturday morning a month collecting rubbish')" class="text-emerald-600 p-1"><i class="fa-solid fa-volume-high"></i></button>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs sm:text-sm">
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="c3" value="A" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">A. collecting</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="c3" value="B" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">B. donating</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="c3" value="C" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">C. tutoring</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="c3" value="D" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">D. giving</span>
+                </label>
+              </div>
+              <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+            <!-- C4 -->
+            <div class="question-card p-3 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="c4" data-correct="D">
+              <div class="flex items-start justify-between gap-2 mb-2">
+                <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-md bg-emerald-100 text-emerald-800 flex items-center justify-center text-xs font-black">(4)</span>
+                  <span>volunteer to do this once __________ month</span>
+                </span>
+                <button type="button" onclick="speakText('once a month')" class="text-emerald-600 p-1"><i class="fa-solid fa-volume-high"></i></button>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs sm:text-sm">
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="c4" value="A" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">A. X (no article)</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="c4" value="B" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">B. an</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="c4" value="C" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">C. the</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="c4" value="D" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">D. a</span>
+                </label>
+              </div>
+              <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+            <!-- C5 -->
+            <div class="question-card p-3 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="c5" data-correct="C">
+              <div class="flex items-start justify-between gap-2 mb-2">
+                <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-md bg-emerald-100 text-emerald-800 flex items-center justify-center text-xs font-black">(5)</span>
+                  <span>donate their blood once or twice a year to _________ sick people</span>
+                </span>
+                <button type="button" onclick="speakText('donate their blood to help sick people')" class="text-emerald-600 p-1"><i class="fa-solid fa-volume-high"></i></button>
+              </div>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-xs sm:text-sm">
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="c5" value="A" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">A. take</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="c5" value="B" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">B. teach</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="c5" value="C" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">C. help</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="c5" value="D" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">D. offer</span>
+                </label>
+              </div>
+              <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Section II: Reading Comprehension -->
+        <div class="pt-6 border-t border-slate-200">
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="font-bold text-slate-700 text-sm">
+              II. Read the following passage and answer the questions. (1.6 pts)
+            </h3>
+            <button type="button" onclick="speakPassage('mike-passage-text')" class="text-xs text-emerald-700 font-semibold hover:underline flex items-center gap-1">
+              <i class="fa-solid fa-volume-high"></i> Đọc cả bài
+            </button>
+          </div>
+
+          <!-- Passage Container -->
+          <div id="mike-passage-text" class="bg-amber-50/60 p-4 rounded-xl border border-amber-200 text-slate-700 text-xs sm:text-sm leading-relaxed mb-4">
+            <h4 class="font-bold text-center text-amber-900 mb-2 uppercase text-xs tracking-wider">MIKE’S HOBBIES AND INTERESTS</h4>
+            <p class="mb-2">
+              Mike likes to spend most of his free time at home. He is tired after work, and usually relaxes in front of the TV for an hour. Sometimes, instead of watching TV, he reads news on the Internet, and about once a week, he sends an email to his family in Vietnam.
+            </p>
+            <p>
+              Mike is also very musical. He enjoys playing the piano and the drums, but his favorite musical instrument to play is the guitar. He plays the guitar in a band. They usually practice <b><u>it</u></b> at weekends, at his friend Paul’s house. In the past, they practiced in Paul’s house but his neighbor said that they were so noisy. Now they are practicing it in the garden.
+            </p>
+          </div>
+
+          <p class="text-xs text-slate-500 italic mb-3">
+            <i class="fa-solid fa-mobile-screen mr-1 text-blue-600"></i> Các câu hỏi tự luận ngắn đã được chuyển thành dạng trắc nghiệm A, B, C tiện lợi cho điện thoại di động:
+          </p>
+
+          <div class="space-y-4" id="reading-comp-questions">
+            
+            <!-- RC 1 -->
+            <div class="question-card p-3 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="rc1" data-correct="A">
+              <div class="flex items-start justify-between gap-2 mb-2">
+                <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-md bg-amber-100 text-amber-800 flex items-center justify-center text-xs font-black">1</span>
+                  <span>Where does Mike like to spend his free time?</span>
+                </span>
+                <button type="button" onclick="speakText('Where does Mike like to spend his free time?')" class="text-emerald-600 p-1"><i class="fa-solid fa-volume-high"></i></button>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="rc1" value="A" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">A. At home.</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="rc1" value="B" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">B. In a garden.</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="rc1" value="C" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">C. At Paul’s house.</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="rc1" value="D" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">D. In Vietnam.</span>
+                </label>
+              </div>
+              <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+            <!-- RC 2 -->
+            <div class="question-card p-3 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="rc2" data-correct="B">
+              <div class="flex items-start justify-between gap-2 mb-2">
+                <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-md bg-amber-100 text-amber-800 flex items-center justify-center text-xs font-black">2</span>
+                  <span>What does the word “it” in line 5 refer to?</span>
+                </span>
+                <button type="button" onclick="speakText('What does the word it in line 5 refer to?')" class="text-emerald-600 p-1"><i class="fa-solid fa-volume-high"></i></button>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="rc2" value="A" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">A. The piano</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="rc2" value="B" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">B. The guitar</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="rc2" value="C" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">C. The drums</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="rc2" value="D" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">D. The TV</span>
+                </label>
+              </div>
+              <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+            <!-- RC 3 -->
+            <div class="question-card p-3 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="rc3" data-correct="B">
+              <div class="flex items-start justify-between gap-2 mb-2">
+                <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-md bg-amber-100 text-amber-800 flex items-center justify-center text-xs font-black">3</span>
+                  <span>How often does he send an email to his family?</span>
+                </span>
+                <button type="button" onclick="speakText('How often does he send an email to his family?')" class="text-emerald-600 p-1"><i class="fa-solid fa-volume-high"></i></button>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs sm:text-sm">
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="rc3" value="A" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">A. Every day.</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="rc3" value="B" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">B. About once a week.</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="rc3" value="C" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">C. Twice a month.</span>
+                </label>
+                <label class="option-label flex items-center p-2.5 rounded-xl border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                  <input type="radio" name="rc3" value="D" class="w-4 h-4 text-emerald-600 mr-2" onchange="markAnswered()"><span class="flex-grow">D. On weekends.</span>
+                </label>
+              </div>
+              <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+            <!-- RC 4 (True/False) -->
+            <div class="question-card p-3 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="rc4" data-correct="T">
+              <div class="flex items-start justify-between gap-2 mb-2">
+                <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-md bg-amber-100 text-amber-800 flex items-center justify-center text-xs font-black">4</span>
+                  <span>Mike and his band practice the guitar on Saturdays and Sunday.</span>
+                </span>
+                <button type="button" onclick="speakText('Mike and his band practice the guitar on Saturdays and Sunday.')" class="text-emerald-600 p-1"><i class="fa-solid fa-volume-high"></i></button>
+              </div>
+              <div class="flex items-center gap-3">
+                <label class="inline-flex items-center px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50 cursor-pointer">
+                  <input type="radio" name="rc4" value="T" class="text-emerald-600" onchange="markAnswered()">
+                  <span class="ml-1.5 text-xs font-bold text-emerald-700">T (True)</span>
+                </label>
+                <label class="inline-flex items-center px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50 cursor-pointer">
+                  <input type="radio" name="rc4" value="F" class="text-emerald-600" onchange="markAnswered()">
+                  <span class="ml-1.5 text-xs font-bold text-rose-700">F (False)</span>
+                </label>
+              </div>
+              <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+            <!-- RC 5 (True/False) -->
+            <div class="question-card p-3 sm:p-4 rounded-xl border border-slate-200 bg-white" data-qid="rc5" data-correct="F">
+              <div class="flex items-start justify-between gap-2 mb-2">
+                <span class="font-bold text-sm text-slate-800 flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-md bg-amber-100 text-amber-800 flex items-center justify-center text-xs font-black">5</span>
+                  <span>They are practicing the piano in the garden.</span>
+                </span>
+                <button type="button" onclick="speakText('They are practicing the piano in the garden.')" class="text-emerald-600 p-1"><i class="fa-solid fa-volume-high"></i></button>
+              </div>
+              <div class="flex items-center gap-3">
+                <label class="inline-flex items-center px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50 cursor-pointer">
+                  <input type="radio" name="rc5" value="T" class="text-emerald-600" onchange="markAnswered()">
+                  <span class="ml-1.5 text-xs font-bold text-emerald-700">T (True)</span>
+                </label>
+                <label class="inline-flex items-center px-3 py-1.5 rounded-lg border border-slate-300 hover:bg-slate-50 cursor-pointer">
+                  <input type="radio" name="rc5" value="F" class="text-emerald-600" onchange="markAnswered()">
+                  <span class="ml-1.5 text-xs font-bold text-rose-700">F (False)</span>
+                </label>
+              </div>
+              <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= PART D: WRITING ================= -->
+      <div class="bg-white rounded-2xl shadow-sm border border-slate-200/90 p-4 sm:p-6 mb-6">
+        <div class="flex items-center justify-between border-b pb-3 mb-4">
+          <div class="flex items-center gap-2.5">
+            <span class="bg-rose-600 text-white text-xs font-black px-3 py-1 rounded-lg">PART D</span>
+            <h2 class="text-base sm:text-lg font-bold text-slate-800 font-display">WRITING (Interactive Word Chips)</h2>
+          </div>
+          <span class="text-xs font-semibold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full">7 câu hỏi</span>
+        </div>
+
+        <div class="bg-rose-50 border border-rose-200 rounded-xl p-3 text-xs text-rose-800 mb-5 flex items-start gap-2">
+          <i class="fa-solid fa-lightbulb text-rose-500 text-sm mt-0.5"></i>
+          <div>
+            <b>Hướng dẫn thao tác trên điện thoại:</b>
+            <p>1. Chạm vào các từ bên dưới (được xếp lộn xộn) để đưa từ vào câu trả lời.</p>
+            <p>2. Muốn bỏ từ nào đã chọn, chỉ cần chạm lại vào từ đó trong khung câu trả lời.</p>
+          </div>
+        </div>
+
+        <!-- Section I: Arrange sentences -->
+        <div class="mb-8">
+          <h3 class="font-bold text-slate-700 text-sm mb-3">
+            I. Put the words in order to make a sentence. (0.6 pts)
+          </h3>
+
+          <div class="space-y-6" id="writing-arrange-list">
+            
+            <!-- W1 -->
+            <div class="writing-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-wid="w1" data-target="We donated books and clothes to homeless children.">
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-xs sm:text-sm text-slate-800 flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-md bg-rose-100 text-rose-800 flex items-center justify-center text-xs font-black">1</span>
+                  <span>books / homeless / We / and clothes / to / children / donated / .</span>
+                </span>
+                <button type="button" onclick="resetChips('w1')" class="text-xs text-slate-500 hover:text-rose-600 transition flex items-center gap-1">
+                  <i class="fa-solid fa-arrow-rotate-left"></i> Làm lại
+                </button>
+              </div>
+
+              <!-- Answer drop box -->
+              <div class="min-h-[50px] p-2.5 bg-slate-50 border-2 border-dashed border-slate-300 rounded-xl flex flex-wrap gap-1.5 items-center mb-3 transition" id="w1-answer">
+                <span class="text-xs text-slate-400 italic placeholder-text">Chạm các từ bên dưới để ghép câu...</span>
+              </div>
+
+              <!-- Scrambled words pool -->
+              <div class="flex flex-wrap gap-2" id="w1-pool"></div>
+              <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+            <!-- W2 -->
+            <div class="writing-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-wid="w2" data-target="My brother loves making model cars and planes.">
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-xs sm:text-sm text-slate-800 flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-md bg-rose-100 text-rose-800 flex items-center justify-center text-xs font-black">2</span>
+                  <span>making / cars / My / loves / model / and / brother / planes / .</span>
+                </span>
+                <button type="button" onclick="resetChips('w2')" class="text-xs text-slate-500 hover:text-rose-600 transition flex items-center gap-1">
+                  <i class="fa-solid fa-arrow-rotate-left"></i> Làm lại
+                </button>
+              </div>
+
+              <!-- Answer drop box -->
+              <div class="min-h-[50px] p-2.5 bg-slate-50 border-2 border-dashed border-slate-300 rounded-xl flex flex-wrap gap-1.5 items-center mb-3 transition" id="w2-answer">
+                <span class="text-xs text-slate-400 italic placeholder-text">Chạm các từ bên dưới để ghép câu...</span>
+              </div>
+
+              <!-- Scrambled words pool -->
+              <div class="flex flex-wrap gap-2" id="w2-pool"></div>
+              <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+            <!-- W3 -->
+            <div class="writing-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-wid="w3" data-target="The weather is hot and sunny at noon, so you might get sunburn.">
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-bold text-xs sm:text-sm text-slate-800 flex items-center gap-2">
+                  <span class="w-6 h-6 rounded-md bg-rose-100 text-rose-800 flex items-center justify-center text-xs font-black">3</span>
+                  <span>hot / The weather / at noon / and sunny / is / , / you / get / so / sunburn / might / .</span>
+                </span>
+                <button type="button" onclick="resetChips('w3')" class="text-xs text-slate-500 hover:text-rose-600 transition flex items-center gap-1">
+                  <i class="fa-solid fa-arrow-rotate-left"></i> Làm lại
+                </button>
+              </div>
+
+              <!-- Answer drop box -->
+              <div class="min-h-[50px] p-2.5 bg-slate-50 border-2 border-dashed border-slate-300 rounded-xl flex flex-wrap gap-1.5 items-center mb-3 transition" id="w3-answer">
+                <span class="text-xs text-slate-400 italic placeholder-text">Chạm các từ bên dưới để ghép câu...</span>
+              </div>
+
+              <!-- Scrambled words pool -->
+              <div class="flex flex-wrap gap-2" id="w3-pool"></div>
+              <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Section II: Sentence Transformation -->
+        <div class="pt-6 border-t border-slate-200">
+          <h3 class="font-bold text-slate-700 text-sm mb-3">
+            II. Rewrite each of the sentences so that it means the same as the one before it. (0.8 pts)
+          </h3>
+
+          <div class="space-y-6" id="writing-rewrite-list">
+            
+            <!-- RW 1 -->
+            <div class="writing-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-wid="rw1" data-target="We avoid sweetened food and soft drinks.">
+              <div class="flex items-start justify-between gap-2 mb-1">
+                <div>
+                  <span class="font-bold text-xs sm:text-sm text-slate-800">
+                    <span class="w-6 h-6 inline-flex rounded-md bg-rose-100 text-rose-800 items-center justify-center text-xs font-black mr-1">1</span>
+                    We avoid sweetened food. We avoid soft drinks.
+                  </span>
+                  <p class="text-xs text-rose-700 font-semibold mt-0.5">➔ Viết lại bắt đầu bằng: <i>We avoid...</i></p>
+                </div>
+                <button type="button" onclick="resetChips('rw1')" class="text-xs text-slate-500 hover:text-rose-600 transition flex items-center gap-1">
+                  <i class="fa-solid fa-arrow-rotate-left"></i> Làm lại
+                </button>
+              </div>
+
+              <!-- Answer drop box -->
+              <div class="min-h-[50px] p-2.5 bg-slate-50 border-2 border-dashed border-slate-300 rounded-xl flex flex-wrap gap-1.5 items-center mb-3 transition" id="rw1-answer">
+                <span class="text-xs text-slate-400 italic placeholder-text">Chạm các từ bên dưới để ghép câu hoàn chỉnh...</span>
+              </div>
+
+              <!-- Pool -->
+              <div class="flex flex-wrap gap-2" id="rw1-pool"></div>
+              <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+            <!-- RW 2 -->
+            <div class="writing-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-wid="rw2" data-target="They are interested in building dollhouses very much.">
+              <div class="flex items-start justify-between gap-2 mb-1">
+                <div>
+                  <span class="font-bold text-xs sm:text-sm text-slate-800">
+                    <span class="w-6 h-6 inline-flex rounded-md bg-rose-100 text-rose-800 items-center justify-center text-xs font-black mr-1">2</span>
+                    They like building dollhouses very much.
+                  </span>
+                  <p class="text-xs text-rose-700 font-semibold mt-0.5">➔ Viết lại bắt đầu bằng: <i>They are...</i></p>
+                </div>
+                <button type="button" onclick="resetChips('rw2')" class="text-xs text-slate-500 hover:text-rose-600 transition flex items-center gap-1">
+                  <i class="fa-solid fa-arrow-rotate-left"></i> Làm lại
+                </button>
+              </div>
+
+              <!-- Answer drop box -->
+              <div class="min-h-[50px] p-2.5 bg-slate-50 border-2 border-dashed border-slate-300 rounded-xl flex flex-wrap gap-1.5 items-center mb-3 transition" id="rw2-answer">
+                <span class="text-xs text-slate-400 italic placeholder-text">Chạm các từ bên dưới để ghép câu hoàn chỉnh...</span>
+              </div>
+
+              <!-- Pool -->
+              <div class="flex flex-wrap gap-2" id="rw2-pool"></div>
+              <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+            <!-- RW 3 -->
+            <div class="writing-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-wid="rw3" data-target="Although he performed excellently, he didn't win an Oscar for Best Actor.">
+              <div class="flex items-start justify-between gap-2 mb-1">
+                <div>
+                  <span class="font-bold text-xs sm:text-sm text-slate-800">
+                    <span class="w-6 h-6 inline-flex rounded-md bg-rose-100 text-rose-800 items-center justify-center text-xs font-black mr-1">3</span>
+                    He performed excellently, but he didn’t win an Oscar for Best Actor.
+                  </span>
+                  <p class="text-xs text-rose-700 font-semibold mt-0.5">➔ Viết lại bắt đầu bằng: <i>Although...</i></p>
+                </div>
+                <button type="button" onclick="resetChips('rw3')" class="text-xs text-slate-500 hover:text-rose-600 transition flex items-center gap-1">
+                  <i class="fa-solid fa-arrow-rotate-left"></i> Làm lại
+                </button>
+              </div>
+
+              <!-- Answer drop box -->
+              <div class="min-h-[50px] p-2.5 bg-slate-50 border-2 border-dashed border-slate-300 rounded-xl flex flex-wrap gap-1.5 items-center mb-3 transition" id="rw3-answer">
+                <span class="text-xs text-slate-400 italic placeholder-text">Chạm các từ bên dưới để ghép câu hoàn chỉnh...</span>
+              </div>
+
+              <!-- Pool -->
+              <div class="flex flex-wrap gap-2" id="rw3-pool"></div>
+              <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+            <!-- RW 4 -->
+            <div class="writing-card p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-white" data-wid="rw4" data-target="I find watching movies interesting.">
+              <div class="flex items-start justify-between gap-2 mb-1">
+                <div>
+                  <span class="font-bold text-xs sm:text-sm text-slate-800">
+                    <span class="w-6 h-6 inline-flex rounded-md bg-rose-100 text-rose-800 items-center justify-center text-xs font-black mr-1">4</span>
+                    I think watching movies is interesting.
+                  </span>
+                  <p class="text-xs text-rose-700 font-semibold mt-0.5">➔ Viết lại bắt đầu bằng: <i>I find...</i></p>
+                </div>
+                <button type="button" onclick="resetChips('rw4')" class="text-xs text-slate-500 hover:text-rose-600 transition flex items-center gap-1">
+                  <i class="fa-solid fa-arrow-rotate-left"></i> Làm lại
+                </button>
+              </div>
+
+              <!-- Answer drop box -->
+              <div class="min-h-[50px] p-2.5 bg-slate-50 border-2 border-dashed border-slate-300 rounded-xl flex flex-wrap gap-1.5 items-center mb-3 transition" id="rw4-answer">
+                <span class="text-xs text-slate-400 italic placeholder-text">Chạm các từ bên dưới để ghép câu hoàn chỉnh...</span>
+              </div>
+
+              <!-- Pool -->
+              <div class="flex flex-wrap gap-2" id="rw4-pool"></div>
+              <div class="explanation-box hidden mt-3 p-3 rounded-lg text-xs bg-slate-50 border"></div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Fixed Action Bar -->
+      <div class="sticky bottom-3 z-30 max-w-4xl mx-auto w-full">
+        <div class="bg-white/95 backdrop-blur-md p-3.5 rounded-2xl shadow-2xl border border-slate-200/90 flex items-center justify-between gap-3">
+          <div class="flex items-center space-x-2 text-xs text-slate-600">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+            <span class="hidden sm:inline font-medium">Kiểm tra kỹ trước khi nộp bài</span>
+          </div>
+          
+          <button type="submit" id="btn-submit" class="px-6 sm:px-8 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold text-sm sm:text-base shadow-lg shadow-blue-500/30 transition transform active:scale-95 flex items-center gap-2">
+            <i class="fa-solid fa-paper-plane"></i>
+            <span>NỘP BÀI THI & CHẤM ĐIỂM</span>
+          </button>
+        </div>
+      </div>
+
+    </form>
+  </main>
+
+  <div id="toast-modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+    <div class="bg-white rounded-2xl p-6 max-w-sm w-full shadow-2xl text-center border">
+      <div id="toast-icon" class="w-12 h-12 rounded-full mx-auto flex items-center justify-center text-xl mb-3"></div>
+      <h3 id="toast-title" class="text-base font-bold text-slate-800 mb-1">Thông báo</h3>
+      <p id="toast-message" class="text-xs sm:text-sm text-slate-600 mb-4"></p>
+      <button onclick="closeToast()" class="w-full py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm transition">
+        Đã hiểu
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // --- Application State ---
+    let examFinished = false;
+    let timerSeconds = 60 * 60; // 60 minutes
+    let timerInterval = null;
+    let isMuted = false;
+
+    // --- Word Chips Data for Writing Section ---
+    const writingData = {
+      w1: {
+        pool: ["homeless", "books", "children", "We", "and clothes", "to", "donated", "."],
+        selected: [],
+        target: "We donated books and clothes to homeless children.",
+        altTarget: "We donated clothes and books to homeless children."
+      },
+      w2: {
+        pool: ["cars", "making", "planes", "loves", "My", "brother", "and", "model", "."],
+        selected: [],
+        target: "My brother loves making model cars and planes.",
+        altTarget: "My brother loves making model planes and cars."
+      },
+      w3: {
+        pool: ["hot", "sunburn", "so", "The weather", "get", "is", "at noon", ",", "and sunny", "might", "you", "."],
+        selected: [],
+        target: "The weather is hot and sunny at noon, so you might get sunburn."
+      },
+      rw1: {
+        pool: ["sweetened food", "avoid", "soft drinks", "We", "and", "."],
+        selected: [],
+        target: "We avoid sweetened food and soft drinks.",
+        altTarget: "We avoid soft drinks and sweetened food."
+      },
+      rw2: {
+        pool: ["building", "interested", "They", "in", "very much", "dollhouses", "are", "."],
+        selected: [],
+        target: "They are interested in building dollhouses very much."
+      },
+      rw3: {
+        pool: ["excellently", "an Oscar", "Although", "he", "for Best Actor", "performed", "didn't win", ",", "he", "."],
+        selected: [],
+        target: "Although he performed excellently, he didn't win an Oscar for Best Actor."
+      },
+      rw4: {
+        pool: ["watching", "find", "movies", "I", "interesting", "."],
+        selected: [],
+        target: "I find watching movies interesting."
+      }
+    };
+
+    // --- Grammar Rules & Explanations Database ---
+    const explanations = {
+      q1: {
+        title: "Đáp án A: folding paper",
+        rule: "Trong bài nghe, Jack nói: 'in my free time I like doing origami. Tom: You mean creating things from paper? Jack: Yes. That's exactly what I do: folding paper.'",
+        vocab: "Origami = folding paper (nghệ thuật gấp giấy)"
+      },
+      q2: {
+        title: "Đáp án B: doing Origami",
+        rule: "Tom hỏi 'What do you often do in your leisure time?' Jack trả lời 'in my free time I like doing origami.'",
+        vocab: "leisure time = free time (thời gian rảnh rỗi)"
+      },
+      q3: {
+        title: "Đáp án D: for two years",
+        rule: "Jack chia sẻ: 'Well, it all started two years ago on my trip to Japan.' (Bắt đầu từ chuyến đi Nhật Bản 2 năm trước).",
+        vocab: "two years ago = for two years (trong 2 năm qua)"
+      },
+      q4: {
+        title: "Đáp án B: It's cheap",
+        rule: "Jack nói: 'It's easy, inexpensive and great to share with others.' Trong đó, 'inexpensive' đồng nghĩa với 'cheap' (rẻ tiền/không tốn kém).",
+        vocab: "inexpensive = cheap (không đắt, rẻ tiền)"
+      },
+      q5: {
+        title: "Đáp án A: give them to his friends",
+        rule: "Jack nói: 'I give some to my friends as birthday gifts, and sell some to get money.'",
+        vocab: "give sth to sb (tặng cái gì cho ai)"
+      },
+      q6: {
+        title: "Đáp án C: A teenager’s hobby",
+        rule: "Đầu bài nghe Tom nói: 'I'm doing a survey on teenagers' hobbies. Can I ask you a few questions?' nên cuộc phỏng vấn là về sở thích của thiếu niên.",
+        vocab: "teenager's hobby (sở thích của thanh thiếu niên)"
+      },
+      tf1: {
+        title: "Đáp án: T (True)",
+        rule: "Trong bài nghe, Linda nói: 'We tutored third-grade children and helped old people... We taught English and Maths.'",
+        vocab: "tutor = teach (dạy kèm)"
+      },
+      tf2: {
+        title: "Đáp án: F (False)",
+        rule: "Linda nói: 'We cooked for them, and did some cleaning too.' chứ không có việc đi chợ mua sắm 'did the shopping'.",
+        vocab: "cook and clean (nấu ăn và dọn dẹp)"
+      },
+      tf3: {
+        title: "Đáp án: F (False)",
+        rule: "Linda nói: 'It made us feel useful.' (Làm chúng tôi cảm thấy có ích), câu đề lại ghi 'unuseful' (vô ích) nên là Sai.",
+        vocab: "useful (có ích, hữu ích)"
+      },
+      tf4: {
+        title: "Đáp án: F (False)",
+        rule: "Tom nói: 'We picked up paper and bottles in a nearby park.' chứ không phải 'books and paper'.",
+        vocab: "pick up paper and bottles (nhặt giấy vụn và chai lọ)"
+      },
+      tf5: {
+        title: "Đáp án: T (True)",
+        rule: "Tom nói: 'We also planted some trees... we watered them very often the first few weeks.'",
+        vocab: "plant and water trees (trồng và tưới cây)"
+      },
+      tf6: {
+        title: "Đáp án: T (True)",
+        rule: "Tom nói ở cuối bài: 'We worked and played together, and we learnt some skills, too.'",
+        vocab: "learn skills (học thêm các kỹ năng mới)"
+      },
+      b1: {
+        title: "Đáp án A: volunteered",
+        rule: "Quy tắc phát âm đuôi '-ed':\n• volunteer<u>ed</u> phát âm là /d/ (sau âm rung /r/).\n• affect<u>ed</u>, decid<u>ed</u>, donat<u>ed</u> đều có tận cùng là /t/ hoặc /d/ nên phát âm là /ɪd/.",
+        vocab: "Phát âm -ed: /ɪd/ sau âm /t/ và /d/"
+      },
+      b2: {
+        title: "Đáp án C: prefer",
+        rule: "Phần gạch chân 'er':\n• pref<u>er</u> phát âm là /ɜː/ (trọng âm rơi vào âm tiết thứ 2).\n• swimm<u>er</u>, sist<u>er</u>, work<u>er</u> đều phát âm là âm ngắn /ə/ (âm nhẹ không mang trọng âm).",
+        vocab: "Âm /ɜː/ (dài, có trọng âm) vs /ə/ (ngắn, nhẹ)"
+      },
+      b3: {
+        title: "Đáp án B: swimming",
+        rule: "Cấu trúc: 'find + V-ing / Noun + adj' (thấy việc gì như thế nào). Ta dùng danh động từ 'swimming' làm tân ngữ.",
+        vocab: "find + V-ing + adj: I find swimming useful"
+      },
+      b4: {
+        title: "Đáp án A: What",
+        rule: "Hỏi sở thích yêu thích của bạn là gì: 'What is your favourite hobby?'",
+        vocab: "What is your favourite + N...?"
+      },
+      b5: {
+        title: "Đáp án D: sunburn",
+        rule: "Ngữ cảnh: 'really hot and sunny at noon' (trời rất nắng nóng vào buổi trưa) ➔ có thể bị cháy nắng (get sunburn).",
+        vocab: "sunburn (cháy nắng), chapped lips (môi nứt nẻ)"
+      },
+      b6: {
+        title: "Đáp án C: More",
+        rule: "Trong câu có từ so sánh 'than': dùng 'More + N(số nhiều) + than' (Nhiều ... hơn).",
+        vocab: "More + plural noun + than"
+      },
+      b7: {
+        title: "Đáp án B: last week",
+        rule: "Động từ chia ở quá khứ đơn 'helped', do đó trạng từ chỉ thời gian phù hợp là 'last week' (tuần trước).",
+        vocab: "Thì Quá khứ đơn: S + V-ed/V2 + last week"
+      },
+      b8: {
+        title: "Đáp án D: because",
+        rule: "Mệnh đề sau giải thích nguyên nhân cho hành động trước: Lan muốn tham gia vì các hoạt động này làm cho xóm làng sạch hơn.",
+        vocab: "because + mệnh đề (chỉ nguyên nhân)"
+      },
+      b9: {
+        title: "Đáp án B: shouldn't",
+        rule: "Khuyên bảo về sức khỏe: 'You shouldn't eat too much fast food' (Bạn không nên ăn quá nhiều thức ăn nhanh).",
+        vocab: "shouldn't + V (không nên làm gì)"
+      },
+      b10: {
+        title: "Đáp án A: That’s a good idea.",
+        rule: "Đáp lại lời rủ rê 'Let’s go swimming' bằng lời đồng ý hào hứng: 'That’s a good idea.' (Ý kiến hay đấy).",
+        vocab: "Lời đề nghị: Let's + V ➔ That's a good idea!"
+      },
+      v1: {
+        title: "Đáp án A: cycles",
+        rule: "Dấu hiệu 'Every day' chỉ thói quen ở hiện tại đơn. Chủ ngữ 'my mother' (ngôi thứ 3 số ít) ➔ cycle thêm 's' thành 'cycles'.",
+        vocab: "Hiện tại đơn: S(số ít) + V-s/es"
+      },
+      v2: {
+        title: "Đáp án B: making",
+        rule: "Sau động từ chỉ sự yêu/ghét 'like / don't like' dùng danh động từ V-ing: like + making.",
+        vocab: "like / love / hate + V-ing"
+      },
+      v3: {
+        title: "Đáp án C: gave",
+        rule: "Dấu hiệu 'last week' (tuần trước) chia ở thì quá khứ đơn. Động từ bất quy tắc của 'give' là 'gave'.",
+        vocab: "Quá khứ đơn của give ➔ gave"
+      },
+      c1: {
+        title: "Đáp án A: in",
+        rule: "Cụm cố định: 'take part in' = tham gia vào (= participate in).",
+        vocab: "take part in = tham gia"
+      },
+      c2: {
+        title: "Đáp án B: and",
+        rule: "Nối 2 môn học cùng loại: 'English and Math' (Tiếng Anh và Toán).",
+        vocab: "Liên từ 'and' dùng nối 2 từ/vế tương đương"
+      },
+      c3: {
+        title: "Đáp án A: collecting",
+        rule: "Cấu trúc 'spend time + V-ing': dành thời gian làm gì; đi với rác thì dùng 'collecting rubbish' (thu gom rác).",
+        vocab: "spend time V-ing; collect rubbish"
+      },
+      c4: {
+        title: "Đáp án D: a",
+        rule: "Cụm từ chỉ tần suất: 'once a month' (mỗi tháng một lần), 'once a week', 'twice a year'.",
+        vocab: "once a month = mỗi tháng một lần"
+      },
+      c5: {
+        title: "Đáp án C: help",
+        rule: "Chỉ mục đích: 'to help sick people' (để giúp đỡ người bệnh).",
+        vocab: "donate blood to help sb (hiến máu cứu người)"
+      },
+      rc1: {
+        title: "Đáp án A: At home.",
+        rule: "Dẫn chứng dòng 1: 'Mike likes to spend most of his free time at home.'",
+        vocab: "at home = ở nhà"
+      },
+      rc2: {
+        title: "Đáp án B: The guitar",
+        rule: "Dẫn chứng: 'his favorite musical instrument to play is the guitar. He plays the guitar in a band. They usually practice it at weekends...' Từ 'it' thay thế cho 'the guitar'.",
+        vocab: "it = đại từ thay thế cho danh từ số ít đứng trước"
+      },
+      rc3: {
+        title: "Đáp án B: About once a week.",
+        rule: "Dẫn chứng dòng 3: 'and about once a week, he sends an email to his family in Vietnam.'",
+        vocab: "about once a week = khoảng mỗi tuần 1 lần"
+      },
+      rc4: {
+        title: "Đáp án: T (True)",
+        rule: "Dẫn chứng: 'They usually practice it at weekends'. 'At weekends' = 'on Saturdays and Sunday' (vào cuối tuần).",
+        vocab: "at weekends = on Saturdays and Sundays"
+      },
+      rc5: {
+        title: "Đáp án: F (False)",
+        rule: "Dẫn chứng câu cuối: 'Now they are practicing it in the garden.' Từ 'it' ở đây là cây đàn guitar, không phải đàn piano.",
+        vocab: "practice the guitar in the garden"
+      },
+      w1: {
+        title: "We donated books and clothes to homeless children.",
+        rule: "Cấu trúc: S + V(quá khứ) + O + to + sb (Chúng tôi đã quyên góp sách vở và quần áo cho trẻ em vô gia cư).",
+        vocab: "donate sth to sb (quyên góp cái gì cho ai)"
+      },
+      w2: {
+        title: "My brother loves making model cars and planes.",
+        rule: "Cấu trúc: S + love + V-ing + O (Anh trai tôi thích làm mô hình ô tô và máy bay).",
+        vocab: "love + V-ing; make model cars (làm mô hình xe hơi)"
+      },
+      w3: {
+        title: "The weather is hot and sunny at noon, so you might get sunburn.",
+        rule: "Cấu trúc câu ghép với liên từ 'so' chỉ kết quả: Mệnh đề 1 (Thời tiết nắng nóng vào buổi trưa), so + Mệnh đề 2 (nên bạn có thể bị cháy nắng).",
+        vocab: "might + V (có thể làm sao), get sunburn"
+      },
+      rw1: {
+        title: "We avoid sweetened food and soft drinks.",
+        rule: "Kết hợp hai câu có cùng chủ ngữ và động từ 'We avoid': We avoid + N1 + and + N2.",
+        vocab: "sweetened food (đồ ăn nhiều đường), soft drinks (nước ngọt)"
+      },
+      rw2: {
+        title: "They are interested in building dollhouses very much.",
+        rule: "Cấu trúc tương đương: S + like + V-ing = S + be interested in + V-ing (Thích làm việc gì).",
+        vocab: "be interested in + V-ing = like + V-ing"
+      },
+      rw3: {
+        title: "Although he performed excellently, he didn't win an Oscar for Best Actor.",
+        rule: "Chuyển từ câu dùng 'but' sang 'Although': Mệnh đề 1, but Mệnh đề 2 ➔ Although Mệnh đề 1, Mệnh đề 2 (bỏ 'but').",
+        vocab: "Although + clause 1, clause 2 (Mặc dù ... nhưng ...)"
+      },
+      rw4: {
+        title: "I find watching movies interesting.",
+        rule: "Cấu trúc tương đương: S + think + V-ing + is + adj = S + find + V-ing + adj (Thấy việc gì như thế nào).",
+        vocab: "find + V-ing + adj (thấy cái gì như thế nào)"
+      }
+    };
+
+    // --- Sentence-by-Sentence Audio Controller with Reliable Pause / Resume ---
+    const listeningTracks = {
+      task1: {
+        sentences: [
+          "Tom: Hi Jack. I'm doing a survey on teenagers' hobbies. Can I ask you a few questions?",
+          "Jack: Yes, go ahead.",
+          "Tom: Thanks. What do you often do in your leisure time?",
+          "Jack: Well, it's actually not a popular type of hobbies, but in my free time I like doing origami.",
+          "Tom: You mean creating things from paper?",
+          "Jack: Yes. That's exactly what I do, folding paper.",
+          "Tom: How long have you been doing it?",
+          "Jack: Well, it all started two years ago on my trip to Japan. I watched some origami artists folding some paper animals and I liked it.",
+          "Tom: What do you enjoy about it?",
+          "Jack: It's easy, inexpensive and great to share with others.",
+          "Tom: What do you do with the stuff you made?",
+          "Jack: I give some to my friends as birthday gifts, and sell some to get money."
+        ],
+        currentIndex: 0,
+        state: 'stopped', // 'playing' | 'paused' | 'stopped'
+        rate: 0.8
+      },
+      task2: {
+        sentences: [
+          "Tom: So, what did your club do last year?",
+          "Linda: We tutored third-grade children and helped old people.",
+          "Tom: Fantastic! What did you tutor?",
+          "Linda: We taught English and Maths.",
+          "Tom: Awesome! Was it difficult?",
+          "Linda: Yes, but we had a lot of fun.",
+          "Tom: I see. How did you help the elderly?",
+          "Linda: We cooked for them, and did some cleaning too.",
+          "Tom: Great! I'm sure they benefited from it.",
+          "Linda: Thanks. It made us feel useful. How about you?",
+          "Tom: We picked up paper and bottles in a nearby park. We also planted some trees.",
+          "Linda: Fabulous! Did you water them too?",
+          "Tom: Sure, we watered them very often the first few weeks, and enjoyed watching them grow.",
+          "Linda: Glad to hear it, Tom.",
+          "Tom: Yes, it was a really good time. We worked and played together, and we learnt some skills, too."
+        ],
+        currentIndex: 0,
+        state: 'stopped',
+        rate: 0.8
+      }
+    };
+
+    let activeUtterance = null;
+    let currentActiveTask = null;
+
+    function setSpeed(task, rate) {
+      listeningTracks[task].rate = rate;
+      const btnSlow = document.getElementById(`btn-speed-${task}-slow`);
+      const btnNormal = document.getElementById(`btn-speed-${task}-normal`);
+      if (rate === 0.8) {
+        btnSlow.className = `px-2 py-0.5 rounded font-bold transition ${task === 'task1' ? 'bg-amber-500' : 'bg-indigo-600'} text-white`;
+        btnNormal.className = "px-2 py-0.5 rounded font-bold text-slate-600 hover:bg-slate-100 transition";
+      } else {
+        btnNormal.className = `px-2 py-0.5 rounded font-bold transition ${task === 'task1' ? 'bg-amber-500' : 'bg-indigo-600'} text-white`;
+        btnSlow.className = "px-2 py-0.5 rounded font-bold text-slate-600 hover:bg-slate-100 transition";
+      }
+    }
+
+    function togglePlayPause(task) {
+      if (isMuted) {
+        showToast("Vui lòng bật biểu tượng loa ở thanh trên để nghe!", "warning");
+        return;
+      }
+
+      // Check if native MP3 player is active
+      const mp3Player = document.getElementById(`mp3-player-${task}`);
+      if (mp3Player && mp3Player.src) {
+        if (mp3Player.paused) {
+          mp3Player.play();
+          updateButtonUI(task, 'playing');
+        } else {
+          mp3Player.pause();
+          updateButtonUI(task, 'paused');
+        }
+        return;
+      }
+
+      const track = listeningTracks[task];
+
+      // Stop any other task if playing
+      const otherTask = (task === 'task1') ? 'task2' : 'task1';
+      if (listeningTracks[otherTask].state === 'playing') {
+        stopTaskAudio(otherTask);
+      }
+
+      if (track.state === 'stopped') {
+        track.currentIndex = 0;
+        track.state = 'playing';
+        currentActiveTask = task;
+        updateButtonUI(task, 'playing');
+        playSentence(task, track.currentIndex);
+      } else if (track.state === 'playing') {
+        // PAUSE: Cancel speech synthesis but KEEP track.currentIndex
+        track.state = 'paused';
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+        }
+        updateButtonUI(task, 'paused');
+      } else if (track.state === 'paused') {
+        // RESUME: Continue directly from current sentence
+        track.state = 'playing';
+        currentActiveTask = task;
+        updateButtonUI(task, 'playing');
+        playSentence(task, track.currentIndex);
+      }
+    }
+
+    function playSentence(task, index) {
+      const track = listeningTracks[task];
+      if (track.state !== 'playing' || index >= track.sentences.length) {
+        if (index >= track.sentences.length) {
+          stopTaskAudio(task);
+          showToast(`Đã phát xong toàn bộ ${task === 'task1' ? 'Task 1' : 'Task 2'}!`, 'success');
+        }
+        return;
+      }
+
+      track.currentIndex = index;
+      const textToSpeak = track.sentences[index];
+      updateStatusUI(task, `Câu ${index + 1}/${track.sentences.length}`, 'playing');
+
+      if (!('speechSynthesis' in window)) {
+        showToast("Trình duyệt không hỗ trợ phát âm tự động.", "warning");
+        return;
+      }
+
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(textToSpeak);
+      utterance.lang = 'en-US';
+      utterance.rate = track.rate;
+      utterance.pitch = 1.0;
+
+      utterance.onend = () => {
+        if (track.state === 'playing') {
+          // Pause slightly between turns for learner clarity
+          setTimeout(() => {
+            if (track.state === 'playing') {
+              playSentence(task, index + 1);
+            }
+          }, 350);
+        }
+      };
+
+      utterance.onerror = (e) => {
+        if (track.state === 'playing') {
+          stopTaskAudio(task);
+        }
+      };
+
+      activeUtterance = utterance;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function repeatCurrentSentence(task) {
+      if (isMuted) {
+        showToast("Vui lòng bật biểu tượng loa ở thanh trên để nghe!", "warning");
+        return;
+      }
+      const track = listeningTracks[task];
+      track.state = 'playing';
+      updateButtonUI(task, 'playing');
+      playSentence(task, track.currentIndex);
+    }
+
+    function stopTaskAudio(task) {
+      const track = listeningTracks[task];
+      track.state = 'stopped';
+      track.currentIndex = 0;
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      const mp3Player = document.getElementById(`mp3-player-${task}`);
+      if (mp3Player) {
+        mp3Player.pause();
+        mp3Player.currentTime = 0;
+      }
+      updateButtonUI(task, 'stopped');
+      updateStatusUI(task, 'Sẵn sàng', 'stopped');
+    }
+
+    function stopAllAudio() {
+      stopTaskAudio('task1');
+      stopTaskAudio('task2');
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+    }
+
+    function updateButtonUI(task, state) {
+      const btn = document.getElementById(`btn-main-${task}`);
+      const icon = document.getElementById(`icon-main-${task}`);
+      const text = document.getElementById(`text-main-${task}`);
+      if (!btn) return;
+
+      if (state === 'playing') {
+        icon.className = 'fa-solid fa-pause text-sm';
+        text.innerText = 'Tạm dừng';
+        btn.classList.remove('bg-amber-500', 'bg-indigo-600', 'hover:bg-amber-600', 'hover:bg-indigo-700');
+        btn.classList.add('bg-rose-500', 'hover:bg-rose-600');
+      } else if (state === 'paused') {
+        icon.className = 'fa-solid fa-play text-sm';
+        text.innerText = 'Tiếp tục nghe';
+        btn.classList.remove('bg-rose-500', 'hover:bg-rose-600');
+        btn.classList.add(task === 'task1' ? 'bg-emerald-600' : 'bg-emerald-600', 'hover:bg-emerald-700');
+        updateStatusUI(task, `Đã tạm dừng (Câu ${listeningTracks[task].currentIndex + 1})`, 'paused');
+      } else {
+        icon.className = 'fa-solid fa-play text-sm';
+        text.innerText = 'Phát bài nghe';
+        btn.classList.remove('bg-rose-500', 'hover:bg-rose-600', 'bg-emerald-600', 'hover:bg-emerald-700');
+        btn.classList.add(task === 'task1' ? 'bg-amber-500' : 'bg-indigo-600', task === 'task1' ? 'hover:bg-amber-600' : 'hover:bg-indigo-700');
+      }
+    }
+
+    function updateStatusUI(task, message, statusType) {
+      const el = document.getElementById(`status-${task}`);
+      if (!el) return;
+      if (statusType === 'playing') {
+        el.className = 'px-2.5 py-1 rounded-lg bg-emerald-50 text-emerald-700 font-bold border border-emerald-200 flex items-center gap-1.5';
+        el.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Đang phát ${message}`;
+      } else if (statusType === 'paused') {
+        el.className = 'px-2.5 py-1 rounded-lg bg-amber-50 text-amber-800 font-bold border border-amber-300 flex items-center gap-1.5';
+        el.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-500"></span> ${message}`;
+      } else {
+        el.className = 'px-2.5 py-1 rounded-lg bg-slate-100 font-medium text-slate-600 flex items-center gap-1.5 border';
+        el.innerHTML = `<span class="w-2 h-2 rounded-full bg-slate-400"></span> ${message}`;
+      }
+    }
+
+    // Support loading custom MP3 file
+    function loadCustomAudio(event, task) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const url = URL.createObjectURL(file);
+      const container = document.getElementById(`mp3-player-${task}-container`);
+      const player = document.getElementById(`mp3-player-${task}`);
+      if (container && player) {
+        player.src = url;
+        container.classList.remove('hidden');
+        player.play();
+        updateButtonUI(task, 'playing');
+        updateStatusUI(task, file.name, 'playing');
+        player.onpause = () => updateButtonUI(task, 'paused');
+        player.onplay = () => updateButtonUI(task, 'playing');
+        player.onended = () => stopTaskAudio(task);
+        showToast(`Đã nạp file âm thanh: ${file.name}`, 'success');
+      }
+    }
+
+    // --- Audio Voice Engine using Web Speech API ---
+    function speakText(text) {
+      if (isMuted) return;
+      if (!('speechSynthesis' in window)) {
+        showToast("Trình duyệt không hỗ trợ phát âm tự động.", "warning");
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9;
+      utterance.pitch = 1.0;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function speakPassage(elementId) {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+      speakText(el.innerText);
+    }
+
+    function toggleMuteAll() {
+      isMuted = !isMuted;
+      const icon = document.getElementById('mute-icon');
+      if (isMuted) {
+        window.speechSynthesis.cancel();
+        icon.className = 'fa-solid fa-volume-xmark text-lg text-rose-400';
+        showToast("Đã tắt âm thanh.", "info");
+      } else {
+        icon.className = 'fa-solid fa-volume-high text-lg text-white';
+        showToast("Đã bật âm thanh phát âm.", "success");
+      }
+    }
+
+    function stopAllAudio() {
+      window.speechSynthesis.cancel();
+      const btn1 = document.getElementById('text-audio-task1');
+      const btn2 = document.getElementById('text-audio-task2');
+      if (btn1) btn1.innerText = "Nghe Audio Task 1";
+      if (btn2) btn2.innerText = "Nghe Audio Task 2";
+    }
+
+    // Interactive Full Audio Dialogue Simulation for Task 1 and Task 2
+    function playDialogue(task) {
+      if (isMuted) {
+        showToast("Vui lòng bật biểu tượng loa ở thanh trên để nghe!", "warning");
+        return;
+      }
+      window.speechSynthesis.cancel();
+
+      let scriptText = "";
+      if (task === 'task1') {
+        scriptText = "Tom: Hi Jack. I'm doing a survey on teenagers' hobbies. Can I ask you a few questions? Jack: Yes, go ahead. Tom: Thanks. What do you often do in your leisure time? Jack: Well, it's actually not a popular type of hobbies, but in my free time I like doing origami. Tom: You mean creating things from paper? Jack: Yes. That's exactly what I do, folding paper. Tom: How long have you been doing it? Jack: Well, it all started two years ago on my trip to Japan. I watched some origami artists folding some paper animals and I liked it. Tom: What do you enjoy about it? Jack: It's easy, inexpensive and great to share with others. Tom: What do you do with the stuff you made? Jack: I give some to my friends as birthday gifts, and sell some to get money.";
+        document.getElementById('text-audio-task1').innerText = "Đang phát Task 1...";
+      } else if (task === 'task2') {
+        scriptText = "Tom: So, what did your club do last year? Linda: We tutored third-grade children and helped old people. Tom: Fantastic! What did you tutor? Linda: We taught English and Maths. Tom: Awesome! Was it difficult? Linda: Yes, but we had a lot of fun. Tom: I see. How did you help the elderly? Linda: We cooked for them, and did some cleaning too. Tom: Great! I'm sure they benefited from it. Linda: Thanks. It made us feel useful. How about you? Tom: We picked up paper and bottles in a nearby park. We also planted some trees. Linda: Fabulous! Did you water them too? Tom: Sure, we watered them very often the first few weeks, and enjoyed watching them grow. Linda: Glad to hear it, Tom. Tom: Yes, it was a really good time. We worked and played together, and we learnt some skills, too.";
+        document.getElementById('text-audio-task2').innerText = "Đang phát Task 2...";
+      }
+
+      const utterance = new SpeechSynthesisUtterance(scriptText);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.88;
+      utterance.onend = () => {
+        stopAllAudio();
+      };
+      utterance.onerror = () => {
+        stopAllAudio();
+      };
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function toggleTranscript(textId) {
+      const el = document.getElementById(textId);
+      if (!el) return;
+      el.classList.toggle('hidden');
+    }
+
+    // --- Interactive Word Chips Builder (Writing Section) ---
+    function initWordChips() {
+      for (const [key, item] of Object.entries(writingData)) {
+        renderChips(key);
+      }
+    }
+
+    function renderChips(key) {
+      const poolContainer = document.getElementById(`${key}-pool`);
+      const answerContainer = document.getElementById(`${key}-answer`);
+      if (!poolContainer || !answerContainer) return;
+
+      poolContainer.innerHTML = '';
+      answerContainer.innerHTML = '';
+
+      const item = writingData[key];
+
+      // Render Selected Chips
+      if (item.selected.length === 0) {
+        answerContainer.innerHTML = `<span class="text-xs text-slate-400 italic placeholder-text">Chạm các từ bên dưới để ghép câu...</span>`;
+      } else {
+        item.selected.forEach((word, index) => {
+          const chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'chip-bounce px-3 py-1.5 rounded-xl bg-blue-600 text-white font-medium text-xs sm:text-sm shadow-sm hover:bg-blue-700 flex items-center gap-1.5';
+          chip.innerHTML = `<span>${word}</span> <i class="fa-solid fa-xmark text-[10px] text-blue-200"></i>`;
+          chip.onclick = () => removeChip(key, index);
+          answerContainer.appendChild(chip);
+        });
+      }
+
+      // Render Available Pool Chips
+      item.pool.forEach((word, index) => {
+        const chip = document.createElement('button');
+        chip.type = 'button';
+        chip.className = 'chip-bounce px-3 py-1.5 rounded-xl bg-slate-100 border border-slate-300 text-slate-800 font-semibold text-xs sm:text-sm hover:bg-amber-100 hover:border-amber-400 shadow-sm transition';
+        chip.innerText = word;
+        chip.onclick = () => selectChip(key, index);
+        poolContainer.appendChild(chip);
+      });
+
+      markAnswered();
+    }
+
+    function selectChip(key, poolIndex) {
+      if (examFinished) return;
+      const item = writingData[key];
+      const word = item.pool.splice(poolIndex, 1)[0];
+      item.selected.push(word);
+      renderChips(key);
+      speakText(word);
+    }
+
+    function removeChip(key, selectedIndex) {
+      if (examFinished) return;
+      const item = writingData[key];
+      const word = item.selected.splice(selectedIndex, 1)[0];
+      item.pool.push(word);
+      renderChips(key);
+    }
+
+    function resetChips(key) {
+      if (examFinished) return;
+      const item = writingData[key];
+      item.pool = [...item.pool, ...item.selected];
+      item.selected = [];
+      renderChips(key);
+    }
+
+    // --- Progress Counter ---
+    function markAnswered() {
+      let answeredCount = 0;
+      const totalCount = 34; // 6 listening MC + 6 listening TF + 10 lang MC + 3 verbs + 5 cloze + 5 reading comp + 7 writing
+
+      // Multiple choice questions check
+      const radioGroups = [
+        'q1','q2','q3','q4','q5','q6',
+        'tf1','tf2','tf3','tf4','tf5','tf6',
+        'b1','b2','b3','b4','b5','b6','b7','b8','b9','b10',
+        'v1','v2','v3',
+        'c1','c2','c3','c4','c5',
+        'rc1','rc2','rc3','rc4','rc5'
+      ];
+
+      radioGroups.forEach(name => {
+        const checked = document.querySelector(`input[name="${name}"]:checked`);
+        if (checked) answeredCount++;
+      });
+
+      // Writing chips check
+      for (const [key, item] of Object.entries(writingData)) {
+        if (item.selected.length > 0) answeredCount++;
+      }
+
+      const counterEl = document.getElementById('answered-counter');
+      if (counterEl) {
+        counterEl.innerText = `Đã làm: ${answeredCount}/${totalCount} câu`;
+      }
+    }
+
+    // --- Countdown Timer ---
+    function startTimer() {
+      const timerEl = document.getElementById('exam-timer');
+      timerInterval = setInterval(() => {
+        if (examFinished) {
+          clearInterval(timerInterval);
+          return;
+        }
+        if (timerSeconds <= 0) {
+          clearInterval(timerInterval);
+          showToast("Hết giờ làm bài! Hệ thống tự động nộp bài.", "info");
+          submitQuiz(true);
+          return;
+        }
+        timerSeconds--;
+        const mins = Math.floor(timerSeconds / 60);
+        const secs = timerSeconds % 60;
+        timerEl.innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        if (timerSeconds <= 300) {
+          timerEl.classList.add('text-rose-400');
+        }
+      }, 1000);
+    }
+
+    // --- Custom Modal Toast ---
+    function showToast(message, type = 'info') {
+      const modal = document.getElementById('toast-modal');
+      const icon = document.getElementById('toast-icon');
+      const msg = document.getElementById('toast-message');
+      const title = document.getElementById('toast-title');
+
+      msg.innerText = message;
+      if (type === 'warning') {
+        title.innerText = "Lưu ý";
+        icon.className = "w-12 h-12 rounded-full mx-auto flex items-center justify-center text-xl mb-3 bg-amber-100 text-amber-600";
+        icon.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i>';
+      } else if (type === 'success') {
+        title.innerText = "Thành công";
+        icon.className = "w-12 h-12 rounded-full mx-auto flex items-center justify-center text-xl mb-3 bg-emerald-100 text-emerald-600";
+        icon.innerHTML = '<i class="fa-solid fa-check"></i>';
+      } else {
+        title.innerText = "Thông báo";
+        icon.className = "w-12 h-12 rounded-full mx-auto flex items-center justify-center text-xl mb-3 bg-blue-100 text-blue-600";
+        icon.innerHTML = '<i class="fa-solid fa-circle-info"></i>';
+      }
+      modal.classList.remove('hidden');
+    }
+
+    function closeToast() {
+      document.getElementById('toast-modal').classList.add('hidden');
+    }
+
+    // --- Grading & Score Calculation ---
+    function submitQuiz(force = false) {
+      if (examFinished) return;
+
+      const studentName = document.getElementById('student-name').value.trim();
+      if (!studentName && !force) {
+        showToast("Em vui lòng nhập Họ và Tên trước khi nộp bài nhé!", "warning");
+        document.getElementById('student-name').focus();
+        return;
+      }
+
+      // Stop timer and audio
+      clearInterval(timerInterval);
+      stopAllAudio();
+      examFinished = true;
+
+      let score = 0;
+      let totalQuestions = 0;
+      let correctCount = 0;
+
+      // Disable all inputs
+      document.querySelectorAll('input[type="radio"]').forEach(r => r.disabled = true);
+
+      // Check Multiple Choice & TF questions
+      const questionCards = document.querySelectorAll('.question-card');
+      questionCards.forEach(card => {
+        totalQuestions++;
+        const qid = card.getAttribute('data-qid');
+        const correctVal = card.getAttribute('data-correct');
+        const selectedRadio = card.querySelector(`input[name="${qid}"]:checked`);
+        const userVal = selectedRadio ? selectedRadio.value : null;
+
+        const explanationBox = card.querySelector('.explanation-box');
+        const qExp = explanations[qid] || { title: `Đáp án đúng: ${correctVal}`, rule: "Đáp án chuẩn ngữ pháp Tiếng Anh 7." };
+
+        let isCorrect = (userVal === correctVal);
+
+        if (isCorrect) {
+          correctCount++;
+          card.classList.add('bg-emerald-50/70', 'border-emerald-400');
+          card.classList.remove('border-slate-200');
+        } else {
+          card.classList.add('bg-rose-50/70', 'border-rose-400');
+          card.classList.remove('border-slate-200');
+        }
+
+        // Highlight options
+        const optionLabels = card.querySelectorAll('.option-label');
+        optionLabels.forEach(lbl => {
+          const radio = lbl.querySelector('input');
+          if (radio && radio.value === correctVal) {
+            lbl.classList.add('bg-emerald-100', 'border-emerald-500', 'font-bold', 'text-emerald-900');
+          } else if (radio && radio.checked && !isCorrect) {
+            lbl.classList.add('bg-rose-100', 'border-rose-500', 'font-bold', 'text-rose-900', 'line-through');
+          }
+        });
+
+        // Show Explanation
+        if (explanationBox) {
+          explanationBox.classList.remove('hidden');
+          explanationBox.innerHTML = `
+            <div class="space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold ${isCorrect ? 'text-emerald-700' : 'text-rose-700'}">
+                  ${isCorrect ? '<i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> Chính xác!' : '<i class="fa-solid fa-circle-xmark text-rose-600 mr-1"></i> Chưa chính xác!'}
+                </span>
+                <button type="button" onclick="speakText('${qExp.title.replace(/'/g, "\\'")}')" class="text-blue-600 hover:underline flex items-center gap-1 font-semibold">
+                  <i class="fa-solid fa-volume-high"></i> Nghe đáp án
+                </button>
+              </div>
+              <p class="font-bold text-slate-800 text-xs">${qExp.title}</p>
+              <p class="text-slate-600 leading-relaxed text-xs"><b>Giải thích:</b> ${qExp.rule}</p>
+              ${qExp.vocab ? `<p class="text-blue-800 text-[11px] bg-blue-50/80 p-1.5 rounded border border-blue-200 mt-1"><b>Cấu trúc / Từ vựng:</b> ${qExp.vocab}</p>` : ''}
+            </div>
+          `;
+        }
+      });
+
+      // Check Writing interactive word chips
+      for (const [key, item] of Object.entries(writingData)) {
+        totalQuestions++;
+        const card = document.querySelector(`.writing-card[data-wid="${key}"]`);
+        const answerBox = document.getElementById(`${key}-answer`);
+        const explanationBox = card ? card.querySelector('.explanation-box') : null;
+        const qExp = explanations[key];
+
+        // Format user formed string
+        const userSentence = item.selected.join(' ').replace(/ \./g, '.').replace(/ ,/g, ',').trim();
+        const normUser = userSentence.replace(/\s+/g, ' ').toLowerCase();
+        const normTarget = item.target.replace(/\s+/g, ' ').toLowerCase();
+        const normAlt = item.altTarget ? item.altTarget.replace(/\s+/g, ' ').toLowerCase() : "";
+
+        const isCorrect = (normUser === normTarget || (normAlt && normUser === normAlt));
+
+        if (isCorrect) {
+          correctCount++;
+          card.classList.add('bg-emerald-50/70', 'border-emerald-400');
+          if (answerBox) answerBox.classList.add('bg-emerald-100', 'border-emerald-500');
+        } else {
+          card.classList.add('bg-rose-50/70', 'border-rose-400');
+          if (answerBox) answerBox.classList.add('bg-rose-100', 'border-rose-400');
+        }
+
+        if (explanationBox) {
+          explanationBox.classList.remove('hidden');
+          explanationBox.innerHTML = `
+            <div class="space-y-1">
+              <div class="flex items-center justify-between">
+                <span class="font-bold ${isCorrect ? 'text-emerald-700' : 'text-rose-700'}">
+                  ${isCorrect ? '<i class="fa-solid fa-circle-check text-emerald-600 mr-1"></i> Chính xác!' : '<i class="fa-solid fa-circle-xmark text-rose-600 mr-1"></i> Đáp án đúng:'}
+                </span>
+                <button type="button" onclick="speakText('${item.target.replace(/'/g, "\\'")}')" class="text-blue-600 hover:underline flex items-center gap-1 font-semibold">
+                  <i class="fa-solid fa-volume-high"></i> Nghe câu chuẩn
+                </button>
+              </div>
+              <p class="font-bold text-slate-800 text-xs sm:text-sm bg-white p-2 rounded border">${item.target}</p>
+              <p class="text-slate-600 leading-relaxed text-xs"><b>Giải thích:</b> ${qExp ? qExp.rule : ''}</p>
+              ${qExp && qExp.vocab ? `<p class="text-blue-800 text-[11px] bg-blue-50/80 p-1.5 rounded border border-blue-200 mt-1"><b>Kiến thức:</b> ${qExp.vocab}</p>` : ''}
+            </div>
+          `;
+        }
+      }
+
+      // Scaled Score calculation (Thang điểm 10)
+      const finalScore = ((correctCount / totalQuestions) * 10).toFixed(1);
+      const accuracy = Math.round((correctCount / totalQuestions) * 100);
+
+      // Display Dashboard
+      document.getElementById('final-score').innerText = finalScore;
+      document.getElementById('correct-count').innerText = correctCount;
+      document.getElementById('total-questions-count').innerText = `/ ${totalQuestions} câu`;
+      document.getElementById('accuracy-rate').innerText = `${accuracy}%`;
+
+      const gradeEl = document.getElementById('grade-badge');
+      if (finalScore >= 9.0) {
+        gradeEl.innerText = "Xuất Sắc ⭐";
+        gradeEl.className = "text-base sm:text-lg font-black text-amber-500 mt-1 block";
+      } else if (finalScore >= 8.0) {
+        gradeEl.innerText = "Giỏi 👏";
+        gradeEl.className = "text-base sm:text-lg font-black text-emerald-600 mt-1 block";
+      } else if (finalScore >= 6.5) {
+        gradeEl.innerText = "Khá 👍";
+        gradeEl.className = "text-base sm:text-lg font-black text-blue-600 mt-1 block";
+      } else if (finalScore >= 5.0) {
+        gradeEl.innerText = "Trung Bình ✍️";
+        gradeEl.className = "text-base sm:text-lg font-black text-slate-600 mt-1 block";
+      } else {
+        gradeEl.innerText = "Cần Ôn Luyện Thêm 📚";
+        gradeEl.className = "text-base sm:text-lg font-black text-rose-600 mt-1 block";
+      }
+
+      // Show transcripts container for both listening tasks
+      const trans1 = document.getElementById('transcript-task1-container');
+      const trans2 = document.getElementById('transcript-task2-container');
+      if (trans1) trans1.classList.remove('hidden');
+      if (trans2) trans2.classList.remove('hidden');
+
+      // Change Submit button state
+      const btnSubmit = document.getElementById('btn-submit');
+      btnSubmit.disabled = true;
+      btnSubmit.innerHTML = `<i class="fa-solid fa-check-double"></i> ĐÃ CHẤM ĐIỂM XONG`;
+      btnSubmit.className = "px-6 py-3 rounded-xl bg-slate-400 text-white font-extrabold text-sm shadow cursor-not-allowed";
+
+      // Show Dashboard and scroll to top
+      const dashboard = document.getElementById('results-dashboard');
+      dashboard.classList.remove('hidden');
+      dashboard.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function scrollToReview() {
+      const form = document.getElementById('quiz-form');
+      if (form) form.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // --- On Window Load Initializer ---
+    window.onload = function () {
+      initWordChips();
+      startTimer();
+      markAnswered();
+    };
+  </script>
+</body>
+</html>

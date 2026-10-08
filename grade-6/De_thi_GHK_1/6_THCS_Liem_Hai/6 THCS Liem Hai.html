@@ -1,0 +1,2232 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đề thi GHKI - Liêm Hải - 2024-2025 | HT English - Ms. Lily</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .word-chip {
+      transition: all 0.15s ease-in-out;
+      user-select: none;
+    }
+    .word-chip:active {
+      transform: scale(0.95);
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background-color: #cbd5e1;
+      border-radius: 9999px;
+    }
+    @keyframes pulse-subtle {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.85; }
+    }
+    .speaking-active {
+      animation: pulse-subtle 1.2s infinite ease-in-out;
+      color: #2563eb !important;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen pb-24">
+
+  <!-- Top Center Information Header -->
+  <header class="bg-gradient-to-r from-blue-700 via-indigo-700 to-sky-700 text-white shadow-lg sticky top-0 z-40">
+    <div class="max-w-4xl mx-auto px-4 py-3 sm:py-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-3 text-center sm:text-left">
+        <div class="w-12 h-12 bg-white/10 backdrop-blur-md rounded-2xl flex items-center justify-center border border-white/20 shadow-inner">
+          <i class="fa-solid fa-graduation-cap text-2xl text-amber-300"></i>
+        </div>
+        <div>
+          <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight flex items-center gap-2 justify-center sm:justify-start">
+            HT ENGLISH CENTER
+            <span class="text-xs bg-amber-400 text-blue-900 font-bold px-2 py-0.5 rounded-full uppercase">Ms. Lily</span>
+          </h1>
+          <p class="text-xs sm:text-sm text-sky-100 font-medium">Luyện thi & Bồi dưỡng Tiếng Anh THCS Chất Lượng Cao</p>
+        </div>
+      </div>
+      <div class="text-xs text-sky-100 text-center sm:text-right space-y-0.5 border-t sm:border-t-0 pt-2 sm:pt-0 border-white/15 w-full sm:w-auto">
+        <p><i class="fa-solid fa-phone text-amber-300 mr-1.5"></i><strong>Hotline:</strong> 0963422940 - 0962240866</p>
+        <p><i class="fa-solid fa-location-dot text-rose-300 mr-1.5"></i>Thôn Đạo Đường, xã Ninh Cường, Ninh Bình</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-3 sm:px-6 pt-5 space-y-6">
+
+    <!-- Exam Title Card -->
+    <section class="bg-white rounded-2xl p-5 shadow-sm border border-slate-200 text-center relative overflow-hidden">
+      <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-blue-600 via-indigo-500 to-emerald-500"></div>
+      <span class="inline-block px-3 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded-full mb-2 uppercase tracking-wider">
+        UBND Huyện Trực Ninh • Trường THCS Liêm Hải
+      </span>
+      <h2 class="text-xl sm:text-2xl font-bold text-slate-800">
+        ĐỀ THI GHKI - LIÊM HẢI - 2024-2025
+      </h2>
+      <p class="text-xs sm:text-sm text-slate-500 mt-1">Môn: <strong>Tiếng Anh 6</strong> • Thời gian: <strong>60 phút</strong> (Tối ưu giao diện thi trên di động)</p>
+
+      <!-- Student Input Info Bar -->
+      <div class="mt-4 pt-4 border-t border-slate-100 grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-lg mx-auto text-left">
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Họ và tên học sinh:</label>
+          <input type="text" id="studentName" placeholder="Nhập họ và tên..." class="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-600 mb-1">Lớp:</label>
+          <input type="text" id="studentClass" placeholder="Ví dụ: 6A, 6B..." class="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 bg-slate-50">
+        </div>
+      </div>
+    </section>
+
+    <!-- Floating / Sticky Quick Action Bar -->
+    <div class="bg-amber-50 border border-amber-200 rounded-xl p-3 flex items-center justify-between text-xs sm:text-sm text-amber-900 shadow-sm">
+      <div class="flex items-center gap-2">
+        <i class="fa-solid fa-circle-info text-amber-600 text-base"></i>
+        <span>Ấn biểu tượng <i class="fa-solid fa-volume-high text-blue-600 mx-0.5"></i> để nghe phát âm từng câu & đáp án. Làm xong hết mới ấn <strong>Nộp bài</strong>.</span>
+      </div>
+      <button onclick="stopAllSpeech()" class="px-2.5 py-1 bg-white border border-amber-300 rounded-lg text-xs font-semibold text-amber-800 hover:bg-amber-100 flex items-center gap-1 shrink-0 ml-2 shadow-xs">
+        <i class="fa-solid fa-volume-xmark"></i> Tắt âm
+      </button>
+    </div>
+
+    <!-- ================= PART A: LISTENING ================= -->
+    <section class="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200 space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2.5">
+          <span class="w-8 h-8 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-sm">A</span>
+          <div>
+            <h3 class="text-base sm:text-lg font-bold text-slate-900">PART A. LISTENING (2.4 pts)</h3>
+            <p class="text-xs text-slate-500">Phần thi Nghe hiểu 2 bài độc thoại và hội thoại</p>
+          </div>
+        </div>
+        <span class="text-xs font-bold px-2.5 py-1 bg-blue-50 text-blue-700 rounded-full border border-blue-200">12 câu • 2.4 đ</span>
+      </div>
+
+      <!-- TASK I -->
+      <div class="space-y-4">
+        <div class="bg-sky-50/70 border border-sky-100 rounded-xl p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h4 class="text-sm font-bold text-sky-950 flex items-center gap-1.5">
+              <span>I. Janet, a student at Palmer School America, is talking about her school. Listen and choose the correct answer.</span>
+              <button onclick="speakText('Janet a student at Palmer School America, is talking about her school. Listen and choose the correct answer.')" class="text-sky-600 hover:text-sky-800" title="Phát âm đề bài">
+                <i class="fa-solid fa-volume-high"></i>
+              </button>
+            </h4>
+            <p class="text-xs text-sky-700 mt-0.5">(1.2 pt - 0.2 pt/câu)</p>
+          </div>
+          <!-- Audio Play Button for Task 1 -->
+          <div class="flex items-center gap-2 shrink-0">
+            <button id="btnPlayAudio1" onclick="playTaskAudio(1)" class="px-3.5 py-2 bg-blue-600 text-white text-xs font-semibold rounded-xl hover:bg-blue-700 shadow-sm flex items-center gap-1.5 transition">
+              <i class="fa-solid fa-play"></i>
+              <span id="txtAudio1">Nghe Audio 1 (Janet's School)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Transcript Reveal Button (Initially hidden until submit) -->
+        <div id="transcriptWrap1" class="hidden">
+          <button onclick="toggleTranscript(1)" class="w-full py-2 bg-indigo-50 border border-indigo-200 rounded-xl text-xs font-bold text-indigo-700 hover:bg-indigo-100 flex items-center justify-center gap-1.5 transition">
+            <i class="fa-solid fa-file-audio"></i>
+            <span id="transToggleText1">Xem Lời Thoại (Tape Script 1) & Bản Dịch</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </button>
+          <div id="transContent1" class="hidden mt-2 p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 space-y-2 leading-relaxed">
+            <p class="font-semibold text-slate-900 border-b border-slate-200 pb-1">Tape Script bài nghe 1:</p>
+            <p>"Hi. My name’s Janet. I’m eleven years old. I’m now in year 6 at Palmer School. I like it here. My classmates are friendly. The teachers at my school are nice and very helpful, and my favourite teacher is Mrs. Smith. She teaches us maths. I have two hours to study Vietnamese every week. I usually do my homework in the library. We wear our uniforms every day, but today we aren’t. We’re going to have a biology lesson on a farm."</p>
+            <p class="text-slate-500 italic bg-white p-2 rounded-lg border border-slate-100"><strong>Dịch nghĩa:</strong> "Chào các bạn. Mình tên là Janet. Mình 11 tuổi. Hiện tại mình đang học lớp 6 trường Palmer. Mình rất thích ở đây. Các bạn cùng lớp của mình rất thân thiện. Các thầy cô giáo ở trường rất tốt bụng và nhiệt tình giúp đỡ, và giáo viên yêu thích của mình là cô Smith. Cô dạy chúng mình môn Toán. Mình có 2 giờ học tiếng Việt mỗi tuần. Mình thường làm bài tập về nhà ở thư viện. Chúng mình mặc đồng phục mỗi ngày, nhưng hôm nay thì không. Chúng mình chuẩn bị có một tiết học Sinh học ở một trang trại."</p>
+          </div>
+        </div>
+
+        <!-- Questions 1-6 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 pt-1" id="listQ_PartA_I">
+          <!-- Question 1 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 hover:border-slate-300 bg-white transition space-y-2" id="box_L1">
+            <div class="flex items-start justify-between gap-2">
+              <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md">Câu 1</span>
+              <button onclick="speakText('1. Janet is eleven years old. Janet is how many years old?')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold text-slate-800">1. Janet is __________ years old.</p>
+            <div class="space-y-1.5 text-xs sm:text-sm">
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_L1" value="A" class="text-blue-600"> <span><strong>A.</strong> eleven</span></span>
+                <button type="button" onclick="speakText('eleven')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_L1" value="B" class="text-blue-600"> <span><strong>B.</strong> six</span></span>
+                <button type="button" onclick="speakText('six')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_L1" value="C" class="text-blue-600"> <span><strong>C.</strong> five</span></span>
+                <button type="button" onclick="speakText('five')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_L1" class="hidden text-xs mt-2 p-2.5 rounded-lg"></div>
+          </div>
+
+          <!-- Question 2 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 hover:border-slate-300 bg-white transition space-y-2" id="box_L2">
+            <div class="flex items-start justify-between gap-2">
+              <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md">Câu 2</span>
+              <button onclick="speakText('2. Her classmates are what?')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold text-slate-800">2. Her classmates are ___________</p>
+            <div class="space-y-1.5 text-xs sm:text-sm">
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_L2" value="A" class="text-blue-600"> <span><strong>A.</strong> helpful</span></span>
+                <button type="button" onclick="speakText('helpful')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_L2" value="B" class="text-blue-600"> <span><strong>B.</strong> friendly</span></span>
+                <button type="button" onclick="speakText('friendly')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_L2" value="C" class="text-blue-600"> <span><strong>C.</strong> nice</span></span>
+                <button type="button" onclick="speakText('nice')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_L2" class="hidden text-xs mt-2 p-2.5 rounded-lg"></div>
+          </div>
+
+          <!-- Question 3 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 hover:border-slate-300 bg-white transition space-y-2" id="box_L3">
+            <div class="flex items-start justify-between gap-2">
+              <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md">Câu 3</span>
+              <button onclick="speakText('3. Her favourite teacher is her what teacher?')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold text-slate-800">3. Her favourite teacher is her ___________ teacher.</p>
+            <div class="space-y-1.5 text-xs sm:text-sm">
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_L3" value="A" class="text-blue-600"> <span><strong>A.</strong> maths</span></span>
+                <button type="button" onclick="speakText('maths')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_L3" value="B" class="text-blue-600"> <span><strong>B.</strong> Vietnamese</span></span>
+                <button type="button" onclick="speakText('Vietnamese')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_L3" value="C" class="text-blue-600"> <span><strong>C.</strong> science</span></span>
+                <button type="button" onclick="speakText('science')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_L3" class="hidden text-xs mt-2 p-2.5 rounded-lg"></div>
+          </div>
+
+          <!-- Question 4 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 hover:border-slate-300 bg-white transition space-y-2" id="box_L4">
+            <div class="flex items-start justify-between gap-2">
+              <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md">Câu 4</span>
+              <button onclick="speakText('4. Janet studies Vietnamese for two hours every what?')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold text-slate-800">4. Janet studies Vietnamese for two hours every ___________.</p>
+            <div class="space-y-1.5 text-xs sm:text-sm">
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_L4" value="A" class="text-blue-600"> <span><strong>A.</strong> day</span></span>
+                <button type="button" onclick="speakText('day')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_L4" value="B" class="text-blue-600"> <span><strong>B.</strong> week</span></span>
+                <button type="button" onclick="speakText('week')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_L4" value="C" class="text-blue-600"> <span><strong>C.</strong> month</span></span>
+                <button type="button" onclick="speakText('month')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_L4" class="hidden text-xs mt-2 p-2.5 rounded-lg"></div>
+          </div>
+
+          <!-- Question 5 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 hover:border-slate-300 bg-white transition space-y-2" id="box_L5">
+            <div class="flex items-start justify-between gap-2">
+              <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md">Câu 5</span>
+              <button onclick="speakText('5. Today, Janet what her uniform?')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold text-slate-800">5. Today, Janet ___________ her uniform.</p>
+            <div class="space-y-1.5 text-xs sm:text-sm">
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_L5" value="A" class="text-blue-600"> <span><strong>A.</strong> isn’t wearing</span></span>
+                <button type="button" onclick="speakText('is not wearing')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_L5" value="B" class="text-blue-600"> <span><strong>B.</strong> is wearing</span></span>
+                <button type="button" onclick="speakText('is wearing')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_L5" value="C" class="text-blue-600"> <span><strong>C.</strong> not wear</span></span>
+                <button type="button" onclick="speakText('not wear')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_L5" class="hidden text-xs mt-2 p-2.5 rounded-lg"></div>
+          </div>
+
+          <!-- Question 6 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 hover:border-slate-300 bg-white transition space-y-2" id="box_L6">
+            <div class="flex items-start justify-between gap-2">
+              <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md">Câu 6</span>
+              <button onclick="speakText('6. Her class is going to have a biology lesson where?')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold text-slate-800">6. Her class is going to have a biology lesson ___________.</p>
+            <div class="space-y-1.5 text-xs sm:text-sm">
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_L6" value="A" class="text-blue-600"> <span><strong>A.</strong> on a farm</span></span>
+                <button type="button" onclick="speakText('on a farm')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_L6" value="B" class="text-blue-600"> <span><strong>B.</strong> in the classroom</span></span>
+                <button type="button" onclick="speakText('in the classroom')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_L6" value="C" class="text-blue-600"> <span><strong>C.</strong> in the library</span></span>
+                <button type="button" onclick="speakText('in the library')" class="text-slate-400 hover:text-blue-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_L6" class="hidden text-xs mt-2 p-2.5 rounded-lg"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TASK II -->
+      <div class="space-y-4 pt-4 border-t border-slate-100">
+        <div class="bg-indigo-50/70 border border-indigo-100 rounded-xl p-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h4 class="text-sm font-bold text-indigo-950 flex items-center gap-1.5">
+              <span>II. Listen to Mi and Minh talking about their best friends. Listen and tick (✓) T (True) or F (False).</span>
+              <button onclick="speakText('Listen to Mi and Minh talking about their best friends. Listen and tick True or False.')" class="text-indigo-600 hover:text-indigo-800" title="Phát âm">
+                <i class="fa-solid fa-volume-high"></i>
+              </button>
+            </h4>
+            <p class="text-xs text-indigo-700 mt-0.5">(1.2 pt - 0.2 pt/câu)</p>
+          </div>
+          <!-- Audio Play Button for Task 2 -->
+          <div class="flex items-center gap-2 shrink-0">
+            <button id="btnPlayAudio2" onclick="playTaskAudio(2)" class="px-3.5 py-2 bg-indigo-600 text-white text-xs font-semibold rounded-xl hover:bg-indigo-700 shadow-sm flex items-center gap-1.5 transition">
+              <i class="fa-solid fa-play"></i>
+              <span id="txtAudio2">Nghe Audio 2 (Best Friends)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Transcript Reveal Button (Task 2) -->
+        <div id="transcriptWrap2" class="hidden">
+          <button onclick="toggleTranscript(2)" class="w-full py-2 bg-indigo-50 border border-indigo-200 rounded-xl text-xs font-bold text-indigo-700 hover:bg-indigo-100 flex items-center justify-center gap-1.5 transition">
+            <i class="fa-solid fa-file-audio"></i>
+            <span id="transToggleText2">Xem Lời Thoại (Tape Script 2) & Bản Dịch</span>
+            <i class="fa-solid fa-chevron-down text-xs"></i>
+          </button>
+          <div id="transContent2" class="hidden mt-2 p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-700 space-y-2 leading-relaxed">
+            <p class="font-semibold text-slate-900 border-b border-slate-200 pb-1">Tape Script bài nghe 2:</p>
+            <p><strong>Mi:</strong> "My best friend is Lan. She studies with me in class 6A. She's tall and slim. She has short black hair and a small mouth. She's very active and friendly. She likes playing sports and has many friends. Look, she's playing football over there!"</p>
+            <p><strong>Minh:</strong> "Chi is my best friend. We're in class 6B. She's short with long black hair and a big nose. I like her because she's kind to me. She helps me with my English. She's also hard-working. She always does her homework before class. Look, she's going to the library."</p>
+            <p class="text-slate-500 italic bg-white p-2 rounded-lg border border-slate-100"><strong>Dịch nghĩa:</strong><br>
+            • <em>Mi:</em> Bạn thân nhất của mình là Lan. Bạn ấy học cùng mình ở lớp 6A. Bạn ấy cao và mảnh khảnh. Bạn có mái tóc đen ngắn và khuôn miệng nhỏ nhắn. Bạn rất năng động và thân thiện. Bạn thích chơi thể thao và có rất nhiều bạn bè. Nhìn kìa, bạn ấy đang đá bóng ở đằng kia!<br>
+            • <em>Minh:</em> Chi là bạn thân nhất của mình. Chúng mình học lớp 6B. Bạn ấy thấp với mái tóc đen dài và chiếc mũi to. Mình thích bạn ấy vì bạn đối xử rất tốt với mình. Bạn ấy giúp mình học tiếng Anh. Bạn ấy cũng rất chăm chỉ. Bạn luôn làm bài tập về nhà trước giờ học. Nhìn kìa, bạn ấy đang đi tới thư viện.</p>
+          </div>
+        </div>
+
+        <!-- Statements Table / Responsive Cards -->
+        <div class="space-y-2.5" id="listQ_PartA_II">
+          <!-- Statement 1 -->
+          <div class="p-3 bg-white border border-slate-200 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-slate-300 transition" id="box_TF1">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 font-bold text-xs flex items-center justify-center shrink-0">1</span>
+              <p class="text-xs sm:text-sm font-medium text-slate-800">Mi and Lan are studying in class 6B.</p>
+              <button onclick="speakText('Mi and Lan are studying in class 6B.')" class="text-slate-400 hover:text-indigo-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+            </div>
+            <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
+              <label class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold cursor-pointer flex items-center gap-1.5 hover:bg-slate-50">
+                <input type="radio" name="q_TF1" value="T" class="text-indigo-600"> <span>T (True)</span>
+              </label>
+              <label class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold cursor-pointer flex items-center gap-1.5 hover:bg-slate-50">
+                <input type="radio" name="q_TF1" value="F" class="text-indigo-600"> <span>F (False)</span>
+              </label>
+            </div>
+            <div id="expl_TF1" class="hidden text-xs w-full p-2 rounded-lg"></div>
+          </div>
+
+          <!-- Statement 2 -->
+          <div class="p-3 bg-white border border-slate-200 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-slate-300 transition" id="box_TF2">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 font-bold text-xs flex items-center justify-center shrink-0">2</span>
+              <p class="text-xs sm:text-sm font-medium text-slate-800">Lan is tall and thin.</p>
+              <button onclick="speakText('Lan is tall and thin.')" class="text-slate-400 hover:text-indigo-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+            </div>
+            <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
+              <label class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold cursor-pointer flex items-center gap-1.5 hover:bg-slate-50">
+                <input type="radio" name="q_TF2" value="T" class="text-indigo-600"> <span>T (True)</span>
+              </label>
+              <label class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold cursor-pointer flex items-center gap-1.5 hover:bg-slate-50">
+                <input type="radio" name="q_TF2" value="F" class="text-indigo-600"> <span>F (False)</span>
+              </label>
+            </div>
+            <div id="expl_TF2" class="hidden text-xs w-full p-2 rounded-lg"></div>
+          </div>
+
+          <!-- Statement 3 -->
+          <div class="p-3 bg-white border border-slate-200 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-slate-300 transition" id="box_TF3">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 font-bold text-xs flex items-center justify-center shrink-0">3</span>
+              <p class="text-xs sm:text-sm font-medium text-slate-800">Lan likes playing sports.</p>
+              <button onclick="speakText('Lan likes playing sports.')" class="text-slate-400 hover:text-indigo-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+            </div>
+            <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
+              <label class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold cursor-pointer flex items-center gap-1.5 hover:bg-slate-50">
+                <input type="radio" name="q_TF3" value="T" class="text-indigo-600"> <span>T (True)</span>
+              </label>
+              <label class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold cursor-pointer flex items-center gap-1.5 hover:bg-slate-50">
+                <input type="radio" name="q_TF3" value="F" class="text-indigo-600"> <span>F (False)</span>
+              </label>
+            </div>
+            <div id="expl_TF3" class="hidden text-xs w-full p-2 rounded-lg"></div>
+          </div>
+
+          <!-- Statement 4 -->
+          <div class="p-3 bg-white border border-slate-200 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-slate-300 transition" id="box_TF4">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 font-bold text-xs flex items-center justify-center shrink-0">4</span>
+              <p class="text-xs sm:text-sm font-medium text-slate-800">Chi has short black hair and a small nose.</p>
+              <button onclick="speakText('Chi has short black hair and a small nose.')" class="text-slate-400 hover:text-indigo-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+            </div>
+            <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
+              <label class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold cursor-pointer flex items-center gap-1.5 hover:bg-slate-50">
+                <input type="radio" name="q_TF4" value="T" class="text-indigo-600"> <span>T (True)</span>
+              </label>
+              <label class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold cursor-pointer flex items-center gap-1.5 hover:bg-slate-50">
+                <input type="radio" name="q_TF4" value="F" class="text-indigo-600"> <span>F (False)</span>
+              </label>
+            </div>
+            <div id="expl_TF4" class="hidden text-xs w-full p-2 rounded-lg"></div>
+          </div>
+
+          <!-- Statement 5 -->
+          <div class="p-3 bg-white border border-slate-200 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-slate-300 transition" id="box_TF5">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 font-bold text-xs flex items-center justify-center shrink-0">5</span>
+              <p class="text-xs sm:text-sm font-medium text-slate-800">Chi is kind to Minh.</p>
+              <button onclick="speakText('Chi is kind to Minh.')" class="text-slate-400 hover:text-indigo-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+            </div>
+            <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
+              <label class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold cursor-pointer flex items-center gap-1.5 hover:bg-slate-50">
+                <input type="radio" name="q_TF5" value="T" class="text-indigo-600"> <span>T (True)</span>
+              </label>
+              <label class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold cursor-pointer flex items-center gap-1.5 hover:bg-slate-50">
+                <input type="radio" name="q_TF5" value="F" class="text-indigo-600"> <span>F (False)</span>
+              </label>
+            </div>
+            <div id="expl_TF5" class="hidden text-xs w-full p-2 rounded-lg"></div>
+          </div>
+
+          <!-- Statement 6 -->
+          <div class="p-3 bg-white border border-slate-200 rounded-xl flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-slate-300 transition" id="box_TF6">
+            <div class="flex items-center gap-2">
+              <span class="w-6 h-6 rounded-md bg-indigo-50 text-indigo-700 font-bold text-xs flex items-center justify-center shrink-0">6</span>
+              <p class="text-xs sm:text-sm font-medium text-slate-800">Chi never does her homework before class.</p>
+              <button onclick="speakText('Chi never does her homework before class.')" class="text-slate-400 hover:text-indigo-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+            </div>
+            <div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
+              <label class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold cursor-pointer flex items-center gap-1.5 hover:bg-slate-50">
+                <input type="radio" name="q_TF6" value="T" class="text-indigo-600"> <span>T (True)</span>
+              </label>
+              <label class="px-3 py-1.5 rounded-lg border border-slate-200 text-xs font-semibold cursor-pointer flex items-center gap-1.5 hover:bg-slate-50">
+                <input type="radio" name="q_TF6" value="F" class="text-indigo-600"> <span>F (False)</span>
+              </label>
+            </div>
+            <div id="expl_TF6" class="hidden text-xs w-full p-2 rounded-lg"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PART B: VOCABULARY AND GRAMMAR ================= -->
+    <section class="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200 space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2.5">
+          <span class="w-8 h-8 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center font-bold text-sm">B</span>
+          <div>
+            <h3 class="text-base sm:text-lg font-bold text-slate-900">PART B. VOCABULARY AND GRAMMAR (2.6 pts)</h3>
+            <p class="text-xs text-slate-500">Phát âm, Từ vựng, Giới từ & Chia động từ</p>
+          </div>
+        </div>
+        <span class="text-xs font-bold px-2.5 py-1 bg-purple-50 text-purple-700 rounded-full border border-purple-200">13 câu • 2.6 đ</span>
+      </div>
+
+      <!-- I. Pronunciation -->
+      <div class="space-y-3">
+        <div class="bg-purple-50/70 border border-purple-100 rounded-xl p-3">
+          <h4 class="text-sm font-bold text-purple-950 flex items-center gap-1.5">
+            <span>I. Choose the word with a different way of pronunciation in the underlined part. Circle A, B, C or D.</span>
+            <button onclick="speakText('Choose the word with a different way of pronunciation in the underlined part.')" class="text-purple-600 hover:text-purple-800"><i class="fa-solid fa-volume-high"></i></button>
+          </h4>
+          <p class="text-xs text-purple-700 mt-0.5">(0.4 pt - 0.2 pt/câu)</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+          <!-- Pron 1 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2" id="box_P1">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md">Câu 1</span>
+              <span class="text-xs text-slate-400">Âm đuôi "-s"</span>
+            </div>
+            <p class="text-xs sm:text-sm font-medium text-slate-800">Tìm từ có phần gạch chân phát âm khác:</p>
+            <div class="grid grid-cols-2 gap-2 text-xs sm:text-sm">
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_P1" value="A"> <span><strong>A.</strong> drink<u>s</u></span></span>
+                <button type="button" onclick="speakText('drinks')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_P1" value="B"> <span><strong>B.</strong> sleep<u>s</u></span></span>
+                <button type="button" onclick="speakText('sleeps')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_P1" value="C"> <span><strong>C.</strong> eat<u>s</u></span></span>
+                <button type="button" onclick="speakText('eats')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_P1" value="D"> <span><strong>D.</strong> stay<u>s</u></span></span>
+                <button type="button" onclick="speakText('stays')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_P1" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+          </div>
+
+          <!-- Pron 2 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2" id="box_P2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md">Câu 2</span>
+              <span class="text-xs text-slate-400">Nguyên âm "u"</span>
+            </div>
+            <p class="text-xs sm:text-sm font-medium text-slate-800">Tìm từ có phần gạch chân phát âm khác:</p>
+            <div class="grid grid-cols-2 gap-2 text-xs sm:text-sm">
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_P2" value="A"> <span><strong>A.</strong> c<u>u</u>pboard</span></span>
+                <button type="button" onclick="speakText('cupboard')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_P2" value="B"> <span><strong>B.</strong> <u>u</u>niform</span></span>
+                <button type="button" onclick="speakText('uniform')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_P2" value="C"> <span><strong>C.</strong> l<u>u</u>nch</span></span>
+                <button type="button" onclick="speakText('lunch')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_P2" value="D"> <span><strong>D.</strong> f<u>u</u>nny</span></span>
+                <button type="button" onclick="speakText('funny')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_P2" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- II. Multiple Choice (8 questions) -->
+      <div class="space-y-3 pt-4 border-t border-slate-100">
+        <div class="bg-purple-50/70 border border-purple-100 rounded-xl p-3">
+          <h4 class="text-sm font-bold text-purple-950 flex items-center gap-1.5">
+            <span>II. Choose the best option to complete each sentence. Circle A, B, C or D.</span>
+            <button onclick="speakText('Choose the best option to complete each sentence.')" class="text-purple-600 hover:text-purple-800"><i class="fa-solid fa-volume-high"></i></button>
+          </h4>
+          <p class="text-xs text-purple-700 mt-0.5">(1.6 pts - 0.2 pt/câu)</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5" id="listQ_PartB_II">
+          <!-- MC 1 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2" id="box_MC1">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md">Câu 1</span>
+              <button onclick="speakText('We live blank a flat in the city.')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold text-slate-800">1. We live ________ a flat in the city.</p>
+            <div class="grid grid-cols-2 gap-2 text-xs sm:text-sm">
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC1" value="A"> <span><strong>A.</strong> near</span></span>
+                <button type="button" onclick="speakText('near')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC1" value="B"> <span><strong>B.</strong> in</span></span>
+                <button type="button" onclick="speakText('in')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC1" value="C"> <span><strong>C.</strong> at</span></span>
+                <button type="button" onclick="speakText('at')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC1" value="D"> <span><strong>D.</strong> on</span></span>
+                <button type="button" onclick="speakText('on')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_MC1" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+          </div>
+
+          <!-- MC 2 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2" id="box_MC2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md">Câu 2</span>
+              <button onclick="speakText('The living room has two blank on the wall.')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold text-slate-800">2. The living room has two ________ on the wall.</p>
+            <div class="grid grid-cols-2 gap-2 text-xs sm:text-sm">
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC2" value="A"> <span><strong>A.</strong> calculators</span></span>
+                <button type="button" onclick="speakText('calculators')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC2" value="B"> <span><strong>B.</strong> pencils</span></span>
+                <button type="button" onclick="speakText('pencils')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC2" value="C"> <span><strong>C.</strong> pictures</span></span>
+                <button type="button" onclick="speakText('pictures')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC2" value="D"> <span><strong>D.</strong> rubbers</span></span>
+                <button type="button" onclick="speakText('rubbers')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_MC2" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+          </div>
+
+          <!-- MC 3 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2" id="box_MC3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md">Câu 3</span>
+              <button onclick="speakText('Minh is very tall and blank. He plays sports every day.')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold text-slate-800">3. Minh is very tall and _________ . He plays sports every day.</p>
+            <div class="grid grid-cols-2 gap-2 text-xs sm:text-sm">
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC3" value="A"> <span><strong>A.</strong> thin</span></span>
+                <button type="button" onclick="speakText('thin')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC3" value="B"> <span><strong>B.</strong> weak</span></span>
+                <button type="button" onclick="speakText('weak')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC3" value="C"> <span><strong>C.</strong> short</span></span>
+                <button type="button" onclick="speakText('short')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC3" value="D"> <span><strong>D.</strong> sporty</span></span>
+                <button type="button" onclick="speakText('sporty')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_MC3" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+          </div>
+
+          <!-- MC 4 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2" id="box_MC4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md">Câu 4</span>
+              <button onclick="speakText('There are lots of oranges and apples in the blank.')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold text-slate-800">4. There are lots of oranges and apples in the ________ .</p>
+            <div class="grid grid-cols-2 gap-2 text-xs sm:text-sm">
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC4" value="A"> <span><strong>A.</strong> fridge</span></span>
+                <button type="button" onclick="speakText('fridge')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC4" value="B"> <span><strong>B.</strong> wardrobe</span></span>
+                <button type="button" onclick="speakText('wardrobe')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC4" value="C"> <span><strong>C.</strong> cupboard</span></span>
+                <button type="button" onclick="speakText('cupboard')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC4" value="D"> <span><strong>D.</strong> lamp</span></span>
+                <button type="button" onclick="speakText('lamp')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_MC4" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+          </div>
+
+          <!-- MC 5 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2" id="box_MC5">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md">Câu 5</span>
+              <button onclick="speakText('Nick is very blank. He always makes me laugh!')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold text-slate-800">5. Nick is very ________ . He always makes me laugh!</p>
+            <div class="grid grid-cols-2 gap-2 text-xs sm:text-sm">
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC5" value="A"> <span><strong>A.</strong> funny</span></span>
+                <button type="button" onclick="speakText('funny')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC5" value="B"> <span><strong>B.</strong> creative</span></span>
+                <button type="button" onclick="speakText('creative')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC5" value="C"> <span><strong>C.</strong> confident</span></span>
+                <button type="button" onclick="speakText('confident')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC5" value="D"> <span><strong>D.</strong> hard-working</span></span>
+                <button type="button" onclick="speakText('hard-working')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_MC5" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+          </div>
+
+          <!-- MC 6 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2" id="box_MC6">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md">Câu 6</span>
+              <button onclick="speakText('The park is blank the movies and the supermarket.')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold text-slate-800">6. The park is ________ the movies and the supermarket.</p>
+            <div class="grid grid-cols-2 gap-2 text-xs sm:text-sm">
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC6" value="A"> <span><strong>A.</strong> under</span></span>
+                <button type="button" onclick="speakText('under')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC6" value="B"> <span><strong>B.</strong> between</span></span>
+                <button type="button" onclick="speakText('between')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC6" value="C"> <span><strong>C.</strong> next</span></span>
+                <button type="button" onclick="speakText('next')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC6" value="D"> <span><strong>D.</strong> in front</span></span>
+                <button type="button" onclick="speakText('in front')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_MC6" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+          </div>
+
+          <!-- MC 7 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2" id="box_MC7">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md">Câu 7</span>
+              <button onclick="speakText('The bookshop is next to my blank house.')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold text-slate-800">7. The bookshop is next to my __________ house.</p>
+            <div class="grid grid-cols-2 gap-2 text-xs sm:text-sm">
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC7" value="A"> <span><strong>A.</strong> teacher</span></span>
+                <button type="button" onclick="speakText('teacher')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC7" value="B"> <span><strong>B.</strong> teacher’</span></span>
+                <button type="button" onclick="speakText('teacher')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC7" value="C"> <span><strong>C.</strong> teacher’s</span></span>
+                <button type="button" onclick="speakText('teacher\'s')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC7" value="D"> <span><strong>D.</strong> teachers</span></span>
+                <button type="button" onclick="speakText('teachers')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_MC7" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+          </div>
+
+          <!-- MC 8 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2" id="box_MC8">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md">Câu 8</span>
+              <button onclick="speakText('Would you like to drink coffee, Mai?')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold text-slate-800">8. Would you like to drink coffee, Mai?</p>
+            <div class="grid grid-cols-2 gap-2 text-xs sm:text-sm">
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC8" value="A"> <span><strong>A.</strong> Yes, I do.</span></span>
+                <button type="button" onclick="speakText('Yes, I do')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC8" value="B"> <span><strong>B.</strong> No, I wouldn’t</span></span>
+                <button type="button" onclick="speakText('No, I wouldn\'t')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC8" value="C"> <span><strong>C.</strong> I would</span></span>
+                <button type="button" onclick="speakText('I would')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-1.5"><input type="radio" name="q_MC8" value="D"> <span><strong>D.</strong> Sorry. I can’t</span></span>
+                <button type="button" onclick="speakText('Sorry. I can\'t')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_MC8" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- III. Put the verbs in brackets into the correct form -->
+      <div class="space-y-3 pt-4 border-t border-slate-100">
+        <div class="bg-purple-50/70 border border-purple-100 rounded-xl p-3">
+          <h4 class="text-sm font-bold text-purple-950 flex items-center gap-1.5">
+            <span>III. Put the verbs in brackets into the correct form:</span>
+            <button onclick="speakText('Put the verbs in brackets into the correct form')" class="text-purple-600 hover:text-purple-800"><i class="fa-solid fa-volume-high"></i></button>
+          </h4>
+          <p class="text-xs text-purple-700 mt-0.5">(0.6 pt - 0.2 pt/câu) • <em>Chạm chọn dạng đúng của động từ để không lo gõ sai chính tả</em></p>
+        </div>
+
+        <div class="space-y-3" id="listQ_PartB_III">
+          <!-- Verb 1 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2" id="box_V1">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md">Câu 1</span>
+              <button onclick="speakText('1. He have a big nose and small eyes.')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm font-medium text-slate-800">1. He (have) ____________ a big nose and small eyes.</p>
+            <div class="flex flex-wrap gap-2 text-xs sm:text-sm">
+              <label class="px-3.5 py-1.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer flex items-center gap-1.5">
+                <input type="radio" name="q_V1" value="has"> <span><strong>A.</strong> has</span>
+              </label>
+              <label class="px-3.5 py-1.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer flex items-center gap-1.5">
+                <input type="radio" name="q_V1" value="have"> <span><strong>B.</strong> have</span>
+              </label>
+              <label class="px-3.5 py-1.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer flex items-center gap-1.5">
+                <input type="radio" name="q_V1" value="is having"> <span><strong>C.</strong> is having</span>
+              </label>
+            </div>
+            <div id="expl_V1" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+          </div>
+
+          <!-- Verb 2 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2" id="box_V2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md">Câu 2</span>
+              <button onclick="speakText('2. My father go to work by motorbike every day.')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold text-slate-800">2. My father (go) _____________ to work by motorbike every day.</p>
+            <div class="flex flex-wrap gap-2 text-xs sm:text-sm">
+              <label class="px-3.5 py-1.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer flex items-center gap-1.5">
+                <input type="radio" name="q_V2" value="go"> <span><strong>A.</strong> go</span>
+              </label>
+              <label class="px-3.5 py-1.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer flex items-center gap-1.5">
+                <input type="radio" name="q_V2" value="goes"> <span><strong>B.</strong> goes</span>
+              </label>
+              <label class="px-3.5 py-1.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer flex items-center gap-1.5">
+                <input type="radio" name="q_V2" value="is going"> <span><strong>C.</strong> is going</span>
+              </label>
+            </div>
+            <div id="expl_V2" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+          </div>
+
+          <!-- Verb 3 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2" id="box_V3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded-md">Câu 3</span>
+              <button onclick="speakText('3. We study Maths at school at the moment.')" class="text-slate-400 hover:text-purple-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold text-slate-800">3. We (study) ________________ Maths at school at the moment.</p>
+            <div class="flex flex-wrap gap-2 text-xs sm:text-sm">
+              <label class="px-3.5 py-1.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer flex items-center gap-1.5">
+                <input type="radio" name="q_V3" value="studies"> <span><strong>A.</strong> studies</span>
+              </label>
+              <label class="px-3.5 py-1.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer flex items-center gap-1.5">
+                <input type="radio" name="q_V3" value="study"> <span><strong>B.</strong> study</span>
+              </label>
+              <label class="px-3.5 py-1.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer flex items-center gap-1.5">
+                <input type="radio" name="q_V3" value="are studying"> <span><strong>C.</strong> are studying</span>
+              </label>
+            </div>
+            <div id="expl_V3" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PART C: READING ================= -->
+    <section class="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200 space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2.5">
+          <span class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold text-sm">C</span>
+          <div>
+            <h3 class="text-base sm:text-lg font-bold text-slate-900">PART C. READING (2.6 pts)</h3>
+            <p class="text-xs text-slate-500">Đọc điền từ vào đoạn văn & Đọc hiểu trả lời câu hỏi</p>
+          </div>
+        </div>
+        <span class="text-xs font-bold px-2.5 py-1 bg-emerald-50 text-emerald-700 rounded-full border border-emerald-200">10 câu • 2.6 đ</span>
+      </div>
+
+      <!-- I. Cloze Test -->
+      <div class="space-y-3">
+        <div class="bg-emerald-50/70 border border-emerald-100 rounded-xl p-3">
+          <h4 class="text-sm font-bold text-emerald-950 flex items-center gap-1.5">
+            <span>I. Fill each blank with ONE suitable word. Circle A, B, C or D.</span>
+            <button onclick="speakText('Fill each blank with one suitable word. Circle A, B, C or D.')" class="text-emerald-600 hover:text-emerald-800"><i class="fa-solid fa-volume-high"></i></button>
+          </h4>
+          <p class="text-xs text-emerald-700 mt-0.5">(1.0 pt - 0.2 pt/câu)</p>
+        </div>
+
+        <!-- Passage Box -->
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs sm:text-sm leading-relaxed text-slate-800 relative">
+          <button onclick="speakText(`Linh lives in a big apartment. There are bedrooms in her house. One for her parents, and the other two are for Linh and her brother. In her room, she has many photos of family on the walls. There is a nice lamp so that she can read before bed and a chest of drawers near her bed. She doesn't have a TV in her room because her Dad wants the family to spend time together in the living room. Her favourite part of the house is the kitchen because she likes cooking delicious dinner with her Mom.`)" class="absolute top-3 right-3 text-slate-400 hover:text-emerald-600" title="Đọc toàn bộ đoạn văn">
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+          <p>
+            Linh lives in a big apartment. There’re (1) <strong class="text-emerald-700">[ ___ ]</strong> bedrooms in her house. One for her parents, and the other two are for Linh and her brother. In her room, she has many photos of (2) <strong class="text-emerald-700">[ ___ ]</strong> family on the walls. There’s a nice (3) <strong class="text-emerald-700">[ ___ ]</strong> so that she can read before bed and a chest of drawers (4) <strong class="text-emerald-700">[ ___ ]</strong> her bed. She doesn’t have a TV in her room because her Dad wants to family to spend time together in the living room. Her favourite part of the house is the (5) <strong class="text-emerald-700">[ ___ ]</strong> because she likes cooking delicious dinner with her Mom.
+          </p>
+        </div>
+
+        <!-- 5 Cloze Questions -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-2.5 pt-1" id="listQ_PartC_I">
+          <!-- Cloze 1 -->
+          <div class="p-3 rounded-xl border border-slate-200 bg-white space-y-1.5" id="box_RC1">
+            <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md">Chỗ trống (1)</span>
+            <div class="space-y-1 text-xs">
+              <label class="flex items-center justify-between p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span><input type="radio" name="q_RC1" value="A"> A. two</span>
+                <button type="button" onclick="speakText('two')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span><input type="radio" name="q_RC1" value="B"> B. three</span>
+                <button type="button" onclick="speakText('three')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span><input type="radio" name="q_RC1" value="C"> C. four</span>
+                <button type="button" onclick="speakText('four')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span><input type="radio" name="q_RC1" value="D"> D. five</span>
+                <button type="button" onclick="speakText('five')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_RC1" class="hidden text-xs mt-2 p-1.5 rounded-lg"></div>
+          </div>
+
+          <!-- Cloze 2 -->
+          <div class="p-3 rounded-xl border border-slate-200 bg-white space-y-1.5" id="box_RC2">
+            <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md">Chỗ trống (2)</span>
+            <div class="space-y-1 text-xs">
+              <label class="flex items-center justify-between p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span><input type="radio" name="q_RC2" value="A"> A. his</span>
+                <button type="button" onclick="speakText('his')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span><input type="radio" name="q_RC2" value="B"> B. our</span>
+                <button type="button" onclick="speakText('our')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span><input type="radio" name="q_RC2" value="C"> C. her</span>
+                <button type="button" onclick="speakText('her')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span><input type="radio" name="q_RC2" value="D"> D. their</span>
+                <button type="button" onclick="speakText('their')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_RC2" class="hidden text-xs mt-2 p-1.5 rounded-lg"></div>
+          </div>
+
+          <!-- Cloze 3 -->
+          <div class="p-3 rounded-xl border border-slate-200 bg-white space-y-1.5" id="box_RC3">
+            <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md">Chỗ trống (3)</span>
+            <div class="space-y-1 text-xs">
+              <label class="flex items-center justify-between p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span><input type="radio" name="q_RC3" value="A"> A. wardrobe</span>
+                <button type="button" onclick="speakText('wardrobe')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span><input type="radio" name="q_RC3" value="B"> B. cupboard</span>
+                <button type="button" onclick="speakText('cupboard')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span><input type="radio" name="q_RC3" value="C"> C. radio</span>
+                <button type="button" onclick="speakText('radio')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span><input type="radio" name="q_RC3" value="D"> D. lamp</span>
+                <button type="button" onclick="speakText('lamp')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_RC3" class="hidden text-xs mt-2 p-1.5 rounded-lg"></div>
+          </div>
+
+          <!-- Cloze 4 -->
+          <div class="p-3 rounded-xl border border-slate-200 bg-white space-y-1.5" id="box_RC4">
+            <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md">Chỗ trống (4)</span>
+            <div class="space-y-1 text-xs">
+              <label class="flex items-center justify-between p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span><input type="radio" name="q_RC4" value="A"> A. near</span>
+                <button type="button" onclick="speakText('near')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span><input type="radio" name="q_RC4" value="B"> B. far</span>
+                <button type="button" onclick="speakText('far')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span><input type="radio" name="q_RC4" value="C"> C. next</span>
+                <button type="button" onclick="speakText('next')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span><input type="radio" name="q_RC4" value="D"> D. front</span>
+                <button type="button" onclick="speakText('front')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_RC4" class="hidden text-xs mt-2 p-1.5 rounded-lg"></div>
+          </div>
+
+          <!-- Cloze 5 -->
+          <div class="p-3 rounded-xl border border-slate-200 bg-white space-y-1.5" id="box_RC5">
+            <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md">Chỗ trống (5)</span>
+            <div class="space-y-1 text-xs">
+              <label class="flex items-center justify-between p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span><input type="radio" name="q_RC5" value="A"> A. hall</span>
+                <button type="button" onclick="speakText('hall')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span><input type="radio" name="q_RC5" value="B"> B. living room</span>
+                <button type="button" onclick="speakText('living room')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span><input type="radio" name="q_RC5" value="C"> C. bedroom</span>
+                <button type="button" onclick="speakText('bedroom')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span><input type="radio" name="q_RC5" value="D"> D. kitchen</span>
+                <button type="button" onclick="speakText('kitchen')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_RC5" class="hidden text-xs mt-2 p-1.5 rounded-lg"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- II. Reading Comprehension -->
+      <div class="space-y-3 pt-4 border-t border-slate-100">
+        <div class="bg-emerald-50/70 border border-emerald-100 rounded-xl p-3">
+          <h4 class="text-sm font-bold text-emerald-950 flex items-center gap-1.5">
+            <span>II. Read the passage and answer the questions below:</span>
+            <button onclick="speakText('Read the passage and answer the questions below')" class="text-emerald-600 hover:text-emerald-800"><i class="fa-solid fa-volume-high"></i></button>
+          </h4>
+          <p class="text-xs text-emerald-700 mt-0.5">(1.6 pts - 5 câu) • <em>Chuyển các câu tự luận thành trắc nghiệm chọn phương án chuẩn xác trên điện thoại</em></p>
+        </div>
+
+        <!-- Passage Box -->
+        <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs sm:text-sm leading-relaxed text-slate-800 relative">
+          <button onclick="speakText(`Miss Lien lives in a small house in Hanoi. She is a teacher. She teaches English at a lower secondary school. She usually has breakfast at seven in the morning and she has lunch at twelve o'clock in the canteen of the school. She teaches her students in the morning. She teaches them four skills: listening, speaking, reading, writing on Wednesdays and Fridays. On Mondays, she teaches them vocabulary and grammar. In the evening, she often stays at home and listens to music. She sometimes goes to the movie theatre. She always goes to bed before eleven at night because she thinks it is good for the health.`)" class="absolute top-3 right-3 text-slate-400 hover:text-emerald-600" title="Đọc bài văn Miss Lien">
+            <i class="fa-solid fa-volume-high"></i>
+          </button>
+          <p>
+            Miss Lien lives in a small house in Hanoi. She is a teacher. She teaches English at a lower secondary school. She usually has breakfast at seven in the morning and she has lunch at twelve o'clock in the canteen of the school. She teaches her students in the morning. She teaches them four skills: listening, speaking, reading, writing on Wednesdays and Fridays. On Mondays, she teaches them vocabulary and grammar. In the evening, she often stays at home and listens to music. She sometimes goes to the movie theatre. She always goes to bed before eleven at night because she thinks it is good for the health.
+          </p>
+        </div>
+
+        <!-- A/ Answer questions (Converted to MC 1, 2, 3) -->
+        <div class="space-y-3 pt-2">
+          <h5 class="text-xs font-bold text-slate-600 uppercase tracking-wider">A/ Answer the questions (1.2 pt - 0.4 pt/câu):</h5>
+
+          <!-- Read Q1 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2" id="box_RQ1">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md">Câu 1</span>
+              <button onclick="speakText('Where does Miss Lien live?')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold text-slate-800">1. Where does Miss Lien live?</p>
+            <div class="space-y-1.5 text-xs sm:text-sm">
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_RQ1" value="A"> <span><strong>A.</strong> She lives in a small house in Hanoi.</span></span>
+                <button type="button" onclick="speakText('She lives in a small house in Hanoi.')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_RQ1" value="B"> <span><strong>B.</strong> She lives in a big flat in Da Nang.</span></span>
+                <button type="button" onclick="speakText('She lives in a big flat in Da Nang.')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_RQ1" value="C"> <span><strong>C.</strong> She lives in a school dormitory in Hanoi.</span></span>
+                <button type="button" onclick="speakText('She lives in a school dormitory in Hanoi.')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_RQ1" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+          </div>
+
+          <!-- Read Q2 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2" id="box_RQ2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md">Câu 2</span>
+              <button onclick="speakText('Does she teach English at a lower secondary school?')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold text-slate-800">2. Does she teach English at a lower secondary school?</p>
+            <div class="space-y-1.5 text-xs sm:text-sm">
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_RQ2" value="A"> <span><strong>A.</strong> Yes, she does.</span></span>
+                <button type="button" onclick="speakText('Yes, she does.')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_RQ2" value="B"> <span><strong>B.</strong> No, she doesn’t.</span></span>
+                <button type="button" onclick="speakText('No, she doesn\'t.')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_RQ2" value="C"> <span><strong>C.</strong> Yes, she is.</span></span>
+                <button type="button" onclick="speakText('Yes, she is.')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_RQ2" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+          </div>
+
+          <!-- Read Q3 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2" id="box_RQ3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md">Câu 3</span>
+              <button onclick="speakText('What does she teach her students on Mondays, Wednesdays, and Fridays?')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm font-semibold text-slate-800">3. What does she teach her students on Mondays, Wednesdays, and Fridays?</p>
+            <div class="space-y-1.5 text-xs sm:text-sm">
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_RQ3" value="A"> <span><strong>A.</strong> She teaches them four skills (listening, speaking, reading, writing), vocabulary and grammar.</span></span>
+                <button type="button" onclick="speakText('She teaches them four skills, vocabulary and grammar.')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_RQ3" value="B"> <span><strong>B.</strong> She only teaches them listening and speaking.</span></span>
+                <button type="button" onclick="speakText('She only teaches them listening and speaking.')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+              <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                <span class="flex items-center gap-2"><input type="radio" name="q_RQ3" value="C"> <span><strong>C.</strong> She teaches them Maths and Science.</span></span>
+                <button type="button" onclick="speakText('She teaches them Maths and Science.')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+              </label>
+            </div>
+            <div id="expl_RQ3" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+          </div>
+        </div>
+
+        <!-- B/ Choose the best answer (MC 4, 5) -->
+        <div class="space-y-3 pt-3">
+          <h5 class="text-xs font-bold text-slate-600 uppercase tracking-wider">B/ Choose the best answer (0.4 pt - 0.2 pt/câu):</h5>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
+            <!-- Read Q4 -->
+            <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2" id="box_RQ4">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md">Câu 4</span>
+                <button onclick="speakText('She usually has lunch at what o\'clock in the canteen of the school?')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high"></i></button>
+              </div>
+              <p class="text-xs sm:text-sm font-semibold text-slate-800">4. She usually has lunch at …… o'clock in the canteen of the school.</p>
+              <div class="grid grid-cols-2 gap-2 text-xs sm:text-sm">
+                <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                  <span class="flex items-center gap-1.5"><input type="radio" name="q_RQ4" value="A"> <span><strong>A.</strong> seven</span></span>
+                  <button type="button" onclick="speakText('seven')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                  <span class="flex items-center gap-1.5"><input type="radio" name="q_RQ4" value="B"> <span><strong>B.</strong> twelve</span></span>
+                  <button type="button" onclick="speakText('twelve')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                  <span class="flex items-center gap-1.5"><input type="radio" name="q_RQ4" value="C"> <span><strong>C.</strong> eleven</span></span>
+                  <button type="button" onclick="speakText('eleven')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                  <span class="flex items-center gap-1.5"><input type="radio" name="q_RQ4" value="D"> <span><strong>D.</strong> four</span></span>
+                  <button type="button" onclick="speakText('four')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+              </div>
+              <div id="expl_RQ4" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+            </div>
+
+            <!-- Read Q5 -->
+            <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2" id="box_RQ5">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md">Câu 5</span>
+                <button onclick="speakText('She blank goes to the movie theatre.')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high"></i></button>
+              </div>
+              <p class="text-xs sm:text-sm font-semibold text-slate-800">5. She …… goes to the movie theatre.</p>
+              <div class="grid grid-cols-2 gap-2 text-xs sm:text-sm">
+                <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                  <span class="flex items-center gap-1.5"><input type="radio" name="q_RQ5" value="A"> <span><strong>A.</strong> usually</span></span>
+                  <button type="button" onclick="speakText('usually')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                  <span class="flex items-center gap-1.5"><input type="radio" name="q_RQ5" value="B"> <span><strong>B.</strong> often</span></span>
+                  <button type="button" onclick="speakText('often')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                  <span class="flex items-center gap-1.5"><input type="radio" name="q_RQ5" value="C"> <span><strong>C.</strong> sometimes</span></span>
+                  <button type="button" onclick="speakText('sometimes')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+                <label class="flex items-center justify-between p-2 rounded-lg border border-slate-200 hover:bg-slate-50 cursor-pointer">
+                  <span class="flex items-center gap-1.5"><input type="radio" name="q_RQ5" value="D"> <span><strong>D.</strong> always</span></span>
+                  <button type="button" onclick="speakText('always')" class="text-slate-400 hover:text-emerald-600"><i class="fa-solid fa-volume-high text-xs"></i></button>
+                </label>
+              </div>
+              <div id="expl_RQ5" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PART D: WRITING ================= -->
+    <section class="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200 space-y-6">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2.5">
+          <span class="w-8 h-8 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-sm">D</span>
+          <div>
+            <h3 class="text-base sm:text-lg font-bold text-slate-900">PART D. WRITING (1.4 pts)</h3>
+            <p class="text-xs text-slate-500">Sắp xếp từ thành câu & Viết lại câu tương đương (Đã bỏ bài viết đoạn văn cuối)</p>
+          </div>
+        </div>
+        <span class="text-xs font-bold px-2.5 py-1 bg-amber-50 text-amber-700 rounded-full border border-amber-200">7 câu • 1.4 đ</span>
+      </div>
+
+      <div class="p-3 bg-amber-50/70 border border-amber-200 rounded-xl text-xs text-amber-900 flex items-center gap-2">
+        <i class="fa-solid fa-hand-pointer text-amber-600 text-base"></i>
+        <span><strong>Cách làm trên điện thoại:</strong> Các từ được xếp <strong>lộn xộn ngẫu nhiên</strong>. Em chỉ cần <strong>chạm vào từ</strong> bên dưới để đưa lên câu, và <strong>chạm vào từ trên câu</strong> để gỡ ra nếu xếp nhầm!</span>
+      </div>
+
+      <!-- I. Rearrange -->
+      <div class="space-y-4">
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+          <h4 class="text-sm font-bold text-slate-800 flex items-center gap-1.5">
+            <span>I. Rearrange the following words into the correct sentences.</span>
+            <button onclick="speakText('Rearrange the following words into the correct sentences.')" class="text-slate-500 hover:text-amber-600"><i class="fa-solid fa-volume-high"></i></button>
+          </h4>
+          <p class="text-xs text-slate-500 mt-0.5">(0.6 pt - 0.2 pt/câu)</p>
+        </div>
+
+        <div class="space-y-4" id="list_Writing_I">
+          <!-- W_I_1 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2.5" id="box_WI1">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md">Câu 1</span>
+              <button onclick="speakText('hard-working He very is')" class="text-slate-400 hover:text-amber-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 font-medium">Từ cho sẵn: <code class="bg-slate-100 px-2 py-0.5 rounded text-slate-700">hard-working / He / very / is / .</code></p>
+            
+            <!-- Answer Dropzone / Sentence Box -->
+            <div class="min-h-[46px] p-2 rounded-xl border-2 border-dashed border-amber-300 bg-amber-50/30 flex flex-wrap items-center gap-1.5" id="drop_WI1">
+              <span class="text-xs text-slate-400 italic px-2" id="placeholder_WI1">Chạm vào các từ bên dưới để ghép câu...</span>
+            </div>
+            <!-- Scrambled Word Bank -->
+            <div class="flex flex-wrap items-center gap-1.5 pt-1" id="bank_WI1"></div>
+
+            <div class="flex justify-end pt-1">
+              <button onclick="resetWordChip('WI1')" class="text-xs text-slate-500 hover:text-rose-600 font-medium flex items-center gap-1">
+                <i class="fa-solid fa-arrow-rotate-left"></i> Làm lại câu này
+              </button>
+            </div>
+            <div id="expl_WI1" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+          </div>
+
+          <!-- W_I_2 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2.5" id="box_WI2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md">Câu 2</span>
+              <button onclick="speakText('is favorite My English subject')" class="text-slate-400 hover:text-amber-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 font-medium">Từ cho sẵn: <code class="bg-slate-100 px-2 py-0.5 rounded text-slate-700">is / favorite / My / English / subject / .</code></p>
+            
+            <div class="min-h-[46px] p-2 rounded-xl border-2 border-dashed border-amber-300 bg-amber-50/30 flex flex-wrap items-center gap-1.5" id="drop_WI2">
+              <span class="text-xs text-slate-400 italic px-2" id="placeholder_WI2">Chạm vào các từ bên dưới để ghép câu...</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-1.5 pt-1" id="bank_WI2"></div>
+
+            <div class="flex justify-end pt-1">
+              <button onclick="resetWordChip('WI2')" class="text-xs text-slate-500 hover:text-rose-600 font-medium flex items-center gap-1">
+                <i class="fa-solid fa-arrow-rotate-left"></i> Làm lại câu này
+              </button>
+            </div>
+            <div id="expl_WI2" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+          </div>
+
+          <!-- W_I_3 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2.5" id="box_WI3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md">Câu 3</span>
+              <button onclick="speakText('look What she does like')" class="text-slate-400 hover:text-amber-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-600 font-medium">Từ cho sẵn: <code class="bg-slate-100 px-2 py-0.5 rounded text-slate-700">look / What / she / does / like / ?</code></p>
+            
+            <div class="min-h-[46px] p-2 rounded-xl border-2 border-dashed border-amber-300 bg-amber-50/30 flex flex-wrap items-center gap-1.5" id="drop_WI3">
+              <span class="text-xs text-slate-400 italic px-2" id="placeholder_WI3">Chạm vào các từ bên dưới để ghép câu...</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-1.5 pt-1" id="bank_WI3"></div>
+
+            <div class="flex justify-end pt-1">
+              <button onclick="resetWordChip('WI3')" class="text-xs text-slate-500 hover:text-rose-600 font-medium flex items-center gap-1">
+                <i class="fa-solid fa-arrow-rotate-left"></i> Làm lại câu này
+              </button>
+            </div>
+            <div id="expl_WI3" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- II. Rewrite Sentences -->
+      <div class="space-y-4 pt-4 border-t border-slate-100">
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-200">
+          <h4 class="text-sm font-bold text-slate-800 flex items-center gap-1.5">
+            <span>II. Rewrite the following sentences with the same meaning based on the given words.</span>
+            <button onclick="speakText('Rewrite the following sentences with the same meaning based on the given words.')" class="text-slate-500 hover:text-amber-600"><i class="fa-solid fa-volume-high"></i></button>
+          </h4>
+          <p class="text-xs text-slate-500 mt-0.5">(0.8 pt - 0.2 pt/câu)</p>
+        </div>
+
+        <div class="space-y-4" id="list_Writing_II">
+          <!-- W_II_1 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2.5" id="box_WII1">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md">Câu 1</span>
+              <button onclick="speakText('The garden is in front of the playground.')" class="text-slate-400 hover:text-amber-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-800">Câu gốc: <strong>The garden is in front of the playground.</strong></p>
+            <p class="text-xs sm:text-sm text-amber-800 font-semibold">➔ The playground is ...</p>
+            
+            <div class="min-h-[46px] p-2 rounded-xl border-2 border-dashed border-amber-300 bg-amber-50/30 flex flex-wrap items-center gap-1.5" id="drop_WII1">
+              <span class="text-xs text-slate-400 italic px-2" id="placeholder_WII1">Chạm các từ để hoàn thiện vế sau "The playground is ..."</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-1.5 pt-1" id="bank_WII1"></div>
+
+            <div class="flex justify-end pt-1">
+              <button onclick="resetWordChip('WII1')" class="text-xs text-slate-500 hover:text-rose-600 font-medium flex items-center gap-1">
+                <i class="fa-solid fa-arrow-rotate-left"></i> Làm lại câu này
+              </button>
+            </div>
+            <div id="expl_WII1" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+          </div>
+
+          <!-- W_II_2 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2.5" id="box_WII2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md">Câu 2</span>
+              <button onclick="speakText('How about going to the zoo on Sunday?')" class="text-slate-400 hover:text-amber-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-800">Câu gốc: <strong>How about going to the zoo on Sunday?</strong></p>
+            <p class="text-xs sm:text-sm text-amber-800 font-semibold">➔ Let’s ...</p>
+            
+            <div class="min-h-[46px] p-2 rounded-xl border-2 border-dashed border-amber-300 bg-amber-50/30 flex flex-wrap items-center gap-1.5" id="drop_WII2">
+              <span class="text-xs text-slate-400 italic px-2" id="placeholder_WII2">Chạm các từ để hoàn thiện vế sau "Let’s ..."</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-1.5 pt-1" id="bank_WII2"></div>
+
+            <div class="flex justify-end pt-1">
+              <button onclick="resetWordChip('WII2')" class="text-xs text-slate-500 hover:text-rose-600 font-medium flex items-center gap-1">
+                <i class="fa-solid fa-arrow-rotate-left"></i> Làm lại câu này
+              </button>
+            </div>
+            <div id="expl_WII2" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+          </div>
+
+          <!-- W_II_3 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2.5" id="box_WII3">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md">Câu 3</span>
+              <button onclick="speakText('There are five members in my family.')" class="text-slate-400 hover:text-amber-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-800">Câu gốc: <strong>There are five members in my family.</strong></p>
+            <p class="text-xs sm:text-sm text-amber-800 font-semibold">➔ My family ...</p>
+            
+            <div class="min-h-[46px] p-2 rounded-xl border-2 border-dashed border-amber-300 bg-amber-50/30 flex flex-wrap items-center gap-1.5" id="drop_WII3">
+              <span class="text-xs text-slate-400 italic px-2" id="placeholder_WII3">Chạm các từ để hoàn thiện vế sau "My family ..."</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-1.5 pt-1" id="bank_WII3"></div>
+
+            <div class="flex justify-end pt-1">
+              <button onclick="resetWordChip('WII3')" class="text-xs text-slate-500 hover:text-rose-600 font-medium flex items-center gap-1">
+                <i class="fa-solid fa-arrow-rotate-left"></i> Làm lại câu này
+              </button>
+            </div>
+            <div id="expl_WII3" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+          </div>
+
+          <!-- W_II_4 -->
+          <div class="p-3.5 rounded-xl border border-slate-200 bg-white space-y-2.5" id="box_WII4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-md">Câu 4</span>
+              <button onclick="speakText('She has big brown eyes.')" class="text-slate-400 hover:text-amber-600"><i class="fa-solid fa-volume-high"></i></button>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-800">Câu gốc: <strong>She has big brown eyes.</strong></p>
+            <p class="text-xs sm:text-sm text-amber-800 font-semibold">➔ Her eyes ...</p>
+            
+            <div class="min-h-[46px] p-2 rounded-xl border-2 border-dashed border-amber-300 bg-amber-50/30 flex flex-wrap items-center gap-1.5" id="drop_WII4">
+              <span class="text-xs text-slate-400 italic px-2" id="placeholder_WII4">Chạm các từ để hoàn thiện vế sau "Her eyes ..."</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-1.5 pt-1" id="bank_WII4"></div>
+
+            <div class="flex justify-end pt-1">
+              <button onclick="resetWordChip('WII4')" class="text-xs text-slate-500 hover:text-rose-600 font-medium flex items-center gap-1">
+                <i class="fa-solid fa-arrow-rotate-left"></i> Làm lại câu này
+              </button>
+            </div>
+            <div id="expl_WII4" class="hidden text-xs mt-2 p-2 rounded-lg"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Submit Action Button Area -->
+    <div class="pt-2 pb-6 text-center space-y-3">
+      <button id="btnSubmitTest" onclick="submitExam()" class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold rounded-2xl shadow-lg hover:from-emerald-700 hover:to-teal-700 transform active:scale-95 transition flex items-center justify-center gap-2 mx-auto text-base sm:text-lg">
+        <i class="fa-solid fa-paper-plane"></i>
+        <span>NỘP BÀI THI & CHẤM ĐIỂM</span>
+      </button>
+      <p class="text-xs text-slate-500">Hệ thống sẽ tự động tính điểm, mở lời giải thích ngữ pháp chi tiết và hiện Tape Script bài nghe ngay sau khi nộp.</p>
+    </div>
+
+    <!-- Score Results Banner (Hidden until submit) -->
+    <section id="resultSection" class="hidden bg-white rounded-2xl p-5 sm:p-6 shadow-md border-2 border-emerald-500 space-y-4">
+      <div class="text-center space-y-2">
+        <div class="inline-flex p-3 bg-emerald-100 text-emerald-600 rounded-full text-2xl">
+          <i class="fa-solid fa-award"></i>
+        </div>
+        <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900" id="resultNameClass">Kết Quả Bài Thi</h3>
+        <p class="text-xs sm:text-sm text-slate-500" id="resultTimestamp"></p>
+      </div>
+
+      <!-- Score breakdown tiles -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+        <div class="bg-blue-50 p-3 rounded-xl border border-blue-100">
+          <p class="text-xs text-blue-600 font-semibold uppercase">Listening</p>
+          <p class="text-lg sm:text-xl font-black text-blue-900" id="score_listening">0 / 2.4</p>
+        </div>
+        <div class="bg-purple-50 p-3 rounded-xl border border-purple-100">
+          <p class="text-xs text-purple-600 font-semibold uppercase">Language</p>
+          <p class="text-lg sm:text-xl font-black text-purple-900" id="score_language">0 / 2.6</p>
+        </div>
+        <div class="bg-emerald-50 p-3 rounded-xl border border-emerald-100">
+          <p class="text-xs text-emerald-600 font-semibold uppercase">Reading</p>
+          <p class="text-lg sm:text-xl font-black text-emerald-900" id="score_reading">0 / 2.6</p>
+        </div>
+        <div class="bg-amber-50 p-3 rounded-xl border border-amber-100">
+          <p class="text-xs text-amber-600 font-semibold uppercase">Writing</p>
+          <p class="text-lg sm:text-xl font-black text-amber-900" id="score_writing">0 / 1.4</p>
+        </div>
+      </div>
+
+      <!-- Grand Total on 10.0 scale -->
+      <div class="p-4 bg-gradient-to-r from-emerald-600 to-teal-700 text-white rounded-xl text-center space-y-1 shadow-sm">
+        <p class="text-xs uppercase tracking-wider font-semibold text-emerald-100">Tổng điểm quy đổi (Thang điểm 10)</p>
+        <p class="text-3xl sm:text-4xl font-black tracking-tight" id="score_total">0.0 / 10.0</p>
+        <p class="text-xs font-medium text-emerald-100" id="feedback_rank">Đang đánh giá...</p>
+      </div>
+
+      <div class="text-center pt-2">
+        <p class="text-xs text-slate-600">
+          <i class="fa-solid fa-arrow-up text-emerald-600 mr-1"></i>
+          Hãy cuộn lên phía trên để xem đáp án đúng, lời giải thích cấu trúc ngữ pháp và mở xem Tape Script bài nghe!
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Notification Toast Modal -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 transition duration-300 pointer-events-none max-w-sm w-full px-4">
+    <div class="bg-slate-900 text-white px-4 py-3 rounded-xl shadow-xl flex items-center gap-3 text-xs sm:text-sm" id="toastBox">
+      <i class="fa-solid fa-info-circle text-amber-400" id="toastIcon"></i>
+      <span id="toastMsg">Thông báo</span>
+    </div>
+  </div>
+
+  <script>
+    /* =========================================================
+       EXAM DATA DEFINITIONS & CORRECTIONS
+       ========================================================= */
+
+    // Master answers and detailed pedagogical explanations
+    const EXAM_KEY = {
+      // PART A. LISTENING I (6 items x 0.2 = 1.2 pts)
+      // Correction: Q3 in word doc had C (science) -> Correct is A (maths: "she teaches us maths")
+      // Correction: Q6 in word doc had C (library) -> Correct is A (on a farm: "biology lesson on a farm")
+      q_L1: {
+        correct: 'A',
+        pts: 0.2,
+        title: 'Câu 1 (Listening I)',
+        why: 'Trong bài nghe, Janet giới thiệu: "Hi. My name’s Janet. I’m eleven years old."',
+        grammar: 'Cấu trúc giới thiệu tuổi: S + be + [number] + years old. (eleven = 11 tuổi).'
+      },
+      q_L2: {
+        correct: 'B',
+        pts: 0.2,
+        title: 'Câu 2 (Listening I)',
+        why: 'Trong bài nghe, Janet nói rõ: "My classmates are friendly."',
+        grammar: 'Tính từ mô tả tính cách: friendly (thân thiện, cởi mở).'
+      },
+      q_L3: {
+        correct: 'A',
+        pts: 0.2,
+        title: 'Câu 3 (Listening I)',
+        why: 'Trong bài nghe: "...my favourite teacher is Mrs. Smith. She teaches us maths." (Đáp án Word gốc ghi nhầm là C - Science, đã hiệu đính chính xác sang A - Maths).',
+        grammar: 'maths (môn Toán học).'
+      },
+      q_L4: {
+        correct: 'B',
+        pts: 0.2,
+        title: 'Câu 4 (Listening I)',
+        why: 'Trong bài nghe: "I have two hours to study Vietnamese every week."',
+        grammar: 'every week = hàng tuần, mỗi tuần (chỉ tần suất).'
+      },
+      q_L5: {
+        correct: 'A',
+        pts: 0.2,
+        title: 'Câu 5 (Listening I)',
+        why: 'Trong bài nghe: "We wear our uniforms every day, but today we aren’t." ➔ Hôm nay bạn ấy không mặc đồng phục.',
+        grammar: 'Thì Hiện tại tiếp diễn chỉ sự việc diễn ra hôm nay: S + isn’t/aren’t + V-ing.'
+      },
+      q_L6: {
+        correct: 'A',
+        pts: 0.2,
+        title: 'Câu 6 (Listening I)',
+        why: 'Trong bài nghe câu kết: "We’re going to have a biology lesson on a farm." (Đáp án Word gốc ghi nhầm là C - in the library, đã hiệu đính chính xác sang A - on a farm).',
+        grammar: 'Cấu trúc tương lai gần: be going to + V-inf; giới từ vị trí: on a farm (tại nông trại).'
+      },
+
+      // PART A. LISTENING II (6 items x 0.2 = 1.2 pts)
+      q_TF1: {
+        correct: 'F',
+        pts: 0.2,
+        title: 'Câu 1 (Listening II)',
+        why: 'Trong bài nghe, bạn Mi nói: "She studies with me in class 6A." ➔ Không phải lớp 6B nên nhận định là False (F).',
+        grammar: 'Thông tin đối chiếu chi tiết: class 6A ≠ class 6B.'
+      },
+      q_TF2: {
+        correct: 'T',
+        pts: 0.2,
+        title: 'Câu 2 (Listening II)',
+        why: 'Trong bài nghe: "She’s tall and slim." (slim đồng nghĩa với thin - mảnh mai/thon gọn) ➔ True (T).',
+        grammar: 'Tính từ miêu tả ngoại hình: tall (cao), slim / thin (mảnh khảnh, gầy).'
+      },
+      q_TF3: {
+        correct: 'T',
+        pts: 0.2,
+        title: 'Câu 3 (Listening II)',
+        why: 'Trong bài nghe: "She likes playing sports and has many friends. Look, she’s playing football over there!" ➔ True (T).',
+        grammar: 'like + V-ing: thích làm gì (likes playing sports).'
+      },
+      q_TF4: {
+        correct: 'F',
+        pts: 0.2,
+        title: 'Câu 4 (Listening II)',
+        why: 'Trong bài nghe về Chi: "She’s short with long black hair and a big nose." (Chi có tóc dài đen và mũi to, không phải tóc ngắn và mũi nhỏ) ➔ False (F).',
+        grammar: 'Đối chiếu từ vựng: long black hair ≠ short black hair; big nose ≠ small nose.'
+      },
+      q_TF5: {
+        correct: 'T',
+        pts: 0.2,
+        title: 'Câu 5 (Listening II)',
+        why: 'Trong bài nghe Minh nói: "I like her because she’s kind to me. She helps me with my English." ➔ True (T).',
+        grammar: 'Cấu trúc: be kind to somebody (tốt bụng, tử tế với ai).'
+      },
+      q_TF6: {
+        correct: 'F',
+        pts: 0.2,
+        title: 'Câu 6 (Listening II)',
+        why: 'Trong bài nghe Minh nói: "She always does her homework before class." (Chi luôn làm bài trước giờ học, câu đề ghi "never" là sai) ➔ False (F).',
+        grammar: 'Trạng từ chỉ tần suất: always (luôn luôn) đối lập với never (không bao giờ).'
+      },
+
+      // PART B. I: PRONUNCIATION (2 items x 0.2 = 0.4 pt)
+      q_P1: {
+        correct: 'D',
+        pts: 0.2,
+        title: 'Câu 1 (Pronunciation)',
+        why: 'stays phát âm là /z/ (kết thúc bằng nguyên âm đôi /eɪ/). Các từ drinks (/k/), sleeps (/p/), eats (/t/) đều kết thúc bằng phụ âm vô thanh nên phát âm là /s/.',
+        grammar: 'Quy tắc phát âm đuôi -s/-es: /s/ sau phụ âm vô thanh (/p/, /k/, /t/, /f/, /θ/); /z/ sau nguyên âm và phụ âm hữu thanh.'
+      },
+      q_P2: {
+        correct: 'B',
+        pts: 0.2,
+        title: 'Câu 2 (Pronunciation)',
+        why: 'uniform phát âm là /ˈjuːnɪfɔːm/ (âm /juː/). Các từ cupboard /ˈkʌbəd/, lunch /lʌntʃ/, funny /ˈfʌni/ đều có chữ "u" phát âm là /ʌ/.',
+        grammar: 'Phân biệt nguyên âm /juː/ (uniform, university) và nguyên âm ngắn /ʌ/ (cupboard, lunch, funny).'
+      },
+
+      // PART B. II: VOCAB & GRAMMAR (8 items x 0.2 = 1.6 pts)
+      q_MC1: {
+        correct: 'B',
+        pts: 0.2,
+        title: 'Câu 1 (Language)',
+        why: 'Dùng giới từ "in" trước căn hộ hoặc phòng khép kín: live in a flat / in an apartment.',
+        grammar: 'Cụm giới từ: in a flat (trong một căn hộ chung cư).'
+      },
+      q_MC2: {
+        correct: 'C',
+        pts: 0.2,
+        title: 'Câu 2 (Language)',
+        why: 'Chỉ có "pictures" (bức tranh) là vật dụng được treo trên tường (on the wall).',
+        grammar: 'Từ vựng: pictures (những bức tranh). Giới từ: on the wall (trên tường).'
+      },
+      q_MC3: {
+        correct: 'D',
+        pts: 0.2,
+        title: 'Câu 3 (Language)',
+        why: 'Vế sau có câu giải thích "He plays sports every day" (cậu ấy chơi thể thao mỗi ngày) nên tính từ phù hợp nhất là "sporty" (dáng vóc thể thao, yêu thể thao).',
+        grammar: 'Tính từ miêu tả: sporty (khỏe khoắn, yêu thích thể thao).'
+      },
+      q_MC4: {
+        correct: 'A',
+        pts: 0.2,
+        title: 'Câu 4 (Language)',
+        why: 'Hoa quả (oranges and apples) được bảo quản trong tủ lạnh (fridge). Wardrobe là tủ quần áo, cupboard là tủ chén bát, lamp là cái đèn.',
+        grammar: 'Từ vựng đồ gia dụng: fridge (tủ lạnh).'
+      },
+      q_MC5: {
+        correct: 'A',
+        pts: 0.2,
+        title: 'Câu 5 (Language)',
+        why: 'Vế sau có "He always makes me laugh!" (Cậu ấy luôn làm tôi bật cười) nên Nick rất hài hước, vui tính (funny).',
+        grammar: 'Tính từ: funny (hài hước, buồn cười).'
+      },
+      q_MC6: {
+        correct: 'B',
+        pts: 0.2,
+        title: 'Câu 6 (Language)',
+        why: 'Cấu trúc chỉ vị trí ở giữa 2 địa điểm: between A and B (ở giữa A và B).',
+        grammar: 'between [noun 1] and [noun 2]: ở giữa hai người/vật/địa điểm.'
+      },
+      q_MC7: {
+        correct: 'C',
+        pts: 0.2,
+        title: 'Câu 7 (Language)',
+        why: 'Cần sở hữu cách của danh từ số ít "teacher": teacher’s house (ngôi nhà của cô giáo/thầy giáo).',
+        grammar: 'Sở hữu cách với danh từ số ít: N + ’s + N.'
+      },
+      q_MC8: {
+        correct: 'D',
+        pts: 0.2,
+        title: 'Câu 8 (Language)',
+        why: 'Khi được mời lịch sự "Would you like to drink coffee...?", lời từ chối lịch sự và tự nhiên nhất là: "Sorry. I can’t." (Xin lỗi, mình không thể uống được).',
+        grammar: 'Giao tiếp mời mọc: Would you like...? ➔ Đồng ý: Yes, please. / Từ chối: Sorry. I can’t. / No, thanks.'
+      },
+
+      // PART B. III: VERB FORMS (3 items x 0.2 = 0.6 pt)
+      q_V1: {
+        correct: 'has',
+        pts: 0.2,
+        title: 'Câu 1 (Chia động từ)',
+        why: 'Chủ ngữ "He" là ngôi thứ ba số ít, diễn tả đặc điểm ngoại hình ở hiện tại đơn nên động từ "have" biến đổi thành "has".',
+        grammar: 'Hiện tại đơn: He / She / It + has + ...'
+      },
+      q_V2: {
+        correct: 'goes',
+        pts: 0.2,
+        title: 'Câu 2 (Chia động từ)',
+        why: 'Có trạng từ chỉ thói quen "every day" ➔ thì Hiện tại đơn. Chủ ngữ "My father" (ngôi thứ ba số ít), động từ kết thúc bằng "o" thêm "-es" ➔ goes.',
+        grammar: 'Hiện tại đơn: S (số ít) + V-s/es. (go ➔ goes).'
+      },
+      q_V3: {
+        correct: 'are studying',
+        pts: 0.2,
+        title: 'Câu 3 (Chia động từ)',
+        why: 'Có trạng từ "at the moment" (ngay lúc này) ➔ thì Hiện tại tiếp diễn. Chủ ngữ "We" đi với to be "are" + V-ing.',
+        grammar: 'Hiện tại tiếp diễn: S + am/is/are + V-ing. (We are studying).'
+      },
+
+      // PART C. I: CLOZE TEST (5 items x 0.2 = 1.0 pt)
+      q_RC1: {
+        correct: 'B',
+        pts: 0.2,
+        title: 'Chỗ trống 1 (Cloze)',
+        why: 'Dẫn chứng: "One for her parents, and the other two are for Linh and her brother" ➔ 1 phòng của bố mẹ + 2 phòng của Linh và em trai = 3 phòng ngủ (three).',
+        grammar: 'Số đếm: 1 + 2 = 3 (three bedrooms).'
+      },
+      q_RC2: {
+        correct: 'C',
+        pts: 0.2,
+        title: 'Chỗ trống 2 (Cloze)',
+        why: 'Chủ ngữ là Linh (nữ, ngôi thứ ba số ít), phòng của cô ấy có nhiều ảnh gia đình của cô ấy ➔ dùng tính từ sở hữu "her".',
+        grammar: 'Tính từ sở hữu: her family (gia đình của cô ấy).'
+      },
+      q_RC3: {
+        correct: 'D',
+        pts: 0.2,
+        title: 'Chỗ trống 3 (Cloze)',
+        why: 'Dẫn chứng: "...so that she can read before bed" (để cô ấy có thể đọc sách trước khi ngủ) ➔ cần một chiếc đèn bàn (lamp).',
+        grammar: 'Từ vựng đồ dùng: lamp (chiếc đèn).'
+      },
+      q_RC4: {
+        correct: 'A',
+        pts: 0.2,
+        title: 'Chỗ trống 4 (Cloze)',
+        why: 'Sau chỗ trống có trực tiếp danh từ "her bed" mà không có giới từ. "near" có thể đi kèm tân ngữ trực tiếp (near her bed). "next" phải đi với "to", "front" phải có "in front of".',
+        grammar: 'Giới từ chỉ vị trí: near + [noun] (gần cái gì).'
+      },
+      q_RC5: {
+        correct: 'D',
+        pts: 0.2,
+        title: 'Chỗ trống 5 (Cloze)',
+        why: 'Dẫn chứng: "...because she likes cooking delicious dinner with her Mom" (nấu bữa tối cùng mẹ) ➔ căn phòng yêu thích là phòng bếp (kitchen).',
+        grammar: 'Từ vựng phòng trong nhà: kitchen (phòng bếp).'
+      },
+
+      // PART C. II: READING COMPREHENSION (5 items)
+      // A/ Answer questions (3 items x 0.4 = 1.2 pts)
+      q_RQ1: {
+        correct: 'A',
+        pts: 0.4,
+        title: 'Câu 1 (Reading II.A)',
+        why: 'Dẫn chứng ngay câu đầu bài đọc: "Miss Lien lives in a small house in Hanoi."',
+        grammar: 'Cấu trúc trả lời về nơi ở: S + lives in + ...'
+      },
+      q_RQ2: {
+        correct: 'A',
+        pts: 0.4,
+        title: 'Câu 2 (Reading II.A)',
+        why: 'Dẫn chứng câu 2 và 3: "She is a teacher. She teaches English at a lower secondary school." ➔ Trả lời ngắn là: Yes, she does.',
+        grammar: 'Câu hỏi Yes/No với trợ động từ Does: Yes, S + does.'
+      },
+      q_RQ3: {
+        correct: 'A',
+        pts: 0.4,
+        title: 'Câu 3 (Reading II.A)',
+        why: 'Dẫn chứng bài đọc: "...four skills: listening, speaking, reading, writing on Wednesdays and Fridays. On Mondays, she teaches them vocabulary and grammar." ➔ Tổng cộng là 4 kỹ năng kèm từ vựng và ngữ pháp.',
+        grammar: 'Kỹ năng ngôn ngữ: four skills, vocabulary, grammar.'
+      },
+      // B/ Multiple choice (2 items x 0.2 = 0.4 pt)
+      q_RQ4: {
+        correct: 'B',
+        pts: 0.2,
+        title: 'Câu 4 (Reading II.B)',
+        why: 'Dẫn chứng bài đọc: "...and she has lunch at twelve o\'clock in the canteen of the school." ➔ twelve (12 giờ).',
+        grammar: 'Thời gian: at + [time] o\'clock.'
+      },
+      q_RQ5: {
+        correct: 'C',
+        pts: 0.2,
+        title: 'Câu 5 (Reading II.B)',
+        why: 'Dẫn chứng bài đọc: "She sometimes goes to the movie theatre." ➔ trạng từ đúng là sometimes.',
+        grammar: 'Trạng từ chỉ tần suất: sometimes (thỉnh thoảng).'
+      }
+    };
+
+    // WRITING ITEMS (Word chips configuration)
+    // Part D.I: 3 items x 0.2 = 0.6 pt
+    // Part D.II: 4 items x 0.2 = 0.8 pt
+    const WRITING_DATA = {
+      WI1: {
+        pts: 0.2,
+        title: 'Câu 1 (Writing I - Rearrange)',
+        correctAnswer: "He is very hard-working .",
+        normalizedTarget: "He is very hard-working .",
+        // Scrambled pieces
+        initialBank: ["very", "is", "He", ".", "hard-working"],
+        why: 'Sắp xếp đúng theo trật tự câu khẳng định: S + be + adv + adj.',
+        grammar: 'Cấu trúc: S (He) + be (is) + very (trạng từ chỉ mức độ) + hard-working (tính từ chăm chỉ) + dấu chấm.'
+      },
+      WI2: {
+        pts: 0.2,
+        title: 'Câu 2 (Writing I - Rearrange)',
+        correctAnswer: "My favorite subject is English .",
+        normalizedTarget: "My favorite subject is English .",
+        initialBank: ["subject", "English", "My", ".", "favorite", "is"],
+        why: 'Sắp xếp đúng theo cụm chủ ngữ: My favorite subject + be (is) + tên môn học (English).',
+        grammar: 'Cấu trúc: My favorite [noun] is [noun] (Môn học yêu thích của tôi là...)'
+      },
+      WI3: {
+        pts: 0.2,
+        title: 'Câu 3 (Writing I - Rearrange)',
+        correctAnswer: "What does she look like ?",
+        normalizedTarget: "What does she look like ?",
+        initialBank: ["she", "like", "What", "look", "?", "does"],
+        why: 'Câu hỏi miêu tả ngoại hình chuẩn: What + does + S + look like?',
+        grammar: 'Cấu trúc hỏi ngoại hình: What does + S + look like? (Cô ấy trông như thế nào?)'
+      },
+
+      WII1: {
+        pts: 0.2,
+        title: 'Câu 1 (Writing II - Transformation)',
+        // Base given: "The playground is ..."
+        correctAnswer: "behind the garden .",
+        normalizedTarget: "behind the garden .",
+        initialBank: ["garden", "the", ".", "behind"],
+        why: 'Khu vườn ở phía trước sân chơi (in front of) ➔ Sân chơi ở phía sau khu vườn (behind).',
+        grammar: 'Cặp giới từ chỉ vị trí trái nghĩa: in front of (ở đằng trước) ⟷ behind (ở phía sau).'
+      },
+      WII2: {
+        pts: 0.2,
+        title: 'Câu 2 (Writing II - Transformation)',
+        // Base given: "Let’s ..."
+        correctAnswer: "go to the zoo on Sunday .",
+        normalizedTarget: "go to the zoo on Sunday .",
+        initialBank: ["on", "zoo", "go", "Sunday", ".", "to", "the"],
+        why: 'Lời gợi ý "How about + V-ing...?" được viết lại bằng "Let’s + V-nguyên thể...".',
+        grammar: 'Cấu trúc rủ rê/đề nghị: How about going...? = Let’s go... (go to the zoo on Sunday).'
+      },
+      WII3: {
+        pts: 0.2,
+        title: 'Câu 3 (Writing II - Transformation)',
+        // Base given: "My family ..."
+        correctAnswer: "has five members .",
+        normalizedTarget: "has five members .",
+        initialBank: ["five", "members", "has", "."],
+        why: 'Cấu trúc "There are + [number] members in my family" chuyển thành "My family has + [number] members".',
+        grammar: 'Chủ ngữ "My family" là danh từ tập hợp số ít trong ngữ cảnh này ➔ đi với động từ "has" (My family has five members).'
+      },
+      WII4: {
+        pts: 0.2,
+        title: 'Câu 4 (Writing II - Transformation)',
+        // Base given: "Her eyes ..."
+        correctAnswer: "are big and brown .",
+        normalizedTarget: "are big and brown .",
+        initialBank: ["brown", "are", "big", ".", "and"],
+        why: 'Chuyển từ "She has big brown eyes" (S + has + adj + N) sang "Her eyes are big and brown" (S + be + adj).',
+        grammar: 'Chủ ngữ "Her eyes" là danh từ số nhiều ➔ to be là "are", tính từ đi kèm nối bằng "and": are big and brown.'
+      }
+    };
+
+    // User selected chips state
+    let userWordChips = {
+      WI1: [],
+      WI2: [],
+      WI3: [],
+      WII1: [],
+      WII2: [],
+      WII3: [],
+      WII4: []
+    };
+
+    // Initialize Word Chips banks on page load
+    function initWordChips() {
+      for (const [key, item] of Object.entries(WRITING_DATA)) {
+        renderChips(key);
+      }
+    }
+
+    function renderChips(id) {
+      const data = WRITING_DATA[id];
+      const bankContainer = document.getElementById(`bank_${id}`);
+      const dropContainer = document.getElementById(`drop_${id}`);
+      const placeholder = document.getElementById(`placeholder_${id}`);
+
+      if (!bankContainer || !dropContainer) return;
+
+      // Render Dropzone (Current sentence formed by student)
+      dropContainer.innerHTML = '';
+      const chosen = userWordChips[id];
+
+      if (chosen.length === 0) {
+        if (placeholder) {
+          dropContainer.appendChild(placeholder);
+          placeholder.classList.remove('hidden');
+        }
+      } else {
+        chosen.forEach((wordObj, idx) => {
+          const chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'word-chip px-2.5 py-1 bg-amber-600 text-white font-semibold text-xs sm:text-sm rounded-lg shadow-xs hover:bg-rose-600 transition flex items-center gap-1 group';
+          chip.innerHTML = `<span>${wordObj.text}</span> <i class="fa-solid fa-xmark text-[10px] text-amber-200 group-hover:text-white"></i>`;
+          chip.onclick = () => removeWordFromSentence(id, idx);
+          dropContainer.appendChild(chip);
+        });
+      }
+
+      // Render Bank (Words remaining to choose)
+      bankContainer.innerHTML = '';
+      data.initialBank.forEach((text, origIdx) => {
+        // check if this specific instance has been used
+        const isUsed = chosen.some(item => item.origIdx === origIdx);
+        if (!isUsed) {
+          const chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'word-chip px-3 py-1.5 bg-slate-100 hover:bg-amber-100 hover:border-amber-300 border border-slate-300 text-slate-800 font-medium text-xs sm:text-sm rounded-lg shadow-2xs active:bg-amber-200';
+          chip.textContent = text;
+          chip.onclick = () => addWordToSentence(id, text, origIdx);
+          bankContainer.appendChild(chip);
+        }
+      });
+    }
+
+    function addWordToSentence(id, text, origIdx) {
+      userWordChips[id].push({ text, origIdx });
+      renderChips(id);
+    }
+
+    function removeWordFromSentence(id, indexInChosen) {
+      userWordChips[id].splice(indexInChosen, 1);
+      renderChips(id);
+    }
+
+    function resetWordChip(id) {
+      userWordChips[id] = [];
+      renderChips(id);
+    }
+
+    /* =========================================================
+       TEXT-TO-SPEECH (TTS) & AUDIO PLAYER ENGINE
+       ========================================================= */
+
+    let currentUtterance = null;
+    let isPlayingAudio1 = false;
+    let isPlayingAudio2 = false;
+
+    function stopAllSpeech() {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+      }
+      resetAudioBtnUI();
+      showToast('Đã dừng âm thanh phát âm.');
+    }
+
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) {
+        showToast('Trình duyệt của em không hỗ trợ phát âm trực tiếp.');
+        return;
+      }
+      window.speechSynthesis.cancel();
+
+      // Clean punctuation for speech clarity
+      const clean = text.replace(/[_/]/g, ' ').replace(/\s+/g, ' ').trim();
+      const utterance = new SpeechSynthesisUtterance(clean);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9; // clear educational pace
+
+      // Try selecting native voice if available
+      const voices = window.speechSynthesis.getVoices();
+      const enVoice = voices.find(v => v.lang.startsWith('en') && (v.name.includes('Natural') || v.name.includes('Google') || v.name.includes('Samantha') || v.name.includes('David')));
+      if (enVoice) utterance.voice = enVoice;
+
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // Audio scripts for realistic exam listening practice
+    const TASK1_SCRIPT = "Hi. My name’s Janet. I’m eleven years old. I’m now in year 6 at Palmer School. I like it here. My classmates are friendly. The teachers at my school are nice and very helpful, and my favourite teacher is Mrs. Smith. She teaches us maths. I have two hours to study Vietnamese every week. I usually do my homework in the library. We wear our uniforms every day, but today we aren’t. We’re going to have a biology lesson on a farm.";
+
+    const TASK2_SCRIPT = "My best friend is Lan. She studies with me in class 6A. She's tall and slim. She has short black hair and a small mouth. She's very active and friendly. She likes playing sports and has many friends. Look, she's playing football over there! Chi is my best friend. We're in class 6B. She's short with long black hair and a big nose. I like her because she's kind to me. She helps me with my English. She's also hard-working. She always does her homework before class. Look, she's going to the library.";
+
+    function playTaskAudio(taskNum) {
+      if (!('speechSynthesis' in window)) {
+        showToast('Trình duyệt không hỗ trợ Web Speech API.');
+        return;
+      }
+
+      if (taskNum === 1) {
+        if (isPlayingAudio1) {
+          window.speechSynthesis.cancel();
+          isPlayingAudio1 = false;
+          resetAudioBtnUI();
+          return;
+        }
+        window.speechSynthesis.cancel();
+        isPlayingAudio2 = false;
+        isPlayingAudio1 = true;
+        updateAudioBtnUI(1, true);
+
+        const utter = new SpeechSynthesisUtterance(TASK1_SCRIPT);
+        utter.lang = 'en-US';
+        utter.rate = 0.88;
+        utter.onend = () => { isPlayingAudio1 = false; resetAudioBtnUI(); };
+        utter.onerror = () => { isPlayingAudio1 = false; resetAudioBtnUI(); };
+        window.speechSynthesis.speak(utter);
+      } else if (taskNum === 2) {
+        if (isPlayingAudio2) {
+          window.speechSynthesis.cancel();
+          isPlayingAudio2 = false;
+          resetAudioBtnUI();
+          return;
+        }
+        window.speechSynthesis.cancel();
+        isPlayingAudio1 = false;
+        isPlayingAudio2 = true;
+        updateAudioBtnUI(2, true);
+
+        const utter = new SpeechSynthesisUtterance(TASK2_SCRIPT);
+        utter.lang = 'en-US';
+        utter.rate = 0.88;
+        utter.onend = () => { isPlayingAudio2 = false; resetAudioBtnUI(); };
+        utter.onerror = () => { isPlayingAudio2 = false; resetAudioBtnUI(); };
+        window.speechSynthesis.speak(utter);
+      }
+    }
+
+    function updateAudioBtnUI(taskNum, isPlaying) {
+      const btn1 = document.getElementById('btnPlayAudio1');
+      const txt1 = document.getElementById('txtAudio1');
+      const btn2 = document.getElementById('btnPlayAudio2');
+      const txt2 = document.getElementById('txtAudio2');
+
+      if (taskNum === 1) {
+        btn1.className = isPlaying ? 'px-3.5 py-2 bg-rose-600 text-white text-xs font-semibold rounded-xl shadow-sm flex items-center gap-1.5 transition animate-pulse' : 'px-3.5 py-2 bg-blue-600 text-white text-xs font-semibold rounded-xl hover:bg-blue-700 shadow-sm flex items-center gap-1.5 transition';
+        txt1.textContent = isPlaying ? 'Đang đọc Audio 1 (Bấm để Dừng)' : 'Nghe Audio 1 (Janet\'s School)';
+        btn1.querySelector('i').className = isPlaying ? 'fa-solid fa-stop' : 'fa-solid fa-play';
+        // Reset 2
+        btn2.className = 'px-3.5 py-2 bg-indigo-600 text-white text-xs font-semibold rounded-xl hover:bg-indigo-700 shadow-sm flex items-center gap-1.5 transition';
+        txt2.textContent = 'Nghe Audio 2 (Best Friends)';
+        btn2.querySelector('i').className = 'fa-solid fa-play';
+      } else {
+        btn2.className = isPlaying ? 'px-3.5 py-2 bg-rose-600 text-white text-xs font-semibold rounded-xl shadow-sm flex items-center gap-1.5 transition animate-pulse' : 'px-3.5 py-2 bg-indigo-600 text-white text-xs font-semibold rounded-xl hover:bg-indigo-700 shadow-sm flex items-center gap-1.5 transition';
+        txt2.textContent = isPlaying ? 'Đang đọc Audio 2 (Bấm để Dừng)' : 'Nghe Audio 2 (Best Friends)';
+        btn2.querySelector('i').className = isPlaying ? 'fa-solid fa-stop' : 'fa-solid fa-play';
+        // Reset 1
+        btn1.className = 'px-3.5 py-2 bg-blue-600 text-white text-xs font-semibold rounded-xl hover:bg-blue-700 shadow-sm flex items-center gap-1.5 transition';
+        txt1.textContent = 'Nghe Audio 1 (Janet\'s School)';
+        btn1.querySelector('i').className = 'fa-solid fa-play';
+      }
+    }
+
+    function resetAudioBtnUI() {
+      const btn1 = document.getElementById('btnPlayAudio1');
+      const txt1 = document.getElementById('txtAudio1');
+      const btn2 = document.getElementById('btnPlayAudio2');
+      const txt2 = document.getElementById('txtAudio2');
+      if (btn1) {
+        btn1.className = 'px-3.5 py-2 bg-blue-600 text-white text-xs font-semibold rounded-xl hover:bg-blue-700 shadow-sm flex items-center gap-1.5 transition';
+        txt1.textContent = 'Nghe Audio 1 (Janet\'s School)';
+        btn1.querySelector('i').className = 'fa-solid fa-play';
+      }
+      if (btn2) {
+        btn2.className = 'px-3.5 py-2 bg-indigo-600 text-white text-xs font-semibold rounded-xl hover:bg-indigo-700 shadow-sm flex items-center gap-1.5 transition';
+        txt2.textContent = 'Nghe Audio 2 (Best Friends)';
+        btn2.querySelector('i').className = 'fa-solid fa-play';
+      }
+      isPlayingAudio1 = false;
+      isPlayingAudio2 = false;
+    }
+
+    function toggleTranscript(taskNum) {
+      const content = document.getElementById(`transContent${taskNum}`);
+      const btnText = document.getElementById(`transToggleText${taskNum}`);
+      if (!content) return;
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        btnText.textContent = `Ẩn Lời Thoại (Tape Script ${taskNum})`;
+      } else {
+        content.classList.add('hidden');
+        btnText.textContent = `Xem Lời Thoại (Tape Script ${taskNum}) & Bản Dịch`;
+      }
+    }
+
+    /* =========================================================
+       SUBMISSION & GRADING SYSTEM
+       ========================================================= */
+
+    let isSubmitted = false;
+
+    function submitExam() {
+      if (isSubmitted) {
+        showToast('Em đã nộp bài thi rồi. Xem kết quả và lời giải bên dưới.');
+        const resEl = document.getElementById('resultSection');
+        if (resEl) resEl.scrollIntoView({ behavior: 'smooth' });
+        return;
+      }
+
+      // Check student name
+      const nameInput = document.getElementById('studentName').value.trim();
+      const classInput = document.getElementById('studentClass').value.trim();
+      if (!nameInput) {
+        showToast('Vui lòng nhập Họ và tên trước khi nộp bài!');
+        document.getElementById('studentName').focus();
+        return;
+      }
+
+      // Count answered questions
+      let answeredCount = 0;
+      const totalQuestions = Object.keys(EXAM_KEY).length + Object.keys(WRITING_DATA).length; // 25 + 7 = 32 items
+
+      // Check standard questions
+      for (const qKey of Object.keys(EXAM_KEY)) {
+        const checked = document.querySelector(`input[name="${qKey}"]:checked`);
+        if (checked) answeredCount++;
+      }
+
+      // Check writing chips
+      for (const wKey of Object.keys(WRITING_DATA)) {
+        if (userWordChips[wKey] && userWordChips[wKey].length > 0) {
+          answeredCount++;
+        }
+      }
+
+      if (answeredCount < totalQuestions) {
+        const remaining = totalQuestions - answeredCount;
+        // Subtle confirmation using modal toast or allow proceed
+        if (!window.hasShownUnfinishedWarn) {
+          window.hasShownUnfinishedWarn = true;
+          showToast(`Em còn ${remaining} câu chưa hoàn thành. Hãy kiểm tra lại hoặc bấm Nộp lần nữa để nộp luôn.`);
+          return;
+        }
+      }
+
+      // Execute Grading
+      isSubmitted = true;
+      stopAllSpeech();
+
+      let ptsListening = 0.0;
+      let ptsLanguage = 0.0;
+      let ptsReading = 0.0;
+      let ptsWriting = 0.0;
+
+      /* 1. Grade Multiple Choice & Standard Inputs */
+      for (const [qKey, item] of Object.entries(EXAM_KEY)) {
+        const checked = document.querySelector(`input[name="${qKey}"]:checked`);
+        const userAns = checked ? checked.value : null;
+        const isCorrect = (userAns === item.correct);
+
+        // Calculate points by section
+        if (isCorrect) {
+          if (qKey.startsWith('q_L') || qKey.startsWith('q_TF')) ptsListening += item.pts;
+          else if (qKey.startsWith('q_P') || qKey.startsWith('q_MC') || qKey.startsWith('q_V')) ptsLanguage += item.pts;
+          else if (qKey.startsWith('q_RC') || qKey.startsWith('q_RQ')) ptsReading += item.pts;
+        }
+
+        // Display explanation & color cards
+        const explDiv = document.getElementById(`expl_${qKey.replace('q_', '')}`);
+        const boxDiv = document.getElementById(`box_${qKey.replace('q_', '')}`);
+
+        if (boxDiv) {
+          boxDiv.classList.remove('border-slate-200');
+          if (isCorrect) {
+            boxDiv.classList.add('border-emerald-500', 'bg-emerald-50/20');
+          } else {
+            boxDiv.classList.add('border-rose-400', 'bg-rose-50/20');
+          }
+        }
+
+        if (explDiv) {
+          explDiv.classList.remove('hidden');
+          if (isCorrect) {
+            explDiv.className = 'text-xs mt-2 p-2.5 rounded-xl bg-emerald-100/70 border border-emerald-300 text-emerald-950 space-y-1';
+            explDiv.innerHTML = `
+              <div class="flex items-center gap-1.5 font-bold text-emerald-700">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Chính xác (+${item.pts} đ) • Đáp án đúng: <strong>${item.correct}</strong></span>
+              </div>
+              <p><strong>Lý do chọn:</strong> ${item.why}</p>
+              <p class="text-slate-600"><strong>Cấu trúc / Ghi nhớ:</strong> ${item.grammar}</p>
+            `;
+          } else {
+            explDiv.className = 'text-xs mt-2 p-2.5 rounded-xl bg-rose-100/70 border border-rose-300 text-rose-950 space-y-1';
+            explDiv.innerHTML = `
+              <div class="flex items-center gap-1.5 font-bold text-rose-700">
+                <i class="fa-solid fa-circle-xmark"></i>
+                <span>Chưa đúng (0 đ) • Em chọn: <strong>${userAns ? userAns : 'Chưa làm'}</strong> ➔ Đáp án đúng là: <strong class="underline">${item.correct}</strong></span>
+              </div>
+              <p><strong>Lý do chọn:</strong> ${item.why}</p>
+              <p class="text-slate-600"><strong>Cấu trúc / Ghi nhớ:</strong> ${item.grammar}</p>
+            `;
+          }
+        }
+      }
+
+      /* 2. Grade Writing Word Chips */
+      for (const [wKey, item] of Object.entries(WRITING_DATA)) {
+        const assembledWords = (userWordChips[wKey] || []).map(obj => obj.text).join(' ');
+        const normalizedUser = assembledWords.trim().replace(/\s+/g, ' ');
+        const isCorrect = (normalizedUser.toLowerCase() === item.normalizedTarget.toLowerCase());
+
+        if (isCorrect) {
+          ptsWriting += item.pts;
+        }
+
+        const boxDiv = document.getElementById(`box_${wKey}`);
+        const explDiv = document.getElementById(`expl_${wKey}`);
+
+        if (boxDiv) {
+          boxDiv.classList.remove('border-slate-200');
+          if (isCorrect) {
+            boxDiv.classList.add('border-emerald-500', 'bg-emerald-50/20');
+          } else {
+            boxDiv.classList.add('border-rose-400', 'bg-rose-50/20');
+          }
+        }
+
+        if (explDiv) {
+          explDiv.classList.remove('hidden');
+          if (isCorrect) {
+            explDiv.className = 'text-xs mt-2 p-2.5 rounded-xl bg-emerald-100/70 border border-emerald-300 text-emerald-950 space-y-1';
+            explDiv.innerHTML = `
+              <div class="flex items-center gap-1.5 font-bold text-emerald-700">
+                <i class="fa-solid fa-circle-check"></i>
+                <span>Chính xác (+${item.pts} đ)</span>
+              </div>
+              <p><strong>Câu hoàn chỉnh:</strong> <span class="font-bold text-emerald-900">${item.correctAnswer}</span></p>
+              <p><strong>Giải thích:</strong> ${item.why}</p>
+              <p class="text-slate-600"><strong>Cấu trúc áp dụng:</strong> ${item.grammar}</p>
+            `;
+          } else {
+            explDiv.className = 'text-xs mt-2 p-2.5 rounded-xl bg-rose-100/70 border border-rose-300 text-rose-950 space-y-1';
+            explDiv.innerHTML = `
+              <div class="flex items-center gap-1.5 font-bold text-rose-700">
+                <i class="fa-solid fa-circle-xmark"></i>
+                <span>Chưa chuẩn (0 đ)</span>
+              </div>
+              <p><strong>Câu của em:</strong> <em>"${normalizedUser || 'Chưa xếp từ'}"</em></p>
+              <p><strong>Đáp án đúng:</strong> <span class="font-bold text-emerald-800 underline">${item.correctAnswer}</span></p>
+              <p><strong>Giải thích:</strong> ${item.why}</p>
+              <p class="text-slate-600"><strong>Cấu trúc áp dụng:</strong> ${item.grammar}</p>
+            `;
+          }
+        }
+      }
+
+      /* 3. Reveal Audio Transcripts */
+      document.getElementById('transcriptWrap1').classList.remove('hidden');
+      document.getElementById('transcriptWrap2').classList.remove('hidden');
+
+      /* 4. Tally and Normalize to 10.0 scale */
+      // Max raw points = Listening(2.4) + Language(2.6) + Reading(2.6) + Writing(1.4) = 9.0 pts
+      // Note: Word original test omitted 1.0 pt writing paragraph, so raw total is 9.0 pts.
+      // We will present raw points for each section, and scale total gracefully to 10.0 points!
+      const rawTotal = ptsListening + ptsLanguage + ptsReading + ptsWriting;
+      const scaled10 = Math.min(10, (rawTotal / 9.0) * 10);
+
+      document.getElementById('score_listening').textContent = `${ptsListening.toFixed(1)} / 2.4`;
+      document.getElementById('score_language').textContent = `${ptsLanguage.toFixed(1)} / 2.6`;
+      document.getElementById('score_reading').textContent = `${ptsReading.toFixed(1)} / 2.6`;
+      document.getElementById('score_writing').textContent = `${ptsWriting.toFixed(1)} / 1.4`;
+      document.getElementById('score_total').textContent = `${scaled10.toFixed(2)} / 10.0`;
+
+      // Student Rank & Feedback
+      let feedback = '';
+      if (scaled10 >= 9.0) {
+        feedback = '🌟 Xuất sắc! Em nắm rất vững ngữ pháp, từ vựng và kỹ năng nghe.';
+      } else if (scaled10 >= 8.0) {
+        feedback = '👏 Giỏi! Kết quả rất tốt, hãy xem lại một vài câu giải thích để đạt điểm tuyệt đối nhé.';
+      } else if (scaled10 >= 6.5) {
+        feedback = '👍 Khá! Hãy chú ý các thì của động từ và giới từ chỉ vị trí.';
+      } else if (scaled10 >= 5.0) {
+        feedback = '💪 Đạt yêu cầu. Hãy ôn lại lý thuyết từ vựng Unit 1, 2, 3 và luyện nghe thêm.';
+      } else {
+        feedback = '⚠️ Cần cố gắng nhiều hơn! Hãy đọc kỹ từng lời giải thích và học thuộc từ mới.';
+      }
+      document.getElementById('feedback_rank').textContent = feedback;
+
+      document.getElementById('resultNameClass').textContent = `Kết Quả: ${nameInput} ${classInput ? '- Lớp ' + classInput : ''}`;
+      const now = new Date();
+      document.getElementById('resultTimestamp').textContent = `Thời gian nộp bài: ${now.toLocaleTimeString('vi-VN')} - ngày ${now.toLocaleDateString('vi-VN')}`;
+
+      // Show Results Section and scroll
+      const resSection = document.getElementById('resultSection');
+      resSection.classList.remove('hidden');
+      resSection.scrollIntoView({ behavior: 'smooth' });
+
+      // Disable submit button
+      const submitBtn = document.getElementById('btnSubmitTest');
+      submitBtn.classList.remove('from-emerald-600', 'to-teal-600', 'hover:from-emerald-700', 'hover:to-teal-700');
+      submitBtn.classList.add('bg-slate-400', 'cursor-not-allowed');
+      submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> ĐÃ NỘP BÀI THI & CHẤM ĐIỂM XONG';
+
+      showToast('Đã chấm điểm xong! Xem kết quả chi tiết bên dưới.');
+    }
+
+    // Helper toast message
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      if (!toast || !toastMsg) return;
+      toastMsg.textContent = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3500);
+    }
+
+    // Window Load Event Listener
+    window.onload = function() {
+      initWordChips();
+      // Pre-warm Speech Synthesis voices
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.getVoices();
+      }
+    };
+  </script>
+</body>
+</html>

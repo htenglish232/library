@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đề thi GHKI - Việt Hùng - 2024-2025 | HT English</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: #f0f4f9;
+      color: #1e293b;
+    }
+    .audio-btn {
+      transition: all 0.2s ease;
+    }
+    .audio-btn:hover {
+      transform: scale(1.12);
+    }
+    .audio-btn:active {
+      transform: scale(0.95);
+    }
+    .speaking-pulse {
+      animation: pulseAnim 1.2s infinite;
+    }
+    @keyframes pulseAnim {
+      0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+      70% { box-shadow: 0 0 0 10px rgba(59, 130, 246, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+    }
+    .word-chip {
+      user-select: none;
+      touch-action: manipulation;
+      transition: all 0.15s ease;
+    }
+    .word-chip:active {
+      transform: scale(0.92);
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-16">
+
+  <!-- TOP HEADER / BRANDING -->
+  <header class="bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-800 text-white shadow-xl sticky top-0 z-40">
+    <div class="max-w-4xl mx-auto px-4 py-3 sm:py-4">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+        <div>
+          <div class="flex items-center justify-center sm:justify-start gap-2">
+            <span class="bg-yellow-400 text-blue-900 font-extrabold text-xs px-2.5 py-1 rounded-full uppercase tracking-wider shadow">HT ENGLISH</span>
+            <span class="text-xs text-blue-200">Giáo viên: <b>Ms. Lily</b></span>
+          </div>
+          <h1 class="text-lg sm:text-2xl font-black tracking-tight mt-1 text-yellow-300">ĐỀ THI GHKI - VIỆT HÙNG - 2024-2025</h1>
+          <p class="text-xs sm:text-sm text-blue-100 flex flex-wrap justify-center sm:justify-start items-center gap-x-3 gap-y-1 mt-1">
+            <span><i class="fa-solid fa-location-dot text-yellow-300 mr-1"></i>Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình</span>
+            <span><i class="fa-solid fa-phone text-yellow-300 mr-1"></i>0963.422.940 - 0962.240.866</span>
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="bg-white/15 backdrop-blur px-3 py-1.5 rounded-xl border border-white/20 text-center">
+            <span class="block text-[11px] text-blue-200 uppercase font-semibold">Thời gian</span>
+            <span class="font-extrabold text-sm sm:text-base text-white">60 Phút</span>
+          </div>
+          <div class="bg-white/15 backdrop-blur px-3 py-1.5 rounded-xl border border-white/20 text-center">
+            <span class="block text-[11px] text-blue-200 uppercase font-semibold">Môn học</span>
+            <span class="font-extrabold text-sm sm:text-base text-yellow-300">Tiếng Anh 6</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- STUDENT INFO INPUT BAR -->
+  <section class="max-w-4xl mx-auto px-4 mt-5">
+    <div class="bg-white p-4 rounded-2xl shadow-md border border-slate-200">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <div>
+          <label class="block text-xs font-bold text-slate-600 mb-1">Họ và tên học sinh: <span class="text-red-500">*</span></label>
+          <input type="text" id="studentName" placeholder="Nhập họ và tên..." class="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-600 mb-1">Lớp:</label>
+          <input type="text" id="studentClass" placeholder="Ví dụ: 6A, 6B..." class="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-600 mb-1">Số điện thoại phụ huynh:</label>
+          <input type="text" id="studentPhone" placeholder="Nhập SĐT..." class="w-full px-3 py-2 text-sm rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+        </div>
+      </div>
+      <div class="mt-2 text-xs text-slate-500 italic flex items-center gap-1.5">
+        <i class="fa-solid fa-circle-info text-blue-500"></i>
+        <span>Ấn biểu tượng <i class="fa-solid fa-volume-high text-blue-600 font-bold mx-0.5"></i> cạnh mỗi câu để nghe giọng đọc bản ngữ. Làm xong bấm <b>Nộp bài</b> ở cuối trang để xem điểm & giải thích!</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESULT BANNER (HIDDEN UNTIL SUBMITTED) -->
+  <section id="resultSection" class="max-w-4xl mx-auto px-4 mt-6 hidden">
+    <div class="bg-gradient-to-r from-emerald-600 to-teal-700 text-white rounded-3xl p-6 shadow-2xl border-4 border-emerald-300 text-center relative overflow-hidden">
+      <div class="absolute -right-10 -bottom-10 opacity-15 text-9xl">
+        <i class="fa-solid fa-award"></i>
+      </div>
+      <h2 class="text-xl sm:text-2xl font-black uppercase tracking-wide">Kết Quả Bài Làm</h2>
+      <p id="studentGreeting" class="text-emerald-100 text-sm mt-1"></p>
+
+      <div class="flex flex-wrap justify-center items-center gap-6 my-5">
+        <div class="bg-white text-slate-800 px-6 py-3 rounded-2xl shadow-lg">
+          <span class="text-xs uppercase font-bold text-slate-500 block">Điểm số</span>
+          <span id="scoreText" class="text-3xl sm:text-4xl font-black text-emerald-600">0.0 / 10</span>
+        </div>
+        <div class="bg-white text-slate-800 px-6 py-3 rounded-2xl shadow-lg">
+          <span class="text-xs uppercase font-bold text-slate-500 block">Số câu đúng</span>
+          <span id="correctStats" class="text-3xl sm:text-4xl font-black text-blue-600">0 / 0</span>
+        </div>
+        <div class="bg-white text-slate-800 px-6 py-3 rounded-2xl shadow-lg">
+          <span class="text-xs uppercase font-bold text-slate-500 block">Đánh giá</span>
+          <span id="rankText" class="text-xl sm:text-2xl font-black text-purple-600">Chăm chỉ</span>
+        </div>
+      </div>
+
+      <p class="text-xs sm:text-sm text-emerald-100 max-w-xl mx-auto">
+        Tuyệt vời! Bây giờ em hãy kéo xuống dưới để xem lại chi tiết từng câu, đáp án chính xác, lời giải thích ngữ pháp và mở xem phần <b>Transcript</b> bài nghe nhé!
+      </p>
+
+      <button onclick="scrollToReview()" class="mt-4 inline-flex items-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-blue-950 font-bold px-5 py-2.5 rounded-xl shadow transition">
+        <i class="fa-solid fa-arrow-down"></i> Xem Chi Tiết Đáp Án & Lời Giải
+      </button>
+    </div>
+  </section>
+
+  <!-- MAIN EXAM CONTAINER -->
+  <main class="max-w-4xl mx-auto px-4 mt-6 space-y-6">
+
+    <!-- ================= PART A. LISTENING ================= -->
+    <div class="bg-white rounded-3xl p-5 sm:p-7 shadow-md border border-slate-200">
+      <div class="flex items-center justify-between border-b pb-3 border-slate-200">
+        <div class="flex items-center gap-2.5">
+          <div class="w-10 h-10 rounded-2xl bg-blue-600 text-white flex items-center justify-center font-black text-lg shadow">A</div>
+          <div>
+            <h2 class="text-base sm:text-lg font-black text-slate-800 uppercase">Part A. Listening (2.4 points)</h2>
+            <span class="text-xs text-slate-500">Kỹ năng Nghe hiểu tiếng Anh</span>
+          </div>
+        </div>
+        <span class="text-xs font-extrabold px-3 py-1 bg-blue-100 text-blue-700 rounded-full">12 câu / 2.4 đ</span>
+      </div>
+
+      <!-- Section I: Nam & Aunt Nhi -->
+      <div class="mt-5">
+        <div class="bg-blue-50 border-l-4 border-blue-600 p-3.5 rounded-r-xl mb-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <p class="text-sm font-bold text-blue-900">
+                I. Listen to the conversation between Nam and Mrs Nhi, his aunt. Choose the best answer A, B, C or D. (1.2 pts)
+              </p>
+              <p class="text-xs text-blue-700 mt-0.5">Em bấm nút "Nghe bài hội thoại" để nghe giọng đọc bản ngữ (Nghe 2 lần).</p>
+            </div>
+            <button type="button" onclick="playListeningAudio(1)" class="audio-btn self-start sm:self-auto inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow">
+              <i class="fa-solid fa-play"></i> Nghe Bài Hội Thoại 1
+            </button>
+          </div>
+        </div>
+
+        <!-- TRANSCRIPT MODAL / ACCORDION 1 (ONLY AVAILABLE AFTER SUBMIT) -->
+        <div id="transcriptBox1" class="hidden my-3 p-4 bg-amber-50 rounded-2xl border border-amber-300 text-xs sm:text-sm text-slate-800">
+          <div class="flex items-center justify-between mb-2 pb-1 border-b border-amber-200">
+            <span class="font-extrabold text-amber-800 flex items-center gap-1.5"><i class="fa-solid fa-file-lines"></i> Audio Transcript 1 (Lời thoại & Dịch nghĩa):</span>
+            <button onclick="speakText(transcriptContent1)" class="text-amber-800 hover:text-amber-950 font-bold inline-flex items-center gap-1"><i class="fa-solid fa-volume-high"></i> Đọc lại</button>
+          </div>
+          <div class="space-y-1.5 leading-relaxed font-mono text-xs bg-white p-3 rounded-xl border border-amber-200">
+            <p><b>Nam:</b> Hello, Auntie Nhi. How are you?</p>
+            <p><b>Aunt Nhi:</b> Hey, Nam. I'm good. And you? How about your new school?</p>
+            <p><b>Nam:</b> I'm good, too. Yeah, my new school is new and large. There are fifty-eight classrooms, a large library, and three labs. There is also a swimming pool.</p>
+            <p><b>Aunt Nhi:</b> Wow! Interesting!</p>
+            <p><b>Nam:</b> Sure. I like our new flat, too. It's not so large with two bedrooms but enough for our family. I like the balcony and the view in front of the building best. It's quiet around there.</p>
+            <p><b>Aunt Nhi:</b> Nice to hear! It's near your school so you can walk there, right?</p>
+            <p><b>Nam:</b> Yes. Oh, I have a new classmate. Her name is An. She lives in the next block. We walk to school every morning together.</p>
+            <p><b>Aunt Nhi:</b> Great! What does she look like?</p>
+            <p><b>Nam:</b> Well, she has long black hair. She's tall and slim.</p>
+            <p><b>Aunt Nhi:</b> Ok. You must be so happy in a new place with new friends.</p>
+            <p><b>Nam:</b> Yeah.</p>
+          </div>
+        </div>
+
+        <!-- Questions 1-6 -->
+        <div class="space-y-4" id="listeningPart1Container">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+
+      <!-- Section II: Mai talking about her house -->
+      <div class="mt-8 pt-6 border-t border-slate-200">
+        <div class="bg-blue-50 border-l-4 border-blue-600 p-3.5 rounded-r-xl mb-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <p class="text-sm font-bold text-blue-900">
+                II. Listen to Mai talking about her house. Choose True (T) or False (F). (1.2 pts)
+              </p>
+              <p class="text-xs text-blue-700 mt-0.5">Em bấm nút "Nghe bài đọc Mai" để nghe thông tin về ngôi nhà của Mai.</p>
+            </div>
+            <button type="button" onclick="playListeningAudio(2)" class="audio-btn self-start sm:self-auto inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow">
+              <i class="fa-solid fa-play"></i> Nghe Bài Đọc Mai (Bài 2)
+            </button>
+          </div>
+        </div>
+
+        <!-- TRANSCRIPT MODAL / ACCORDION 2 (ONLY AVAILABLE AFTER SUBMIT) -->
+        <div id="transcriptBox2" class="hidden my-3 p-4 bg-amber-50 rounded-2xl border border-amber-300 text-xs sm:text-sm text-slate-800">
+          <div class="flex items-center justify-between mb-2 pb-1 border-b border-amber-200">
+            <span class="font-extrabold text-amber-800 flex items-center gap-1.5"><i class="fa-solid fa-file-lines"></i> Audio Transcript 2 (Lời thoại & Dịch nghĩa):</span>
+            <button onclick="speakText(transcriptContent2)" class="text-amber-800 hover:text-amber-950 font-bold inline-flex items-center gap-1"><i class="fa-solid fa-volume-high"></i> Đọc lại</button>
+          </div>
+          <div class="space-y-1.5 leading-relaxed font-mono text-xs bg-white p-3 rounded-xl border border-amber-200">
+            <p><b>Mai:</b> Hello everyone! My name is Mai. I live in Ha Noi. I live with my parents. There are six rooms in our house: a living room, a kitchen, two bedrooms, and two bathrooms. I love our living room the best because it's bright. It's next to the kitchen. I have my own bedroom. It's small but beautiful. There's a bed, a desk, a chair, and a bookshelf. It also has a big window and a clock on the wall. I often read books in my bedroom.</p>
+          </div>
+        </div>
+
+        <!-- Questions 7-12 (T/F) -->
+        <div class="space-y-3" id="listeningPart2Container">
+          <!-- Rendered via JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= PART B. LANGUAGE FOCUS ================= -->
+    <div class="bg-white rounded-3xl p-5 sm:p-7 shadow-md border border-slate-200">
+      <div class="flex items-center justify-between border-b pb-3 border-slate-200">
+        <div class="flex items-center gap-2.5">
+          <div class="w-10 h-10 rounded-2xl bg-indigo-600 text-white flex items-center justify-center font-black text-lg shadow">B</div>
+          <div>
+            <h2 class="text-base sm:text-lg font-black text-slate-800 uppercase">Part B. Language Focus (2.6 points)</h2>
+            <span class="text-xs text-slate-500">Ngữ âm, Ngữ pháp & Từ vựng</span>
+          </div>
+        </div>
+        <span class="text-xs font-extrabold px-3 py-1 bg-indigo-100 text-indigo-700 rounded-full">13 câu / 2.6 đ</span>
+      </div>
+
+      <!-- I. Pronunciation -->
+      <div class="mt-5">
+        <p class="text-sm font-bold text-slate-700 mb-3 bg-slate-100 px-3 py-2 rounded-xl">
+          I. Choose the word with a different way of pronunciation in the underlined part. (0.4 pt)
+        </p>
+        <div class="space-y-4" id="langPart1Container"></div>
+      </div>
+
+      <!-- II. Multiple Choice -->
+      <div class="mt-7 pt-5 border-t border-slate-200">
+        <p class="text-sm font-bold text-slate-700 mb-3 bg-slate-100 px-3 py-2 rounded-xl">
+          II. Choose the best option A, B, C or D to complete each sentence. (1.6 pts)
+        </p>
+        <div class="space-y-4" id="langPart2Container"></div>
+      </div>
+
+      <!-- III. Verb Form (Adapted to touch-friendly choices for mobile) -->
+      <div class="mt-7 pt-5 border-t border-slate-200">
+        <p class="text-sm font-bold text-slate-700 mb-3 bg-slate-100 px-3 py-2 rounded-xl">
+          III. Put the verbs in brackets into the correct form. (0.6 pt)
+        </p>
+        <div class="space-y-4" id="langPart3Container"></div>
+      </div>
+    </div>
+
+    <!-- ================= PART C. READING ================= -->
+    <div class="bg-white rounded-3xl p-5 sm:p-7 shadow-md border border-slate-200">
+      <div class="flex items-center justify-between border-b pb-3 border-slate-200">
+        <div class="flex items-center gap-2.5">
+          <div class="w-10 h-10 rounded-2xl bg-teal-600 text-white flex items-center justify-center font-black text-lg shadow">C</div>
+          <div>
+            <h2 class="text-base sm:text-lg font-black text-slate-800 uppercase">Part C. Reading (2.6 points)</h2>
+            <span class="text-xs text-slate-500">Kỹ năng Đọc hiểu văn bản</span>
+          </div>
+        </div>
+        <span class="text-xs font-extrabold px-3 py-1 bg-teal-100 text-teal-700 rounded-full">10 câu / 2.6 đ</span>
+      </div>
+
+      <!-- I. Cloze Test -->
+      <div class="mt-5">
+        <p class="text-sm font-bold text-slate-700 mb-2 bg-slate-100 px-3 py-2 rounded-xl">
+          I. Read the passage and choose the best word A, B, C or D for each blank. (1.0 pt)
+        </p>
+        <div class="bg-teal-50/60 p-4 rounded-2xl border border-teal-200 text-xs sm:text-sm leading-relaxed text-slate-800 mb-4">
+          <div class="flex justify-between items-center mb-1">
+            <span class="font-extrabold text-teal-900 uppercase text-xs">Passage 1: Hoa's Apartment</span>
+            <button onclick="speakText(readingPassage1Text)" class="text-teal-700 hover:text-teal-900 text-xs font-bold inline-flex items-center gap-1">
+              <i class="fa-solid fa-volume-high"></i> Nghe đoạn văn
+            </button>
+          </div>
+          <p>
+            Hoa lives in a big apartment. There are <b>(1) _______</b> bedrooms in her house. One for her parents, and the other two are for Hoa and her brother. In her room, she has many photos of <b>(2) _______</b> family on the walls. There's a nice <b>(3) _______</b> so that she can read before bed and a chest of drawers <b>(4) _______</b> her bed. She doesn't have a TV in her room because her Dad wants the family to spend time together in the living room. Her favourite part of the house is the <b>(5) ________</b> because she likes cooking delicious dinner with her Mom.
+          </p>
+        </div>
+
+        <div class="space-y-4" id="readingPart1Container"></div>
+      </div>
+
+      <!-- II. Reading Comprehension (Adapted to A,B,C,D for phone users) -->
+      <div class="mt-8 pt-6 border-t border-slate-200">
+        <p class="text-sm font-bold text-slate-700 mb-2 bg-slate-100 px-3 py-2 rounded-xl">
+          II. Read the passage about Linh's new school and choose the best answer A, B, C or D. (1.6 pts)
+        </p>
+        <div class="bg-teal-50/60 p-4 rounded-2xl border border-teal-200 text-xs sm:text-sm leading-relaxed text-slate-800 mb-4">
+          <div class="flex justify-between items-center mb-1">
+            <span class="font-extrabold text-teal-900 uppercase text-xs">Passage 2: Linh's School</span>
+            <button onclick="speakText(readingPassage2Text)" class="text-teal-700 hover:text-teal-900 text-xs font-bold inline-flex items-center gap-1">
+              <i class="fa-solid fa-volume-high"></i> Nghe đoạn văn
+            </button>
+          </div>
+          <p>
+            Hi. I am Linh. I would like to tell you about my new school. It is in a quiet place not far from the city center. It has three buildings and a large yard. This year there are twenty six classes with more than 1.000 students in my school. Most students are hard-working and serious. The school has about 40 teachers. They are all helpful and friendly. My school has different clubs: Dance, English, Arts, Football and Basketball. I like English, so I joined the English club. I love my school because it is a good school.
+          </p>
+        </div>
+
+        <div class="space-y-4" id="readingPart2Container"></div>
+      </div>
+    </div>
+
+    <!-- ================= PART D. WRITING (INTERACTIVE WORD REORDERING) ================= -->
+    <div class="bg-white rounded-3xl p-5 sm:p-7 shadow-md border border-slate-200">
+      <div class="flex items-center justify-between border-b pb-3 border-slate-200">
+        <div class="flex items-center gap-2.5">
+          <div class="w-10 h-10 rounded-2xl bg-amber-600 text-white flex items-center justify-center font-black text-lg shadow">D</div>
+          <div>
+            <h2 class="text-base sm:text-lg font-black text-slate-800 uppercase">Part D. Writing (1.4 points)</h2>
+            <span class="text-xs text-slate-500">Chạm vào các từ để sắp xếp câu hoàn chỉnh (Không cần gõ phím)</span>
+          </div>
+        </div>
+        <span class="text-xs font-extrabold px-3 py-1 bg-amber-100 text-amber-700 rounded-full">7 câu / 1.4 đ</span>
+      </div>
+
+      <!-- I. Reorder -->
+      <div class="mt-5">
+        <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 mb-3 text-xs sm:text-sm text-amber-900">
+          <b>I. Reorder the words to make correct sentences. (0.6 pt)</b><br>
+          <span class="text-xs text-amber-700">👉 <b>Cách làm:</b> Chạm vào từng thẻ từ bên dưới để đưa lên câu trả lời. Muốn bỏ từ nào, em chỉ cần chạm vào từ đó ở ô kết quả để hoàn lại!</span>
+        </div>
+        <div class="space-y-5" id="writingPart1Container"></div>
+      </div>
+
+      <!-- II. Rewrite -->
+      <div class="mt-8 pt-6 border-t border-slate-200">
+        <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 mb-3 text-xs sm:text-sm text-amber-900">
+          <b>II. Rewrite the following sentences with the same meaning. (0.8 pt)</b><br>
+          <span class="text-xs text-amber-700">👉 <b>Cách làm:</b> Chạm các từ gợi ý để hoàn thiện phần viết lại câu tương đương.</span>
+        </div>
+        <div class="space-y-5" id="writingPart2Container"></div>
+      </div>
+    </div>
+
+    <!-- SUBMIT BUTTON BAR -->
+    <div class="bg-white p-5 rounded-3xl shadow-lg border border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="text-xs text-slate-500 text-center sm:text-left">
+        <p class="font-bold text-slate-700 text-sm">Đã làm xong tất cả các câu chưa em?</p>
+        <p>Kiểm tra kỹ trước khi ấn nộp bài để đạt điểm tối đa nhé!</p>
+      </div>
+      <div class="flex items-center gap-3 w-full sm:w-auto">
+        <button type="button" onclick="submitExam()" id="submitBtn" class="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold px-8 py-3.5 rounded-2xl shadow-xl hover:shadow-2xl transition transform active:scale-95 text-base">
+          <i class="fa-solid fa-paper-plane"></i> NỘP BÀI & CHẤM ĐIỂM
+        </button>
+        <button type="button" onclick="resetExam()" id="resetBtn" class="hidden px-4 py-3.5 bg-slate-200 hover:bg-slate-300 text-slate-700 font-bold rounded-2xl transition text-sm">
+          <i class="fa-solid fa-rotate-right"></i> Làm lại
+        </button>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="max-w-4xl mx-auto px-4 mt-8 text-center text-xs text-slate-500">
+    <p class="font-bold text-slate-700">HT ENGLISH - TRUNG TÂM TIẾNG ANH CHẤT LƯỢNG CAO</p>
+    <p class="mt-1">Địa chỉ: Thôn Đạo Đường, xã Ninh Cường, tỉnh Ninh Bình | Hotline: 0963422940 - 0962240866</p>
+    <p class="mt-1">Phần mềm bài tập điện tử bổ trợ học tập giữa học kì 1 - Lớp 6</p>
+  </footer>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    /* ================= DATA RECONSTRUCTION & VERIFICATION ================= */
+    
+    // Listening Scripts
+    const transcriptContent1 = "Hello, Auntie Nhi. How are you? - Hey, Nam. I'm good. And you? How about your new school? - I'm good, too. Yeah, my new school is new and large. There are fifty-eight classrooms, a large library, and three labs. There is also a swimming pool. - Wow! Interesting! - Sure. I like our new flat, too. It's not so large with two bedrooms but enough for our family. I like the balcony and the view in front of the building best. It's quiet around there. - Nice to hear! It's near your school so you can walk there, right? - Yes. Oh, I have a new classmate. Her name is An. She lives in the next block. We walk to school every morning together. - Great! What does she look like? - Well, she has long black hair. She's tall and slim. - Ok. You must be so happy in a new place with new friends. - Yeah.";
+
+    const transcriptContent2 = "Hello everyone! My name is Mai. I live in Ha Noi. I live with my parents. There are six rooms in our house: a living room, a kitchen, two bedrooms, and two bathrooms. I love our living room the best because it's bright. It's next to the kitchen. I have my own bedroom. It's small but beautiful. There's a bed, a desk, a chair, and a bookshelf. It also has a big window and a clock on the wall. I often read books in my bedroom.";
+
+    const readingPassage1Text = "Hoa lives in a big apartment. There are three bedrooms in her house. One for her parents, and the other two are for Hoa and her brother. In her room, she has many photos of her family on the walls. There's a nice lamp so that she can read before bed and a chest of drawers near her bed. She doesn't have a TV in her room because her Dad wants the family to spend time together in the living room. Her favourite part of the house is the kitchen because she likes cooking delicious dinner with her Mom.";
+
+    const readingPassage2Text = "Hi. I am Linh. I would like to tell you about my new school. It is in a quiet place not far from the city center. It has three buildings and a large yard. This year there are twenty six classes with more than 1.000 students in my school. Most students are hard-working and serious. The school has about 40 teachers. They are all helpful and friendly. My school has different clubs: Dance, English, Arts, Football and Basketball. I like English, so I joined the English club. I love my school because it is a good school.";
+
+    // 1. LISTENING PART 1: QUESTIONS 1 - 6
+    const listeningPart1 = [
+      {
+        id: "l1",
+        q: "1. How many classrooms are there at Nam's new school?",
+        options: [
+          { key: "A", text: "80 classrooms" },
+          { key: "B", text: "58 classrooms" },
+          { key: "C", text: "18 classrooms" },
+          { key: "D", text: "85 classrooms" }
+        ],
+        ans: "B",
+        explain: "Trong bài hội thoại Nam nói: 'There are fifty-eight classrooms...' (fifty-eight = 58 phòng học).",
+        grammar: "Cấu trúc: There are + số từ (số nhiều) + danh từ đếm được số nhiều."
+      },
+      {
+        id: "l2",
+        q: "2. Is there a swimming pool in his new school?",
+        options: [
+          { key: "A", text: "Yes, there isn't." },
+          { key: "B", text: "No, there isn't." },
+          { key: "C", text: "Yes, there is." },
+          { key: "D", text: "No, there is." }
+        ],
+        ans: "C",
+        explain: "Nam nói: 'There is also a swimming pool.' (Trường cũng có một hồ bơi). Vì vậy câu trả lời đúng là: Yes, there is.",
+        grammar: "Câu hỏi Yes/No với 'Is there...?' -> Khẳng định trả lời: 'Yes, there is.'"
+      },
+      {
+        id: "l3",
+        q: "3. What does Nam like best about his new flat?",
+        options: [
+          { key: "A", text: "The bedrooms" },
+          { key: "B", text: "The balcony and the view" },
+          { key: "C", text: "The furniture" },
+          { key: "D", text: "The living room" }
+        ],
+        ans: "B",
+        explain: "Nam nói: 'I like the balcony and the view in front of the building best.' (Em thích ban công và khung cảnh phía trước tòa nhà nhất).",
+        grammar: "Like something best: Thích cái gì nhất."
+      },
+      {
+        id: "l4",
+        q: "4. How does Nam go to school?",
+        options: [
+          { key: "A", text: "He goes to school on foot." },
+          { key: "B", text: "His father takes him to school by car." },
+          { key: "C", text: "He goes to school by bus." },
+          { key: "D", text: "His mother takes him to school by motorbike." }
+        ],
+        ans: "A",
+        explain: "Aunt Nhi: '...so you can walk there, right?' - Nam: 'Yes.' (Đi bộ = walk = go on foot).",
+        grammar: "To walk to school = To go to school on foot (đi bộ tới trường)."
+      },
+      {
+        id: "l5",
+        q: "5. Who does Nam go to school with?",
+        options: [
+          { key: "A", text: "His mother" },
+          { key: "B", text: "His classmate" },
+          { key: "C", text: "His neighbour" },
+          { key: "D", text: "His sister" }
+        ],
+        ans: "B",
+        explain: "Nam nói: 'I have a new classmate. Her name is An... We walk to school every morning together.'",
+        grammar: "Classmate: bạn cùng lớp."
+      },
+      {
+        id: "l6",
+        q: "6. What does An look like?",
+        options: [
+          { key: "A", text: "She's tall and fat" },
+          { key: "B", text: "She has long blue hair" },
+          { key: "C", text: "She's tall and slim" },
+          { key: "D", text: "She has short black hair" }
+        ],
+        ans: "C",
+        explain: "Nam miêu tả: 'Well, she has long black hair. She's tall and slim.' (Bạn ấy cao và mảnh khảnh).",
+        grammar: "Hỏi ngoại hình: What does + S + look like? -> S + is + adj (tall/slim...)."
+      }
+    ];
+
+    // 2. LISTENING PART 2: TRUE / FALSE (QUESTIONS 7 - 12)
+    const listeningPart2 = [
+      {
+        id: "l7",
+        q: "7. Mai lives in Ha Noi with her grandparents.",
+        ans: "F",
+        explain: "Mai nói: 'I live in Ha Noi. I live with my parents.' (Mai sống cùng bố mẹ, không phải ông bà).",
+        grammar: "Parents = bố mẹ; Grandparents = ông bà."
+      },
+      {
+        id: "l8",
+        q: "8. There are six rooms in her house.",
+        ans: "T",
+        explain: "Mai nói rõ: 'There are six rooms in our house: a living room, a kitchen, two bedrooms, and two bathrooms.'",
+        grammar: "There are + số nhiều."
+      },
+      {
+        id: "l9",
+        q: "9. She loves the living room the best because it is bright.",
+        ans: "T",
+        explain: "Mai nói: 'I love our living room the best because it's bright.' (Nó rất sáng sủa).",
+        grammar: "Bright (tính từ): sáng sủa, nhiều ánh sáng."
+      },
+      {
+        id: "l10",
+        q: "10. The living room is next to the bathroom.",
+        ans: "F",
+        explain: "Trong bài Mai nói: 'It's next to the kitchen.' (Phòng khách cạnh phòng bếp, không phải cạnh nhà tắm).",
+        grammar: "Next to: ở bên cạnh."
+      },
+      {
+        id: "l11",
+        q: "11. There is a clock on the wall in her bedroom.",
+        ans: "T",
+        explain: "Mai kể về phòng ngủ: 'It also has a big window and a clock on the wall.'",
+        grammar: "A clock on the wall: một chiếc đồng hồ trên tường."
+      },
+      {
+        id: "l12",
+        q: "12. She often listens to music in her bedroom.",
+        ans: "F",
+        explain: "Mai nói câu kết: 'I often read books in my bedroom.' (Mai thường đọc sách, không phải nghe nhạc).",
+        grammar: "Often + V-nguyên thể: thói quen ở hiện tại đơn."
+      }
+    ];
+
+    // 3. LANGUAGE FOCUS PART I: PRONUNCIATION (QUESTIONS 13 - 14)
+    const langPart1 = [
+      {
+        id: "lang1",
+        q: "13. Choose the word with a different pronunciation in the underlined part:",
+        displayWord: "Phần gạch chân chữ cái <u>u</u>:",
+        options: [
+          { key: "A", text: "s<u>u</u>bject (/ʌ/)" },
+          { key: "B", text: "f<u>u</u>nny (/ʌ/)" },
+          { key: "C", text: "c<u>u</u>pboard (/ʌ/)" },
+          { key: "D", text: "<u>u</u>niform (/juː/)" }
+        ],
+        ans: "D",
+        explain: "Đáp án D 'uniform' phát âm là /juː/, trong khi các từ 'subject', 'funny', 'cupboard' đều phát âm chữ 'u' là /ʌ/.",
+        grammar: "Quy tắc phát âm nguyên âm 'u': /ʌ/ vs /juː/."
+      },
+      {
+        id: "lang2",
+        q: "14. Choose the word with a different pronunciation in the underlined part:",
+        displayWord: "Phần gạch chân đuôi <u>-s / -es</u>:",
+        options: [
+          { key: "A", text: "write<u>s</u> (/s/)" },
+          { key: "B", text: "drive<u>s</u> (/z/)" },
+          { key: "C", text: "take<u>s</u> (/s/)" },
+          { key: "D", text: "make<u>s</u> (/s/)" }
+        ],
+        ans: "B",
+        explain: "Đáp án B 'drives' phát âm đuôi -s là /z/ (vì kết thúc bằng phụ âm hữu thanh /v/). Các từ còn lại 'writes' (/t/), 'takes' (/k/), 'makes' (/k/) kết thúc bằng âm vô thanh nên phát âm là /s/.",
+        grammar: "Quy tắc phát âm đuôi -s: phát âm là /s/ sau các âm vô thanh (/p/, /k/, /t/, /f/, /θ/); phát âm /z/ sau các âm hữu thanh còn lại."
+      }
+    ];
+
+    // 4. LANGUAGE FOCUS PART II: MULTIPLE CHOICE (QUESTIONS 15 - 22)
+    const langPart2 = [
+      {
+        id: "lang3",
+        q: "15. My grandpa often ___________ morning exercises.",
+        options: [
+          { key: "A", text: "do" },
+          { key: "B", text: "does" },
+          { key: "C", text: "have" },
+          { key: "D", text: "plays" }
+        ],
+        ans: "B",
+        explain: "Cụm cố định: 'do morning exercise' (tập thể dục buổi sáng). Chủ ngữ 'My grandpa' là ngôi thứ 3 số ít nên 'do' chuyển thành 'does'.",
+        grammar: "Collocation: do morning exercises. Thì HTĐ với chủ ngữ số ít: V-s/es."
+      },
+      {
+        id: "lang4",
+        q: "16. An: 'How about going to the zoo?' - Ba: '____________'",
+        options: [
+          { key: "A", text: "Great idea!" },
+          { key: "B", text: "Yes, please." },
+          { key: "C", text: "You are welcome." },
+          { key: "D", text: "No problem." }
+        ],
+        ans: "A",
+        explain: "'How about + V-ing...?' là câu đưa ra lời gợi ý rủ cùng làm gì. Đáp lại lời rủ rê đồng tình ta dùng 'Great idea!' (Ý kiến hay đấy!).",
+        grammar: "Gợi ý: How about + V-ing...? -> Đồng ý: Great idea! / That sounds great!"
+      },
+      {
+        id: "lang5",
+        q: "17. How many rooms are there ___________ your new flat?",
+        options: [
+          { key: "A", text: "in" },
+          { key: "B", text: "on" },
+          { key: "C", text: "of" },
+          { key: "D", text: "between" }
+        ],
+        ans: "A",
+        explain: "Dùng giới từ 'in' để chỉ bên trong một căn hộ hoặc ngôi nhà: 'in your new flat' (trong căn hộ mới của bạn).",
+        grammar: "Giới từ chỉ nơi chốn: in a flat / in a house."
+      },
+      {
+        id: "lang6",
+        q: "18. My friend is a ___________ person. He always has new ideas.",
+        options: [
+          { key: "A", text: "careful" },
+          { key: "B", text: "friendly" },
+          { key: "C", text: "helpful" },
+          { key: "D", text: "creative" }
+        ],
+        ans: "D",
+        explain: "'He always has new ideas' (cậu ấy luôn có nhiều ý tưởng mới) -> người sáng tạo, dùng tính từ 'creative'.",
+        grammar: "Từ vựng Unit 1: creative (adj) = sáng tạo."
+      },
+      {
+        id: "lang7",
+        q: "19. His __________ house is near here.",
+        options: [
+          { key: "A", text: "grandmother" },
+          { key: "B", text: "grandmothers" },
+          { key: "C", text: "grandmother's" },
+          { key: "D", text: "grandmother s" }
+        ],
+        ans: "C",
+        explain: "Cần sở hữu cách: 'nhà của bà cậu ấy' -> 'His grandmother's house'.",
+        grammar: "Cấu trúc sở hữu cách (Possessive case): Danh từ chỉ người + 's + danh từ chỉ vật sở hữu."
+      },
+      {
+        id: "lang8",
+        q: "20. She ___________ to school on time.",
+        options: [
+          { key: "A", text: "always goes" },
+          { key: "B", text: "always go" },
+          { key: "C", text: "goes always" },
+          { key: "D", text: "go always" }
+        ],
+        ans: "A",
+        explain: "Trạng từ tần suất (always) đứng TRƯỚC động từ thường. Chủ ngữ 'She' là ngôi thứ 3 số ít nên động từ 'go' thêm -es thành 'goes' -> 'always goes'.",
+        grammar: "Vị trí trạng từ tần suất: S + Adverb of frequency + Verb thường."
+      },
+      {
+        id: "lang9",
+        q: "21. Lan: 'What's your favorite room?' - Nam: '___________________'",
+        options: [
+          { key: "A", text: "That's right." },
+          { key: "B", text: "I don't know." },
+          { key: "C", text: "My bedroom." },
+          { key: "D", text: "It's next to the bed." }
+        ],
+        ans: "C",
+        explain: "Câu hỏi về căn phòng yêu thích nhất ('What's your favorite room?'), câu trả lời thích hợp nhất nêu tên phòng: 'My bedroom.' (Phòng ngủ của tớ).",
+        grammar: "Hỏi sở thích phòng: What's your favourite room? -> (My favourite room is) My bedroom/living room..."
+      },
+      {
+        id: "lang10",
+        q: "22. Mary studies in _____________ school. She doesn't go home every day.",
+        options: [
+          { key: "A", text: "a boarding" },
+          { key: "B", text: "an international" },
+          { key: "C", text: "a new" },
+          { key: "D", text: "a high" }
+        ],
+        ans: "A",
+        explain: "Vế sau có câu 'She doesn't go home every day' (Bạn ấy không về nhà mỗi ngày / ở lại trường) -> trường nội trú, cụm từ: 'a boarding school'.",
+        grammar: "Từ vựng Unit 1: boarding school = trường nội trú."
+      }
+    ];
+
+    // 5. LANGUAGE FOCUS PART III: VERB FORM (QUESTIONS 23 - 25)
+    const langPart3 = [
+      {
+        id: "lang11",
+        q: "23. He (play) __________________ badminton everyday.",
+        options: [
+          { key: "A", text: "plays" },
+          { key: "B", text: "play" },
+          { key: "C", text: "is playing" },
+          { key: "D", text: "played" }
+        ],
+        ans: "A",
+        explain: "Dấu hiệu 'everyday' (mỗi ngày) chia thì Hiện tại đơn diễn tả thói quen. Chủ ngữ 'He' (ngôi thứ 3 số ít) -> động từ 'play' thêm s thành 'plays'.",
+        grammar: "Hiện tại đơn: S(he/she/it) + V-s/es."
+      },
+      {
+        id: "lang12",
+        q: "24. We (not have) __________________ English on Mondays.",
+        options: [
+          { key: "A", text: "don't have" },
+          { key: "B", text: "doesn't have" },
+          { key: "C", text: "not have" },
+          { key: "D", text: "aren't having" }
+        ],
+        ans: "A",
+        explain: "Dấu hiệu 'on Mondays' chỉ lịch học định kỳ chia thì Hiện tại đơn. Câu phủ định với chủ ngữ 'We' mượn trợ động từ 'do not' ('don't') + V-nguyên mẫu -> 'don't have'.",
+        grammar: "Hiện tại đơn phủ định: S(I/we/you/they) + don't + V-inf."
+      },
+      {
+        id: "lang13",
+        q: "25. She (cook) __________________ in the kitchen now.",
+        options: [
+          { key: "A", text: "cooks" },
+          { key: "B", text: "is cooking" },
+          { key: "C", text: "cooking" },
+          { key: "D", text: "are cooking" }
+        ],
+        ans: "B",
+        explain: "Dấu hiệu 'now' (bây giờ) chia thì Hiện tại tiếp diễn diễn tả hành động đang diễn ra. Công thức với chủ ngữ 'She': 'is + V-ing' -> 'is cooking'.",
+        grammar: "Hiện tại tiếp diễn: S + am/is/are + V-ing (dấu hiệu: now, at the moment, look!)."
+      }
+    ];
+
+    // 6. READING PART I: CLOZE TEST (QUESTIONS 26 - 30)
+    const readingPart1 = [
+      {
+        id: "r1",
+        q: "26. There are (1) _______ bedrooms in her house. One for her parents, and the other two are for Hoa and her brother.",
+        options: [
+          { key: "A", text: "two" },
+          { key: "B", text: "three" },
+          { key: "C", text: "four" },
+          { key: "D", text: "five" }
+        ],
+        ans: "B",
+        explain: "Trong bài nói: 'One for her parents, and the other two are for Hoa and her brother' (1 phòng cho bố mẹ + 2 phòng cho Hoa và em trai = 3 phòng ngủ). Chọn 'three'.",
+        grammar: "Phép cộng số đếm: 1 + 2 = 3 (three bedrooms)."
+      },
+      {
+        id: "r2",
+        q: "27. In her room, she has many photos of (2) _______ family on the walls.",
+        options: [
+          { key: "A", text: "his" },
+          { key: "B", text: "our" },
+          { key: "C", text: "her" },
+          { key: "D", text: "their" }
+        ],
+        ans: "C",
+        explain: "Chủ ngữ là Hoa (con gái / 'she') nên tính từ sở hữu tương ứng là 'her' (gia đình của cô ấy).",
+        grammar: "Tính từ sở hữu: She -> her."
+      },
+      {
+        id: "r3",
+        q: "28. There's a nice (3) _______ so that she can read before bed...",
+        options: [
+          { key: "A", text: "wardrobe" },
+          { key: "B", text: "cupboard" },
+          { key: "C", text: "radio" },
+          { key: "D", text: "lamp" }
+        ],
+        ans: "D",
+        explain: "Để có ánh sáng đọc sách trước khi đi ngủ ('read before bed') thì cần một chiếc đèn bàn/đèn ngủ ('lamp').",
+        grammar: "Từ vựng đồ dùng: lamp (đèn bàn/đèn ngủ); wardrobe (tủ quần áo); cupboard (tủ bát/chạn)."
+      },
+      {
+        id: "r4",
+        q: "29. ...and a chest of drawers (4) _______ her bed.",
+        options: [
+          { key: "A", text: "near" },
+          { key: "B", text: "far" },
+          { key: "C", text: "next" },
+          { key: "D", text: "front" }
+        ],
+        ans: "A",
+        explain: "Phía sau có danh từ 'her bed' (không có giới từ đi kèm). 'next' phải có 'to' (next to), 'front' phải có 'in front of', 'far' phải có 'far from'. Do đó chỉ có 'near' (ở gần) là đi trực tiếp với danh từ.",
+        grammar: "Giới từ chỉ vị trí: near + N (ở gần...); next to + N; in front of + N."
+      },
+      {
+        id: "r5",
+        q: "30. Her favourite part of the house is the (5) ________ because she likes cooking delicious dinner with her Mom.",
+        options: [
+          { key: "A", text: "hall" },
+          { key: "B", text: "living room" },
+          { key: "C", text: "bedroom" },
+          { key: "D", text: "kitchen" }
+        ],
+        ans: "D",
+        explain: "Vế sau có giải thích: 'because she likes cooking delicious dinner with her Mom' (nấu bữa tối ngon miệng với mẹ) -> căn phòng là nhà bếp ('kitchen').",
+        grammar: "Từ vựng các phòng: kitchen (nhà bếp)."
+      }
+    ];
+
+    // 7. READING PART II: READING COMPREHENSION (QUESTIONS 31 - 35)
+    const readingPart2 = [
+      {
+        id: "r6",
+        q: "31. What subject does Linh like?",
+        options: [
+          { key: "A", text: "Dance" },
+          { key: "B", text: "Arts" },
+          { key: "C", text: "Football" },
+          { key: "D", text: "English" }
+        ],
+        ans: "D",
+        explain: "Dẫn chứng trong bài: 'I like English, so I joined the English club.' (Tôi thích môn Tiếng Anh).",
+        grammar: "Like + Subject (môn học)."
+      },
+      {
+        id: "r7",
+        q: "32. How many classes are there in her school?",
+        options: [
+          { key: "A", text: "20" },
+          { key: "B", text: "12" },
+          { key: "C", text: "26" },
+          { key: "D", text: "16" }
+        ],
+        ans: "C",
+        explain: "Dẫn chứng trong bài: 'This year there are twenty six classes with more than 1.000 students in my school.' (twenty six = 26).",
+        grammar: "Số đếm: twenty six = 26."
+      },
+      {
+        id: "r8",
+        q: "33. What are the teachers like in Linh's school?",
+        options: [
+          { key: "A", text: "They are all helpful and friendly." },
+          { key: "B", text: "They are very strict and quiet." },
+          { key: "C", text: "They are old and serious." },
+          { key: "D", text: "They are busy and noisy." }
+        ],
+        ans: "A",
+        explain: "Dẫn chứng trong bài: 'The school has about 40 teachers. They are all helpful and friendly.'",
+        grammar: "Hỏi tính cách/phẩm chất: What are + S + like? -> S + are + adj."
+      },
+      {
+        id: "r9",
+        q: "34. Does Linh's school have different clubs?",
+        options: [
+          { key: "A", text: "No, it doesn't." },
+          { key: "B", text: "Yes, it does." },
+          { key: "C", text: "No, it has only two clubs." },
+          { key: "D", text: "Yes, there are ten clubs." }
+        ],
+        ans: "B",
+        explain: "Dẫn chứng trong bài: 'My school has different clubs: Dance, English, Arts, Football and Basketball.' Do đó câu trả lời là: Yes, it does.",
+        grammar: "Câu hỏi Yes/No ở Hiện tại đơn với 'Does + S + V...? -> Yes, it does."
+      },
+      {
+        id: "r10",
+        q: "35. What club did Linh take part in? (What did Linh join?)",
+        options: [
+          { key: "A", text: "The Dance club" },
+          { key: "B", text: "The Arts club" },
+          { key: "C", text: "The English club" },
+          { key: "D", text: "The Basketball club" }
+        ],
+        ans: "C",
+        explain: "Dẫn chứng trong bài: 'I like English, so I joined the English club.' (take part in = join = tham gia vào).",
+        grammar: "Take part in = Join: tham gia vào câu lạc bộ/hoạt động."
+      }
+    ];
+
+    // 8. WRITING PART I: WORD REORDERING (QUESTIONS 36 - 38)
+    const writingPart1 = [
+      {
+        id: "w1",
+        num: 36,
+        prompt: "Sắp xếp lại câu với các từ gợi ý:",
+        targetWords: ["There", "is", "a", "pen", "in", "my", "school bag."],
+        shuffledWords: ["my", "pen", "There", "school bag.", "is", "in", "a"],
+        correctSentence: "There is a pen in my school bag.",
+        explain: "Cấu trúc: 'There is + a/an + N (số ít) + giới từ + vị trí'. Nghĩa: 'Có một cây bút trong cặp sách của tôi.'",
+        grammar: "There is + singular noun + prepositional phrase of place."
+      },
+      {
+        id: "w2",
+        num: 37,
+        prompt: "Sắp xếp lại câu với các từ gợi ý:",
+        targetWords: ["That", "is", "her", "sister's", "compass."],
+        shuffledWords: ["compass.", "is", "sister's", "That", "her"],
+        correctSentence: "That is her sister's compass.",
+        explain: "Cấu trúc chỉ định: 'That is + cụm danh từ sở hữu cách'. Nghĩa: 'Kia là chiếc com-pa của chị/em gái cô ấy.'",
+        grammar: "Demonstrative: That is + possessive noun (her sister's) + object (compass)."
+      },
+      {
+        id: "w3",
+        num: 38,
+        prompt: "Sắp xếp lại câu với các từ gợi ý:",
+        targetWords: ["Nam", "is", "wearing", "a", "uniform", "now."],
+        shuffledWords: ["wearing", "uniform", "Nam", "now.", "is", "a"],
+        correctSentence: "Nam is wearing a uniform now.",
+        explain: "Thì Hiện tại tiếp diễn với 'now': S + is/am/are + V-ing + O + now. Nghĩa: 'Nam đang mặc một bộ đồng phục bây giờ.'",
+        grammar: "Hiện tại tiếp diễn: S + is + wearing + a uniform + now."
+      }
+    ];
+
+    // 9. WRITING PART II: REWRITE SENTENCE (QUESTIONS 39 - 42)
+    const writingPart2 = [
+      {
+        id: "w4",
+        num: 39,
+        original: "There are some tall trees behind my school.",
+        prefix: "My school is",
+        targetWords: ["in", "front", "of", "some", "tall", "trees."],
+        shuffledWords: ["of", "some", "front", "trees.", "in", "tall"],
+        correctEnding: "in front of some tall trees.",
+        correctSentence: "My school is in front of some tall trees.",
+        explain: "Ngược nghĩa với 'behind' (ở đằng sau) là 'in front of' (ở đằng trước). Có vài cái cây cao đằng sau trường tôi = Trường tôi ở đằng trước vài cái cây cao.",
+        grammar: "Behind (phía sau) <-> In front of (phía trước)."
+      },
+      {
+        id: "w5",
+        num: 40,
+        original: "Lan has a brother, Hung.",
+        prefix: "Lan is",
+        targetWords: ["Hung's", "sister."],
+        shuffledWords: ["sister.", "Hung's"],
+        correctEnding: "Hung's sister.",
+        correctSentence: "Lan is Hung's sister.",
+        explain: "Lan có một người anh/em trai là Hùng => Lan là em/chị gái của Hùng (sở hữu cách 'Hung's sister').",
+        grammar: "Sở hữu cách: Hung's sister = chị/em gái của Hùng."
+      },
+      {
+        id: "w6",
+        num: 41,
+        original: "Jack doesn't go fishing in the winter.",
+        prefix: "Jack never",
+        targetWords: ["goes", "fishing", "in", "the", "winter."],
+        shuffledWords: ["fishing", "in", "goes", "winter.", "the"],
+        correctEnding: "goes fishing in the winter.",
+        correctSentence: "Jack never goes fishing in the winter.",
+        explain: "Chuyển từ câu phủ định 'doesn't go' sang trạng từ tần suất 'never' (không bao giờ). Khi bỏ trợ động từ 'doesn't', động từ 'go' với chủ ngữ 'Jack' phải chia số ít thêm -es thành 'goes'.",
+        grammar: "doesn't + V(nguyên mẫu) = never + V(s/es) với chủ ngữ số ít."
+      },
+      {
+        id: "w7",
+        num: 42,
+        original: "Let's go to the zoo.",
+        prefix: "What about",
+        targetWords: ["going", "to", "the", "zoo?"],
+        shuffledWords: ["the", "going", "zoo?", "to"],
+        correctEnding: "going to the zoo?",
+        correctSentence: "What about going to the zoo?",
+        explain: "Cấu trúc gợi ý rủ cùng làm gì: 'Let's + V-inf' tương đương với 'What about + V-ing...?'. 'go' chuyển thành 'going'.",
+        grammar: "Let's + V-inf = What about / How about + V-ing...?"
+      }
+    ];
+
+    // Store user answers
+    let userAnswers = {};
+    // Store user arranged words for writing questions
+    let userWordArrangements = {};
+
+    /* ================= RENDER FUNCTIONS ================= */
+
+    function initExam() {
+      // 1. Render Listening 1
+      const l1Container = document.getElementById('listeningPart1Container');
+      l1Container.innerHTML = listeningPart1.map(item => createMCQItem(item)).join('');
+
+      // 2. Render Listening 2 (T/F)
+      const l2Container = document.getElementById('listeningPart2Container');
+      l2Container.innerHTML = listeningPart2.map(item => createTFItem(item)).join('');
+
+      // 3. Render Lang 1 (Pronunciation)
+      const lang1Container = document.getElementById('langPart1Container');
+      lang1Container.innerHTML = langPart1.map(item => createMCQItem(item)).join('');
+
+      // 4. Render Lang 2 (Multiple choice)
+      const lang2Container = document.getElementById('langPart2Container');
+      lang2Container.innerHTML = langPart2.map(item => createMCQItem(item)).join('');
+
+      // 5. Render Lang 3 (Verb forms)
+      const lang3Container = document.getElementById('langPart3Container');
+      lang3Container.innerHTML = langPart3.map(item => createMCQItem(item)).join('');
+
+      // 6. Render Reading 1 (Cloze)
+      const r1Container = document.getElementById('readingPart1Container');
+      r1Container.innerHTML = readingPart1.map(item => createMCQItem(item)).join('');
+
+      // 7. Render Reading 2 (Comprehension)
+      const r2Container = document.getElementById('readingPart2Container');
+      r2Container.innerHTML = readingPart2.map(item => createMCQItem(item)).join('');
+
+      // 8. Render Writing 1 (Word Reorder)
+      const w1Container = document.getElementById('writingPart1Container');
+      w1Container.innerHTML = writingPart1.map(item => createWordReorderItem(item, 'full')).join('');
+
+      // 9. Render Writing 2 (Sentence Rewrite)
+      const w2Container = document.getElementById('writingPart2Container');
+      w2Container.innerHTML = writingPart2.map(item => createWordReorderItem(item, 'prefix')).join('');
+
+      // Initialize word banks
+      initWordBanks();
+    }
+
+    // Helper: Create Multiple Choice HTML Card
+    function createMCQItem(item) {
+      return `
+        <div id="card_${item.id}" class="p-4 rounded-2xl border border-slate-200 bg-slate-50/50 transition">
+          <div class="flex items-start justify-between gap-3 mb-2.5">
+            <div class="flex-1 font-bold text-slate-800 text-sm sm:text-base">
+              ${item.q}
+              ${item.displayWord ? `<span class="block text-xs font-semibold text-indigo-700 mt-0.5">${item.displayWord}</span>` : ''}
+            </div>
+            <button type="button" onclick="speakText('${escapeSpeech(item.q)}')" class="audio-btn p-2 rounded-xl bg-blue-100 hover:bg-blue-200 text-blue-700 text-xs shadow-sm flex-shrink-0" title="Nghe câu hỏi">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
+            ${item.options.map(opt => `
+              <label class="option-label flex items-center gap-3 p-2.5 rounded-xl border border-slate-200 bg-white hover:bg-blue-50/60 cursor-pointer transition">
+                <input type="radio" name="${item.id}" value="${opt.key}" onchange="selectOption('${item.id}', '${opt.key}')" class="w-4 h-4 text-blue-600 focus:ring-blue-500">
+                <span class="text-xs sm:text-sm font-semibold text-slate-700 flex-1"><b class="text-blue-800 mr-1">${opt.key}.</b> ${opt.text}</span>
+                <button type="button" onclick="event.stopPropagation(); speakText('${escapeSpeech(opt.text)}')" class="audio-btn p-1.5 text-slate-400 hover:text-blue-600 text-xs" title="Nghe đáp án">
+                  <i class="fa-solid fa-volume-high"></i>
+                </button>
+              </label>
+            `).join('')}
+          </div>
+
+          <!-- Explanation box (hidden initially) -->
+          <div id="explain_${item.id}" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs sm:text-sm"></div>
+        </div>
+      `;
+    }
+
+    // Helper: Create True / False Item
+    function createTFItem(item) {
+      return `
+        <div id="card_${item.id}" class="p-3.5 rounded-2xl border border-slate-200 bg-slate-50/50 transition">
+          <div class="flex items-start justify-between gap-3 mb-2">
+            <div class="flex-1 font-bold text-slate-800 text-xs sm:text-sm">${item.q}</div>
+            <button type="button" onclick="speakText('${escapeSpeech(item.q)}')" class="audio-btn p-1.5 rounded-xl bg-blue-100 hover:bg-blue-200 text-blue-700 text-xs shadow-sm flex-shrink-0" title="Nghe câu">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+          </div>
+          <div class="flex items-center gap-4 mt-1.5">
+            <label class="flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-200 bg-white hover:bg-blue-50 cursor-pointer transition">
+              <input type="radio" name="${item.id}" value="T" onchange="selectOption('${item.id}', 'T')" class="w-4 h-4 text-blue-600">
+              <span class="text-xs sm:text-sm font-bold text-slate-700">True (T)</span>
+            </label>
+            <label class="flex items-center gap-2 px-4 py-2 rounded-xl border border-slate-200 bg-white hover:bg-blue-50 cursor-pointer transition">
+              <input type="radio" name="${item.id}" value="F" onchange="selectOption('${item.id}', 'F')" class="w-4 h-4 text-blue-600">
+              <span class="text-xs sm:text-sm font-bold text-slate-700">False (F)</span>
+            </label>
+          </div>
+          <!-- Explanation box -->
+          <div id="explain_${item.id}" class="hidden mt-3 pt-2.5 border-t border-slate-200 text-xs sm:text-sm"></div>
+        </div>
+      `;
+    }
+
+    // Helper: Create Word Reorder Card (Touch/Click Chips)
+    function createWordReorderItem(item, type) {
+      return `
+        <div id="card_${item.id}" class="p-4 rounded-2xl border border-amber-200 bg-amber-50/30 transition">
+          <div class="flex items-start justify-between gap-2 mb-2">
+            <div>
+              <span class="font-extrabold text-xs text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-full">Câu ${item.num}</span>
+              ${type === 'prefix' ? `<p class="text-xs text-slate-600 mt-1">Câu gốc: <i>"${item.original}"</i></p>` : ''}
+            </div>
+            <button type="button" onclick="speakText('${escapeSpeech(item.correctSentence)}')" class="audio-btn p-2 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-800 text-xs shadow-sm flex-shrink-0" title="Nghe câu hoàn chỉnh">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+          </div>
+
+          <!-- Answer Slot Area -->
+          <div class="my-2.5">
+            <label class="block text-xs font-bold text-slate-600 mb-1">Câu của em đã ghép:</label>
+            <div id="slot_${item.id}" class="min-h-[46px] p-2.5 bg-white border-2 border-dashed border-amber-300 rounded-xl flex flex-wrap items-center gap-1.5 text-xs sm:text-sm font-bold text-blue-900 shadow-inner">
+              ${type === 'prefix' ? `<span class="bg-slate-100 text-slate-700 px-2.5 py-1 rounded-lg border border-slate-300 font-bold">${item.prefix}</span>` : ''}
+              <span id="placeholder_${item.id}" class="text-slate-400 font-normal italic text-xs">Chạm vào các từ bên dưới để ghép vào đây...</span>
+            </div>
+          </div>
+
+          <!-- Bank of Shuffled Words -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-500 mb-1">Kho từ gợi ý (chạm từ để chọn):</label>
+            <div id="bank_${item.id}" class="flex flex-wrap gap-1.5 p-2 bg-slate-100/80 rounded-xl border border-slate-200">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Explanation box -->
+          <div id="explain_${item.id}" class="hidden mt-3 pt-3 border-t border-slate-200 text-xs sm:text-sm"></div>
+        </div>
+      `;
+    }
+
+    /* ================= WORD BANK INTERACTIVE LOGIC ================= */
+    const allWritingItems = [...writingPart1, ...writingPart2];
+
+    function initWordBanks() {
+      allWritingItems.forEach(item => {
+        userWordArrangements[item.id] = [];
+        renderWordBank(item.id);
+      });
+    }
+
+    function renderWordBank(itemId) {
+      const item = allWritingItems.find(it => it.id === itemId);
+      const bankDiv = document.getElementById(`bank_${itemId}`);
+      const slotDiv = document.getElementById(`slot_${itemId}`);
+      const placeholder = document.getElementById(`placeholder_${itemId}`);
+
+      const chosenWords = userWordArrangements[itemId] || [];
+
+      // 1. Render Slot Words
+      // Remove previously appended chip buttons
+      const existingChips = slotDiv.querySelectorAll('.slot-chip');
+      existingChips.forEach(c => c.remove());
+
+      if (chosenWords.length > 0) {
+        if (placeholder) placeholder.classList.add('hidden');
+        chosenWords.forEach((wordObj, idx) => {
+          const chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'slot-chip word-chip bg-blue-600 hover:bg-red-500 text-white px-2.5 py-1 rounded-lg text-xs font-extrabold shadow flex items-center gap-1 transition';
+          chip.innerHTML = `${wordObj.word} <i class="fa-solid fa-xmark text-[10px]"></i>`;
+          chip.title = "Bấm để bỏ từ này";
+          chip.onclick = () => removeWordFromSlot(itemId, idx);
+          slotDiv.appendChild(chip);
+        });
+      } else {
+        if (placeholder) placeholder.classList.remove('hidden');
+      }
+
+      // 2. Render Bank Words
+      bankDiv.innerHTML = '';
+      item.shuffledWords.forEach((word, origIdx) => {
+        const isUsed = chosenWords.some(w => w.origIdx === origIdx);
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = `word-chip px-2.5 py-1.5 rounded-lg text-xs font-bold border transition ${
+          isUsed 
+            ? 'bg-slate-200 text-slate-400 border-slate-200 cursor-not-allowed opacity-50' 
+            : 'bg-white hover:bg-amber-100 text-slate-800 border-slate-300 shadow-sm active:bg-amber-200'
+        }`;
+        btn.textContent = word;
+        btn.disabled = isUsed;
+        if (!isUsed) {
+          btn.onclick = () => addWordToSlot(itemId, word, origIdx);
+        }
+        bankDiv.appendChild(btn);
+      });
+    }
+
+    function addWordToSlot(itemId, word, origIdx) {
+      if (examSubmitted) return;
+      if (!userWordArrangements[itemId]) userWordArrangements[itemId] = [];
+      userWordArrangements[itemId].push({ word, origIdx });
+      renderWordBank(itemId);
+    }
+
+    function removeWordFromSlot(itemId, indexToRemove) {
+      if (examSubmitted) return;
+      userWordArrangements[itemId].splice(indexToRemove, 1);
+      renderWordBank(itemId);
+    }
+
+    /* ================= SELECTION & AUDIO ================= */
+    let examSubmitted = false;
+
+    function selectOption(qId, val) {
+      if (examSubmitted) return;
+      userAnswers[qId] = val;
+    }
+
+    // Clean text for speech synthesis
+    function escapeSpeech(text) {
+      if (!text) return '';
+      return text.replace(/<u>/g, '').replace(/<\/u>/g, '').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+    }
+
+    // Web Speech API
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) {
+        alert("Trình duyệt không hỗ trợ Web Speech API. Em nên dùng Google Chrome hoặc Safari.");
+        return;
+      }
+      window.speechSynthesis.cancel(); // Stop current speaking
+      const cleanText = text.replace(/<[^>]*>?/gm, ''); // Strip html tags
+      const utterance = new SpeechSynthesisUtterance(cleanText);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9; // clear pacing for grade 6
+      utterance.pitch = 1.0;
+      window.speechSynthesis.speak(utterance);
+    }
+
+    function playListeningAudio(partNum) {
+      if (partNum === 1) {
+        speakText(transcriptContent1);
+      } else {
+        speakText(transcriptContent2);
+      }
+    }
+
+    /* ================= SUBMIT & GRADING ================= */
+    function submitExam() {
+      if (examSubmitted) {
+        alert("Em đã nộp bài rồi! Hãy xem lại kết quả và đáp án chi tiết bên dưới nhé.");
+        return;
+      }
+
+      const sName = document.getElementById('studentName').value.trim();
+      if (!sName) {
+        alert("Em vui lòng điền Họ và tên trước khi nộp bài nhé!");
+        document.getElementById('studentName').focus();
+        return;
+      }
+
+      // Check unanswered questions count
+      const totalQuestionsCount = 6 + 6 + 2 + 8 + 3 + 5 + 5 + 3 + 4; // 42 questions
+      let answeredCount = 0;
+
+      // Check MCQs & TF
+      const allSimpleItems = [
+        ...listeningPart1, ...listeningPart2, ...langPart1, ...langPart2, ...langPart3,
+        ...readingPart1, ...readingPart2
+      ];
+      allSimpleItems.forEach(item => {
+        if (userAnswers[item.id]) answeredCount++;
+      });
+
+      // Check Writing items
+      allWritingItems.forEach(item => {
+        if (userWordArrangements[item.id] && userWordArrangements[item.id].length > 0) {
+          answeredCount++;
+        }
+      });
+
+      if (answeredCount < totalQuestionsCount) {
+        const confirmSub = confirm(`Em mới làm được ${answeredCount}/${totalQuestionsCount} câu. Em có chắc chắn muốn nộp bài luôn không?`);
+        if (!confirmSub) return;
+      }
+
+      examSubmitted = true;
+      document.getElementById('submitBtn').classList.add('opacity-50', 'cursor-not-allowed');
+      document.getElementById('resetBtn').classList.remove('hidden');
+
+      // Unhide Transcripts
+      document.getElementById('transcriptBox1').classList.remove('hidden');
+      document.getElementById('transcriptBox2').classList.remove('hidden');
+
+      // Calculate Scores
+      let totalCorrect = 0;
+      let totalScore = 0.0;
+
+      // 1. Check Simple Items
+      allSimpleItems.forEach(item => {
+        const userChoice = userAnswers[item.id];
+        const isCorrect = userChoice === item.ans;
+        const card = document.getElementById(`card_${item.id}`);
+        const expBox = document.getElementById(`explain_${item.id}`);
+
+        let pointValue = 0.2;
+        if (item.id.startsWith('r6') || item.id.startsWith('r7') || item.id.startsWith('r8') || item.id.startsWith('r9') || item.id.startsWith('r10')) {
+          pointValue = 0.32; // 5 reading comprehension items x 0.32 = 1.6 pts
+        }
+
+        if (isCorrect) {
+          totalCorrect++;
+          totalScore += pointValue;
+          card.classList.add('bg-emerald-50', 'border-emerald-300');
+        } else {
+          card.classList.add('bg-rose-50', 'border-rose-300');
+        }
+
+        // Show Explanation Box with Audio button
+        expBox.classList.remove('hidden');
+        expBox.innerHTML = `
+          <div class="p-3 rounded-xl ${isCorrect ? 'bg-emerald-100/70 text-emerald-900 border border-emerald-300' : 'bg-rose-100/70 text-rose-900 border border-rose-300'}">
+            <div class="flex items-center justify-between font-extrabold mb-1">
+              <span>${isCorrect ? '✅ Chính xác! (+ ' + pointValue + 'đ)' : '❌ Chưa chính xác! (0đ)'}</span>
+              <span class="text-xs bg-white/80 px-2 py-0.5 rounded-full">Đáp án đúng: <b>${item.ans}</b></span>
+            </div>
+            <p class="mt-1"><b>Giải thích:</b> ${item.explain}</p>
+            ${item.grammar ? `<p class="mt-1 text-slate-700 italic"><b>Cấu trúc:</b> ${item.grammar}</p>` : ''}
+            <div class="mt-2 text-right">
+              <button type="button" onclick="speakText('${escapeSpeech(item.explain)}')" class="audio-btn text-xs font-bold text-blue-700 hover:text-blue-900 inline-flex items-center gap-1 bg-white px-2 py-1 rounded shadow-sm">
+                <i class="fa-solid fa-volume-high"></i> Nghe lời giải
+              </button>
+            </div>
+          </div>
+        `;
+      });
+
+      // 2. Check Writing Items
+      allWritingItems.forEach(item => {
+        const card = document.getElementById(`card_${item.id}`);
+        const expBox = document.getElementById(`explain_${item.id}`);
+        const chosen = userWordArrangements[item.id] || [];
+        const userArrangedString = chosen.map(w => w.word).join(' ').trim();
+        
+        let targetCompare = "";
+        let pointValue = 0.2; // 7 writing questions x 0.2 = 1.4 pts
+
+        if (item.targetWords) {
+          targetCompare = item.targetWords.join(' ').trim();
+        }
+
+        const isCorrect = userArrangedString.toLowerCase() === targetCompare.toLowerCase();
+
+        if (isCorrect) {
+          totalCorrect++;
+          totalScore += pointValue;
+          card.classList.add('bg-emerald-50', 'border-emerald-300');
+        } else {
+          card.classList.add('bg-rose-50', 'border-rose-300');
+        }
+
+        expBox.classList.remove('hidden');
+        expBox.innerHTML = `
+          <div class="p-3 rounded-xl ${isCorrect ? 'bg-emerald-100/70 text-emerald-900 border border-emerald-300' : 'bg-rose-100/70 text-rose-900 border border-rose-300'}">
+            <div class="flex items-center justify-between font-extrabold mb-1">
+              <span>${isCorrect ? '✅ Ghép câu chính xác! (+' + pointValue + 'đ)' : '❌ Chưa chính xác! (0đ)'}</span>
+            </div>
+            <p class="mt-1"><b>Câu chuẩn:</b> <span class="font-bold text-blue-900">${item.correctSentence}</span></p>
+            <p class="mt-1"><b>Giải thích:</b> ${item.explain}</p>
+            ${item.grammar ? `<p class="mt-1 text-slate-700 italic"><b>Cấu trúc:</b> ${item.grammar}</p>` : ''}
+            <div class="mt-2 text-right">
+              <button type="button" onclick="speakText('${escapeSpeech(item.correctSentence + '. ' + item.explain)}')" class="audio-btn text-xs font-bold text-blue-700 hover:text-blue-900 inline-flex items-center gap-1 bg-white px-2 py-1 rounded shadow-sm">
+                <i class="fa-solid fa-volume-high"></i> Nghe câu chuẩn & Lời giải
+              </button>
+            </div>
+          </div>
+        `;
+      });
+
+      // Round score
+      totalScore = Math.min(10, Math.round(totalScore * 10) / 10);
+
+      // Display Results
+      document.getElementById('resultSection').classList.remove('hidden');
+      document.getElementById('studentGreeting').textContent = `Học sinh: ${sName} | Lớp: ${document.getElementById('studentClass').value || '6'}`;
+      document.getElementById('scoreText').textContent = `${totalScore.toFixed(1)} / 10`;
+      document.getElementById('correctStats').textContent = `${totalCorrect} / ${totalQuestionsCount}`;
+
+      let rank = "Cần cố gắng thêm";
+      if (totalScore >= 9.0) rank = "Xuất Sắc! 🌟";
+      else if (totalScore >= 8.0) rank = "Giỏi! 👏";
+      else if (totalScore >= 6.5) rank = "Khá 👍";
+      else if (totalScore >= 5.0) rank = "Trung Bình ⚡";
+      document.getElementById('rankText').textContent = rank;
+
+      // Scroll to Result
+      document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function scrollToReview() {
+      document.getElementById('listeningPart1Container').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function resetExam() {
+      if (!confirm("Em có muốn làm lại đề thi từ đầu không?")) return;
+      location.reload();
+    }
+
+    // Initialize upon load
+    window.addEventListener('DOMContentLoaded', initExam);
+  </script>
+</body>
+</html>
