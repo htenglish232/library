@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Tạo tài khoản giáo viên · HT English</title>
+  <link rel="stylesheet" href="login.css">
+  <script defer src="crypto.js"></script>
+  <script defer src="create-account.js"></script>
+</head>
+<body style="margin:0">
+  <main class="access-screen">
+    <div class="access-card">
+      <div class="access-brand"><span class="access-logo" aria-hidden="true">HT</span><span>Thiết lập tài khoản<small>Công cụ dành cho người quản lý</small></span></div>
+      <h2>Tạo tài khoản giáo viên</h2>
+      <p class="access-intro">Mật khẩu được xử lý ngay trong trình duyệt, không gửi lên máy chủ. Tệp tải xuống chỉ chứa tên tài khoản, salt và giá trị băm PBKDF2.</p>
+      <form id="account-form">
+        <label for="existing-accounts">Tệp tài khoản hiện có (không bắt buộc)</label>
+        <input id="existing-accounts" type="file" accept=".json,application/json" aria-describedby="existing-help">
+        <p id="existing-help" class="access-remember">Muốn giữ các giáo viên khác? Chọn tệp <code>teacher-accounts.json</code> hiện có. Nếu bỏ trống, tệp mới chỉ có một tài khoản. Trùng tên sẽ thay mật khẩu của tài khoản đó.</p>
+        <label for="new-username">Tài khoản</label>
+        <input id="new-username" autocomplete="off" autocapitalize="none" spellcheck="false" required pattern="[a-zA-Z0-9._\-]{3,80}" minlength="3" maxlength="80" placeholder="Ví dụ: giaovien.ht">
+        <p class="access-remember">3–80 ký tự: chữ không dấu, số, dấu chấm, gạch dưới hoặc gạch ngang. Phân biệt chữ hoa và chữ thường.</p>
+        <label for="new-password">Mật khẩu riêng cho thư viện</label>
+        <input id="new-password" type="password" autocomplete="new-password" required minlength="12" maxlength="256">
+        <label for="confirm-password">Nhập lại mật khẩu</label>
+        <input id="confirm-password" type="password" autocomplete="new-password" required minlength="12" maxlength="256">
+        <p class="access-remember">Ít nhất 12 ký tự. Không dùng lại mật khẩu quan trọng. Đây chỉ là lớp hạn chế truy cập cho website tĩnh, không phải bảo mật thực sự; người có kỹ thuật có thể vượt qua hoặc dò mật khẩu từ giá trị băm công khai.</p>
+        <p id="account-message" class="access-message" role="status" aria-live="polite"></p>
+        <button id="create-submit" class="access-submit" type="submit">Tạo tệp tài khoản <span aria-hidden="true">↓</span></button>
+      </form>
+      <p><a id="account-download" download="teacher-accounts.json" hidden>Tải teacher-accounts.json</a></p>
+      <p class="access-student">Sau khi tải: thay tệp <code>teacher-access/teacher-accounts.json</code> trên nhánh thử nghiệm bằng tệp này. Công cụ không tự sửa GitHub và không tự kích hoạt tài khoản. Không đưa thay đổi vào nhánh chính khi chưa duyệt.</p>
+      <noscript>Bật JavaScript để tạo tệp tài khoản.</noscript>
+    </div>
+  </main>
+</body>
+</html>
