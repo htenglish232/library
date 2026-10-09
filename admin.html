@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Quản lý giáo viên · HT English Library</title><link rel="stylesheet" href="assets/auth.css"><script type="module" src="assets/admin.js"></script></head>
+<body class="admin-page"><header><h1>Quản lý quyền thư viện</h1><a href="index.html">Về thư viện</a><nav class="account-bar"><span id="account-email"></span><button id="logout" hidden>Đăng xuất</button></nav></header>
+<section class="auth-panel" id="auth-panel"><h2>Đăng nhập Admin</h2><form id="login-form"><label>Email<input id="email" type="email" autocomplete="username" required></label><label>Mật khẩu<input id="password" type="password" autocomplete="current-password" required></label><button id="login-submit">Đăng nhập</button></form><button id="reset-password" type="button">Quên mật khẩu</button><p id="auth-message" role="status" aria-live="polite"></p></section>
+<main class="admin-main" id="admin-panel" hidden>
+<p class="danger-note">Trang này quản lý <strong>quyền xem danh mục</strong>. Tạo, vô hiệu hóa hoặc xóa tài khoản đăng nhập tại Firebase Console → Authentication → Users. Không nhập mật khẩu giáo viên tại đây. Học sinh vẫn mở bài tập trực tiếp.</p>
+<h2>Cấp quyền giáo viên</h2><p>Tạo tài khoản trong Firebase Console trước, sau đó sao chép chính xác UID và email của tài khoản.</p>
+<form id="member-form"><label>UID giáo viên<input name="uid" id="teacher-uid" pattern="[A-Za-z0-9_-]{1,128}" required maxlength="128" autocomplete="off"></label><label>Email giáo viên<input name="email" id="teacher-email" type="email" required maxlength="254"></label><label>Tên giáo viên<input name="name" id="teacher-name" required maxlength="120"></label><button id="grant-access">Cấp quyền</button></form>
+<h2>Giáo viên đã được quản lý</h2><div id="members"></div>
+<h2>Nhập danh mục đã kiểm tra</h2><p>Chọn file <code>library-catalog.json</code> xuất từ repository. Công cụ chỉ chấp nhận bản gốc đủ 201 đường dẫn và đúng thứ tự. Không tự động ghi dữ liệu khi chọn file.</p>
+<input id="catalog-file" type="file" accept="application/json,.json"><p id="catalog-preview" role="status"></p><button id="import-catalog" disabled>Nhập danh mục vào Firestore</button>
+<p id="admin-message" role="status" aria-live="polite"></p>
+</main></body></html>

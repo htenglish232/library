@@ -1,0 +1,31 @@
+name: Firebase trial checks (no deploy)
+on:
+  push:
+    branches: [firebase-auth-trial]
+  pull_request:
+    paths: ['assets/**', 'catalog/**', 'tests/**', 'tools/**', 'firestore.rules', 'firebase.json', 'package*.json', 'index.html', 'admin.html', '.github/workflows/firebase-trial-checks.yml']
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: npm run build && npm run check:catalog && node --test tests/catalog.test.mjs
+      - run: python3 -m pip install playwright==1.58.0
+      - run: python3 -m playwright install --with-deps chromium
+      - run: npm run test:emulators

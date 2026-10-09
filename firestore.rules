@@ -1,0 +1,41 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function admin() {
+      return request.auth != null && request.auth.uid == '4Y82k6RBaRUPflZriPsUvQv1qKj2';
+    }
+    function activeTeacher() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/libraryMembers/$(request.auth.uid))
+        && get(/databases/$(database)/documents/libraryMembers/$(request.auth.uid)).data.status == 'active';
+    }
+    match /libraryMembers/{uid} {
+      allow get: if admin() || (request.auth != null && request.auth.uid == uid);
+      allow list: if admin();
+      allow create, update: if admin()
+        && uid != '4Y82k6RBaRUPflZriPsUvQv1qKj2'
+        && uid.matches('^[A-Za-z0-9_-]{1,128}$')
+        && request.resource.data.keys().hasAll(['email', 'name', 'status', 'updatedAt'])
+        && request.resource.data.keys().hasOnly(['email', 'name', 'status', 'updatedAt'])
+        && request.resource.data.email is string && request.resource.data.email.size() <= 254
+        && request.resource.data.name is string && request.resource.data.name.size() <= 120
+        && request.resource.data.status in ['active', 'locked', 'revoked']
+        && request.resource.data.updatedAt == request.time;
+      allow delete: if false;
+    }
+    match /libraryCatalog/current {
+      allow get: if admin() || activeTeacher();
+      allow list: if false;
+      allow create, update: if admin()
+        && request.resource.data.keys().hasAll(['schemaVersion', 'count', 'sha256', 'dataJson', 'updatedAt'])
+        && request.resource.data.keys().hasOnly(['schemaVersion', 'count', 'sha256', 'dataJson', 'updatedAt'])
+        && request.resource.data.schemaVersion == 1
+        && request.resource.data.count == 201
+        && request.resource.data.sha256 is string && request.resource.data.sha256.matches('^[0-9a-f]{64}$')
+        && request.resource.data.dataJson is string && request.resource.data.dataJson.size() < 200000
+        && request.resource.data.updatedAt == request.time;
+      allow delete: if false;
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}
