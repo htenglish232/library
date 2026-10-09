@@ -121,6 +121,14 @@ with sync_playwright() as p:
     admin.locator('#import-catalog').click()
     expect(admin.locator('#admin-message')).to_contain_text('Đã nhập và đọc lại xác minh đủ 201')
     count+=1; print('PASS importer rejects changed order; imports and reads back exact catalog in emulator',flush=True)
+    admin.locator('#catalog-file').set_input_files(str(ROOT/'catalog/library-catalog.json'))
+    expect(admin.locator('#catalog-preview')).to_contain_text('Chưa ghi dữ liệu')
+    before=admin.evaluate("""async()=>{const {db}=await import('./assets/firebase-client.js');const {doc,setDoc,serverTimestamp,getDocFromServer}=await import('./assets/firebase-sdk.js');const ref=doc(db,'libraryCatalog','current');await setDoc(ref,{updatedAt:serverTimestamp()},{merge:true});return (await getDocFromServer(ref)).data().updatedAt.toMillis()}""")
+    admin.locator('#import-catalog').click()
+    expect(admin.locator('#admin-message')).to_contain_text('Danh mục đã thay đổi')
+    after=admin.evaluate("""async()=>{const {db}=await import('./assets/firebase-client.js');const {doc,getDocFromServer}=await import('./assets/firebase-sdk.js');return (await getDocFromServer(doc(db,'libraryCatalog','current'))).data().updatedAt.toMillis()}""")
+    assert before==after
+    count+=1; print('PASS stale catalog import rejected without overwriting newer changes',flush=True)
     admin.locator('#logout').click(); expect(admin.locator('#admin-panel')).to_be_hidden()
     count+=1; print('PASS logout clears admin data',flush=True)
 

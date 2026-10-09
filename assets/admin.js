@@ -1,11 +1,11 @@
 import { auth, db } from './firebase-client.js';
 import { ADMIN_UID, firebaseConfig, useEmulators } from './firebase-config.js';
-import { collection, onSnapshot, doc, setDoc, serverTimestamp, getDocFromServer } from './firebase-sdk.js';
+import { collection, onSnapshot, doc, setDoc, serverTimestamp, getDocFromServer, runTransaction, snapshotEqual } from './firebase-sdk.js';
 import { setupLogin, observeAccess, showSession, explainAuthError } from './session.js';
 import { validateCatalog, decodeCatalog } from './catalog-data.js';
 
 setupLogin();
-let stopMembers = () => {}, candidate = null, epoch = 0, busy = false;
+let stopMembers = () => {}, candidate = null, catalogBeforeImport = null, epoch = 0, busy = false;
 const panel = document.getElementById('admin-panel');
 const message = document.getElementById('admin-message');
 const members = document.getElementById('members');
@@ -20,7 +20,7 @@ async function writeMember(uid, fields) {
 }
 observeAccess(state => {
   epoch++; stopMembers(); stopMembers = () => {};
-  candidate = null; importer.disabled = true; preview.textContent = '';
+  candidate = null; catalogBeforeImport = null; importer.disabled = true; preview.textContent = '';
   document.getElementById('catalog-file').value = '';
   members.replaceChildren(); message.textContent = '';
   showSession(state); panel.hidden = !state.admin;
@@ -68,14 +68,15 @@ document.getElementById('member-form').addEventListener('submit', async event =>
 });
 
 document.getElementById('catalog-file').addEventListener('change', async event => {
-  const current = epoch; candidate = null; importer.disabled = true; preview.textContent = '';
+  const current = epoch; candidate = null; catalogBeforeImport = null; importer.disabled = true; preview.textContent = '';
   try {
     requireAdmin(); const file = event.target.files[0]; if (!file) return;
     if (file.size > 200000) throw new Error('File quá lớn.');
     const payload = JSON.parse(await file.text()); await validateCatalog(payload);
+    const before = await getDocFromServer(doc(db, 'libraryCatalog', 'current'));
     if (current !== epoch) return;
-    candidate = payload; importer.disabled = false;
-    preview.textContent = `Đã kiểm tra: 201 đường dẫn, đúng nội dung và thứ tự bản gốc. Đích: ${project}. Chưa ghi dữ liệu.`;
+    candidate = payload; catalogBeforeImport = before; importer.disabled = false;
+    preview.textContent = `Đã kiểm tra: 201 đường dẫn, đúng nội dung và thứ tự bản gốc. Đích: ${project}. ${before.exists() ? 'Tài liệu đang tồn tại: cần bản sao lưu đầy đủ trước khi ghi đè.' : 'Tài liệu hiện chưa tồn tại.'} Chưa ghi dữ liệu.`;
   } catch (error) { if (current === epoch) preview.textContent = error.message; }
 });
 
@@ -86,8 +87,14 @@ importer.addEventListener('click', async () => {
   busy = true; importer.disabled = true;
   try {
     requireAdmin(); const payload = candidate; await validateCatalog(payload);
-    await setDoc(doc(db, 'libraryCatalog', 'current'), {
-      schemaVersion: 1, count: 201, sha256: payload.sha256, dataJson: JSON.stringify(payload.data), updatedAt: serverTimestamp()
+    const before = catalogBeforeImport;
+    await runTransaction(db, async transaction => {
+      const target = doc(db, 'libraryCatalog', 'current');
+      const latest = await transaction.get(target);
+      if (!before || !snapshotEqual(before, latest)) throw new Error('Danh mục đã thay đổi sau khi kiểm tra. Dừng nhập; kiểm tra và sao lưu lại trước khi tiếp tục.');
+      transaction.set(target, {
+        schemaVersion: 1, count: 201, sha256: payload.sha256, dataJson: JSON.stringify(payload.data), updatedAt: serverTimestamp()
+      });
     });
     const saved = await getDocFromServer(doc(db, 'libraryCatalog', 'current'));
     await decodeCatalog(saved.data());

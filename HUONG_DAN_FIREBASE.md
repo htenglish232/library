@@ -2,6 +2,8 @@
 
 Bản này nằm trên nhánh `firebase-auth-trial`. Chưa đưa lên GitHub Pages chính thức, chưa áp dụng Security Rules và chưa nhập dữ liệu vào dự án Firebase thật. Không cần nâng gói Spark để dùng chức năng hiện tại.
 
+Báo cáo chuẩn bị áp dụng mới nhất: `BAO_CAO_TRUOC_AP_DUNG_FIREBASE.md`. Phương án khôi phục: `PHUONG_AN_KHOI_PHUC_FIREBASE.md`. Hiện trạng đã được chủ dự án xác nhận trong Console: `(default)` trống, chỉ có HT English Library Web và Rules chặn toàn bộ. Chỉ thay đổi Firebase thật sau xác nhận cuối cùng.
+
 ## 1. Hiểu cách hoạt động
 
 - Giáo viên đăng nhập bằng email và mật khẩu của tài khoản Firebase riêng.
@@ -101,6 +103,8 @@ Sau khi được bạn duyệt và Rules đã áp dụng, mở `admin.html` trê
 Ở **Nhập danh mục đã kiểm tra**, chọn file `catalog/library-catalog.json`. Chọn file chỉ kiểm tra, chưa ghi dữ liệu. Công cụ kiểm tra đủ 201 đường dẫn riêng biệt và SHA-256 khớp bản gốc, bao gồm toàn bộ tiêu đề, đường dẫn và thứ tự.
 
 Chỉ khi bạn cho phép nhập thật mới nhấn **Nhập danh mục vào Firestore**, xác nhận hộp thoại và gõ `ht-english-library`. Sau khi ghi, công cụ đọc lại từ máy chủ và kiểm tra tính chính xác. Nếu thao tác ghi hoặc đọc lại thất bại, không coi việc nhập là thành công; kiểm tra thông báo và trạng thái trong Console trước khi thử lại.
+
+Công cụ đọc lại phiên bản tài liệu trong giao dịch trước khi ghi. Nếu tài liệu đổi sau lúc kiểm tra file, công cụ dừng và yêu cầu kiểm tra/sao lưu lại, không ghi đè phiên bản mới.
 
 ## 6. Chuẩn bị GitHub Pages — chưa triển khai
 

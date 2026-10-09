@@ -68,3 +68,17 @@ test('catalog schema rejects wrong count, extra fields and unknown collections',
   await assertFails(setDoc(doc(db,'libraryCatalog','other'),catalog()));
   await assertFails(setDoc(doc(db,'unrelated','data'),{value:true}));
 });
+test('unapproved, locked and revoked teachers cannot self-grant or write an admin role',async()=>{
+  await assertFails(setDoc(doc(database('unapproved'),'libraryMembers','unapproved'),member('active')));
+  for(const status of ['locked','revoked']) {
+    await setDoc(doc(database(adminUid),'libraryMembers','teacher'),member(status));
+    await assertFails(setDoc(doc(database('teacher'),'libraryMembers','teacher'),member('active')));
+    await assertFails(setDoc(doc(database('teacher'),'libraryMembers','teacher'),{...member('active'),role:'admin'}));
+  }
+});
+test('catalog and membership subcollections stay denied; no unrelated collection is opened',async()=>{
+  for(const uid of [adminUid,'teacher','unapproved']) {
+    await assertFails(getDoc(doc(database(uid),'libraryCatalog','current','private','data')));
+    await assertFails(setDoc(doc(database(uid),'libraryMembers','teacher','roles','admin'),{admin:true}));
+  }
+});
