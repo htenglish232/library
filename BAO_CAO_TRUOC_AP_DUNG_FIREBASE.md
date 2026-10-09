@@ -4,6 +4,8 @@ Ngày lập: 09/10/2026. Nhánh: `firebase-auth-trial`. Dự án: `ht-english-li
 
 **Chưa Publish Rules, chưa ghi/nhập/xóa dữ liệu Firebase thật, chưa triển khai GitHub Pages, chưa thay đổi main.**
 
+Cập nhật giai đoạn đã được phê duyệt: Rules và importer đã được siết thành **chỉ tạo mới catalog**; không cho ghi đè/cập nhật/xóa. Báo cáo này ghi nhận đợt kiểm tra chuẩn bị trước đó; kết quả và hướng dẫn Publish mới nhất ở `PUBLISH_FIREBASE_TUNG_BUOC.md`. Không thực hiện lại yêu cầu phê duyệt cũ; các bước thật sẽ tiến hành tuần tự và kiểm tra kết quả giữa các bước.
+
 ## 1. Bằng chứng hiện trạng và bản sao lưu
 
 Môi trường không có phiên Firebase CLI được đăng nhập. Biến Google credentials có mặt nhưng nội dung chỉ là cấu hình rỗng; không có quyền Google IAM dùng được để tự đọc Rules và dữ liệu. Vì vậy, bằng chứng Firebase thật được thu thập từ nội dung và quan sát mà chủ dự án cung cấp qua Firebase Console. Không mô tả các quan sát này là kết quả gọi API độc lập.

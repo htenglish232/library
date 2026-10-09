@@ -45,10 +45,17 @@ test('email or fake admin role cannot elevate a teacher',async()=>{
   await assertFails(setDoc(doc(db,'libraryMembers','other'),member('active')));
   await assertFails(setDoc(doc(database('unapproved'),'libraryMembers','unapproved'),{...member('active'),role:'admin'}));
 });
-test('fixed admin can grant, lock, unlock, revoke and import',async()=>{
+test('fixed admin can grant, lock, unlock, revoke and create the first catalog',async()=>{
   const db=database(adminUid); await assertSucceeds(getDoc(doc(db,'libraryCatalog','current'))); await assertSucceeds(getDocs(collection(db,'libraryMembers')));
   for(const status of ['active','locked','active','revoked']) await assertSucceeds(setDoc(doc(db,'libraryMembers','other'),member(status)));
+  await env.withSecurityRulesDisabled(context=>deleteDoc(doc(context.firestore(),'libraryCatalog','current')));
   await assertSucceeds(setDoc(doc(db,'libraryCatalog','current'),catalog()));
+});
+test('even primary admin cannot overwrite, merge-update or delete existing catalog',async()=>{
+  const target=doc(database(adminUid),'libraryCatalog','current');
+  await assertFails(setDoc(target,catalog()));
+  await assertFails(setDoc(target,{count:201},{merge:true}));
+  await assertFails(deleteDoc(target));
 });
 test('admin cannot create a second admin via membership or edit primary admin',async()=>{
   const db=database(adminUid);
@@ -62,6 +69,7 @@ test('member schema rejects invalid status, extra fields and forged timestamp',a
   await assertFails(setDoc(target,{...member('active'),updatedAt:new Date(0)}));
 });
 test('catalog schema rejects wrong count, extra fields and unknown collections',async()=>{
+  await env.withSecurityRulesDisabled(context=>deleteDoc(doc(context.firestore(),'libraryCatalog','current')));
   const db=database(adminUid); const target=doc(db,'libraryCatalog','current');
   await assertFails(setDoc(target,{...catalog(),count:200}));
   await assertFails(setDoc(target,{...catalog(),unexpected:true}));

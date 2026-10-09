@@ -1,6 +1,6 @@
 import { auth, db } from './firebase-client.js';
 import { ADMIN_UID, firebaseConfig, useEmulators } from './firebase-config.js';
-import { collection, onSnapshot, doc, setDoc, serverTimestamp, getDocFromServer, runTransaction, snapshotEqual } from './firebase-sdk.js';
+import { collection, onSnapshot, doc, setDoc, serverTimestamp, getDocFromServer, runTransaction } from './firebase-sdk.js';
 import { setupLogin, observeAccess, showSession, explainAuthError } from './session.js';
 import { validateCatalog, decodeCatalog } from './catalog-data.js';
 
@@ -75,14 +75,15 @@ document.getElementById('catalog-file').addEventListener('change', async event =
     const payload = JSON.parse(await file.text()); await validateCatalog(payload);
     const before = await getDocFromServer(doc(db, 'libraryCatalog', 'current'));
     if (current !== epoch) return;
+    if (before.exists()) throw new Error('libraryCatalog/current đã tồn tại. Dừng nhập: lần triển khai này chỉ được tạo mới, không ghi đè.');
     candidate = payload; catalogBeforeImport = before; importer.disabled = false;
-    preview.textContent = `Đã kiểm tra: 201 đường dẫn, đúng nội dung và thứ tự bản gốc. Đích: ${project}. ${before.exists() ? 'Tài liệu đang tồn tại: cần bản sao lưu đầy đủ trước khi ghi đè.' : 'Tài liệu hiện chưa tồn tại.'} Chưa ghi dữ liệu.`;
+    preview.textContent = `Đã kiểm tra: 201 đường dẫn, đúng nội dung và thứ tự bản gốc. Đích: ${project}. Tài liệu hiện chưa tồn tại; chỉ tạo mới. Chưa ghi dữ liệu.`;
   } catch (error) { if (current === epoch) preview.textContent = error.message; }
 });
 
 importer.addEventListener('click', async () => {
   if (busy || !candidate) return;
-  if (!confirm(`Xác nhận nhập 201 đường dẫn vào ${project}?\nThao tác ghi vào libraryCatalog/current và có thể thay thế danh mục hiện tại.`)) return;
+  if (!confirm(`Xác nhận tạo mới danh mục 201 đường dẫn trong ${project}?\nĐích: libraryCatalog/current. Nếu tài liệu đã tồn tại, thao tác phải dừng.`)) return;
   if (!useEmulators && prompt(`Để xác nhận ghi dữ liệu thật, nhập chính xác: ${firebaseConfig.projectId}`) !== firebaseConfig.projectId) return;
   busy = true; importer.disabled = true;
   try {
@@ -91,7 +92,7 @@ importer.addEventListener('click', async () => {
     await runTransaction(db, async transaction => {
       const target = doc(db, 'libraryCatalog', 'current');
       const latest = await transaction.get(target);
-      if (!before || !snapshotEqual(before, latest)) throw new Error('Danh mục đã thay đổi sau khi kiểm tra. Dừng nhập; kiểm tra và sao lưu lại trước khi tiếp tục.');
+      if (!before || before.exists() || latest.exists()) throw new Error('libraryCatalog/current đã tồn tại hoặc chưa được kiểm tra. Dừng nhập; không ghi đè.');
       transaction.set(target, {
         schemaVersion: 1, count: 201, sha256: payload.sha256, dataJson: JSON.stringify(payload.data), updatedAt: serverTimestamp()
       });
@@ -99,6 +100,7 @@ importer.addEventListener('click', async () => {
     const saved = await getDocFromServer(doc(db, 'libraryCatalog', 'current'));
     await decodeCatalog(saved.data());
     message.textContent = `Đã nhập và đọc lại xác minh đủ 201 đường dẫn, đúng nội dung và thứ tự (${project}).`;
+    candidate = null; catalogBeforeImport = null;
   } catch (error) { message.textContent = error.code ? explainAuthError(error) : error.message; }
   finally { busy = false; importer.disabled = !candidate; }
 });

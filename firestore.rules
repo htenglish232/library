@@ -26,7 +26,7 @@ service cloud.firestore {
     match /libraryCatalog/current {
       allow get: if admin() || activeTeacher();
       allow list: if false;
-      allow create, update: if admin()
+      allow create: if admin()
         && request.resource.data.keys().hasAll(['schemaVersion', 'count', 'sha256', 'dataJson', 'updatedAt'])
         && request.resource.data.keys().hasOnly(['schemaVersion', 'count', 'sha256', 'dataJson', 'updatedAt'])
         && request.resource.data.schemaVersion == 1
@@ -34,7 +34,7 @@ service cloud.firestore {
         && request.resource.data.sha256 is string && request.resource.data.sha256.matches('^[0-9a-f]{64}$')
         && request.resource.data.dataJson is string && request.resource.data.dataJson.size() < 200000
         && request.resource.data.updatedAt == request.time;
-      allow delete: if false;
+      allow update, delete: if false;
     }
     match /{document=**} { allow read, write: if false; }
   }

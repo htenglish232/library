@@ -2,6 +2,8 @@
 
 Bản này nằm trên nhánh `firebase-auth-trial`. Chưa đưa lên GitHub Pages chính thức, chưa áp dụng Security Rules và chưa nhập dữ liệu vào dự án Firebase thật. Không cần nâng gói Spark để dùng chức năng hiện tại.
 
+Giai đoạn hiện tại đã được chủ dự án cho phép thực hiện từng bước: Publish Rules trước, xác minh, rồi mới mở Admin và tạo danh mục. Rules và importer hiện **chỉ cho tạo mới `libraryCatalog/current`**, không cho cập nhật hoặc xóa. Hướng dẫn bước hiện tại: `PUBLISH_FIREBASE_TUNG_BUOC.md`.
+
 Báo cáo chuẩn bị áp dụng mới nhất: `BAO_CAO_TRUOC_AP_DUNG_FIREBASE.md`. Phương án khôi phục: `PHUONG_AN_KHOI_PHUC_FIREBASE.md`. Hiện trạng đã được chủ dự án xác nhận trong Console: `(default)` trống, chỉ có HT English Library Web và Rules chặn toàn bộ. Chỉ thay đổi Firebase thật sau xác nhận cuối cùng.
 
 ## 1. Hiểu cách hoạt động
@@ -88,7 +90,7 @@ Dữ liệu dự kiến gồm:
 
 Danh mục lưu trong trường chuỗi `dataJson` để giữ thứ tự và tránh hạn chế mảng lồng nhau của Firestore. Mỗi lần tải danh mục cần đọc một tài liệu; việc kiểm tra quyền giáo viên có thể phát sinh lượt đọc thêm. Kích thước được công cụ kiểm tra và giới hạn dưới 200 KB.
 
-Trước khi nhập, kiểm tra `libraryCatalog/current` đã tồn tại chưa. Nếu tồn tại, xuất/sao lưu nội dung trước. Công cụ nhập sẽ ghi thay thế tài liệu này; không đụng đến các bộ sưu tập khác.
+Trước khi nhập, kiểm tra `libraryCatalog/current` đã tồn tại chưa. Nếu tồn tại, dừng; trong giai đoạn này không được ghi đè. Công cụ và Rules đều chỉ cho tạo mới tài liệu này, không đụng đến các bộ sưu tập khác.
 
 ## 5. Nhập danh mục sau khi đã được chấp thuận
 
@@ -104,7 +106,7 @@ Sau khi được bạn duyệt và Rules đã áp dụng, mở `admin.html` trê
 
 Chỉ khi bạn cho phép nhập thật mới nhấn **Nhập danh mục vào Firestore**, xác nhận hộp thoại và gõ `ht-english-library`. Sau khi ghi, công cụ đọc lại từ máy chủ và kiểm tra tính chính xác. Nếu thao tác ghi hoặc đọc lại thất bại, không coi việc nhập là thành công; kiểm tra thông báo và trạng thái trong Console trước khi thử lại.
 
-Công cụ đọc lại phiên bản tài liệu trong giao dịch trước khi ghi. Nếu tài liệu đổi sau lúc kiểm tra file, công cụ dừng và yêu cầu kiểm tra/sao lưu lại, không ghi đè phiên bản mới.
+Công cụ đọc lại tài liệu trong giao dịch trước khi tạo. Nếu tài liệu đã tồn tại hoặc được tạo bởi thao tác khác sau lúc kiểm tra file, công cụ dừng, không ghi đè. Sau nhập thành công, nút nhập bị vô hiệu hóa; Rules chặn cả thao tác ghi đè, cập nhật một phần và xóa, kể cả với Admin.
 
 ## 6. Chuẩn bị GitHub Pages — chưa triển khai
 
