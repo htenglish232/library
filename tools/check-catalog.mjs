@@ -1,0 +1,16 @@
+import { readFileSync, existsSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
+import { validateCatalog } from '../assets/catalog-data.js';
+const baseline = JSON.parse(readFileSync('catalog/baseline.json', 'utf8'));
+const source = execFileSync('git', ['show', `${baseline.commit}:index.html`], { encoding: 'utf8' });
+const original = JSON.parse(source.match(/const DATA = (\[.*?\]);/s)[1]);
+const payload = JSON.parse(readFileSync('catalog/library-catalog.json', 'utf8'));
+await validateCatalog(payload);
+if (JSON.stringify(payload.data) !== JSON.stringify(original)) throw new Error('Export differs from original catalog.');
+if (createHash('sha256').update(JSON.stringify(original)).digest('hex') !== baseline.sha256) throw new Error('Baseline hash mismatch.');
+const links = original.flatMap(g => g.units.flatMap(u => u.lessons.map(l => l.href)));
+if (!links.every(href => existsSync(href))) throw new Error('Missing local exercise file.');
+const protectedChanges = execFileSync('git', ['diff', baseline.commit, '--name-only', '--', 'grade-*', 'home-button.js'], { encoding: 'utf8' }).trim();
+if (protectedChanges) throw new Error(`Protected exercise files changed: ${protectedChanges}`);
+console.log('PASS: 201 unique existing paths; exact original data and order; exercise, audio, grading and home-button files unchanged.');

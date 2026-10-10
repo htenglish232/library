@@ -1,0 +1,85 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function admin() {
+      return request.auth != null && request.auth.uid == '4Y82k6RBaRUPflZriPsUvQv1qKj2';
+    }
+    function activeTeacher() {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/libraryMembers/$(request.auth.uid))
+        && get(/databases/$(database)/documents/libraryMembers/$(request.auth.uid)).data.status == 'active';
+    }
+    function currentPath() {
+      return /databases/$(database)/documents/libraryCatalog/current;
+    }
+    function revision(data) {
+      return data.schemaVersion == 1 ? 0 : data.revision;
+    }
+    function historyPath(number) {
+      return /databases/$(database)/documents/libraryCatalogHistory/$(string(number));
+    }
+    function validManagedCatalog(data) {
+      return data.keys().hasAll(['schemaVersion', 'revision', 'parentSha256', 'count', 'sha256', 'dataJson', 'updatedAt', 'updatedBy'])
+        && data.keys().hasOnly(['schemaVersion', 'revision', 'parentSha256', 'count', 'sha256', 'dataJson', 'updatedAt', 'updatedBy'])
+        && data.schemaVersion == 2
+        && data.revision is int && data.revision > 0
+        && data.count is int && data.count >= 0
+        && data.sha256 is string && data.sha256.matches('^[0-9a-f]{64}$')
+        && data.parentSha256 is string && data.parentSha256.matches('^[0-9a-f]{64}$')
+        && data.dataJson is string && data.dataJson.size() <= 700000
+        && data.updatedAt == request.time && data.updatedBy == request.auth.uid;
+    }
+    function validArchive(data, previous, number) {
+      return data.keys().hasAll(['revision', 'snapshot', 'archivedAt', 'archivedBy'])
+        && data.keys().hasOnly(['revision', 'snapshot', 'archivedAt', 'archivedBy'])
+        && data.revision == number && data.snapshot == previous
+        && data.archivedAt == request.time && data.archivedBy == request.auth.uid;
+    }
+    match /libraryMembers/{uid} {
+      allow get: if admin() || (request.auth != null && request.auth.uid == uid);
+      allow list: if admin();
+      allow create, update: if admin()
+        && uid != '4Y82k6RBaRUPflZriPsUvQv1qKj2'
+        && uid.matches('^[A-Za-z0-9_-]{1,128}$')
+        && request.resource.data.keys().hasAll(['email', 'name', 'status', 'updatedAt'])
+        && request.resource.data.keys().hasOnly(['email', 'name', 'status', 'updatedAt'])
+        && request.resource.data.email is string && request.resource.data.email.size() <= 254
+        && request.resource.data.name is string && request.resource.data.name.size() <= 120
+        && request.resource.data.status in ['active', 'locked', 'revoked']
+        && request.resource.data.updatedAt == request.time;
+      allow delete: if false;
+    }
+    match /libraryCatalog/current {
+      allow get: if admin() || activeTeacher();
+      allow list: if false;
+      allow create: if admin()
+        && request.resource.data.keys().hasAll(['schemaVersion', 'count', 'sha256', 'dataJson', 'updatedAt'])
+        && request.resource.data.keys().hasOnly(['schemaVersion', 'count', 'sha256', 'dataJson', 'updatedAt'])
+        && request.resource.data.schemaVersion == 1
+        && request.resource.data.count == 201
+        && request.resource.data.sha256 == '456425b97fca668d9bd81c7cde123dd6a041350bc7ed7f1343deb7da841e0289'
+        && request.resource.data.dataJson is string && request.resource.data.dataJson.size() < 200000
+        && request.resource.data.updatedAt == request.time;
+      // Both writes must succeed together; a stale revision or overwritten archive is denied.
+      allow update: if admin()
+        && validManagedCatalog(request.resource.data)
+        && request.resource.data.revision == revision(resource.data) + 1
+        && request.resource.data.parentSha256 == resource.data.sha256
+        && !exists(historyPath(revision(resource.data)))
+        && validArchive(getAfter(historyPath(revision(resource.data))).data, resource.data, revision(resource.data));
+      allow delete: if false;
+    }
+    match /libraryCatalogHistory/{version} {
+      allow get, list: if admin();
+      allow create: if admin()
+        && exists(currentPath())
+        && version == string(revision(get(currentPath()).data))
+        && validArchive(request.resource.data, get(currentPath()).data, revision(get(currentPath()).data))
+        && validManagedCatalog(getAfter(currentPath()).data)
+        && getAfter(currentPath()).data.revision == revision(get(currentPath()).data) + 1
+        && getAfter(currentPath()).data.parentSha256 == get(currentPath()).data.sha256;
+      allow update, delete: if false;
+    }
+    match /{document=**} { allow read, write: if false; }
+  }
+}

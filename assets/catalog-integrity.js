@@ -1,0 +1,2 @@
+export const CATALOG_SHA256 = "456425b97fca668d9bd81c7cde123dd6a041350bc7ed7f1343deb7da841e0289";
+export const CATALOG_COUNT = 201;
