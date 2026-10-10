@@ -1,6 +1,9 @@
+import { visibleCatalog } from './catalog-data.js';
 const tabs=document.getElementById('tabs'), content=document.getElementById('content'), search=document.getElementById('search'), empty=document.getElementById('empty'), stats=document.getElementById('stats');
 let current=0;
 let DATA = [];
+let managed = false;
+function escape(value) { return value.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function updateStats() { const total=DATA.reduce((n,g)=>n+g.units.reduce((m,u)=>m+u.lessons.length,0),0); stats.textContent=`${total} bài học`; }
 function toggle(el){ el.classList.toggle('open'); }
 function unitNumber(u){ const m=u.name.match(/Unit\s+(\d+)/i); return m?Number(m[1]):999; }
@@ -13,7 +16,23 @@ export function render(q=''){
    if(gi!==current){ content.appendChild(sec); return; }
    const needle=q.toLowerCase();
 
-   if(g.grade==='Grade 4' || g.grade==='Grade 5'){
+   if (managed) {
+     for (const u of g.units) {
+       const lessons = u.lessons.filter(l => !q || `${g.grade} ${u.name} ${l.title}`.toLowerCase().includes(needle));
+       if (!lessons.length) continue;
+       found = true;
+       const folder = document.createElement('div'); folder.className = 'folder' + (q ? ' open' : '');
+       folder.innerHTML = `<div class="folder-head"><div class="folder-title"><span class="folder-icon">📁</span><h3>${escape(u.name)}</h3></div><div><span class="badge">${lessons.length} bài</span> <span class="chev">›</span></div></div><div class="folder-body"><div class="grammar-list"></div></div>`;
+       folder.querySelector('.folder-head').onclick = () => toggle(folder);
+       for (const l of lessons) {
+         const a = document.createElement('a'); a.className = 'lesson'; a.href = l.href;
+         const strong = document.createElement('strong'); strong.textContent = l.title; a.append(strong);
+         if (/^https:\/\//i.test(l.href)) a.rel = 'noopener noreferrer';
+         folder.querySelector('.grammar-list').append(a);
+       }
+       sec.append(folder);
+     }
+   } else if(g.grade==='Grade 4' || g.grade==='Grade 5'){
      const all=g.units.flatMap(u=>u.lessons).filter(l=>!q || (g.grade+' Bổ trợ ngữ pháp '+l.title).toLowerCase().includes(needle));
      if(all.length){
        found=true;
@@ -64,5 +83,10 @@ export function render(q=''){
  empty.style.display=found?'none':'block';
 }
 search.addEventListener('input',()=>render(search.value.trim()));
-export function setCatalog(data) { DATA = data; current = 0; search.value = ''; updateStats(); render(); }
+export function setCatalog(data, schemaVersion = 1) {
+  const selected = DATA[current]?.grade, query = search.value;
+  DATA = visibleCatalog(data); managed = schemaVersion === 2;
+  current = Math.max(0, DATA.findIndex(g => g.grade === selected));
+  search.value = selected ? query : ''; updateStats(); render(search.value.trim());
+}
 export function clearCatalog() { DATA = []; content.replaceChildren(); tabs.replaceChildren(); stats.textContent = ''; search.value = ''; empty.style.display = 'none'; }

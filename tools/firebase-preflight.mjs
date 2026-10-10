@@ -55,7 +55,7 @@ export async function collectPreflight(request) {
   });
   await capture('default database root collections', async () => {
     result.rootCollections = await pages(`https://firestore.googleapis.com/v1/projects/${PROJECT}/databases/(default)/documents:listCollectionIds`, 'collectionIds', 'POST');
-    const other = result.rootCollections.filter(name => !['libraryCatalog', 'libraryMembers'].includes(name));
+    const other = result.rootCollections.filter(name => !['libraryCatalog', 'libraryMembers', 'libraryCatalogHistory'].includes(name));
     if (other.length) result.warnings.push('Other root collections exist; proposed default-deny Rules need review.');
     if ((result.databases || []).some(db => db.name !== `projects/${PROJECT}/databases/(default)`)) result.warnings.push('Other databases exist; inspect their Rules and integrations separately.');
   });

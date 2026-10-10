@@ -24,6 +24,10 @@ subprocess.run(['node','tests/seed-emulator.mjs'],cwd=ROOT,input=json.dumps(user
 
 class QuietHandler(http.server.SimpleHTTPRequestHandler):
     def log_message(self,*args): pass
+    def translate_path(self,path):
+        # Model GitHub project Pages under /library/, without changing source links.
+        if path.startswith('/library/'): path=path[len('/library'):]
+        return super().translate_path(path)
     def copyfile(self,source,output):
         try: super().copyfile(source,output)
         except (BrokenPipeError,ConnectionResetError): pass # Browser closes an audio stream on navigation.
@@ -138,7 +142,139 @@ with sync_playwright() as p:
     expect(admin.locator('#admin-message')).to_contain_text('Đã nhập và đọc lại xác minh đủ 201')
     expect(admin.locator('#import-catalog')).to_be_disabled()
     count+=1; print('PASS first catalog created and read-back verified exactly; repeat import disabled',flush=True)
+
+    row.get_by_role('button',name='Mở khóa / cấp lại',exact=True).click()
+    expect(teacher.locator('#library')).to_be_visible()
+    admin.locator('#reload-catalog').click()
+    expect(admin.locator('#editor-summary')).to_contain_text('201 bài tập tổng cộng')
+    original_fields=admin.evaluate("""async()=>{const {db}=await import('./assets/firebase-client.js');const {doc,getDocFromServer}=await import('./assets/firebase-sdk.js');return (await getDocFromServer(doc(db,'libraryCatalog','current'))).data()}""")
+    admin.locator('#grade-name').fill('Grade 9'); admin.locator('#add-grade').click()
+    admin.locator('#unit-name').fill('Thư mục mới'); admin.locator('#add-unit').click()
+    malicious='<img src=x onerror="window.catalogInjected=true">'
+    admin.locator('#lesson-title').fill(malicious); admin.locator('#lesson-href').fill('grade-9/new.html'); admin.locator('#lesson-submit').click()
+    expect(admin.locator('#editor-summary')).to_contain_text('202 bài tập tổng cộng')
+    expect(admin.locator('#editor-summary')).to_contain_text('bản nháp chưa lưu')
+    expect(teacher.locator('#stats')).to_have_text('201 bài học')
+    admin.locator('#save-catalog').click()
+    expect(admin.locator('#editor-message')).to_contain_text('phiên bản 1')
+    expect(teacher.locator('#stats')).to_have_text('202 bài học')
+    teacher.get_by_role('button',name='Grade 9',exact=True).click()
+    expect(teacher.locator('a.lesson')).to_have_count(1)
+    assert teacher.locator('a.lesson strong').inner_text()==malicious
+    assert teacher.locator('a.lesson img').count()==0
+    assert not teacher.evaluate('!!window.catalogInjected')
+    archive=admin.evaluate("""async()=>{const {db}=await import('./assets/firebase-client.js');const {doc,getDocFromServer}=await import('./assets/firebase-sdk.js');return (await getDocFromServer(doc(db,'libraryCatalogHistory','0'))).data()}""")
+    assert archive['snapshot']==original_fields
+    count+=1; print('PASS dynamic 202-item catalog, migration preserves exact original snapshot, teacher live update and safe title rendering',flush=True)
+
+    admin.locator('#lesson-title').fill('Không hợp lệ'); admin.locator('#lesson-href').fill('javascript:alert(1)'); admin.locator('#lesson-submit').click()
+    expect(admin.locator('#editor-message')).to_contain_text('đường dẫn')
+    expect(admin.locator('#editor-summary')).to_contain_text('202 bài tập tổng cộng')
+    admin.locator('#cancel-lesson-edit').click()
+    admin.locator('#toggle-unit').click(); admin.locator('#save-catalog').click()
+    expect(admin.locator('#editor-message')).to_contain_text('phiên bản 2')
+    expect(teacher.locator('#stats')).to_have_text('201 bài học')
+    assert teacher.locator('a.lesson').count()==0
+    admin.locator('#toggle-unit').click()
+    admin.locator('.catalog-item').get_by_role('button',name='Ẩn bài',exact=True).click()
+    admin.locator('#save-catalog').click(); expect(admin.locator('#editor-message')).to_contain_text('phiên bản 3')
+    expect(teacher.locator('#stats')).to_have_text('201 bài học')
+    admin.locator('.catalog-item').get_by_role('button',name='Hiện bài',exact=True).click()
+    admin.locator('.catalog-item').get_by_role('button',name='Sửa',exact=True).click()
+    admin.locator('#lesson-title').fill('Bài mới đã sửa'); admin.locator('#lesson-submit').click()
+    admin.locator('#save-catalog').click(); expect(admin.locator('#editor-message')).to_contain_text('phiên bản 4')
+    expect(teacher.locator('#stats')).to_have_text('202 bài học')
+    expect(teacher.locator('a.lesson strong')).to_have_text('Bài mới đã sửa')
+    count+=1; print('PASS invalid links rejected; folder and lesson hide/show and lesson editing; count updates without deleting files',flush=True)
+
+    admin.locator('#lesson-title').fill('Bài thứ hai'); admin.locator('#lesson-href').fill('https://example.test/lesson.html'); admin.locator('#lesson-submit').click()
+    admin.locator('.catalog-item').filter(has_text='Bài thứ hai').get_by_role('button',name='Lên',exact=True).click()
+    admin.locator('#grade-name').fill('Grade 10'); admin.locator('#rename-grade').click()
+    admin.locator('#grade-up').click(); admin.locator('#grade-down').click(); admin.locator('#sort-grades').click()
+    admin.locator('#grade-select').select_option(label='Grade 10')
+    admin.locator('#unit-name').fill('Thư mục phụ'); admin.locator('#add-unit').click()
+    admin.locator('#unit-up').click(); admin.locator('#unit-down').click()
+    admin.locator('#unit-name').fill('Thư mục phụ đổi tên'); admin.locator('#rename-unit').click()
+    admin.locator('#unit-select').select_option('0')
+    admin.locator('.catalog-item').filter(has_text='Bài thứ hai').get_by_role('button',name='Sửa',exact=True).click()
+    admin.locator('#lesson-target-unit').select_option('1'); admin.locator('#lesson-submit').click()
+    expect(admin.locator('.catalog-item')).to_have_count(1)
+    admin.locator('#unit-select').select_option('1')
+    admin.locator('.catalog-item').get_by_role('button',name='Sửa',exact=True).click()
+    admin.locator('#lesson-target-unit').select_option('0'); admin.locator('#lesson-submit').click()
+    expect(admin.locator('.catalog-item')).to_have_count(0)
+    admin.locator('#delete-unit').click()
+    admin.locator('.catalog-item').filter(has_text='Bài thứ hai').get_by_role('button',name='Lên',exact=True).click()
+    admin.locator('#save-catalog').click(); expect(admin.locator('#editor-message')).to_contain_text('phiên bản 5')
+    expect(teacher.locator('#stats')).to_have_text('203 bài học')
+    teacher.get_by_role('button',name='Grade 10',exact=True).click()
+    assert teacher.locator('a.lesson strong').all_text_contents()==['Bài thứ hai','Bài mới đã sửa']
+    count+=1; print('PASS lesson and folder add/delete/reorder, grade rename/reorder/sort and dynamic count above 201',flush=True)
+
+    admin.locator('#toggle-grade').click(); admin.locator('#save-catalog').click()
+    expect(admin.locator('#editor-message')).to_contain_text('phiên bản 6')
+    expect(teacher.locator('#stats')).to_have_text('201 bài học')
+    expect(teacher.get_by_role('button',name='Grade 10',exact=True)).to_have_count(0)
+    admin.locator('#toggle-grade').click(); admin.locator('#save-catalog').click()
+    expect(admin.locator('#editor-message')).to_contain_text('phiên bản 7')
+    expect(teacher.locator('#stats')).to_have_text('203 bài học')
+    with admin.expect_download() as download_info: admin.locator('#backup-catalog').click()
+    backup=json.loads(Path(download_info.value.path()).read_text())
+    assert backup['count']==203 and backup['schemaVersion']==2 and not backup['includesUnsavedDraft']
+    admin.locator('.catalog-item').filter(has_text='Bài thứ hai').get_by_role('button',name='Xóa bài',exact=True).click()
+    admin.locator('#save-catalog').click(); expect(admin.locator('#editor-message')).to_contain_text('phiên bản 8')
+    expect(teacher.locator('#stats')).to_have_text('202 bài học')
+    bad_backup=json.loads(json.dumps(backup)); bad_backup['data'][0]['grade']='Changed without checksum'
+    admin.locator('#restore-file').set_input_files({'name':'bad.json','mimeType':'application/json','buffer':json.dumps(bad_backup).encode()})
+    expect(admin.locator('#editor-message')).to_contain_text('SHA-256 không khớp')
+    expect(admin.locator('#save-catalog')).to_be_disabled()
+    admin.locator('#restore-file').set_input_files({'name':'good.json','mimeType':'application/json','buffer':json.dumps(backup).encode()})
+    expect(admin.locator('#editor-message')).to_contain_text('khôi phục vào bản nháp')
+    expect(teacher.locator('#stats')).to_have_text('202 bài học')
+    admin.locator('#save-catalog').click(); expect(admin.locator('#editor-message')).to_contain_text('phiên bản 9')
+    expect(teacher.locator('#stats')).to_have_text('203 bài học')
+    count+=1; print('PASS grade hide/show, local JSON backup, corrupt restore rejected and verified restore creates new version',flush=True)
+
+    second_context,second=new_page(); login(second,'admin@example.test',path='admin.html')
+    expect(second.locator('#editor-summary')).to_contain_text('Phiên bản 9')
+    second.on('dialog',lambda dialog:dialog.accept())
+    second.locator('#grade-name').fill('Grade 11'); second.locator('#add-grade').click()
+    admin.locator('#grade-name').fill('Grade 12'); admin.locator('#add-grade').click()
+    admin.locator('#save-catalog').click(); expect(admin.locator('#editor-message')).to_contain_text('phiên bản 10')
+    second.locator('#save-catalog').click()
+    expect(second.locator('#editor-message')).to_contain_text('đã được thay đổi ở cửa sổ khác')
+    expect(second.locator('#editor-summary')).to_contain_text('bản nháp chưa lưu')
+    assert 'Grade 11' in second.locator('#grade-select option').all_text_contents()
+    server_grades=admin.evaluate("""async()=>{const {loadCatalog}=await import('./assets/catalog-store.js');return (await loadCatalog()).data.map(g=>g.grade)}""")
+    assert 'Grade 12' in server_grades and 'Grade 11' not in server_grades
+    second_context.close()
+    count+=1; print('PASS two Admin windows: stale draft save blocked, draft kept and newer server data preserved',flush=True)
+
+    admin.locator('#refresh-history').click()
+    expect(admin.locator('#history-version option')).to_have_count(10)
+    admin.locator('#history-version').select_option('0'); admin.locator('#restore-history').click()
+    expect(admin.locator('#editor-summary')).to_contain_text('201 bài tập tổng cộng')
+    expect(teacher.locator('#stats')).to_have_text('203 bài học')
+    admin.locator('#save-catalog').click(); expect(admin.locator('#editor-message')).to_contain_text('phiên bản 11')
+    expect(teacher.locator('#stats')).to_have_text('201 bài học')
+    restored=admin.evaluate("""async()=>{const {loadCatalog}=await import('./assets/catalog-store.js');return (await loadCatalog()).fields.dataJson}""")
+    assert restored==original_fields['dataJson']
+    for width in [360,375,390,430]:
+        admin.set_viewport_size({'width':width,'height':850})
+        assert admin.evaluate('document.documentElement.scrollWidth <= innerWidth + 1'),('editor overflow',width)
+    count+=1; print('PASS history restore preserves original 201 links exactly, keeps all newer versions and editor fits mobile widths',flush=True)
+    pages_context,pages=new_page(); login(pages,'active@example.test',path='library/index.html')
+    expect(pages.locator('#stats')).to_have_text('201 bài học')
+    pages.locator('.folder-head').first.click()
+    href=pages.locator('a.lesson').first.get_attribute('href')
+    assert pages.locator('a.lesson').first.evaluate('(a)=>a.href')==BASE+'library/'+href
+    assert pages.request.get(BASE+'library/'+href).status==200
+    pages.goto(BASE+'library/admin.html')
+    expect(pages.locator('#auth-message')).to_contain_text('Chỉ tài khoản Admin')
+    count+=1; print('PASS GitHub Pages /library/ prefix: Firebase sign-in, catalog and exercise links resolve correctly',flush=True)
+    pages_context.close()
     admin.locator('#logout').click(); expect(admin.locator('#admin-panel')).to_be_hidden()
+    expect(admin.locator('#lesson-list')).to_be_empty()
     count+=1; print('PASS logout clears admin data',flush=True)
 
     context,exercise=new_page()

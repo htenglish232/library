@@ -1,3 +1,5 @@
+> Nâng cấp quản lý danh mục: xem [QUAN_LY_DANH_MUC_VA_TRIEN_KHAI.md](QUAN_LY_DANH_MUC_VA_TRIEN_KHAI.md). Nội dung «chỉ tạo một lần / 201 mục» bên dưới mô tả giai đoạn thử nghiệm trước; công cụ nhập gốc vẫn chỉ CREATE, nhưng Rules đề xuất mới cho phép Admin lưu phiên bản mới kèm bản sao bắt buộc. Chưa áp dụng lên Firebase thật.
+
 # Firebase: bước Publish Rules — danh mục chỉ tạo mới
 
 Chủ dự án đã cho phép áp dụng thật theo từng bước. Hiện mới hoàn tất sửa mã và kiểm tra Emulator; chưa Publish Rules hoặc ghi dữ liệu Firebase thật. Nhánh `firebase-auth-trial`; không đổi main hoặc triển khai GitHub Pages. Không cần Blaze.

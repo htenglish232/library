@@ -3,6 +3,7 @@ import { ADMIN_UID, firebaseConfig, useEmulators } from './firebase-config.js';
 import { collection, onSnapshot, doc, setDoc, serverTimestamp, getDocFromServer, runTransaction } from './firebase-sdk.js';
 import { setupLogin, observeAccess, showSession, explainAuthError } from './session.js';
 import { validateCatalog, decodeCatalog } from './catalog-data.js';
+import { setEditorSession } from './catalog-editor.js';
 
 setupLogin();
 let stopMembers = () => {}, candidate = null, catalogBeforeImport = null, epoch = 0, busy = false;
@@ -24,6 +25,7 @@ observeAccess(state => {
   document.getElementById('catalog-file').value = '';
   members.replaceChildren(); message.textContent = '';
   showSession(state); panel.hidden = !state.admin;
+  setEditorSession(!!state.admin);
   document.getElementById('auth-panel').hidden = !!state.admin;
   if (state.user && !state.admin) document.getElementById('auth-message').textContent = 'Chỉ tài khoản Admin được mở trang quản lý.';
   if (!state.admin) return;

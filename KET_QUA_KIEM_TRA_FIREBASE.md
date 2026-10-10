@@ -1,3 +1,5 @@
+> Nâng cấp quản lý danh mục: xem [QUAN_LY_DANH_MUC_VA_TRIEN_KHAI.md](QUAN_LY_DANH_MUC_VA_TRIEN_KHAI.md). Nội dung «chỉ tạo một lần / 201 mục» bên dưới mô tả giai đoạn thử nghiệm trước; công cụ nhập gốc vẫn chỉ CREATE, nhưng Rules đề xuất mới cho phép Admin lưu phiên bản mới kèm bản sao bắt buộc. Chưa áp dụng lên Firebase thật.
+
 # Kết quả kiểm tra nhánh Firebase thử nghiệm
 
 Ngày kiểm tra: 09/10/2026. Nhánh: `firebase-auth-trial`.

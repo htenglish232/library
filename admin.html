@@ -7,6 +7,28 @@
 <h2>Cấp quyền giáo viên</h2><p>Tạo tài khoản trong Firebase Console trước, sau đó sao chép chính xác UID và email của tài khoản.</p>
 <form id="member-form"><label>UID giáo viên<input name="uid" id="teacher-uid" pattern="[A-Za-z0-9_-]{1,128}" required maxlength="128" autocomplete="off"></label><label>Email giáo viên<input name="email" id="teacher-email" type="email" required maxlength="254"></label><label>Tên giáo viên<input name="name" id="teacher-name" required maxlength="120"></label><button id="grant-access">Cấp quyền</button></form>
 <h2>Giáo viên đã được quản lý</h2><div id="members"></div>
+<section id="catalog-manager" aria-labelledby="catalog-manager-title">
+<h2 id="catalog-manager-title">Quản lý tài liệu và danh mục</h2>
+<p>Mọi thao tác thêm, sửa, xóa, ẩn/hiện chỉ sửa <strong>bản nháp</strong> cho đến khi nhấn Lưu. Xóa khỏi danh mục không xóa file HTML hoặc audio. Ẩn là bỏ khỏi giao diện thư viện; link bài tập trực tiếp vẫn mở được.</p>
+<p>Đường dẫn mới phải trỏ tới file HTML đã có trên website hoặc một địa chỉ HTTPS. Trang này không tải file HTML/audio lên GitHub.</p>
+<p id="editor-summary" role="status"></p>
+<div class="editor-toolbar"><button id="reload-catalog" type="button">Tải lại từ Firebase</button><button id="save-catalog" type="button" disabled>Lưu danh mục</button><button id="backup-catalog" type="button" disabled>Tải sao lưu JSON</button></div>
+<fieldset id="catalog-editor-fields" disabled><legend>Bản nháp danh mục</legend>
+<label>Chọn khối lớp<select id="grade-select"></select></label>
+<label>Tên khối lớp<input id="grade-name" maxlength="200" placeholder="Ví dụ: Grade 9"></label>
+<div><button id="add-grade" type="button">Thêm khối</button><button id="rename-grade" type="button">Đổi tên khối</button><button id="toggle-grade" type="button">Ẩn / hiện khối</button><button id="delete-grade" type="button">Xóa khối</button><button id="grade-up" type="button">Khối lên</button><button id="grade-down" type="button">Khối xuống</button><button id="sort-grades" type="button">Sắp xếp khối theo tên / số</button></div>
+<label>Chọn thư mục<select id="unit-select"></select></label>
+<label>Tên thư mục<input id="unit-name" maxlength="200" placeholder="Ví dụ: Ôn tập học kỳ"></label>
+<label>Loại thư mục<select id="unit-type"><option value="">Bài tập</option><option value="exam-folder">Đề thi</option></select></label>
+<div><button id="add-unit" type="button">Thêm thư mục</button><button id="rename-unit" type="button">Sửa thư mục</button><button id="toggle-unit" type="button">Ẩn / hiện thư mục</button><button id="delete-unit" type="button">Xóa thư mục</button><button id="unit-up" type="button">Thư mục lên</button><button id="unit-down" type="button">Thư mục xuống</button></div>
+<h3>Bài tập trong thư mục</h3><div id="lesson-list"></div>
+<form id="lesson-form"><label>Tên bài tập<input id="lesson-title" required maxlength="200"></label><label>Đường dẫn HTML<input id="lesson-href" required maxlength="2000" placeholder="grade-9/on-tap.html hoặc https://…/bai-tap.html"></label><label class="checkbox-label"><input id="lesson-hidden" type="checkbox">Ẩn bài tập</label><div id="lesson-destination" hidden><label>Khối lớp đích<select id="lesson-target-grade"></select></label><label>Thư mục đích<select id="lesson-target-unit"></select></label><p>Có thể chuyển bài sang khối/thư mục khác mà không đổi đường dẫn HTML.</p></div><button id="lesson-submit">Thêm bài tập vào bản nháp</button><button id="cancel-lesson-edit" type="button">Hủy sửa bài</button></form>
+</fieldset>
+<h3>Khôi phục danh mục</h3><label>Chọn file sao lưu JSON<input id="restore-file" type="file" accept="application/json,.json" disabled></label>
+<p>File được kiểm tra trước khi đưa vào bản nháp. Khôi phục rồi Lưu sẽ tạo phiên bản mới và giữ nguyên lịch sử.</p>
+<button id="refresh-history" type="button" disabled>Tải danh sách lịch sử</button><label>Phiên bản đã sao lưu<select id="history-version"></select></label><button id="restore-history" type="button" disabled>Khôi phục lịch sử vào bản nháp</button>
+<p id="editor-message" role="status" aria-live="polite"></p>
+</section>
 <h2>Tạo mới danh mục đã kiểm tra</h2><p>Chọn file <code>library-catalog.json</code> xuất từ repository. Công cụ chỉ chấp nhận bản gốc đủ 201 đường dẫn và đúng thứ tự. Không tự động ghi dữ liệu khi chọn file. Nếu <code>libraryCatalog/current</code> đã tồn tại, thao tác dừng; không được ghi đè.</p>
 <input id="catalog-file" type="file" accept="application/json,.json"><p id="catalog-preview" role="status"></p><button id="import-catalog" disabled>Nhập danh mục vào Firestore</button>
 <p id="admin-message" role="status" aria-live="polite"></p>
