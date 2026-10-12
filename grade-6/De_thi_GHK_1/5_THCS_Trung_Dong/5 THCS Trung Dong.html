@@ -392,10 +392,6 @@
 
         <!-- Passage Text with Audio button -->
         <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-xs sm:text-sm text-slate-700 leading-relaxed relative mb-4">
-          <button type="button" onclick="speakText(readingPassage1Text)" title="Nghe đọc đoạn văn" 
-            class="absolute top-3 right-3 bg-white border border-slate-200 text-blue-600 hover:text-blue-800 w-8 h-8 rounded-xl flex items-center justify-center shadow-sm">
-            <i class="fa-solid fa-volume-high"></i>
-          </button>
           <p class="pr-8">
             My name’s Quan. One of my best friends is Phong. He is my classmate and we always go to school <strong>(1) [.....]</strong>. Phong is twelve. He’s tall and rather thin. He has short <strong>(2) [.....]</strong> black hair and brown eyes. Phong is funny and <strong>(3) [.....]</strong>. I like being with him because he always makes me <strong>(4) [.....]</strong>. He is also very sporty and plays football and basketball very <strong>(5) [.....]</strong>. We often play basketball and football at the weekend. He loves music and he plays the guitar. I don’t play any instruments but I love music too. Phong doesn’t <strong>(6) [.....]</strong> computer games. He likes playing with his friends in the street.
           </p>
@@ -1154,7 +1150,7 @@
     }
 
     // Render Standard Multiple Choice Question Block
-    function renderMCQBlock(containerId, dataList) {
+    function renderMCQBlock(containerId, dataList, allowOptionSpeech = true) {
       const container = document.getElementById(containerId);
       container.innerHTML = dataList.map(item => `
         <div id="card_${item.id}" class="p-3.5 sm:p-4 rounded-2xl border border-slate-200 bg-white hover:border-slate-300 transition">
@@ -1170,9 +1166,9 @@
                 <input type="radio" name="${item.id}" value="${opt.val}" onchange="handleSelectAnswer('${item.id}', '${opt.val}')" class="w-4 h-4 text-blue-600 flex-shrink-0">
                 <span class="font-bold text-slate-700">${opt.val}.</span>
                 <span class="text-slate-700">${opt.text}</span>
-                <button type="button" onclick="event.preventDefault(); event.stopPropagation(); speakText('${opt.text.replace(/'/g, "\\'")}')" class="ml-auto text-slate-400 hover:text-blue-600 p-0.5">
+                ${allowOptionSpeech ? `<button type="button" onclick="event.preventDefault(); event.stopPropagation(); speakText('${opt.text.replace(/'/g, "\\'")}')" class="ml-auto text-slate-400 hover:text-blue-600 p-0.5">
                   <i class="fa-solid fa-volume-high text-[11px]"></i>
-                </button>
+                </button>` : ''}
               </label>
             `).join('')}
           </div>
@@ -1201,9 +1197,6 @@
           <div id="card_${item.id}" class="p-4 rounded-2xl border border-slate-200 bg-white">
             <div class="flex items-start justify-between gap-2 mb-2">
               <div class="text-xs sm:text-sm font-bold text-slate-800">${item.prompt}</div>
-              <button type="button" onclick="speakText('${(item.target || item.prompt).replace(/'/g, "\\'")}')" class="text-blue-600 hover:text-blue-800 p-1 flex-shrink-0">
-                <i class="fa-solid fa-volume-high"></i>
-              </button>
             </div>
 
             <!-- Answer Box where selected chips appear -->
@@ -1555,7 +1548,7 @@
     window.addEventListener('DOMContentLoaded', () => {
       renderListeningPart1();
       renderMCQBlock('listListeningPart2', listeningPart2Data);
-      renderMCQBlock('listLanguagePart1', languagePart1Data);
+      renderMCQBlock('listLanguagePart1', languagePart1Data, false);
       renderMCQBlock('listLanguagePart2', languagePart2Data);
       renderMCQBlock('listLanguagePart3', languagePart3Data);
       renderMCQBlock('listReadingPart1', readingPart1Data);

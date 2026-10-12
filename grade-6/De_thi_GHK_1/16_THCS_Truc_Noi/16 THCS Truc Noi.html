@@ -384,9 +384,6 @@
         <div class="bg-purple-50/70 border border-purple-200/80 rounded-2xl p-4 sm:p-5 mb-4 text-xs sm:text-sm text-slate-800 leading-relaxed">
           <div class="flex items-center justify-between pb-2 mb-2 border-b border-purple-200/60 font-bold text-purple-900">
             <span><i class="fa-solid fa-book-open text-purple-600 mr-1.5"></i> Đoạn văn: An's Bedroom</span>
-            <button onclick="speakText(anBedroomText)" class="text-xs text-purple-700 hover:text-purple-900 bg-white px-2.5 py-1 rounded-lg border border-purple-200 shadow-2xs flex items-center gap-1">
-              <i class="fa-solid fa-volume-high"></i> Đọc bài văn
-            </button>
           </div>
           <p>
             An's bedroom is big but messy. There are clothes <strong>(1) ______</strong> the floor. There is a big <strong>(2) ______</strong> near the window, and there are dirty bowls and chopsticks on it. He usually puts his schoolbag under the desk. His bed is next to the desk, <strong>(3) ______</strong> it is also untidy. There is <strong>(4) ______</strong> cap, some CDs and some books on the bed. An's mum is not <strong>(5) ______</strong> with this, and now An is tidying up his room.
@@ -1252,9 +1249,9 @@
                   </span>
                   <i class="fa-regular fa-circle text-slate-300 text-xs group-hover:text-blue-500 opt-indicator"></i>
                 </button>
-                <button onclick="speakText('${opt.text}', this)" title="Nghe đáp án" class="p-2 text-slate-300 hover:text-blue-600 transition">
+                ${!item.question.includes('pronounced differently') ? `<button onclick="speakText('${opt.text}', this)" title="Nghe đáp án" class="p-2 text-slate-300 hover:text-blue-600 transition">
                   <i class="fa-solid fa-volume-low text-xs"></i>
-                </button>
+                </button>` : ''}
               </div>
             `).join('')}
           </div>

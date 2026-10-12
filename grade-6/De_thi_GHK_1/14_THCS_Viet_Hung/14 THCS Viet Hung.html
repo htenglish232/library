@@ -285,9 +285,6 @@
         <div class="bg-teal-50/60 p-4 rounded-2xl border border-teal-200 text-xs sm:text-sm leading-relaxed text-slate-800 mb-4">
           <div class="flex justify-between items-center mb-1">
             <span class="font-extrabold text-teal-900 uppercase text-xs">Passage 1: Hoa's Apartment</span>
-            <button onclick="speakText(readingPassage1Text)" class="text-teal-700 hover:text-teal-900 text-xs font-bold inline-flex items-center gap-1">
-              <i class="fa-solid fa-volume-high"></i> Nghe đoạn văn
-            </button>
           </div>
           <p>
             Hoa lives in a big apartment. There are <b>(1) _______</b> bedrooms in her house. One for her parents, and the other two are for Hoa and her brother. In her room, she has many photos of <b>(2) _______</b> family on the walls. There's a nice <b>(3) _______</b> so that she can read before bed and a chest of drawers <b>(4) _______</b> her bed. She doesn't have a TV in her room because her Dad wants the family to spend time together in the living room. Her favourite part of the house is the <b>(5) ________</b> because she likes cooking delicious dinner with her Mom.
@@ -941,7 +938,7 @@
 
       // 3. Render Lang 1 (Pronunciation)
       const lang1Container = document.getElementById('langPart1Container');
-      lang1Container.innerHTML = langPart1.map(item => createMCQItem(item)).join('');
+      lang1Container.innerHTML = langPart1.map(item => createMCQItem(item, false)).join('');
 
       // 4. Render Lang 2 (Multiple choice)
       const lang2Container = document.getElementById('langPart2Container');
@@ -972,7 +969,7 @@
     }
 
     // Helper: Create Multiple Choice HTML Card
-    function createMCQItem(item) {
+    function createMCQItem(item, allowOptionSpeech = true) {
       return `
         <div id="card_${item.id}" class="p-4 rounded-2xl border border-slate-200 bg-slate-50/50 transition">
           <div class="flex items-start justify-between gap-3 mb-2.5">
@@ -990,9 +987,9 @@
               <label class="option-label flex items-center gap-3 p-2.5 rounded-xl border border-slate-200 bg-white hover:bg-blue-50/60 cursor-pointer transition">
                 <input type="radio" name="${item.id}" value="${opt.key}" onchange="selectOption('${item.id}', '${opt.key}')" class="w-4 h-4 text-blue-600 focus:ring-blue-500">
                 <span class="text-xs sm:text-sm font-semibold text-slate-700 flex-1"><b class="text-blue-800 mr-1">${opt.key}.</b> ${opt.text}</span>
-                <button type="button" onclick="event.stopPropagation(); speakText('${escapeSpeech(opt.text)}')" class="audio-btn p-1.5 text-slate-400 hover:text-blue-600 text-xs" title="Nghe đáp án">
+                ${allowOptionSpeech ? `<button type="button" onclick="event.stopPropagation(); speakText('${escapeSpeech(opt.text)}')" class="audio-btn p-1.5 text-slate-400 hover:text-blue-600 text-xs" title="Nghe đáp án">
                   <i class="fa-solid fa-volume-high"></i>
-                </button>
+                </button>` : ''}
               </label>
             `).join('')}
           </div>
@@ -1038,9 +1035,6 @@
               <span class="font-extrabold text-xs text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-full">Câu ${item.num}</span>
               ${type === 'prefix' ? `<p class="text-xs text-slate-600 mt-1">Câu gốc: <i>"${item.original}"</i></p>` : ''}
             </div>
-            <button type="button" onclick="speakText('${escapeSpeech(item.correctSentence)}')" class="audio-btn p-2 rounded-xl bg-amber-100 hover:bg-amber-200 text-amber-800 text-xs shadow-sm flex-shrink-0" title="Nghe câu hoàn chỉnh">
-              <i class="fa-solid fa-volume-high"></i>
-            </button>
           </div>
 
           <!-- Answer Slot Area -->

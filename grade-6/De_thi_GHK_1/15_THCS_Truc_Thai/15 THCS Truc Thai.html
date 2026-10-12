@@ -1072,7 +1072,7 @@ Yeah. I’m so lucky, Auntie Nhi.`;
   ];
 
   // RENDER HELPERS
-  function renderStandardMCQ(item, containerId) {
+  function renderStandardMCQ(item, containerId, allowOptionSpeech = true) {
     const container = document.getElementById(containerId);
     const div = document.createElement('div');
     div.className = "p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-slate-50/50 space-y-2.5 transition";
@@ -1106,9 +1106,9 @@ Yeah. I’m so lucky, Auntie Nhi.`;
           </span>
           <span class="font-medium text-slate-800">${opt.text}</span>
         </div>
-        <button onclick="event.stopPropagation(); speakText('${opt.text.replace(/'/g, "\\'")}')" class="speaker-btn text-slate-400 hover:text-blue-600 p-1" title="Nghe phát âm từ này">
+        ${allowOptionSpeech ? `<button onclick="event.stopPropagation(); speakText('${opt.text.replace(/'/g, "\\'")}')" class="speaker-btn text-slate-400 hover:text-blue-600 p-1" title="Nghe phát âm từ này">
           <i class="fa-solid fa-volume-high text-xs"></i>
-        </button>
+        </button>` : ''}
       `;
       optsDiv.appendChild(optBtn);
     });
@@ -1196,9 +1196,6 @@ Yeah. I’m so lucky, Auntie Nhi.`;
       header.innerHTML = `
         <div class="flex items-center justify-between gap-2">
           <p class="text-sm font-semibold text-slate-800">${item.prompt}</p>
-          <button onclick="speakText('${item.correctSentence.replace(/'/g, "\\'")}')" class="speaker-btn text-purple-600 p-1" title="Nghe câu">
-            <i class="fa-solid fa-volume-high text-xs"></i>
-          </button>
         </div>
       `;
     }
@@ -1675,7 +1672,7 @@ Yeah. I’m so lucky, Auntie Nhi.`;
     task2Data.forEach(item => renderTrueFalse(item, 'task2QuestionsContainer'));
 
     // 3. Render Part B - Language Focus MCQ
-    languageMcqData.forEach(item => renderStandardMCQ(item, 'languageMcqContainer'));
+    languageMcqData.forEach(item => renderStandardMCQ(item, 'languageMcqContainer', !item.qText.includes('Pronunciation:')));
 
     // 4. Render Part B - Verb Forms
     verbFormData.forEach(item => renderStandardMCQ(item, 'verbFormContainer'));
