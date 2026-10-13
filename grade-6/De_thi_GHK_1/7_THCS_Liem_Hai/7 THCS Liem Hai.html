@@ -65,6 +65,7 @@
       50% { opacity: 0.5; }
     }
   </style>
+<link rel="stylesheet" href="../../../assets/submission-identity.css">
 </head>
 <body class="text-slate-800 pb-20">
 
@@ -1954,6 +1955,8 @@
     let isGraded = false;
 
     function handleSubmit() {
+      if (!window.HTSubmission.begin()) return;
+
       if (isGraded) {
         document.getElementById('resultModal').classList.remove('hidden');
         return;
@@ -2093,7 +2096,9 @@
       btnSub.innerHTML = `<i class="fa-solid fa-chart-simple text-yellow-300"></i> XEM LẠI BẢNG ĐIỂM (${finalScore}/10)`;
       btnSub.classList.replace('from-blue-600', 'from-emerald-600');
       btnSub.classList.replace('to-blue-700', 'to-emerald-700');
-    }
+
+      window.HTSubmission.complete();
+}
 
     function closeModal() {
       document.getElementById('resultModal').classList.add('hidden');
@@ -2105,5 +2110,7 @@
       initWordChips();
     });
   </script>
+<script src="../../../assets/submission-identity.js"></script>
+<script>HTSubmission.configure({"grade":6,"name":"studentName","class":"studentClass","score":"#resScore","result":"resultModal","modals":[]});</script>
 </body>
 </html>

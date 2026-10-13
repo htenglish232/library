@@ -95,6 +95,7 @@
 @media(max-width:480px){.ht-audio-player{padding:.75rem}.ht-audio-player .ht-audio-actions button{flex:1 1 auto}.ht-audio-player .ht-audio-timeline{flex-wrap:wrap}.ht-audio-player .ht-audio-progress{flex-basis:100%}}
 @media print{.ht-audio-player{display:none}}
 </style>
+<link rel="stylesheet" href="../../../assets/submission-identity.css">
 </head>
 <body class="bg-slate-100 text-slate-800 min-h-screen flex flex-col antialiased">
 
@@ -1478,6 +1479,8 @@
     }
 
     function handleSubmitExam(auto = false) {
+      if (!window.HTSubmission.begin()) return;
+
       if (isSubmitted) return;
 
       const answeredCount = parseInt(document.getElementById('progressCount').textContent) || 0;
@@ -1586,7 +1589,9 @@
 
       // Populate Result Card
       showResultCard(scaledScore, correctCount, totalQuestions);
-    }
+
+      window.HTSubmission.complete();
+}
 
     function normalizeSentence(str) {
       return (str || '')
@@ -1851,5 +1856,7 @@
   });
 })();
 </script>
+<script src="../../../assets/submission-identity.js"></script>
+<script>HTSubmission.configure({"grade":6,"name":"studentName","class":"studentClass","score":"#scoreDisplay","result":"resultModal","modals":[]});</script>
 </body>
 </html>

@@ -180,6 +180,7 @@ const Grade7Exam = (() => {
     }
     function closeModal() { modal.close(); submit.focus(); }
     function openModal() {
+      if (!window.HTSubmission.check()) return;
       if (isSubmitted) return;
       const unanswered = data.questions.filter(q => !completed(q)).length;
       document.getElementById('confirmMessage').textContent = unanswered
@@ -190,6 +191,7 @@ const Grade7Exam = (() => {
     }
     function grade() {
       if (isSubmitted || !modal.open) return;
+      if (!window.HTSubmission.begin()) return;
       const responses = data.questions.map(q => readResponse(q));
       isSubmitted = true;
       modal.close();
@@ -226,6 +228,7 @@ const Grade7Exam = (() => {
         // Old nested transcript bodies were hidden with utility classes.
         transcript.querySelectorAll('.hidden').forEach(node => node.classList.remove('hidden'));
       });
+      window.HTSubmission.complete(points.toFixed(2));
       results.scrollIntoView({behavior: 'smooth', block: 'start'});
     }
     submit.addEventListener('click', openModal);

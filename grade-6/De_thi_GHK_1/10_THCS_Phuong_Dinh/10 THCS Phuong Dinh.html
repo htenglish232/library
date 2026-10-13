@@ -66,6 +66,7 @@
 @media(max-width:480px){.ht-audio-player{padding:.75rem}.ht-audio-player .ht-audio-actions button{flex:1 1 auto}.ht-audio-player .ht-audio-timeline{flex-wrap:wrap}.ht-audio-player .ht-audio-progress{flex-basis:100%}}
 @media print{.ht-audio-player{display:none}}
 </style>
+<link rel="stylesheet" href="../../../assets/submission-identity.css">
 </head>
 <body class="min-h-screen py-4 md:py-8 px-2 sm:px-4">
   <div class="max-w-4xl mx-auto space-y-6">
@@ -1923,6 +1924,8 @@
     };
 
     function submitExam() {
+      if (!window.HTSubmission.begin()) return;
+
       const name = document.getElementById('studentName').value.trim();
       const sClass = document.getElementById('studentClass').value.trim();
 
@@ -2183,7 +2186,9 @@
       const banner = document.getElementById('resultsBanner');
       banner.classList.remove('hidden');
       banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+
+      window.HTSubmission.complete();
+}
 
     // Timer countdown
     function startTimer() {
@@ -2303,5 +2308,7 @@
   });
 })();
 </script>
+<script src="../../../assets/submission-identity.js"></script>
+<script>HTSubmission.configure({"grade":6,"name":"studentName","class":"studentClass","score":"#scoreBadge","result":"resultsBanner","modals":[]});</script>
 </body>
 </html>

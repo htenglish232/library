@@ -55,6 +55,7 @@
 @media(max-width:480px){.ht-audio-player{padding:.75rem}.ht-audio-player .ht-audio-actions button{flex:1 1 auto}.ht-audio-player .ht-audio-timeline{flex-wrap:wrap}.ht-audio-player .ht-audio-progress{flex-basis:100%}}
 @media print{.ht-audio-player{display:none}}
 </style>
+<link rel="stylesheet" href="../../../assets/submission-identity.css">
 </head>
 <body class="bg-slate-100 text-slate-800 min-h-screen pb-24">
 
@@ -1500,6 +1501,8 @@
     let isSubmitted = false;
 
     function submitQuiz() {
+      if (!window.HTSubmission.begin()) return;
+
       if (isSubmitted) return;
 
       const name = document.getElementById('studentName').value.trim() || 'Học sinh';
@@ -1636,7 +1639,9 @@
       window.scrollTo({ top: modal.offsetTop - 80, behavior: 'smooth' });
 
       speakAudio(`Well done ${name}! Your final score is ${finalRounded} points.`);
-    }
+
+      window.HTSubmission.complete();
+}
 
     function resetExam() {
       window.location.reload();
@@ -1742,5 +1747,7 @@
   });
 })();
 </script>
+<script src="../../../assets/submission-identity.js"></script>
+<script>HTSubmission.configure({"grade":6,"name":"studentName","class":"studentClass","score":"#resFinalScore","result":"resultModal","modals":[]});</script>
 </body>
 </html>

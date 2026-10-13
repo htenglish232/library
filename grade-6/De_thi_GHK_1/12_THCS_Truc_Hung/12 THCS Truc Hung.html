@@ -90,6 +90,7 @@
 @media(max-width:480px){.ht-audio-player{padding:.75rem}.ht-audio-player .ht-audio-actions button{flex:1 1 auto}.ht-audio-player .ht-audio-timeline{flex-wrap:wrap}.ht-audio-player .ht-audio-progress{flex-basis:100%}}
 @media print{.ht-audio-player{display:none}}
 </style>
+<link rel="stylesheet" href="../../../assets/submission-identity.css">
 </head>
 
 <body class="min-h-screen py-4 md:py-8 px-2 sm:px-4 selection:bg-blue-100 selection:text-blue-900 font-sans">
@@ -2242,6 +2243,8 @@
     let isExamSubmitted = false;
 
     function confirmAndSubmit() {
+      if (!window.HTSubmission.check()) return;
+
       if (isExamSubmitted) {
         showModal('Bạn đã nộp bài rồi! Hãy cuộn xuống để xem chi tiết bài làm và giải thích ngữ pháp.');
         return;
@@ -2273,6 +2276,8 @@
     }
 
     function submitExam() {
+      if (!window.HTSubmission.begin()) return;
+
       isExamSubmitted = true;
       window.speechSynthesis.cancel();
 
@@ -2421,7 +2426,9 @@
 
       // Scroll smoothly to result banner
       banner.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+
+      window.HTSubmission.complete();
+}
 
     function toggleAllExplanations() {
       const boxes = document.querySelectorAll('.explanation-box');
@@ -2537,5 +2544,7 @@
   });
 })();
 </script>
+<script src="../../../assets/submission-identity.js"></script>
+<script>HTSubmission.configure({"grade":6,"name":"studentNameInput","class":"studentClassInput","score":"#finalScoreText","result":"resultBanner","modals":[]});</script>
 </body>
 </html>

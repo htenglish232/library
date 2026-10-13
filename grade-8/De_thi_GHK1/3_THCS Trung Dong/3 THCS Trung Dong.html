@@ -114,6 +114,7 @@
             pointer-events: none !important;
         }
     </style>
+<link rel="stylesheet" href="../../../assets/submission-identity.css">
 </head>
 <body class="min-h-screen pb-32">
 
@@ -1678,6 +1679,8 @@
         }
 
         function openSubmitModal() {
+      if (!window.HTSubmission.check()) return;
+
             if (isSubmitted) return;
 
             const unansweredCount = checkUnansweredQuestions();
@@ -1698,6 +1701,8 @@
         }
 
         function submitAndGrade() {
+      if (!window.HTSubmission.begin()) return;
+
             closeSubmitModal();
             if (isSubmitted) return;
             isSubmitted = true;
@@ -1892,11 +1897,15 @@
             document.getElementById('scoreDisplay').textContent = `${score10}`;
 
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
+
+      window.HTSubmission.complete();
+}
 
         window.addEventListener('DOMContentLoaded', () => {
             initWordRearrange();
         });
     </script>
+<script src="../../../assets/submission-identity.js"></script>
+<script>HTSubmission.configure({"grade":8,"name":"studentName","class":"studentClass","score":"#scoreDisplay","result":"resultSummary","modals":["confirmModal"]});</script>
 </body>
 </html>

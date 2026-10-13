@@ -56,6 +56,7 @@ button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%
 .ht-table-scroll{overflow-x:auto;max-width:100%}
 @media(max-width:640px){header>div{min-width:0}header .flex{flex-wrap:wrap}main{padding-left:.75rem!important;padding-right:.75rem!important}main section{padding-left:1rem!important;padding-right:1rem!important}h1,h2,h3,h4,p,label,td,th{overflow-wrap:anywhere}main .flex>div{min-width:0}button{white-space:normal}header{position:relative!important}}
 </style>
+<link rel="stylesheet" href="../../../assets/submission-identity.css">
 </head>
 <body class="min-h-screen flex flex-col justify-between antialiased">
 
@@ -1849,6 +1850,8 @@ button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%
     }
 
     function promptSubmitTest() {
+      if (!window.HTSubmission.check()) return;
+
       // Check incomplete
       const incompleteCount = checkIncompleteQuestions();
       const warningText = document.getElementById('modalWarningText');
@@ -1904,6 +1907,8 @@ button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%
     }
 
     function confirmSubmitTest() {
+      if (!window.HTSubmission.begin()) return;
+
       closeSubmitModal();
       if (isSubmitted) return;
       isSubmitted = true;
@@ -2137,7 +2142,9 @@ button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%
       const summaryCard = document.getElementById('resultSummaryCard');
       summaryCard.classList.remove('hidden');
       summaryCard.scrollIntoView({ behavior: 'smooth' });
-    }
+
+      window.HTSubmission.complete();
+}
 
     // Initialize rearrangement pool chips on load
     window.addEventListener('DOMContentLoaded', () => {
@@ -2202,5 +2209,7 @@ document.addEventListener('click',event=>{if(!submitted())return;const el=event.
 refresh();
 })();
 </script>
+<script src="../../../assets/submission-identity.js"></script>
+<script>HTSubmission.configure({"grade":8,"name":"studentName","class":"studentClass","score":"#finalScore","result":"resultSummaryCard","modals":["submitModal"]});</script>
 </body>
 </html>

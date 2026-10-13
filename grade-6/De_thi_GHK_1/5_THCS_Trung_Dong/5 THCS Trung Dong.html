@@ -80,6 +80,7 @@
 @media(max-width:480px){.ht-audio-player{padding:.75rem}.ht-audio-player .ht-audio-actions button{flex:1 1 auto}.ht-audio-player .ht-audio-timeline{flex-wrap:wrap}.ht-audio-player .ht-audio-progress{flex-basis:100%}}
 @media print{.ht-audio-player{display:none}}
 </style>
+<link rel="stylesheet" href="../../../assets/submission-identity.css">
 </head>
 
 <body class="bg-slate-100 text-slate-800 min-h-screen pb-28">
@@ -1311,6 +1312,8 @@
 
 
     function submitExam() {
+      if (!window.HTSubmission.begin()) return;
+
       if (isSubmitted) {
         document.getElementById('resultModal').scrollIntoView({ behavior: 'smooth' });
         return;
@@ -1539,7 +1542,9 @@
       const resultModal = document.getElementById('resultModal');
       resultModal.classList.remove('hidden');
       resultModal.scrollIntoView({ behavior: 'smooth' });
-    }
+
+      window.HTSubmission.complete();
+}
 
     function scrollToTopAndReview() {
       window.scrollTo({ top: 300, behavior: 'smooth' });
@@ -1661,5 +1666,7 @@
   });
 })();
 </script>
+<script src="../../../assets/submission-identity.js"></script>
+<script>HTSubmission.configure({"grade":6,"name":"studentName","class":"studentClass","score":"#resScore","result":"resultModal","modals":[]});</script>
 </body>
 </html>

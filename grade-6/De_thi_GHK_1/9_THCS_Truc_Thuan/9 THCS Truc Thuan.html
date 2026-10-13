@@ -69,6 +69,7 @@
 @media(max-width:480px){.ht-audio-player{padding:.75rem}.ht-audio-player .ht-audio-actions button{flex:1 1 auto}.ht-audio-player .ht-audio-timeline{flex-wrap:wrap}.ht-audio-player .ht-audio-progress{flex-basis:100%}}
 @media print{.ht-audio-player{display:none}}
 </style>
+<link rel="stylesheet" href="../../../assets/submission-identity.css">
 </head>
 <body class="bg-slate-100 text-slate-800 antialiased min-h-screen pb-16">
 
@@ -1910,6 +1911,8 @@
     let isExamSubmitted = false;
 
     function submitExam() {
+      if (!window.HTSubmission.begin()) return;
+
       if (isExamSubmitted) {
         showMsgModal("Đã nộp bài", "Bạn đã nộp bài thi rồi. Hãy kiểm tra phần chấm điểm và giải thích chi tiết bên dưới nhé!");
         return;
@@ -2067,7 +2070,9 @@
 
       // Scroll smoothly to score card
       scoreCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+
+      window.HTSubmission.complete();
+}
 
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -2169,5 +2174,7 @@
   });
 })();
 </script>
+<script src="../../../assets/submission-identity.js"></script>
+<script>HTSubmission.configure({"grade":6,"name":"studentName","class":"studentClass","score":"#finalScore","result":"scoreCard","modals":[]});</script>
 </body>
 </html>

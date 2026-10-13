@@ -81,6 +81,7 @@
 <style id="modern-listening-player-style">
 .modern-listening-player{--mlp-accent:var(--color-primary,#0284c7);background:#fff;border:1px solid #bae6fd;border-radius:1rem;padding:1rem;box-shadow:0 4px 14px rgba(15,23,42,.08);display:grid;gap:.75rem;margin:.5rem 0}.mlp-header,.mlp-time,.mlp-volume{display:flex;align-items:center;justify-content:space-between;gap:.75rem}.mlp-header{color:#075985;font-size:.8rem}.mlp-status{color:#64748b;font-weight:600}.mlp-time{font-variant-numeric:tabular-nums;color:#475569;font-size:.8rem;font-weight:700}.mlp-progress,.mlp-volume-range{width:100%;accent-color:#0284c7;min-height:1.5rem;cursor:pointer}.mlp-controls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.5rem}.modern-listening-player button,.mlp-speed{min-height:44px;border:0;border-radius:.75rem;padding:.55rem .65rem;background:#e0f2fe;color:#075985;font-weight:700;cursor:pointer}.modern-listening-player button:hover{background:#bae6fd}.modern-listening-player .mlp-primary{background:#0284c7;color:#fff}.mlp-volume{flex-wrap:wrap}.mlp-volume-range{flex:1;min-width:8rem}.mlp-volume label{display:flex;align-items:center;gap:.4rem;color:#475569;font-size:.8rem;font-weight:700}@media(max-width:480px){.mlp-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.modern-listening-player{padding:.8rem}}
 </style>
+<link rel="stylesheet" href="../../../assets/submission-identity.css">
 </head>
 <body class="min-h-screen flex flex-col bg-slate-50 text-slate-800">
 
@@ -158,6 +159,8 @@
   </div>
 
   <main class="flex-grow max-w-5xl mx-auto w-full px-4 sm:px-6 py-6 space-y-8" id="examContainer">
+<div class="ht-student-fields"><label for="studentName">Họ và tên học sinh<input id="studentName" type="text" autocomplete="name" placeholder="Nhập họ và tên..."></label><label for="studentClass">Lớp<input id="studentClass" type="text" placeholder="Ví dụ: 8A"></label></div>
+
 
     <!-- ================= PART A: LISTENING ================= -->
     <section class="bg-white rounded-2xl border border-sky-100 shadow-sm overflow-hidden" id="section-part-a">
@@ -1699,6 +1702,8 @@
 
     // Pre-submit handling and Modal trigger
     function handlePreSubmit() {
+      if (!window.HTSubmission.check()) return;
+
       if (isSubmitted) return;
 
       const answered = getAnsweredCount();
@@ -1723,6 +1728,8 @@
     }
 
     function confirmSubmitAndGrade() {
+      if (!window.HTSubmission.begin()) return;
+
       closeConfirmModal();
       if (isSubmitted) return;
 
@@ -2104,7 +2111,9 @@
 
       // Smooth scroll up to review banner and explanations
       scrollToTop();
-    }
+
+      window.HTSubmission.complete();
+}
 
     window.addEventListener('DOMContentLoaded', () => {
       renderAllQuestions();
@@ -2154,5 +2163,7 @@
   document.querySelectorAll('[onclick*="playAudioFallback"], [onclick*="toggleAudio("], [onclick*="playAudioConversation"]').forEach(button => { if (!button.closest('[data-listening-player]')) button.style.display = 'none'; });
 })();
 </script>
+<script src="../../../assets/submission-identity.js"></script>
+<script>HTSubmission.configure({"grade":8,"name":"studentName","class":"studentClass","score":"#finalScorePill .text-2xl","result":"lockedSubmissionBanner","modals":["modalConfirmSubmit","modalConfirmTitle","modalConfirmMessage"]});</script>
 </body>
 </html>

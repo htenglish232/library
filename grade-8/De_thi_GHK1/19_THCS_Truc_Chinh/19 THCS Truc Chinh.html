@@ -57,6 +57,7 @@ button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%
 .ht-table-scroll{overflow-x:auto;max-width:100%}
 @media(max-width:640px){header>div{min-width:0}header .flex{flex-wrap:wrap}main{padding-left:.75rem!important;padding-right:.75rem!important}main section{padding-left:1rem!important;padding-right:1rem!important}h1,h2,h3,h4,p,label,td,th{overflow-wrap:anywhere}main .flex>div{min-width:0}button{white-space:normal}header{position:relative!important}}
 </style>
+<link rel="stylesheet" href="../../../assets/submission-identity.css">
 </head>
 <body class="min-h-screen flex flex-col bg-slate-50 text-slate-800 antialiased">
 
@@ -1372,6 +1373,8 @@ button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%
     }
 
     function openSubmitModal() {
+      if (!window.HTSubmission.check()) return;
+
       if (isSubmitted) return;
       const answered = window.htExamCounts ? window.htExamCounts().answered : Object.keys(userAnswers).length;
       const total = getTotalQuestionsCount();
@@ -1395,6 +1398,8 @@ button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%
     }
 
     function finalizeSubmission() {
+      if (!window.HTSubmission.begin()) return;
+
       closeSubmitModal();
       isSubmitted = true;
 
@@ -1426,7 +1431,9 @@ button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%
 
       // Calculate score and show explanations
       gradeExam();
-    }
+
+      window.HTSubmission.complete();
+}
 
     function gradeExam() {
       let correctCount = 0;
@@ -1704,5 +1711,7 @@ document.addEventListener('click',event=>{if(!submitted())return;const el=event.
 refresh();
 })();
 </script>
+<script src="../../../assets/submission-identity.js"></script>
+<script>HTSubmission.configure({"grade":8,"name":"studentNameInput","class":null,"score":"#scoreDisplay","result":"resultCard","modals":["confirmModal"]});</script>
 </body>
 </html>

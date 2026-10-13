@@ -45,6 +45,7 @@
 <style id="modern-listening-player-style">
 .modern-listening-player{--mlp-accent:var(--color-primary,#0284c7);background:#fff;border:1px solid #bae6fd;border-radius:1rem;padding:1rem;box-shadow:0 4px 14px rgba(15,23,42,.08);display:grid;gap:.75rem;margin:.5rem 0}.mlp-header,.mlp-time,.mlp-volume{display:flex;align-items:center;justify-content:space-between;gap:.75rem}.mlp-header{color:#075985;font-size:.8rem}.mlp-status{color:#64748b;font-weight:600}.mlp-time{font-variant-numeric:tabular-nums;color:#475569;font-size:.8rem;font-weight:700}.mlp-progress,.mlp-volume-range{width:100%;accent-color:#0284c7;min-height:1.5rem;cursor:pointer}.mlp-controls{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:.5rem}.modern-listening-player button,.mlp-speed{min-height:44px;border:0;border-radius:.75rem;padding:.55rem .65rem;background:#e0f2fe;color:#075985;font-weight:700;cursor:pointer}.modern-listening-player button:hover{background:#bae6fd}.modern-listening-player .mlp-primary{background:#0284c7;color:#fff}.mlp-volume{flex-wrap:wrap}.mlp-volume-range{flex:1;min-width:8rem}.mlp-volume label{display:flex;align-items:center;gap:.4rem;color:#475569;font-size:.8rem;font-weight:700}@media(max-width:480px){.mlp-controls{grid-template-columns:repeat(2,minmax(0,1fr))}.modern-listening-player{padding:.8rem}}
 </style>
+<link rel="stylesheet" href="../../../assets/submission-identity.css">
 </head>
 <body class="min-h-screen flex flex-col bg-gradient-to-b from-sky-50 via-sky-100/40 to-blue-50/60 custom-scrollbar">
 
@@ -1634,6 +1635,8 @@
 
     /* Kiểm tra trạng thái làm bài trước khi hiện modal xác nhận */
     function checkBeforeSubmit() {
+      if (!window.HTSubmission.check()) return;
+
       if (isSubmitted) return;
       const answered = countAnswered();
       const warningBox = document.getElementById('unansweredWarning');
@@ -1654,6 +1657,8 @@
     }
 
     function confirmFinalSubmit() {
+      if (!window.HTSubmission.begin()) return;
+
       closeSubmitModal();
       if (isSubmitted) return;
       isSubmitted = true;
@@ -2103,7 +2108,9 @@
       const resCard = document.getElementById('resultSummaryCard');
       resCard.classList.remove('hidden');
       resCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+
+      window.HTSubmission.complete();
+}
 
     function escapeHtml(text) {
       if (!text) return "";
@@ -2172,5 +2179,7 @@
   document.querySelectorAll('[onclick*="playAudioFallback"], [onclick*="toggleAudio("], [onclick*="playAudioConversation"]').forEach(button => { if (!button.closest('[data-listening-player]')) button.style.display = 'none'; });
 })();
 </script>
+<script src="../../../assets/submission-identity.js"></script>
+<script>HTSubmission.configure({"grade":8,"name":"studentName","class":null,"score":"#finalScore","result":"resultSummaryCard","modals":["submitModal"]});</script>
 </body>
 </html>

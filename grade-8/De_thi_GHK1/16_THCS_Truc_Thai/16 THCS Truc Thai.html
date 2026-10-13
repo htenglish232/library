@@ -54,6 +54,7 @@ button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%
 .ht-table-scroll{overflow-x:auto;max-width:100%}
 @media(max-width:640px){header>div{min-width:0}header .flex{flex-wrap:wrap}main{padding-left:.75rem!important;padding-right:.75rem!important}main section{padding-left:1rem!important;padding-right:1rem!important}h1,h2,h3,h4,p,label,td,th{overflow-wrap:anywhere}main .flex>div{min-width:0}button{white-space:normal}header{position:relative!important}}
 </style>
+<link rel="stylesheet" href="../../../assets/submission-identity.css">
 </head>
 <body class="text-slate-800 antialiased min-h-screen pb-20">
 
@@ -2014,6 +2015,8 @@ Sarah: What a great idea!`
     }
 
     function triggerSubmitDialog() {
+      if (!window.HTSubmission.check()) return;
+
       if (isExamSubmitted) return;
       const unanswered = countUnansweredQuestions();
       const warningText = document.getElementById('modal-warning-text');
@@ -2030,6 +2033,8 @@ Sarah: What a great idea!`
     }
 
     function finalSubmitExam() {
+      if (!window.HTSubmission.begin()) return;
+
       closeConfirmModal();
       if (isExamSubmitted) return;
       isExamSubmitted = true;
@@ -2178,7 +2183,9 @@ Sarah: What a great idea!`
 
       // Scroll to summary banner smoothly
       summaryBanner.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+
+      window.HTSubmission.complete();
+}
 
     function getBlockIdForKey(key) {
       if (key.startsWith('ans_a')) return `q-block-${key.replace('ans_', '')}`;
@@ -2268,5 +2275,7 @@ document.addEventListener('click',event=>{if(!submitted())return;const el=event.
 refresh();
 })();
 </script>
+<script src="../../../assets/submission-identity.js"></script>
+<script>HTSubmission.configure({"grade":8,"name":"student-name","class":"student-class","score":"#final-score","result":"result-summary","modals":["confirm-modal"]});</script>
 </body>
 </html>

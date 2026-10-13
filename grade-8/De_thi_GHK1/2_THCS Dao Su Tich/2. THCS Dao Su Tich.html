@@ -96,6 +96,7 @@
       background: #60a5fa;
     }
   </style>
+<link rel="stylesheet" href="../../../assets/submission-identity.css">
 </head>
 <body class="min-h-screen bg-slate-50 text-slate-800 antialiased selection:bg-sky-200">
 
@@ -2221,6 +2222,8 @@
 
     // Modal Confirmation Handlers
     function openConfirmModal() {
+      if (!window.HTSubmission.check()) return;
+
       if (document.body.classList.contains('submitted')) return;
 
       const unansweredCount = countUnanswered();
@@ -2323,6 +2326,8 @@
      * - Calculate score and render pedagogic explanation with correct pronunciation speakers
      */
     function executeFinalSubmit() {
+      if (!window.HTSubmission.begin()) return;
+
       closeConfirmModal();
       document.body.classList.add('submitted');
 
@@ -2472,12 +2477,16 @@
 
       // Smooth scroll to top result banner
       resultsBanner.scrollIntoView({ behavior: 'smooth' });
-    }
+
+      window.HTSubmission.complete();
+}
 
     // Initialize application on page load
     window.onload = function() {
       initRearrange();
     };
   </script>
+<script src="../../../assets/submission-identity.js"></script>
+<script>HTSubmission.configure({"grade":8,"name":"student_name","class":"student_class","score":"#final-score-display","result":"results-banner","modals":["confirm-modal"]});</script>
 </body>
 </html>

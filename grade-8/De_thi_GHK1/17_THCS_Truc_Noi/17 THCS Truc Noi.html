@@ -66,6 +66,7 @@ button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%
 .ht-table-scroll{overflow-x:auto;max-width:100%}
 @media(max-width:640px){header>div{min-width:0}header .flex{flex-wrap:wrap}main{padding-left:.75rem!important;padding-right:.75rem!important}main section{padding-left:1rem!important;padding-right:1rem!important}h1,h2,h3,h4,p,label,td,th{overflow-wrap:anywhere}main .flex>div{min-width:0}button{white-space:normal}header{position:relative!important}}
 </style>
+<link rel="stylesheet" href="../../../assets/submission-identity.css">
 </head>
 <body class="min-h-screen pb-24">
 
@@ -159,6 +160,8 @@ button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%
 
   <!-- Main Content Exam Container -->
   <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mt-6 space-y-8" id="test-form">
+<div class="ht-student-fields"><label for="studentName">Họ và tên học sinh<input id="studentName" type="text" autocomplete="name" placeholder="Nhập họ và tên..."></label><label for="studentClass">Lớp<input id="studentClass" type="text" placeholder="Ví dụ: 8A"></label></div>
+
 
     <section class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden"><div class="ht-audio-slot"><div class="ht-listening-player" data-listening-player>
  <div class="ht-player-header"><strong>🎧 FILE NGHE – LISTENING</strong><span class="ht-player-status" role="status">Chưa phát</span></div>
@@ -2003,6 +2006,8 @@ button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%
     function stopAudioTrack() { if (window.htStopListening) window.htStopListening(); if ('speechSynthesis' in window) window.speechSynthesis.cancel(); }
 
     function promptSubmit() {
+      if (!window.HTSubmission.check()) return;
+
       if (isSubmitted) return;
       const answered = calculateAnswers();
       const unanswered = TOTAL_QUESTIONS - answered;
@@ -2027,6 +2032,8 @@ button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%
     }
 
     function executeFinalSubmit() {
+      if (!window.HTSubmission.begin()) return;
+
       closeSubmitModal();
       if (isSubmitted) return;
       isSubmitted = true;
@@ -2287,7 +2294,9 @@ button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%
       const scoreCard = document.getElementById('score-summary-card');
       scoreCard.classList.remove('hidden');
       scoreCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+
+      window.HTSubmission.complete();
+}
   </script>
 
 <script id="ht-exam-runtime">
@@ -2347,5 +2356,7 @@ document.addEventListener('click',event=>{if(!submitted())return;const el=event.
 refresh();
 })();
 </script>
+<script src="../../../assets/submission-identity.js"></script>
+<script>HTSubmission.configure({"grade":8,"name":"studentName","class":"studentClass","score":"#total-score","result":"score-summary-card","modals":["submit-confirm-modal"]});</script>
 </body>
 </html>

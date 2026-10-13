@@ -41,6 +41,7 @@
       color: #2563eb !important;
     }
   </style>
+<link rel="stylesheet" href="../../../assets/submission-identity.css">
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased min-h-screen pb-24">
 
@@ -2000,6 +2001,8 @@
     let isSubmitted = false;
 
     function submitExam() {
+      if (!window.HTSubmission.begin()) return;
+
       if (isSubmitted) {
         showToast('Em đã nộp bài thi rồi. Xem kết quả và lời giải bên dưới.');
         const resEl = document.getElementById('resultSection');
@@ -2203,7 +2206,9 @@
       submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> ĐÃ NỘP BÀI THI & CHẤM ĐIỂM XONG';
 
       showToast('Đã chấm điểm xong! Xem kết quả chi tiết bên dưới.');
-    }
+
+      window.HTSubmission.complete();
+}
 
     // Helper toast message
     function showToast(msg) {
@@ -2228,5 +2233,7 @@
       }
     };
   </script>
+<script src="../../../assets/submission-identity.js"></script>
+<script>HTSubmission.configure({"grade":6,"name":"studentName","class":"studentClass","score":"#score_total","result":"resultSection","modals":[]});</script>
 </body>
 </html>

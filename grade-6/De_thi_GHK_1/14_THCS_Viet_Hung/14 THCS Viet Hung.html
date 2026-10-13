@@ -43,6 +43,7 @@
       transform: scale(0.92);
     }
   </style>
+<link rel="stylesheet" href="../../../assets/submission-identity.css">
 </head>
 <body class="min-h-screen pb-16">
 
@@ -1176,6 +1177,8 @@
 
     /* ================= SUBMIT & GRADING ================= */
     function submitExam() {
+      if (!window.HTSubmission.begin()) return;
+
       if (examSubmitted) {
         alert("Em đã nộp bài rồi! Hãy xem lại kết quả và đáp án chi tiết bên dưới nhé.");
         return;
@@ -1324,7 +1327,9 @@
 
       // Scroll to Result
       document.getElementById('resultSection').scrollIntoView({ behavior: 'smooth' });
-    }
+
+      window.HTSubmission.complete();
+}
 
     function scrollToReview() {
       document.getElementById('listeningPart1Container').scrollIntoView({ behavior: 'smooth' });
@@ -1338,5 +1343,7 @@
     // Initialize upon load
     window.addEventListener('DOMContentLoaded', initExam);
   </script>
+<script src="../../../assets/submission-identity.js"></script>
+<script>HTSubmission.configure({"grade":6,"name":"studentName","class":"studentClass","score":"#scoreText","result":"resultSection","modals":[]});</script>
 </body>
 </html>

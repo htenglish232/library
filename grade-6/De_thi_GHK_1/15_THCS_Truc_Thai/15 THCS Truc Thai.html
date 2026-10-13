@@ -71,6 +71,7 @@
 @media(max-width:480px){.ht-audio-player{padding:.75rem}.ht-audio-player .ht-audio-actions button{flex:1 1 auto}.ht-audio-player .ht-audio-timeline{flex-wrap:wrap}.ht-audio-player .ht-audio-progress{flex-basis:100%}}
 @media print{.ht-audio-player{display:none}}
 </style>
+<link rel="stylesheet" href="../../../assets/submission-identity.css">
 </head>
 <body class="min-h-screen pb-20">
 
@@ -1371,6 +1372,8 @@ Yeah. I’m so lucky, Auntie Nhi.`;
   }
 
   function submitExam() {
+      if (!window.HTSubmission.begin()) return;
+
     if (isSubmitted) {
       showToast("Bạn đã nộp bài rồi!", "info");
       return;
@@ -1532,7 +1535,9 @@ Yeah. I’m so lucky, Auntie Nhi.`;
 
     // Scroll to results
     resultCard.scrollIntoView({ behavior: 'smooth' });
-  }
+
+      window.HTSubmission.complete();
+}
 
   function showMCQExplanation(item, isCorrect) {
     const card = document.getElementById(`card_${item.id}`);
@@ -1794,5 +1799,7 @@ Yeah. I’m so lucky, Auntie Nhi.`;
   });
 })();
 </script>
+<script src="../../../assets/submission-identity.js"></script>
+<script>HTSubmission.configure({"grade":6,"name":"studentName","class":"studentClass","score":"#finalScoreText","result":"resultCard","modals":[]});</script>
 </body>
 </html>

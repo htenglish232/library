@@ -65,6 +65,7 @@
       transform: scale(0.92);
     }
   </style>
+<link rel="stylesheet" href="../../../assets/submission-identity.css">
 </head>
 
 <body class="bg-slate-100 text-slate-800 antialiased min-h-screen flex flex-col pb-20">
@@ -2430,6 +2431,8 @@
 
     // --- Grading & Score Calculation ---
     function submitQuiz(force = false) {
+      if (!window.HTSubmission.begin()) return;
+
       if (examFinished) return;
 
       const studentName = document.getElementById('student-name').value.trim();
@@ -2595,7 +2598,9 @@
       const dashboard = document.getElementById('results-dashboard');
       dashboard.classList.remove('hidden');
       dashboard.scrollIntoView({ behavior: 'smooth' });
-    }
+
+      window.HTSubmission.complete();
+}
 
     function scrollToReview() {
       const form = document.getElementById('quiz-form');
@@ -2609,5 +2614,7 @@
       markAnswered();
     };
   </script>
+<script src="../../../assets/submission-identity.js"></script>
+<script>HTSubmission.configure({"grade":6,"name":"student-name","class":"student-class","score":"#final-score","result":"results-dashboard","modals":[]});</script>
 </body>
 </html>

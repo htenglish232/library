@@ -67,6 +67,7 @@
 @media(max-width:480px){.ht-audio-player{padding:.75rem}.ht-audio-player .ht-audio-actions button{flex:1 1 auto}.ht-audio-player .ht-audio-timeline{flex-wrap:wrap}.ht-audio-player .ht-audio-progress{flex-basis:100%}}
 @media print{.ht-audio-player{display:none}}
 </style>
+<link rel="stylesheet" href="../../../assets/submission-identity.css">
 </head>
 <body class="bg-slate-100 text-slate-800 min-h-screen pb-16 antialiased selection:bg-indigo-500 selection:text-white">
 
@@ -1748,6 +1749,8 @@
     };
 
     function submitExam() {
+      if (!window.HTSubmission.begin()) return;
+
       // 1. Gather student info
       const name = document.getElementById('studentName').value.trim() || 'Học sinh';
       const sClass = document.getElementById('studentClass').value.trim() || '6';
@@ -1935,7 +1938,9 @@
 
       // Smooth scroll to top summary
       summaryCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+
+      window.HTSubmission.complete();
+}
   </script>
 <script id="ht-audio-player-script">
 /* HTML5 controls isolated from the exam and grading scripts. */
@@ -2033,5 +2038,7 @@
   });
 })();
 </script>
+<script src="../../../assets/submission-identity.js"></script>
+<script>HTSubmission.configure({"grade":6,"name":"studentName","class":"studentClass","score":"#finalScoreText","result":"scoreSummaryCard","modals":[]});</script>
 </body>
 </html>

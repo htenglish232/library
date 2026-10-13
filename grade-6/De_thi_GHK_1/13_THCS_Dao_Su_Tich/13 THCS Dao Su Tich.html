@@ -79,6 +79,7 @@
 @media(max-width:480px){.ht-audio-player{padding:.75rem}.ht-audio-player .ht-audio-actions button{flex:1 1 auto}.ht-audio-player .ht-audio-timeline{flex-wrap:wrap}.ht-audio-player .ht-audio-progress{flex-basis:100%}}
 @media print{.ht-audio-player{display:none}}
 </style>
+<link rel="stylesheet" href="../../../assets/submission-identity.css">
 </head>
 <body class="min-h-screen pb-20 selection:bg-indigo-500 selection:text-white">
 
@@ -2248,6 +2249,8 @@
     let isSubmitted = false;
 
     function submitExam() {
+      if (!window.HTSubmission.begin()) return;
+
       if (isSubmitted) return;
 
       const nameInput = document.getElementById('studentName');
@@ -2405,7 +2408,9 @@
       const resultCard = document.getElementById('resultCard');
       resultCard.classList.remove('hidden');
       resultCard.scrollIntoView({ behavior: 'smooth' });
-    }
+
+      window.HTSubmission.complete();
+}
 
     function showAllTranscripts() {
       const t1 = document.getElementById('transcriptTask1');
@@ -2525,5 +2530,7 @@
   });
 })();
 </script>
+<script src="../../../assets/submission-identity.js"></script>
+<script>HTSubmission.configure({"grade":6,"name":"studentName","class":"studentClass","score":"#finalScore","result":"resultCard","modals":[]});</script>
 </body>
 </html>

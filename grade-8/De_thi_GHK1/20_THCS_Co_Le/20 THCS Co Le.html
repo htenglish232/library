@@ -67,6 +67,7 @@ button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%
 .ht-table-scroll{overflow-x:auto;max-width:100%}
 @media(max-width:640px){header>div{min-width:0}header .flex{flex-wrap:wrap}main{padding-left:.75rem!important;padding-right:.75rem!important}main section{padding-left:1rem!important;padding-right:1rem!important}h1,h2,h3,h4,p,label,td,th{overflow-wrap:anywhere}main .flex>div{min-width:0}button{white-space:normal}header{position:relative!important}}
 </style>
+<link rel="stylesheet" href="../../../assets/submission-identity.css">
 </head>
 <body class="min-h-screen bg-slate-50 text-slate-800 flex flex-col justify-between">
 
@@ -1825,6 +1826,8 @@ button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%
     }
 
     function confirmSubmitModal() {
+      if (!window.HTSubmission.check()) return;
+
       if (isSubmitted) return;
       const unanswered = checkUnansweredCount();
       const warningText = document.getElementById('modalWarningText');
@@ -1848,6 +1851,8 @@ button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%
     }
 
     function executeFinalSubmit() {
+      if (!window.HTSubmission.begin()) return;
+
       closeConfirmModal();
       if (isSubmitted) return;
       isSubmitted = true;
@@ -2010,7 +2015,9 @@ button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%
       const report = document.getElementById('scoreReport');
       report.classList.remove('hidden');
       report.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+
+      window.HTSubmission.complete();
+}
 
     // Initialize application on load
     window.onload = function() {
@@ -2075,5 +2082,7 @@ document.addEventListener('click',event=>{if(!submitted())return;const el=event.
 refresh();
 })();
 </script>
+<script src="../../../assets/submission-identity.js"></script>
+<script>HTSubmission.configure({"grade":8,"name":"studentName","class":"studentClass","score":"#scoreScale10","result":"scoreReport","modals":["confirmModal"]});</script>
 </body>
 </html>

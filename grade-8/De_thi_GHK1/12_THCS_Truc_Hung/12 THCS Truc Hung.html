@@ -64,6 +64,7 @@ button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%
 .ht-table-scroll{overflow-x:auto;max-width:100%}
 @media(max-width:640px){header>div{min-width:0}header .flex{flex-wrap:wrap}main{padding-left:.75rem!important;padding-right:.75rem!important}main section{padding-left:1rem!important;padding-right:1rem!important}h1,h2,h3,h4,p,label,td,th{overflow-wrap:anywhere}main .flex>div{min-width:0}button{white-space:normal}header{position:relative!important}}
 </style>
+<link rel="stylesheet" href="../../../assets/submission-identity.css">
 </head>
 <body class="min-h-screen flex flex-col bg-slate-50 text-slate-800">
 
@@ -1937,6 +1938,8 @@ button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%
     }
 
     function handlePreSubmit() {
+      if (!window.HTSubmission.check()) return;
+
       if (isSubmitted) return;
 
       const unanswered = checkUnansweredQuestions();
@@ -1965,6 +1968,8 @@ button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%
     }
 
     function finalizeSubmission() {
+      if (!window.HTSubmission.begin()) return;
+
       closeConfirmModal();
       if (isSubmitted) return;
       isSubmitted = true;
@@ -2142,7 +2147,9 @@ button{touch-action:manipulation}input[type=text],textarea,select{max-width:100%
 
       // Scroll smoothly to score card
       document.getElementById('scoreSummaryCard').scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+
+      window.HTSubmission.complete();
+}
 
     /* Initialize UI on page load */
     window.addEventListener('DOMContentLoaded', () => {
@@ -2207,5 +2214,7 @@ document.addEventListener('click',event=>{if(!submitted())return;const el=event.
 refresh();
 })();
 </script>
+<script src="../../../assets/submission-identity.js"></script>
+<script>HTSubmission.configure({"grade":8,"name":"studentNameInput","class":null,"score":"#finalScoreText","result":"scoreSummaryCard","modals":["confirmModal"]});</script>
 </body>
 </html>
