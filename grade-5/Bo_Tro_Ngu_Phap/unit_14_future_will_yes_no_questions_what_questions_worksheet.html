@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit 14: Future: Will (Yes/No Questions, What Questions) - HT English Center</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #1e56a0;
+    --primary-light: #e8f1fd;
+    --primary-hover: #16437e;
+    --secondary: #00a8cc;
+    --accent: #f6c90e;
+    --success: #2e7d32;
+    --success-bg: #edf7ed;
+    --danger: #d32f2f;
+    --danger-bg: #fde8e8;
+    --warning: #ed6c02;
+    --neutral-dark: #222831;
+    --neutral-gray: #4f5b66;
+    --neutral-light: #f8fafc;
+    --border-color: #cbd5e1;
+    --card-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --font-family: "Noto Sans", Arial, sans-serif;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family);
+  }
+
+  body {
+    background: #f0f4f8;
+    color: var(--neutral-dark);
+    line-height: 1.6;
+    padding: 16px 12px 60px;
+  }
+
+  .container {
+    max-width: 880px;
+    margin: 0 auto;
+  }
+
+  /* Header Card */
+  .header-card {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+    color: white;
+    border-radius: 16px;
+    padding: 24px 20px;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .center-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .header-title {
+    font-size: 1.7rem;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 6px;
+  }
+
+  .header-subtitle {
+    font-size: 1rem;
+    opacity: 0.95;
+  }
+
+  /* Grammar Reference Card */
+  .grammar-box {
+    background: #ffffff;
+    border-left: 6px solid var(--primary);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 24px;
+    box-shadow: var(--card-shadow);
+  }
+
+  .grammar-title {
+    font-size: 1.2rem;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .grammar-content {
+    font-size: 0.95rem;
+    color: var(--neutral-gray);
+  }
+
+  .grammar-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    font-size: 0.9rem;
+  }
+
+  .grammar-table th, .grammar-table td {
+    border: 1px solid #e2e8f0;
+    padding: 8px 10px;
+    text-align: left;
+  }
+
+  .grammar-table th {
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  /* Section Styles */
+  .section-card {
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 22px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid #e2e8f0;
+  }
+
+  .section-header {
+    border-bottom: 2px solid var(--primary-light);
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+  }
+
+  .section-badge {
+    background: var(--primary);
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 4px 12px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+
+  .section-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--neutral-dark);
+  }
+
+  .example-card {
+    background: #f8fafc;
+    border: 1px dashed #94a3b8;
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 16px;
+    font-size: 0.92rem;
+  }
+
+  .example-label {
+    font-weight: 700;
+    color: var(--primary);
+    display: inline-block;
+    margin-right: 6px;
+  }
+
+  /* Question Cards */
+  .q-card {
+    background: #ffffff;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 16px;
+    transition: all 0.2s ease;
+  }
+
+  .q-card.unanswered-highlight {
+    border-color: var(--warning);
+    background: #fffdf5;
+  }
+
+  .q-card.is-correct {
+    border-color: var(--success);
+    background: var(--success-bg);
+  }
+
+  .q-card.is-incorrect {
+    border-color: var(--danger);
+    background: var(--danger-bg);
+  }
+
+  .q-number {
+    font-weight: 700;
+    color: var(--primary);
+    margin-right: 6px;
+  }
+
+  .q-prompt {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  /* Audio Button */
+  .btn-audio {
+    background: var(--primary-light);
+    border: 1px solid #bfdbfe;
+    color: var(--primary);
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    vertical-align: middle;
+    flex-shrink: 0;
+  }
+
+  .btn-audio:hover {
+    background: #dbeafe;
+    transform: scale(1.05);
+  }
+
+  .btn-audio:active {
+    transform: scale(0.95);
+  }
+
+  /* Form Controls */
+  .text-input {
+    border: 1.5px solid var(--border-color);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    background: #ffffff;
+    color: var(--neutral-dark);
+  }
+
+  .text-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(30, 86, 160, 0.15);
+  }
+
+  .text-input:disabled {
+    background: #f1f5f9;
+    color: #64748b;
+    cursor: not-allowed;
+  }
+
+  .input-inline {
+    width: 130px;
+    display: inline-block;
+  }
+
+  .input-full {
+    width: 100%;
+  }
+
+  /* Radio & Options */
+  .options-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+  }
+
+  .option-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: #f8fafc;
+    border: 1.5px solid #e2e8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.15s;
+  }
+
+  .option-label:hover {
+    background: #f1f5f9;
+    border-color: #cbd5e1;
+  }
+
+  .option-label input[type="radio"] {
+    accent-color: var(--primary);
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+  }
+
+  .option-label.disabled {
+    pointer-events: none;
+    opacity: 0.85;
+  }
+
+  /* Word Order (Unscramble) */
+  .word-bank {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px;
+    background: #f1f5f9;
+    border-radius: 10px;
+    min-height: 52px;
+    margin-bottom: 10px;
+  }
+
+  .word-target {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 12px;
+    background: #ffffff;
+    border: 2px dashed #94a3b8;
+    border-radius: 10px;
+    min-height: 54px;
+    align-items: center;
+  }
+
+  .word-chip {
+    background: #ffffff;
+    color: var(--primary);
+    border: 1.5px solid #bfdbfe;
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    user-select: none;
+    transition: all 0.15s;
+  }
+
+  .word-chip:hover {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+  }
+
+  .word-chip.selected {
+    background: var(--primary);
+    color: white;
+  }
+
+  .word-chip.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  /* Result & Feedback */
+  .feedback-box {
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    display: none;
+  }
+
+  .feedback-box.show {
+    display: block;
+  }
+
+  .feedback-box.correct {
+    background: #dcfce7;
+    color: #166534;
+    border-left: 4px solid var(--success);
+  }
+
+  .feedback-box.incorrect {
+    background: #fee2e2;
+    color: #991b1b;
+    border-left: 4px solid var(--danger);
+  }
+
+  .feedback-item {
+    margin-bottom: 4px;
+  }
+
+  .explanation-text {
+    margin-top: 6px;
+    font-size: 0.88rem;
+    color: #334155;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 6px 10px;
+    border-radius: 6px;
+  }
+
+  /* Score Summary Card */
+  .score-card {
+    display: none;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 24px;
+    border: 2px solid var(--primary);
+  }
+
+  .score-card.show {
+    display: block;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .score-stars {
+    font-size: 2rem;
+    margin-bottom: 6px;
+  }
+
+  .score-headline {
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--primary);
+  }
+
+  .score-fraction {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--neutral-gray);
+    margin-top: 4px;
+  }
+
+  .score-msg {
+    margin-top: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+
+  /* Action Buttons */
+  .action-container {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin: 28px 0;
+  }
+
+  .btn-main {
+    padding: 14px 36px;
+    font-size: 1.15rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-submit {
+    background: var(--primary);
+    color: white;
+  }
+
+  .btn-submit:hover {
+    background: var(--primary-hover);
+    transform: translateY(-2px);
+  }
+
+  .btn-reset {
+    background: #475569;
+    color: white;
+    display: none;
+  }
+
+  .btn-reset:hover {
+    background: #334155;
+    transform: translateY(-2px);
+  }
+
+  /* Modal Alert */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.55);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+  }
+
+  .modal-overlay.show {
+    display: flex;
+  }
+
+  .modal-card {
+    background: white;
+    border-radius: 16px;
+    max-width: 440px;
+    width: 100%;
+    padding: 24px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    animation: popIn 0.25s ease-out;
+  }
+
+  .modal-title {
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--warning);
+    margin-bottom: 10px;
+  }
+
+  .modal-text {
+    font-size: 1rem;
+    color: var(--neutral-dark);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  .modal-btn-group {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .modal-btn-continue {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    flex: 1;
+    transition: background 0.15s;
+  }
+
+  .modal-btn-continue:hover {
+    background: var(--primary-hover);
+  }
+
+  .modal-btn-submit {
+    background: white;
+    color: var(--danger);
+    border: 2px solid var(--danger);
+    padding: 12px 18px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    cursor: pointer;
+    flex: 1;
+    transition: background 0.15s;
+  }
+
+  .modal-btn-submit:hover {
+    background: var(--danger-bg);
+  }
+
+  /* Footer */
+  .footer {
+    text-align: center;
+    color: #64748b;
+    font-size: 0.88rem;
+    margin-top: 30px;
+    padding-top: 16px;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes popIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  @media (max-width: 600px) {
+    .modal-btn-group {
+      flex-direction: column-reverse;
+    }
+    .header-title {
+      font-size: 1.35rem;
+    }
+    .q-prompt {
+      font-size: 0.95rem;
+    }
+    .text-input {
+      font-size: 0.95rem;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <!-- Header Card -->
+  <div class="header-card">
+    <div class="center-badge">
+      <span>🏫 HT English Center</span> • <span>📞 SĐT: 0962240866</span>
+    </div>
+    <h1 class="header-title">Unit 14: Future: Will</h1>
+    <div class="header-subtitle">Yes/No Questions & What Questions</div>
+  </div>
+
+  <!-- Grammar Reference -->
+  <div class="grammar-box">
+    <div class="grammar-title">
+      <span>📖</span> Cấu trúc trọng tâm cần nhớ
+    </div>
+    <div class="grammar-content">
+      <p><strong>1. Câu hỏi Yes/No ở thì tương lai đơn:</strong></p>
+      <p style="margin: 4px 0 8px;"><strong>Will + Chủ ngữ + Động từ nguyên thể?</strong></p>
+      <ul style="margin-left: 20px; margin-bottom: 10px;">
+        <li>Khẳng định: <strong>Yes, [chủ ngữ] + will.</strong></li>
+        <li>Phủ định: <strong>No, [chủ ngữ] + won't.</strong></li>
+      </ul>
+
+      <p><strong>2. Câu hỏi với từ để hỏi "What":</strong></p>
+      <p style="margin: 4px 0 8px;"><strong>What + will + Chủ ngữ + Động từ nguyên thể?</strong> (Không trả lời bằng Yes/No)</p>
+
+      <table class="grammar-table">
+        <thead>
+          <tr>
+            <th>Câu hỏi (Question)</th>
+            <th>Trả lời (Answer)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Will you / he / they go to the park?</td>
+            <td>Yes, I/he/they will. | No, I/he/they won't.</td>
+          </tr>
+          <tr>
+            <td>What will you do tomorrow?</td>
+            <td>I will go to the beach tomorrow.</td>
+          </tr>
+          <tr>
+            <td>What will you be in the future?</td>
+            <td>I will be a doctor in the future.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Score Summary Display -->
+  <div id="scoreCard" class="score-card">
+    <div class="score-stars">⭐⭐⭐</div>
+    <div class="score-headline">Bài đã được nộp ✅</div>
+    <div id="scoreFraction" class="score-fraction">Điểm của em: 0/20</div>
+    <div id="scoreMsg" class="score-msg"></div>
+  </div>
+
+  <form id="quizForm" onsubmit="return false;">
+
+    <!-- SECTION A -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-badge">Part A</span>
+        <h2 class="section-title">Read, write, and check. (Hoàn thành câu hỏi và chọn câu trả lời đúng)</h2>
+      </div>
+
+      <!-- Example -->
+      <div class="example-card">
+        <span class="example-label">Ví dụ mẫu:</span>
+        <u>Will</u> you be at home tomorrow?
+        <div style="margin-top: 6px; padding-left: 10px; color: var(--neutral-gray);">
+          [ ] Yes, I am. &nbsp;&nbsp;&nbsp;&nbsp; [✔] No, I won't.
+        </div>
+      </div>
+
+      <!-- Question 1 (A2) -->
+      <div class="q-card" id="card_q1">
+        <div class="q-prompt">
+          <span class="q-number">1.</span>
+          <input type="text" id="q1_text" class="text-input input-inline" placeholder="Điền từ...">
+          <span>it be cold next week?</span>
+          <button type="button" class="btn-audio" onclick="playAudio('it be cold next week?')" title="Nghe câu hỏi">🔊</button>
+        </div>
+        <div class="options-group">
+          <label class="option-label" id="label_q1_opt1">
+            <input type="radio" name="q1_choice" value="Yes, it will.">
+            <span>Yes, it will.</span>
+            <button type="button" class="btn-audio" onclick="playAudio('Yes, it will.')" title="Nghe">🔊</button>
+          </label>
+          <label class="option-label" id="label_q1_opt2">
+            <input type="radio" name="q1_choice" value="No, it isn't.">
+            <span>No, it isn't.</span>
+            <button type="button" class="btn-audio" onclick="playAudio('No, it isn\'t.')" title="Nghe">🔊</button>
+          </label>
+        </div>
+        <div class="feedback-box" id="feedback_q1"></div>
+      </div>
+
+      <!-- Question 2 (A3) -->
+      <div class="q-card" id="card_q2">
+        <div class="q-prompt">
+          <span class="q-number">2.</span>
+          <input type="text" id="q2_text" class="text-input input-inline" placeholder="Điền từ...">
+          <span>he play baseball next Sunday?</span>
+          <button type="button" class="btn-audio" onclick="playAudio('he play baseball next Sunday?')" title="Nghe câu hỏi">🔊</button>
+        </div>
+        <div class="options-group">
+          <label class="option-label" id="label_q2_opt1">
+            <input type="radio" name="q2_choice" value="Yes, he will.">
+            <span>Yes, he will.</span>
+            <button type="button" class="btn-audio" onclick="playAudio('Yes, he will.')" title="Nghe">🔊</button>
+          </label>
+          <label class="option-label" id="label_q2_opt2">
+            <input type="radio" name="q2_choice" value="No, he isn't.">
+            <span>No, he isn't.</span>
+            <button type="button" class="btn-audio" onclick="playAudio('No, he isn\'t.')" title="Nghe">🔊</button>
+          </label>
+        </div>
+        <div class="feedback-box" id="feedback_q2"></div>
+      </div>
+
+      <!-- Question 3 (A4) -->
+      <div class="q-card" id="card_q3">
+        <div class="q-prompt">
+          <span class="q-number">3.</span>
+          <input type="text" id="q3_text" class="text-input input-inline" placeholder="Điền từ...">
+          <span>they go hiking tomorrow?</span>
+          <button type="button" class="btn-audio" onclick="playAudio('they go hiking tomorrow?')" title="Nghe câu hỏi">🔊</button>
+        </div>
+        <div class="options-group">
+          <label class="option-label" id="label_q3_opt1">
+            <input type="radio" name="q3_choice" value="Yes, they are.">
+            <span>Yes, they are.</span>
+            <button type="button" class="btn-audio" onclick="playAudio('Yes, they are.')" title="Nghe">🔊</button>
+          </label>
+          <label class="option-label" id="label_q3_opt2">
+            <input type="radio" name="q3_choice" value="No, they won't.">
+            <span>No, they won't.</span>
+            <button type="button" class="btn-audio" onclick="playAudio('No, they won\'t.')" title="Nghe">🔊</button>
+          </label>
+        </div>
+        <div class="feedback-box" id="feedback_q3"></div>
+      </div>
+    </div>
+
+    <!-- SECTION B -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-badge">Part B</span>
+        <h2 class="section-title">Look and write. (Quan sát gợi ý và hoàn thành câu hỏi & câu trả lời)</h2>
+      </div>
+
+      <!-- Example -->
+      <div class="example-card">
+        <span class="example-label">Ví dụ mẫu:</span> [Gợi ý động từ: <em>play</em>]
+        <div style="margin-top: 4px; color: var(--neutral-gray);">
+          - Hỏi: <strong>Will they play baseball?</strong><br>
+          - Đáp: <strong>Yes, they will.</strong>
+        </div>
+      </div>
+
+      <!-- Question 4 (B2 - Question & Answer) -->
+      <div class="q-card" id="card_q4">
+        <div class="q-prompt">
+          <span class="q-number">4.</span>
+          <span>[Gợi ý: <strong>be</strong> / <em>sunny</em>] - Hoàn thành câu hỏi và câu trả lời:</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+          <span>Hỏi:</span>
+          <input type="text" id="q4_q1" class="text-input input-inline" style="width:90px;" placeholder="Trợ ĐT">
+          <span>it</span>
+          <input type="text" id="q4_q2" class="text-input input-inline" style="width:90px;" placeholder="Động từ">
+          <span>sunny?</span>
+          <button type="button" class="btn-audio" onclick="playAudio('sunny?')" title="Nghe">🔊</button>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+          <span>Đáp:</span>
+          <input type="text" id="q4_a1" class="text-input input-inline" style="width:80px;" placeholder="Yes/No">
+          <span>,</span>
+          <input type="text" id="q4_a2" class="text-input input-inline" style="width:80px;" placeholder="Chủ ngữ">
+          <input type="text" id="q4_a3" class="text-input input-inline" style="width:90px;" placeholder="Trợ ĐT">
+          <span>.</span>
+        </div>
+        <div class="feedback-box" id="feedback_q4"></div>
+      </div>
+
+      <!-- Question 5 (B3 - Question & Answer) -->
+      <div class="q-card" id="card_q5">
+        <div class="q-prompt">
+          <span class="q-number">5.</span>
+          <span>[Gợi ý: <strong>help</strong> / <em>the old woman</em>] - Hoàn thành câu hỏi và câu trả lời:</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+          <span>Hỏi:</span>
+          <input type="text" id="q5_q1" class="text-input input-inline" style="width:90px;" placeholder="Trợ ĐT">
+          <span>he</span>
+          <input type="text" id="q5_q2" class="text-input input-inline" style="width:100px;" placeholder="Động từ">
+          <span>the old woman?</span>
+          <button type="button" class="btn-audio" onclick="playAudio('the old woman?')" title="Nghe">🔊</button>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+          <span>Đáp:</span>
+          <input type="text" id="q5_a1" class="text-input input-inline" style="width:80px;" placeholder="Yes/No">
+          <span>,</span>
+          <input type="text" id="q5_a2" class="text-input input-inline" style="width:80px;" placeholder="Chủ ngữ">
+          <input type="text" id="q5_a3" class="text-input input-inline" style="width:90px;" placeholder="Trợ ĐT">
+          <span>.</span>
+        </div>
+        <div class="feedback-box" id="feedback_q5"></div>
+      </div>
+
+      <!-- Question 6 (B4 - Question & Answer) -->
+      <div class="q-card" id="card_q6">
+        <div class="q-prompt">
+          <span class="q-number">6.</span>
+          <span>[Gợi ý: <strong>buy</strong> / <em>ice cream</em>] - Hoàn thành câu hỏi 'What' và câu trả lời:</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+          <span>Hỏi:</span>
+          <input type="text" id="q6_q1" class="text-input input-inline" style="width:90px;" placeholder="Từ để hỏi">
+          <input type="text" id="q6_q2" class="text-input input-inline" style="width:80px;" placeholder="Trợ ĐT">
+          <span>she do?</span>
+          <button type="button" class="btn-audio" onclick="playAudio('she do?')" title="Nghe">🔊</button>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+          <span>Đáp:</span>
+          <input type="text" id="q6_a1" class="text-input input-inline" style="width:80px;" placeholder="Chủ ngữ">
+          <input type="text" id="q6_a2" class="text-input input-inline" style="width:80px;" placeholder="Trợ ĐT">
+          <input type="text" id="q6_a3" class="text-input input-inline" style="width:80px;" placeholder="Động từ">
+          <span>ice cream.</span>
+          <button type="button" class="btn-audio" onclick="playAudio('ice cream.')" title="Nghe">🔊</button>
+        </div>
+        <div class="feedback-box" id="feedback_q6"></div>
+      </div>
+
+      <!-- Question 7 (B5 - Question & Answer) -->
+      <div class="q-card" id="card_q7">
+        <div class="q-prompt">
+          <span class="q-number">7.</span>
+          <span>[Gợi ý: <strong>be</strong> / <em>a police officer</em>] - Hoàn thành câu hỏi 'What' và câu trả lời:</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+          <span>Hỏi:</span>
+          <input type="text" id="q7_q1" class="text-input input-inline" style="width:90px;" placeholder="Từ để hỏi">
+          <input type="text" id="q7_q2" class="text-input input-inline" style="width:80px;" placeholder="Trợ ĐT">
+          <span>you be?</span>
+          <button type="button" class="btn-audio" onclick="playAudio('you be?')" title="Nghe">🔊</button>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+          <span>Đáp:</span>
+          <input type="text" id="q7_a1" class="text-input input-inline" style="width:80px;" placeholder="Chủ ngữ">
+          <input type="text" id="q7_a2" class="text-input input-inline" style="width:80px;" placeholder="Trợ ĐT">
+          <input type="text" id="q7_a3" class="text-input input-inline" style="width:80px;" placeholder="Động từ">
+          <span>a police officer.</span>
+          <button type="button" class="btn-audio" onclick="playAudio('a police officer.')" title="Nghe">🔊</button>
+        </div>
+        <div class="feedback-box" id="feedback_q7"></div>
+      </div>
+    </div>
+
+    <!-- SECTION C -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-badge">Part C</span>
+        <h2 class="section-title">Read and write. (Điền từ hỏi & chọn câu trả lời tương ứng)</h2>
+      </div>
+
+      <!-- Bank Options Display -->
+      <div class="example-card" style="background:#f0f9ff; border: 1.5px solid #bae6fd;">
+        <span class="example-label">Khung câu trả lời:</span>
+        <div style="display: grid; grid-template-columns: 1fr; gap: 4px; margin-top: 6px;">
+          <div><strong>a.</strong> They will go to the zoo this Sunday. <button type="button" class="btn-audio" onclick="playAudio('They will go to the zoo this Sunday.')" style="width:24px;height:24px;font-size:0.75rem;">🔊</button></div>
+          <div><strong>b.</strong> I will be a pianist in the future. <button type="button" class="btn-audio" onclick="playAudio('I will be a pianist in the future.')" style="width:24px;height:24px;font-size:0.75rem;">🔊</button></div>
+          <div><strong>c.</strong> She will go to school tomorrow. <em>(Ví dụ câu 1)</em></div>
+          <div><strong>d.</strong> He will be a doctor in the future. <button type="button" class="btn-audio" onclick="playAudio('He will be a doctor in the future.')" style="width:24px;height:24px;font-size:0.75rem;">🔊</button></div>
+        </div>
+      </div>
+
+      <!-- Question 8 (C2) -->
+      <div class="q-card" id="card_q8">
+        <div class="q-prompt">
+          <span class="q-number">8.</span>
+          <span>Hoàn thành câu hỏi và chọn chữ cái tương ứng (a, b, d):</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+          <input type="text" id="q8_w1" class="text-input input-inline" style="width:90px;" placeholder="Từ 1...">
+          <input type="text" id="q8_w2" class="text-input input-inline" style="width:90px;" placeholder="Từ 2...">
+          <span>they do this Sunday?</span>
+          <button type="button" class="btn-audio" onclick="playAudio('they do this Sunday?')" title="Nghe">🔊</button>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span>Câu trả lời tương ứng:</span>
+          <input type="text" id="q8_match" class="text-input input-inline" style="width:80px; text-transform:uppercase;" maxlength="1" placeholder="a/b/d">
+        </div>
+        <div class="feedback-box" id="feedback_q8"></div>
+      </div>
+
+      <!-- Question 9 (C3) -->
+      <div class="q-card" id="card_q9">
+        <div class="q-prompt">
+          <span class="q-number">9.</span>
+          <span>Hoàn thành câu hỏi và chọn chữ cái tương ứng (a, b, d):</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+          <input type="text" id="q9_w1" class="text-input input-inline" style="width:90px;" placeholder="Từ 1...">
+          <input type="text" id="q9_w2" class="text-input input-inline" style="width:90px;" placeholder="Từ 2...">
+          <span>he be in the future?</span>
+          <button type="button" class="btn-audio" onclick="playAudio('he be in the future?')" title="Nghe">🔊</button>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span>Câu trả lời tương ứng:</span>
+          <input type="text" id="q9_match" class="text-input input-inline" style="width:80px; text-transform:uppercase;" maxlength="1" placeholder="a/b/d">
+        </div>
+        <div class="feedback-box" id="feedback_q9"></div>
+      </div>
+
+      <!-- Question 10 (C4) -->
+      <div class="q-card" id="card_q10">
+        <div class="q-prompt">
+          <span class="q-number">10.</span>
+          <span>Hoàn thành câu hỏi và chọn chữ cái tương ứng (a, b, d):</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:8px;">
+          <input type="text" id="q10_w1" class="text-input input-inline" style="width:90px;" placeholder="Từ 1...">
+          <input type="text" id="q10_w2" class="text-input input-inline" style="width:90px;" placeholder="Từ 2...">
+          <span>you be in the future?</span>
+          <button type="button" class="btn-audio" onclick="playAudio('you be in the future?')" title="Nghe">🔊</button>
+        </div>
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span>Câu trả lời tương ứng:</span>
+          <input type="text" id="q10_match" class="text-input input-inline" style="width:80px; text-transform:uppercase;" maxlength="1" placeholder="a/b/d">
+        </div>
+        <div class="feedback-box" id="feedback_q10"></div>
+      </div>
+    </div>
+
+    <!-- SECTION D -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-badge">Part D</span>
+        <h2 class="section-title">Read and unscramble. (Bấm chọn các từ để sắp xếp thành câu hoàn chỉnh)</h2>
+        <div style="font-size:0.9rem; color:var(--primary); font-weight:600; margin-top:4px;">
+          👉 Hướng dẫn: Bấm vào từng từ trong khung để xếp vào câu. Bấm vào từ đã xếp nếu muốn bỏ chọn.
+        </div>
+      </div>
+
+      <!-- Example -->
+      <div class="example-card">
+        <span class="example-label">Ví dụ mẫu:</span>
+        <div style="color:var(--neutral-gray);">
+          [he] [math] [tomorrow?] [Will] [study]<br>
+          ➔ <strong>Will he study math tomorrow?</strong>
+        </div>
+      </div>
+
+      <!-- Word Order Questions 11 to 15 -->
+      <div id="wordOrderContainer">
+        <!-- Injected via JavaScript (Click to order mode) -->
+      </div>
+    </div>
+
+    <!-- SECTION E -->
+    <div class="section-card">
+      <div class="section-header">
+        <span class="section-badge">Part E</span>
+        <h2 class="section-title">Read and correct. (Sửa lỗi sai trong câu để thành câu đúng)</h2>
+      </div>
+
+      <!-- Example -->
+      <div class="example-card">
+        <span class="example-label">Ví dụ mẫu:</span>
+        <span style="text-decoration: line-through; color: var(--danger);">Will you did your homework?</span><br>
+        ➔ <strong>Will you do your homework?</strong>
+      </div>
+
+      <!-- Question 16 (E2) -->
+      <div class="q-card" id="card_q16">
+        <div class="q-prompt">
+          <span class="q-number">16.</span>
+          <span style="color:#b91c1c;">Will they are teachers next year?</span>
+          <button type="button" class="btn-audio" onclick="playAudio('Will they are teachers next year?')" title="Nghe câu gốc">🔊</button>
+        </div>
+        <div>
+          <input type="text" id="q16_input" class="text-input input-full" placeholder="Viết lại câu đúng vào đây...">
+        </div>
+        <div class="feedback-box" id="feedback_q16"></div>
+      </div>
+
+      <!-- Question 17 (E3) -->
+      <div class="q-card" id="card_q17">
+        <div class="q-prompt">
+          <span class="q-number">17.</span>
+          <span style="color:#b91c1c;">Will she makes sandwiches?</span>
+          <button type="button" class="btn-audio" onclick="playAudio('Will she makes sandwiches?')" title="Nghe câu gốc">🔊</button>
+        </div>
+        <div>
+          <input type="text" id="q17_input" class="text-input input-full" placeholder="Viết lại câu đúng vào đây...">
+        </div>
+        <div class="feedback-box" id="feedback_q17"></div>
+      </div>
+
+      <!-- Question 18 (E4) -->
+      <div class="q-card" id="card_q18">
+        <div class="q-prompt">
+          <span class="q-number">18.</span>
+          <span style="color:#b91c1c;">Will be he busy next Monday?</span>
+          <button type="button" class="btn-audio" onclick="playAudio('Will be he busy next Monday?')" title="Nghe câu gốc">🔊</button>
+        </div>
+        <div>
+          <input type="text" id="q18_input" class="text-input input-full" placeholder="Viết lại câu đúng vào đây...">
+        </div>
+        <div class="feedback-box" id="feedback_q18"></div>
+      </div>
+
+      <!-- Question 19 (E5) -->
+      <div class="q-card" id="card_q19">
+        <div class="q-prompt">
+          <span class="q-number">19.</span>
+          <span style="color:#b91c1c;">What will she does next weekend?</span>
+          <button type="button" class="btn-audio" onclick="playAudio('What will she does next weekend?')" title="Nghe câu gốc">🔊</button>
+        </div>
+        <div>
+          <input type="text" id="q19_input" class="text-input input-full" placeholder="Viết lại câu đúng vào đây...">
+        </div>
+        <div class="feedback-box" id="feedback_q19"></div>
+      </div>
+
+      <!-- Question 20 (E6) -->
+      <div class="q-card" id="card_q20">
+        <div class="q-prompt">
+          <span class="q-number">20.</span>
+          <span style="color:#b91c1c;">Will what you be in the future?</span>
+          <button type="button" class="btn-audio" onclick="playAudio('Will what you be in the future?')" title="Nghe câu gốc">🔊</button>
+        </div>
+        <div>
+          <input type="text" id="q20_input" class="text-input input-full" placeholder="Viết lại câu đúng vào đây...">
+        </div>
+        <div class="feedback-box" id="feedback_q20"></div>
+      </div>
+
+    </div>
+
+    <!-- Submit & Reset Action Area -->
+    <div class="action-container">
+      <button type="button" id="btnSubmit" class="btn-main btn-submit" onclick="handleSubmit()">
+        <span>📝</span> NỘP BÀI / SUBMIT
+      </button>
+      <button type="button" id="btnReset" class="btn-main btn-reset" onclick="handleReset()">
+        <span>🔄</span> LÀM LẠI
+      </button>
+    </div>
+
+  </form>
+
+  <!-- Modal Unfinished Alert -->
+  <div id="unfinishedModal" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-title">⚠️ CHƯA LÀM XONG</div>
+      <div id="modalMsg" class="modal-text">
+        Em vẫn còn <strong id="unansweredCount" style="color:var(--danger); font-size:1.15rem;">0</strong> câu chưa trả lời.<br>
+        Em muốn tiếp tục làm bài hay vẫn gửi bài?
+      </div>
+      <div class="modal-btn-group">
+        <button type="button" class="modal-btn-continue" onclick="closeModalAndContinue()">
+          TIẾP TỤC LÀM
+        </button>
+        <button type="button" class="modal-btn-submit" onclick="confirmSubmitAnyway()">
+          GỬI BÀI
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p><strong>HT English Center</strong> • Hotline hỗ trợ: <strong>0962240866</strong></p>
+    <p style="margin-top: 4px; font-size: 0.8rem;">Phiếu bài tập điện tử chuẩn hóa kiến thức Unit 14: Future: Will</p>
+  </footer>
+
+</div>
+
+<script>
+/**
+ * Utility Functions
+ */
+// Shuffle array (Fisher-Yates) ensuring it is not identical to original
+function shuffleArray(arr) {
+  const newArr = [...arr];
+  for (let i = newArr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
+  }
+  if (newArr.length > 1 && newArr.every((val, index) => val === arr[index])) {
+    [newArr[0], newArr[1]] = [newArr[1], newArr[0]];
+  }
+  return newArr;
+}
+
+// Normalize text for robust answer checking (whitespace, case, apostrophes, punctuation)
+function normalizeText(str) {
+  if (typeof str !== "string") return "";
+  return str
+    .toLowerCase()
+    .replace(/[’']/g, "'")
+    .replace(/[.,?!]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+// Speech synthesis for pronunciation
+function playAudio(text) {
+  if (!("speechSynthesis" in window)) return;
+  window.speechSynthesis.cancel();
+  const cleanText = text.replace(/[_]/g, "").trim();
+  if (!cleanText) return;
+  const utterance = new SpeechSynthesisUtterance(cleanText);
+  utterance.lang = "en-US";
+  utterance.rate = 0.9;
+  window.speechSynthesis.speak(utterance);
+}
+
+/**
+ * SINGLE SOURCE OF TRUTH (DATABASE)
+ * Total scored questions: 20 items
+ */
+const TOTAL_QUESTIONS = 20;
+let submitted = false;
+
+// Fixed Word Order mode: Always click to select words/phrases
+const wordOrderMode = "click";
+
+// Word order questions data (renumbered q11 to q15)
+const wordOrderData = [
+  {
+    id: "q11",
+    num: 11,
+    originalTokens: ["next weekend?", "visit", "you", "your uncle", "Will"],
+    correctAnswer: "Will you visit your uncle next weekend?",
+    acceptedAnswers: [
+      "Will you visit your uncle next weekend?",
+      "will you visit your uncle next weekend"
+    ],
+    explanation: "Cấu trúc câu hỏi Yes/No tương lai đơn: Will + Chủ ngữ (you) + Động từ nguyên thể (visit) + tân ngữ (your uncle) + thời gian (next weekend)?"
+  },
+  {
+    id: "q12",
+    num: 12,
+    originalTokens: ["be", "she", "in the future?", "Will", "a cook"],
+    correctAnswer: "Will she be a cook in the future?",
+    acceptedAnswers: [
+      "Will she be a cook in the future?",
+      "will she be a cook in the future"
+    ],
+    explanation: "Cấu trúc: Will + she + be + a cook in the future?"
+  },
+  {
+    id: "q13",
+    num: 13,
+    originalTokens: ["you", "Will", "be", "hungry?"],
+    correctAnswer: "Will you be hungry?",
+    acceptedAnswers: [
+      "Will you be hungry?",
+      "will you be hungry"
+    ],
+    explanation: "Cấu trúc: Will + you + be hungry?"
+  },
+  {
+    id: "q14",
+    num: 14,
+    originalTokens: ["will", "do", "What", "next Sunday?", "they"],
+    correctAnswer: "What will they do next Sunday?",
+    acceptedAnswers: [
+      "What will they do next Sunday?",
+      "what will they do next Sunday"
+    ],
+    explanation: "Cấu trúc câu hỏi What: What + will + they + do + next Sunday?"
+  },
+  {
+    id: "q15",
+    num: 15,
+    originalTokens: ["be", "will", "in the future?", "What", "he"],
+    correctAnswer: "What will he be in the future?",
+    acceptedAnswers: [
+      "What will he be in the future?",
+      "what will he be in the future"
+    ],
+    explanation: "Cấu trúc câu hỏi What: What + will + he + be in the future?"
+  }
+];
+
+// State storage for Word Order click mode
+let userWordSelections = {
+  q11: [],
+  q12: [],
+  q13: [],
+  q14: [],
+  q15: []
+};
+
+// Shuffled tokens for click mode
+let shuffledTokenMap = {};
+
+function renderWordOrderSection() {
+  const container = document.getElementById("wordOrderContainer");
+  if (!container) return;
+  container.innerHTML = "";
+
+  wordOrderData.forEach(item => {
+    if (!shuffledTokenMap[item.id]) {
+      shuffledTokenMap[item.id] = shuffleArray(item.originalTokens);
+    }
+    const shuffled = shuffledTokenMap[item.id];
+
+    const card = document.createElement("div");
+    card.className = "q-card";
+    card.id = `card_${item.id}`;
+
+    card.innerHTML = `
+      <div class="q-prompt">
+        <span class="q-number">${item.num}.</span>
+        <span>Bấm các từ theo đúng thứ tự để tạo câu:</span>
+      </div>
+      <div class="word-bank" id="bank_${item.id}">
+        ${shuffled.map((tok, idx) => `
+          <button type="button" class="word-chip" id="chip_${item.id}_${idx}" onclick="handleChipClick('${item.id}', ${idx}, '${tok.replace(/'/g, "\\'")}')">${tok}</button>
+        `).join("")}
+      </div>
+      <div style="font-size: 0.85rem; font-weight:600; color:#64748b; margin-bottom:4px;">Câu của em:</div>
+      <div class="word-target" id="target_${item.id}">
+        <span style="color:#94a3b8; font-size:0.9rem;" id="target_placeholder_${item.id}">(Chưa có từ nào được chọn)</span>
+      </div>
+      <div class="feedback-box" id="feedback_${item.id}"></div>
+    `;
+    container.appendChild(card);
+  });
+}
+
+function handleChipClick(qid, idx, token) {
+  if (submitted) return;
+  const chip = document.getElementById(`chip_${qid}_${idx}`);
+  if (chip.classList.contains("selected")) return; // already used
+
+  chip.classList.add("selected");
+  userWordSelections[qid].push({ idx, token });
+  updateTargetArea(qid);
+}
+
+function removeChipFromTarget(qid, arrayIndex) {
+  if (submitted) return;
+  const item = userWordSelections[qid][arrayIndex];
+  if (!item) return;
+
+  const chip = document.getElementById(`chip_${qid}_${item.idx}`);
+  if (chip) chip.classList.remove("selected");
+
+  userWordSelections[qid].splice(arrayIndex, 1);
+  updateTargetArea(qid);
+}
+
+function updateTargetArea(qid) {
+  const targetArea = document.getElementById(`target_${qid}`);
+  if (!targetArea) return;
+
+  if (userWordSelections[qid].length === 0) {
+    targetArea.innerHTML = `<span style="color:#94a3b8; font-size:0.9rem;" id="target_placeholder_${qid}">(Chưa có từ nào được chọn)</span>`;
+    return;
+  }
+
+  targetArea.innerHTML = "";
+  userWordSelections[qid].forEach((elem, arrIdx) => {
+    const chip = document.createElement("button");
+    chip.type = "button";
+    chip.className = "word-chip selected";
+    chip.textContent = elem.token;
+    chip.title = "Bấm để bỏ từ này";
+    chip.onclick = () => removeChipFromTarget(qid, arrIdx);
+    targetArea.appendChild(chip);
+  });
+}
+
+/**
+ * Collect student response for any question ID
+ */
+function getAnswer(qid) {
+  switch (qid) {
+    case "q1": {
+      const text = document.getElementById("q1_text").value.trim();
+      const radio = document.querySelector('input[name="q1_choice"]:checked');
+      if (!text && !radio) return null;
+      return { text, choice: radio ? radio.value : "" };
+    }
+    case "q2": {
+      const text = document.getElementById("q2_text").value.trim();
+      const radio = document.querySelector('input[name="q2_choice"]:checked');
+      if (!text && !radio) return null;
+      return { text, choice: radio ? radio.value : "" };
+    }
+    case "q3": {
+      const text = document.getElementById("q3_text").value.trim();
+      const radio = document.querySelector('input[name="q3_choice"]:checked');
+      if (!text && !radio) return null;
+      return { text, choice: radio ? radio.value : "" };
+    }
+    case "q4": {
+      const q1 = document.getElementById("q4_q1").value.trim();
+      const q2 = document.getElementById("q4_q2").value.trim();
+      const a1 = document.getElementById("q4_a1").value.trim();
+      const a2 = document.getElementById("q4_a2").value.trim();
+      const a3 = document.getElementById("q4_a3").value.trim();
+      if (!q1 && !q2 && !a1 && !a2 && !a3) return null;
+      return { q1, q2, a1, a2, a3 };
+    }
+    case "q5": {
+      const q1 = document.getElementById("q5_q1").value.trim();
+      const q2 = document.getElementById("q5_q2").value.trim();
+      const a1 = document.getElementById("q5_a1").value.trim();
+      const a2 = document.getElementById("q5_a2").value.trim();
+      const a3 = document.getElementById("q5_a3").value.trim();
+      if (!q1 && !q2 && !a1 && !a2 && !a3) return null;
+      return { q1, q2, a1, a2, a3 };
+    }
+    case "q6": {
+      const q1 = document.getElementById("q6_q1").value.trim();
+      const q2 = document.getElementById("q6_q2").value.trim();
+      const a1 = document.getElementById("q6_a1").value.trim();
+      const a2 = document.getElementById("q6_a2").value.trim();
+      const a3 = document.getElementById("q6_a3").value.trim();
+      if (!q1 && !q2 && !a1 && !a2 && !a3) return null;
+      return { q1, q2, a1, a2, a3 };
+    }
+    case "q7": {
+      const q1 = document.getElementById("q7_q1").value.trim();
+      const q2 = document.getElementById("q7_q2").value.trim();
+      const a1 = document.getElementById("q7_a1").value.trim();
+      const a2 = document.getElementById("q7_a2").value.trim();
+      const a3 = document.getElementById("q7_a3").value.trim();
+      if (!q1 && !q2 && !a1 && !a2 && !a3) return null;
+      return { q1, q2, a1, a2, a3 };
+    }
+    case "q8": {
+      const w1 = document.getElementById("q8_w1").value.trim();
+      const w2 = document.getElementById("q8_w2").value.trim();
+      const m = document.getElementById("q8_match").value.trim();
+      if (!w1 && !w2 && !m) return null;
+      return { w1, w2, match: m };
+    }
+    case "q9": {
+      const w1 = document.getElementById("q9_w1").value.trim();
+      const w2 = document.getElementById("q9_w2").value.trim();
+      const m = document.getElementById("q9_match").value.trim();
+      if (!w1 && !w2 && !m) return null;
+      return { w1, w2, match: m };
+    }
+    case "q10": {
+      const w1 = document.getElementById("q10_w1").value.trim();
+      const w2 = document.getElementById("q10_w2").value.trim();
+      const m = document.getElementById("q10_match").value.trim();
+      if (!w1 && !w2 && !m) return null;
+      return { w1, w2, match: m };
+    }
+    case "q11":
+    case "q12":
+    case "q13":
+    case "q14":
+    case "q15": {
+      if (wordOrderMode === "click") {
+        if (userWordSelections[qid].length === 0) return null;
+        return userWordSelections[qid].map(x => x.token).join(" ");
+      } else {
+        const inp = document.getElementById(`${qid}_input`);
+        const val = inp ? inp.value.trim() : "";
+        return val === "" ? null : val;
+      }
+    }
+    case "q16": {
+      const v = document.getElementById("q16_input").value.trim();
+      return v === "" ? null : v;
+    }
+    case "q17": {
+      const v = document.getElementById("q17_input").value.trim();
+      return v === "" ? null : v;
+    }
+    case "q18": {
+      const v = document.getElementById("q18_input").value.trim();
+      return v === "" ? null : v;
+    }
+    case "q19": {
+      const v = document.getElementById("q19_input").value.trim();
+      return v === "" ? null : v;
+    }
+    case "q20": {
+      const v = document.getElementById("q20_input").value.trim();
+      return v === "" ? null : v;
+    }
+    default:
+      return null;
+  }
+}
+
+/**
+ * Check if a question is fully answered
+ */
+function isQuestionComplete(qid) {
+  const ans = getAnswer(qid);
+  if (ans === null) return false;
+
+  switch (qid) {
+    case "q1":
+    case "q2":
+    case "q3":
+      return ans.text !== "" && ans.choice !== "";
+    case "q4":
+    case "q5":
+    case "q6":
+    case "q7":
+      return ans.q1 !== "" && ans.q2 !== "" && ans.a1 !== "" && ans.a2 !== "" && ans.a3 !== "";
+    case "q8":
+    case "q9":
+    case "q10":
+      return ans.w1 !== "" && ans.w2 !== "" && ans.match !== "";
+    case "q11":
+    case "q12":
+    case "q13":
+    case "q14":
+    case "q15": {
+      if (wordOrderMode === "click") {
+        const item = wordOrderData.find(x => x.id === qid);
+        return userWordSelections[qid].length === item.originalTokens.length;
+      }
+      return typeof ans === "string" && ans.trim().length > 0;
+    }
+    case "q16":
+    case "q17":
+    case "q18":
+    case "q19":
+    case "q20":
+      return typeof ans === "string" && ans.trim().length > 0;
+    default:
+      return false;
+  }
+}
+
+function handleSubmit() {
+  if (submitted) return;
+
+  // Clear previous warnings
+  for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+    const card = document.getElementById(`card_q${i}`);
+    if (card) card.classList.remove("unanswered-highlight");
+  }
+
+  // Count unanswered
+  let unanswered = [];
+  for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+    const qid = `q${i}`;
+    if (!isQuestionComplete(qid)) {
+      unanswered.push(qid);
+    }
+  }
+
+  if (unanswered.length > 0) {
+    // Highlight unanswered cards
+    unanswered.forEach(qid => {
+      const card = document.getElementById(`card_${qid}`);
+      if (card) card.classList.add("unanswered-highlight");
+    });
+
+    // Show modal dialog
+    document.getElementById("unansweredCount").textContent = unanswered.length;
+    document.getElementById("unfinishedModal").classList.add("show");
+    return;
+  }
+
+  // All completed, grade directly
+  gradeQuiz();
+}
+
+function closeModalAndContinue() {
+  document.getElementById("unfinishedModal").classList.remove("show");
+  // Scroll to first unfinished question
+  for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+    const qid = `q${i}`;
+    if (!isQuestionComplete(qid)) {
+      const card = document.getElementById(`card_${qid}`);
+      if (card) {
+        card.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+      break;
+    }
+  }
+}
+
+function confirmSubmitAnyway() {
+  document.getElementById("unfinishedModal").classList.remove("show");
+  gradeQuiz();
+}
+
+function gradeQuiz() {
+  submitted = true;
+  let correctCount = 0;
+
+  // Helper for rendering feedback
+  function renderFeedback(qid, isCorrect, userDisplay, correctDisplay, explanation) {
+    const box = document.getElementById(`feedback_${qid}`);
+    const card = document.getElementById(`card_${qid}`);
+    if (!box || !card) return;
+
+    card.classList.remove("unanswered-highlight");
+    if (isCorrect) {
+      card.classList.add("is-correct");
+      box.className = "feedback-box correct show";
+      box.innerHTML = `
+        <div class="feedback-item"><strong>Kết quả:</strong> Đúng ✅</div>
+        <div class="explanation-text"><strong>Giải thích:</strong> ${explanation}</div>
+      `;
+    } else {
+      card.classList.add("is-incorrect");
+      box.className = "feedback-box incorrect show";
+      box.innerHTML = `
+        <div class="feedback-item"><strong>Em trả lời:</strong> ${userDisplay || "Chưa làm"} ❌</div>
+        <div class="feedback-item"><strong>Đáp án đúng:</strong> <strong>${correctDisplay}</strong> ✅</div>
+        <div class="explanation-text"><strong>Giải thích:</strong> ${explanation}</div>
+      `;
+    }
+  }
+
+  // --- Q1 (Part A2) ---
+  {
+    const ans = getAnswer("q1");
+    const isTextCorrect = ans && normalizeText(ans.text) === "will";
+    const isChoiceCorrect = ans && ans.choice === "Yes, it will.";
+    const isOk = isTextCorrect && isChoiceCorrect;
+    if (isOk) correctCount++;
+    const userStr = ans ? `${ans.text || "_"} / ${ans.choice || "chưa chọn"}` : "Chưa làm";
+    renderFeedback("q1", isOk, userStr, "Will / Yes, it will.", "Câu hỏi ở tương lai đơn bắt đầu bằng 'Will', câu trả lời khẳng định là 'Yes, it will.'");
+  }
+
+  // --- Q2 (Part A3) ---
+  {
+    const ans = getAnswer("q2");
+    const isTextCorrect = ans && normalizeText(ans.text) === "will";
+    const isChoiceCorrect = ans && ans.choice === "Yes, he will.";
+    const isOk = isTextCorrect && isChoiceCorrect;
+    if (isOk) correctCount++;
+    const userStr = ans ? `${ans.text || "_"} / ${ans.choice || "chưa chọn"}` : "Chưa làm";
+    renderFeedback("q2", isOk, userStr, "Will / Yes, he will.", "Câu hỏi tương lai đơn dùng 'Will', câu trả lời khẳng định với chủ ngữ 'he' là 'Yes, he will.'");
+  }
+
+  // --- Q3 (Part A4) ---
+  {
+    const ans = getAnswer("q3");
+    const isTextCorrect = ans && normalizeText(ans.text) === "will";
+    const isChoiceCorrect = ans && ans.choice === "No, they won't.";
+    const isOk = isTextCorrect && isChoiceCorrect;
+    if (isOk) correctCount++;
+    const userStr = ans ? `${ans.text || "_"} / ${ans.choice || "chưa chọn"}` : "Chưa làm";
+    renderFeedback("q3", isOk, userStr, "Will / No, they won't.", "Câu hỏi bắt đầu bằng 'Will', câu trả lời phủ định tương lai đơn là 'No, they won't.'");
+  }
+
+  // --- Q4 (Part B2 - Question & Answer) ---
+  {
+    const ans = getAnswer("q4");
+    const isQOk = ans && normalizeText(ans.q1) === "will" && normalizeText(ans.q2) === "be";
+    const isAOk = ans && normalizeText(ans.a1) === "yes" && normalizeText(ans.a2) === "it" && normalizeText(ans.a3) === "will";
+    const isOk = isQOk && isAOk;
+    if (isOk) correctCount++;
+    const userStr = ans ? `Hỏi: ${ans.q1 || "_"} it ${ans.q2 || "_"} sunny? | Đáp: ${ans.a1 || "_"}, ${ans.a2 || "_"} ${ans.a3 || "_"}.` : "Chưa làm";
+    renderFeedback("q4", isOk, userStr, "Will it be sunny? / Yes, it will.", "Cấu trúc câu hỏi Yes/No: Will + it + be + sunny? Trả lời khẳng định: Yes, it will.");
+  }
+
+  // --- Q5 (Part B3 - Question & Answer) ---
+  {
+    const ans = getAnswer("q5");
+    const isQOk = ans && normalizeText(ans.q1) === "will" && normalizeText(ans.q2) === "help";
+    const isAOk = ans && normalizeText(ans.a1) === "yes" && normalizeText(ans.a2) === "he" && normalizeText(ans.a3) === "will";
+    const isOk = isQOk && isAOk;
+    if (isOk) correctCount++;
+    const userStr = ans ? `Hỏi: ${ans.q1 || "_"} he ${ans.q2 || "_"} the old woman? | Đáp: ${ans.a1 || "_"}, ${ans.a2 || "_"} ${ans.a3 || "_"}.` : "Chưa làm";
+    renderFeedback("q5", isOk, userStr, "Will he help the old woman? / Yes, he will.", "Cấu trúc câu hỏi Yes/No: Will + he + help the old woman? Trả lời: Yes, he will.");
+  }
+
+  // --- Q6 (Part B4 - Question & Answer) ---
+  {
+    const ans = getAnswer("q6");
+    const isQOk = ans && normalizeText(ans.q1) === "what" && normalizeText(ans.q2) === "will";
+    const isAOk = ans && normalizeText(ans.a1) === "she" && normalizeText(ans.a2) === "will" && normalizeText(ans.a3) === "buy";
+    const isOk = isQOk && isAOk;
+    if (isOk) correctCount++;
+    const userStr = ans ? `Hỏi: ${ans.q1 || "_"} ${ans.q2 || "_"} she do? | Đáp: ${ans.a1 || "_"} ${ans.a2 || "_"} ${ans.a3 || "_"} ice cream.` : "Chưa làm";
+    renderFeedback("q6", isOk, userStr, "What will she do? / She will buy ice cream.", "Câu hỏi có từ để hỏi 'What': What + will + she + do? Trả lời: She will buy ice cream.");
+  }
+
+  // --- Q7 (Part B5 - Question & Answer) ---
+  {
+    const ans = getAnswer("q7");
+    const isQOk = ans && normalizeText(ans.q1) === "what" && normalizeText(ans.q2) === "will";
+    const isAOk = ans && (normalizeText(ans.a1) === "i") && normalizeText(ans.a2) === "will" && normalizeText(ans.a3) === "be";
+    const isOk = isQOk && isAOk;
+    if (isOk) correctCount++;
+    const userStr = ans ? `Hỏi: ${ans.q1 || "_"} ${ans.q2 || "_"} you be? | Đáp: ${ans.a1 || "_"} ${ans.a2 || "_"} ${ans.a3 || "_"} a police officer.` : "Chưa làm";
+    renderFeedback("q7", isOk, userStr, "What will you be? / I will be a police officer.", "Hỏi 'What will you be?' thì trả lời 'I will be a police officer.'");
+  }
+
+  // --- Q8 (Part C2) ---
+  {
+    const ans = getAnswer("q8");
+    const isWordOk = ans && normalizeText(ans.w1) === "what" && normalizeText(ans.w2) === "will";
+    const isMatchOk = ans && normalizeText(ans.match) === "a";
+    const isOk = isWordOk && isMatchOk;
+    if (isOk) correctCount++;
+    const userStr = ans ? `${ans.w1 || "_"} ${ans.w2 || "_"} they do this Sunday? -> [${ans.match || "_"}]` : "Chưa làm";
+    renderFeedback("q8", isOk, userStr, "What will / Đáp án: a (They will go to the zoo this Sunday.)", "Hỏi 'What will they do this Sunday?' khớp với câu trả lời a: 'They will go to the zoo this Sunday.'");
+  }
+
+  // --- Q9 (Part C3) ---
+  {
+    const ans = getAnswer("q9");
+    const isWordOk = ans && normalizeText(ans.w1) === "what" && normalizeText(ans.w2) === "will";
+    const isMatchOk = ans && normalizeText(ans.match) === "d";
+    const isOk = isWordOk && isMatchOk;
+    if (isOk) correctCount++;
+    const userStr = ans ? `${ans.w1 || "_"} ${ans.w2 || "_"} he be in the future? -> [${ans.match || "_"}]` : "Chưa làm";
+    renderFeedback("q9", isOk, userStr, "What will / Đáp án: d (He will be a doctor in the future.)", "Hỏi 'What will he be in the future?' khớp với câu d: 'He will be a doctor in the future.'");
+  }
+
+  // --- Q10 (Part C4) ---
+  {
+    const ans = getAnswer("q10");
+    const isWordOk = ans && normalizeText(ans.w1) === "what" && normalizeText(ans.w2) === "will";
+    const isMatchOk = ans && normalizeText(ans.match) === "b";
+    const isOk = isWordOk && isMatchOk;
+    if (isOk) correctCount++;
+    const userStr = ans ? `${ans.w1 || "_"} ${ans.w2 || "_"} you be in the future? -> [${ans.match || "_"}]` : "Chưa làm";
+    renderFeedback("q10", isOk, userStr, "What will / Đáp án: b (I will be a pianist in the future.)", "Hỏi 'What will you be in the future?' khớp với câu b: 'I will be a pianist in the future.'");
+  }
+
+  // --- Q11 to Q15 (Part D: Word Order) ---
+  wordOrderData.forEach(item => {
+    const rawAns = getAnswer(item.id);
+    let isOk = false;
+    if (rawAns) {
+      const normUser = normalizeText(rawAns);
+      isOk = item.acceptedAnswers.some(acc => normalizeText(acc) === normUser);
+    }
+    if (isOk) correctCount++;
+    renderFeedback(item.id, isOk, rawAns, item.correctAnswer, item.explanation);
+  });
+
+  // --- Q16 (Part E2) ---
+  {
+    const ans = getAnswer("q16");
+    const norm = normalizeText(ans);
+    const isOk = norm === normalizeText("Will they be teachers next year?");
+    if (isOk) correctCount++;
+    renderFeedback("q16", isOk, ans, "Will they be teachers next year?", "Sau trợ động từ 'Will', động từ to-be phải ở dạng nguyên thể 'be', không dùng 'are'.");
+  }
+
+  // --- Q17 (Part E3) ---
+  {
+    const ans = getAnswer("q17");
+    const norm = normalizeText(ans);
+    const isOk = norm === normalizeText("Will she make sandwiches?");
+    if (isOk) correctCount++;
+    renderFeedback("q17", isOk, ans, "Will she make sandwiches?", "Sau 'Will + chủ ngữ', động từ phải ở dạng nguyên thể không chia: 'make' (bỏ 's').");
+  }
+
+  // --- Q18 (Part E4) ---
+  {
+    const ans = getAnswer("q18");
+    const norm = normalizeText(ans);
+    const isOk = norm === normalizeText("Will he be busy next Monday?");
+    if (isOk) correctCount++;
+    renderFeedback("q18", isOk, ans, "Will he be busy next Monday?", "Trật tự câu hỏi Yes/No: Will + Chủ ngữ (he) + Động từ nguyên thể (be) + busy next Monday?");
+  }
+
+  // --- Q19 (Part E5) ---
+  {
+    const ans = getAnswer("q19");
+    const norm = normalizeText(ans);
+    const isOk = norm === normalizeText("What will she do next weekend?");
+    if (isOk) correctCount++;
+    renderFeedback("q19", isOk, ans, "What will she do next weekend?", "Sau 'What will she...', động từ chính phải là 'do' (nguyên thể), không dùng 'does'.");
+  }
+
+  // --- Q20 (Part E6) ---
+  {
+    const ans = getAnswer("q20");
+    const norm = normalizeText(ans);
+    const isOk = norm === normalizeText("What will you be in the future?");
+    if (isOk) correctCount++;
+    renderFeedback("q20", isOk, ans, "What will you be in the future?", "Từ để hỏi 'What' phải đứng ở đầu câu: What + will + you + be in the future?");
+  }
+
+  // Lock all inputs and options
+  lockEntireForm();
+
+  // Show score card
+  const scoreCard = document.getElementById("scoreCard");
+  const scoreFraction = document.getElementById("scoreFraction");
+  const scoreMsg = document.getElementById("scoreMsg");
+
+  scoreFraction.textContent = `Điểm của em: ${correctCount}/${TOTAL_QUESTIONS} ⭐`;
+  if (correctCount === TOTAL_QUESTIONS) {
+    scoreMsg.textContent = "Xuất sắc! Em đã nắm vững toàn bộ kiến thức thì Tương lai đơn Unit 14! 🎉";
+    scoreMsg.style.color = "var(--success)";
+  } else if (correctCount >= TOTAL_QUESTIONS * 0.7) {
+    scoreMsg.textContent = "Rất tốt! Em hãy đọc kỹ phần chữa bài bên dưới để rút kinh nghiệm nhé! 👍";
+    scoreMsg.style.color = "var(--primary)";
+  } else {
+    scoreMsg.textContent = "Em hãy xem kỹ phần giải thích chi tiết và nhấn 'LÀM LẠI' để luyện tập thêm nhé! 💪";
+    scoreMsg.style.color = "var(--warning)";
+  }
+  scoreCard.classList.add("show");
+  scoreCard.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  // Toggle buttons
+  document.getElementById("btnSubmit").style.display = "none";
+  document.getElementById("btnReset").style.display = "inline-flex";
+}
+
+function lockEntireForm() {
+  // Disable all text inputs
+  const inputs = document.querySelectorAll('input[type="text"]');
+  inputs.forEach(inp => inp.disabled = true);
+
+  // Disable all radios
+  const radios = document.querySelectorAll('input[type="radio"]');
+  radios.forEach(r => r.disabled = true);
+
+  const labels = document.querySelectorAll('.option-label');
+  labels.forEach(l => l.classList.add("disabled"));
+
+  // Disable word chips
+  const chips = document.querySelectorAll('.word-chip');
+  chips.forEach(c => c.classList.add("disabled"));
+}
+
+function handleReset() {
+  submitted = false;
+
+  // Unlock and clear text inputs
+  const inputs = document.querySelectorAll('input[type="text"]');
+  inputs.forEach(inp => {
+    inp.disabled = false;
+    inp.value = "";
+  });
+
+  // Unlock and uncheck radios
+  const radios = document.querySelectorAll('input[type="radio"]');
+  radios.forEach(r => {
+    r.disabled = false;
+    r.checked = false;
+  });
+
+  const labels = document.querySelectorAll('.option-label');
+  labels.forEach(l => l.classList.remove("disabled"));
+
+  // Reset Word Order selection states while PRESERVING wordOrderMode
+  userWordSelections = { q11: [], q12: [], q13: [], q14: [], q15: [] };
+  wordOrderData.forEach(item => {
+    shuffledTokenMap[item.id] = shuffleArray(item.originalTokens);
+  });
+  renderWordOrderSection();
+
+  // Reset feedback boxes and card styles
+  for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+    const card = document.getElementById(`card_q${i}`);
+    if (card) {
+      card.className = "q-card";
+    }
+    const box = document.getElementById(`feedback_q${i}`);
+    if (box) {
+      box.className = "feedback-box";
+      box.innerHTML = "";
+    }
+  }
+
+  // Hide score card
+  const scoreCard = document.getElementById("scoreCard");
+  scoreCard.classList.remove("show");
+
+  // Toggle buttons
+  document.getElementById("btnSubmit").style.display = "inline-flex";
+  document.getElementById("btnReset").style.display = "none";
+
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// Initial boot
+document.addEventListener("DOMContentLoaded", () => {
+  renderWordOrderSection();
+});
+</script>
+</body>
+</html>
