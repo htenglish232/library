@@ -13,8 +13,14 @@
   function closeConfirmation() {
     const modals = (config.modals || []).map(byId).filter(Boolean);
     modals.filter(modal => !modals.some(parent => parent !== modal && parent.contains(modal))).forEach(modal => {
-      if (modal.tagName === 'DIALOG' && modal.open) modal.close();
-      else modal.classList.add('hidden');
+      if (modal.tagName === 'DIALOG') {
+        // Native dialogs hide themselves when closed. A CSS .hidden class would
+        // keep the next showModal() invisible after the student enters a name.
+        if (modal.open) modal.close();
+        modal.classList.remove('hidden');
+      } else {
+        modal.classList.add('hidden');
+      }
     });
   }
   function check() {
