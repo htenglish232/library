@@ -114,10 +114,12 @@ Nếu tài liệu danh mục chưa tồn tại, ứng dụng báo cần Admin nh
 - Chưa kiểm tra Safari/iOS/Firefox trực tiếp. Chưa công bố hoặc kiểm chứng website thật.
 - Bảo vệ bằng Firebase áp dụng cho danh mục/quyền giáo viên và Admin. Các bài HTML/audio trên GitHub Pages vẫn là file công khai có thể mở trực tiếp theo thiết kế hiện tại; không tuyên bố khóa file bằng Auth. GitHub repository/public asset nguồn cũng không phải kho bí mật.
 - Phiên bản Admin cũ không đọc được metadata release dạng mới sau khi Admin chủ động tiếp nhận; cần sử dụng bộ mã đã khôi phục đồng bộ, tải lại các tab/gói Admin cũ. Mọi snapshot lịch sử vẫn được giữ nguyên.
-- GitHub API trả `Forbidden` trong môi trường. Việc tạo PR tự động phải được xác nhận bằng API; nếu vẫn bị chặn, nhánh đã đẩy là bản review và cần tạo PR qua giao diện GitHub. Không coi link compare/create là PR đã tạo.
+- Đã push nhánh thử nghiệm và thử POST tạo draft PR vào `main`; GitHub API trả `Forbidden`. Chưa có PR được tạo. Nhánh đã đẩy là bản review, cần tạo PR qua giao diện GitHub. Không coi link compare/create là PR đã tạo.
 
 ## 7. Bàn giao
 
-Main không thay đổi. Chỉ commit/push `restore-firebase-auth`. Không merge hoặc triển khai. Review tất cả thay đổi ở [compare với main](https://github.com/htenglish232/library/compare/main...restore-firebase-auth?expand=1).
+Main không thay đổi và vẫn ở `946b05b6d128cd88ac8ba09431cb645ae80a453d`. Chỉ commit/push `restore-firebase-auth`. Không merge hoặc triển khai. Nhánh backup đã được xác nhận trên GitHub. Gói Windows Admin đã được tạo lại từ bộ mã vừa kiểm thử và xác minh nội dung/checksum.
+
+Review và tạo PR tại [compare với main](https://github.com/htenglish232/library/compare/main...restore-firebase-auth?expand=1), chọn **Create pull request**. Đây là trang tạo PR, không phải PR đã tồn tại; phần tạo PR tự động đang bị chặn bởi API.
 
 Trước khi merge/publish, cần xác minh trạng thái Firebase thật bằng Console/phiên Google hợp lệ, đối chiếu Rules và dữ liệu hiện có. Mọi cập nhật Rules production cần phê duyệt riêng. Nhánh có workflow kiểm tra không deploy; workflow Pages khôi phục chỉ chạy thủ công trên main với câu xác nhận.
