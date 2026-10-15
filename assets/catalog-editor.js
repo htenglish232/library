@@ -1,4 +1,4 @@
-import { addReleaseLessons, RELEASE_ID } from './catalog-release.js';
+import { addReleaseLessons, RELEASE_IDS } from './catalog-release.js';
 import { db, auth } from './firebase-client.js';
 import { ADMIN_UID, firebaseConfig, useEmulators } from './firebase-config.js';
 import { collection, doc, getDocsFromServer, getDocFromServer } from './firebase-sdk.js';
@@ -101,7 +101,7 @@ async function reload() {
 }
 $('reload-catalog').addEventListener('click', reload);
 $('add-release-lessons').addEventListener('click', () => change(() => {
-  draft = addReleaseLessons(draft).data; applyRelease = RELEASE_ID;
+  draft = addReleaseLessons(draft).data; applyRelease = RELEASE_IDS;
 }));
 $('grade-select').addEventListener('change', event => { gradeIndex = Number(event.target.value); unitIndex = 0; resetLesson(); render(); });
 $('unit-select').addEventListener('change', event => { unitIndex = Number(event.target.value); resetLesson(); render(); });

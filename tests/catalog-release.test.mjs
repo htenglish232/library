@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {addReleaseLessons, RELEASE_ADDITIONS, RELEASE_ID, releaseCatalogView} from '../assets/catalog-release.js';
+import {addReleaseLessons, RELEASE_ADDITIONS, RELEASE_ID, RELEASE_IDS, IELTS_RELEASE_ID, releaseCatalogView} from '../assets/catalog-release.js';
 import {decodeCatalog, managedPayload, encodeCatalogData} from '../assets/catalog-data.js';
 const legacy=JSON.parse(readFileSync('catalog/library-catalog.json','utf8')).data;
 const current=JSON.parse(readFileSync('catalog/current-library-catalog.json','utf8')).data;
@@ -20,7 +20,7 @@ test('server edits, hidden grades/folders/lessons and renamed folders remain int
  const preserved=result.data.find(g=>g.grade==='Khối 5');
  assert.equal(preserved.hidden,true);assert.equal(preserved.units[0].hidden,true);
  assert.deepEqual(preserved.units[0].lessons.find(l=>l.href===patch.lesson.href),grade.units[0].lessons.at(-1));
- assert.deepEqual(result.data.at(-1),data.at(-1));
+ assert.deepEqual(result.data.find(g=>g.grade==='Grade 9'),data.at(-1));
  assert.equal(result.added,RELEASE_ADDITIONS.length-1);
 });
 test('adding new main links does not resurrect deleted legacy links',()=>{
@@ -45,4 +45,19 @@ test('malformed release metadata is rejected without weakening legacy hashes',as
  const payload=await managedPayload(current);
  await assert.rejects(decodeCatalog({...payload,dataJson:JSON.stringify({data:current,releaseApplied:['invalid']})}));
  await assert.rejects(decodeCatalog({...payload,dataJson:JSON.stringify({data:current,releaseApplied:[],extra:true})}));
+});
+
+test('IELTS release preserves deletions from a previously adopted Grade 5 release',async()=>{
+ const data=structuredClone(current);
+ const lessons=data.find(g=>g.grade==='Grade 5').units[0].lessons;
+ const removed=lessons.shift().href;
+ lessons.splice(lessons.findIndex(l=>l.href===RELEASE_ADDITIONS[0].lesson.href),1);
+ data.pop();
+ const fields={...await managedPayload(data),dataJson:encodeCatalogData(data,[RELEASE_ID])};
+ const result=releaseCatalogView(fields,data);
+ assert.equal(result.at(-1).grade,'Apps for IELTS');
+ assert.ok(!result.flatMap(g=>g.units.flatMap(u=>u.lessons)).some(l=>[removed,RELEASE_ADDITIONS[0].lesson.href].includes(l.href)));
+ const adopted=result.filter(g=>g.grade!=='Apps for IELTS');
+ assert.deepEqual(releaseCatalogView({...fields,dataJson:encodeCatalogData(adopted,RELEASE_IDS)},adopted),adopted);
+ assert.ok(RELEASE_IDS.includes(IELTS_RELEASE_ID));
 });

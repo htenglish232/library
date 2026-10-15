@@ -25,7 +25,9 @@ export async function saveCatalog(data, base, applyRelease = null) {
   if (!base?.token) throw new Error('Phải tải danh mục từ Firebase trước khi sửa.');
   const payload = await managedPayload(data);
   const releaseApplied = storedCatalogData(base.fields).releaseApplied;
-  if (applyRelease && !releaseApplied.includes(applyRelease)) releaseApplied.push(applyRelease);
+  for (const id of (Array.isArray(applyRelease) ? applyRelease : applyRelease ? [applyRelease] : [])) {
+    if (!releaseApplied.includes(id)) releaseApplied.push(id);
+  }
   const dataJson = encodeCatalogData(payload.data, releaseApplied);
   const target = doc(db, 'libraryCatalog', 'current');
   await runTransaction(db, async tx => {
