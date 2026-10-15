@@ -87,11 +87,22 @@ with sync_playwright() as p:
     data=release['data']
     baseline_context,baseline_page=new_page(); baseline_page.goto(BASE+'baseline-index.html')
     for grade in data:
+        if grade['grade']=='Apps for IELTS': continue
         teacher.get_by_role('button',name=grade['grade'],exact=True).click()
         baseline_page.get_by_role('button',name=grade['grade'],exact=True).click()
         expected=baseline_page.locator('a.lesson').evaluate_all('(els)=>els.map(e=>e.getAttribute("href"))')
         actual=teacher.locator('a.lesson').evaluate_all('(els)=>els.map(e=>e.getAttribute("href"))')
         assert actual==expected,(grade['grade'],'catalog order')
+    teacher.get_by_role('button',name='Apps for IELTS',exact=True).click()
+    teacher.locator('.folder-head').click()
+    ielts=teacher.locator('a.lesson').filter(has_text='Luyện viết IELTS')
+    expect(ielts).to_be_visible()
+    assert ielts.get_attribute('href')=='Apps for IELTS/Luyện viết IELTS.html'
+    app_response=teacher.request.get(BASE+ielts.get_attribute('href'))
+    assert app_response.status==200 and 'IELTS Writing Practice' in app_response.text()
+    teacher.locator('#search').fill('Luyện viết')
+    expect(teacher.locator('a.lesson').filter(has_text='Luyện viết IELTS')).to_be_visible()
+    teacher.locator('#search').fill('')
     baseline_context.close()
     count+=1; print('PASS active teacher sees the exact current-main catalog and original UI order',flush=True)
     restricted_context,restricted=new_page(); login(restricted,'active@example.test',path='admin.html')
@@ -286,7 +297,7 @@ with sync_playwright() as p:
     expect(admin.locator('#editor-message')).to_contain_text('phiên bản 12')
     expect(teacher.locator('#stats')).to_have_text(str(release['count'])+' bài học')
     adopted=admin.evaluate("""async()=>{const {loadCatalog}=await import('./assets/catalog-store.js');return (await loadCatalog()).fields}""")
-    assert adopted['count']==release['count'] and json.loads(adopted['dataJson'])['releaseApplied']==[baseline]
+    assert adopted['count']==release['count'] and json.loads(adopted['dataJson'])['releaseApplied']==[baseline,'c16c5eb75c40c0b52a58622a499b446ae1fdd356']
     original_archive=admin.evaluate("""async()=>{const {db}=await import('./assets/firebase-client.js');const {doc,getDocFromServer}=await import('./assets/firebase-sdk.js');return (await getDocFromServer(doc(db,'libraryCatalogHistory','11'))).data().snapshot}""")
     assert original_archive==before_release
     admin.locator('#grade-select').select_option('1');admin.locator('#unit-select').select_option('0')

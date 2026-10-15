@@ -2,7 +2,6 @@ import { visibleCatalog } from './catalog-data.js';
 const tabs=document.getElementById('tabs'), content=document.getElementById('content'), search=document.getElementById('search'), empty=document.getElementById('empty'), stats=document.getElementById('stats');
 let current=0;
 let DATA = [];
-let managed = false;
 function escape(value) { return value.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function updateStats() { const total=DATA.reduce((n,g)=>n+g.units.reduce((m,u)=>m+u.lessons.length,0),0); stats.textContent=`${total} bài học`; }
 function toggle(el){ el.classList.toggle('open'); }
@@ -19,7 +18,7 @@ export function render(q=''){
    const grouped = (g.grade === 'Grade 4' || g.grade === 'Grade 5')
      ? g.units.every(u => u.name === 'Bổ trợ ngữ pháp')
      : g.units.every(u => u.type === 'exam-folder' || / · Unit \d+/i.test(u.name));
-   if (managed && !grouped) {
+   if (!grouped) {
      for (const u of g.units) {
        const lessons = u.lessons.filter(l => !q || `${g.grade} ${u.name} ${escape(l.title)}`.toLowerCase().includes(needle));
        if (!lessons.length) continue;
@@ -88,7 +87,7 @@ export function render(q=''){
 search.addEventListener('input',()=>render(search.value.trim()));
 export function setCatalog(data, schemaVersion = 1) {
   const selected = DATA[current]?.grade, query = search.value;
-  DATA = visibleCatalog(data); managed = schemaVersion === 2;
+  DATA = visibleCatalog(data);
   current = Math.max(0, DATA.findIndex(g => g.grade === selected));
   search.value = selected ? query : ''; updateStats(); render(search.value.trim());
 }

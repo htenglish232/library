@@ -59,11 +59,20 @@ export const RELEASE_ADDITIONS = [
   }
 ];
 
-export function addReleaseLessons(serverData) {
+export const IELTS_RELEASE_ID = 'c16c5eb75c40c0b52a58622a499b446ae1fdd356';
+export const RELEASE_IDS = [RELEASE_ID, IELTS_RELEASE_ID];
+const previousAdditions = RELEASE_ADDITIONS.length;
+RELEASE_ADDITIONS.push({
+  grade: 'Apps for IELTS', unit: 'IELTS Writing',
+  lesson: {title: 'Luyện viết IELTS', href: 'Apps for IELTS/Luyện viết IELTS.html'}
+});
+
+export function addReleaseLessons(serverData, applied = []) {
   const data = structuredClone(serverData);
   const existing = new Set(data.flatMap(g => g.units.flatMap(u => u.lessons.map(l => l.href))));
   let added = 0;
-  for (const patch of RELEASE_ADDITIONS) {
+  for (const [index, patch] of RELEASE_ADDITIONS.entries()) {
+    if (applied.includes(index < previousAdditions ? RELEASE_ID : IELTS_RELEASE_ID)) continue;
     if (existing.has(patch.lesson.href)) continue; // Includes already-hidden lessons.
     const prefix = patch.lesson.href.slice(0, patch.lesson.href.lastIndexOf('/') + 1);
     let grade = data.find(g => g.grade === patch.grade) || data.find(g => g.units.some(u => u.lessons.some(l => l.href.startsWith(prefix))));
@@ -78,6 +87,5 @@ export function addReleaseLessons(serverData) {
 }
 
 export function releaseCatalogView(fields, serverData) {
-  return storedCatalogData(fields).releaseApplied.includes(RELEASE_ID)
-    ? structuredClone(serverData) : addReleaseLessons(serverData).data;
+  return addReleaseLessons(serverData, storedCatalogData(fields).releaseApplied).data;
 }
