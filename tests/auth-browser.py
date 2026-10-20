@@ -92,7 +92,26 @@ with sync_playwright() as p:
         baseline_page.get_by_role('button',name=grade['grade'],exact=True).click()
         expected=baseline_page.locator('a.lesson').evaluate_all('(els)=>els.map(e=>e.getAttribute("href"))')
         actual=teacher.locator('a.lesson').evaluate_all('(els)=>els.map(e=>e.getAttribute("href"))')
-        assert actual==expected,(grade['grade'],'catalog order')
+        game_href='grade-8/De_thi_GHK1/1_THCS Truc Tuan/truc-tuan-game-test.html'
+        assert [href for href in actual if href!=game_href]==expected,(grade['grade'],'original catalog order')
+        if grade['grade']=='Grade 8':
+            original='grade-8/De_thi_GHK1/1_THCS Truc Tuan/1. THCS Truc Tuan.html'
+            assert actual[actual.index(original)+1]==game_href
+    teacher.get_by_role('button',name='Grade 8',exact=True).click()
+    teacher.locator('.folder').filter(has=teacher.get_by_role('heading',name='Đề thi GHK1',exact=True)).locator('.folder-head').click()
+    game=teacher.locator('a.lesson').filter(has_text='Game luyện đề · THCS Trực Tuấn (42 câu)')
+    expect(game).to_be_visible()
+    game.click()
+    expect(teacher.locator('#welcome')).to_be_visible()
+    teacher.locator('#student-name').fill('Học sinh mở từ thư viện')
+    teacher.locator('#start-form button').click()
+    expect(teacher.locator('#journey-count')).to_have_text('0/42 câu đã luyện')
+    teacher.go_back()
+    expect(teacher.locator('#library')).to_be_visible()
+    teacher.get_by_role('button',name='Grade 8',exact=True).click()
+    teacher.locator('#search').fill('Game luyện đề')
+    expect(teacher.locator('a.lesson').filter(has_text='Game luyện đề · THCS Trực Tuấn (42 câu)')).to_be_visible()
+    teacher.locator('#search').fill('')
     teacher.get_by_role('button',name='Apps for IELTS',exact=True).click()
     teacher.locator('.folder-head').click()
     ielts=teacher.locator('a.lesson').filter(has_text='Luyện viết IELTS')
@@ -297,7 +316,7 @@ with sync_playwright() as p:
     expect(admin.locator('#editor-message')).to_contain_text('phiên bản 12')
     expect(teacher.locator('#stats')).to_have_text(str(release['count'])+' bài học')
     adopted=admin.evaluate("""async()=>{const {loadCatalog}=await import('./assets/catalog-store.js');return (await loadCatalog()).fields}""")
-    assert adopted['count']==release['count'] and json.loads(adopted['dataJson'])['releaseApplied']==[baseline,'c16c5eb75c40c0b52a58622a499b446ae1fdd356']
+    assert adopted['count']==release['count'] and json.loads(adopted['dataJson'])['releaseApplied']==[baseline,'c16c5eb75c40c0b52a58622a499b446ae1fdd356','534b1a208c7893c70f0662515e7081feec8755b5']
     original_archive=admin.evaluate("""async()=>{const {db}=await import('./assets/firebase-client.js');const {doc,getDocFromServer}=await import('./assets/firebase-sdk.js');return (await getDocFromServer(doc(db,'libraryCatalogHistory','11'))).data().snapshot}""")
     assert original_archive==before_release
     admin.locator('#grade-select').select_option('1');admin.locator('#unit-select').select_option('0')
