@@ -161,7 +161,7 @@
     if(!isLocked(a))return;
     const correct=correctNow(a),note=notes[q.id];
     $('feedback').classList.toggle('is-wrong',!correct);
-    $('feedback-title').textContent=correct?(state.review?'✓ Chính xác! Em đã tiến bộ.':'✓ Chính xác! +10 XP'):(q.kind==='text'?'↻ Chưa khớp đáp án mẫu':'↻ Cùng tìm hiểu đáp án nhé!');
+    $('feedback-title').textContent=correct?(state.review?'✓ Chính xác! Em đã tiến bộ.':'✓ Chính xác! +10 XP'):(q.kind==='text'?'↻ Chưa khớp đáp án mẫu':note.teacher?'↻ Chưa khớp đáp án nguồn · cần đối chiếu':'↻ Chưa đúng. Cùng tìm hiểu nhé!');
     const userAnswer=q.kind==='rearrange'?a.tokens.map(i=>q.tokens[i]).join(' '):a.draft;
     $('your-answer').textContent=`Em đã trả lời: ${userAnswer}`;
     addExplanation('Đáp án đúng theo nguồn',q.source.label);
@@ -174,6 +174,7 @@
       const quotes=[...doc.querySelectorAll('em')].map(el=>el.textContent);
       const evidence=quotes.length?quotes.join(' '):(q.passage===0?'Đối chiếu chỗ trống và các từ đứng trước/sau trong đoạn văn bên cạnh.':'Đọc lại lời giải và đoạn văn bên cạnh.');
       addExplanation(q.passage===0?'Căn cứ từ ngữ cảnh / cấu trúc':'Dẫn chứng trong bài đọc',evidence);
+      addExplanation('Từ khóa cần nhớ',window.HT_GAME_READING_WORDS[q.id]);
     }
     if(q.kind==='text')$('explanation-content').append(text('p','Chấm tự động chỉ đối chiếu đáp án mẫu và các cách viết được nêu rõ trong nguồn; không kết luận mọi cách diễn đạt khác đều sai. Hãy nhờ giáo viên xem lại nếu cần.','teacher-note'));
     if(note.teacher)$('explanation-content').append(text('p',`Giáo viên cần xác nhận: ${note.teacher}`,'teacher-note'));

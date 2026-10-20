@@ -87,7 +87,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
 server = http.server.ThreadingHTTPServer(('127.0.0.1', 0), functools.partial(Handler, directory=str(ROOT)))
 threading.Thread(target=server.serve_forever, daemon=True).start()
 base = f'http://127.0.0.1:{server.server_port}/'
-path = quote(RELATIVE + 'truc-tuan-game-test.html')
+path = quote(RELATIVE + 'truc-tuan-game-test.html') + ('?pilot=1' if args.pilot else '')
 checks = []
 errors = []
 external = []
@@ -120,6 +120,11 @@ try:
         assert actual_source == expected_source, 'Generated source must match ALL original content, not just count.'
         assert page.evaluate('Object.keys(window.HT_GAME_NOTES).length') == 42
         assert page.locator('#transcript-content').inner_text() == ''
+        for width in [360,390,768,820,1280]:
+            page.set_viewport_size({'width':width,'height':900})
+            assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),(width,'welcome overflow')
+            if width in [390,1280]:
+                page.screenshot(path=str(ARTIFACTS/f'{"pilot" if args.pilot else "full"}-welcome-{width}.png'),full_page=True)
         passed('page opens; all 42 source questions/answers/options/explanations/notes/passages/transcripts/tokens and original file hashes match')
         page.locator('#start-form button').click()
         expect(page.locator('#name-error')).to_contain_text('nhập tên')
@@ -266,6 +271,11 @@ try:
                     expect(page.locator('#transcript-panel')).to_be_hidden()
                     page.wait_for_function('document.querySelector("audio").readyState >= 1')
                     assert page.locator('audio').evaluate('(a)=>a.duration') > 30
+                    if q['id']=='q7':
+                        page.locator('#audio-toggle').click()
+                        page.wait_for_function('!document.querySelector("audio").paused')
+                        page.locator('#audio-toggle').click()
+                        assert page.locator('audio').evaluate('(a)=>a.paused')
                 if q['section'] == 'reading':
                     expect(page.locator('#passage-panel')).to_be_visible()
                 if q['id'] == 'q13':
@@ -282,6 +292,8 @@ try:
                     for i in indices:
                         page.locator(f'#word-bank button[data-token-index="{i}"]').click()
                 check()
+                if q['section']=='reading':
+                    expect(page.locator('#explanation-content')).to_contain_text('Từ khóa cần nhớ')
                 expect(page.locator('#feedback')).to_have_class(re.compile('is-wrong') if q['id']=='q29' else re.compile(r'^feedback(?: celebrate)?$'))
                 if q['id'] in ['q12','q13','q19','q29','q40']:
                     expect(page.locator('#explanation-content')).to_contain_text('Giáo viên cần xác nhận')
@@ -324,6 +336,8 @@ try:
                 assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'), (width,screen,'horizontal overflow')
                 if screen=='reading':
                     expect(page.locator('#passage-panel')).to_be_visible()
+                    page.locator('#check-answer').scroll_into_view_if_needed()
+                    assert page.locator('#passage-panel').evaluate('(el)=>{const r=el.getBoundingClientRect();return r.top<innerHeight && r.bottom>0;}'),(width,'passage not on screen while answering')
                 if width in [390,1280] and screen in ['menu','reading','results']:
                     page.screenshot(path=str(ARTIFACTS/f'{"pilot" if args.pilot else "full"}-{screen}-{width}.png'),full_page=True)
         passed('all main screens responsive at 360, 390, 768, 820 and 1280px; reading remains visible; screenshots saved')

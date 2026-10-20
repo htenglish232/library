@@ -53,3 +53,16 @@ window.HT_GAME_TEXT_VARIANTS = {
  q33:['Yes, he does.', 'Yes.'],
  q40:['runs more slowly than yours.', 'runs more slowly than your bike.', 'runs slower than yours.']
 };
+
+window.HT_GAME_READING_WORDS = {
+ q26:'leisure activities = các hoạt động giải trí; one of = một trong số; them = họ/chúng (đại từ tân ngữ).',
+ q27:'increase = tăng cường; strength = sức mạnh/thể lực; enjoy nature = tận hưởng thiên nhiên.',
+ q28:'backyard = sân sau; inside = bên trong (giới từ); indoor = trong nhà (tính từ).',
+ q29:'keep fit / stay fit = giữ cơ thể khỏe mạnh, cân đối. Cả hai cụm đều có nghĩa phù hợp; xem lưu ý giáo viên.',
+ q30:'equipment = thiết bị; effectively = một cách hiệu quả (trạng từ); effective = có hiệu quả (tính từ).',
+ q31:'collect water = lấy nước; feed the chickens = cho gà ăn; river = dòng sông.',
+ q32:'gather = tụ tập; community hall = nhà văn hóa cộng đồng; at the weekend = vào cuối tuần.',
+ q33:'market town = thị trấn có chợ; nearby = gần đó; home products = sản phẩm gia đình làm ra.',
+ q34:'take a ride = đi một chuyến; electric train = xe điện; town square = quảng trường thị trấn.',
+ q35:'dream of = mơ về; faraway places = những nơi xa xôi; the Milky Way = dải Ngân Hà.'
+};
