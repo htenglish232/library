@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {addReleaseLessons, RELEASE_ADDITIONS, RELEASE_ID, RELEASE_IDS, IELTS_RELEASE_ID, releaseCatalogView} from '../assets/catalog-release.js';
+import {addReleaseLessons, RELEASE_ADDITIONS, RELEASE_ID, RELEASE_IDS, IELTS_RELEASE_ID, GAME_RELEASE_ID, releaseCatalogView} from '../assets/catalog-release.js';
 import {decodeCatalog, managedPayload, encodeCatalogData} from '../assets/catalog-data.js';
 const legacy=JSON.parse(readFileSync('catalog/library-catalog.json','utf8')).data;
 const current=JSON.parse(readFileSync('catalog/current-library-catalog.json','utf8')).data;
@@ -60,4 +60,26 @@ test('IELTS release preserves deletions from a previously adopted Grade 5 releas
  const adopted=result.filter(g=>g.grade!=='Apps for IELTS');
  assert.deepEqual(releaseCatalogView({...fields,dataJson:encodeCatalogData(adopted,RELEASE_IDS)},adopted),adopted);
  assert.ok(RELEASE_IDS.includes(IELTS_RELEASE_ID));
+});
+
+test('game link is inserted beside the original and respects prior release deletions',async()=>{
+ const game=RELEASE_ADDITIONS.at(-1),data=structuredClone(current);
+ const grade=data.find(g=>g.grade==='Grade 8');
+ const folder=grade.units.find(u=>u.name==='Đề thi GHK1');
+ const original=folder.lessons.findIndex(l=>l.title==='Đề 01 · THCS Trực Tuấn');
+ assert.equal(folder.lessons[original+1].href,game.lesson.href);
+ folder.hidden=true;
+ folder.lessons=folder.lessons.filter(l=>l.href!==game.lesson.href);
+ data.find(g=>g.grade==='Grade 5').units[0].lessons.shift();
+ data.splice(data.findIndex(g=>g.grade==='Apps for IELTS'),1);
+ const previous=structuredClone(data);
+ const fields={...await managedPayload(data),dataJson:encodeCatalogData(data,[RELEASE_ID,IELTS_RELEASE_ID])};
+ const view=releaseCatalogView(fields,data);
+ assert.deepEqual(data,previous);
+ assert.equal(view.find(g=>g.grade==='Grade 8').units.find(u=>u.name==='Đề thi GHK1').hidden,true);
+ assert.ok(!view.some(g=>g.grade==='Apps for IELTS'));
+ assert.equal(addReleaseLessons(data,[RELEASE_ID,IELTS_RELEASE_ID]).added,1);
+ const adopted={...fields,dataJson:encodeCatalogData(data,[...RELEASE_IDS])};
+ assert.deepEqual(releaseCatalogView(adopted,data),data);
+ assert.ok(RELEASE_IDS.includes(GAME_RELEASE_ID));
 });
