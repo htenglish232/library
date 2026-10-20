@@ -1,0 +1,1122 @@
+// Generated from the original exam by tools/extract-truc-tuan-game.py.
+window.HT_GAME_SOURCE = {
+  "questions": [
+    {
+      "id": "q1",
+      "promptHtml": "<span>1.</span> Mark usually has ______ at the weekend.",
+      "options": [
+        {
+          "value": "A",
+          "html": "<span> A. class</span>"
+        },
+        {
+          "value": "B",
+          "html": "<span> B. drink</span>"
+        },
+        {
+          "value": "C",
+          "html": "<span> C. free time</span>"
+        },
+        {
+          "value": "D",
+          "html": "<span> D. lunch</span>"
+        }
+      ],
+      "section": "listening",
+      "source": {
+        "correct": "C",
+        "label": "C. free time",
+        "explain": "Trong bài nghe, Mark trả lời câu hỏi: <em>'When do you usually have free time?'</em> bằng câu: <em>'I usually have free time at the weekend.'</em> Do đó, phương án đúng là free time.",
+        "note": "Các từ khác (class, drink, lunch) không được Mark đề cập làm thông tin chính cho khoảng thời gian cuối tuần."
+      },
+      "kind": "choice",
+      "track": 1
+    },
+    {
+      "id": "q2",
+      "promptHtml": "<span>2.</span> Mark spends time connecting with his family on _____.",
+      "options": [
+        {
+          "value": "A",
+          "html": "<span> A. Saturdays</span>"
+        },
+        {
+          "value": "B",
+          "html": "<span> B. Sundays</span>"
+        },
+        {
+          "value": "C",
+          "html": "<span> C. Mondays</span>"
+        },
+        {
+          "value": "D",
+          "html": "<span> D. Tuesdays</span>"
+        }
+      ],
+      "section": "listening",
+      "source": {
+        "correct": "A",
+        "label": "A. Saturdays",
+        "explain": "Mark nói rõ: <em>'I spend time to connect with my family on Saturdays.'</em> Do đó, Mark dành thời gian gắn kết cùng gia đình vào các ngày Thứ Bảy.",
+        "note": "Chủ Nhật (Sundays) là ngày Mark dành cho bạn bè (<em>'I usually spend Sundays with my friends'</em>)."
+      },
+      "kind": "choice",
+      "track": 1
+    },
+    {
+      "id": "q3",
+      "promptHtml": "<span>3.</span> Mark and his ________ do puzzles, play board games or go camping on Saturdays.",
+      "options": [
+        {
+          "value": "A",
+          "html": "<span> A. his friends</span>"
+        },
+        {
+          "value": "B",
+          "html": "<span> B. his classmates</span>"
+        },
+        {
+          "value": "C",
+          "html": "<span> C. cousins</span>"
+        },
+        {
+          "value": "D",
+          "html": "<span> D. family members</span>"
+        }
+      ],
+      "section": "listening",
+      "source": {
+        "correct": "D",
+        "label": "D. family members",
+        "explain": "Nối tiếp câu nói về Thứ Bảy với gia đình, Mark chia sẻ: <em>'We do puzzles, play board games or go camping'</em> → đại từ 'We' ở đây chính là Mark và các thành viên trong gia đình (family members).",
+        "note": "Bạn bè (friends) chỉ đi chơi cùng Mark vào ngày Chủ Nhật."
+      },
+      "kind": "choice",
+      "track": 1
+    },
+    {
+      "id": "q4",
+      "promptHtml": "<span>4.</span> Mark invites his friends to his house. They ______",
+      "options": [
+        {
+          "value": "A",
+          "html": "<span>A. cook their favourite food</span>"
+        },
+        {
+          "value": "B",
+          "html": "<span>B. listen to music.</span>"
+        },
+        {
+          "value": "C",
+          "html": "<span>C. watch a film</span>"
+        },
+        {
+          "value": "D",
+          "html": "<span>D. make models</span>"
+        }
+      ],
+      "section": "listening",
+      "source": {
+        "correct": "A",
+        "label": "A. cook their favourite food",
+        "explain": "Mark nói khi mời bạn bè đến nhà: <em>'We cook our favourite food and watch a video.'</em> Trong các phương án lựa chọn, A nêu chính xác hành động <em>'cook their favourite food'</em>.",
+        "note": "Cụm 'watch a film' ở phương án C chưa chính xác vì trong bài Mark nói 'watch a video'."
+      },
+      "kind": "choice",
+      "track": 1
+    },
+    {
+      "id": "q5",
+      "promptHtml": "<span>5.</span> Mark thinks playing ______ or skateboard helps them stay in shape.",
+      "options": [
+        {
+          "value": "A",
+          "html": "<span> A. sport</span>"
+        },
+        {
+          "value": "B",
+          "html": "<span> B. badminton</span>"
+        },
+        {
+          "value": "C",
+          "html": "<span> C. volleyball</span>"
+        },
+        {
+          "value": "D",
+          "html": "<span> D. football</span>"
+        }
+      ],
+      "section": "listening",
+      "source": {
+        "correct": "C",
+        "label": "C. volleyball",
+        "explain": "Mark cho biết: <em>'We go to the park to play volleyball or skateboard. It helps us stay in shape.'</em> Do đó môn thể thao được nhắc tới là volleyball (bóng chuyền).",
+        "note": "Cấu trúc: help + sb + V(bare) → help us stay in shape (giúp giữ dáng, giữ sức khỏe)."
+      },
+      "kind": "choice",
+      "track": 1
+    },
+    {
+      "id": "q6",
+      "promptHtml": "<span>6.</span> Going for a bike ride around our city gives him a chance to see different ______ in his city.",
+      "options": [
+        {
+          "value": "A",
+          "html": "<span> A. shops</span>"
+        },
+        {
+          "value": "B",
+          "html": "<span> B. places</span>"
+        },
+        {
+          "value": "C",
+          "html": "<span> C. schools</span>"
+        },
+        {
+          "value": "D",
+          "html": "<span> D. markets</span>"
+        }
+      ],
+      "section": "listening",
+      "source": {
+        "correct": "B",
+        "label": "B. places",
+        "explain": "Mark chia sẻ: <em>'This gives us a chance to see different places in our city.'</em> (Điều này cho chúng mình cơ hội được ngắm nhìn nhiều địa điểm khác nhau trong thành phố).",
+        "note": "Cụm danh từ: different places (những địa điểm/nơi chốn khác nhau)."
+      },
+      "kind": "choice",
+      "track": 1
+    },
+    {
+      "id": "q7",
+      "promptHtml": "<span>1.</span> Mike wants to go to Canada for holiday.",
+      "options": [
+        {
+          "value": "T",
+          "html": "<span>True (T)</span>"
+        },
+        {
+          "value": "F",
+          "html": "<span>False (F)</span>"
+        }
+      ],
+      "section": "listening",
+      "source": {
+        "correct": "F",
+        "label": "False (F)",
+        "explain": "Trong bài nghe, người muốn đi Canada nghỉ mát là Todd: <em>'Mike, I want to go to Canada for vacation.'</em> Mike là người đưa ra lời khuyên chứ không phải người đang có dự định đi nghỉ mát.",
+        "note": "Học sinh cần chú ý nghe rõ nhân vật nào là người phát ngôn để không bị nhầm chủ thể."
+      },
+      "kind": "choice",
+      "track": 2
+    },
+    {
+      "id": "q8",
+      "promptHtml": "<span>2.</span> Toronto is a multi-cultural city.",
+      "options": [
+        {
+          "value": "T",
+          "html": "<span>True (T)</span>"
+        },
+        {
+          "value": "F",
+          "html": "<span>False (F)</span>"
+        }
+      ],
+      "section": "listening",
+      "source": {
+        "correct": "T",
+        "label": "True (T)",
+        "explain": "Mike nói về Toronto: <em>'And if you wanted to go to a big multi-cultural city... then Toronto.'</em> Do đó, Toronto là một thành phố đa văn hóa (multi-cultural) là nhận định Đúng.",
+        "note": "Từ vựng: multi-cultural (adj) = đa văn hóa."
+      },
+      "kind": "choice",
+      "track": 2
+    },
+    {
+      "id": "q9",
+      "promptHtml": "<span>3.</span> Mike has been to all three cities.",
+      "options": [
+        {
+          "value": "T",
+          "html": "<span>True (T)</span>"
+        },
+        {
+          "value": "F",
+          "html": "<span>False (F)</span>"
+        }
+      ],
+      "section": "listening",
+      "source": {
+        "correct": "T",
+        "label": "True (T)",
+        "explain": "Khi Todd hỏi: <em>'So, have you been to all three cities?'</em>, Mike khẳng định: <em>'Yes. I actually have lived most of my life in Toronto and in Montreal, but I have spent some time in Vancouver as well.'</em> Nhận định này hoàn toàn Đúng.",
+        "note": "Mike đã sống ở Toronto và Montreal, đồng thời cũng từng ở Vancouver, tức đã đến cả 3 thành phố."
+      },
+      "kind": "choice",
+      "track": 2
+    },
+    {
+      "id": "q10",
+      "promptHtml": "<span>4.</span> Toronto people are slow paced.",
+      "options": [
+        {
+          "value": "T",
+          "html": "<span>True (T)</span>"
+        },
+        {
+          "value": "F",
+          "html": "<span>False (F)</span>"
+        }
+      ],
+      "section": "listening",
+      "source": {
+        "correct": "F",
+        "label": "False (F)",
+        "explain": "Mike nhận xét: <em>'Well, somebody from Toronto is a little bit more high paced, just because the pace of life in Toronto is a little bit faster.'</em> (Người Toronto có nhịp sống nhanh hơn). Câu nhận định nói 'slow paced' (nhịp sống chậm chạp) là Sai.",
+        "note": "high paced (nhịp độ nhanh) đối lập với slow paced (nhịp độ chậm)."
+      },
+      "kind": "choice",
+      "track": 2
+    },
+    {
+      "id": "q11",
+      "promptHtml": "<span>5.</span> Vancouver is a lot less relaxed, easy-going.",
+      "options": [
+        {
+          "value": "T",
+          "html": "<span>True (T)</span>"
+        },
+        {
+          "value": "F",
+          "html": "<span>False (F)</span>"
+        }
+      ],
+      "section": "listening",
+      "source": {
+        "correct": "F",
+        "label": "False (F)",
+        "explain": "Trong bài nghe, Mike miêu tả: <em>'Vancouver is a lot MORE relaxed, easy-going.'</em> (Vancouver thư thái và dễ chịu hơn nhiều). Câu nhận định viết 'a lot LESS relaxed' (ít thư thái hơn nhiều) là Sai.",
+        "note": "Cần chú ý sự khác biệt giữa 'more' (nhiều hơn) và 'less' (ít hơn)."
+      },
+      "kind": "choice",
+      "track": 2
+    },
+    {
+      "id": "q12",
+      "promptHtml": "<span>6.</span> Montreal has a light French-Canadian influence.",
+      "options": [
+        {
+          "value": "T",
+          "html": "<span>True (T)</span>"
+        },
+        {
+          "value": "F",
+          "html": "<span>False (F)</span>"
+        }
+      ],
+      "section": "listening",
+      "source": {
+        "correct": "F",
+        "label": "False (F)",
+        "explain": "Mike khẳng định: <em>'And Montreal has a STRONG French-Canadian influence, so in fact, it's mostly French-Canadian.'</em> (Montreal chịu ảnh hưởng mạnh mẽ từ văn hóa Pháp-Canada). Nhận định trong đề dùng từ 'light' (nhẹ/ít) là trái ngược với thông tin nghe được, do đó nhận định này là False (Sai).",
+        "note": "LƯU Ý GIÁO VIÊN: Đáp án gốc trong file Word ghi nhầm là 'T'. Tuy nhiên đối chiếu chính xác với Audio/Transcript, từ 'light' trái ngược hoàn toàn với 'strong French-Canadian influence' nên đáp án chuẩn xác bắt buộc phải là False (F)."
+      },
+      "kind": "choice",
+      "track": 2
+    },
+    {
+      "id": "q13",
+      "promptHtml": "<span>1.</span> Circle A, B, C or D to indicate the word with the underlined part pronounced differently:",
+      "options": [
+        {
+          "value": "A",
+          "html": "<div>\n                    \n                    <span>A. p<u>i</u>ck</span>\n                  </div>"
+        },
+        {
+          "value": "B",
+          "html": "<div>\n                    \n                    <span>B. activ<u>i</u>ty</span>\n                  </div>"
+        },
+        {
+          "value": "C",
+          "html": "<div>\n                    \n                    <span>C. v<u>i</u>llage</span>\n                  </div>"
+        },
+        {
+          "value": "D",
+          "html": "<div>\n                    \n                    <span>D. p<u>i</u>cture</span>\n                  </div>"
+        }
+      ],
+      "section": "grammar",
+      "source": {
+        "correct": "B",
+        "label": "B. activity",
+        "explain": "Xét phần gạch chân 'i':<br>• p<u class='font-bold text-sky-700'>i</u>ck: phát âm là /ɪ/ (/pɪk/)<br>• activ<u class='font-bold text-sky-700'>i</u>ty: chữ 'i' thứ hai phát âm là âm schwa /ə/ (theo phiên âm /ækˈtɪv.ə.ti/)<br>• v<u class='font-bold text-sky-700'>i</u>llage: phát âm là /ɪ/ (/ˈvɪl.ɪdʒ/)<br>• p<u class='font-bold text-sky-700'>i</u>cture: phát âm là /ɪ/ (/ˈpɪk.tʃər/)<br>Do đó, phần gạch chân trong 'activity' có phát âm khác với các từ còn lại.",
+        "note": "Trọng tâm ngữ âm Unit 2: Phân biệt âm /ə/ và /ɪ/. Chữ 'i' thứ hai trong 'activity' đứng ở âm tiết yếu không nhấn nên được phát âm thành /ə/, trong khi chữ 'i' ở các từ còn lại đều mang âm /ɪ/."
+      },
+      "kind": "choice"
+    },
+    {
+      "id": "q14",
+      "promptHtml": "<span>2.</span> Circle A, B, C or D to indicate the word with stress pattern different from the others:",
+      "options": [
+        {
+          "value": "A",
+          "html": "<div>\n                    \n                    <span>A. extreme</span>\n                  </div>"
+        },
+        {
+          "value": "B",
+          "html": "<div>\n                    \n                    <span>B. careful</span>\n                  </div>"
+        },
+        {
+          "value": "C",
+          "html": "<div>\n                    \n                    <span>C. early</span>\n                  </div>"
+        },
+        {
+          "value": "D",
+          "html": "<div>\n                    \n                    <span>D. pretty</span>\n                  </div>"
+        }
+      ],
+      "section": "grammar",
+      "source": {
+        "correct": "A",
+        "label": "A. extreme",
+        "explain": "Xét trọng âm của các từ:<br>• <strong>extreme</strong> /ɪkˈstriːm/: trọng âm rơi vào âm tiết thứ 2.<br>• <strong>careful</strong> /ˈkeə.fəl/: trọng âm rơi vào âm tiết thứ 1.<br>• <strong>early</strong> /ˈɜː.li/: trọng âm rơi vào âm tiết thứ 1.<br>• <strong>pretty</strong> /ˈprɪt.i/: trọng âm rơi vào âm tiết thứ 1.<br>Do đó, từ 'extreme' có trọng âm khác với 3 từ còn lại.",
+        "note": "Quy tắc: Tính từ 2 âm tiết đa số có trọng âm rơi vào âm tiết thứ nhất (careful, early, pretty), 'extreme' là trường hợp ngoại lệ nhấn trọng âm 2."
+      },
+      "kind": "choice"
+    },
+    {
+      "id": "q15",
+      "promptHtml": "<span>3.</span> On the side of the road, a boy was herding ______________.",
+      "options": [
+        {
+          "value": "A",
+          "html": "<span> A. kites</span>"
+        },
+        {
+          "value": "B",
+          "html": "<span> B. hay</span>"
+        },
+        {
+          "value": "C",
+          "html": "<span> C. cattle</span>"
+        },
+        {
+          "value": "D",
+          "html": "<span> D. blackberries</span>"
+        }
+      ],
+      "section": "grammar",
+      "source": {
+        "correct": "C",
+        "label": "C. cattle",
+        "explain": "Cụm từ cố định trong nông thôn / chăn nuôi:<br><strong>herd cattle</strong> = chăn dắt gia súc (bò, trâu).<br>• kites: diều (thường dùng: fly kites - thả diều)<br>• hay: cỏ khô (thường dùng: dry hay - phơi rơm rạ)<br>• blackberries: quả mâm xôi (thường dùng: pick blackberries - hái mâm xôi).",
+        "note": "Công thức / Cụm từ: herd + cattle (chăn thả gia súc)."
+      },
+      "kind": "choice"
+    },
+    {
+      "id": "q16",
+      "promptHtml": "<span>4.</span> Nam isn’t interested ____________ using the Facebook in his leisure time.",
+      "options": [
+        {
+          "value": "A",
+          "html": "<span> A. in</span>"
+        },
+        {
+          "value": "B",
+          "html": "<span> B. on</span>"
+        },
+        {
+          "value": "C",
+          "html": "<span> C. of</span>"
+        },
+        {
+          "value": "D",
+          "html": "<span> D. into</span>"
+        }
+      ],
+      "section": "grammar",
+      "source": {
+        "correct": "A",
+        "label": "A. in",
+        "explain": "Cấu trúc ngữ pháp chỉ sở thích:<br><strong>be interested in + Noun / V-ing</strong>: thích thú, quan tâm đến điều gì.<br>Do đó, sau interested bắt buộc phải dùng giới từ 'in'.",
+        "note": "Phân biệt giới từ chỉ sở thích: interested IN, fond OF, keen ON, crazy ABOUT."
+      },
+      "kind": "choice"
+    },
+    {
+      "id": "q17",
+      "promptHtml": "<span>5.</span> I love the people in my village. They are so ______________ and friendly.",
+      "options": [
+        {
+          "value": "A",
+          "html": "<span> A. inconvenient</span>"
+        },
+        {
+          "value": "B",
+          "html": "<span> B. vast</span>"
+        },
+        {
+          "value": "C",
+          "html": "<span> C. slow</span>"
+        },
+        {
+          "value": "D",
+          "html": "<span> D. hospitable</span>"
+        }
+      ],
+      "section": "grammar",
+      "source": {
+        "correct": "D",
+        "label": "D. hospitable",
+        "explain": "Nghĩa của từ:<br>• <strong>hospitable</strong> (adj): hiếu khách, niềm nở.<br>• inconvenient (adj): bất tiện<br>• vast (adj): rộng lớn, bao la<br>• slow (adj): chậm chạp.<br>Trong câu: <em>'I love the people in my village. They are so hospitable and friendly.'</em> (Tôi yêu quý người dân làng tôi. Họ rất hiếu khách và thân thiện). Hai tính từ đồng đẳng mang nghĩa tích cực là 'hospitable and friendly'.",
+        "note": "Từ vựng Unit 2 Tiếng Anh 8: hospitable to/towards sb (hiếu khách)."
+      },
+      "kind": "choice"
+    },
+    {
+      "id": "q18",
+      "promptHtml": "<span>6.</span> Posting personal pictures on social media is fun; ______, sometimes it can bring many problems.",
+      "options": [
+        {
+          "value": "A",
+          "html": "<span> A. although</span>"
+        },
+        {
+          "value": "B",
+          "html": "<span> B. so</span>"
+        },
+        {
+          "value": "C",
+          "html": "<span> C. however</span>"
+        },
+        {
+          "value": "D",
+          "html": "<span> D. but</span>"
+        }
+      ],
+      "section": "grammar",
+      "source": {
+        "correct": "C",
+        "label": "C. however",
+        "explain": "Dấu hiệu nhận biết cấu trúc nối câu:<br>Đằng trước có dấu chấm phẩy (;) và đằng sau có dấu phẩy (,) → bắt buộc dùng trạng từ liên kết <strong>however</strong> (; however, = tuy nhiên).<br>• although: theo sau là mệnh đề, không đứng giữa dấu chấm phẩy và phẩy.<br>• but/so: là liên từ đẳng lập, thường chỉ đi sau dấu phẩy.",
+        "note": "Ghi nhớ cấu trúc nối: S + V ; however, S + V (tuy nhiên)."
+      },
+      "kind": "choice"
+    },
+    {
+      "id": "q19",
+      "promptHtml": "<span>7.</span> Would you like to come to my house for lunch tonight ?",
+      "options": [
+        {
+          "value": "A",
+          "html": "<span>A. Yes, I do</span>"
+        },
+        {
+          "value": "B",
+          "html": "<span>B. I’d love to. Thanks</span>"
+        },
+        {
+          "value": "C",
+          "html": "<span>C. That’s great.Thanks</span>"
+        },
+        {
+          "value": "D",
+          "html": "<span>D. No, I don’t</span>"
+        }
+      ],
+      "section": "grammar",
+      "source": {
+        "correct": "B",
+        "label": "B. I’d love to. Thanks",
+        "explain": "Câu giao tiếp đưa ra lời mời: <em>'Would you like to come to my house for lunch tonight?'</em> (Bạn có muốn đến nhà mình ăn tối nay không?).<br>Để đáp lại lời mời một cách lịch sự, người nói dùng: <strong>I’d love to. Thanks</strong> (Mình rất muốn. Cảm ơn bạn nhé).<br>• 'Yes, I do' dùng trả lời câu hỏi Do you...?, không dùng cho lời mời.",
+        "note": "Cấu trúc phản hồi lời mời: Would you like...? → I’d love to. / Yes, please. / I'd love to, but..."
+      },
+      "kind": "choice"
+    },
+    {
+      "id": "q20",
+      "promptHtml": "<span>8.</span> I’m _________ of taking photos. In my free time, I usually go out and take photos of people and things.",
+      "options": [
+        {
+          "value": "A",
+          "html": "<span> A. crazy</span>"
+        },
+        {
+          "value": "B",
+          "html": "<span> B. fond</span>"
+        },
+        {
+          "value": "C",
+          "html": "<span> C. keen</span>"
+        },
+        {
+          "value": "D",
+          "html": "<span> D. interested</span>"
+        }
+      ],
+      "section": "grammar",
+      "source": {
+        "correct": "B",
+        "label": "B. fond",
+        "explain": "Xét theo giới từ 'of' đứng ngay sau chỗ trống:<br><strong>be fond of + V-ing</strong>: yêu thích làm gì.<br>• crazy + about<br>• keen + on<br>• interested + in.<br>Chỉ có 'fond' kết hợp với giới từ 'of'.",
+        "note": "Công thức: be fond of + V-ing = like/enjoy doing something."
+      },
+      "kind": "choice"
+    },
+    {
+      "id": "q21",
+      "promptHtml": "<span>9.</span> I run ______ my brother does.",
+      "options": [
+        {
+          "value": "A",
+          "html": "<span>A. faster</span>"
+        },
+        {
+          "value": "B",
+          "html": "<span>B. faster as</span>"
+        },
+        {
+          "value": "C",
+          "html": "<span>C. fast than</span>"
+        },
+        {
+          "value": "D",
+          "html": "<span>D. faster than</span>"
+        }
+      ],
+      "section": "grammar",
+      "source": {
+        "correct": "D",
+        "label": "D. faster than",
+        "explain": "Cấu trúc so sánh hơn của trạng từ:<br>Trạng từ 'fast' là trạng từ ngắn (dạng so sánh hơn là faster).<br>Công thức so sánh hơn:<br><strong>S + V + Adv-er + than + S + auxiliary verb</strong>.<br>Do đó: <em>'I run <strong>faster than</strong> my brother does.'</em>",
+        "note": "Không bao giờ dùng 'fast than' (thiếu -er) hay 'faster as' (sai từ nối so sánh)."
+      },
+      "kind": "choice"
+    },
+    {
+      "id": "q22",
+      "promptHtml": "<span>10.</span> Why don’t we ______ our parents with some DIY projects? I think it is useful.",
+      "options": [
+        {
+          "value": "A",
+          "html": "<span> A. help</span>"
+        },
+        {
+          "value": "B",
+          "html": "<span> B. do</span>"
+        },
+        {
+          "value": "C",
+          "html": "<span> C. make</span>"
+        },
+        {
+          "value": "D",
+          "html": "<span> D. give</span>"
+        }
+      ],
+      "section": "grammar",
+      "source": {
+        "correct": "A",
+        "label": "A. help",
+        "explain": "Cấu trúc đưa ra lời gợi ý và cụm động từ:<br><strong>Why don't we + V(nguyên thể)...?</strong><br>Cụm từ: <strong>help someone with something</strong> (giúp đỡ ai việc gì).<br>Vì vậy: <em>'Why don’t we help our parents with some DIY projects?'</em>",
+        "note": "Công thức: help + sb + with + sth (giúp ai việc gì)."
+      },
+      "kind": "choice"
+    },
+    {
+      "id": "q23",
+      "promptHtml": "<span>1.</span> Does Tom enjoy (cycle)\n                   ______ \n                  in the park with his friends?",
+      "options": [],
+      "section": "grammar",
+      "source": {
+        "type": "text",
+        "correct": "cycling",
+        "label": "cycling",
+        "explain": "Quy tắc ngữ pháp về danh động từ sau động từ chỉ sự thích/ghét:<br>Sau động từ <strong>enjoy</strong>, động từ đi kèm phải chia ở dạng V-ing.<br>Công thức: <strong>enjoy + V-ing</strong>.<br>Động từ 'cycle' tận cùng bằng 'e' nên bỏ 'e' rồi thêm '-ing' → <strong>cycling</strong>.",
+        "note": "Ghi nhớ: like / love / enjoy / fancy + V-ing."
+      },
+      "kind": "text"
+    },
+    {
+      "id": "q24",
+      "promptHtml": "<span>2.</span> I (look)\n                   ______ \n                  for a knitting kit now.",
+      "options": [],
+      "section": "grammar",
+      "source": {
+        "type": "text",
+        "correct": "am looking",
+        "label": "am looking",
+        "explain": "Dấu hiệu nhận biết thì:<br>Trong câu có trạng từ thời gian <strong>now</strong> (bây giờ) → diễn tả hành động đang diễn ra tại thời điểm nói → chia thì Hiện tại tiếp diễn (Present Continuous).<br>Chủ ngữ là 'I' → dùng to be là 'am'.<br>Công thức: <strong>S + am/is/are + V-ing</strong> → <strong>am looking</strong>.",
+        "note": "look for: đang tìm kiếm."
+      },
+      "kind": "text"
+    },
+    {
+      "id": "q25",
+      "promptHtml": "<span>3.</span> He (stay)\n                   ______ \n                  at his uncle’s house last summer holiday.",
+      "options": [],
+      "section": "grammar",
+      "source": {
+        "type": "text",
+        "correct": "stayed",
+        "label": "stayed",
+        "explain": "Dấu hiệu nhận biết thì:<br>Trong câu có cụm thời gian quá khứ rõ ràng: <strong>last summer holiday</strong> (kỳ nghỉ hè năm ngoái) → diễn tả sự việc đã hoàn thành trong quá khứ → chia thì Quá khứ đơn (Past Simple).<br>Động từ quy tắc: stay → <strong>stayed</strong>.",
+        "note": "Công thức Quá khứ đơn: S + V-ed / V2."
+      },
+      "kind": "text"
+    },
+    {
+      "id": "q26",
+      "promptHtml": "<span>1.</span> (Gap 1):",
+      "options": [
+        {
+          "value": "A",
+          "html": "<span> A. they</span>"
+        },
+        {
+          "value": "B",
+          "html": "<span> B. them</span>"
+        },
+        {
+          "value": "C",
+          "html": "<span> C. their</span>"
+        },
+        {
+          "value": "D",
+          "html": "<span> D. theirs</span>"
+        }
+      ],
+      "section": "reading",
+      "source": {
+        "correct": "B",
+        "label": "B. them",
+        "explain": "Đại từ tân ngữ thay thế cho danh từ số nhiều:<br>'one of (1) ______' → đứng sau giới từ 'of' phải là một đại từ tân ngữ (Object Pronoun) thay thế cho 'leisure activities' (các hoạt động giải trí số nhiều) ở vế trước.<br>Do đó phải chọn tân ngữ <strong>them</strong>.",
+        "note": "'they' là đại từ chủ ngữ; 'their' là tính từ sở hữu; 'theirs' là đại từ sở hữu."
+      },
+      "kind": "choice",
+      "passage": 0
+    },
+    {
+      "id": "q27",
+      "promptHtml": "<span>2.</span> (Gap 2):",
+      "options": [
+        {
+          "value": "A",
+          "html": "<span> A. reduce</span>"
+        },
+        {
+          "value": "B",
+          "html": "<span> B. raise</span>"
+        },
+        {
+          "value": "C",
+          "html": "<span> C. increase</span>"
+        },
+        {
+          "value": "D",
+          "html": "<span> D. decrease</span>"
+        }
+      ],
+      "section": "reading",
+      "source": {
+        "correct": "C",
+        "label": "C. increase",
+        "explain": "Ý nghĩa và kết hợp từ (Collocation):<br>• <strong>increase your strength</strong>: tăng cường thể lực, sức mạnh.<br>• reduce/decrease: làm giảm (trái ngược nghĩa tích cực của thể thao)<br>• raise: thường đi với raise money, raise hands, không dùng 'raise strength'.",
+        "note": "increase strength: nâng cao thể lực."
+      },
+      "kind": "choice",
+      "passage": 0
+    },
+    {
+      "id": "q28",
+      "promptHtml": "<span>3.</span> (Gap 3):",
+      "options": [
+        {
+          "value": "A",
+          "html": "<span> A. inside</span>"
+        },
+        {
+          "value": "B",
+          "html": "<span> B. indoor</span>"
+        },
+        {
+          "value": "C",
+          "html": "<span> C. under</span>"
+        },
+        {
+          "value": "D",
+          "html": "<span> D. among</span>"
+        }
+      ],
+      "section": "reading",
+      "source": {
+        "correct": "A",
+        "label": "A. inside",
+        "explain": "Giới từ chỉ vị trí:<br>'in your backyard or (3) ______ your home' → đối lập giữa ở ngoài sân sau (backyard) hoặc ở bên trong nhà.<br>Giới từ mang nghĩa 'bên trong' là <strong>inside</strong> your home.<br>'indoor' là tính từ, không thể đứng làm giới từ trước 'your home'.",
+        "note": "Phân biệt: inside + Noun (bên trong cái gì); indoor là tính từ (indoor sports)."
+      },
+      "kind": "choice",
+      "passage": 0
+    },
+    {
+      "id": "q29",
+      "promptHtml": "<span>4.</span> (Gap 4):",
+      "options": [
+        {
+          "value": "A",
+          "html": "<span> A. stay</span>"
+        },
+        {
+          "value": "B",
+          "html": "<span> B. go</span>"
+        },
+        {
+          "value": "C",
+          "html": "<span> C. give</span>"
+        },
+        {
+          "value": "D",
+          "html": "<span> D. keep</span>"
+        }
+      ],
+      "section": "reading",
+      "source": {
+        "correct": "D",
+        "label": "D. keep",
+        "explain": "Cụm từ cố định trong chủ đề sức khỏe của SGK Tiếng Anh 8:<br><strong>keep fit</strong>: giữ dáng, duy trì thể trạng cân đối, khỏe mạnh.<br>Do đó, phương án đúng chuẩn mực nhất của bài là 'keep'.",
+        "note": "Cụm từ: keep fit / stay in shape."
+      },
+      "kind": "choice",
+      "passage": 0
+    },
+    {
+      "id": "q30",
+      "promptHtml": "<span>5.</span> (Gap 5):",
+      "options": [
+        {
+          "value": "A",
+          "html": "<span> A. effect</span>"
+        },
+        {
+          "value": "B",
+          "html": "<span> B. effective</span>"
+        },
+        {
+          "value": "C",
+          "html": "<span> C. effectively</span>"
+        },
+        {
+          "value": "D",
+          "html": "<span> D. effectiveness</span>"
+        }
+      ],
+      "section": "reading",
+      "source": {
+        "correct": "C",
+        "label": "C. effectively",
+        "explain": "Vị trí ngữ pháp của từ loại:<br>Câu: <em>'...learn how to climb and use their equipment (5) ______.'</em><br>Đứng sau động từ và tân ngữ (use their equipment) cần một trạng từ chỉ cách thức (Adverb of manner) để bổ nghĩa cho hành động sử dụng thiết bị → <strong>effectively</strong> (một cách hiệu quả).<br>• effect (n): sự ảnh hưởng / kết quả<br>• effective (adj): có hiệu quả<br>• effectiveness (n): tính hiệu quả.",
+        "note": "Quy tắc: V + Object + Adverb (bổ nghĩa hành động)."
+      },
+      "kind": "choice",
+      "passage": 0
+    },
+    {
+      "id": "q31",
+      "promptHtml": "<span>1.</span> What does the boy often do to help his mother?",
+      "options": [],
+      "section": "reading",
+      "source": {
+        "type": "text",
+        "correct": "He / The boy often helps his mother to collect water from the river and feed the chickens.",
+        "label": "He / The boy often helps his mother to collect water from the river and feed the chickens.",
+        "keywords": [
+          "collect water",
+          "feed the chicken",
+          "collects water",
+          "feeds the chicken",
+          "water from the river"
+        ],
+        "modelAnswer": "He / The boy often helps his mother to collect water from the river and feed the chickens.",
+        "explain": "Thông tin trực tiếp trong dòng thứ 3 đoạn 1:<br><em>'After class, I often help my mother to collect water from the river and feed the chickens.'</em> (Sau giờ học, tôi thường giúp mẹ lấy nước từ dòng sông và cho gà ăn).",
+        "note": "Học sinh có thể trả lời đầy đủ hoặc ngắn gọn nêu được 2 hoạt động chính: lấy nước (collect water) và cho gà ăn (feed the chickens)."
+      },
+      "kind": "text",
+      "passage": 1
+    },
+    {
+      "id": "q32",
+      "promptHtml": "<span>2.</span> When do the villagers gather at the community hall?",
+      "options": [],
+      "section": "reading",
+      "source": {
+        "type": "text",
+        "correct": "The villagers / They gather at the community hall at the weekend. (Hoặc: At the weekend).",
+        "label": "At the weekend (hoặc: The villagers gather at the community hall at the weekend)",
+        "keywords": [
+          "weekend",
+          "at the weekend"
+        ],
+        "modelAnswer": "The villagers / They gather at the community hall at the weekend. (Hoặc: At the weekend).",
+        "explain": "Thông tin trong dòng thứ 3-4 đoạn 1:<br><em>'At the weekend, the villagers often gather at the community hall where there is a TV.'</em> (Vào dịp cuối tuần, dân làng thường tụ tập tại nhà văn hóa cộng đồng nơi có một chiếc tivi).",
+        "note": "Từ khóa chính bắt buộc phải có: at the weekend (vào cuối tuần)."
+      },
+      "kind": "text",
+      "passage": 1
+    },
+    {
+      "id": "q33",
+      "promptHtml": "<span>3.</span> Does the boy’s father take him to the market town nearby?",
+      "options": [],
+      "section": "reading",
+      "source": {
+        "type": "text",
+        "correct": "Yes, he does. (Hoặc: Yes).",
+        "label": "Yes, he does. (Hoặc: Yes)",
+        "keywords": [
+          "yes",
+          "yes, he does",
+          "yes he does"
+        ],
+        "modelAnswer": "Yes, he does. (Hoặc: Yes).",
+        "explain": "Câu hỏi Yes/No với trợ động từ Does: <em>'Does the boy’s father take him to the market town nearby?'</em>.<br>Thông tin ở đầu đoạn 2:<br><em>'My father sometimes takes me to the market town nearby where he sells our home products...'</em><br>Vì vậy câu trả lời khẳng định là <strong>Yes, he does</strong>.",
+        "note": "Đối với câu hỏi bắt đầu bằng Does..., câu trả lời ngắn chuẩn xác là: Yes, he does."
+      },
+      "kind": "text",
+      "passage": 1
+    },
+    {
+      "id": "q34",
+      "promptHtml": "<span>4.</span> The thing the boy enjoys better than other things on his trips to town is __________.",
+      "options": [
+        {
+          "value": "A",
+          "html": "<span>A. he can ride on the electric train</span>"
+        },
+        {
+          "value": "B",
+          "html": "<span>B. he can sell his home products</span>"
+        },
+        {
+          "value": "C",
+          "html": "<span>C. he feels grown-up</span>"
+        },
+        {
+          "value": "D",
+          "html": "<span>D. he can buy his father an ice cream</span>"
+        }
+      ],
+      "section": "reading",
+      "source": {
+        "correct": "A",
+        "label": "A. he can ride on the electric train",
+        "explain": "Thông tin trong đoạn 2:<br><em>'He then buys me an ice cream and lets me take a ride on the electric train in the town square. I love those trips.'</em><br>Cậu bé thích thú nhất là được đi xe điện ở quảng trường thị trấn (take a ride on the electric train). Các lựa chọn B, C, D không phản ánh sở thích của cậu bé trong chuyến đi.",
+        "note": "take a ride on the electric train = đi xe điện."
+      },
+      "kind": "choice",
+      "passage": 1
+    },
+    {
+      "id": "q35",
+      "promptHtml": "<span>5.</span> The village children dream about __________.",
+      "options": [
+        {
+          "value": "A",
+          "html": "<span>A. having a TV at home</span>"
+        },
+        {
+          "value": "B",
+          "html": "<span>B. having a school that is nearer</span>"
+        },
+        {
+          "value": "C",
+          "html": "<span>C. travelling to faraway places</span>"
+        },
+        {
+          "value": "D",
+          "html": "<span>D. finding the Milky Way</span>"
+        }
+      ],
+      "section": "reading",
+      "source": {
+        "correct": "C",
+        "label": "C. travelling to faraway places",
+        "explain": "Thông tin ở câu cuối cùng của bài đọc:<br><em>'We dream of faraway places.'</em> (Chúng tôi mơ về những nơi chốn xa xôi).<br>Điều này đồng nghĩa với 'travelling to faraway places' (du lịch tới những vùng đất xa xôi).",
+        "note": "faraway places = những nơi xa xôi."
+      },
+      "kind": "choice",
+      "passage": 1
+    },
+    {
+      "id": "q36",
+      "promptHtml": "<span>1.</span> / kind / are /. / and hospitable / The local / to visitors/ people/",
+      "options": [],
+      "section": "writing",
+      "source": {
+        "type": "rearrange",
+        "correct": "The local people are kind and hospitable to visitors .",
+        "alternatives": [
+          "The local people are hospitable and kind to visitors ."
+        ],
+        "label": "The local people are kind and hospitable to visitors.",
+        "explain": "Trật tự từ trong câu khẳng định:<br>• <strong>Chủ ngữ:</strong> The local people (Người dân địa phương)<br>• <strong>Động từ to be:</strong> are<br>• <strong>Tính từ ghép:</strong> kind and hospitable (tử tế và hiếu khách) hoặc hospitable and kind<br>• <strong>Cụm giới từ:</strong> to visitors (đối với du khách)<br>→ <strong>The local people are kind and hospitable to visitors.</strong>",
+        "note": "Cấu trúc: be + hospitable to sb (hiếu khách với ai)."
+      },
+      "kind": "rearrange",
+      "tokens": [
+        "kind",
+        "are",
+        "and hospitable",
+        "The local",
+        "to visitors",
+        "people",
+        "."
+      ]
+    },
+    {
+      "id": "q37",
+      "promptHtml": "<span>2.</span> / surfing / My brother / lots of time / the net,/ into it / spends / but /. / I am not/",
+      "options": [],
+      "section": "writing",
+      "source": {
+        "type": "rearrange",
+        "correct": "My brother spends lots of time surfing the net, but I am not into it .",
+        "alternatives": [
+          "My brother spends lots of time surfing the net, but I am not into it"
+        ],
+        "label": "My brother spends lots of time surfing the net, but I am not into it.",
+        "explain": "Cấu trúc câu ghép với liên từ 'but':<br>• <strong>Mệnh đề 1:</strong> My brother spends lots of time surfing the net, (cấu trúc: spend time V-ing)<br>• <strong>Liên từ nối:</strong> but (nhưng)<br>• <strong>Mệnh đề 2:</strong> I am not into it (cấu trúc: be into sth = thích cái gì, not into it = không thích).<br>→ <strong>My brother spends lots of time surfing the net, but I am not into it.</strong>",
+        "note": "Công thức: S + spend + time + V-ing; be into sth = thích thú cái gì."
+      },
+      "kind": "rearrange",
+      "tokens": [
+        "surfing",
+        "My brother",
+        "lots of time",
+        "the net,",
+        "into it",
+        "spends",
+        "but",
+        "I am not",
+        "."
+      ]
+    },
+    {
+      "id": "q38",
+      "promptHtml": "<span>3.</span> getting / I/ like / up / on / cold / don't / early / days .",
+      "options": [],
+      "section": "writing",
+      "source": {
+        "type": "rearrange",
+        "correct": "I don't like getting up early on cold days .",
+        "alternatives": [
+          "I don't like getting up early on cold days"
+        ],
+        "label": "I don't like getting up early on cold days.",
+        "explain": "Trật tự từ và cấu trúc ngữ pháp:<br>• <strong>Chủ ngữ & Trợ động từ phủ định:</strong> I don't<br>• <strong>Động từ chỉ sở thích:</strong> like + V-ing (getting up early)<br>• <strong>Trạng từ chỉ thời gian:</strong> on cold days (vào những ngày lạnh giá).<br>→ <strong>I don't like getting up early on cold days.</strong>",
+        "note": "Giới từ: 'on' dùng trước các ngày có tính từ bổ nghĩa (on cold days, on Sunday morning)."
+      },
+      "kind": "rearrange",
+      "tokens": [
+        "getting",
+        "I",
+        "like",
+        "up",
+        "on",
+        "cold",
+        "don't",
+        "early",
+        "days",
+        "."
+      ]
+    },
+    {
+      "id": "q39",
+      "promptHtml": "<div><span>1.</span> Tuan likes hanging out with friends in his leisure time after school.</div>\n                  <div>\n                    <span>→ Tuan is keen</span>\n                     ______ \n                  </div>",
+      "options": [],
+      "section": "writing",
+      "source": {
+        "type": "text",
+        "correct": "on hanging out with friends in his leisure time after school.",
+        "label": "on hanging out with friends in his leisure time after school.",
+        "keywords": [
+          "on hanging out with friends in his leisure time after school"
+        ],
+        "modelAnswer": "on hanging out with friends in his leisure time after school.",
+        "explain": "Chuyển đổi cấu trúc diễn tả sở thích:<br><strong>S + like + V-ing</strong> ⟷ <strong>S + be keen on + V-ing</strong>.<br>Đề bài đã cho sẵn: <em>Tuan is keen</em><br>→ Phần viết tiếp bắt buộc có giới từ 'on' và giữ nguyên vế sau: <strong>on hanging out with friends in his leisure time after school.</strong>",
+        "note": "Công thức: be keen on + V-ing = like + V-ing."
+      },
+      "kind": "text"
+    },
+    {
+      "id": "q40",
+      "promptHtml": "<div><span>2.</span> Your bike runs faster than mine.</div>\n                  <div>\n                    <span>→ My bike</span>\n                     ______ \n                  </div>",
+      "options": [],
+      "section": "writing",
+      "source": {
+        "type": "text",
+        "correct": "runs more slowly than yours.",
+        "label": "runs more slowly than yours. (hoặc: runs more slowly than your bike / runs slower than yours)",
+        "keywords": [
+          "more slowly than",
+          "slower than"
+        ],
+        "modelAnswer": "runs more slowly than yours. (hoặc: runs more slowly than your bike / runs slower than yours)",
+        "explain": "Chuyển đổi từ so sánh hơn sang so sánh kém/ngược lại:<br><em>'Your bike runs faster than mine.'</em> (Xe đạp của bạn chạy nhanh hơn xe của tôi).<br>→ <em>'My bike runs more slowly than yours / than your bike.'</em> (Xe của tôi chạy chậm hơn xe của bạn).<br>• Trạng từ 'slowly' là trạng từ dài → so sánh hơn là 'more slowly'.",
+        "note": "Lưu ý giáo viên: Trong đáp án gốc file Word ghi nhầm đại từ là 'his'. Tuy nhiên đối chiếu câu đề bài 'Your bike... than mine', đại từ sở hữu tương ứng phải là 'yours' (hoặc 'your bike'). Hệ thống chấp nhận cả 2 cách diễn đạt chuẩn mực này."
+      },
+      "kind": "text"
+    },
+    {
+      "id": "q41",
+      "promptHtml": "<div><span>3.</span> Because Jack wants to get excellent marks, he studies hard.</div>\n                  <div>\n                    <span>→ Jack wants to get excellent marks,</span>\n                     ______ \n                  </div>",
+      "options": [],
+      "section": "writing",
+      "source": {
+        "type": "text",
+        "correct": "so he studies hard.",
+        "label": "so he studies hard.",
+        "keywords": [
+          "so he studies hard"
+        ],
+        "modelAnswer": "so he studies hard.",
+        "explain": "Chuyển đổi liên từ nguyên nhân - kết quả:<br><strong>Because + Clause nguyên nhân, Clause kết quả</strong> ⟷ <strong>Clause nguyên nhân, so + Clause kết quả</strong>.<br>Đề bài đã cho: <em>'Jack wants to get excellent marks,'</em><br>→ Phần viết tiếp là: <strong>so he studies hard.</strong>",
+        "note": "Ghi nhớ: Không dùng đồng thời 'because' và 'so' trong cùng một câu."
+      },
+      "kind": "text"
+    },
+    {
+      "id": "q42",
+      "promptHtml": "<div><span>4.</span> It takes my brother lots of time to surf the Net.</div>\n                  <div>\n                    <span>→ My brother spends</span>\n                     ______ \n                  </div>",
+      "options": [],
+      "section": "writing",
+      "source": {
+        "type": "text",
+        "correct": "lots of time surfing the net.",
+        "label": "lots of time surfing the net.",
+        "keywords": [
+          "lots of time surfing"
+        ],
+        "modelAnswer": "lots of time surfing the Net.",
+        "explain": "Chuyển đổi giữa hai cấu trúc tiêu tốn thời gian:<br><strong>It takes + sb + time + to-V</strong> ⟷ <strong>S + spend + time + V-ing</strong>.<br>Đề bài đã cho: <em>'My brother spends'</em><br>→ Phần viết tiếp chuyển 'to surf' thành 'surfing': <strong>lots of time surfing the Net.</strong>",
+        "note": "Công thức: S + spend + [khoảng thời gian] + V-ing."
+      },
+      "kind": "text"
+    }
+  ],
+  "passages": [
+    "There are a lot of leisure activities that young people like, and one of <strong>(1) ______</strong> is mountain climbing. It is an active leisure activity that people can do either indoors or outdoors. If you go climbing outdoors, it is a great way to <strong>(2) ______</strong> your strength and enjoy nature at the same time. You can even set up your own climbing wall in your backyard or <strong>(3) ______</strong> your home. This way you don't have to go out and still can <strong>(4) ______</strong> fit and enjoy the activity.\n            <br><br>\n            So how can you start mountain climbing? Many people take a class to learn how to climb and use their equipment <strong>(5) ______</strong>. Others join climbing clubs to make new friends with the same interest and go climbing together. If you are an active person and like outdoor activities, why don't you try this activity?",
+    "<h4>MY VILLAGE</h4>\n            <p>\n              I live in a village by the Mekong River. Every day, like most of my friends, I walk to school. It is three kilometres away. After class, I often help my mother to collect water from the river and feed the chickens. At the weekend, the villagers often gather at the community hall where there is a TV. The adults watch TV, but more often they talk about their farm work and exchange news. The children run around, playing games and shouting merrily. Laughter is heard everywhere.\n            </p>\n            <p>\n              My father sometimes takes me to the market town nearby where he sells our home products like vegetables, fruits, eggs... He then buys me an ice cream and lets me take a ride on the electric train in the town square. I love those trips.\n            </p>\n            <p>\n              On starry nights, we children lie on the grass, looking at the sky and daring each other to find the Milky Way. We dream of faraway places.\n            </p>"
+  ],
+  "transcripts": [
+    "<p><strong>Interviewer:</strong> When do you usually have free time?</p>\n                  <p><strong>Mark:</strong> I usually have free time <mark>at the weekend</mark>. <span>[Câu 1]</span></p>\n                  <p><strong>Interviewer:</strong> So how do you spend it?</p>\n                  <p><strong>Mark:</strong> I spend time to connect with my family <mark>on Saturdays</mark>. <span>[Câu 2]</span> We do puzzles, play board games or go camping. <span>[Câu 3: family members]</span></p>\n                  <p><strong>Interviewer:</strong> What about Sundays?</p>\n                  <p><strong>Mark:</strong> I usually spend Sundays with my friends. I have a group of friends and we do lots of things together.</p>\n                  <p><strong>Interviewer:</strong> For example?</p>\n                  <p><strong>Mark:</strong> Sometimes I invite them to my house. We <mark>cook our favourite food</mark> and watch a video. <span>[Câu 4]</span> It's fun and better than going to the cinema.</p>\n                  <p><strong>Interviewer:</strong> Do you do outdoor activities together?</p>\n                  <p><strong>Mark:</strong> We love spending time outdoors. We go to the park to play <mark>volleyball</mark> or skateboard. It helps us stay in shape. <span>[Câu 5]</span> Sometimes we go for a bike ride around our city. This gives us a chance to see different <mark>places</mark> in our city. <span>[Câu 6]</span></p>\n                  <p><strong>Interviewer:</strong> Thanks for answering my questions.</p>",
+    "<p><strong>Todd:</strong> Mike, <mark>I want to go to Canada for vacation</mark>. <span>[Câu 7: Todd muốn đi, không phải Mike → F]</span> What would you recommend?</p>\n                  <p><strong>Mike:</strong> Well, it really depends on the kind of holiday that you want. If you want to have a relaxing outdoors, back to nature, I'd recommend Vancouver. If you want experience, a different type of culture, Montreal. And if you wanted to go to a big <mark>multi-cultural city</mark>, with a lot of nightlife and things to do, with respect to entertainment, or sports, then <mark>Toronto</mark>. <span>[Câu 8: Toronto là multi-cultural city → T]</span></p>\n                  <p><strong>Todd:</strong> So, have you been to all three cities?</p>\n                  <p><strong>Mike:</strong> Yes. I actually have lived most of my life in Toronto and in Montreal, but I have spent some time in Vancouver as well. <span>[Câu 9: Mike đã tới cả 3 thành phố → T]</span> So, all three are very different in attitude and lifestyle, and in the way people live.</p>\n                  <p><strong>Todd:</strong> How so? How is somebody from Toronto different than somebody from Vancouver?</p>\n                  <p><strong>Mike:</strong> Well, somebody from Toronto is a little bit more <mark>high paced</mark>, just because the pace of life in Toronto is a little bit faster. <span>[Câu 10: Toronto là high paced, không phải slow paced → F]</span> Vancouver is a lot <mark>more relaxed</mark>, easy-going. <span>[Câu 11: more relaxed, không phải less relaxed → F]</span> And Montreal has a <mark>strong</mark> French-Canadian influence, so in fact, it's mostly French-Canadian. <span>[Câu 12: strong influence, không phải light influence → F]</span></p>"
+  ],
+  "sourceFiles": {
+    "1. THCS Truc Tuan.html": "94bd42053409ef4a0d8fab72083471c09fd7236b57ceb68a8cd4fab43ca5a335",
+    "1. THCS Truc Tuan(2).html": "94bd42053409ef4a0d8fab72083471c09fd7236b57ceb68a8cd4fab43ca5a335",
+    "GHK1 K8 - part 1.mp3": "639a20e2d5931fdc578564f0e075dd82c7fe26ce96495906950f520541315527",
+    "GHK1 K8 - part 2 .mp3": "38e76db05b584ca4136d9550238c864a94f41bb3afe49c1a5e65c95c560b3cc8"
+  }
+};
