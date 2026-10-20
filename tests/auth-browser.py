@@ -65,10 +65,20 @@ with sync_playwright() as p:
     context,page=new_page(); page.goto(BASE)
     expect(page.locator('#login-form')).to_be_visible(); expect(page.locator('#library')).to_be_hidden()
     assert page.locator('a.lesson').count()==0
+    expect(page.locator('#truc-tuan-game-link')).to_be_visible()
+    assert page.locator('#truc-tuan-game-link').get_attribute('href')=='grade-8/De_thi_GHK1/1_THCS Truc Tuan/truc-tuan-game-test.html'
     for width in [360,375,390,430]:
         page.set_viewport_size({'width':width,'height':850})
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1'),('login overflow',width)
-    count+=1; print('PASS anonymous catalog hidden',flush=True); context.close()
+    page.locator('#truc-tuan-game-link').click()
+    expect(page.locator('#welcome')).to_be_visible()
+    page.locator('#student-name').fill('Học sinh chơi từ trang chủ')
+    page.locator('#start-form button').click()
+    expect(page.locator('#journey-count')).to_have_text('0/42 câu đã luyện')
+    page.go_back()
+    expect(page.locator('#library')).to_be_hidden()
+    expect(page.locator('#truc-tuan-game-link')).to_be_visible()
+    count+=1; print('PASS anonymous catalog hidden; static index game shortcut visible and opens 42-question game without login',flush=True); context.close()
 
     context,page=new_page(); login(page,'active@example.test','wrong-password')
     expect(page.locator('#auth-message')).to_contain_text('Email hoặc mật khẩu không đúng')
