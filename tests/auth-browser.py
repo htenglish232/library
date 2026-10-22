@@ -65,6 +65,10 @@ with sync_playwright() as p:
     context,page=new_page(); page.goto(BASE)
     expect(page.locator('#login-form')).to_be_visible(); expect(page.locator('#library')).to_be_hidden()
     assert page.locator('a.lesson').count()==0
+    expect(page.locator('#school-preview')).to_be_visible()
+    expect(page.locator('#truc-tuan-game-link')).to_be_hidden()
+    page.locator('#school-preview .school-summary').focus()
+    page.locator('#school-preview .school-summary').press('Enter')
     expect(page.locator('#truc-tuan-game-link')).to_be_visible()
     assert page.locator('#truc-tuan-game-link').get_attribute('href')=='grade-8/De_thi_GHK1/1_THCS Truc Tuan/truc-tuan-game-test.html'
     for width in [360,375,390,430]:
@@ -77,8 +81,8 @@ with sync_playwright() as p:
     expect(page.locator('#journey-count')).to_have_text('0/42 câu đã luyện')
     page.go_back()
     expect(page.locator('#library')).to_be_hidden()
-    expect(page.locator('#truc-tuan-game-link')).to_be_visible()
-    count+=1; print('PASS anonymous catalog hidden; static index game shortcut visible and opens 42-question game without login',flush=True); context.close()
+    expect(page.locator('#school-preview')).to_be_visible()
+    count+=1; print('PASS anonymous catalog hidden; public school folder opens via keyboard and its game starts 42-question practice',flush=True); context.close()
 
     context,page=new_page(); login(page,'active@example.test','wrong-password')
     expect(page.locator('#auth-message')).to_contain_text('Email hoặc mật khẩu không đúng')
@@ -93,6 +97,7 @@ with sync_playwright() as p:
 
     teacher_context,teacher=new_page(); login(teacher,'active@example.test')
     expect(teacher.locator('#library')).to_be_visible()
+    expect(teacher.locator('#school-preview')).to_be_hidden()
     expect(teacher.locator('#stats')).to_have_text(f'{201+release_additions} bài học')
     data=release['data']
     baseline_context,baseline_page=new_page(); baseline_page.goto(BASE+'baseline-index.html')
@@ -103,13 +108,35 @@ with sync_playwright() as p:
         expected=baseline_page.locator('a.lesson').evaluate_all('(els)=>els.map(e=>e.getAttribute("href"))')
         actual=teacher.locator('a.lesson').evaluate_all('(els)=>els.map(e=>e.getAttribute("href"))')
         game_href='grade-8/De_thi_GHK1/1_THCS Truc Tuan/truc-tuan-game-test.html'
-        assert [href for href in actual if href!=game_href]==expected,(grade['grade'],'original catalog order')
+        without_game=[href for href in actual if href!=game_href]
+        assert sorted(without_game)==sorted(expected),(grade['grade'],'all original links retained exactly once')
+        exam_hrefs={l['href'] for u in grade['units'] if u.get('type')=='exam-folder' for l in u['lessons']}
+        assert [h for h in without_game if h not in exam_hrefs]==[h for h in expected if h not in exam_hrefs],(grade['grade'],'non-exam order')
         if grade['grade']=='Grade 8':
-            original='grade-8/De_thi_GHK1/1_THCS Truc Tuan/1. THCS Truc Tuan.html'
-            assert actual[actual.index(original)+1]==game_href
+            schools=teacher.locator('.exam-school-folder .school-folder')
+            assert schools.count()==17
+            phuong=schools.filter(has=teacher.locator('.school-name',has_text='THCS Phương Định'))
+            assert phuong.count()==1 and phuong.locator('a.lesson').count()==2
     teacher.get_by_role('button',name='Grade 8',exact=True).click()
     teacher.locator('.folder').filter(has=teacher.get_by_role('heading',name='Đề thi GHK1',exact=True)).locator('.folder-head').click()
-    game=teacher.locator('a.lesson').filter(has_text='Game luyện đề · THCS Trực Tuấn (42 câu)')
+    school=teacher.locator('.exam-school-folder .school-folder').filter(has=teacher.locator('.school-name',has_text='THCS Trực Tuấn'))
+    expect(school.locator('a.lesson')).to_have_count(2)
+    expect(school.locator('a.lesson').first).to_be_hidden()
+    school.locator('.school-summary').click()
+    expect(school.locator('.exam-resource')).to_be_visible()
+    school.locator('.school-summary').focus()
+    school.locator('.school-summary').press('Enter')
+    expect(school.locator('.exam-resource')).to_be_hidden()
+    school.locator('.school-summary').press('Enter')
+    screenshots=Path(os.environ.get('SCHOOL_TEST_OUTPUT','/tmp/ht-school-folders'))
+    screenshots.mkdir(parents=True,exist_ok=True)
+    for width in [360,390,768,1280]:
+        teacher.set_viewport_size({'width':width,'height':900})
+        assert teacher.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),('school folder overflow',width)
+        if width in [390,1280]:
+            teacher.screenshot(path=str(screenshots/f'schools-{width}.png'),full_page=True)
+    teacher.set_viewport_size({'width':1280,'height':900})
+    game=school.locator('a.lesson').filter(has_text='Game luyện đề · THCS Trực Tuấn (42 câu)')
     expect(game).to_be_visible()
     game.click()
     expect(teacher.locator('#welcome')).to_be_visible()
@@ -121,6 +148,11 @@ with sync_playwright() as p:
     teacher.get_by_role('button',name='Grade 8',exact=True).click()
     teacher.locator('#search').fill('Game luyện đề')
     expect(teacher.locator('a.lesson').filter(has_text='Game luyện đề · THCS Trực Tuấn (42 câu)')).to_be_visible()
+    teacher.locator('#search').fill('Phương Định')
+    matched=teacher.locator('.exam-school-folder .school-folder')
+    expect(matched).to_have_count(1)
+    expect(matched.locator('a.lesson')).to_have_count(2)
+    expect(matched.locator('a.lesson').first).to_be_visible()
     teacher.locator('#search').fill('')
     teacher.get_by_role('button',name='Apps for IELTS',exact=True).click()
     teacher.locator('.folder-head').click()
@@ -133,7 +165,7 @@ with sync_playwright() as p:
     expect(teacher.locator('a.lesson').filter(has_text='Luyện viết IELTS')).to_be_visible()
     teacher.locator('#search').fill('')
     baseline_context.close()
-    count+=1; print('PASS active teacher sees the exact current-main catalog and original UI order',flush=True)
+    count+=1; print('PASS active teacher sees all current-main links, school folders, grouped exam/game, keyboard controls, mobile layout and search; non-exam order preserved',flush=True)
     restricted_context,restricted=new_page(); login(restricted,'active@example.test',path='admin.html')
     expect(restricted.locator('#auth-message')).to_contain_text('Chỉ tài khoản Admin')
     expect(restricted.locator('#admin-panel')).to_be_hidden()
