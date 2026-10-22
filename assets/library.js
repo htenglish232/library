@@ -11,7 +11,6 @@ const message = document.getElementById('auth-message');
 function hideCatalog() {
   ['library', 'library-hero', 'library-search'].forEach(id => { document.getElementById(id).hidden = true; });
   document.getElementById('auth-panel').hidden = false;
-  document.getElementById('school-preview').hidden = false;
   clearCatalog(); loadedFor = null; stopCatalog(); stopCatalog = () => {};
 }
 observeAccess(async state => {
@@ -30,7 +29,6 @@ observeAccess(async state => {
         clearCatalog();
         ['library', 'library-hero', 'library-search'].forEach(id => { document.getElementById(id).hidden = true; });
         document.getElementById('auth-panel').hidden = false;
-        document.getElementById('school-preview').hidden = false;
         message.textContent = 'Đang xác minh danh mục trên Firebase…'; return;
       }
       if (!snap.exists()) throw new Error('Danh mục chưa được Admin nhập.');
@@ -39,7 +37,6 @@ observeAccess(async state => {
       setCatalog(releaseCatalogView(snap.data(), data), snap.data().schemaVersion); loadedFor = state.user.uid;
       ['library', 'library-hero', 'library-search'].forEach(id => { document.getElementById(id).hidden = false; });
       document.getElementById('auth-panel').hidden = true;
-      document.getElementById('school-preview').hidden = true;
     } catch (error) {
       if (current !== generation || received !== delivery) return;
       hideCatalog();
