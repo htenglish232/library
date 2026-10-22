@@ -65,24 +65,13 @@ with sync_playwright() as p:
     context,page=new_page(); page.goto(BASE)
     expect(page.locator('#login-form')).to_be_visible(); expect(page.locator('#library')).to_be_hidden()
     assert page.locator('a.lesson').count()==0
-    expect(page.locator('#school-preview')).to_be_visible()
-    expect(page.locator('#truc-tuan-game-link')).to_be_hidden()
-    page.locator('#school-preview .school-summary').focus()
-    page.locator('#school-preview .school-summary').press('Enter')
-    expect(page.locator('#truc-tuan-game-link')).to_be_visible()
-    assert page.locator('#truc-tuan-game-link').get_attribute('href')=='grade-8/De_thi_GHK1/1_THCS Truc Tuan/truc-tuan-game-test.html'
+    assert page.locator('a[href^="grade-"], a[href^="Apps for IELTS/"]').count()==0
+    assert page.locator('.school-folder').count()==0
+    assert page.locator('#school-preview, #truc-tuan-game-link').count()==0
     for width in [360,375,390,430]:
         page.set_viewport_size({'width':width,'height':850})
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1'),('login overflow',width)
-    page.locator('#truc-tuan-game-link').click()
-    expect(page.locator('#welcome')).to_be_visible()
-    page.locator('#student-name').fill('Học sinh chơi từ trang chủ')
-    page.locator('#start-form button').click()
-    expect(page.locator('#journey-count')).to_have_text('0/42 câu đã luyện')
-    page.go_back()
-    expect(page.locator('#library')).to_be_hidden()
-    expect(page.locator('#school-preview')).to_be_visible()
-    count+=1; print('PASS anonymous catalog hidden; public school folder opens via keyboard and its game starts 42-question practice',flush=True); context.close()
+    count+=1; print('PASS anonymous login screen contains no material, exam, school or game links',flush=True); context.close()
 
     context,page=new_page(); login(page,'active@example.test','wrong-password')
     expect(page.locator('#auth-message')).to_contain_text('Email hoặc mật khẩu không đúng')
@@ -93,11 +82,12 @@ with sync_playwright() as p:
         context,page=new_page(); login(page,label+'@example.test')
         expect(page.locator('#auth-message')).to_contain_text(text)
         expect(page.locator('#library')).to_be_hidden(); assert page.locator('a.lesson').count()==0
+        assert page.locator('a[href^="grade-"], a[href^="Apps for IELTS/"]').count()==0
         count+=1; print('PASS '+label+' account denied',flush=True); context.close()
 
     teacher_context,teacher=new_page(); login(teacher,'active@example.test')
     expect(teacher.locator('#library')).to_be_visible()
-    expect(teacher.locator('#school-preview')).to_be_hidden()
+    assert teacher.locator('#school-preview').count()==0
     expect(teacher.locator('#stats')).to_have_text(f'{201+release_additions} bài học')
     data=release['data']
     baseline_context,baseline_page=new_page(); baseline_page.goto(BASE+'baseline-index.html')
@@ -373,9 +363,13 @@ with sync_playwright() as p:
     expect(teacher.locator('#library')).to_be_visible()
     expect(teacher.locator('#stats')).to_have_text(str(release['count']-1)+' bài học')
     count+=1; print('PASS reload restores Firebase session and verifies server permission/catalog again',flush=True)
+    teacher.locator('#logout').click()
+    expect(teacher.locator('#login-form')).to_be_visible()
+    expect(teacher.locator('#library')).to_be_hidden()
+    assert teacher.locator('a[href^="grade-"], a[href^="Apps for IELTS/"]').count()==0
     admin.locator('#logout').click(); expect(admin.locator('#admin-panel')).to_be_hidden()
     expect(admin.locator('#lesson-list')).to_be_empty()
-    count+=1; print('PASS logout clears admin data',flush=True)
+    count+=1; print('PASS logout clears teacher material links and admin data',flush=True)
 
     context,exercise=new_page()
     url='grade-7/De_thi_GHK_1/1_THCS_Truc_Thai/1%20THCS%20Truc%20Thai.html'
