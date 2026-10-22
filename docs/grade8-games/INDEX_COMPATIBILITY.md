@@ -1,5 +1,15 @@
 # Đề xuất tương thích index và quản lý thư viện — chưa triển khai
 
+## Cập nhật đã thực hiện theo yêu cầu tiếp theo
+
+Người dùng đã yêu cầu tạo đường dẫn từ index đến tất cả file game mới. Nhánh `feature/grade8-pilot-index-links` thêm đúng ba HTML Trực Khang, Trực Hùng, Trực Chính vào danh mục, dưới Grade 8 → Đề thi GHK1 → từng trường, cạnh đề kiểm tra gốc. JS/CSS/dữ liệu là tài nguyên nội bộ của game, không thêm thành bài học riêng.
+
+Đợt bổ sung có ID `7f466cf81c99e23c6b4cd039ec983d453ad0558c`; cơ chế release hiện tại tự ghép liên kết vào danh mục đọc từ Firebase, kể cả catalog đã tiếp nhận các đợt cũ. Không ghi hay reset dữ liệu Firebase. Admin có thể tiếp nhận đợt mới bằng chức năng cập nhật danh mục sẵn có; sau khi tiếp nhận, việc xóa liên kết vẫn được tôn trọng. Trạng thái ẩn, đổi tên và dữ liệu các lớp khác được giữ nguyên. Export v2 tăng từ 209 lên 212 đường dẫn; export v1, Rules và Authentication giữ nguyên.
+
+Màn hình đăng nhập vẫn không hiển thị tài liệu. Chưa đổi nhãn thư mục trường sang “Đề số…” và chưa tạo game cho những đề còn lại. Chưa merge hoặc deploy; website công khai chỉ nhận liên kết sau khi bản thay đổi được merge và triển khai. Phần đề xuất bên dưới được giữ làm lịch sử và kế hoạch cho bước tiếp theo.
+
+Kiểm chứng: `check:catalog` xác nhận 212 URL tồn tại, không trùng; 26 bài kiểm thử danh mục/quản lý đạt; đối chiếu 49 file nguồn giữ nguyên. Chromium với Auth/Firestore Emulator vượt qua 23 kịch bản và mở cả ba game từ index sau đăng nhập, kiểm tra ẩn liên kết trước đăng nhập/đăng xuất, cơ chế Admin tiếp nhận đợt mới và đường dẫn `/library/`. Không truy cập Firebase production trong kiểm thử.
+
 Index hiện tại chỉ hiện tài liệu sau khi tài khoản được Firebase xác minh quyền; mục đề GHK1 nhóm theo trường. Catalog Firestore hỗ trợ bản gốc v1 và catalog v2 do Admin quản lý, có lịch sử và metadata tiếp nhận từng đợt liên kết mới. **Giữ nguyên toàn bộ thiết kế này trong giai đoạn A/B.**
 
 ## Hiển thị học sinh về lâu dài

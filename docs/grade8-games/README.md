@@ -1,5 +1,7 @@
 # HT ENGLISH — Bộ máy game lớp 8, giai đoạn A/B
 
+**Cập nhật sau khi người dùng duyệt liên kết:** nhánh `feature/grade8-pilot-index-links` bổ sung ba game bên dưới vào Grade 8 → Đề thi GHK1, trong thư mục từng trường. Các game chỉ hiện sau đăng nhập và xác minh quyền. Xem [INDEX_COMPATIBILITY.md](INDEX_COMPATIBILITY.md). Chưa tạo thêm game, chưa merge/deploy. Nội dung dưới đây ghi nhận kết quả của giai đoạn thử nghiệm trước khi bổ sung liên kết.
+
 Nhánh: `experiment/grade8-shared-game-pilot`.
 
 Đã quét 20 HTML nguồn trong 19 thư mục của `grade-8/De_thi_GHK1/`: 19 nội dung duy nhất, hai HTML Trực Tuấn giống nhau. Danh sách, cách đếm và báo cáo riêng từng nguồn nằm tại [INVENTORY.md](INVENTORY.md) và [inventory.json](inventory.json).

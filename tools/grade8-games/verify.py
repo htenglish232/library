@@ -14,7 +14,7 @@ for path,digest in protected.items():
  assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest()==digest,('changed original',path)
  blob=subprocess.check_output(['git','show',BASELINE+':'+path],cwd=ROOT)
  assert hashlib.sha256(blob).hexdigest()==digest,('not original baseline bytes',path)
-for path in ['index.html','assets/library.js','assets/catalog-data.js','assets/catalog-release.js','catalog/current-library-catalog.json','firestore.rules','assets/firebase-config.js','grade-8/De_thi_GHK1/1_THCS Truc Tuan/truc-tuan-game-test.html','grade-8/De_thi_GHK1/1_THCS Truc Tuan/truc-tuan-game/game.js','grade-8/De_thi_GHK1/1_THCS Truc Tuan/truc-tuan-game/game.css']:
+for path in ['assets/catalog-data.js','firestore.rules','assets/firebase-config.js','grade-8/De_thi_GHK1/1_THCS Truc Tuan/truc-tuan-game-test.html','grade-8/De_thi_GHK1/1_THCS Truc Tuan/truc-tuan-game/game.js','grade-8/De_thi_GHK1/1_THCS Truc Tuan/truc-tuan-game/game.css']:
  assert (ROOT/path).read_bytes()==subprocess.check_output(['git','show',BASELINE+':'+path],cwd=ROOT),('protected application file changed',path)
 raw=json.loads(Path('/tmp/ht-grade8-source-scan.json').read_text())
 folders=['11_THCS_Truc_Khang','12_THCS_Truc_Hung','19_THCS_Truc_Chinh']
@@ -40,4 +40,4 @@ for folder in folders:
  assert len(data['sourceSnapshot']['images'])==len(entry['dom']['images'])
  print('PASS',folder,'all',len(expected),'source IDs, original answers, explanations, options, contexts, transcript/image mappings',flush=True)
 subprocess.run([__import__('sys').executable,str(Path(__file__).with_name('convert.py')),'--verify'],cwd=ROOT,check=True)
-print('PASS',len(protected),'original HTML/audio/image files byte-identical; index/catalog/Firebase/reference game unchanged; exactly 3 pilots regenerated identically without writes.')
+print('PASS',len(protected),'original HTML/audio/image files byte-identical; Firebase config/Rules/reference game unchanged; exactly 3 pilots regenerated identically without writes. Index/catalog release additions are checked by tools/check-catalog.mjs.')

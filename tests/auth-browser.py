@@ -98,7 +98,7 @@ with sync_playwright() as p:
         expected=baseline_page.locator('a.lesson').evaluate_all('(els)=>els.map(e=>e.getAttribute("href"))')
         actual=teacher.locator('a.lesson').evaluate_all('(els)=>els.map(e=>e.getAttribute("href"))')
         game_href='grade-8/De_thi_GHK1/1_THCS Truc Tuan/truc-tuan-game-test.html'
-        without_game=[href for href in actual if href!=game_href]
+        without_game=[href for href in actual if href!=game_href and not href.endswith('/practice-game-pilot.html')]
         assert sorted(without_game)==sorted(expected),(grade['grade'],'all original links retained exactly once')
         exam_hrefs={l['href'] for u in grade['units'] if u.get('type')=='exam-folder' for l in u['lessons']}
         assert [h for h in without_game if h not in exam_hrefs]==[h for h in expected if h not in exam_hrefs],(grade['grade'],'non-exam order')
@@ -138,6 +138,20 @@ with sync_playwright() as p:
     teacher.get_by_role('button',name='Grade 8',exact=True).click()
     teacher.locator('#search').fill('Game luyện đề')
     expect(teacher.locator('a.lesson').filter(has_text='Game luyện đề · THCS Trực Tuấn (42 câu)')).to_be_visible()
+    for name,total in [('Trực Khang',42),('Trực Hùng',43),('Trực Chính',42)]:
+        teacher.locator('#search').fill(name)
+        link=teacher.locator('a.game-resource').filter(has_text=f'Game luyện đề · THCS {name} ({total} câu)')
+        expect(link).to_be_visible()
+        group=link.locator('xpath=ancestor::details')
+        expect(group.locator('a.exam-resource')).to_have_count(1)
+        link.click();expect(teacher.locator('#welcome')).to_be_visible()
+        teacher.locator('#student-name').fill('Học sinh từ index')
+        teacher.locator('#start-form button').click()
+        expect(teacher.locator('#journey-count')).to_have_text(f'0/{total} câu đã luyện')
+        teacher.go_back();expect(teacher.locator('#library')).to_be_visible()
+        teacher.get_by_role('button',name='Grade 8',exact=True).click()
+        teacher.locator('#search').fill('Game luyện đề')
+    print('PASS all three new game links open from the authenticated index beside their original exams',flush=True)
     teacher.locator('#search').fill('Phương Định')
     matched=teacher.locator('.exam-school-folder .school-folder')
     expect(matched).to_have_count(1)
@@ -348,7 +362,7 @@ with sync_playwright() as p:
     expect(admin.locator('#editor-message')).to_contain_text('phiên bản 12')
     expect(teacher.locator('#stats')).to_have_text(str(release['count'])+' bài học')
     adopted=admin.evaluate("""async()=>{const {loadCatalog}=await import('./assets/catalog-store.js');return (await loadCatalog()).fields}""")
-    assert adopted['count']==release['count'] and json.loads(adopted['dataJson'])['releaseApplied']==[baseline,'c16c5eb75c40c0b52a58622a499b446ae1fdd356','534b1a208c7893c70f0662515e7081feec8755b5']
+    assert adopted['count']==release['count'] and json.loads(adopted['dataJson'])['releaseApplied']==[baseline,'c16c5eb75c40c0b52a58622a499b446ae1fdd356','534b1a208c7893c70f0662515e7081feec8755b5','7f466cf81c99e23c6b4cd039ec983d453ad0558c']
     original_archive=admin.evaluate("""async()=>{const {db}=await import('./assets/firebase-client.js');const {doc,getDocFromServer}=await import('./assets/firebase-sdk.js');return (await getDocFromServer(doc(db,'libraryCatalogHistory','11'))).data().snapshot}""")
     assert original_archive==before_release
     admin.locator('#grade-select').select_option('1');admin.locator('#unit-select').select_option('0')

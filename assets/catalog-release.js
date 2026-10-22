@@ -61,6 +61,16 @@ const GRAMMAR_ADDITIONS = [
 
 export const IELTS_RELEASE_ID = 'c16c5eb75c40c0b52a58622a499b446ae1fdd356';
 export const GAME_RELEASE_ID = '534b1a208c7893c70f0662515e7081feec8755b5';
+export const PILOT_GAME_RELEASE_ID = '7f466cf81c99e23c6b4cd039ec983d453ad0558c';
+export const PILOT_GAME_ADDITIONS = [
+  {school: 'Trực Khang', folder: '11_THCS_Truc_Khang', count: 42, before: '12_THCS_Truc_Hung/12 THCS Truc Hung.html'},
+  {school: 'Trực Hùng', folder: '12_THCS_Truc_Hung', count: 43, before: '13_THCS_Dao_Su_Tich/13 THCS Dao Su Tich.html'},
+  {school: 'Trực Chính', folder: '19_THCS_Truc_Chinh', count: 42, before: '20_THCS_Co_Le/20 THCS Co Le.html'},
+].map(({school, folder, count, before}) => ({
+  grade: 'Grade 8', unit: 'Đề thi GHK1', unitType: 'exam-folder',
+  lesson: {title: `Game luyện đề · THCS ${school} (${count} câu)`, href: `grade-8/De_thi_GHK1/${folder}/practice-game-pilot.html`},
+  before: `grade-8/De_thi_GHK1/${before}`,
+}));
 const RELEASE_BATCHES = [
   {id: RELEASE_ID, additions: GRAMMAR_ADDITIONS},
   {id: IELTS_RELEASE_ID, additions: [{
@@ -71,7 +81,8 @@ const RELEASE_BATCHES = [
     grade: 'Grade 8', unit: 'Đề thi GHK1', unitType: 'exam-folder',
     lesson: {title: 'Game luyện đề · THCS Trực Tuấn (42 câu)', href: 'grade-8/De_thi_GHK1/1_THCS Truc Tuan/truc-tuan-game-test.html'},
     before: 'grade-8/De_thi_GHK1/2_THCS Dao Su Tich/2. THCS Dao Su Tich.html'
-  }]}
+  }]},
+  {id: PILOT_GAME_RELEASE_ID, additions: PILOT_GAME_ADDITIONS}
 ];
 export const RELEASE_IDS = RELEASE_BATCHES.map(batch => batch.id);
 export const RELEASE_ADDITIONS = RELEASE_BATCHES.flatMap(batch => batch.additions);

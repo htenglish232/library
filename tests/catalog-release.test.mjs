@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {addReleaseLessons, RELEASE_ADDITIONS, RELEASE_ID, RELEASE_IDS, IELTS_RELEASE_ID, GAME_RELEASE_ID, releaseCatalogView} from '../assets/catalog-release.js';
+import {addReleaseLessons, RELEASE_ADDITIONS, RELEASE_ID, RELEASE_IDS, IELTS_RELEASE_ID, GAME_RELEASE_ID, PILOT_GAME_RELEASE_ID, PILOT_GAME_ADDITIONS, releaseCatalogView} from '../assets/catalog-release.js';
 import {decodeCatalog, managedPayload, encodeCatalogData} from '../assets/catalog-data.js';
 const legacy=JSON.parse(readFileSync('catalog/library-catalog.json','utf8')).data;
 const current=JSON.parse(readFileSync('catalog/current-library-catalog.json','utf8')).data;
@@ -63,7 +63,7 @@ test('IELTS release preserves deletions from a previously adopted Grade 5 releas
 });
 
 test('game link is inserted beside the original and respects prior release deletions',async()=>{
- const game=RELEASE_ADDITIONS.at(-1),data=structuredClone(current);
+ const game=RELEASE_ADDITIONS.find(p=>p.lesson.href.endsWith('/truc-tuan-game-test.html')),data=structuredClone(current);
  const grade=data.find(g=>g.grade==='Grade 8');
  const folder=grade.units.find(u=>u.name==='Đề thi GHK1');
  const original=folder.lessons.findIndex(l=>l.title==='Đề 01 · THCS Trực Tuấn');
@@ -82,4 +82,30 @@ test('game link is inserted beside the original and respects prior release delet
  const adopted={...fields,dataJson:encodeCatalogData(data,[...RELEASE_IDS])};
  assert.deepEqual(releaseCatalogView(adopted,data),data);
  assert.ok(RELEASE_IDS.includes(GAME_RELEASE_ID));
+});
+
+test('all three pilot links upgrade the previous release once and preserve Admin visibility and deletions',async()=>{
+ const previousIds=RELEASE_IDS.filter(id=>id!==PILOT_GAME_RELEASE_ID);
+ const paths=new Set(PILOT_GAME_ADDITIONS.map(p=>p.lesson.href));
+ const data=structuredClone(current),grade=data.find(g=>g.grade==='Grade 8');
+ grade.grade='Khối 8';grade.hidden=true;
+ const unit=grade.units.find(u=>u.name==='Đề thi GHK1');unit.name='Đề giữa kỳ';unit.hidden=true;
+ unit.lessons=unit.lessons.filter(l=>!paths.has(l.href));
+ const deleted=unit.lessons.shift().href;
+ const original=structuredClone(data);
+ const result=addReleaseLessons(data,previousIds);
+ assert.equal(result.added,3);assert.deepEqual(data,original);
+ const updated=result.data.find(g=>g.grade==='Khối 8');assert.equal(updated.hidden,true);
+ const folder=updated.units.find(u=>u.name==='Đề giữa kỳ');assert.equal(folder.hidden,true);
+ for(const patch of PILOT_GAME_ADDITIONS){
+  const idx=folder.lessons.findIndex(l=>l.href===patch.lesson.href);
+  assert.ok(idx>0);assert.equal(folder.lessons[idx-1].href.slice(0,folder.lessons[idx-1].href.lastIndexOf('/')),patch.lesson.href.slice(0,patch.lesson.href.lastIndexOf('/')));
+ }
+ assert.ok(!folder.lessons.some(l=>l.href===deleted));
+ assert.equal(addReleaseLessons(result.data,previousIds).added,0);
+ const hidden=folder.lessons.find(l=>paths.has(l.href));hidden.hidden=true;hidden.title='Tên game đã sửa';
+ assert.deepEqual(addReleaseLessons(result.data,previousIds).data,result.data);
+ folder.lessons=folder.lessons.filter(l=>l.href!==PILOT_GAME_ADDITIONS[1].lesson.href);
+ const fields={...await managedPayload(result.data),dataJson:encodeCatalogData(result.data,RELEASE_IDS)};
+ assert.deepEqual(releaseCatalogView(fields,result.data),result.data);
 });
