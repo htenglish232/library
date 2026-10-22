@@ -1,4 +1,5 @@
 import { visibleCatalog } from './catalog-data.js';
+import { renderSchoolFolders } from './school-folders.js';
 const tabs=document.getElementById('tabs'), content=document.getElementById('content'), search=document.getElementById('search'), empty=document.getElementById('empty'), stats=document.getElementById('stats');
 let current=0;
 let DATA = [];
@@ -20,7 +21,12 @@ export function render(q=''){
      : g.units.every(u => u.type === 'exam-folder' || / · Unit \d+/i.test(u.name));
    if (!grouped) {
      for (const u of g.units) {
-       const lessons = u.lessons.filter(l => !q || `${g.grade} ${u.name} ${escape(l.title)}`.toLowerCase().includes(needle));
+       if (u.type === 'exam-folder') {
+         const schoolFolder = examSchoolFolder(g, u, q);
+         if (schoolFolder) {found = true; sec.append(schoolFolder);}
+         continue;
+       }
+       const lessons = u.lessons.filter(l => !q || `${g.grade} ${u.name} ${l.title}`.toLowerCase().includes(needle));
        if (!lessons.length) continue;
        found = true;
        const folder = document.createElement('div'); folder.className = 'folder' + (q ? ' open' : '');
@@ -69,20 +75,22 @@ export function render(q=''){
        sec.appendChild(folder);
      });
      g.units.filter(u=>u.type==='exam-folder').forEach(examFolder=>{
-       const lessons=examFolder.lessons.filter(l=>!q || (g.grade+' '+examFolder.name+' '+l.title).toLowerCase().includes(needle));
-       if(!lessons.length) return;
-       found=true;
-       const folder=document.createElement('div'); folder.className='folder'+(q?' open':'');
-       folder.innerHTML=`<div class="folder-head"><div class="folder-title"><span class="folder-icon">📁</span><h3>${escape(examFolder.name)}</h3></div><div><span class="badge">${lessons.length} đề</span> <span class="chev">›</span></div></div><div class="folder-body"><div class="grammar-list"></div></div>`;
-       folder.querySelector('.folder-head').onclick=()=>toggle(folder);
-       const list=folder.querySelector('.grammar-list');
-       lessons.forEach(l=>{ const a=document.createElement('a'); a.className='lesson'; a.href=l.href; a.innerHTML=`<strong>${escape(l.title)}</strong>`; list.appendChild(a); });
-       sec.appendChild(folder);
+       const folder=examSchoolFolder(g,examFolder,q);
+       if(folder){ found=true; sec.append(folder); }
      });
    }
    content.appendChild(sec);
  });
  empty.style.display=found?'none':'block';
+}
+function examSchoolFolder(grade, unit, query) {
+  const schools = renderSchoolFolders(unit.lessons, query, `${grade.grade} ${unit.name}`);
+  if (!schools.count) return null;
+  const folder = document.createElement('details'); folder.className = 'folder exam-school-folder'; folder.open = !!query;
+  const head = document.createElement('summary'); head.className = 'folder-head';
+  head.innerHTML = `<div class="folder-title"><span class="folder-icon" aria-hidden="true">📁</span><h3>${escape(unit.name)}</h3></div><span class="badge">${schools.count} trường</span>`;
+  const body = document.createElement('div'); body.className = 'folder-body school-list'; body.append(schools.fragment);
+  folder.append(head, body); return folder;
 }
 search.addEventListener('input',()=>render(search.value.trim()));
 export function setCatalog(data, schemaVersion = 1) {
