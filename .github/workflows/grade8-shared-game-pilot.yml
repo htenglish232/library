@@ -1,0 +1,40 @@
+name: Grade 8 shared game pilots (no deploy)
+on:
+  push:
+    branches: [experiment/grade8-shared-game-pilot]
+  pull_request:
+    paths:
+      - 'grade-8/De_thi_GHK1/**'
+      - 'tools/grade8-games/**'
+      - 'tests/grade8-shared-*'
+      - 'docs/grade8-games/**'
+      - '.github/workflows/grade8-shared-game-pilot.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install playwright==1.58.0
+      - run: python -m playwright install --with-deps chromium
+      - run: python tools/grade8-games/inventory.py
+      - run: git diff --exit-code -- docs/grade8-games/inventory.json
+      - run: python tools/grade8-games/verify.py
+      - run: node --test tests/grade8-shared-model.test.mjs
+      - run: python tests/grade8-shared-game-browser.py
+        env:
+          GRADE8_GAME_TEST_OUTPUT: ${{ runner.temp }}/grade8-game-pilots
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: grade8-shared-game-pilot-reports
+          path: ${{ runner.temp }}/grade8-game-pilots
