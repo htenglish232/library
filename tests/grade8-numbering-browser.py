@@ -51,13 +51,13 @@ try:
             return page
         before = page_for('catalog-view-before-numbering.js')
         page = page_for('catalog-view.js?v=20261023-exam-numbering')
-        for grade in ['Grade 4','Grade 5','Grade 6','Grade 7']:
+        for grade in ['Grade 4','Grade 5']:
             snapshots=[]
             for target in [before,page]:
                 target.get_by_role('button', name=grade, exact=True).click()
                 snapshots.append(target.locator('#content').inner_html())
             assert snapshots[0]==snapshots[1], grade
-        passed('Grade 4/5/6/7 rendered DOM exactly matches the previous implementation')
+        passed('Grade 4/5 rendered DOM exactly matches the previous implementation; Grade 6/7 have their own numbering checks')
         page.get_by_role('button', name='Grade 8', exact=True).click()
         folder = page.locator('.exam-school-folder')
         expect(folder).to_have_count(1); folder.locator('.folder-head').click()
