@@ -1,7 +1,7 @@
 name: Firebase trial checks (no deploy)
 on:
   push:
-    branches: [firebase-auth-trial, restore-firebase-auth, restore/firebase-integration-20261023]
+    branches: [firebase-auth-trial, restore-firebase-auth, restore/firebase-integration-20261023, feature/grade8-school-exam-numbering]
   pull_request:
     paths: ['assets/**', 'catalog/**', 'tests/**', 'tools/**', 'firestore.rules', 'firestore.indexes.json', 'firebase.json', 'package*.json', 'index.html', 'admin.html', '.github/workflows/**']
 permissions:
@@ -29,4 +29,10 @@ jobs:
       - run: npm run build && npm run check:catalog && npm run test:prepare
       - run: python3 -m pip install playwright==1.58.0
       - run: python3 -m playwright install --with-deps chromium
+      - run: python3 tests/grade8-numbering-browser.py
       - run: npm run test:emulators
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: grade8-school-numbering-browser
+          path: /tmp/ht-grade8-numbering
