@@ -1,0 +1,24 @@
+import { readFileSync, existsSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
+import { validateCatalog, validateManagedCatalog } from '../assets/catalog-data.js';
+import { addReleaseLessons } from '../assets/catalog-release.js';
+const read = file => JSON.parse(readFileSync(file, 'utf8'));
+// Keep the original v1 hash: existing Firestore documents and Rules depend on it.
+const legacy = read('catalog/library-catalog.json');
+await validateCatalog(legacy);
+const baseline = read('catalog/current-baseline.json');
+const source = execFileSync('git', ['show', `${baseline.commit}:index.html`], {encoding:'utf8'});
+const match = source.match(/const DATA = (\[.*?\]);/s);
+const original = match ? JSON.parse(match[1]) : JSON.parse(execFileSync('git', ['show', `${baseline.commit}:catalog/current-library-catalog.json`], {encoding:'utf8'})).data;
+const payload = read('catalog/current-library-catalog.json');
+await validateManagedCatalog(payload);
+if (JSON.stringify(payload.data) !== JSON.stringify(addReleaseLessons(original).data)) throw new Error('Current catalog differs from reviewed main.');
+if (createHash('sha256').update(JSON.stringify(original)).digest('hex') !== baseline.sha256 || original.flatMap(g => g.units.flatMap(u => u.lessons)).length !== baseline.count) throw new Error('Current baseline hash/count mismatch.');
+if (JSON.stringify(addReleaseLessons(legacy.data).data) !== JSON.stringify(payload.data)) throw new Error('Release additions do not reproduce the exact current main catalog.');
+const links = payload.data.flatMap(g => g.units.flatMap(u => u.lessons.map(l => l.href)));
+if (links.length !== payload.count || new Set(links).size !== payload.count || !links.every(href => existsSync(href))) throw new Error('Duplicate or missing local lesson links.');
+// Allow new standalone exercises; modifications/deletions/renames of reviewed originals remain blocked.
+const protectedChanges = execFileSync('git', ['diff', baseline.commit, '--name-only', '--diff-filter=DMRTUXB', '--', 'grade-*', 'home-button.js', 'assets/submission-identity.js', 'assets/submission-identity.css'], {encoding:'utf8'}).trim();
+if (protectedChanges) throw new Error(`Protected current-main files changed: ${protectedChanges}`);
+console.log(`PASS: ${payload.count} unique existing paths; reviewed main catalog/order preserved with release additions; legacy v1 supported; exam/audio/grading/personalization files unchanged.`);
