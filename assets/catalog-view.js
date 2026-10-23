@@ -1,9 +1,11 @@
 import { visibleCatalog } from './catalog-data.js';
-import { renderSchoolFolders, numberSchoolLessons } from './school-folders.js?v=20261023-exam-numbering';
+import { renderSchoolFolders, numberSchoolLessons } from './school-folders.js?v=20261023-grade67-numbering';
 const tabs=document.getElementById('tabs'), content=document.getElementById('content'), search=document.getElementById('search'), empty=document.getElementById('empty'), stats=document.getElementById('stats');
 let current=0;
 let DATA = [];
 const numberedSchools = new Map();
+// Verified from the original HTML h2 and school metadata, not inferred from a filename.
+const verifiedSchoolNames = {'grade-7/De_thi_GHK_1/13_Dao_Su_Tich/13 Dao Su Tich.html': 'THCS Đào Sư Tích'};
 function escape(value) { return value.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function updateStats() { const total=DATA.reduce((n,g)=>n+g.units.reduce((m,u)=>m+u.lessons.length,0),0); stats.textContent=`${total} bài học`; }
 function toggle(el){ el.classList.toggle('open'); }
@@ -89,7 +91,9 @@ function examSchoolFolder(grade, unit, query) {
   if (!schools.count) return null;
   const folder = document.createElement('details'); folder.className = 'folder exam-school-folder'; folder.open = !!query;
   const head = document.createElement('summary'); head.className = 'folder-head';
-  head.innerHTML = `<div class="folder-title"><span class="folder-icon" aria-hidden="true">📁</span><h3>${escape(unit.name)}</h3></div><span class="badge">${schools.count} trường</span>`;
+  const classified = schools.count-schools.unclassifiedCount;
+  const countLabel = [classified && `${classified} trường`, schools.unclassifiedCount && `${schools.unclassifiedCount} nhóm chưa phân loại`].filter(Boolean).join(' · ');
+  head.innerHTML = `<div class="folder-title"><span class="folder-icon" aria-hidden="true">📁</span><h3>${escape(unit.name)}</h3></div><span class="badge">${countLabel}</span>`;
   const body = document.createElement('div'); body.className = 'folder-body school-list'; body.append(schools.fragment);
   folder.append(head, body); return folder;
 }
@@ -98,8 +102,9 @@ export function setCatalog(data, schemaVersion = 1) {
   const selected = DATA[current]?.grade, query = search.value;
   numberedSchools.clear();
   for (const grade of data) for (const unit of grade.units) {
-    if (unit.type !== 'exam-folder' || !unit.lessons.some(l => l.href.startsWith('grade-8/'))) continue;
-    const schools = numberSchoolLessons(unit.lessons);
+    if (unit.type !== 'exam-folder' || !unit.lessons.some(l => /^grade-[678]\//u.test(l.href))) continue;
+    const grade67 = unit.lessons.some(l => /^grade-[67]\//u.test(l.href));
+    const schools = numberSchoolLessons(unit.lessons, grade67 ? {schoolNames: verifiedSchoolNames, unclassified: true} : {});
     for (const lesson of unit.lessons) numberedSchools.set(lesson.href, schools);
   }
   DATA = visibleCatalog(data);

@@ -118,3 +118,48 @@ test('duplicate explicit exam numbers stay unpaired instead of silently inventin
   {title:'Game đề số 1 – THCS Mới',href:'grade-8/new/game.html'}];
  assert.ok(numberSchoolLessons(input)[0].lessons.every(l=>l.examNumber===null));
 });
+
+test('Grade 6 has 16 actual exams in 14 schools, with separate Hung and Liem Hai exams and no games',()=>{
+ const original=structuredClone(examFolder('Grade 6').lessons),groups=numberSchoolLessons(original,{unclassified:true});
+ assert.equal(groups.length,14);assert.equal(groups.flatMap(g=>g.lessons).length,16);
+ for(const g of groups){
+  assert.ok(g.name.startsWith('THCS '));assert.ok(g.lessons.every(l=>l.kind==='exam'));
+  assert.deepEqual(g.lessons.map(l=>l.examNumber),g.lessons.map((_,i)=>i+1));
+ }
+ for(const name of ['THCS Trực Hùng','THCS Liêm Hải'])assert.deepEqual(groups.find(g=>g.name===name).lessons.map(l=>l.examNumber),[1,2]);
+ assert.deepEqual(original,examFolder('Grade 6').lessons);
+});
+
+test('Grade 7 Dao Su Tich has a verified THCS label without changing its stored title or href',()=>{
+ const href='grade-7/De_thi_GHK_1/13_Dao_Su_Tich/13 Dao Su Tich.html';
+ assert.match(readFileSync(href,'utf8'),/<h2>THCS Đào Sư Tích<\/h2>/u);
+ const groups=numberSchoolLessons(examFolder('Grade 7').lessons,{schoolNames:{[href]:'THCS Đào Sư Tích'},unclassified:true});
+ assert.equal(groups.length,14);assert.equal(groups.flatMap(g=>g.lessons).length,14);
+ const lesson=groups.find(g=>g.name==='THCS Đào Sư Tích').lessons[0];
+ assert.equal(lesson.displayTitle,'Đề số 1 – THCS Đào Sư Tích');
+ assert.equal(lesson.title,'Đề 13 · Đào Sư Tích');assert.equal(lesson.href,href);
+ assert.ok(groups.every(g=>g.lessons.length===1&&g.lessons[0].kind==='exam'&&g.lessons[0].examNumber===1));
+});
+
+test('unidentified Grade 6/7 schools form one unclassified folder, keep original titles and never infer a school from the URL',()=>{
+ const input=[{title:'Đề thử A',href:'grade-6/De_thi_GHK_1/THCS_Guess/a.html'},
+  {title:'Đề thử B',href:'grade-6/De_thi_GHK_1/other/b.html'}];
+ const before=structuredClone(input),groups=numberSchoolLessons(input,{unclassified:true});
+ assert.equal(groups.length,1);assert.equal(groups[0].name,'Đề thi chưa phân loại');
+ assert.deepEqual(groups[0].lessons.map(l=>l.displayTitle),['Đề số 1 – Chưa phân loại','Đề số 2 – Chưa phân loại']);
+ assert.deepEqual(groups[0].lessons.map(l=>l.title),input.map(l=>l.title));assert.deepEqual(input,before);
+ // Grade 8's default behavior is unchanged.
+ assert.equal(numberSchoolLessons(input)[0].name,'Đề thử A');
+});
+
+test('future Grade 6/7 games and exam sets use the same pairing rules with numbering isolated per grade',()=>{
+ for(const grade of [6,7]){
+  const dir=`grade-${grade}/De_thi_HK2/THCS_New/`;
+  const input=[{title:'Game đề số 2 – THCS Mới',href:dir+'game2.html'},
+   {title:'Đề số 2 – THCS Mới',href:dir+'exam2.html'},
+   {title:'Đề số 1 – THCS Mới',href:dir+'exam1.html',hidden:true}];
+  const rows=numberSchoolLessons(input,{unclassified:true})[0].lessons;
+  assert.deepEqual(rows.map(l=>[l.kind,l.examNumber]),[['exam',1],['exam',2],['game',2]]);
+  assert.equal(rows[2].examHref,dir+'exam2.html');assert.equal(rows[2].displayTitle,'Game đề số 2 – THCS Mới');
+ }
+});

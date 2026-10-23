@@ -3,7 +3,7 @@ import { doc, onSnapshot } from './firebase-sdk.js';
 import { setupLogin, observeAccess, showSession, explainAuthError } from './session.js';
 import { releaseCatalogView } from './catalog-release.js?v=20261022-grade8-games';
 import { decodeCatalog } from './catalog-data.js';
-import { setCatalog, clearCatalog } from './catalog-view.js?v=20261023-exam-numbering';
+import { setCatalog, clearCatalog } from './catalog-view.js?v=20261023-grade67-numbering';
 
 setupLogin();
 let generation = 0, loadedFor = null, stopCatalog = () => {};
