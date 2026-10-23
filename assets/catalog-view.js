@@ -1,8 +1,9 @@
 import { visibleCatalog } from './catalog-data.js';
-import { renderSchoolFolders } from './school-folders.js';
+import { renderSchoolFolders, numberSchoolLessons } from './school-folders.js?v=20261023-exam-numbering';
 const tabs=document.getElementById('tabs'), content=document.getElementById('content'), search=document.getElementById('search'), empty=document.getElementById('empty'), stats=document.getElementById('stats');
 let current=0;
 let DATA = [];
+const numberedSchools = new Map();
 function escape(value) { return value.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 function updateStats() { const total=DATA.reduce((n,g)=>n+g.units.reduce((m,u)=>m+u.lessons.length,0),0); stats.textContent=`${total} bài học`; }
 function toggle(el){ el.classList.toggle('open'); }
@@ -84,7 +85,7 @@ export function render(q=''){
  empty.style.display=found?'none':'block';
 }
 function examSchoolFolder(grade, unit, query) {
-  const schools = renderSchoolFolders(unit.lessons, query, `${grade.grade} ${unit.name}`);
+  const schools = renderSchoolFolders(unit.lessons, query, `${grade.grade} ${unit.name}`, numberedSchools.get(unit.lessons[0]?.href));
   if (!schools.count) return null;
   const folder = document.createElement('details'); folder.className = 'folder exam-school-folder'; folder.open = !!query;
   const head = document.createElement('summary'); head.className = 'folder-head';
@@ -95,8 +96,14 @@ function examSchoolFolder(grade, unit, query) {
 search.addEventListener('input',()=>render(search.value.trim()));
 export function setCatalog(data, schemaVersion = 1) {
   const selected = DATA[current]?.grade, query = search.value;
+  numberedSchools.clear();
+  for (const grade of data) for (const unit of grade.units) {
+    if (unit.type !== 'exam-folder' || !unit.lessons.some(l => l.href.startsWith('grade-8/'))) continue;
+    const schools = numberSchoolLessons(unit.lessons);
+    for (const lesson of unit.lessons) numberedSchools.set(lesson.href, schools);
+  }
   DATA = visibleCatalog(data);
   current = Math.max(0, DATA.findIndex(g => g.grade === selected));
   search.value = selected ? query : ''; updateStats(); render(search.value.trim());
 }
-export function clearCatalog() { DATA = []; content.replaceChildren(); tabs.replaceChildren(); stats.textContent = ''; search.value = ''; empty.style.display = 'none'; }
+export function clearCatalog() { DATA = []; numberedSchools.clear(); content.replaceChildren(); tabs.replaceChildren(); stats.textContent = ''; search.value = ''; empty.style.display = 'none'; }

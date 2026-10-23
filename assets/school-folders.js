@@ -7,9 +7,9 @@ function schoolIdentity(lesson) {
   const parts = lesson.title.split(' · ');
   let name = parts.length > 1 ? parts.at(-1) : lesson.title;
   const recognized = parts.length > 1 || /^(?:THCS|THPT|Tiểu học)\s/iu.test(name);
-  name = name.replace(/\s*\(\d+\s*câu\)\s*$/iu, '').replace(/\s*\(\d+\)\s*$/u, '').trim();
+  name = name.replace(/^(?:Game\s+)?Đề\s+số\s+\d+\s*[–—-]\s*/iu, '').replace(/\s*\(\d+\s*câu\)\s*$/iu, '').replace(/\s*\(\d+\)\s*$/u, '').trim();
   const key = name.normalize('NFC').replace(/^THCS\s+/iu, '').replace(/\s+/gu, ' ').toLocaleLowerCase('vi');
-  return {name, key: recognized ? `school:${key}` : `item:${lesson.href}`};
+  return {name, key: recognized || /^(?:THCS|THPT|Tiểu học)\s/iu.test(name) ? `school:${key}` : `item:${lesson.href}`};
 }
 
 function directory(href) {
@@ -37,12 +37,54 @@ export function groupSchoolLessons(lessons) {
   return [...groups.values()];
 }
 
-export function renderSchoolFolders(lessons, query = '', context = '') {
+// Display metadata only. Feed the complete unit, including hidden lessons, so a
+// filter/search never changes an exam's number. Stored titles/hrefs stay intact.
+export function numberSchoolLessons(lessons) {
+  const explicit = title => {
+    const match = title.match(/^(?:Game\s+)?Đề\s+số\s+([1-9]\d*)\s*[–—-]\s*/iu);
+    const number = match && Number(match[1]);
+    return Number.isSafeInteger(number) ? number : null;
+  };
+  return groupSchoolLessons(lessons).map(school => {
+    const exams = school.lessons.filter(l => l.kind === 'exam');
+    const numbers = new Map(), reserved = new Set(exams.map(l => explicit(l.title)).filter(Boolean));
+    let next = 1;
+    for (const exam of exams) {
+      let number = explicit(exam.title);
+      if (number && exams.filter(l => explicit(l.title) === number).length > 1) continue;
+      if (!number) { while (reserved.has(next)) next++; number = next++; reserved.add(number); }
+      numbers.set(exam.href, number);
+    }
+    const rows = school.lessons.map((lesson, position) => {
+      let exam = lesson.kind === 'exam' ? lesson : null;
+      if (!exam) {
+        const path = directory(lesson.href), requested = explicit(lesson.title);
+        let candidates = exams.filter(e => path && directory(e.href) && path.startsWith(directory(e.href)));
+        if (candidates.length) {
+          const longest = Math.max(...candidates.map(e => directory(e.href).length));
+          candidates = candidates.filter(e => directory(e.href).length === longest);
+        } else if (requested) candidates = exams;
+        if (requested) candidates = candidates.filter(e => numbers.get(e.href) === requested);
+        if (candidates.length === 1) exam = candidates[0];
+      }
+      const examNumber = exam && numbers.get(exam.href);
+      const displayTitle = examNumber && school.name.startsWith('THCS ')
+        ? `${lesson.kind === 'game' ? 'Game đề' : 'Đề'} số ${examNumber} – ${school.name}` : lesson.title;
+      return {...lesson, displayTitle, examNumber: examNumber || null, examHref: exam?.href || null, position};
+    });
+    rows.sort((a,b) => (a.examNumber ?? Infinity) - (b.examNumber ?? Infinity)
+      || (a.examNumber && b.examNumber ? Number(a.kind === 'game') - Number(b.kind === 'game') : 0) || a.position-b.position);
+    return {...school, lessons: rows};
+  });
+}
+
+export function renderSchoolFolders(lessons, query = '', context = '', groups = groupSchoolLessons(lessons)) {
   const fragment = document.createDocumentFragment();
   const needle = query.toLocaleLowerCase('vi').trim();
   let visibleSchools = 0;
-  for (const school of groupSchoolLessons(lessons)) {
-    const matching = school.lessons.filter(lesson => !needle || `${context} ${school.name} ${lesson.title} ${lesson.kind==='game'?'Game luyện đề':'Đề kiểm tra'}`.toLocaleLowerCase('vi').includes(needle));
+  const visible = new Set(lessons.map(lesson => lesson.href));
+  for (const school of groups) {
+    const matching = school.lessons.filter(lesson => visible.has(lesson.href) && (!needle || `${context} ${school.name} ${lesson.title} ${lesson.displayTitle || ''} ${lesson.kind==='game'?'Game luyện đề':'Đề kiểm tra'}`.toLocaleLowerCase('vi').includes(needle)));
     if (!matching.length) continue;
     visibleSchools++;
     const folder = document.createElement('details');
@@ -55,12 +97,24 @@ export function renderSchoolFolders(lessons, query = '', context = '') {
     count.textContent = [exams && `${exams} đề`, games && `${games} game`].filter(Boolean).join(' · ');
     summary.append(title, count); folder.append(summary);
     const resources = document.createElement('div'); resources.className = 'school-resources';
+    const pairs = new Map();
     for (const lesson of matching) {
       const link = document.createElement('a'); link.className = `lesson school-resource ${lesson.kind}-resource`; link.href = lesson.href;
       if (/^https:\/\//iu.test(lesson.href)) link.rel = 'noopener noreferrer';
       const kind = document.createElement('span'); kind.className = 'resource-kind'; kind.textContent = lesson.kind==='game'?'Game luyện đề':'Đề kiểm tra';
-      const name = document.createElement('strong'); name.textContent = lesson.title;
-      link.append(kind, name); resources.append(link);
+      const name = document.createElement('strong'); name.textContent = lesson.displayTitle || lesson.title;
+      link.append(kind, name);
+      let container = resources;
+      if (lesson.examNumber) {
+        if (!pairs.has(lesson.examNumber)) {
+          const pair = document.createElement('div'); pair.className = 'exam-pair';
+          pair.dataset.examNumber = lesson.examNumber; pair.setAttribute('role', 'group');
+          pair.setAttribute('aria-label', `Đề số ${lesson.examNumber} – ${school.name}`);
+          pairs.set(lesson.examNumber, pair); resources.append(pair);
+        }
+        container = pairs.get(lesson.examNumber);
+      }
+      container.append(link);
     }
     folder.append(resources); fragment.append(folder);
   }

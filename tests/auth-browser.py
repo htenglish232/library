@@ -129,7 +129,7 @@ with sync_playwright() as p:
         if width in [390,1280]:
             teacher.screenshot(path=str(screenshots/f'schools-{width}.png'),full_page=True)
     teacher.set_viewport_size({'width':1280,'height':900})
-    game=school.locator('a.lesson').filter(has_text='Game luyện đề · THCS Trực Tuấn (42 câu)')
+    game=school.locator('a.lesson').filter(has_text='Game đề số 1 – THCS Trực Tuấn')
     expect(game).to_be_visible()
     game.click()
     expect(teacher.locator('#welcome')).to_be_visible()
@@ -140,10 +140,10 @@ with sync_playwright() as p:
     expect(teacher.locator('#library')).to_be_visible()
     teacher.get_by_role('button',name='Grade 8',exact=True).click()
     teacher.locator('#search').fill('Game luyện đề')
-    expect(teacher.locator('a.lesson').filter(has_text='Game luyện đề · THCS Trực Tuấn (42 câu)')).to_be_visible()
+    expect(teacher.locator('a.lesson').filter(has_text='Game đề số 1 – THCS Trực Tuấn')).to_be_visible()
     for name,total in [('Trực Khang',42),('Trực Hùng',43),('Trực Chính',42)]:
         teacher.locator('#search').fill(name)
-        link=teacher.locator('a.game-resource').filter(has_text=f'Game luyện đề · THCS {name} ({total} câu)')
+        link=teacher.locator('a.game-resource').filter(has_text=f'Game đề số 1 – THCS {name}')
         expect(link).to_be_visible()
         group=link.locator('xpath=ancestor::details')
         expect(group.locator('a.exam-resource')).to_have_count(1)

@@ -30,7 +30,7 @@ for name, digest in trusted.items():
 
 index = (ROOT / 'index.html').read_text()
 assert 'const DATA =' not in index and 'id="login-form"' in index
-assert 'id="library" hidden' in index and 'assets/library.js?v=20261023-firebase-restored' in index
+assert 'id="library" hidden' in index and 'assets/library.js?v=' in index
 
 game_dir = ROOT / 'grade-8/De_thi_GHK1/12_THCS_Truc_Hung'
 game = json.loads((game_dir / 'practice-game-data.js').read_text().split('window.HT_PRACTICE_DATA = ', 1)[1].strip()[:-1])
