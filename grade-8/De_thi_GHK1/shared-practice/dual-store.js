@@ -22,7 +22,7 @@
         try {
           if(!storage)storage=globalThis.localStorage;
           if(storage.getItem(key)!==lastRaw)return 'conflict';
-          if(lastRaw && JSON.stringify(JSON.parse(lastRaw).state)===JSON.stringify(validated)){state=validated;return 'saved';}
+          if(status==='found' && lastRaw && JSON.stringify(JSON.parse(lastRaw).state)===JSON.stringify(validated)){state=validated;return 'saved';}
           storage.setItem(key,bytes);lastRaw=bytes;state=validated;status='found';return 'saved';
         } catch {return 'blocked';}
       },

@@ -12,7 +12,7 @@
   const questions = source.questions;
   const sections = source.sections.map((s,i)=>({...s,short:s.title,color:['#e5f3fc','#e8f5ee','#f1edfb','#fff4d9'][i%4]}));
   const P=HTDualProgress;
-  let state=null,store=null,pendingStudent=null,pendingMode='challenge',conflict=false;
+  let state=null,store=null,pendingStudent=null,pendingMode='challenge',conflict=false,passageCollapsed=false;
   const audio=$('audio-player');let currentTrack=0;
   const bySection=id=>questions.filter(q=>q.section===id);
   const activeQuestions=()=>P.list(source,state);
@@ -107,6 +107,7 @@
     $('passage-panel').hidden=!contextHtml;
     $('question-layout').classList.toggle('with-passage',!!contextHtml);
     if(contextHtml)$('passage-content').innerHTML=contextHtml;
+    renderPassageToggle();
     $('audio-panel').hidden=!q.track;
     if(q.track)loadTrack(q.track);else pauseAudio();
     $('previous-question').disabled=conflict||currentIndex()===0;$('next-question').disabled=conflict;$('jump-question').disabled=conflict;
@@ -137,7 +138,7 @@
         const label=text('label',count>1?`Ô trả lời ${i+1}`:q.section==='rewrite'||q.promptHtml.includes('→')?'Nhập phần còn lại sau mũi tên':'Đáp án của em');
         const input=document.createElement('textarea');input.id=count>1?`written-answer-${i}`:'written-answer';label.htmlFor=input.id;
         input.className='answer-input';input.lang='en';input.value=count>1?draft.fields[i]:draft.value;input.disabled=locked;input.maxLength=1500;input.spellcheck=false;
-        input.oninput=()=>{const next=JSON.parse(JSON.stringify(draft));if(count>1)next.fields[i]=input.value;else next.value=input.value;writeDraft(q,next);$('answer-error').textContent='';};
+        input.oninput=()=>{const next=JSON.parse(JSON.stringify(P.draft(source,state,q.id)));if(count>1)next.fields[i]=input.value;else next.value=input.value;writeDraft(q,next);$('answer-error').textContent='';};
         wrapper.append(label,input);area.append(wrapper);
       }
       area.append(text('p','Đối chiếu cả câu với đáp án nguồn; không tự chấm bằng từ khóa. Cách diễn đạt khác cần giáo viên xem lại.','input-hint'));
@@ -160,6 +161,12 @@
       tools.append(undo,reset);area.append(target,bank,tools);
     }
   }
+  function renderPassageToggle(){
+    $('passage-content').hidden=passageCollapsed;
+    $('toggle-passage').setAttribute('aria-expanded',String(!passageCollapsed));
+    $('toggle-passage').textContent=passageCollapsed?'📖 Xem nội dung đề ↓':'📖 Thu gọn nội dung đề ↑';
+  }
+  $('toggle-passage').onclick=()=>{passageCollapsed=!passageCollapsed;renderPassageToggle();};
   function addExplanation(title,content,html=false) {
     const item=document.createElement('div');item.className='explanation-item';item.append(text('h3',title));
     const body=document.createElement('div');if(html)body.innerHTML=content;else body.textContent=content;
@@ -227,7 +234,7 @@
   function freezeSession(){conflict=true;pauseAudio();$('reload-progress').hidden=false;document.querySelectorAll('#play button,#play input,#play textarea,#play select,#challenge-grid button').forEach(el=>el.disabled=true);$('play-mode').disabled=true;}
   function freshSession(){state=P.create(source,pendingStudent);P.setMode(source,state,pendingMode);state.view=pendingMode==='ordered'?'play':'challenges';$('resume-panel').hidden=true;$('start-form').hidden=false;conflict=false;$('play-mode').disabled=false;routeSession();}
   function welcome(){
-    persist();pauseAudio();state=null;store=null;pendingStudent=null;conflict=false;
+    persist();pauseAudio();state=null;store=null;pendingStudent=null;conflict=false;passageCollapsed=false;
     for(const id of ['welcome','challenges','play','results'])$(id).hidden=id!=='welcome';
     $('session-tools').hidden=true;$('resume-panel').hidden=true;$('start-form').hidden=false;
     $('home-button').hidden=true;$('results-button').hidden=true;$('student-label').textContent='';$('xp-total').textContent='✦ 0 XP';

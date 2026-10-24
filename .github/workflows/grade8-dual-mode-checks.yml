@@ -1,0 +1,43 @@
+name: Grade 8 dual-mode Stage 1 (no deploy)
+on:
+  push:
+    branches: [feature/grade8-dual-mode-games]
+  pull_request:
+    paths:
+      - 'grade-8/De_thi_GHK1/1_THCS Truc Tuan/truc-tuan-dual-*'
+      - 'grade-8/De_thi_GHK1/shared-practice/dual-*'
+      - 'tests/dual-mode-*'
+      - 'tools/*dual*'
+      - 'docs/grade8-dual-mode/**'
+      - '.github/workflows/grade8-dual-mode-checks.yml'
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install playwright==1.58.0
+      - run: python -m playwright install --with-deps chromium
+      - run: python tools/verify-dual-mode-preservation.py
+      - run: python tools/verify-truc-tuan-dual-source.py
+      - run: node --test tests/dual-mode-progress.test.mjs
+      - run: python tests/dual-mode-browser.py
+      - run: python tools/build-dual-mode-preview.py /tmp/ht-dual-mode-review-package
+      - uses: actions/upload-artifact@v4
+        with:
+          name: truc-tuan-dual-mode-preview
+          path: /tmp/ht-dual-mode-review-package
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: truc-tuan-dual-mode-test-report
+          path: /tmp/ht-dual-mode-tests

@@ -101,3 +101,10 @@ test('blocked and quota-exceeded storage return a recoverable status without alt
  const handle=S.open(data,learner,blocked),state=P.create(data,learner);fill(state,data.questions[0]);P.check(data,state,'q1');
  assert.equal(handle.status,'blocked');assert.equal(handle.save(state),'blocked');assert.equal(P.summary(data,state).xp,10);
 });
+test('a confirmed reset can recover a corrupt record after a temporary storage denial ends',()=>{
+ const storage=new MemoryStorage(),key=S.keyFor(data,learner);storage.setItem(key,'{broken');
+ const handle=S.open(data,learner,storage),remove=storage.removeItem;
+ storage.removeItem=()=>{throw Error('temporary denial');};assert.equal(handle.reset(),'blocked');
+ storage.removeItem=remove;
+ assert.equal(handle.save(P.create(data,learner)),'saved');assert.equal(S.open(data,learner,storage).status,'found');
+});
