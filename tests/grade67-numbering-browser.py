@@ -52,13 +52,18 @@ try:
         before = page_for('catalog-view-before-numbering.js')
         page = page_for('catalog-view.js?v=20261023-grade67-numbering')
         inventory=json.loads((ROOT/'docs/grade67-exam-inventory.json').read_text())
+        legacy=json.loads(json.dumps(data))
+        for grade in legacy:
+            for unit in grade['units']:unit['lessons']=[l for l in unit['lessons'] if not l['href'].endswith('/truc-tuan-dual-mode.html')]
+        for target in [before,page]:target.evaluate('d=>window.view.setCatalog(d,2)',legacy)
         for grade in ['Grade 4','Grade 5','Grade 8']:
             snapshots=[]
             for target in [before,page]:
                 target.get_by_role('button',name=grade,exact=True).click()
                 snapshots.append(target.locator('#content').inner_html())
             assert snapshots[0]==snapshots[1],grade
-        passed('Grade 4/5/8 DOM exactly matches main before this change, including Grade 8 exam/game pairs')
+        passed('all previous Grade 4/5/8 entries render exactly as before; the single new dual-mode entry is tested separately')
+        for target in [before,page]:target.evaluate('d=>window.view.setCatalog(d,2)',data)
         for grade,total,school_count in [('Grade 6',16,14),('Grade 7',14,14)]:
             snapshots=[]
             for target in [before,page]:

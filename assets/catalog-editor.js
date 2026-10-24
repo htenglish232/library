@@ -1,14 +1,15 @@
-import { addReleaseLessons, RELEASE_IDS } from './catalog-release.js?v=20261022-grade8-games';
+import { addReleaseLessons, RELEASE_IDS } from './catalog-release.js?v=20261024-dual-link';
 import { db, auth } from './firebase-client.js';
 import { ADMIN_UID, firebaseConfig, useEmulators } from './firebase-config.js';
 import { collection, doc, getDocsFromServer, getDocFromServer } from './firebase-sdk.js';
-import { inspectCatalog, managedPayload, validateBackup, decodeCatalog, MAX_CATALOG_BYTES } from './catalog-data.js';
+import { inspectCatalog, managedPayload, validateBackup, decodeCatalog, storedCatalogData, MAX_CATALOG_BYTES } from './catalog-data.js';
 import { loadCatalog, saveCatalog, catalogRevision } from './catalog-store.js';
 import { explainAuthError } from './session.js';
 
 const $ = id => document.getElementById(id);
 let allowed = false, epoch = 0, draft = null, base = null, dirty = false, busy = false;
 let applyRelease = null;
+const appliedReleases = () => applyRelease || (base ? storedCatalogData(base.fields).releaseApplied : []);
 let gradeIndex = 0, unitIndex = 0, lessonIndex = -1;
 const status = $('editor-message');
 function requireAdmin() { if (!allowed || auth.currentUser?.uid !== ADMIN_UID) throw new Error('Chỉ Admin được quản lý danh mục.'); }
@@ -31,7 +32,8 @@ function render() {
   $('save-catalog').disabled = !draft || !dirty || busy;
   $('backup-catalog').disabled = !draft || busy;
   $('reload-catalog').disabled = busy;
-  $('add-release-lessons').disabled = !draft || busy || !addReleaseLessons(draft).added;
+  const applied = appliedReleases(), pendingRelease = RELEASE_IDS.some(id => !applied.includes(id));
+  $('add-release-lessons').disabled = !draft || busy || (!addReleaseLessons(draft, applied).added && !pendingRelease);
   $('restore-file').disabled = !draft || busy;
   $('refresh-history').disabled = !base || busy;
   $('restore-history').disabled = !base || busy || !$('history-version').value;
@@ -101,7 +103,8 @@ async function reload() {
 }
 $('reload-catalog').addEventListener('click', reload);
 $('add-release-lessons').addEventListener('click', () => change(() => {
-  draft = addReleaseLessons(draft).data; applyRelease = RELEASE_IDS;
+  const applied = appliedReleases();
+  draft = addReleaseLessons(draft, applied).data; applyRelease = [...new Set([...applied, ...RELEASE_IDS])];
 }));
 $('grade-select').addEventListener('change', event => { gradeIndex = Number(event.target.value); unitIndex = 0; resetLesson(); render(); });
 $('unit-select').addEventListener('change', event => { unitIndex = Number(event.target.value); resetLesson(); render(); });

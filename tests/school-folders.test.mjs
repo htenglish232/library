@@ -15,14 +15,14 @@ test('all original exam and game URLs occur once, with unchanged titles, across 
 });
 test('Truc Tuan exam and game share one school and retain distinct resource types',()=>{
  const group=groupSchoolLessons(examFolder('Grade 8').lessons).find(s=>s.name==='THCS Trực Tuấn');
- assert.deepEqual(group.lessons.map(l=>l.kind),['exam','game']);
+ assert.deepEqual(group.lessons.map(l=>l.kind),['exam','game','game']);
  assert.ok(group.lessons[1].href.endsWith('/truc-tuan-game-test.html'));
 });
 test('multiple exams from the same school merge without conflating different schools or grades',()=>{
  const groups=groupSchoolLessons(examFolder('Grade 8').lessons);
  assert.equal(groups.find(s=>s.name==='THCS Phương Định').lessons.length,2);
  assert.equal(groups.find(s=>s.name==='THCS Đào Sư Tích').lessons.length,2);
- assert.equal(groups.find(s=>s.name==='THCS Trực Tuấn').lessons.length,2);
+ assert.equal(groups.find(s=>s.name==='THCS Trực Tuấn').lessons.length,3);
  const grade6=groupSchoolLessons(examFolder('Grade 6').lessons);
  assert.equal(grade6.find(s=>s.name==='THCS Trực Hùng').lessons.length,2);
  assert.equal(grade6.find(s=>s.name==='THCS Trực Tuấn').lessons.length,1);
@@ -49,23 +49,41 @@ test('unknown custom resources remain visible without inventing a school or game
  assert.ok(groups.every(s=>s.lessons.every(l=>l.kind==='exam')));
 });
 
-test('Grade 8 real inventory has 17 schools, 19 numbered exams and exactly four paired games',()=>{
+test('Grade 8 real inventory has 17 schools, 19 numbered exams and exactly five paired games',()=>{
  const original=structuredClone(examFolder('Grade 8').lessons),groups=numberSchoolLessons(original);
  assert.equal(groups.length,17);
  const rows=groups.flatMap(g=>g.lessons);
  assert.equal(rows.filter(l=>l.kind==='exam').length,19);
- assert.equal(rows.filter(l=>l.kind==='game').length,4);
+ assert.equal(rows.filter(l=>l.kind==='game').length,5);
  assert.deepEqual(rows.map(l=>l.href).toSorted(),original.map(l=>l.href).toSorted());
  for(const g of groups){
   const exams=g.lessons.filter(l=>l.kind==='exam');
   assert.deepEqual(exams.map(l=>l.examNumber),exams.map((_,i)=>i+1));
   for(const l of g.lessons){
-   assert.equal(l.displayTitle,`${l.kind==='game'?'Game đề':'Đề'} số ${l.examNumber} – ${g.name}`);
+   assert.equal(l.displayTitle,`${l.kind==='game'?'Game đề':'Đề'} số ${l.examNumber} – ${g.name}${l.href.endsWith('/truc-tuan-dual-mode.html')?' (2 chế độ)':''}`);
    assert.ok(g.lessons.some(e=>e.href===l.examHref&&e.kind==='exam'));
   }
  }
  assert.deepEqual(original,examFolder('Grade 8').lessons);
  for(const name of ['THCS Đào Sư Tích','THCS Phương Định'])assert.deepEqual(groups.find(g=>g.name===name).lessons.map(l=>l.examNumber),[1,2]);
+});
+
+test('both Truc Tuan games retain number 1 and dual-mode suffix even if the original exam is hidden',()=>{
+ const lessons=structuredClone(examFolder('Grade 8').lessons);
+ lessons.find(l=>l.href.endsWith('/1. THCS Truc Tuan.html')).hidden=true;
+ const school=numberSchoolLessons(lessons).find(g=>g.name==='THCS Trực Tuấn');
+ assert.deepEqual(school.lessons.map(l=>l.examNumber),[1,1,1]);
+ assert.deepEqual(school.lessons.map(l=>l.displayTitle),['Đề số 1 – THCS Trực Tuấn','Game đề số 1 – THCS Trực Tuấn','Game đề số 1 – THCS Trực Tuấn (2 chế độ)']);
+ const games=groupSchoolLessons(lessons.filter(l=>!l.hidden)).find(g=>g.name==='THCS Trực Tuấn');
+ assert.equal(games.lessons.length,2);
+});
+test('Admin can rename the dual-mode entry without changing it into a second exam',()=>{
+ const lessons=structuredClone(examFolder('Grade 8').lessons);
+ const dual=lessons.find(l=>l.href.endsWith('/truc-tuan-dual-mode.html'));dual.title='Bản luyện Admin đã đặt tên';
+ const group=numberSchoolLessons(lessons).find(s=>s.name==='THCS Trực Tuấn');
+ assert.deepEqual(group.lessons.map(l=>l.kind),['exam','game','game']);
+ assert.deepEqual(group.lessons.map(l=>l.examNumber),[1,1,1]);
+ assert.equal(group.lessons[2].title,dual.title);
 });
 
 test('future explicit catalog titles pair multiple exams and games even in the same directory',()=>{
