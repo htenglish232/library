@@ -1,12 +1,15 @@
-name: Grade 8 dual-mode Stage 1 (no deploy)
+name: Grade 8 dual-mode games (no deploy)
 on:
   push:
-    branches: [feature/grade8-dual-mode-games]
+    branches: [feature/grade8-dual-mode-games, feature/grade8-all-dual-mode-games]
   pull_request:
     paths:
-      - 'grade-8/De_thi_GHK1/1_THCS Truc Tuan/truc-tuan-dual-*'
-      - 'grade-8/De_thi_GHK1/shared-practice/dual-*'
+      - 'grade-8/De_thi_GHK1/**'
+      - 'assets/grade8-dual-links.js'
       - 'tests/dual-mode-*'
+      - 'tests/grade8-all-dual*'
+      - 'tools/grade8-source-*'
+      - 'docs/grade8-all-dual-mode/**'
       - 'tools/*dual*'
       - 'docs/grade8-dual-mode/**'
       - '.github/workflows/grade8-dual-mode-checks.yml'
@@ -27,7 +30,20 @@ jobs:
           python-version: '3.12'
       - run: python -m pip install playwright==1.58.0
       - run: python -m playwright install --with-deps chromium
-      - run: python tools/verify-dual-mode-preservation.py
+      - run: npm ci
+      - name: Preserve the original Stage 1 scope when testing that snapshot
+        if: ${{ hashFiles('docs/grade8-all-dual-mode/inventory.json') == '' }}
+        run: python tools/verify-dual-mode-preservation.py
+      - name: Verify all-game sources and immutable original resources
+        if: ${{ hashFiles('docs/grade8-all-dual-mode/inventory.json') != '' }}
+        run: |
+          python tools/build-grade8-dual-games.py --verify
+          node --test tests/grade8-all-dual.test.mjs
+      - name: Play all Grade 8 games
+        if: ${{ hashFiles('docs/grade8-all-dual-mode/inventory.json') != '' }}
+        run: python tests/grade8-all-dual-browser.py
+        env:
+          GRADE8_DUAL_REPORT: /tmp/grade8-all-dual-browser.json
       - run: python tools/verify-truc-tuan-dual-source.py
       - run: node --test tests/dual-mode-progress.test.mjs
       - run: python tests/dual-mode-browser.py
@@ -40,4 +56,6 @@ jobs:
         if: always()
         with:
           name: truc-tuan-dual-mode-test-report
-          path: /tmp/ht-dual-mode-tests
+          path: |
+            /tmp/ht-dual-mode-tests
+            /tmp/grade8-all-dual-browser.json

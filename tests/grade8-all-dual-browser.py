@@ -4,7 +4,7 @@ import argparse,functools,http.server,json,os,re,threading
 from urllib.parse import quote,unquote
 from playwright.sync_api import sync_playwright,expect
 ROOT=Path(__file__).resolve().parents[1]
-parser=argparse.ArgumentParser();parser.add_argument('--pilots',action='store_true');args=parser.parse_args()
+parser=argparse.ArgumentParser();parser.add_argument('--pilots',action='store_true');parser.add_argument('--folders',help='Comma separated original folder numbers for targeted checks');args=parser.parse_args()
 # Reuse only the tested range-serving handler, without running the reference suite.
 handler_source=(ROOT/'tests/dual-mode-browser.py').read_text().split('class Handler',1)[1].split('server=http.server',1)[0]
 exec('class Handler'+handler_source)
@@ -35,7 +35,8 @@ try:
   files=list(ROOT.glob('grade-8/De_thi_GHK1/*/practice-dual-mode.html'))
   if args.pilots:files=[f for f in files if f.parent.name.startswith(('11_','12_','19_'))]
   else:files.insert(0,ROOT/'grade-8/De_thi_GHK1/1_THCS Truc Tuan/truc-tuan-dual-mode.html')
-  expected=3 if args.pilots else 19;assert len(files)==expected,(len(files),expected)
+  if args.folders:files=[f for f in files if f.parent.name.split('_')[0] in args.folders.split(',')]
+  expected=len(args.folders.split(',')) if args.folders else 3 if args.pilots else 19;assert len(files)==expected,(len(files),expected)
   saved={};total=0
   for idx,file in enumerate(files):
    url=BASE+'library/'+quote(file.relative_to(ROOT).as_posix());page.goto(url)
@@ -63,7 +64,7 @@ try:
     elif not q.get('track'):expect(page.locator('#audio-panel')).to_be_hidden()
     if q['kind']=='choice':
      assert page.locator('#answer-area input').evaluate_all('(els)=>els.map(e=>e.value)')==[o['value'] for o in q['options']]
-     value=q['accepted'][0] if q['accepted'] else q['options'][0]['value'];page.locator('#answer-area input').filter(visible=True) if False else None
+     value=q['accepted'][0] if q['accepted'] else q['options'][0]['value'];None
      page.locator('#answer-area input').evaluate_all('(els,v)=>{const e=els.find(e=>e.value===v);e.checked=true;e.dispatchEvent(new Event("change"));}',value)
     elif q['kind']=='multi-text':
      for i,value in enumerate(q['acceptedTuples'][0]):page.locator(f'#written-answer-{i}').fill(value)
@@ -79,6 +80,7 @@ try:
     else:pending+=1
     expect(page.locator('#xp-total')).to_have_text(f'✦ {xp} XP')
     page.evaluate('document.querySelector("#check-answer").click()');expect(page.locator('#xp-total')).to_have_text(f'✦ {xp} XP')
+    if q.get('transcriptHtml'):expect(page.locator('#transcript-panel')).to_be_visible()
     if q.get('track'):
      track=next(t for t in data['tracks'] if t['id']==q['track'])
      if track.get('transcriptHtml'):expect(page.locator('#transcript-panel')).to_be_visible()

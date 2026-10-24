@@ -20,8 +20,8 @@ test('Truc Tuan exam and game share one school and retain distinct resource type
 });
 test('multiple exams from the same school merge without conflating different schools or grades',()=>{
  const groups=groupSchoolLessons(examFolder('Grade 8').lessons);
- assert.equal(groups.find(s=>s.name==='THCS Phương Định').lessons.length,2);
- assert.equal(groups.find(s=>s.name==='THCS Đào Sư Tích').lessons.length,2);
+ assert.equal(groups.find(s=>s.name==='THCS Phương Định').lessons.length,4);
+ assert.equal(groups.find(s=>s.name==='THCS Đào Sư Tích').lessons.length,4);
  assert.equal(groups.find(s=>s.name==='THCS Trực Tuấn').lessons.length,3);
  const grade6=groupSchoolLessons(examFolder('Grade 6').lessons);
  assert.equal(grade6.find(s=>s.name==='THCS Trực Hùng').lessons.length,2);
@@ -49,23 +49,23 @@ test('unknown custom resources remain visible without inventing a school or game
  assert.ok(groups.every(s=>s.lessons.every(l=>l.kind==='exam')));
 });
 
-test('Grade 8 real inventory has 17 schools, 19 numbered exams and exactly five paired games',()=>{
+test('Grade 8 real inventory has 17 schools, 19 numbered exams and 23 paired games (19 dual and four legacy)',()=>{
  const original=structuredClone(examFolder('Grade 8').lessons),groups=numberSchoolLessons(original);
  assert.equal(groups.length,17);
  const rows=groups.flatMap(g=>g.lessons);
  assert.equal(rows.filter(l=>l.kind==='exam').length,19);
- assert.equal(rows.filter(l=>l.kind==='game').length,5);
+ assert.equal(rows.filter(l=>l.kind==='game').length,23);
  assert.deepEqual(rows.map(l=>l.href).toSorted(),original.map(l=>l.href).toSorted());
  for(const g of groups){
   const exams=g.lessons.filter(l=>l.kind==='exam');
   assert.deepEqual(exams.map(l=>l.examNumber),exams.map((_,i)=>i+1));
   for(const l of g.lessons){
-   assert.equal(l.displayTitle,`${l.kind==='game'?'Game đề':'Đề'} số ${l.examNumber} – ${g.name}${l.href.endsWith('/truc-tuan-dual-mode.html')?' (2 chế độ)':''}`);
+   assert.equal(l.displayTitle,`${l.kind==='game'?'Game đề':'Đề'} số ${l.examNumber} – ${g.name}${l.href.endsWith('-dual-mode.html')?' (2 chế độ)':''}`);
    assert.ok(g.lessons.some(e=>e.href===l.examHref&&e.kind==='exam'));
   }
  }
  assert.deepEqual(original,examFolder('Grade 8').lessons);
- for(const name of ['THCS Đào Sư Tích','THCS Phương Định'])assert.deepEqual(groups.find(g=>g.name===name).lessons.map(l=>l.examNumber),[1,2]);
+ for(const name of ['THCS Đào Sư Tích','THCS Phương Định'])assert.deepEqual(groups.find(g=>g.name===name).lessons.map(l=>l.examNumber),[1,1,2,2]);
 });
 
 test('both Truc Tuan games retain number 1 and dual-mode suffix even if the original exam is hidden',()=>{
@@ -79,7 +79,7 @@ test('both Truc Tuan games retain number 1 and dual-mode suffix even if the orig
 });
 test('Admin can rename the dual-mode entry without changing it into a second exam',()=>{
  const lessons=structuredClone(examFolder('Grade 8').lessons);
- const dual=lessons.find(l=>l.href.endsWith('/truc-tuan-dual-mode.html'));dual.title='Bản luyện Admin đã đặt tên';
+ const dual=lessons.find(l=>l.href.endsWith('-dual-mode.html'));dual.title='Bản luyện Admin đã đặt tên';
  const group=numberSchoolLessons(lessons).find(s=>s.name==='THCS Trực Tuấn');
  assert.deepEqual(group.lessons.map(l=>l.kind),['exam','game','game']);
  assert.deepEqual(group.lessons.map(l=>l.examNumber),[1,1,1]);

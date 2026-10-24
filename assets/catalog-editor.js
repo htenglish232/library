@@ -1,4 +1,4 @@
-import { addReleaseLessons, RELEASE_IDS } from './catalog-release.js?v=20261024-dual-link';
+import { addReleaseLessons, RELEASE_IDS } from './catalog-release.js?v=20261024-all-dual';
 import { db, auth } from './firebase-client.js';
 import { ADMIN_UID, firebaseConfig, useEmulators } from './firebase-config.js';
 import { collection, doc, getDocsFromServer, getDocFromServer } from './firebase-sdk.js';
