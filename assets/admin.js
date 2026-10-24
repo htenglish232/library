@@ -3,7 +3,7 @@ import { ADMIN_UID, firebaseConfig, useEmulators } from './firebase-config.js';
 import { collection, onSnapshot, doc, setDoc, serverTimestamp, getDocFromServer, runTransaction } from './firebase-sdk.js';
 import { setupLogin, observeAccess, showSession, explainAuthError } from './session.js';
 import { validateCatalog, decodeCatalog } from './catalog-data.js';
-import { setEditorSession } from './catalog-editor.js';
+import { setEditorSession } from './catalog-editor.js?v=20261024-dual-link';
 
 setupLogin();
 let stopMembers = () => {}, candidate = null, catalogBeforeImport = null, epoch = 0, busy = false;

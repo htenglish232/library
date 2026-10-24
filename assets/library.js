@@ -1,9 +1,9 @@
 import { db } from './firebase-client.js';
 import { doc, onSnapshot } from './firebase-sdk.js';
 import { setupLogin, observeAccess, showSession, explainAuthError } from './session.js';
-import { releaseCatalogView } from './catalog-release.js?v=20261022-grade8-games';
+import { releaseCatalogView } from './catalog-release.js?v=20261024-dual-link';
 import { decodeCatalog } from './catalog-data.js';
-import { setCatalog, clearCatalog } from './catalog-view.js?v=20261023-grade67-numbering';
+import { setCatalog, clearCatalog } from './catalog-view.js?v=20261024-dual-link';
 
 setupLogin();
 let generation = 0, loadedFor = null, stopCatalog = () => {};

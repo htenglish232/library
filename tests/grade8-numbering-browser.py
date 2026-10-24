@@ -63,16 +63,16 @@ try:
         expect(folder).to_have_count(1); folder.locator('.folder-head').click()
         schools=folder.locator('.school-folder'); expect(schools).to_have_count(17)
         expect(folder.locator('a.exam-resource')).to_have_count(19)
-        expect(folder.locator('a.game-resource')).to_have_count(4)
+        expect(folder.locator('a.game-resource')).to_have_count(5)
         hrefs=folder.locator('a.lesson').evaluate_all('(els)=>els.map(a=>a.getAttribute("href"))')
-        assert len(set(hrefs))==23
+        assert len(set(hrefs))==24
         for href in hrefs:
             response=page.request.get(base+'library/'+quote(href))
             assert response.status==200 and response.body()==(ROOT/unquote(href)).read_bytes(),href
         for name in ['Trực Tuấn','Trực Khang','Trực Hùng','Trực Chính']:
             school=schools.filter(has=page.locator('.school-name',has_text='THCS '+name))
             summary=school.locator('summary');summary.click()
-            expect(school.locator('a.lesson strong')).to_have_text([f'Đề số 1 – THCS {name}',f'Game đề số 1 – THCS {name}'])
+            expect(school.locator('a.lesson strong')).to_have_text([f'Đề số 1 – THCS {name}',f'Game đề số 1 – THCS {name}']+([f'Game đề số 1 – THCS {name} (2 chế độ)'] if name=='Trực Tuấn' else []))
             expect(school.locator('.exam-pair')).to_have_count(1)
             expect(school.locator('a.lesson').first).to_be_visible()
             summary.focus();summary.press('Enter');expect(school.locator('a.lesson').first).to_be_hidden();summary.press('Enter')
@@ -80,7 +80,7 @@ try:
             school=schools.filter(has=page.locator('.school-name',has_text='THCS '+name))
             expect(school.locator('a.lesson strong')).to_have_text([f'Đề số 1 – THCS {name}',f'Đề số 2 – THCS {name}'])
             expect(school.locator('a.game-resource')).to_have_count(0)
-        passed('17 school folders, 19 numbered exams, four real paired games; all 23 exact HTML files resolve under /library/; keyboard open/close works')
+        passed('17 school folders, 19 numbered exams, five real paired games; all 24 exact HTML files resolve under /library/; keyboard open/close works')
         for width in [360,390,768,1280]:
             page.set_viewport_size({'width':width,'height':900})
             assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),width
@@ -92,7 +92,7 @@ try:
         page.locator('#search').fill('Đề số 2')
         expect(page.locator('.grade-section.active a.lesson')).to_have_count(2)
         page.locator('#search').fill('Game đề số 1')
-        expect(page.locator('.grade-section.active a.game-resource')).to_have_count(4)
+        expect(page.locator('.grade-section.active a.game-resource')).to_have_count(5)
         page.locator('#search').fill('Đề 19')
         expect(page.locator('.grade-section.active a.lesson strong')).to_have_text('Đề số 1 – THCS Trực Chính')
         passed('new numbered names and original catalog names remain searchable without renumbering or duplicates')
@@ -104,7 +104,7 @@ try:
         page.locator('#search').fill('Phương Định')
         expect(page.locator('.grade-section.active a.lesson strong')).to_have_text('Đề số 2 – THCS Phương Định')
         page.locator('#search').fill('Trực Tuấn')
-        expect(page.locator('.grade-section.active a.lesson strong')).to_have_text('Game đề số 1 – THCS Trực Tuấn')
+        expect(page.locator('.grade-section.active a.lesson strong')).to_have_text(['Game đề số 1 – THCS Trực Tuấn','Game đề số 1 – THCS Trực Tuấn (2 chế độ)'])
         unit['hidden']=True;page.evaluate('d=>window.view.setCatalog(d,2)',changed)
         expect(page.locator('a[href^="grade-8/De_thi_GHK1/"]')).to_have_count(0)
         passed('hidden exam 1 never relabels exam 2; a visible game keeps its hidden-source pairing; renamed grades/units and hidden units are respected')

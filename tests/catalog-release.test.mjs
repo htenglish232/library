@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {addReleaseLessons, RELEASE_ADDITIONS, RELEASE_ID, RELEASE_IDS, IELTS_RELEASE_ID, GAME_RELEASE_ID, PILOT_GAME_RELEASE_ID, PILOT_GAME_ADDITIONS, releaseCatalogView} from '../assets/catalog-release.js';
+import {addReleaseLessons, RELEASE_ADDITIONS, RELEASE_ID, RELEASE_IDS, IELTS_RELEASE_ID, GAME_RELEASE_ID, PILOT_GAME_RELEASE_ID, PILOT_GAME_ADDITIONS, DUAL_GAME_RELEASE_ID, DUAL_GAME_ADDITION, releaseCatalogView} from '../assets/catalog-release.js';
 import {decodeCatalog, managedPayload, encodeCatalogData} from '../assets/catalog-data.js';
 const legacy=JSON.parse(readFileSync('catalog/library-catalog.json','utf8')).data;
 const current=JSON.parse(readFileSync('catalog/current-library-catalog.json','utf8')).data;
@@ -108,4 +108,40 @@ test('all three pilot links upgrade the previous release once and preserve Admin
  folder.lessons=folder.lessons.filter(l=>l.href!==PILOT_GAME_ADDITIONS[1].lesson.href);
  const fields={...await managedPayload(result.data),dataJson:encodeCatalogData(result.data,RELEASE_IDS)};
  assert.deepEqual(releaseCatalogView(fields,result.data),result.data);
+});
+
+test('dual game adds exactly one href to an already adopted catalog and keeps the old exam/game',async()=>{
+ const href=DUAL_GAME_ADDITION.lesson.href,previous=RELEASE_IDS.filter(id=>id!==DUAL_GAME_RELEASE_ID);
+ const old=structuredClone(current);
+ const unit=old.find(g=>g.grade==='Grade 8').units.find(u=>u.name==='Đề thi GHK1');
+ unit.lessons=unit.lessons.filter(l=>l.href!==href);
+ const before=structuredClone(old),fields={...await managedPayload(old),dataJson:encodeCatalogData(old,previous)};
+ const view=releaseCatalogView(fields,old),folder=view.find(g=>g.grade==='Grade 8').units.find(u=>u.name==='Đề thi GHK1');
+ assert.deepEqual(old,before);assert.equal(addReleaseLessons(old,previous).added,1);
+ const trio=folder.lessons.filter(l=>l.href.startsWith('grade-8/De_thi_GHK1/1_THCS Truc Tuan/'));
+ assert.equal(trio.length,3);assert.equal(trio[0].title,'Đề 01 · THCS Trực Tuấn');
+ assert.ok(trio[1].href.endsWith('/truc-tuan-game-test.html'));assert.equal(trio[2].href,href);
+ assert.equal(trio[2].title,'Game đề số 1 – THCS Trực Tuấn (2 chế độ)');
+ for(const grade of old.filter(g=>g.grade!=='Grade 8'))assert.deepEqual(view.find(g=>g.grade===grade.grade),grade);
+ assert.deepEqual(folder.lessons.filter(l=>l.href!==href),unit.lessons);
+ assert.equal(addReleaseLessons(view,previous).added,0);
+});
+
+test('dual release preserves custom hidden titles and respects deletion after adoption',async()=>{
+ const href=DUAL_GAME_ADDITION.lesson.href,old=structuredClone(current),previous=RELEASE_IDS.filter(id=>id!==DUAL_GAME_RELEASE_ID);
+ const grade=old.find(g=>g.grade==='Grade 8');grade.grade='Khối 8';
+ const unit=grade.units.find(u=>u.name==='Đề thi GHK1');unit.name='Giữa kỳ';unit.hidden=true;
+ const game=unit.lessons.find(l=>l.href===href);game.title='Tên Admin đã đặt';game.hidden=true;
+ assert.equal(addReleaseLessons(old,previous).added,0);assert.deepEqual(addReleaseLessons(old,previous).data,old);
+ unit.lessons=unit.lessons.filter(l=>l.href!==href);
+ assert.deepEqual(releaseCatalogView({...await managedPayload(old),dataJson:encodeCatalogData(old,RELEASE_IDS)},old),old);
+});
+test('encoded relative and owned Pages URLs already in Firebase do not duplicate the dual game',()=>{
+ const href=DUAL_GAME_ADDITION.lesson.href,previous=RELEASE_IDS.filter(id=>id!==DUAL_GAME_RELEASE_ID);
+ for(const stored of [href.replaceAll(' ','%20'),'https://htenglish232.github.io/library/'+href.replaceAll(' ','%20')]){
+  const data=structuredClone(current),unit=data.find(g=>g.grade==='Grade 8').units.find(u=>u.name==='Đề thi GHK1');
+  const lesson=unit.lessons.find(l=>l.href===href);lesson.href=stored;lesson.hidden=true;
+  const before=structuredClone(data),result=addReleaseLessons(data,previous);
+  assert.equal(result.added,0);assert.deepEqual(result.data,before);assert.deepEqual(data,before);
+ }
 });

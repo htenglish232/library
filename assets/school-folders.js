@@ -1,6 +1,6 @@
 // Presentation only: never rewrites catalog entries or Firebase documents.
 export function isGameLesson(lesson) {
-  return /\bgame\b/iu.test(lesson.title) || /(?:^|[\/_-])game(?:[\/_.-]|$)/iu.test(lesson.href);
+  return /\bgame\b/iu.test(lesson.title) || /(?:^|[\/_-])(?:game|dual-mode)(?:[\/_.-]|$)/iu.test(lesson.href);
 }
 
 function schoolIdentity(lesson, schoolNames = {}) {
@@ -8,6 +8,7 @@ function schoolIdentity(lesson, schoolNames = {}) {
   let name = schoolNames[lesson.href] || (parts.length > 1 ? parts.at(-1) : lesson.title);
   const recognized = !!schoolNames[lesson.href] || parts.length > 1 || /^(?:THCS|THPT|Tiểu học)\s/iu.test(name);
   name = name.replace(/^(?:Game\s+)?Đề\s+số\s+\d+\s*[–—-]\s*/iu, '').replace(/\s*\(\d+\s*câu\)\s*$/iu, '').replace(/\s*\(\d+\)\s*$/u, '').trim();
+  if(isGameLesson(lesson))name=name.replace(/\s*\(2\s+chế\s+độ\)\s*$/iu,'').trim();
   const key = name.normalize('NFC').replace(/^THCS\s+/iu, '').replace(/\s+/gu, ' ').toLocaleLowerCase('vi');
   return {name, key: recognized || /^(?:THCS|THPT|Tiểu học)\s/iu.test(name) ? `school:${key}` : `item:${lesson.href}`};
 }
@@ -75,8 +76,9 @@ export function numberSchoolLessons(lessons, {schoolNames = {}, unclassified = f
         if (candidates.length === 1) exam = candidates[0];
       }
       const examNumber = exam && numbers.get(exam.href);
+      const modeLabel = lesson.kind==='game' && /\(2\s+chế\s+độ\)\s*$/iu.test(lesson.title) ? ' (2 chế độ)' : '';
       const displayTitle = examNumber && (school.name.startsWith('THCS ') || school.unclassified)
-        ? `${lesson.kind === 'game' ? 'Game đề' : 'Đề'} số ${examNumber} – ${school.unclassified ? 'Chưa phân loại' : school.name}` : lesson.title;
+        ? `${lesson.kind === 'game' ? 'Game đề' : 'Đề'} số ${examNumber} – ${school.unclassified ? 'Chưa phân loại' : school.name}${modeLabel}` : lesson.title;
       return {...lesson, displayTitle, unclassified: !!school.unclassified, examNumber: examNumber || null, examHref: exam?.href || null, position};
     });
     rows.sort((a,b) => (a.examNumber ?? Infinity) - (b.examNumber ?? Infinity)
