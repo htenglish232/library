@@ -1,5 +1,5 @@
 """Real browser and Firebase Auth/Firestore emulators; no production requests."""
-import base64, functools, http.server, json, os, secrets, shutil, subprocess, threading, urllib.request
+import re, base64, functools, http.server, json, os, secrets, shutil, subprocess, threading, urllib.request
 from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
 
@@ -115,7 +115,7 @@ with sync_playwright() as p:
             schools=teacher.locator('.exam-school-folder .school-folder')
             assert schools.count()==17
             phuong=schools.filter(has=teacher.locator('.school-name',has_text='THCS Phương Định'))
-            assert phuong.count()==1 and phuong.locator('a.lesson').count()==2
+            assert phuong.count()==1 and phuong.locator('a.lesson').count()==4
     teacher.get_by_role('button',name='Grade 8',exact=True).click()
     teacher.locator('.folder').filter(has=teacher.get_by_role('heading',name='Đề thi GHK1',exact=True)).locator('.folder-head').click()
     school=teacher.locator('.exam-school-folder .school-folder').filter(has=teacher.locator('.school-name',has_text='THCS Trực Tuấn'))
@@ -175,7 +175,7 @@ with sync_playwright() as p:
     print('PASS exact dual-mode label opens 42 questions from the authenticated library; both modes, MP3s and persisted progress work',flush=True)
     for name,total in [('Trực Khang',42),('Trực Hùng',43),('Trực Chính',42)]:
         teacher.locator('#search').fill(name)
-        link=teacher.locator('a.game-resource').filter(has_text=f'Game đề số 1 – THCS {name}')
+        link=teacher.locator('a.game-resource').filter(has=teacher.locator('strong',has_text=re.compile('^'+re.escape(f'Game đề số 1 – THCS {name}')+'$')))
         expect(link).to_be_visible()
         group=link.locator('xpath=ancestor::details')
         expect(group.locator('a.exam-resource')).to_have_count(1)
@@ -187,10 +187,20 @@ with sync_playwright() as p:
         teacher.get_by_role('button',name='Grade 8',exact=True).click()
         teacher.locator('#search').fill('Game luyện đề')
     print('PASS all three new game links open from the authenticated index beside their original exams',flush=True)
+    all_games=json.loads((ROOT/'docs/grade8-all-dual-mode/inventory.json').read_text())['games']
+    for entry in all_games:
+        teacher.locator('#search').fill(entry['school'])
+        link=teacher.locator('a.lesson').filter(has=teacher.locator('strong',has_text=f'Game đề số {entry["examNumber"]} – {entry["school"]} (2 chế độ)'))
+        expect(link).to_have_count(1);assert link.get_attribute('href')==entry['game']
+        link.click();expect(teacher.locator('#welcome')).to_be_visible()
+        assert teacher.evaluate('HT_PRACTICE_DATA.questions.length')==entry['questions']
+        teacher.go_back();expect(teacher.locator('#library')).to_be_visible();teacher.get_by_role('button',name='Grade 8',exact=True).click()
+    count+=1;print('PASS all 19 exact dual-mode links open their own source data from the authenticated library, including both exams of Dao Su Tich and Phuong Dinh',flush=True)
+
     teacher.locator('#search').fill('Phương Định')
     matched=teacher.locator('.exam-school-folder .school-folder')
     expect(matched).to_have_count(1)
-    expect(matched.locator('a.lesson')).to_have_count(2)
+    expect(matched.locator('a.lesson')).to_have_count(4)
     expect(matched.locator('a.lesson').first).to_be_visible()
     teacher.locator('#search').fill('')
     teacher.get_by_role('button',name='Apps for IELTS',exact=True).click()
@@ -481,12 +491,34 @@ with sync_playwright() as p:
     upgrade.locator('#add-release-lessons').click();expect(upgrade.locator('#editor-summary')).to_contain_text(str(existing['count'])+' bài tập tổng cộng')
     upgrade.locator('#save-catalog').click();expect(upgrade.locator('#editor-message')).to_contain_text('Đã lưu và đọc lại xác minh')
     adopted=upgrade.evaluate("async()=>{const {loadCatalog}=await import('./assets/catalog-store.js');return (await loadCatalog()).fields;}")
-    assert json.loads(adopted['dataJson'])['releaseApplied']==release_ids
+    assert set(json.loads(adopted['dataJson'])['releaseApplied'])==set(release_ids)
     upgrade.locator('#grade-select').select_option(label='Khối 8');upgrade.locator('#unit-select').select_option(label='Giữa kỳ')
     upgrade.locator('.catalog-item').filter(has_text='Game đề số 1 – THCS Trực Tuấn (2 chế độ)').get_by_role('button',name='Xóa bài',exact=True).click()
     upgrade.locator('#save-catalog').click();expect(viewer.locator('a.lesson')).to_have_count(0)
     upgrade.reload();expect(upgrade.locator('#add-release-lessons')).to_be_disabled()
     count+=1;print('PASS game already present in Firebase appears once; metadata-only adoption preserves count and makes subsequent Admin deletion durable',flush=True)
+
+    # Both new batches adopt 18 additions; earlier deleted TT games stay deleted.
+    all_prepared=json.loads(subprocess.check_output(['node','tests/seed-previous-dual-release.mjs','--previous-all'],cwd=ROOT,text=True))
+    upgrade.reload();expect(upgrade.locator('#editor-summary')).to_contain_text(str(all_prepared['count'])+' bài tập tổng cộng')
+    before_all=upgrade.evaluate("async()=>{const {loadCatalog}=await import('./assets/catalog-store.js');return (await loadCatalog()).fields;}")
+    upgrade.locator('#add-release-lessons').click();expect(upgrade.locator('#editor-summary')).to_contain_text(str(all_prepared['count']+18)+' bài tập tổng cộng')
+    assert upgrade.evaluate("async()=>{const {loadCatalog}=await import('./assets/catalog-store.js');return (await loadCatalog()).fields;}")==before_all
+    upgrade.locator('#save-catalog').click();expect(upgrade.locator('#editor-message')).to_contain_text('Đã lưu và đọc lại xác minh')
+    all_saved=upgrade.evaluate("async()=>{const {loadCatalog}=await import('./assets/catalog-store.js');return await loadCatalog();}")
+    assert set(json.loads(all_saved['fields']['dataJson'])['releaseApplied'])==set(release_ids)
+    all_folder=next(u for g in all_saved['data'] if g['grade']=='Khối 8' for u in g['units'] if u['name']=='Giữa kỳ')
+    assert not any(l['href'].endswith(('/truc-tuan-game-test.html','/truc-tuan-dual-mode.html')) for l in all_folder['lessons'])
+    assert next(l for l in all_folder['lessons'] if l['href'].endswith('/1. THCS Truc Tuan.html'))['hidden']
+    assert sum(l['href'].endswith('/practice-dual-mode.html') for l in all_folder['lessons'])==18
+    upgrade.locator('#grade-select').select_option(label='Khối 8');upgrade.locator('#unit-select').select_option(label='Giữa kỳ')
+    viewer.locator('#search').fill('Cát Thành');expect(viewer.locator('a.lesson')).to_have_count(2)
+    def cat_row():return upgrade.locator('.catalog-item').filter(has_text='Game đề số 1 – THCS Cát Thành (2 chế độ)')
+    cat_row().get_by_role('button',name='Ẩn bài',exact=True).click();upgrade.locator('#save-catalog').click();expect(viewer.locator('a.lesson')).to_have_count(1)
+    cat_row().get_by_role('button',name='Hiện bài',exact=True).click();upgrade.locator('#save-catalog').click();expect(viewer.locator('a.lesson')).to_have_count(2)
+    cat_row().get_by_role('button',name='Xóa bài',exact=True).click();upgrade.locator('#save-catalog').click();expect(viewer.locator('a.lesson')).to_have_count(1)
+    upgrade.reload();expect(upgrade.locator('#add-release-lessons')).to_be_disabled();viewer.reload();viewer.get_by_role('button',name='Khối 8',exact=True).click();viewer.locator('#search').fill('Cát Thành');expect(viewer.locator('a.lesson')).to_have_count(1)
+    count+=1;print('PASS 18 new links stage only in draft, adopt once, preserve prior hidden/deleted entries, and support durable Admin hide/show/delete',flush=True)
     assert teacher.evaluate('''()=>Object.entries(localStorage).filter(([k])=>k.startsWith('htenglish:practice:v1:')).map(([,v])=>JSON.parse(v)).some(r=>r.state.student.name==='Mở từ thư viện'&&r.state.answers.q1.first.result==='correct')''')
     print('PASS catalog changes and Firebase logout leave the game localStorage progress intact',flush=True)
     viewer_context.close();upgrade_context.close()

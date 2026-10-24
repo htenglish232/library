@@ -96,7 +96,7 @@
     $('jump-question').replaceChildren();
     (state.review?list:questions).forEach(item=>{const option=text('option',`Câu ${item.number} · ${sections.find(s=>s.id===item.section).title}`);option.value=item.id;option.selected=item.id===q.id;$('jump-question').append(option);});
     $('question-type').textContent=q.kind==='rearrange'?'GHÉP TỪ THÀNH CÂU':['text','multi-text'].includes(q.kind)?'VIẾT ĐÁP ÁN':q.options?.every(o=>['T','F'].includes(o.value))?'ĐÚNG / SAI':'CHỌN ĐÁP ÁN';
-    document.querySelector('.reward-tag').textContent=q.autoGrade?'✦ 10 XP lần đầu':'Chờ giáo viên đối chiếu';
+    document.querySelector('.reward-tag').textContent=q.autoGrade?'✦ 10 XP lần đầu':'Cần giáo viên duyệt';
     $('question-title').textContent=`Câu ${q.number}`;
     $('prompt').innerHTML=q.promptHtml;
     $('answer-error').textContent='';
@@ -127,8 +127,8 @@
         input.onchange=()=>{writeDraft(q,{...draft,value:input.value});$('answer-error').textContent='';};
         const content=document.createElement('span');content.lang='en';content.innerHTML=option.html;
         label.append(input,content);
-        if(locked && option.value===q.accepted[0])label.classList.add('correct-option');
-        if(locked && draft.value===option.value && option.value!==q.accepted[0])label.classList.add('wrong-option');
+        if(locked && q.autoGrade && q.accepted.includes(option.value))label.classList.add('correct-option');
+        if(locked && q.autoGrade && draft.value===option.value && !q.accepted.includes(option.value))label.classList.add('wrong-option');
         options.append(label);
       });area.append(options);
     } else if(['text','multi-text'].includes(q.kind)) {
@@ -193,7 +193,8 @@
       if(added.tip)addExplanation('Mẹo học · hỗ trợ AI chưa duyệt',added.tip);
       if(added.readingWords)addExplanation('Từ khóa bài đọc · hỗ trợ chưa duyệt',added.readingWords);
     }
-    if(q.track){const track=source.tracks.find(t=>t.id===q.track);if(track?.transcriptHtml){$('transcript-panel').hidden=false;$('transcript-content').innerHTML=track.transcriptHtml;}}
+    const transcript=q.transcriptHtml || (q.track && source.tracks.find(t=>t.id===q.track)?.transcriptHtml);
+    if(transcript){$('transcript-panel').hidden=false;$('transcript-content').innerHTML=transcript;}
   }
   function checkAnswer() {
     if(conflict)return;const q=currentQuestion();
@@ -239,10 +240,11 @@
     $('session-tools').hidden=true;$('resume-panel').hidden=true;$('start-form').hidden=false;
     $('home-button').hidden=true;$('results-button').hidden=true;$('student-label').textContent='';$('xp-total').textContent='✦ 0 XP';
     $('answer-area').replaceChildren();$('explanation-content').replaceChildren();$('transcript-content').replaceChildren();$('save-message').textContent='';$('reload-progress').hidden=true;
-    $('student-name').value='';$('student-code').value='';$('name-error').textContent='';$('student-name').focus();
+    HTDualStore.forget();$('student-name').value='';$('student-code').value='';$('name-error').textContent='';$('student-name').focus();
   }
   $('start-form').onsubmit=event=>{
     event.preventDefault();try{pendingStudent=P.identity($('student-name').value,$('student-code').value);}catch(error){$('name-error').textContent=error.message;$('student-name').focus();return;}
+    HTDualStore.remember(pendingStudent);
     pendingMode=document.querySelector('input[name="start-mode"]:checked').value;
     store=HTDualStore.open(source,pendingStudent);
     if(store.status==='empty'||store.status==='blocked'){freshSession();return;}
@@ -293,7 +295,8 @@
   $('audio-seek').oninput=()=>{if(Number.isFinite(audio.duration))audio.currentTime=audio.duration*Number($('audio-seek').value)/100;};
   for(const event of ['timeupdate','loadedmetadata','play','pause','ended'])audio.addEventListener(event,updateAudio);
   audio.addEventListener('error',()=>{$('audio-message').textContent='Không tải được MP3. Em hãy kiểm tra kết nối hoặc báo giáo viên.';});
-  $('source-info').textContent=[source.exam.school,source.exam.title].join(' · ');
+  $('source-info').textContent=[source.exam.school,source.exam.title].join(' · ')+(source.tracks.length?'':' · Đề gốc chưa có tệp MP3. Em hãy nhờ giáo viên cung cấp bài nghe.');
+  const remembered=HTDualStore.profile();if(remembered){$('student-name').value=remembered.name;$('student-code').value=remembered.code;}
   document.title=`${source.exam.school} · English Quest 8 | HT ENGLISH`;
   document.addEventListener('visibilitychange',()=>{if(document.hidden){pauseAudio();persist();}});
 })();

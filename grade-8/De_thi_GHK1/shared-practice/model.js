@@ -15,11 +15,11 @@
     for(const q of data.questions){
       if(ids.has(q.id)||!sections.has(q.section)||!q.promptHtml||!['choice','text','multi-text','rearrange'].includes(q.kind))throw Error(`Câu ${q.id} thiếu dữ liệu hoặc sai cấu trúc.`);
       ids.add(q.id);
-      if(q.kind==='choice'&&(!q.options.length||!q.options.some(o=>q.accepted.includes(o.value))))throw Error(`Câu ${q.id} thiếu phương án/đáp án.`);
+      if(q.kind==='choice'&&(!q.options.length||(q.autoGrade&&!q.options.some(o=>q.accepted.includes(o.value)))))throw Error(`Câu ${q.id} thiếu phương án/đáp án.`);
       if(q.kind==='rearrange'&&(!Array.isArray(q.tokens)||!q.tokens.length))throw Error(`Câu ${q.id} thiếu thẻ từ.`);
       if(q.kind==='multi-text'&&(!q.inputCount||!q.acceptedTuples?.every(t=>t.length===q.inputCount)))throw Error(`Câu ${q.id} thiếu ô trả lời.`);
       if(q.autoGrade && !q.accepted.length && !q.acceptedTuples?.length)throw Error(`Câu ${q.id} thiếu đáp án để tự chấm.`);
-      if(q.track&&!data.tracks.some(t=>t.id===q.track&&t.src&&t.transcriptHtml))throw Error(`Câu ${q.id} thiếu audio/transcript.`);
+      if(q.track&&!data.tracks.some(t=>t.id===q.track&&t.src))throw Error(`Câu ${q.id} thiếu audio/transcript.`);
       if(q.context!==undefined&&!data.contexts[q.context])throw Error(`Câu ${q.id} thiếu đoạn đọc.`);
     }
     return true;

@@ -1,5 +1,5 @@
 import { visibleCatalog } from './catalog-data.js';
-import { renderSchoolFolders, numberSchoolLessons } from './school-folders.js?v=20261024-dual-link';
+import { renderSchoolFolders, numberSchoolLessons } from './school-folders.js?v=20261024-all-dual';
 const tabs=document.getElementById('tabs'), content=document.getElementById('content'), search=document.getElementById('search'), empty=document.getElementById('empty'), stats=document.getElementById('stats');
 let current=0;
 let DATA = [];
