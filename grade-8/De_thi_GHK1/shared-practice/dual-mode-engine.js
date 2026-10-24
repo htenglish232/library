@@ -193,7 +193,8 @@
       if(added.tip)addExplanation('Mẹo học · hỗ trợ AI chưa duyệt',added.tip);
       if(added.readingWords)addExplanation('Từ khóa bài đọc · hỗ trợ chưa duyệt',added.readingWords);
     }
-    if(q.track){const track=source.tracks.find(t=>t.id===q.track);if(track?.transcriptHtml){$('transcript-panel').hidden=false;$('transcript-content').innerHTML=track.transcriptHtml;}}
+    const transcript=q.transcriptHtml || (q.track && source.tracks.find(t=>t.id===q.track)?.transcriptHtml);
+    if(transcript){$('transcript-panel').hidden=false;$('transcript-content').innerHTML=transcript;}
   }
   function checkAnswer() {
     if(conflict)return;const q=currentQuestion();
@@ -294,7 +295,7 @@
   $('audio-seek').oninput=()=>{if(Number.isFinite(audio.duration))audio.currentTime=audio.duration*Number($('audio-seek').value)/100;};
   for(const event of ['timeupdate','loadedmetadata','play','pause','ended'])audio.addEventListener(event,updateAudio);
   audio.addEventListener('error',()=>{$('audio-message').textContent='Không tải được MP3. Em hãy kiểm tra kết nối hoặc báo giáo viên.';});
-  $('source-info').textContent=[source.exam.school,source.exam.title].join(' · ');
+  $('source-info').textContent=[source.exam.school,source.exam.title].join(' · ')+(source.tracks.length?'':' · Đề gốc chưa có tệp MP3. Em hãy nhờ giáo viên cung cấp bài nghe.');
   const remembered=HTDualStore.profile();if(remembered){$('student-name').value=remembered.name;$('student-code').value=remembered.code;}
   document.title=`${source.exam.school} · English Quest 8 | HT ENGLISH`;
   document.addEventListener('visibilitychange',()=>{if(document.hidden){pauseAudio();persist();}});

@@ -88,19 +88,19 @@ def specs_for(row,v,source,calls):
    match=re.search(r"===\s*['\"]([^'\"]+)['\"]",call['raw'])
    if match:q['correct']=match[1]
    a[k]=q
-  for k,q in v['rearrangeData'].items():a['D1_'+k]={'correctSequence':q['correctOrder']};arr['D1_'+k]=q
+  for k,q in v['rearrangeData'].items():a['D1_'+k]=q;arr['D1_'+k]=q
  else:raise ValueError(n)
  # Map native rearrangement tokens to the exact source question, never synthesize words.
  config=v.get('rearrangeData') or v.get('REARRANGE_DATA') or v.get('rearrangeConfig') or v.get('rearrangeQuestions') or v.get('arrangementState') or {}
  for k,q in a.items():
   if n==2 and k.startswith('q_rearrange_'):arr[k]=config[k.rsplit('_',1)[1]];anchors[k]=['rearrange-container-'+k.rsplit('_',1)[1]]
   if n==3 and k in config:arr[k]=config[k];anchors[k]=['card_'+k]
-  if n==4 and k.startswith('D1_'):
-   arr[k]={'tokens':re.findall(r'data-word="([^"]+)"',re.search(r'id="card_'+k+r'"([\s\S]*?)(?=id="card_|<h3)',source)[0])};anchors[k]=['card_'+k]
+  if n==4 and k.startswith('d1_'):
+   arr[k]={'tokens':next(c['args'][1] for c in calls if c['name']=='buildWordPool' and c['args'][0]==k)};anchors[k]=['card_'+k.upper()]
   if n==5 and k.startswith('D_I_'):arr[k]=config[k.rsplit('_',1)[1]];anchors[k]=['card_'+k,'rearrange_'+k,'q_'+k]
   if n==6 and k.startswith('rearrange'):anchors[k]=['q_rearr_'+k[-1]+'_box']
   if n==8 and q.get('type')=='rearrange':arr[k]=config[str(q['qNum'])];anchors[k]=['dropzone_'+str(q['qNum'])]
-  if n==9 and k.startswith('arrange'):arr[k]=v['CHIP_POOLS'][k[-1]];anchors[k]=['target-re'+k[-1],'arrange-target-'+k[-1]]
+  if n==9 and k.startswith('arrange'):arr[k]=v['CHIP_POOLS'][k[-1]];anchors[k]=['q-block-rearrange-'+k[-1]]
   if n==10 and k.startswith('D1_'):anchors[k]=['card_'+k]
   if n==13 and k.startswith('rearrange'):
    arr[k]=next(x for x in config if str(x['id'])==k[-1]);anchors[k]=['rearrange-box-'+k[-1],'rearrange-container-'+k[-1],'qbox-re-'+k[-1]]
@@ -121,21 +121,38 @@ def specs_for(row,v,source,calls):
  return a,arr,specs
 
 def values(q):
+ if not isinstance(q,dict):return []
  # Only explicit whole answers/variants. Never treat keyword fragments as answers.
- keys=['accepted','acceptedPatterns','acceptedAnswers','correctAnswers','correctVariants','validAnswers','validEndings','acceptablePatterns','expectedVariants','answers','variants']
+ keys=['accepted','acceptedPatterns','acceptedAnswers','correctAnswers','correctVariants','validAnswers','validEndings','acceptablePatterns','expectedVariants','answers','variants','validSequences']
  for key in keys:
   if isinstance(q.get(key),list) and all(isinstance(s,str) for s in q[key]):return q[key]
- for key in ['correct','ans','answer','key','correctText','expectedStr','expected','expectedString','correctString','correctSentence','targetSentence']:
+ for key in ['correct','ans','answer','key','correctText','expectedStr','expected','expectedString','correctString','correctSentence','targetSentence','rawExpected','expectedStr','target']:
   val=q.get(key)
   if isinstance(val,list) and all(isinstance(s,str) for s in val):return val
   if isinstance(val,str):return [val]
+ if isinstance(q.get('validOrders'),list):return [' '.join(order) for order in q['validOrders']]
  for key in ['correctSequence','correctWords','correctOrder','correctSeq','answer','correctSeq1']:
   if isinstance(q.get(key),list):return [' '.join(q[key])]
  return []
 
+def realizable(ts,accepted):
+ def norm(s):return re.sub(r'\s+',' ',re.sub(r'[.,!?;:]','',s.lower().replace('’',"'").replace('‘',"'"))).strip()
+ for target in accepted:
+  failed=set()
+  def solve(mask,left):
+   if mask==(1<<len(ts))-1:return not left
+   cache=(mask,tuple(left))
+   if cache in failed:return False
+   for i,t in enumerate(ts):
+    part=norm(t).split()
+    if not mask&(1<<i) and left[:len(part)]==part and solve(mask|(1<<i),left[len(part):]):return True
+   failed.add(cache);return False
+  if solve(0,norm(target).split()):return True
+ return False
+
 def tokens(q):
  if isinstance(q,list):return [s.get('text',s) if isinstance(s,dict) else s for s in q]
- for k in ['tokens','words','raw','rawPieces','pool','poolChunks','allWords']:
+ for k in ['tokens','words','raw','rawPieces','pool','poolChunks','allWords','chunks','chips']:
   if isinstance(q.get(k),list):return [s.get('text',s) if isinstance(s,dict) else s for s in q[k]]
  return []
 
@@ -143,7 +160,7 @@ def build(row,page,dom):
  path=ROOT/row['href'];source=path.read_text();parsed=literals(path);v=parsed['variables'];n=row['folder']
  if n in PILOTS:return pilot(row,source,v)
  answers,arr,specs=specs_for(row,v,source,parsed['calls'])
- if n==7:return dynamic_my(row,source,v)
+ if n==7:return dynamic_my(row,source,v,page)
  extracted=page.evaluate(dom,{'source':source,'specs':specs})
  errors=[r for r in extracted if 'error' in r]
  if errors:raise AssertionError((path.parent.name,errors))
@@ -158,7 +175,7 @@ def build(row,page,dom):
    ts=tokens(arr[r['id']]);assert ts,('No source word tiles',n,r['id'])
    if not accepted:accepted=values(arr[r['id']])
   if kind=='choice':
-   accepted=[s if s in [o['value'] for o in opts] else s.split('.')[0] for s in accepted]
+   accepted=[s if s in [o['value'] for o in opts] else (re.match(r'^([A-DTF])\b',s).group(1) if re.match(r'^([A-DTF])\b',s) else s) for s in accepted]
    accepted=[s for s in accepted if s in [o['value'] for o in opts]]
   if 'keywords' in q:
    flags.append('Nguồn chấm bằng từ khóa; cần giáo viên duyệt đáp án đầy đủ. Không tự chấm hoặc cộng XP từ từ khóa.')
@@ -172,9 +189,11 @@ def build(row,page,dom):
   else:
    heading=r['heading'];icon='🎧' if 'LISTEN' in heading.upper() else '🧭' if 'READ' in heading.upper() else '🧩' if 'WRIT' in heading.upper() else '⚡'
    sections.append({'id':sectionId,'title':title,'sourceTitle':title,'description':heading,'icon':icon})
-  item={'id':r['id'],'number':i+1,'sourceNumber':re.sub('<[^>]+>',' ',r['promptHtml']).strip().split('.')[0][:35], 'section':sectionId,'kind':kind,'promptHtml':r['promptHtml'],'options':opts,'sourceRaw':q,'accepted':accepted,'autoGrade':bool(accepted) and not flags,'answerLabel':q.get('display') or q.get('sample') or q.get('standardAnswer') or q.get('standard') or q.get('target') or q.get('ans') or ' / '.join(accepted) or 'Cần giáo viên duyệt — xem đề gốc.','explainHtml':q.get('explain') or q.get('explanation') or q.get('expl') or q.get('exp') or q.get('detail') or q.get('rule') or '', 'knowledge':q.get('note',''),'teacherFlags':flags,'sourcePosition':r['sourcePosition']}
+  item={'id':r['id'],'number':i+1,'sourceNumber':re.sub('<[^>]+>',' ',r['promptHtml']).strip().split('.')[0][:35], 'section':sectionId,'kind':kind,'promptHtml':r['promptHtml'],'options':opts,'sourceRaw':q,'accepted':accepted,'autoGrade':bool(accepted) and not flags,'answerLabel':q.get('display') or q.get('sample') or q.get('standardAnswer') or q.get('standard') or q.get('target') or q.get('ans') or ' / '.join(accepted) or 'Cần giáo viên duyệt — xem đề gốc.','explainHtml':q.get('explain') or q.get('explanation') or q.get('expl') or q.get('exp') or q.get('detail') or q.get('rule') or '', 'knowledge':q.get('note',''),'teacherFlags':flags,'sourcePosition':r['sourcePosition'],'sourceAudioIndex':r['sourceAudioIndex']}
   if not isinstance(item['answerLabel'],str):item['answerLabel']=' / '.join(item['answerLabel'])
-  if kind=='rearrange':item['tokens']=ts
+  if kind=='rearrange':
+   item['tokens']=ts
+   if not realizable(ts,accepted):item['autoGrade']=False;item['teacherFlags'].append('Các thẻ từ không khớp đáp án đầy đủ trong nguồn; cần giáo viên duyệt, không tự sửa từ hoặc đáp án.')
   if r['inputCount']>1:raise AssertionError(('Unmapped multi-input source',n,r['id'],r['inputCount']))
   if r['contextHtml']:
    if r['contextHtml'] not in contexts:contexts.append(r['contextHtml'])
@@ -185,14 +204,17 @@ def build(row,page,dom):
  mp3s=list(dict.fromkeys(re.findall(r'(?:src|data-src)=["\']([^"\']+\.mp3)["\']',source,re.I)))
  mp3s=[html.unescape(s) for s in mp3s]
  listening=[q for q in questions if 'LISTEN' in next(s['description'] for s in sections if s['id']==q['section']).upper()]
- listeningSections=list(dict.fromkeys(q['section'] for q in listening))
- for i,section in enumerate(listeningSections):
-  if not mp3s:continue
-  src=mp3s[min(i,len(mp3s)-1)];assert (path.parent/src).is_file(),src
+ for i,src in enumerate(mp3s):
+  assert (path.parent/src).is_file(),src
   trackId='listen-'+str(i+1)
-  data['tracks'].append({'id':trackId,'title':'Listening · Phần '+str(i+1),'src':src,'wholeFile':len(mp3s)==1,'transcriptHtml':transcript(source,v,page,i),'sha256':sha((path.parent/src).read_bytes())})
-  for q in listening:
-   if q['section']==section:q['track']=trackId
+  transcriptHtml=transcript(source,v,page,i)
+  if len(mp3s)==1:transcriptHtml+='\n'+transcript(source,v,page,1)
+  data['tracks'].append({'id':trackId,'title':'Listening · Phần '+str(i+1),'src':src,'wholeFile':len(mp3s)==1,'transcriptHtml':transcriptHtml,'sha256':sha((path.parent/src).read_bytes())})
+ for q in listening:
+  if not mp3s:
+   part=1 if (n==2 and q['id'].startswith('q_listen_mc_')) or (n==3 and q['id'].startswith('tf')) else 0
+   q['transcriptHtml']=transcript(source,v,page,part)
+  if mp3s:q['track']='listen-'+str(max(0,min(q['sourceAudioIndex'],len(mp3s)-1))+1)
  return data
 
 def transcript(source,v,page,index):
@@ -210,7 +232,7 @@ def transcript(source,v,page,index):
   if isinstance(value,str):return '<p>'+html.escape(value)+'</p>'
  return page.evaluate('''({source,index})=>{const d=new DOMParser().parseFromString(source,'text/html');let nodes=[...d.querySelectorAll('[id*="transcript" i]')].filter(n=>n.textContent.length>100&&!n.querySelector('[id*="transcript" i]'));return nodes[index]?.innerHTML||'';}''',{'source':source,'index':index})
 
-def dynamic_my(row,source,v):
+def dynamic_my(row,source,v,page):
  # The original Trực Mỹ app constructs questions from these literal arrays.
  # Keep question/option markup directly from those arrays, preserving array order.
  parts=['listeningData1','listeningData2','langFocusData','verbFormData','clozeData','readingCompDataA','readingCompDataB','rearrangeData','rewriteData']
@@ -225,16 +247,17 @@ def dynamic_my(row,source,v):
    kind='rearrange' if key=='rearrangeData' else 'choice' if options else 'text'
    accepted=values(raw);flags=[]
    if raw.get('keywords') or not accepted:flags=['Nguồn chấm bằng từ khóa hoặc chưa có đáp án đầy đủ; cần giáo viên duyệt, không cộng XP.']
-   prompt='<p>'+html.escape(raw.get('statement') or raw.get('textPrompt') or raw.get('sentence') or raw.get('question') or raw.get('givenPrompt') or raw.get('given') or raw.get('prompt') or '')+'</p>'
+   prompt='<p>'+html.escape(raw.get('statement') or raw.get('textPrompt') or raw.get('sentence') or raw.get('question') or raw.get('givenPrompt') or raw.get('given') or raw.get('prompt') or raw.get('gap') or '')+'</p>'
    if raw.get('title'):prompt='<p>'+html.escape(raw['title'])+'</p>'+prompt
    if raw.get('promptPrefix'):prompt+='<p>'+html.escape(raw['promptPrefix'])+' ______</p>'
    assert re.sub('<[^>]+>','',prompt).strip(),(row['school'],raw)
    q={'id':raw['id'],'number':len(questions)+1,'sourceNumber':raw['num'],'section':key,'kind':kind,'promptHtml':prompt,'options':options,'accepted':accepted,'autoGrade':bool(accepted) and not flags,'sourceRaw':raw,'answerLabel':raw.get('sample') or raw.get('standardFull') or ' / '.join(accepted) or 'Cần giáo viên duyệt — xem đề gốc.','explainHtml':raw.get('explain',''),'knowledge':'','teacherFlags':flags}
-   if kind=='rearrange':q['tokens']=raw['tokens']
+   if kind=='rearrange':
+    q['tokens']=raw['tokens']
+    if not realizable(q['tokens'],accepted):q['autoGrade']=False;q['teacherFlags'].append('Thẻ từ không khớp đáp án nguồn; cần giáo viên duyệt, không tự sửa từ.')
    questions.append(q)
  # Original paragraphs are static outside the dynamic question containers.
- contexts=re.findall(r'<(?:p|div)[^>]*>([^<>]{140,})</(?:p|div)>',source)
- reading=''.join('<p>'+s+'</p>' for s in contexts)
+ reading=page.evaluate('''source=>{const d=new DOMParser().parseFromString(source,'text/html');const h=[...d.querySelectorAll('h3')].find(h=>h.textContent.includes('PART C: READING'));const section=h.closest('section').cloneNode(true);section.querySelectorAll('script,button,svg').forEach(n=>n.remove());for(const el of [section,...section.querySelectorAll('*')])for(const a of [...el.attributes])el.removeAttribute(a.name);return section.innerHTML;}''',source)
  assert 'school' in reading.lower(), 'Missing original reading passages'
  for q in questions:
   if q['section'] in parts[4:7]:q['contextHtml']=reading
