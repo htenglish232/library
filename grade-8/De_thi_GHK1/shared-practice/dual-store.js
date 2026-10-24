@@ -35,5 +35,15 @@
       }
     };
   }
-  globalThis.HTDualStore={keyFor,open};
+  const profileKey='htenglish:grade8:active-student:v1';
+  function profile(storage) {
+    try {storage=storage||globalThis.localStorage;const raw=JSON.parse(storage.getItem(profileKey));return HTDualProgress.identity(raw.name,raw.code);} catch {return null;}
+  }
+  function remember(student,storage) {
+    try {(storage||globalThis.localStorage).setItem(profileKey,JSON.stringify(HTDualProgress.identity(student.name,student.code)));return true;} catch {return false;}
+  }
+  function forget(storage) {
+    try {(storage||globalThis.localStorage).removeItem(profileKey);} catch { /* Progress records remain untouched. */ }
+  }
+  globalThis.HTDualStore={keyFor,open,profile,remember,forget,profileKey};
 })();

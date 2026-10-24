@@ -108,3 +108,23 @@ test('a confirmed reset can recover a corrupt record after a temporary storage d
  storage.removeItem=remove;
  assert.equal(handle.save(P.create(data,learner)),'saved');assert.equal(S.open(data,learner,storage).status,'found');
 });
+
+test('grade 8 remembers the complete identity/code without enumerating or changing progress',()=>{
+ const storage=new MemoryStorage();const a=P.identity('  Cùng tên  ','8A-01'),b=P.identity('Cùng tên','8A-02');
+ const state=P.create(data,a);fill(state,data.questions[0]);P.check(data,state,data.questions[0].id);const store=S.open(data,a,storage);store.save(state);const before=storage.getItem(store.key);
+ assert.equal(S.profile(storage),null);assert.equal(S.remember(a,storage),true);assert.deepEqual(plain(S.profile(storage)),plain(a));
+ S.remember(b,storage);assert.equal(S.profile(storage).key,b.key);assert.notEqual(a.key,b.key);assert.equal(storage.getItem(store.key),before);
+ S.forget(storage);assert.equal(S.profile(storage),null);assert.equal(storage.getItem(store.key),before);
+ storage.setItem(S.profileKey,'{broken');assert.equal(S.profile(storage),null);
+ assert.equal(S.remember(a,{setItem(){throw Error('quota');}}),false);
+ assert.equal(S.profile({getItem(){throw Error('blocked');}}),null);
+});
+
+test('pending choice answers need no invented key or transcript and never award XP',()=>{
+ const pending=plain(data);pending.questions=pending.questions.slice(0,1);pending.questions[0].autoGrade=false;pending.questions[0].accepted=[];pending.tracks[0].transcriptHtml='';
+ assert.equal(M.validate(pending),true);const state=P.create(pending,learner),q=pending.questions[0];
+ P.update(pending,state,q.id,{...P.blank(q),value:q.options[0].value});P.check(pending,state,q.id);
+ assert.equal(P.summary(pending,state).pending,1);assert.equal(P.summary(pending,state).xp,0);assert.equal(P.check(pending,state,q.id),false);
+ P.setMode(pending,state,'ordered');const restored=P.restore(pending,learner,plain(state));assert.equal(P.summary(pending,restored).xp,0);
+ P.beginReview(pending,restored);P.update(pending,restored,q.id,{...P.blank(q),value:q.options[0].value});P.check(pending,restored,q.id);assert.equal(P.summary(pending,restored).xp,0);
+});
