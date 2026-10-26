@@ -1,4 +1,4 @@
-"""Real shared WAV decoding/playback: all Grade 6/8 games, fallback and Listening.
+"""Real shared WAV decoding/playback: all Grade 6/7/8 games, fallback and Listening.
 Phone testing uses Chromium touch emulation, not physical devices/Safari.
 """
 from pathlib import Path
@@ -10,9 +10,17 @@ OUT=Path('/tmp/ht-shared-wav-tests');OUT.mkdir(exist_ok=True)
 old=(ROOT/'tests/dual-mode-sound-browser.py').read_text();tree=ast.parse(old)
 exec('class Handler'+(ROOT/'tests/dual-mode-browser.py').read_text().split('class Handler',1)[1].split('server=http.server',1)[0])
 server=http.server.ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Handler,directory=str(ROOT)));threading.Thread(target=server.serve_forever,daemon=True).start();BASE=f'http://127.0.0.1:{server.server_port}/'
-spec=importlib.util.spec_from_file_location('audit',ROOT/'tools/audit-grade8-sound-loading.py');audit=importlib.util.module_from_spec(spec);spec.loader.exec_module(audit);rows=[{**r,'game':r['html']} for r in audit.inventory()];rows += [{**r,'html':r['game']} for r in json.loads((ROOT/'docs/grade6-dual-mode/inventory.json').read_text())['games']];TT=next(r for r in rows if 'truc-tuan' in r['html'])
+spec=importlib.util.spec_from_file_location('audit',ROOT/'tools/audit-grade8-sound-loading.py');audit=importlib.util.module_from_spec(spec);spec.loader.exec_module(audit);rows=[{**r,'game':r['html']} for r in audit.inventory()];rows += [{**r,'html':r['game']} for r in json.loads((ROOT/'docs/grade6-dual-mode/inventory.json').read_text())['games']];rows += [{**r,'html':r['game']} for r in json.loads((ROOT/'docs/grade7-dual-mode/inventory.json').read_text())['games']];TT=next(r for r in rows if 'truc-tuan' in r['html'])
 for node in tree.body:
  if isinstance(node,ast.FunctionDef) and node.name in ['click','start','answer_choice','seed_completion']:exec(ast.get_source_segment(old,node))
+choice_answer=answer_choice
+def answer_choice(page,q,wrong=False,touch=False):
+ if q['kind']=='choice':return choice_answer(page,q,wrong,touch)
+ if q['kind']=='text':page.locator('#written-answer').fill('Incorrect answer for feedback' if wrong else q['accepted'][0])
+ elif q['kind']=='multi-text':
+  for i,value in enumerate(q['acceptedTuples'][0]):page.locator(f'#written-answer-{i}').fill('Incorrect' if wrong else value)
+ else:raise AssertionError('WAV feedback fixture needs a verified source answer for '+q['id'])
+ click(page,'#check-answer',touch)
 SPY='''(()=>{
  const Native=window.AudioContext||window.webkitAudioContext;
  window.wavLog={contexts:0,wavs:[],notes:[],gains:[],media:[],stops:0};
@@ -75,6 +83,6 @@ try:
    page.evaluate('''async()=>{const m=await import('../shared-practice/dual-sound.js?v=20261026-sound-fix');window.s=m.createGameSound();const b=document.createElement('button');b.id='cancel-test';b.textContent='Cancel';b.onclick=e=>{s.playFeedback('correct',{event:e});setTimeout(()=>CANCEL,10);};document.body.append(b);}'''.replace('CANCEL','s.setEnabled(false)' if cancel=='mute' else 's.stop()'));page.locator('#cancel-test').click();page.wait_for_timeout(250);assert count(page)==0 and page.evaluate('wavLog.notes.length')==0;c.close();passed(cancel+' cancels pending WAV decoding without replay')
   assert not errors,errors;assert not bad,bad
   wav_urls=sorted(set(u.split('/library/',1)[1] for u in responses if '/sounds/' in u));assert len(wav_urls)==3,wav_urls
-  passed('normal 35-game desktop/mobile run: no console/JS errors or HTTP failures; all 3 WAV URLs served under /library/')
+  passed('normal 49-game desktop/mobile run: no console/JS errors or HTTP failures; all 3 WAV URLs served under /library/')
   (OUT/'report.json').write_text(json.dumps({'checks':checks,'games':rows,'errors':errors,'bad':bad,'wavURLs':wav_urls,'physicalDevices':False},ensure_ascii=False,indent=2)+'\n');b.close()
 finally:server.shutdown()

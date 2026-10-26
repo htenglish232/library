@@ -10,7 +10,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 data = json.loads((ROOT / 'catalog/current-library-catalog.json').read_text())['data']
 # Keep this historical exam-only fixture; new Grade 6 game pairs have a dedicated test.
 for grade in data:
-    if grade['grade']=='Grade 6':
+    if grade['grade'] in ['Grade 6','Grade 7']:
         for unit in grade['units']: unit['lessons']=[l for l in unit['lessons'] if not l['href'].endswith('/practice-dual-mode.html')]
 old_view = subprocess.check_output(['git','show','808d2a6:assets/catalog-view.js'], cwd=ROOT, text=True).replace("'./school-folders.js?v=20261023-exam-numbering'", "'./school-folders-before-numbering.js'")
 old_folders = subprocess.check_output(['git','show','808d2a6:assets/school-folders.js'], cwd=ROOT, text=True)

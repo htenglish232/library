@@ -1,12 +1,16 @@
+import {GRADE7_DUAL_ID,GRADE7_DUAL_LINKS} from '../assets/grade7-dual-links.js';
 import {test} from 'node:test';import assert from 'node:assert/strict';
 import fs from 'node:fs';import path from 'node:path';import vm from 'node:vm';import {execFileSync} from 'node:child_process';import {createHash} from 'node:crypto';
 import {GRADE6_DUAL_ID,GRADE6_DUAL_LINKS} from '../assets/grade6-dual-links.js';
-import {addReleaseLessons,releaseCatalogView,RELEASE_IDS} from '../assets/catalog-release.js';
+import {addReleaseLessons as addAllReleaseLessons,releaseCatalogView,RELEASE_IDS} from '../assets/catalog-release.js';
 import {managedPayload,encodeCatalogData} from '../assets/catalog-data.js';
 import {numberSchoolLessons} from '../assets/school-folders.js';
 const baseline='7407b43',rows=JSON.parse(fs.readFileSync('docs/grade6-dual-mode/inventory.json')).games;
 const source=JSON.parse(fs.readFileSync('docs/grade6-dual-mode/source-inventory.json'));
 const current=JSON.parse(fs.readFileSync('catalog/current-library-catalog.json')).data;
+// Preserve the Grade 6 release fixture; Grade 7 additions are covered separately.
+for(const g of current)for(const u of g.units)u.lessons=u.lessons.filter(l=>!GRADE7_DUAL_LINKS.some(p=>p.lesson.href===l.href));
+const addReleaseLessons=(server,applied=[])=>addAllReleaseLessons(server,[...applied,GRADE7_DUAL_ID]);
 const before=JSON.parse(execFileSync('git',['show',baseline+':catalog/current-library-catalog.json'])).data;
 const grade6=d=>d.find(g=>g.grade==='Grade 6'),unit=d=>grade6(d).units.find(u=>u.name==='Đề thi GHK1');
 const sha=b=>createHash('sha256').update(b).digest('hex'),context=vm.createContext({});
@@ -66,7 +70,7 @@ test('every pre-existing source, audio, Grade 8 game, index, Firebase and other 
  const oldEngine=execFileSync('git',['show',baseline+':'+engine],{encoding:'utf8'});
  const oldLine=oldEngine.split('\n').find(line=>line.includes("$('section-kicker').textContent"));
  const lines=fs.readFileSync(engine,'utf8').split('\n');
- const restored=lines.filter(line=>!line.includes("const gradeLabel=source.exam.grade===6")).map(line=>line.includes("$('section-kicker').textContent")?oldLine:line).join('\n');assert.equal(restored,oldEngine,'Only the grade caption may change in the shared controller');
+ const restored=lines.filter(line=>!line.includes("const gradeLabel=")).map(line=>line.includes("$('section-kicker').textContent")?oldLine:line).join('\n');assert.equal(restored,oldEngine,'Only the grade caption may change in the shared controller');
  const exact=tracked.filter(p=>p!==engine).filter(p=>p.startsWith('grade-')||['index.html','admin.html','firebase.json','firestore.rules','firestore.indexes.json','.firebaserc'].includes(p)||['assets/firebase','assets/session','assets/catalog-editor','assets/catalog-store','assets/catalog-data','assets/catalog-view','assets/school-folders'].some(prefix=>p.startsWith(prefix)));
  assert.equal(execFileSync('git',['diff',baseline,'--name-only','--',...exact],{maxBuffer:2000000}).toString(),'');
 });

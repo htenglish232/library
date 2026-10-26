@@ -1,8 +1,9 @@
 // Parse source markup without executing any exam application or remote script.
-({source,specs})=>{
+({source,specs,stripSelectors=''})=>{
  const doc=new DOMParser().parseFromString(source,'text/html'),all=[...doc.querySelectorAll('*')];
  const clean=(node,{prompt=false,context=false}={})=>{
   const copy=node.cloneNode(true);
+  if(stripSelectors)copy.querySelectorAll(stripSelectors).forEach(n=>n.remove());
   copy.querySelectorAll('script,style,iframe,object,embed,link,svg,audio,[data-listening-player],.ht-audio-player,[id^="ht-listening"],.explanation-box,.explain-box,.feedback-box,[id^="exp_"],[id^="explain"],[id^="feedback"],.placeholder,.placeholder-text').forEach(n=>n.remove());
   // Preserve explicit underline markup/styles; never infer phonetic substrings.
   copy.querySelectorAll('[class*="underline"],[style*="underline"]').forEach(n=>{if(n.tagName!=='U'){const u=doc.createElement('u');u.innerHTML=n.innerHTML;n.replaceWith(u);}});
