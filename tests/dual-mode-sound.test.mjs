@@ -1,3 +1,4 @@
+import {beforeSoundBootstrap,isDualLauncher} from './sound-bootstrap-contract.mjs';
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {createGameSound,SOUND_CUES,SOUND_PREFERENCE_KEY} from '../grade-8/De_thi_GHK1/shared-practice/dual-sound.js';
@@ -67,11 +68,14 @@ test('Listening uses lower effect gain; muting does not create or close audio de
  sound.setEnabled(false);assert(ctx.nodes.every(n=>n.stoppedAt===10.02));assert.equal(contexts.length,1);
 });
 
-test('index, catalog, all source/data/answers/XP/storage/Firebase files match merged main',async()=>{
+test('index, catalog, all source/data/answers/XP/storage/Firebase files match merged main; game HTML permits only the sound button and asset versions',async()=>{
  const {execFileSync}=await import('node:child_process');
  const paths=execFileSync('git',['ls-tree','-rz','--name-only','b38d578']).toString().split('\0').filter(Boolean);
  const mutable=new Set(['dual-mode-engine.js','dual-mode.css'].map(f=>'grade-8/De_thi_GHK1/shared-practice/'+f));
- const protectedPaths=paths.filter(p=>!mutable.has(p)&&(p.startsWith('grade-')||p.startsWith('assets/')||p.startsWith('catalog/')||['index.html','admin.html','firestore.rules','firestore.indexes.json','firebase.json','.firebaserc'].includes(p)));
+ const games=paths.filter(isDualLauncher);
+ const {readFileSync}=await import('node:fs');
+ for(const file of games)assert.equal(beforeSoundBootstrap(readFileSync(file,'utf8')),execFileSync('git',['show','b38d578:'+file],{encoding:'utf8'}),file);
+ const protectedPaths=paths.filter(p=>!mutable.has(p)&&!games.includes(p)&&(p.startsWith('grade-')||p.startsWith('assets/')||p.startsWith('catalog/')||['index.html','admin.html','firestore.rules','firestore.indexes.json','firebase.json','.firebaserc'].includes(p)));
  assert(protectedPaths.length>380);
  assert.equal(execFileSync('git',['diff','b38d578','--name-only','--',...protectedPaths],{maxBuffer:1000000}).toString(),'');
 });
