@@ -1,3 +1,4 @@
+import {GRADE6_DUAL_ID,GRADE6_DUAL_LINKS} from '../assets/grade6-dual-links.js';
 import {beforeSoundBootstrap,isDualLauncher} from './sound-bootstrap-contract.mjs';
 import {test} from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';import vm from 'node:vm';import {createHash} from 'node:crypto';import {execFileSync} from 'node:child_process';
 import {addReleaseLessons,RELEASE_IDS,releaseCatalogView} from '../assets/catalog-release.js';
@@ -25,14 +26,14 @@ test('disk/catalog inventory: exactly 19 source exams, 17 schools, 19 distinct c
  }
  assert.equal(inventory.reduce((n,r)=>n+r.questions,0),793);
 });
-test('all 213 earlier links, all other grades, titles, visibility and relative order remain intact',()=>{
- const newHrefs=new Set(additions.map(a=>a.lesson.href));const stripped=structuredClone(current);for(const g of stripped)for(const u of g.units)u.lessons=u.lessons.filter(l=>!newHrefs.has(l.href));assert.deepEqual(stripped,before);
+test('all earlier links, titles, visibility and order remain intact after removing the explicit Grade 6/8 additions',()=>{
+ const newHrefs=new Set([...additions,...GRADE6_DUAL_LINKS].map(a=>a.lesson.href));const stripped=structuredClone(current);for(const g of stripped)for(const u of g.units)u.lessons=u.lessons.filter(l=>!newHrefs.has(l.href));assert.deepEqual(stripped,before);
  assert.equal(new Set(unit(current).lessons.map(l=>l.href)).size,42);
 });
 test('new batches deduplicate encoded/Pages URLs and preserve hidden renamed lessons and deletion after adoption',async()=>{
  for(const patch of additions){
   const server=structuredClone(before),u=unit(server);u.lessons.push({...patch.lesson,title:'Admin đổi tên',hidden:true,href:'https://htenglish232.github.io/library/'+encodeURI(patch.lesson.href)});
-  const merged=addReleaseLessons(server);assert.equal(merged.added,17);assert(u.lessons.at(-1).hidden);assert(!unit(merged.data).lessons.some(l=>l.href===patch.lesson.href));
+  const merged=addReleaseLessons(server,[GRADE6_DUAL_ID]);assert.equal(merged.added,17);assert(u.lessons.at(-1).hidden);assert(!unit(merged.data).lessons.some(l=>l.href===patch.lesson.href));
  }
  const server=structuredClone(current);const removed=additions[0].lesson.href;unit(server).lessons=unit(server).lessons.filter(l=>l.href!==removed);
  const fields={...await managedPayload(server),dataJson:encodeCatalogData(server,RELEASE_IDS)};assert.deepEqual(releaseCatalogView(fields,server),server);

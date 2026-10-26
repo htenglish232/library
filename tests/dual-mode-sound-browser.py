@@ -1,4 +1,7 @@
-"""Real Chromium Web Audio, desktop/touch, default autoplay policy and OfflineAudioContext.
+"""Real Chromium sine FALLBACK, desktop/touch, default autoplay policy and OfflineAudioContext.
+
+Intentionally serve corrupt WAV bytes to test the original fallback contract.
+Native WAV playback for all grades is covered in dual-mode-wav-browser.py.
 
 Phone profiles emulate input/viewport; this is not a claim about physical speakers,
 Microsoft Edge binaries or Safari/iOS hardware.
@@ -75,7 +78,7 @@ try:
   b=p.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH') or shutil.which('chromium'),args=['--no-sandbox']) # No autoplay bypass.
   def context(**kwargs):
    c=b.new_context(reduced_motion='reduce',**kwargs);c.add_init_script(SPY)
-   c.route('**/*',lambda r:r.continue_() if r.request.url.startswith(BASE) else (external.append(r.request.url),r.abort())[-1]);return c
+   c.route('**/*',lambda r:r.continue_() if r.request.url.startswith(BASE) else (external.append(r.request.url),r.abort())[-1]);c.route('**/sounds/*.wav',lambda r:r.fulfill(status=200,content_type='audio/wav',body='Invalid WAV: deliberate fallback fixture'));return c
   def page_for(c):
    page=c.new_page();page.set_default_timeout(12000);page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda m:errors.append(m.text) if m.type=='error' else None);page.on('response',lambda r:bad.append((r.status,r.url)) if r.status>=400 else None);return page
   # Every real launcher loads the same module and displays an accessible toggle.

@@ -1,5 +1,7 @@
 """Browser regression: real cached old JS, visible bootstrap, delayed/404 import,
-retry with currentScript=null, and every on-disk dual launcher. No production IO.
+retry with currentScript=null, and every on-disk Grade 8 dual launcher. No production IO.
+Deliberately corrupt WAV bytes so the existing oscillator spy checks FALLBACK;
+dual-mode-wav-browser.py checks native WAV playback for both grades.
 """
 from pathlib import Path
 from urllib.parse import quote,unquote,urlsplit
@@ -18,7 +20,9 @@ exec('class Handler'+(ROOT/'tests/dual-mode-browser.py').read_text().split('clas
 class LoadingHandler(Handler):
  def send_head(self):
   self.remaining=None;url=urlsplit(self.path);resource=unquote(url.path).removeprefix('/library/');body=None
-  if resource==shared:
+  if '/shared-practice/sounds/' in resource and resource.endswith('.wav'):
+   body=b'Invalid WAV: deliberate bootstrap/fallback fixture';content_type='audio/wav';cache='no-store'
+  elif resource==shared:
    engine_requests.append({'phase':phase['value'],'url':self.path})
    body=old_engine if phase['value']=='old' else main_engine if phase['value']=='main' else (ROOT/shared).read_bytes()
    content_type='text/javascript';cache='public, max-age=3600'

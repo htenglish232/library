@@ -10,6 +10,7 @@ school='grade-8/De_thi_GHK1/1_THCS Truc Tuan/'
 shared='grade-8/De_thi_GHK1/shared-practice/'
 files=[school+name for name in ['truc-tuan-dual-mode.html','truc-tuan-dual-data.js','truc-tuan-dual-support.js','1. THCS Truc Tuan.html','GHK1 K8 - part 1.mp3','GHK1 K8 - part 2 .mp3']]
 files += [shared+name for name in ['model.js','game.css','icon.svg','dual-progress.js','dual-store.js','dual-mode-engine.js','dual-mode.css','dual-sound.js']]
+files += [shared+'sounds/'+name+'.wav' for name in ['correct','wrong','complete']]
 files += ['grade-7/De_thi_GHK_1/fonts/'+name for name in ['noto-sans-latin-400-normal.woff2','noto-sans-vietnamese-400-normal.woff2','noto-sans-latin-700-normal.woff2','noto-sans-vietnamese-700-normal.woff2','OFL.txt']]
 for file in files:
     dest=target/file;dest.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(ROOT/file,dest)

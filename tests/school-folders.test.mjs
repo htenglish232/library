@@ -24,8 +24,8 @@ test('multiple exams from the same school merge without conflating different sch
  assert.equal(groups.find(s=>s.name==='THCS Đào Sư Tích').lessons.length,4);
  assert.equal(groups.find(s=>s.name==='THCS Trực Tuấn').lessons.length,3);
  const grade6=groupSchoolLessons(examFolder('Grade 6').lessons);
- assert.equal(grade6.find(s=>s.name==='THCS Trực Hùng').lessons.length,2);
- assert.equal(grade6.find(s=>s.name==='THCS Trực Tuấn').lessons.length,1);
+ assert.equal(grade6.find(s=>s.name==='THCS Trực Hùng').lessons.length,4);
+ assert.equal(grade6.find(s=>s.name==='THCS Trực Tuấn').lessons.length,2);
 });
 test('game placed before exam uses exact school directory, including nested game paths',()=>{
  const source=examFolder('Grade 8').lessons.slice(0,2);
@@ -137,14 +137,17 @@ test('duplicate explicit exam numbers stay unpaired instead of silently inventin
  assert.ok(numberSchoolLessons(input)[0].lessons.every(l=>l.examNumber===null));
 });
 
-test('Grade 6 has 16 actual exams in 14 schools, with separate Hung and Liem Hai exams and no games',()=>{
+test('Grade 6 has 16 actual exams and 16 paired games in 14 schools, with separate Hung and Liem Hai exams',()=>{
  const original=structuredClone(examFolder('Grade 6').lessons),groups=numberSchoolLessons(original,{unclassified:true});
- assert.equal(groups.length,14);assert.equal(groups.flatMap(g=>g.lessons).length,16);
+ assert.equal(groups.length,14);assert.equal(groups.flatMap(g=>g.lessons).length,32);
+ assert.equal(groups.flatMap(g=>g.lessons).filter(l=>l.kind==='exam').length,16);
+ assert.equal(groups.flatMap(g=>g.lessons).filter(l=>l.kind==='game').length,16);
  for(const g of groups){
-  assert.ok(g.name.startsWith('THCS '));assert.ok(g.lessons.every(l=>l.kind==='exam'));
-  assert.deepEqual(g.lessons.map(l=>l.examNumber),g.lessons.map((_,i)=>i+1));
+  assert.ok(g.name.startsWith('THCS '));
+  assert.deepEqual(g.lessons.map(l=>l.kind),g.lessons.map((_,i)=>i%2?'game':'exam'));
+  assert.deepEqual(g.lessons.map(l=>l.examNumber),g.lessons.map((_,i)=>Math.floor(i/2)+1));
  }
- for(const name of ['THCS Trực Hùng','THCS Liêm Hải'])assert.deepEqual(groups.find(g=>g.name===name).lessons.map(l=>l.examNumber),[1,2]);
+ for(const name of ['THCS Trực Hùng','THCS Liêm Hải'])assert.deepEqual(groups.find(g=>g.name===name).lessons.map(l=>l.examNumber),[1,1,2,2]);
  assert.deepEqual(original,examFolder('Grade 6').lessons);
 });
 
