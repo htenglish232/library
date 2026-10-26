@@ -2,6 +2,30 @@
 (() => {
   'use strict';
   const $ = id => document.getElementById(id);
+  // Resolve from this shared script, including GitHub project Pages /library/.
+  // No launcher copies or external audio files are needed for the 19 games.
+  let sound=null;
+  const soundToggle=document.createElement('button');soundToggle.id='sound-toggle';
+  soundToggle.type='button';soundToggle.className='quiet';soundToggle.disabled=true;
+  soundToggle.textContent='Âm thanh đang tải…';
+  document.querySelector('.header-actions').append(soundToggle);
+  const updateSoundToggle=()=>{
+    soundToggle.disabled=!sound?.supported;
+    soundToggle.textContent=sound?.supported?(sound.enabled?'🔊 Âm thanh: Bật':'🔇 Âm thanh: Tắt'):'Âm thanh không khả dụng';
+    soundToggle.setAttribute('aria-pressed',String(!!sound?.supported&&sound.enabled));
+    soundToggle.title='Bật/tắt hiệu ứng; không thay đổi âm thanh bài nghe.';
+  };
+  import(new URL('./dual-sound.js',document.currentScript.src).href).then(({createGameSound,SOUND_PREFERENCE_KEY})=>{
+    sound=createGameSound();updateSoundToggle();
+    soundToggle.onclick=()=>{sound.setEnabled(!sound.enabled);updateSoundToggle();};
+    window.addEventListener('storage',event=>{
+      if(event.key===SOUND_PREFERENCE_KEY||event.key===null){
+        let value=event.newValue;
+        if(event.key===null)try{value=localStorage.getItem(SOUND_PREFERENCE_KEY);}catch{return;}
+        sound.setEnabled(value!=='off',false);updateSoundToggle();
+      }
+    });
+  }).catch(()=>{updateSoundToggle();});
   const source = window.HT_PRACTICE_DATA;
   try {HTPracticeModel.validate(source);} catch(error) {
     $('name-error').textContent='Dữ liệu đề chưa thể mở. Hãy báo giáo viên: '+error.message;
@@ -196,11 +220,15 @@
     const transcript=q.transcriptHtml || (q.track && source.tracks.find(t=>t.id===q.track)?.transcriptHtml);
     if(transcript){$('transcript-panel').hidden=false;$('transcript-content').innerHTML=transcript;}
   }
-  function checkAnswer() {
-    if(conflict)return;const q=currentQuestion();
+  function checkAnswer(event) {
+    if(conflict)return;const q=currentQuestion(),checkedBefore=totalChecked();
     try {if(!P.check(source,state,q.id))return;}catch(error){$('answer-error').textContent=error.message;return;}
     renderQuestion();$('xp-total').textContent=`✦ ${totalCorrect()*10} XP`;
     const a=state.answers[q.id];$('feedback').classList.remove('celebrate');
+    void sound?.playFeedback(state.review?a.review.result:a.first?.result,{
+      event,completed:checkedBefore<questions.length&&totalChecked()===questions.length,
+      listeningActive:!audio.paused
+    });
     if(correctNow(a)){void $('feedback').offsetWidth;$('feedback').classList.add('celebrate');}
     $('feedback-title').focus({preventScroll:true});$('feedback').scrollIntoView({block:'nearest',behavior:'instant'});
   }
@@ -232,10 +260,10 @@
     $('reload-progress').hidden=status!=='conflict';
     if(status==='conflict')freezeSession();
   }
-  function freezeSession(){conflict=true;pauseAudio();$('reload-progress').hidden=false;document.querySelectorAll('#play button,#play input,#play textarea,#play select,#challenge-grid button').forEach(el=>el.disabled=true);$('play-mode').disabled=true;}
-  function freshSession(){state=P.create(source,pendingStudent);P.setMode(source,state,pendingMode);state.view=pendingMode==='ordered'?'play':'challenges';$('resume-panel').hidden=true;$('start-form').hidden=false;conflict=false;$('play-mode').disabled=false;routeSession();}
+  function freezeSession(){sound?.stop();conflict=true;pauseAudio();$('reload-progress').hidden=false;document.querySelectorAll('#play button,#play input,#play textarea,#play select,#challenge-grid button').forEach(el=>el.disabled=true);$('play-mode').disabled=true;}
+  function freshSession(){sound?.stop();state=P.create(source,pendingStudent);P.setMode(source,state,pendingMode);state.view=pendingMode==='ordered'?'play':'challenges';$('resume-panel').hidden=true;$('start-form').hidden=false;conflict=false;$('play-mode').disabled=false;routeSession();}
   function welcome(){
-    persist();pauseAudio();state=null;store=null;pendingStudent=null;conflict=false;passageCollapsed=false;
+    sound?.stop();persist();pauseAudio();state=null;store=null;pendingStudent=null;conflict=false;passageCollapsed=false;
     for(const id of ['welcome','challenges','play','results'])$(id).hidden=id!=='welcome';
     $('session-tools').hidden=true;$('resume-panel').hidden=true;$('start-form').hidden=false;
     $('home-button').hidden=true;$('results-button').hidden=true;$('student-label').textContent='';$('xp-total').textContent='✦ 0 XP';
@@ -262,7 +290,7 @@
   $('cancel-restart').onclick=()=>$('restart-dialog').close();
   $('change-student').onclick=$('resume-other-student').onclick=welcome;
   $('reload-progress').onclick=()=>location.reload();
-  $('play-mode').onchange=()=>{if(!state||conflict)return;P.setMode(source,state,$('play-mode').value);state.view='play';showPage('play');renderQuestion();};
+  $('play-mode').onchange=()=>{if(!state||conflict)return;sound?.stop();P.setMode(source,state,$('play-mode').value);state.view='play';showPage('play');renderQuestion();};
   $('jump-question').onchange=()=>{P.go(source,state,$('jump-question').value);renderQuestion();};
   $('home-button').onclick=$('back-menu').onclick=()=>{if(!state)return;leaveReview();showMenu();};
   $('results-button').onclick=$('menu-summary').onclick=showResults;
@@ -270,7 +298,7 @@
   $('review-wrong').onclick=beginReview;$('check-answer').onclick=checkAnswer;
   $('previous-question').onclick=()=>move(currentIndex()-1);$('next-question').onclick=()=>{if(currentIndex()<activeQuestions().length-1)move(currentIndex()+1);else showResults();};
   window.addEventListener('storage',event=>{if(state&&store&&event.key===store.key&&event.newValue!==store.lastRaw){$('save-message').textContent='Tiến độ đã thay đổi ở tab khác. Tải lại trang để dùng bản mới nhất.';freezeSession();}});
-  window.addEventListener('pagehide',persist);
+  window.addEventListener('pagehide',()=>{sound?.stop();persist();});
 
   function timeLabel(value){if(!Number.isFinite(value))return '0:00';return `${Math.floor(value/60)}:${String(Math.floor(value%60)).padStart(2,'0')}`;}
   function updateAudio(){
@@ -298,5 +326,5 @@
   $('source-info').textContent=[source.exam.school,source.exam.title].join(' · ')+(source.tracks.length?'':' · Đề gốc chưa có tệp MP3. Em hãy nhờ giáo viên cung cấp bài nghe.');
   const remembered=HTDualStore.profile();if(remembered){$('student-name').value=remembered.name;$('student-code').value=remembered.code;}
   document.title=`${source.exam.school} · English Quest 8 | HT ENGLISH`;
-  document.addEventListener('visibilitychange',()=>{if(document.hidden){pauseAudio();persist();}});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden){sound?.stop();pauseAudio();persist();}});
 })();

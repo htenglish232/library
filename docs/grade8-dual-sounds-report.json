@@ -1,0 +1,128 @@
+{
+  "baseline": "b38d578",
+  "sound": {
+    "engine": "Chromium",
+    "physicalDevicesTested": false,
+    "webkit": "not run by this Chromium suite",
+    "checks": [
+      "19/19 launchers load one shared module under /library/; no AudioContext before checking; each trusted correct answer starts two ascending notes",
+      "desktop: default autoplay policy, trusted clicks/taps, quiet restore/mode/old answer, mute remembered, Listening uninterrupted, once-only completion and review; XP unchanged",
+      "Android touch: default autoplay policy, trusted clicks/taps, quiet restore/mode/old answer, mute remembered, Listening uninterrupted, once-only completion and review; XP unchanged",
+      "iPhone viewport/touch (Chromium): default autoplay policy, trusted clicks/taps, quiet restore/mode/old answer, mute remembered, Listening uninterrupted, once-only completion and review; XP unchanged",
+      "OfflineAudioContext PCM: measured ascending/descending/fanfare pitches, 0.5/0.4/1.5s envelopes, peak below 0.061 and silent tails",
+      "one preference is shared across games and live tabs; enabling never auto-plays",
+      "teacher-pending answers have no right/wrong cue or XP; a final pending answer triggers only the 1.5s fanfare",
+      "missing Web Audio support degrades to a disabled toggle while checking and XP still work",
+      "zero JS/console errors, broken resources or external requests"
+    ],
+    "waveforms": [
+      {
+        "kind": "correct",
+        "duration": 0.5,
+        "peak": 0.05999999865889549,
+        "measured": [
+          {
+            "expectedHz": 523.25,
+            "measuredHz": 523.1607629427792,
+            "rms": 0.042427029070512996
+          },
+          {
+            "expectedHz": 783.99,
+            "measuredHz": 786.775941102931,
+            "rms": 0.04241236441365264
+          }
+        ],
+        "tailPeak": 0
+      },
+      {
+        "kind": "wrong",
+        "duration": 0.4,
+        "peak": 0.05999999865889549,
+        "measured": [
+          {
+            "expectedHz": 261.63,
+            "measuredHz": 250.06512112529305,
+            "rms": 0.042494767856695446
+          },
+          {
+            "expectedHz": 196,
+            "measuredHz": 190,
+            "rms": 0.04246953632347997
+          }
+        ],
+        "tailPeak": 0
+      },
+      {
+        "kind": "complete",
+        "duration": 1.5,
+        "peak": 0.059999994933605194,
+        "measured": [
+          {
+            "expectedHz": 523.25,
+            "measuredHz": 512.6334983068507,
+            "rms": 0.042475429067693436
+          },
+          {
+            "expectedHz": 659.25,
+            "measuredHz": 662.5,
+            "rms": 0.042397070876976244
+          },
+          {
+            "expectedHz": 783.99,
+            "measuredHz": 775.2018754884084,
+            "rms": 0.04247494542323957
+          },
+          {
+            "expectedHz": 1046.5,
+            "measuredHz": 1045,
+            "rms": 0.042422644600342826
+          },
+          {
+            "expectedHz": 1318.51,
+            "measuredHz": 1320,
+            "rms": 0.04242963502855048
+          }
+        ],
+        "tailPeak": 0
+      }
+    ]
+  },
+  "regression": {
+    "games": 19,
+    "questions": 793,
+    "result": "PASS",
+    "trucTuan": {
+      "questionsPlayed": 42,
+      "passedGroups": 12,
+      "skippedChecks": [
+        "Direct file:// preview blocked by this Chromium administrator policy (ERR_BLOCKED_BY_ADMINISTRATOR); not claimed as verified."
+      ],
+      "failed": 0,
+      "checks": [
+        "welcome/name/mode selection, no writes before starting, 42-question ordered mode and responsive welcome",
+        "ALL 42 questions played in original order, all four source sections/types, exact contexts/options, real two-track audio/seek/speeds/transcript gating, mode switching and XP exactly once (390 XP)",
+        "typed and builder drafts persist; reload restores ordered and review positions; wrong choice/text/builder review never changes first attempts or XP",
+        "different learners and same-name learners with distinct codes keep independent progress without listing other profiles",
+        "cancel preserves progress; confirmed restart resets only the current learner/exam, leaving A and other profiles intact",
+        "a separate exam identity cannot read or overwrite the original exam progress",
+        "a changed same-profile tab is detected; stale UI cannot overwrite newer stored first results",
+        "all sections responsive at 360/390/768/820/1280px; reading remains available while answering",
+        "real touch controls select a writing challenge, arrange all source tokens and check the answer",
+        "corrupt progress is not silently overwritten; blocked/quota storage warns and remains playable in memory",
+        "self-contained review package works over HTTP with only its bundled files, resumes progress and plays MP3 without external dependencies",
+        "zero JavaScript/console errors, zero external/backend/Firebase requests; no automatic network transmission of learner details"
+      ],
+      "consoleErrors": [],
+      "externalRequests": []
+    },
+    "unitTests": 28,
+    "catalogTests": 41,
+    "catalogPaths": 231,
+    "sourceReproduction": "PASS"
+  },
+  "limits": [
+    "Không kiểm tra trên thiết bị/loa điện thoại thật.",
+    "Không chạy binary Chrome/Edge hoặc Safari/iOS. Chromium chạy với chính sách autoplay mặc định; kích thước/touch Android/iPhone được mô phỏng.",
+    "Đã thử tải WebKit hai lần, kể cả quyền mở rộng; máy chủ trả 403 Domain forbidden nên không chạy được WebKit."
+  ]
+}
