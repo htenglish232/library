@@ -119,7 +119,7 @@
     $('question-card').dataset.questionId=q.id;
     $('section-title').textContent=state.review?'Ôn lại câu cần luyện':state.mode==='ordered'?'Luyện toàn đề':section.title;
     $('section-description').textContent=state.review?'Thử lại sau khi đọc lời giải. Lượt ôn không thay đổi XP và kết quả lần đầu.':section.description;
-    const gradeLabel=source.exam.grade===6?'GRADE 6':'GRADE 8';
+    const gradeLabel=[6,7].includes(source.exam.grade)?`GRADE ${source.exam.grade}`:'GRADE 8';
     $('section-kicker').textContent=state.review?'PRACTICE MAKES PROGRESS':state.mode==='ordered'?`THEO THỨ TỰ ĐỀ GỐC · ${gradeLabel}`:`CHALLENGE 0${sections.indexOf(section)+1} · ${gradeLabel}`;
     renderTabs();
     const done=list.filter(item=>state.review?state.answers[item.id].review.checked:!!state.answers[item.id].first).length;

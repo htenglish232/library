@@ -155,11 +155,11 @@ test('Grade 7 Dao Su Tich has a verified THCS label without changing its stored 
  const href='grade-7/De_thi_GHK_1/13_Dao_Su_Tich/13 Dao Su Tich.html';
  assert.match(readFileSync(href,'utf8'),/<h2>THCS Đào Sư Tích<\/h2>/u);
  const groups=numberSchoolLessons(examFolder('Grade 7').lessons,{schoolNames:{[href]:'THCS Đào Sư Tích'},unclassified:true});
- assert.equal(groups.length,14);assert.equal(groups.flatMap(g=>g.lessons).length,14);
+ assert.equal(groups.length,14);assert.equal(groups.flatMap(g=>g.lessons).length,28);
  const lesson=groups.find(g=>g.name==='THCS Đào Sư Tích').lessons[0];
  assert.equal(lesson.displayTitle,'Đề số 1 – THCS Đào Sư Tích');
  assert.equal(lesson.title,'Đề 13 · Đào Sư Tích');assert.equal(lesson.href,href);
- assert.ok(groups.every(g=>g.lessons.length===1&&g.lessons[0].kind==='exam'&&g.lessons[0].examNumber===1));
+ assert.ok(groups.every(g=>g.lessons.length===2&&g.lessons[0].kind==='exam'&&g.lessons[1].kind==='game'&&g.lessons.every(l=>l.examNumber===1)));
 });
 
 test('unidentified Grade 6/7 schools form one unclassified folder, keep original titles and never infer a school from the URL',()=>{
