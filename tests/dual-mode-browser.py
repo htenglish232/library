@@ -180,7 +180,9 @@ try:
   tab=page_for(context);start(tab);tab.locator('#play-mode').select_option('ordered')
   expect(page.locator('#reload-progress')).to_be_visible();expect(page.locator('#play-mode')).to_be_disabled()
   assert current_record(tab)['state']['answers']['q1']['first']==firsts['q1']
-  page.locator('#reload-progress').click();start(page);expect(page.locator('#xp-total')).to_have_text('✦ 390 XP');tab.close()
+  with page.expect_navigation(wait_until='load'):
+   page.locator('#reload-progress').click()
+  start(page);expect(page.locator('#xp-total')).to_have_text('✦ 390 XP');tab.close()
   passed('a changed same-profile tab is detected; stale UI cannot overwrite newer stored first results')
   for width in [360,390,768,820,1280]:
    page.set_viewport_size({'width':width,'height':900})

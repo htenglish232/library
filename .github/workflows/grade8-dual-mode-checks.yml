@@ -1,7 +1,7 @@
 name: Grade 8 dual-mode games (no deploy)
 on:
   push:
-    branches: [feature/grade8-dual-mode-games, feature/grade8-all-dual-mode-games]
+    branches: [feature/grade8-dual-mode-games, feature/grade8-all-dual-mode-games, feature/grade8-dual-game-sounds]
   pull_request:
     paths:
       - 'grade-8/De_thi_GHK1/**'
@@ -45,7 +45,8 @@ jobs:
         env:
           GRADE8_DUAL_REPORT: /tmp/grade8-all-dual-browser.json
       - run: python tools/verify-truc-tuan-dual-source.py
-      - run: node --test tests/dual-mode-progress.test.mjs
+      - run: node --test tests/dual-mode-progress.test.mjs tests/dual-mode-sound.test.mjs
+      - run: python tests/dual-mode-sound-browser.py
       - run: python tests/dual-mode-browser.py
       - run: python tools/build-dual-mode-preview.py /tmp/ht-dual-mode-review-package
       - uses: actions/upload-artifact@v4
@@ -59,3 +60,4 @@ jobs:
           path: |
             /tmp/ht-dual-mode-tests
             /tmp/grade8-all-dual-browser.json
+            /tmp/ht-dual-sound-tests
