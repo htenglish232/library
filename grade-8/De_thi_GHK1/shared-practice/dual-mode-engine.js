@@ -2,30 +2,48 @@
 (() => {
   'use strict';
   const $ = id => document.getElementById(id);
-  // Resolve from this shared script, including GitHub project Pages /library/.
-  // No launcher copies or external audio files are needed for the 19 games.
-  let sound=null;
-  const soundToggle=document.createElement('button');soundToggle.id='sound-toggle';
-  soundToggle.type='button';soundToggle.className='quiet';soundToggle.disabled=true;
-  soundToggle.textContent='Âm thanh đang tải…';
-  document.querySelector('.header-actions').append(soundToggle);
+  // Capture the script URL now. currentScript is null in later callbacks/modules.
+  const engineScriptURL=document.currentScript?.src || [...document.scripts].find(script=>{
+    try{return new URL(script.src,document.baseURI).pathname.endsWith('/shared-practice/dual-mode-engine.js');}catch{return false;}
+  })?.src;
+  let soundModuleURL=null;
+  try{
+    if(engineScriptURL){soundModuleURL=new URL('./dual-sound.js',engineScriptURL);soundModuleURL.searchParams.set('v',new URL(engineScriptURL).searchParams.get('v')||'20261026-sound-fix');}
+  }catch{ /* Show the loader error below; grading still initializes. */ }
+  let sound=null,soundState='loading',soundAttempt=0;
+  const soundToggle=$('sound-toggle')||document.createElement('button');
+  soundToggle.id='sound-toggle';soundToggle.type='button';soundToggle.className='quiet';
+  if(!soundToggle.isConnected)document.querySelector('.header-actions').append(soundToggle);
   const updateSoundToggle=()=>{
-    soundToggle.disabled=!sound?.supported;
-    soundToggle.textContent=sound?.supported?(sound.enabled?'🔊 Âm thanh: Bật':'🔇 Âm thanh: Tắt'):'Âm thanh không khả dụng';
-    soundToggle.setAttribute('aria-pressed',String(!!sound?.supported&&sound.enabled));
-    soundToggle.title='Bật/tắt hiệu ứng; không thay đổi âm thanh bài nghe.';
+    const loading=soundState==='loading',failed=soundState==='error',ready=soundState==='ready';
+    soundToggle.dataset.soundState=soundState;
+    soundToggle.disabled=loading||soundState==='unsupported';
+    soundToggle.textContent=failed?'⚠ Âm thanh: Lỗi tải':ready?(sound.enabled?'🔊 Âm thanh: Bật':'🔇 Âm thanh: Tắt'):loading?'🔊 Âm thanh: Bật':'Âm thanh không khả dụng';
+    soundToggle.setAttribute('aria-busy',String(loading));
+    soundToggle.setAttribute('aria-pressed',String(ready?sound.enabled:loading));
+    soundToggle.title=failed?'Chưa tải được hiệu ứng âm thanh. Nhấn để thử lại.':loading?'Đang tải hiệu ứng âm thanh…':ready?'Bật/tắt hiệu ứng; không thay đổi âm thanh bài nghe.':'Trình duyệt chưa hỗ trợ Web Audio.';
   };
-  import(new URL('./dual-sound.js',document.currentScript.src).href).then(({createGameSound,SOUND_PREFERENCE_KEY})=>{
-    sound=createGameSound();updateSoundToggle();
-    soundToggle.onclick=()=>{sound.setEnabled(!sound.enabled);updateSoundToggle();};
-    window.addEventListener('storage',event=>{
-      if(event.key===SOUND_PREFERENCE_KEY||event.key===null){
-        let value=event.newValue;
-        if(event.key===null)try{value=localStorage.getItem(SOUND_PREFERENCE_KEY);}catch{return;}
-        sound.setEnabled(value!=='off',false);updateSoundToggle();
-      }
-    });
-  }).catch(()=>{updateSoundToggle();});
+  function loadSound(){
+    const attempt=++soundAttempt;soundState='loading';soundToggle.onclick=null;updateSoundToggle();
+    const fail=()=>{if(attempt!==soundAttempt||soundState!=='loading')return;sound=null;soundState='error';soundToggle.onclick=loadSound;updateSoundToggle();};
+    if(!soundModuleURL){fail();return;}
+    const url=new URL(soundModuleURL);
+    if(attempt>1)url.searchParams.set('retry',String(attempt));
+    const timer=setTimeout(fail,10000);
+    import(url.href).then(({createGameSound,SOUND_PREFERENCE_KEY})=>{
+      if(attempt!==soundAttempt||soundState!=='loading')return;
+      clearTimeout(timer);sound=createGameSound();soundState=sound.supported?'ready':'unsupported';updateSoundToggle();
+      soundToggle.onclick=()=>{sound.setEnabled(!sound.enabled);updateSoundToggle();};
+      window.addEventListener('storage',event=>{
+        if(event.key===SOUND_PREFERENCE_KEY||event.key===null){
+          let value=event.newValue;
+          if(event.key===null)try{value=localStorage.getItem(SOUND_PREFERENCE_KEY);}catch{return;}
+          sound.setEnabled(value!=='off',false);updateSoundToggle();
+        }
+      });
+    }).catch(()=>{clearTimeout(timer);fail();});
+  }
+  loadSound();
   const source = window.HT_PRACTICE_DATA;
   try {HTPracticeModel.validate(source);} catch(error) {
     $('name-error').textContent='Dữ liệu đề chưa thể mở. Hãy báo giáo viên: '+error.message;

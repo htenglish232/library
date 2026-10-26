@@ -1,3 +1,4 @@
+import {beforeSoundBootstrap,isDualLauncher} from './sound-bootstrap-contract.mjs';
 import {test} from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';import vm from 'node:vm';import {createHash} from 'node:crypto';import {execFileSync} from 'node:child_process';
 import {addReleaseLessons,RELEASE_IDS,releaseCatalogView} from '../assets/catalog-release.js';
 import {GRADE8_PILOT_DUAL_ID,GRADE8_PILOT_DUAL_LINKS,GRADE8_REMAINING_DUAL_ID,GRADE8_REMAINING_DUAL_LINKS} from '../assets/grade8-dual-links.js';
@@ -37,11 +38,11 @@ test('new batches deduplicate encoded/Pages URLs and preserve hidden renamed les
  const fields={...await managedPayload(server),dataJson:encodeCatalogData(server,RELEASE_IDS)};assert.deepEqual(releaseCatalogView(fields,server),server);
  assert(RELEASE_IDS.includes(GRADE8_PILOT_DUAL_ID));assert(RELEASE_IDS.includes(GRADE8_REMAINING_DUAL_ID));
 });
-test('original exams, legacy games, audio, other grades, Firebase/auth/rules and TT data/HTML remain byte-identical',()=>{
+test('original sources and payloads stay identical; launcher HTML only adds the reviewed sound bootstrap',()=>{
  const paths=execFileSync('git',['ls-tree','-rz','--name-only','bcf44e9'],{maxBuffer:2000000}).toString().split('\0').filter(Boolean);
  const shared=new Set(['dual-mode-engine.js','dual-store.js','model.js','dual-mode.css'].map(f=>'grade-8/De_thi_GHK1/shared-practice/'+f));
  const exact=['assets/firebase-config.js','assets/firebase-client.js','assets/firebase-sdk.js','assets/session.js','assets/catalog-store.js','assets/catalog-data.js','assets/catalog-integrity.js','catalog/library-catalog.json','firestore.rules','firestore.indexes.json','firebase.json','.firebaserc'];
  const protectedPaths=paths.filter(p=>(p.startsWith('grade-')&&!shared.has(p))||exact.includes(p));
- for(const file of protectedPaths)assert.equal(sha(fs.readFileSync(file)),sha(execFileSync('git',['show','bcf44e9:'+file],{maxBuffer:20000000})),file);
+ for(const file of protectedPaths){const current=fs.readFileSync(file),original=execFileSync('git',['show','bcf44e9:'+file],{maxBuffer:20000000});assert.equal(sha(isDualLauncher(file)?beforeSoundBootstrap(current.toString()):current),sha(original),file);}
  assert(protectedPaths.length>340);
 });

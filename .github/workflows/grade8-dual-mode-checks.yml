@@ -1,7 +1,7 @@
 name: Grade 8 dual-mode games (no deploy)
 on:
   push:
-    branches: [feature/grade8-dual-mode-games, feature/grade8-all-dual-mode-games, feature/grade8-dual-game-sounds]
+    branches: [feature/grade8-dual-mode-games, feature/grade8-all-dual-mode-games, feature/grade8-dual-game-sounds, fix/grade8-shared-sound-loading]
   pull_request:
     paths:
       - 'grade-8/De_thi_GHK1/**'
@@ -9,7 +9,10 @@ on:
       - 'tests/dual-mode-*'
       - 'tests/grade8-all-dual*'
       - 'tools/grade8-source-*'
+      - 'tools/audit-grade8-sound-loading.py'
+      - 'tests/sound-bootstrap-contract.mjs'
       - 'docs/grade8-all-dual-mode/**'
+      - 'docs/grade8-sound-loading/**'
       - 'tools/*dual*'
       - 'docs/grade8-dual-mode/**'
       - '.github/workflows/grade8-dual-mode-checks.yml'
@@ -46,6 +49,8 @@ jobs:
           GRADE8_DUAL_REPORT: /tmp/grade8-all-dual-browser.json
       - run: python tools/verify-truc-tuan-dual-source.py
       - run: node --test tests/dual-mode-progress.test.mjs tests/dual-mode-sound.test.mjs
+      - run: python tools/audit-grade8-sound-loading.py
+      - run: python tests/dual-mode-sound-loading-browser.py
       - run: python tests/dual-mode-sound-browser.py
       - run: python tests/dual-mode-browser.py
       - run: python tools/build-dual-mode-preview.py /tmp/ht-dual-mode-review-package
@@ -61,3 +66,4 @@ jobs:
             /tmp/ht-dual-mode-tests
             /tmp/grade8-all-dual-browser.json
             /tmp/ht-dual-sound-tests
+            /tmp/ht-sound-loading-tests

@@ -5,7 +5,7 @@ Microsoft Edge binaries or Safari/iOS hardware.
 """
 from pathlib import Path
 from urllib.parse import quote,unquote
-import functools,http.server,json,math,os,re,threading
+import functools,http.server,json,math,os,re,shutil,threading,importlib.util
 from playwright.sync_api import sync_playwright,expect
 ROOT=Path(__file__).resolve().parents[1]
 OUT=Path(os.environ.get('DUAL_SOUND_OUTPUT','/tmp/ht-dual-sound-tests'));OUT.mkdir(parents=True,exist_ok=True)
@@ -13,7 +13,8 @@ OUT=Path(os.environ.get('DUAL_SOUND_OUTPUT','/tmp/ht-dual-sound-tests'));OUT.mkd
 exec('class Handler'+(ROOT/'tests/dual-mode-browser.py').read_text().split('class Handler',1)[1].split('server=http.server',1)[0])
 server=http.server.ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Handler,directory=str(ROOT)))
 threading.Thread(target=server.serve_forever,daemon=True).start();BASE=f'http://127.0.0.1:{server.server_port}/'
-rows=json.loads((ROOT/'docs/grade8-all-dual-mode/inventory.json').read_text())['games']
+spec=importlib.util.spec_from_file_location('sound_audit',ROOT/'tools/audit-grade8-sound-loading.py');audit=importlib.util.module_from_spec(spec);spec.loader.exec_module(audit)
+rows=[{**r,'game':r['html']} for r in audit.inventory()]
 TT=next(r for r in rows if 'truc-tuan-dual-mode.html' in r['game'])
 MODULE=BASE+'library/grade-8/De_thi_GHK1/shared-practice/dual-sound.js'
 SPY='''(() => {
@@ -55,7 +56,7 @@ def answer_choice(page,q,wrong=False,touch=False):
  else:target.check()
  click(page,'#check-answer',touch)
 def open_game(page,row):
- page.goto(BASE+'library/'+quote(row['game']));expect(page.locator('#sound-toggle')).to_be_enabled();return page.evaluate('HT_PRACTICE_DATA')
+ page.goto(BASE+'library/'+quote(row['game']));expect(page.locator('#sound-toggle')).to_have_count(1);expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','ready');expect(page.locator('#sound-toggle')).to_be_enabled();return page.evaluate('HT_PRACTICE_DATA')
 def seed_completion(page,target_id=None):
  return page.evaluate('''targetId=>{
   const d=HT_PRACTICE_DATA,P=HTDualProgress,state=P.create(d,{name:'Sound Check',code:'8A'}),target=d.questions.find(q=>q.id===targetId)||d.questions[1];
@@ -71,7 +72,7 @@ def seed_completion(page,target_id=None):
  }''',target_id)
 try:
  with sync_playwright() as p:
-  b=p.chromium.launch(executable_path='/usr/bin/chromium',args=['--no-sandbox']) # No autoplay bypass.
+  b=p.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH') or shutil.which('chromium'),args=['--no-sandbox']) # No autoplay bypass.
   def context(**kwargs):
    c=b.new_context(reduced_motion='reduce',**kwargs);c.add_init_script(SPY)
    c.route('**/*',lambda r:r.continue_() if r.request.url.startswith(BASE) else (external.append(r.request.url),r.abort())[-1]);return c
@@ -85,7 +86,12 @@ try:
    answer_choice(page,data['questions'][0]);page.wait_for_function('soundLog.notes.length===2')
    assert log(page)['notes'][0]['frequency']<log(page)['notes'][1]['frequency']
    assert log(page)['contexts']==1
-  passed('19/19 launchers load one shared module under /library/; no AudioContext before checking; each trusted correct answer starts two ascending notes')
+   # Each actual exam length (37/41/42/43) must trigger completion once.
+   last=seed_completion(page);page.reload();expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','ready');start(page);assert log(page)['contexts']==0
+   answer_choice(page,last);page.wait_for_function('soundLog.notes.length===7');completion=log(page)['notes'][-5:];assert abs(completion[-1]['stop']-completion[0]['start']-1.51)<.001
+   click(page,'#results-button');assert len(log(page)['notes'])==7
+   page.reload();expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','ready');start(page);assert log(page)['notes']==[]
+  passed(f'{len(rows)}/{len(rows)} launchers load one shared module under /library/; no AudioContext before checking; each correct answer starts two ascending notes; every exam length completes once with the fanfare and stays quiet on restore')
   c.close()
   for label,options,touch in [
    ('desktop',{'viewport':{'width':1280,'height':900}},False),
