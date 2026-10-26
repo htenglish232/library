@@ -1,3 +1,4 @@
+import {GRADE6_DUAL_ID, GRADE6_DUAL_LINKS} from './grade6-dual-links.js';
 import {GRADE8_PILOT_DUAL_ID, GRADE8_PILOT_DUAL_LINKS, GRADE8_REMAINING_DUAL_ID, GRADE8_REMAINING_DUAL_LINKS} from './grade8-dual-links.js';
 import { storedCatalogData } from './catalog-data.js';
 export const RELEASE_ID = '946b05b6d128cd88ac8ba09431cb645ae80a453d';
@@ -92,7 +93,8 @@ const RELEASE_BATCHES = [
   {id: PILOT_GAME_RELEASE_ID, additions: PILOT_GAME_ADDITIONS},
   {id: DUAL_GAME_RELEASE_ID, additions: [DUAL_GAME_ADDITION]},
   {id: GRADE8_PILOT_DUAL_ID, additions: GRADE8_PILOT_DUAL_LINKS},
-  {id: GRADE8_REMAINING_DUAL_ID, additions: GRADE8_REMAINING_DUAL_LINKS}
+  {id: GRADE8_REMAINING_DUAL_ID, additions: GRADE8_REMAINING_DUAL_LINKS},
+  {id: GRADE6_DUAL_ID, additions: GRADE6_DUAL_LINKS}
 ];
 export const RELEASE_IDS = RELEASE_BATCHES.map(batch => batch.id);
 export const RELEASE_ADDITIONS = RELEASE_BATCHES.flatMap(batch => batch.additions);

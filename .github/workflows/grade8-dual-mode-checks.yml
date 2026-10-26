@@ -1,10 +1,17 @@
-name: Grade 8 dual-mode games (no deploy)
+name: Grade 6 and 8 dual-mode games (no deploy)
 on:
   push:
-    branches: [feature/grade8-dual-mode-games, feature/grade8-all-dual-mode-games, feature/grade8-dual-game-sounds, fix/grade8-shared-sound-loading]
+    branches: [feature/grade8-dual-mode-games, feature/grade8-all-dual-mode-games, feature/grade8-dual-game-sounds, fix/grade8-shared-sound-loading, feature/grade6-all-dual-mode]
   pull_request:
     paths:
       - 'grade-8/De_thi_GHK1/**'
+      - 'grade-6/De_thi_GHK_1/**'
+      - 'assets/grade6-dual-links.js'
+      - 'assets/catalog-release.js'
+      - 'catalog/current-library-catalog.json'
+      - 'tests/grade6-*'
+      - 'tools/grade6-*'
+      - 'docs/grade6-dual-mode/**'
       - 'assets/grade8-dual-links.js'
       - 'tests/dual-mode-*'
       - 'tests/grade8-all-dual*'
@@ -47,6 +54,15 @@ jobs:
         run: python tests/grade8-all-dual-browser.py
         env:
           GRADE8_DUAL_REPORT: /tmp/grade8-all-dual-browser.json
+      - name: Verify Grade 6 source adapters, catalog release and source preservation
+        run: |
+          python tools/build-grade6-dual-games.py --verify
+          node --test tests/grade6-dual.test.mjs
+          node tools/check-catalog.mjs
+      - run: python tests/grade6-all-dual-browser.py
+      - run: python tests/grade6-catalog-browser.py
+      - run: python tests/grade6-cross-grade-browser.py
+      - run: python tests/dual-mode-wav-browser.py
       - run: python tools/verify-truc-tuan-dual-source.py
       - run: node --test tests/dual-mode-progress.test.mjs tests/dual-mode-sound.test.mjs
       - run: python tools/audit-grade8-sound-loading.py
@@ -65,5 +81,9 @@ jobs:
           path: |
             /tmp/ht-dual-mode-tests
             /tmp/grade8-all-dual-browser.json
+            /tmp/grade6-all-dual-browser.json
+            /tmp/grade6-cross-grade-browser.json
+            /tmp/ht-grade6-catalog
+            /tmp/ht-shared-wav-tests
             /tmp/ht-dual-sound-tests
             /tmp/ht-sound-loading-tests

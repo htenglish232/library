@@ -8,6 +8,10 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = Path(os.environ.get('GRADE67_NUMBERING_OUTPUT', '/tmp/ht-grade67-numbering'))
 OUT.mkdir(parents=True, exist_ok=True)
 data = json.loads((ROOT / 'catalog/current-library-catalog.json').read_text())['data']
+# Keep this historical exam-only fixture; new Grade 6 game pairs have a dedicated test.
+for grade in data:
+    if grade['grade']=='Grade 6':
+        for unit in grade['units']: unit['lessons']=[l for l in unit['lessons'] if not l['href'].endswith('/practice-dual-mode.html')]
 old_view = subprocess.check_output(['git','show','808d2a6:assets/catalog-view.js'], cwd=ROOT, text=True).replace("'./school-folders.js?v=20261023-exam-numbering'", "'./school-folders-before-numbering.js'")
 old_folders = subprocess.check_output(['git','show','808d2a6:assets/school-folders.js'], cwd=ROOT, text=True)
 fixture = re.sub(r'<script type="module"[^>]*></script>', '', (ROOT / 'index.html').read_text())
