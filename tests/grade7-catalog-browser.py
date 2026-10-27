@@ -30,7 +30,7 @@ try:
   page.get_by_role('button',name='Grade 7',exact=True).click();folder=page.locator('.grade-section.active .exam-school-folder');folder.locator('.folder-head').click();expect(folder.locator('.school-folder')).to_have_count(14);expect(folder.locator('a.exam-resource')).to_have_count(14);expect(folder.locator('a.game-resource')).to_have_count(14)
   for row in rows:
    school=folder.locator('.school-folder').filter(has=page.locator('.school-name',has_text=re.compile('^'+re.escape(row['school'])+'$')));pair=school.locator(f'.exam-pair[data-exam-number="{row["number"]}"]');expect(pair.locator('a')).to_have_count(2);assert pair.locator('a').evaluate_all('(els)=>els.map(a=>a.getAttribute("href"))')==[row['source'],row['game']]
-   expect(pair.locator('a.game-resource strong')).to_have_text(f'Game đề số {row["number"]} – {row["school"]} (2 chế độ)');assert page.request.get(BASE+'library/'+quote(row['game'])).status==200
+   expect(pair.locator('a.game-resource strong')).to_have_text(f'Game đề số {row["number"]} – {row["school"]}');assert page.request.get(BASE+'library/'+quote(row['game'])).status==200
   passed('14 source/game pairs across 14 schools; all schools preserve exam 1 and exact launch paths')
   for width in [360,390,768,1280]:
    page.set_viewport_size({'width':width,'height':900});assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1');page.screenshot(path=str(OUT/f'grade7-{width}.png'),full_page=True)

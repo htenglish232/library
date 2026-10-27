@@ -13,7 +13,7 @@ test('all 14 real exams / 14 schools / 589 questions have one dual launcher usin
   const raw=JSON.parse(fs.readFileSync(row.source,'utf8').match(/<script[^>]*id="examData"[^>]*>([\s\S]*?)<\/script>/)[1]);assert.deepEqual(Array.from(data.questions,q=>q.id),[...fs.readFileSync(row.source,'utf8').matchAll(/<[^>]*\bclass="[^"]*\bquestion-card\b[^"]*"[^>]*>/g)].map(m=>m[0].match(/data-qid="([^"]+)"/)?.[1]).filter(Boolean));
   for(const q of data.questions){assert.equal(JSON.stringify(q.sourceRaw),JSON.stringify(raw.questions.find(r=>r.id===q.id)));assert(q.answerEvidence.length);assert(q.promptHtml);if(q.kind==='choice')assert.equal(JSON.stringify(q.accepted),JSON.stringify(q.sourceRaw.accepted),'Keep every explicit source choice answer');if(!q.autoGrade)assert(q.teacherFlags.length);assert(!/<script|\son\w+=|javascript:/i.test(q.promptHtml+q.options.map(o=>o.html).join('')));}
   const html=fs.readFileSync(row.game,'utf8');assert(html.includes('English Quest 7'));assert(html.includes('GRADE 7'));assert(!html.includes('GRADE 6'));assert(html.includes('../../../grade-8/De_thi_GHK1/shared-practice/dual-mode-engine.js?v=20261026-grade7'));
-  const paired=groups.flatMap(g=>g.lessons).find(l=>l.href===row.game);assert.equal(paired.examHref,row.source);assert.equal(paired.examNumber,1);assert.equal(paired.displayTitle,`Game đề số 1 – ${row.school} (2 chế độ)`);
+  const paired=groups.flatMap(g=>g.lessons).find(l=>l.href===row.game);assert.equal(paired.examHref,row.source);assert.equal(paired.examNumber,1);assert.equal(paired.displayTitle,`Game đề số 1 – ${row.school}`);
  }
 });
 test('keyword-only and ambiguous source rubrics stay pending; literal punctuation answer and multi-field source rules are supported',()=>{

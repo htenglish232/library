@@ -24,7 +24,7 @@ test('disk/catalog inventory: exactly 19 source exams, 17 schools, 19 distinct c
   assert.equal(row.maxXP,data.questions.filter(q=>q.autoGrade).length*10);
   for(const t of data.tracks){assert(fs.existsSync(path.join(folder,t.src)));if(t.sha256)assert.equal(t.sha256,sha(fs.readFileSync(path.join(folder,t.src))));}
   for(const q of data.questions){assert(q.sourceRaw);assert(q.promptHtml);assert(Array.isArray(q.teacherFlags));if(!q.autoGrade)assert(q.teacherFlags.length,'Pending questions must explain why');}
-  const lesson=groups.flatMap(g=>g.lessons).find(l=>l.href===row.game);assert.equal(lesson.examHref,row.source);assert.equal(lesson.examNumber,row.examNumber);assert.equal(lesson.displayTitle,`Game đề số ${row.examNumber} – ${row.school} (2 chế độ)`);
+  const lesson=groups.flatMap(g=>g.lessons).find(l=>l.href===row.game);assert.equal(lesson.examHref,row.source);assert.equal(lesson.examNumber,row.examNumber);assert.equal(lesson.displayTitle,`Game đề số ${row.examNumber} – ${row.school}`);
  }
  assert.equal(inventory.reduce((n,r)=>n+r.questions,0),793);
 });

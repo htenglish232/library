@@ -12,7 +12,7 @@ Sau khi nhập tên hoặc xác nhận tiếp tục bài đã lưu, học sinh v
 - XP vẫn suy ra từ kết quả lần đầu. Ôn lại, chuyển câu, mở tổng kết và tải lại không cộng thêm XP.
 - Không liệt kê/xóa dữ liệu học sinh khác. Cơ chế phát hiện tab cũ, bản lưu hỏng, thiếu dung lượng và xác nhận reset được giữ.
 - Bốn game đời cũ vẫn giữ mô hình tiến độ trong bộ nhớ như trước; không chuyển hay ghi đè localStorage của 49 game mới.
-- Không đổi index, catalog, URL game, đăng nhập, Admin hoặc cấu hình/Rules Firebase. Nhãn liên kết catalog cũ được giữ nguyên theo yêu cầu không đổi thư viện.
+- Không đổi index, catalog, URL game, đăng nhập, Admin hoặc cấu hình/Rules Firebase. Giữ nguyên dữ liệu tên trong catalog/Firebase; khi index hiển thị, bỏ hậu tố “(2 chế độ)” khỏi tên game, kể cả bản lưu danh mục cũ.
 
 ## File ứng dụng
 
@@ -26,6 +26,8 @@ Trong `grade-8/De_thi_GHK1/shared-practice/`:
 Trong `grade-8/De_thi_GHK1/1_THCS Truc Tuan/truc-tuan-game/`:
 
 - `game.js`, `game.css`: áp dụng cùng luồng cho game Trực Tuấn đời đầu, giữ dữ liệu/chấm điểm riêng của URL này.
+
+`assets/school-folders.js` bỏ hậu tố chế độ ở tên hiển thị trên index, không sửa tên lưu trữ, URL, thứ tự hoặc trạng thái ẩn.
 
 Các file còn lại là kiểm thử, CI, tài liệu và kiểm tra bảo toàn nguồn. Danh sách đầy đủ nằm trong [changed-files.txt](changed-files.txt). Các kiểm tra hash lịch sử chỉ miễn trừ chính xác controller/CSS/model được chủ đích sửa; đề, dữ liệu đáp án, audio, Firebase và index vẫn được bảo vệ.
 

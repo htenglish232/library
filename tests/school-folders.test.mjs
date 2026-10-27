@@ -60,7 +60,7 @@ test('Grade 8 real inventory has 17 schools, 19 numbered exams and 23 paired gam
   const exams=g.lessons.filter(l=>l.kind==='exam');
   assert.deepEqual(exams.map(l=>l.examNumber),exams.map((_,i)=>i+1));
   for(const l of g.lessons){
-   assert.equal(l.displayTitle,`${l.kind==='game'?'Game đề':'Đề'} số ${l.examNumber} – ${g.name}${l.href.endsWith('-dual-mode.html')?' (2 chế độ)':''}`);
+   assert.equal(l.displayTitle,`${l.kind==='game'?'Game đề':'Đề'} số ${l.examNumber} – ${g.name}`);
    assert.ok(g.lessons.some(e=>e.href===l.examHref&&e.kind==='exam'));
   }
  }
@@ -68,12 +68,12 @@ test('Grade 8 real inventory has 17 schools, 19 numbered exams and 23 paired gam
  for(const name of ['THCS Đào Sư Tích','THCS Phương Định'])assert.deepEqual(groups.find(g=>g.name===name).lessons.map(l=>l.examNumber),[1,1,2,2]);
 });
 
-test('both Truc Tuan games retain number 1 and dual-mode suffix even if the original exam is hidden',()=>{
+test('both Truc Tuan games retain number 1 without the obsolete mode suffix even if the original exam is hidden',()=>{
  const lessons=structuredClone(examFolder('Grade 8').lessons);
  lessons.find(l=>l.href.endsWith('/1. THCS Truc Tuan.html')).hidden=true;
  const school=numberSchoolLessons(lessons).find(g=>g.name==='THCS Trực Tuấn');
  assert.deepEqual(school.lessons.map(l=>l.examNumber),[1,1,1]);
- assert.deepEqual(school.lessons.map(l=>l.displayTitle),['Đề số 1 – THCS Trực Tuấn','Game đề số 1 – THCS Trực Tuấn','Game đề số 1 – THCS Trực Tuấn (2 chế độ)']);
+ assert.deepEqual(school.lessons.map(l=>l.displayTitle),['Đề số 1 – THCS Trực Tuấn','Game đề số 1 – THCS Trực Tuấn','Game đề số 1 – THCS Trực Tuấn']);
  const games=groupSchoolLessons(lessons.filter(l=>!l.hidden)).find(g=>g.name==='THCS Trực Tuấn');
  assert.equal(games.lessons.length,2);
 });

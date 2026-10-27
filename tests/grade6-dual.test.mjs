@@ -27,7 +27,7 @@ test('16 real source exams / 14 catalog schools / 661 source questions; 16 compl
   assert.deepEqual(Array.from(d.questions,q=>q.number),Array.from({length:row.questions},(_,i)=>i+1));
   for(const q of d.questions){assert(q.answerEvidence.length);assert(q.sourceRaw);if(!q.autoGrade)assert(q.teacherFlags.length);if(q.autoGrade)assert(q.accepted.length);assert(!/<script|\son\w+=|javascript:/i.test(q.promptHtml+q.options.map(o=>o.html).join('')));}
   const launcher=fs.readFileSync(row.game,'utf8');assert(launcher.includes('../../../grade-8/De_thi_GHK1/shared-practice/dual-mode-engine.js'));assert(launcher.includes('English Quest 6'));assert(!launcher.includes('English Quest 8'));assert(!launcher.includes('GRADE 8'));assert(launcher.includes('GRADE 6'));assert(launcher.includes('id="sound-toggle"'));
-  const pair=groups.flatMap(g=>g.lessons).find(l=>l.href===row.game);assert.equal(pair.examHref,row.source);assert.equal(pair.examNumber,row.number);assert.equal(pair.displayTitle,`Game đề số ${row.number} – ${row.school} (2 chế độ)`);
+  const pair=groups.flatMap(g=>g.lessons).find(l=>l.href===row.game);assert.equal(pair.examHref,row.source);assert.equal(pair.examNumber,row.number);assert.equal(pair.displayTitle,`Game đề số ${row.number} – ${row.school}`);
  }
  assert.deepEqual(source.rows.map(r=>r.questions),rows.map(r=>r.questions));
 });
