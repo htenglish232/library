@@ -44,14 +44,15 @@ try:
     page.locator('#student-name').fill('Học sinh cùng tên');page.locator('.identity-options summary').click();page.locator('#student-code').fill('7A-01')
    else:
     expect(page.locator('#student-name')).to_have_value('Học sinh cùng tên');expect(page.locator('#student-code')).to_have_value('7A-01')
-   page.locator('input[value="ordered"][name=start-mode]').check();page.locator('#start-form button').click();expect(page.locator('#play')).to_be_visible();expect(page.locator('#section-kicker')).to_contain_text('GRADE 7')
-   expect(page.locator('#question-dots button')).to_have_count(len(qs));xp=0;pending=0;played_tracks=set()
+   page.locator('#start-form button').click();expect(page.locator('#play')).to_be_visible();expect(page.locator('#section-kicker')).to_contain_text('GRADE 7')
+   expect(page.locator('#question-dots button')).to_have_count(len(qs));assert page.locator('.mode-options,#play-mode,#challenges,#section-tabs,#toggle-passage').count()==0;xp=0;pending=0;played_tracks=set()
    for q in qs:
     page.locator('#jump-question').select_option(q['id']);expect(page.locator('#question-card')).to_have_attribute('data-question-id',q['id'])
     assert page.locator('#prompt').inner_html()==page.evaluate('(html)=>{const d=document.createElement("div");d.innerHTML=html;return d.innerHTML;}',q['promptHtml']),(file,q['id'])
     assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),(file,q['id'],'mobile overflow')
     if q.get('context') is not None:assert page.locator('#passage-content').inner_html()==data['contexts'][q['context']]
     if q.get('contextHtml'):assert page.locator('#passage-content').inner_html()==page.evaluate('(html)=>{const d=document.createElement("div");d.innerHTML=html;return d.innerHTML;}',q['contextHtml'])
+    if page.locator('#passage-content').text_content().strip() and (q.get('contextHtml') or (data['contexts'][q['context']] if q.get('context') is not None else '')):expect(page.locator('#passage-content')).to_be_visible()
     if q.get('track') and q['track'] not in played_tracks:
      page.wait_for_function('document.querySelector("audio").readyState>=1')
      track=next(t for t in data['tracks'] if t['id']==q['track']);assert unquote(page.locator('audio').evaluate('e=>new URL(e.currentSrc).pathname')).endswith(unquote(track['src']))
@@ -72,8 +73,8 @@ try:
      indices=order(q)
      if q['autoGrade']:assert indices is not None,('Unreachable source answer',file,q['id'])
      for i in indices if indices is not None else range(len(q['tokens'])):page.locator(f'[data-token-index="{i}"]').click()
-    # Draft and cursor survive changing modes.
-    page.locator('#play-mode').select_option('challenge');page.locator('#play-mode').select_option('ordered')
+    # Draft and cursor survive results/continue navigation.
+    page.locator('#results-button').click();page.locator('#continue-playing').click()
     page.locator('#check-answer').click();expect(page.locator('#feedback')).to_be_visible()
     if q['autoGrade']:xp+=10
     else:pending+=1
@@ -86,8 +87,8 @@ try:
     total+=1
    page.locator('#results-button').click();expect(page.locator('#result-total')).to_have_text(str(len(qs)));expect(page.locator('#result-xp')).to_have_text(str(xp));expect(page.locator('#result-pending')).to_have_text(str(pending))
    key=page.evaluate('HTDualStore.keyFor(HT_PRACTICE_DATA,{name:"Học sinh cùng tên",code:"7A-01"})');raw=page.evaluate('(key)=>localStorage.getItem(key)',key);saved[key]=raw
-   page.reload();expect(page.locator('#student-code')).to_have_value('7A-01');page.locator('#start-form button').click();page.locator('#resume-button').click();expect(page.locator('#result-xp')).to_have_text(str(xp))
-   page.locator('#play-mode').select_option('ordered');expect(page.locator('#question-card')).to_have_attribute('data-question-id',qs[-1]['id'])
+   page.reload();expect(page.locator('#student-code')).to_have_value('7A-01');page.locator('#start-form button').click();page.locator('#resume-button').click();expect(page.locator('#xp-total')).to_have_text(f'✦ {xp} XP')
+   expect(page.locator('#question-card')).to_have_attribute('data-question-id',qs[-1]['id'])
    # Same name, different code is an independent student, then return to A.
    page.locator('#change-student').click();expect(page.locator('#student-name')).to_have_value('');page.locator('#student-name').fill('Học sinh cùng tên')
    if not page.locator('#student-code').is_visible():page.locator('.identity-options summary').click()
@@ -99,7 +100,7 @@ try:
    report.append({'school':data['exam']['school'],'exam':data['exam'].get('number',1),'questions':len(qs),'xp':xp,'pending':pending,'audio':len(played_tracks),'result':'PASS'})
    print('PASS',report[-1],flush=True)
   assert not errors,errors;assert not external,external;assert not bad,bad
-  print(f'PASS {expected} games / {total} questions; mobile, two modes, source content, audio, XP, resume, remembered identity/code, student isolation, reset; no JS/network/resource errors.',flush=True)
+  print(f'PASS {expected} games / {total} questions; mobile, full-exam navigation, source content, audio, XP, resume, remembered identity/code, student isolation, reset; no JS/network/resource errors.',flush=True)
   out=Path(os.environ.get('GRADE7_DUAL_REPORT','/tmp/grade7-all-dual-browser.json'));out.write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
   ctx.close();b.close()
 finally:server.shutdown()

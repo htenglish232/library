@@ -1,4 +1,4 @@
-/* Shared dual-mode session model. No DOM, storage, network or score counters. */
+/* Shared full-exam session model. No DOM, storage, network or score counters. */
 (() => {
   'use strict';
   const copy = value => JSON.parse(JSON.stringify(value));
@@ -32,7 +32,7 @@
   function create(data,student) {
     HTPracticeModel.validate(data);student=identity(student.name,student.code);
     return {schemaVersion:1,examId:data.exam.id,contentVersion:data.contentVersion,student,
-      mode:'challenge',section:data.questions[0].section,cursorId:data.questions[0].id,view:'challenges',review:false,reviewIds:[],
+      mode:'ordered',section:data.questions[0].section,cursorId:data.questions[0].id,view:'play',review:false,reviewIds:[],
       answers:Object.fromEntries(data.questions.map(q=>[q.id,{draft:blank(q),first:null,review:{draft:blank(q),checked:false,result:null}}]))};
   }
   function draft(data,state,id) {
@@ -65,14 +65,14 @@
       reviewIds:data.questions.filter(q=>state.answers[q.id].first&&state.answers[q.id].first.result!=='correct').map(q=>q.id)};
   }
   function list(data,state) {
-    return state.review?data.questions.filter(q=>state.reviewIds.includes(q.id)):state.mode==='ordered'?data.questions:data.questions.filter(q=>q.section===state.section);
+    return state.review?data.questions.filter(q=>state.reviewIds.includes(q.id)):data.questions;
   }
   function go(data,state,id) {
     const q=question(data,id);if(state.review&&!state.reviewIds.includes(id))state.review=false;
     state.cursorId=id;state.section=q.section;state.view='play';
   }
   function setMode(data,state,mode) {
-    if(!['challenge','ordered'].includes(mode))throw Error('Chế độ chưa hợp lệ.');
+    if(mode!=='ordered')throw Error('Chỉ hỗ trợ làm toàn bộ đề.');
     state.review=false;state.mode=mode;state.section=question(data,state.cursorId).section;
   }
   function beginReview(data,state) {
@@ -102,7 +102,8 @@
     question(data,raw.cursorId);
     if(raw.review&&!raw.reviewIds.includes(raw.cursorId))throw Error('Vị trí ôn chưa hợp lệ.');
     if(!data.sections.some(s=>s.id===raw.section))throw Error('Phần đang học không hợp lệ.');
-    return {...state,mode:raw.mode,section:question(data,raw.cursorId).section,cursorId:raw.cursorId,view:raw.view,review:raw.review,reviewIds:[...raw.reviewIds]};
+    // Accept legacy challenge records without changing answers, review drafts or cursor.
+    return {...state,mode:'ordered',section:question(data,raw.cursorId).section,cursorId:raw.cursorId,view:raw.view==='challenges'?'play':raw.view,review:raw.review,reviewIds:[...raw.reviewIds]};
   }
   globalThis.HTDualProgress={identity,blank,create,draft,locked,update,check,summary,list,go,setMode,beginReview,restore,value};
 })();

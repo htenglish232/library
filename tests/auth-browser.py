@@ -141,7 +141,7 @@ with sync_playwright() as p:
     expect(teacher.locator('#welcome')).to_be_visible()
     teacher.locator('#student-name').fill('Học sinh mở từ thư viện')
     teacher.locator('#start-form button').click()
-    expect(teacher.locator('#journey-count')).to_have_text('0/42 câu đã luyện')
+    expect(teacher.locator('#question-position')).to_have_text('Câu 1 / 42')
     teacher.go_back()
     expect(teacher.locator('#library')).to_be_visible()
     teacher.get_by_role('button',name='Grade 8',exact=True).click()
@@ -155,11 +155,11 @@ with sync_playwright() as p:
     dual.click();expect(teacher.locator('#welcome')).to_be_visible()
     assert teacher.evaluate('HT_PRACTICE_DATA.questions.length')==42
     teacher.locator('#student-name').fill('Mở từ thư viện')
-    teacher.locator('input[name="start-mode"][value="ordered"]').check();teacher.locator('#start-form button').click()
+    teacher.locator('#start-form button').click()
     expect(teacher.locator('#question-position')).to_have_text('Câu 1 / 42')
     teacher.locator('#answer-area input[value="C"]').check();teacher.locator('#check-answer').click()
     expect(teacher.locator('#xp-total')).to_have_text('✦ 10 XP')
-    teacher.locator('#play-mode').select_option('challenge');teacher.locator('#play-mode').select_option('ordered')
+    teacher.locator('#results-button').click();teacher.locator('#continue-playing').click()
     expect(teacher.locator('#xp-total')).to_have_text('✦ 10 XP')
     for qid in ['q1','q7']:
         teacher.locator('#jump-question').select_option(qid)
@@ -172,7 +172,7 @@ with sync_playwright() as p:
     assert not dual_errors,dual_errors
     teacher.goto(BASE+'index.html');expect(teacher.locator('#library')).to_be_visible()
     teacher.get_by_role('button',name='Grade 8',exact=True).click()
-    print('PASS exact dual-mode label opens 42 questions from the authenticated library; both modes, MP3s and persisted progress work',flush=True)
+    print('PASS exact dual-mode label opens 42 questions from the authenticated library; whole-exam navigation, MP3s and persisted progress work',flush=True)
     for name,total in [('Trực Khang',42),('Trực Hùng',43),('Trực Chính',42)]:
         teacher.locator('#search').fill(name)
         link=teacher.locator('a.game-resource').filter(has=teacher.locator('strong',has_text=re.compile('^'+re.escape(f'Game đề số 1 – THCS {name}')+'$')))
@@ -182,7 +182,7 @@ with sync_playwright() as p:
         link.click();expect(teacher.locator('#welcome')).to_be_visible()
         teacher.locator('#student-name').fill('Học sinh từ index')
         teacher.locator('#start-form button').click()
-        expect(teacher.locator('#journey-count')).to_have_text(f'0/{total} câu đã luyện')
+        expect(teacher.locator('#question-position')).to_have_text(f'Câu 1 / {total}')
         teacher.go_back();expect(teacher.locator('#library')).to_be_visible()
         teacher.get_by_role('button',name='Grade 8',exact=True).click()
         teacher.locator('#search').fill('Game luyện đề')
@@ -193,6 +193,7 @@ with sync_playwright() as p:
         link=teacher.locator('a.lesson').filter(has=teacher.locator('strong',has_text=f'Game đề số {entry["examNumber"]} – {entry["school"]} (2 chế độ)'))
         expect(link).to_have_count(1);assert link.get_attribute('href')==entry['game']
         link.click();expect(teacher.locator('#welcome')).to_be_visible()
+        teacher.wait_for_function('typeof HT_PRACTICE_DATA !== "undefined"')
         assert teacher.evaluate('HT_PRACTICE_DATA.questions.length')==entry['questions']
         teacher.go_back();expect(teacher.locator('#library')).to_be_visible();teacher.get_by_role('button',name='Grade 8',exact=True).click()
     count+=1;print('PASS all 19 exact dual-mode links open their own source data from the authenticated library, including both exams of Dao Su Tich and Phuong Dinh',flush=True)
@@ -399,7 +400,7 @@ with sync_playwright() as p:
     expected='https://htenglish232.github.io/library/grade-8/De_thi_GHK1/1_THCS%20Truc%20Tuan/truc-tuan-dual-mode.html'
     assert link.evaluate('(a)=>new URL(a.getAttribute("href"),"https://htenglish232.github.io/library/index.html").href')==expected
     link.click();expect(pages.locator('#welcome')).to_be_visible()
-    pages.locator('#student-name').fill('Kiểm thử Pages');pages.locator('input[name="start-mode"][value="ordered"]').check();pages.locator('#start-form button').click()
+    pages.locator('#student-name').fill('Kiểm thử Pages');pages.locator('#start-form button').click()
     expect(pages.locator('#question-position')).to_have_text('Câu 1 / 42')
     assert '/library/grade-8/' in pages.url
     pages.goto(BASE+'library/admin.html')

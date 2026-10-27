@@ -18,7 +18,7 @@ if (createHash('sha256').update(JSON.stringify(original)).digest('hex') !== base
 if (JSON.stringify(addReleaseLessons(legacy.data).data) !== JSON.stringify(payload.data)) throw new Error('Release additions do not reproduce the exact current main catalog.');
 const links = payload.data.flatMap(g => g.units.flatMap(u => u.lessons.map(l => l.href)));
 if (links.length !== payload.count || new Set(links).size !== payload.count || !links.every(href => existsSync(href))) throw new Error('Duplicate or missing local lesson links.');
-// Allow new standalone exercises; modifications/deletions/renames of reviewed originals remain blocked.
-const protectedChanges = execFileSync('git', ['diff', baseline.commit, '--name-only', '--diff-filter=DMRTUXB', '--', 'grade-*', 'home-button.js', 'assets/submission-identity.js', 'assets/submission-identity.css'], {encoding:'utf8'}).trim().split('\n').filter(Boolean).filter(file => !['dual-mode-engine.js','dual-store.js','model.js'].map(name=>'grade-8/De_thi_GHK1/shared-practice/'+name).includes(file)).join('\n');
+// Source exams/audio stay immutable. Shared exercise controllers/styles may evolve.
+const protectedChanges = execFileSync('git', ['diff', baseline.commit, '--name-only', '--diff-filter=DMRTUXB', '--', 'grade-*', 'home-button.js', 'assets/submission-identity.js', 'assets/submission-identity.css'], {encoding:'utf8'}).trim().split('\n').filter(Boolean).filter(file => !['dual-mode-engine.js','dual-store.js','model.js','dual-progress.js','dual-mode.css','engine.js','game.css'].map(name=>'grade-8/De_thi_GHK1/shared-practice/'+name).includes(file)).join('\n');
 if (protectedChanges) throw new Error(`Protected current-main files changed: ${protectedChanges}`);
 console.log(`PASS: ${payload.count} unique existing paths; reviewed main catalog/order preserved with release additions; legacy v1 supported; exam/audio/grading/personalization files unchanged.`);

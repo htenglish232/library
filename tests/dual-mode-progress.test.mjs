@@ -31,18 +31,18 @@ test('42 real questions, four source sections and source-only accepted variants 
  for(const q of data.questions){fill(state,q);P.check(data,state,q.id);}
  assert.equal(P.summary(data,state).xp,420);assert.equal(P.summary(data,state).correct,42);
 });
-test('mode changes and repeated checks share immutable first attempts and never duplicate XP',()=>{
+test('navigation and repeated checks share immutable first attempts and never duplicate XP',()=>{
  const state=P.create(data,learner),q=data.questions[0];fill(state,q);P.check(data,state,q.id);
  const first=JSON.stringify(state.answers.q1.first);
- for(let i=0;i<10;i++){P.setMode(data,state,i%2?'ordered':'challenge');assert.equal(P.check(data,state,q.id),false);}
+ for(let i=0;i<10;i++){P.setMode(data,state,'ordered');assert.equal(P.check(data,state,q.id),false);}
  assert.equal(P.summary(data,state).xp,10);assert.equal(JSON.stringify(state.answers.q1.first),first);
  assert.equal(P.update(data,state,q.id,P.blank(q)),false);assert.equal(Object.isFrozen(state.answers.q1.first.draft),true);
 });
-test('ordered mode uses original global order while challenge navigation filters real sections',()=>{
+test('full exam always uses original order and rejects starting a challenge',()=>{
  const state=P.create(data,learner);P.setMode(data,state,'ordered');P.go(data,state,'q31');
  assert.equal(P.list(data,state).length,42);assert.equal(state.cursorId,'q31');
- P.setMode(data,state,'challenge');assert.equal(state.cursorId,'q31');assert.equal(state.section,'reading');
- assert.equal(P.list(data,state).length,10);
+ assert.throws(()=>P.setMode(data,state,'challenge'));assert.equal(state.cursorId,'q31');
+ assert.equal(P.list(data,state).length,42);
 });
 test('wrong choice/text/builder review and reload preserve first-score 390 XP',()=>{
  const state=P.create(data,learner),wrong=new Set(['q1','q31','q36']);
