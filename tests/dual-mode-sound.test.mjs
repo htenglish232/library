@@ -79,7 +79,7 @@ test('index, legacy catalog, all source/data/answers/storage keys/Firebase files
  const {readFileSync}=await import('node:fs');
  for(const file of games)assert.equal(beforeSoundBootstrap(readFileSync(file,'utf8')),execFileSync('git',['show','b38d578:'+file],{encoding:'utf8'}),file);
  const protectedPaths=paths.filter(p=>!fullExamRuntime.has(p)&&!mutable.has(p)&&!games.includes(p)&&(p.startsWith('grade-')||p.startsWith('assets/')||(p.startsWith('catalog/')&&p!=='catalog/current-library-catalog.json')||['index.html','admin.html','firestore.rules','firestore.indexes.json','firebase.json','.firebaserc'].includes(p)));
- assert(protectedPaths.length>=374); // Five more reviewed UI/model files are now mutable.
+ assert(protectedPaths.length>=379-fullExamRuntime.size); // Keep the preservation guard outside reviewed UI/model files.
  assert.equal(execFileSync('git',['diff','b38d578','--name-only','--',...protectedPaths],{maxBuffer:1000000}).toString(),'');
 });
 

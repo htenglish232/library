@@ -72,13 +72,13 @@ try:
         for name in ['Trực Tuấn','Trực Khang','Trực Hùng','Trực Chính']:
             school=schools.filter(has=page.locator('.school-name',has_text='THCS '+name))
             summary=school.locator('summary');summary.click()
-            expect(school.locator('a.lesson strong')).to_have_text([f'Đề số 1 – THCS {name}',f'Game đề số 1 – THCS {name}']+[f'Game đề số 1 – THCS {name} (2 chế độ)'])
+            expect(school.locator('a.lesson strong')).to_have_text([f'Đề số 1 – THCS {name}',f'Game đề số 1 – THCS {name}']+[f'Game đề số 1 – THCS {name}'])
             expect(school.locator('.exam-pair')).to_have_count(1)
             expect(school.locator('a.lesson').first).to_be_visible()
             summary.focus();summary.press('Enter');expect(school.locator('a.lesson').first).to_be_hidden();summary.press('Enter')
         for name in ['Đào Sư Tích','Phương Định']:
             school=schools.filter(has=page.locator('.school-name',has_text='THCS '+name))
-            expect(school.locator('a.lesson strong')).to_have_text([label for n in [1,2] for label in [f'Đề số {n} – THCS {name}',f'Game đề số {n} – THCS {name} (2 chế độ)']])
+            expect(school.locator('a.lesson strong')).to_have_text([label for n in [1,2] for label in [f'Đề số {n} – THCS {name}',f'Game đề số {n} – THCS {name}']])
             expect(school.locator('a.game-resource')).to_have_count(2)
         passed('17 school folders, 19 numbered exams, 23 paired games; all 42 exact HTML files resolve under /library/; keyboard open/close works')
         for width in [360,390,768,1280]:
@@ -102,9 +102,9 @@ try:
             if '/8_THCS Phuong Dinh/' in lesson['href'] or lesson['href'].endswith('/1. THCS Truc Tuan.html'):lesson['hidden']=True
         page.evaluate('d=>window.view.setCatalog(d,2)',changed);page.get_by_role('button',name='Khối 8',exact=True).click()
         page.locator('#search').fill('Phương Định')
-        expect(page.locator('.grade-section.active a.lesson strong')).to_have_text(['Đề số 2 – THCS Phương Định','Game đề số 2 – THCS Phương Định (2 chế độ)'])
+        expect(page.locator('.grade-section.active a.lesson strong')).to_have_text(['Đề số 2 – THCS Phương Định','Game đề số 2 – THCS Phương Định'])
         page.locator('#search').fill('Trực Tuấn')
-        expect(page.locator('.grade-section.active a.lesson strong')).to_have_text(['Game đề số 1 – THCS Trực Tuấn','Game đề số 1 – THCS Trực Tuấn (2 chế độ)'])
+        expect(page.locator('.grade-section.active a.lesson strong')).to_have_text(['Game đề số 1 – THCS Trực Tuấn','Game đề số 1 – THCS Trực Tuấn'])
         unit['hidden']=True;page.evaluate('d=>window.view.setCatalog(d,2)',changed)
         expect(page.locator('a[href^="grade-8/De_thi_GHK1/"]')).to_have_count(0)
         passed('hidden exam 1 never relabels exam 2; a visible game keeps its hidden-source pairing; renamed grades/units and hidden units are respected')

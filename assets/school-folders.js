@@ -1,3 +1,5 @@
+// Display cleanup also applies to catalogs already saved in Firebase.
+const lessonTitle = lesson => lesson.kind === 'game' ? lesson.title.replace(/\s*\(2\s+chế\s+độ\)\s*$/iu, '') : lesson.title;
 // Presentation only: never rewrites catalog entries or Firebase documents.
 export function isGameLesson(lesson) {
   return /\bgame\b/iu.test(lesson.title) || /(?:^|[\/_-])(?:game|dual-mode)(?:[\/_.-]|$)/iu.test(lesson.href);
@@ -76,9 +78,9 @@ export function numberSchoolLessons(lessons, {schoolNames = {}, unclassified = f
         if (candidates.length === 1) exam = candidates[0];
       }
       const examNumber = exam && numbers.get(exam.href);
-      const modeLabel = lesson.kind==='game' && /\(2\s+chế\s+độ\)\s*$/iu.test(lesson.title) ? ' (2 chế độ)' : '';
+      const title = lessonTitle(lesson);
       const displayTitle = examNumber && (school.name.startsWith('THCS ') || school.unclassified)
-        ? `${lesson.kind === 'game' ? 'Game đề' : 'Đề'} số ${examNumber} – ${school.unclassified ? 'Chưa phân loại' : school.name}${modeLabel}` : lesson.title;
+        ? `${lesson.kind === 'game' ? 'Game đề' : 'Đề'} số ${examNumber} – ${school.unclassified ? 'Chưa phân loại' : school.name}` : title;
       return {...lesson, displayTitle, unclassified: !!school.unclassified, examNumber: examNumber || null, examHref: exam?.href || null, position};
     });
     rows.sort((a,b) => (a.examNumber ?? Infinity) - (b.examNumber ?? Infinity)
@@ -116,7 +118,7 @@ export function renderSchoolFolders(lessons, query = '', context = '', groups = 
       link.append(kind, name);
       if (lesson.unclassified) {
         const original = document.createElement('span'); original.className = 'unclassified-title';
-        original.textContent = lesson.title; link.append(original);
+        original.textContent = lessonTitle(lesson); link.append(original);
       }
       let container = resources;
       if (lesson.examNumber) {
