@@ -50,7 +50,7 @@ def clean(record,expected404=False):
  else:assert not record['bad'] and not record['consoleErrors'],record
 
 def start(page,touch=False):
- page.locator('#student-name').fill('Kiểm tra tải âm thanh');page.locator('input[name=start-mode][value=ordered]').check()
+ page.locator('#student-name').fill('Kiểm tra tải âm thanh');
  if touch:page.locator('#start-form button').tap()
  else:page.locator('#start-form button').click()
  if page.locator('#resume-panel').is_visible():page.locator('#resume-button').click()
@@ -79,11 +79,11 @@ try:
     data=page.evaluate('HT_PRACTICE_DATA');start(page,touch);check(page,data['questions'][0],touch=touch);page.wait_for_function('soundLog.notes.length===2')
     check(page,data['questions'][1],wrong=True,touch=touch);page.wait_for_function('soundLog.notes.length===4')
     notes=page.evaluate('soundLog.notes');assert notes[0]['frequency']<notes[1]['frequency'] and notes[2]['frequency']>notes[3]['frequency'];expect(page.locator('#xp-total')).to_have_text('✦ 10 XP')
-    page.locator('#play-mode').select_option('challenge');page.locator('#play-mode').select_option('ordered');assert len(page.evaluate('soundLog.notes'))==4
+    page.locator('#jump-question').select_option(page.locator('#question-card').get_attribute('data-question-id'));assert len(page.evaluate('soundLog.notes'))==4
     page.locator('#sound-toggle').click();expect(page.locator('#sound-toggle')).to_have_text('🔇 Âm thanh: Tắt')
     page.reload();expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','ready');expect(page.locator('#sound-toggle')).to_have_text('🔇 Âm thanh: Tắt');assert page.evaluate('soundLog.notes.length')==0
     start(page,touch);expect(page.locator('#xp-total')).to_have_text('✦ 10 XP');page.locator('#sound-toggle').click();expect(page.locator('#sound-toggle')).to_have_text('🔊 Âm thanh: Bật')
-   clean(record);context.close();passed(f'{len(rows)}/{len(rows)} real games on '+('mobile touch' if touch else 'desktop')+': one ready toggle, correct/wrong sounds, mode stays quiet, mute persists, resume keeps XP, no Console/404')
+   clean(record);context.close();passed(f'{len(rows)}/{len(rows)} real games on '+('mobile touch' if touch else 'desktop')+': one ready toggle, correct/wrong sounds, navigation stays quiet, mute persists, resume keeps XP, no Console/404')
   # Static button is already visible even if the controller has not arrived.
   context=browser.new_context();held=[];context.route('**/dual-mode-engine.js*',lambda r:held.append(r));page,record=page_for(context)
   page.goto(url,wait_until='commit');expect(page.locator('#sound-toggle')).to_be_visible();expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','loading');page.wait_for_function('!!window.HTDualStore');assert held

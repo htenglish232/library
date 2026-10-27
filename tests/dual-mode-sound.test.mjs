@@ -1,3 +1,4 @@
+import {fullExamRuntime} from './full-exam-contract.mjs';
 import {beforeSoundBootstrap,isDualLauncher} from './sound-bootstrap-contract.mjs';
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
@@ -68,7 +69,7 @@ test('Listening uses lower effect gain; muting does not create or close audio de
  sound.setEnabled(false);assert(ctx.nodes.every(n=>n.stoppedAt===10.02));assert.equal(contexts.length,1);
 });
 
-test('index, legacy catalog, all source/data/answers/XP/storage/Firebase files match merged main; game HTML permits only the sound button and asset versions',async()=>{
+test('index, legacy catalog, all source/data/answers/storage keys/Firebase files match merged main outside the reviewed runtime changes; game HTML permits only the sound button and asset versions',async()=>{
  const {execFileSync}=await import('node:child_process');
  const paths=execFileSync('git',['ls-tree','-rz','--name-only','b38d578']).toString().split('\0').filter(Boolean);
  const mutable=new Set(['dual-mode-engine.js','dual-mode.css'].map(f=>'grade-8/De_thi_GHK1/shared-practice/'+f));
@@ -77,8 +78,8 @@ test('index, legacy catalog, all source/data/answers/XP/storage/Firebase files m
  const games=paths.filter(isDualLauncher);
  const {readFileSync}=await import('node:fs');
  for(const file of games)assert.equal(beforeSoundBootstrap(readFileSync(file,'utf8')),execFileSync('git',['show','b38d578:'+file],{encoding:'utf8'}),file);
- const protectedPaths=paths.filter(p=>!mutable.has(p)&&!games.includes(p)&&(p.startsWith('grade-')||p.startsWith('assets/')||(p.startsWith('catalog/')&&p!=='catalog/current-library-catalog.json')||['index.html','admin.html','firestore.rules','firestore.indexes.json','firebase.json','.firebaserc'].includes(p)));
- assert(protectedPaths.length>=379);
+ const protectedPaths=paths.filter(p=>!fullExamRuntime.has(p)&&!mutable.has(p)&&!games.includes(p)&&(p.startsWith('grade-')||p.startsWith('assets/')||(p.startsWith('catalog/')&&p!=='catalog/current-library-catalog.json')||['index.html','admin.html','firestore.rules','firestore.indexes.json','firebase.json','.firebaserc'].includes(p)));
+ assert(protectedPaths.length>=374); // Five more reviewed UI/model files are now mutable.
  assert.equal(execFileSync('git',['diff','b38d578','--name-only','--',...protectedPaths],{maxBuffer:1000000}).toString(),'');
 });
 

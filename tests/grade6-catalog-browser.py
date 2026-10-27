@@ -23,7 +23,8 @@ try:
   c.route('**/*',route);page=c.new_page();page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda m:errors.append(m.text) if m.type=='error' else None);page.on('response',lambda r:bad.append((r.status,r.url)) if r.status>=400 else None)
   page.goto(BASE+'library/catalog-fixture.html');expect(page.locator('#library')).to_be_hidden();expect(page.locator('#content')).to_be_empty();expect(page.locator('a[href^="grade-"]')).to_have_count(0)
   passed('initial index fixture keeps all material hidden and empty before catalog access')
-  page.evaluate('''async d=>{window.view=await import('./assets/catalog-view.js');const release=await import('./assets/catalog-release.js');window.upgraded=release.addReleaseLessons(d).data;window.before=d;window.view.setCatalog(upgraded,2);for(const id of ['library','library-hero','library-search'])document.getElementById(id).hidden=false;document.getElementById('auth-panel').hidden=true;}''',before)
+  # Compare the historical Grade 6 release without replaying the later Grade 7 batch.
+  page.evaluate('''async d=>{window.view=await import('./assets/catalog-view.js');const release=await import('./assets/catalog-release.js');const {GRADE7_DUAL_ID}=await import('./assets/grade7-dual-links.js');window.upgraded=release.addReleaseLessons(d,[GRADE7_DUAL_ID]).data;window.before=d;window.view.setCatalog(upgraded,2);for(const id of ['library','library-hero','library-search'])document.getElementById(id).hidden=false;document.getElementById('auth-panel').hidden=true;}''',before)
   for grade in ['Grade 4','Grade 5','Grade 7','Grade 8']:
    page.get_by_role('button',name=grade,exact=True).click();now=page.locator('#content').inner_html();page.evaluate('view.setCatalog(before,2)');page.get_by_role('button',name=grade,exact=True).click();assert page.locator('#content').inner_html()==now,grade;page.evaluate('view.setCatalog(upgraded,2)')
   passed('Grade 4/5/7/8 rendering unchanged by the Grade 6 release')

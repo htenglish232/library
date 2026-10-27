@@ -49,7 +49,7 @@ def click(page,selector,touch=False):
 def start(page,touch=False):
  page.locator('#student-name').fill('Sound Check')
  if not page.locator('#student-code').is_visible():click(page,'.identity-options summary',touch)
- page.locator('#student-code').fill('8A');page.locator('input[name=start-mode][value=ordered]').check();click(page,'#start-form button',touch)
+ page.locator('#student-code').fill('8A');click(page,'#start-form button',touch)
  if page.locator('#resume-panel').is_visible():click(page,'#resume-button',touch)
 def log(page):return page.evaluate('structuredClone(soundLog)')
 def answer_choice(page,q,wrong=False,touch=False):
@@ -112,7 +112,7 @@ try:
    answer_choice(page,data['questions'][0],True,touch);page.wait_for_function('soundLog.notes.length===2')
    effect=log(page);assert effect['notes'][0]['frequency']>effect['notes'][1]['frequency'];assert max(effect['gains'])<=.025
    page.wait_for_timeout(450);assert not page.locator('audio').evaluate('e=>e.paused');assert page.locator('audio').evaluate('e=>e.currentTime')>time_before;assert log(page)['media']==media_before;assert page.locator('audio').evaluate('e=>[e.currentSrc,e.volume,e.playbackRate]')==media_settings
-   n=len(log(page)['notes']);page.locator('#play-mode').select_option('challenge');page.locator('#play-mode').select_option('ordered');assert len(log(page)['notes'])==n
+   n=len(log(page)['notes']);page.locator('#jump-question').select_option(page.locator('#question-card').get_attribute('data-question-id'));assert len(log(page)['notes'])==n
    # Old checked answers and disabled duplicate checks remain quiet.
    page.evaluate('document.querySelector("#check-answer").click()');assert len(log(page)['notes'])==n
    page.locator('#jump-question').select_option(data['questions'][1]['id']);answer_choice(page,data['questions'][1],False,touch)
@@ -131,7 +131,7 @@ try:
    answer_choice(page,q,False,touch);page.wait_for_function('soundLog.notes.length===7');notes=log(page)['notes'];assert abs(notes[-1]['stop']-notes[-5]['start']-1.51)<.001
    click(page,'#results-button',touch);assert len(log(page)['notes'])==7
    page.reload();expect(page.locator('#sound-toggle')).to_be_enabled();start(page,touch);assert log(page)['notes']==[]
-   click(page,'#continue-playing',touch);page.locator('#play-mode').select_option('challenge');page.locator('#play-mode').select_option('ordered');assert log(page)['notes']==[]
+   click(page,'#home-button',touch);page.locator('#jump-question').select_option(page.locator('#question-card').get_attribute('data-question-id'));assert log(page)['notes']==[]
    # A new review attempt may get feedback, but never another completion fanfare/XP.
    click(page,'#results-button',touch);click(page,'#review-wrong',touch);q1=data['questions'][0];expect(page.locator('#question-card')).to_have_attribute('data-question-id',q1['id']);before_xp=page.locator('#xp-total').text_content()
    answer_choice(page,q1,False,touch);page.wait_for_function('soundLog.notes.length===2');expect(page.locator('#xp-total')).to_have_text(before_xp)

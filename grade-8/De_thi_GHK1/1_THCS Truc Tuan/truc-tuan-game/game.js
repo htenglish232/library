@@ -2,6 +2,11 @@
 (() => {
   'use strict';
   const $ = id => document.getElementById(id);
+  document.querySelectorAll('#challenges,#back-menu,#section-tabs').forEach(el=>el.remove());
+  $('home-button').textContent='Làm toàn bộ đề';
+  $('continue-playing').textContent='Tiếp tục làm đề';
+  $('section-progress').setAttribute('aria-label','Tiến độ toàn đề');
+  document.querySelector('.welcome-copy>p').textContent='Làm toàn bộ đề theo thứ tự gốc, cùng lời giải và kiến thức cần nhớ.';
   const source = window.HT_GAME_SOURCE;
   const notes = window.HT_GAME_NOTES;
   const pilot = document.documentElement.dataset.stage === 'pilot' || new URLSearchParams(location.search).has('pilot');
@@ -18,7 +23,7 @@
   const audio = $('audio-player');
   let currentTrack = 0;
   const bySection = id => questions.filter(q => q.section === id);
-  const activeQuestions = () => state.review ? questions.filter(q => state.reviewIds.includes(q.id)) : bySection(state.section);
+  const activeQuestions = () => state.review ? questions.filter(q => state.reviewIds.includes(q.id)) : questions;
   const currentQuestion = () => activeQuestions()[state.index];
   const totalChecked = () => questions.filter(q => state.answers[q.id].checked).length;
   const totalCorrect = () => questions.filter(q => state.answers[q.id].firstCorrect).length;
@@ -33,7 +38,7 @@
   }
   function pauseAudio() {audio.pause();}
   function showPage(id) {
-    for(const page of ['welcome','challenges','play','results']) $(page).hidden=page!==id;
+    for(const page of ['welcome','play','results']) $(page).hidden=page!==id;
     if(id!=='play') pauseAudio();
     $('home-button').hidden=!state.name;
     $('results-button').hidden=!state.name;
@@ -42,44 +47,15 @@
     $('main').focus({preventScroll:true});
     window.scrollTo({top:0,behavior:'instant'});
   }
-  function showMenu() {
-    showPage('challenges');
-    $('challenge-greeting').textContent=`Chào ${state.name}! Hôm nay em muốn khám phá điều gì?${pilot?' · Bản 5 câu kiểm thử.':''}`;
-    $('journey-count').textContent=`${totalChecked()}/${questions.length} câu đã luyện`;
-    $('journey-progress').max=questions.length;
-    $('journey-progress').value=totalChecked();
-    $('challenge-grid').replaceChildren();
-    sections.forEach((section,i) => {
-      const group=bySection(section.id),done=group.filter(q=>state.answers[q.id].checked).length;
-      const card=document.createElement('article');card.className='challenge-card';card.style.setProperty('--tint',section.color);
-      card.append(text('div',section.icon,'challenge-icon'),text('span',`0${i+1} / CHALLENGE`,'number'),text('h2',section.title),text('p',section.description));
-      const progress=document.createElement('progress');progress.max=group.length;progress.value=done;progress.setAttribute('aria-label',`Tiến độ ${section.short}`);card.append(progress);
-      const bottom=document.createElement('div');bottom.className='card-bottom';bottom.append(text('span',`${done}/${group.length} câu · ${group.filter(q=>state.answers[q.id].firstCorrect).length*10} XP`));
-      const button=text('button',done?'Tiếp tục →':'Khám phá →');button.dataset.section=section.id;button.setAttribute('aria-label',`Mở ${section.title}`);button.onclick=()=>openSection(section.id);bottom.append(button);card.append(bottom);$('challenge-grid').append(card);
-    });
-  }
-  function openSection(id) {
-    leaveReview();
-    state.review=false;state.section=id;
-    const group=bySection(id);state.index=Math.max(0,group.findIndex(q=>!state.answers[q.id].checked));
-    showPage('play');renderQuestion();
-  }
-  function renderTabs() {
-    $('section-tabs').replaceChildren();
-    sections.forEach(section=>{
-      const button=text('button',`${section.icon} ${section.short}`);button.dataset.section=section.id;
-      button.setAttribute('aria-current',String(!state.review && state.section===section.id));button.onclick=()=>openSection(section.id);$('section-tabs').append(button);
-    });
-  }
+  function showExam(){showPage('play');renderQuestion();}
   function renderQuestion() {
     const list=activeQuestions(),q=list[state.index];
     if(!q) {showResults();return;}
     const section=sections.find(s=>s.id===q.section),a=state.answers[q.id];
     $('question-card').dataset.questionId=q.id;
-    $('section-title').textContent=state.review?'Ôn lại câu cần luyện':section.title;
+    $('section-title').textContent=state.review?'Ôn lại câu cần luyện':'Làm toàn bộ đề';
     $('section-description').textContent=state.review?'Thử lại sau khi đọc lời giải. Lượt ôn không thay đổi XP và kết quả lần đầu.':section.description;
-    $('section-kicker').textContent=state.review?'PRACTICE MAKES PROGRESS':`CHALLENGE 0${sections.indexOf(section)+1} · GRADE 8`;
-    renderTabs();
+    $('section-kicker').textContent=state.review?'PRACTICE MAKES PROGRESS':'THEO THỨ TỰ ĐỀ GỐC · GRADE 8';
     const done=list.filter(item=>state.review?state.answers[item.id].reviewed:state.answers[item.id].checked).length;
     $('question-position').textContent=`Câu ${state.index+1} / ${list.length}`;
     $('section-progress').max=list.length;$('section-progress').value=done;
@@ -201,12 +177,12 @@
     showPage('results');
     const checked=totalChecked(),correct=totalCorrect(),wrong=checked-correct;
     $('results-title').textContent=`${state.name}, em đang làm rất tốt!`;
-    $('result-description').textContent=checked===questions.length?'Em đã hoàn thành hành trình. Hãy ôn lại các câu cần luyện để hiểu bài hơn nhé.':`Em đã khám phá ${checked}/${questions.length} câu. Có thể tiếp tục bất cứ thử thách nào.`;
+    $('result-description').textContent=checked===questions.length?'Em đã hoàn thành hành trình. Hãy ôn lại các câu cần luyện để hiểu bài hơn nhé.':`Em đã khám phá ${checked}/${questions.length} câu. Em có thể tiếp tục làm đề.`;
     $('result-xp').textContent=correct*10;$('result-correct').textContent=correct;$('result-wrong').textContent=wrong;$('result-unanswered').textContent=questions.length-checked;
     $('result-breakdown').replaceChildren();
     sections.forEach(s=>{
       const group=bySection(s.id),done=group.filter(q=>state.answers[q.id].checked).length,good=group.filter(q=>state.answers[q.id].firstCorrect).length;
-      const button=document.createElement('button');button.append(text('strong',`${s.icon} ${s.title}`),text('span',`${done}/${group.length} đã luyện · ${good} đúng lần đầu · ${good*10} XP`));button.onclick=()=>openSection(s.id);$('result-breakdown').append(button);
+      const button=document.createElement('div');button.append(text('strong',`${s.icon} ${s.title}`),text('span',`${done}/${group.length} đã luyện · ${good} đúng lần đầu · ${good*10} XP`));$('result-breakdown').append(button);
     });
     const improved=questions.filter(q=>state.answers[q.id].checked && !state.answers[q.id].firstCorrect && state.answers[q.id].reviewCorrect).length;
     $('review-summary').textContent=`${improved} câu đã làm đúng khi ôn lại. Kết quả lần đầu và XP được giữ nguyên.`;
@@ -224,16 +200,17 @@
   function leaveReview() {
     if(!state.review)return;
     state.reviewIds.forEach(id=>{const a=state.answers[id];if(a.firstDraft){a.draft=a.firstDraft.draft;a.tokens=[...a.firstDraft.tokens];}});
-    state.review=false;
+    const id=currentQuestion()?.id;
+    state.review=false;state.index=Math.max(0,questions.findIndex(q=>q.id===id));
   }
   $('start-form').onsubmit=event=>{
     event.preventDefault();const value=$('student-name').value.replace(/\s+/gu,' ').trim();
     if(!value){$('name-error').textContent='Em hãy nhập tên trước khi bắt đầu nhé.';$('student-name').setAttribute('aria-invalid','true');$('student-name').focus();return;}
-    $('student-name').removeAttribute('aria-invalid');state.name=value;showMenu();
+    $('student-name').removeAttribute('aria-invalid');state.name=value;showExam();
   };
-  $('home-button').onclick=$('back-menu').onclick=()=>{leaveReview();showMenu();};
-  $('results-button').onclick=$('menu-summary').onclick=showResults;
-  $('continue-playing').onclick=()=>{leaveReview();showMenu();};
+  $('home-button').onclick=()=>{leaveReview();showExam();};
+  $('results-button').onclick=showResults;
+  $('continue-playing').onclick=()=>{leaveReview();showExam();};
   $('review-wrong').onclick=beginReview;
   $('check-answer').onclick=checkAnswer;
   $('previous-question').onclick=()=>{if(state.index>0){state.index--;renderQuestion();$('question-title').focus({preventScroll:true});}};

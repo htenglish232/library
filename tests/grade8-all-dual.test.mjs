@@ -1,3 +1,4 @@
+import {fullExamRuntime} from './full-exam-contract.mjs';
 import {GRADE7_DUAL_ID,GRADE7_DUAL_LINKS} from '../assets/grade7-dual-links.js';
 import {GRADE6_DUAL_ID,GRADE6_DUAL_LINKS} from '../assets/grade6-dual-links.js';
 import {beforeSoundBootstrap,isDualLauncher} from './sound-bootstrap-contract.mjs';
@@ -44,7 +45,7 @@ test('original sources and payloads stay identical; launcher HTML only adds the 
  const paths=execFileSync('git',['ls-tree','-rz','--name-only','bcf44e9'],{maxBuffer:2000000}).toString().split('\0').filter(Boolean);
  const shared=new Set(['dual-mode-engine.js','dual-store.js','model.js','dual-mode.css'].map(f=>'grade-8/De_thi_GHK1/shared-practice/'+f));
  const exact=['assets/firebase-config.js','assets/firebase-client.js','assets/firebase-sdk.js','assets/session.js','assets/catalog-store.js','assets/catalog-data.js','assets/catalog-integrity.js','catalog/library-catalog.json','firestore.rules','firestore.indexes.json','firebase.json','.firebaserc'];
- const protectedPaths=paths.filter(p=>(p.startsWith('grade-')&&!shared.has(p))||exact.includes(p));
+ const protectedPaths=paths.filter(p=>(p.startsWith('grade-')&&!shared.has(p)&&!fullExamRuntime.has(p))||exact.includes(p));
  for(const file of protectedPaths){const current=fs.readFileSync(file),original=execFileSync('git',['show','bcf44e9:'+file],{maxBuffer:20000000});assert.equal(sha(isDualLauncher(file)?beforeSoundBootstrap(current.toString()):current),sha(original),file);}
  assert(protectedPaths.length>340);
 });

@@ -1,4 +1,4 @@
-/* Shared dual-mode controller. Source/model/CSS reused; legacy engine remains unchanged. */
+/* Shared full-exam controller. Legacy storage keys and source data stay compatible. */
 (() => {
   'use strict';
   const $ = id => document.getElementById(id);
@@ -54,7 +54,15 @@
   const questions = source.questions;
   const sections = source.sections.map((s,i)=>({...s,short:s.title,color:['#e5f3fc','#e8f5ee','#f1edfb','#fff4d9'][i%4]}));
   const P=HTDualProgress;
-  let state=null,store=null,pendingStudent=null,pendingMode='challenge',conflict=false,passageCollapsed=false;
+  let state=null,store=null,pendingStudent=null,conflict=false;
+  // Launchers share this controller; remove obsolete UI once for every game.
+  document.querySelectorAll('.mode-options,#play-mode,#challenges,#back-menu,#section-tabs,#toggle-passage').forEach(el=>{
+    if(el.id==='play-mode')el.closest('label').remove();else el.remove();
+  });
+  $('home-button').textContent='Làm toàn bộ đề';
+  $('continue-playing').textContent='Tiếp tục làm đề';
+  $('section-progress').setAttribute('aria-label','Tiến độ toàn đề');
+  document.querySelector('#welcome .privacy-note').textContent='Tiến độ chỉ lưu trên thiết bị này. Không gửi tên, mã riêng hoặc kết quả đến dịch vụ bên ngoài.';
   const audio=$('audio-player');let currentTrack=0;
   const bySection=id=>questions.filter(q=>q.section===id);
   const activeQuestions=()=>P.list(source,state);
@@ -68,60 +76,30 @@
   const text = (tag,value,className) => {const el=document.createElement(tag);el.textContent=value;if(className)el.className=className;return el;};
   function pauseAudio() {audio.pause();}
   function showPage(id) {
-    for(const page of ['welcome','challenges','play','results']) $(page).hidden=page!==id;
+    for(const page of ['welcome','play','results']) $(page).hidden=page!==id;
     if(id!=='play') pauseAudio();
     $('home-button').hidden=!state.student.name;
     $('results-button').hidden=!state.student.name;
     $('student-label').textContent=state.student.name;
     $('xp-total').textContent=`✦ ${totalCorrect()*10} XP`;
-    $('play-mode').value=state.mode;$('session-tools').hidden=false;
+    $('session-tools').hidden=false;
     state.view=id;persist();
     $('main').focus({preventScroll:true});
     window.scrollTo({top:0,behavior:'instant'});
   }
-  function showMenu() {
-    if(state.mode==='ordered'){showPage('play');renderQuestion();return;}
-    showPage('challenges');
-    $('challenge-greeting').textContent=`Chào ${state.student.name}! Hôm nay em muốn khám phá điều gì?`;
-    $('journey-count').textContent=`${totalChecked()}/${questions.length} câu đã luyện`;
-    $('journey-progress').max=questions.length;
-    $('journey-progress').value=totalChecked();
-    $('challenge-grid').replaceChildren();
-    sections.forEach((section,i) => {
-      const group=bySection(section.id),done=group.filter(q=>!!state.answers[q.id].first).length;
-      const card=document.createElement('article');card.className='challenge-card';card.style.setProperty('--tint',section.color);
-      card.append(text('div',section.icon,'challenge-icon'),text('span',`0${i+1} / CHALLENGE`,'number'),text('h2',section.title),text('p',section.description));
-      const progress=document.createElement('progress');progress.max=group.length;progress.value=done;progress.setAttribute('aria-label',`Tiến độ ${section.short}`);card.append(progress);
-      const bottom=document.createElement('div');bottom.className='card-bottom';bottom.append(text('span',`${done}/${group.length} câu · ${group.filter(q=>firstCorrect(state.answers[q.id])).length*10} XP`));
-      const button=text('button',done?'Tiếp tục →':'Khám phá →');button.dataset.section=section.id;button.setAttribute('aria-label',`Mở ${section.title}`);button.onclick=()=>openSection(section.id);bottom.append(button);card.append(bottom);$('challenge-grid').append(card);
-    });
-  }
-  function openSection(id) {
-    state.review=false;state.section=id;
-    const group=bySection(id),next=group.find(q=>!state.answers[q.id].first)||group[0];
-    P.go(source,state,next.id);showPage('play');renderQuestion();
-  }
+  function showExam() {showPage('play');renderQuestion();}
   function move(index){const q=activeQuestions()[index];if(q){P.go(source,state,q.id);renderQuestion();$('question-title').focus({preventScroll:true});}}
   function writeDraft(q,next){if(conflict)return;if(P.update(source,state,q.id,next))persist();}
-  function renderTabs() {
-    $('section-tabs').replaceChildren();
-    sections.forEach(section=>{
-      const button=text('button',`${section.icon} ${section.short}`);button.dataset.section=section.id;
-      button.setAttribute('aria-current',String(!state.review && state.section===section.id));button.disabled=conflict;button.onclick=()=>openSection(section.id);$('section-tabs').append(button);
-    });
-  }
   function renderQuestion() {
     const list=activeQuestions(),q=currentQuestion();
     if(!q) {showResults();return;}
     const section=sections.find(s=>s.id===q.section),a=state.answers[q.id];
-    state.view='play';persist();$('play-mode').value=state.mode;
-    $('back-menu').hidden=state.mode==='ordered';$('section-tabs').hidden=state.mode==='ordered';
+    state.view='play';persist();
     $('question-card').dataset.questionId=q.id;
-    $('section-title').textContent=state.review?'Ôn lại câu cần luyện':state.mode==='ordered'?'Luyện toàn đề':section.title;
+    $('section-title').textContent=state.review?'Ôn lại câu cần luyện':'Làm toàn bộ đề';
     $('section-description').textContent=state.review?'Thử lại sau khi đọc lời giải. Lượt ôn không thay đổi XP và kết quả lần đầu.':section.description;
     const gradeLabel=[6,7].includes(source.exam.grade)?`GRADE ${source.exam.grade}`:'GRADE 8';
-    $('section-kicker').textContent=state.review?'PRACTICE MAKES PROGRESS':state.mode==='ordered'?`THEO THỨ TỰ ĐỀ GỐC · ${gradeLabel}`:`CHALLENGE 0${sections.indexOf(section)+1} · ${gradeLabel}`;
-    renderTabs();
+    $('section-kicker').textContent=state.review?'PRACTICE MAKES PROGRESS':`THEO THỨ TỰ ĐỀ GỐC · ${gradeLabel}`;
     const done=list.filter(item=>state.review?state.answers[item.id].review.checked:!!state.answers[item.id].first).length;
     $('question-position').textContent=`Câu ${currentIndex()+1} / ${list.length}`;
     $('section-progress').max=list.length;$('section-progress').value=done;
@@ -150,7 +128,7 @@
     $('passage-panel').hidden=!contextHtml;
     $('question-layout').classList.toggle('with-passage',!!contextHtml);
     if(contextHtml)$('passage-content').innerHTML=contextHtml;
-    renderPassageToggle();
+    $('passage-content').hidden=false;
     $('audio-panel').hidden=!q.track;
     if(q.track)loadTrack(q.track);else pauseAudio();
     $('previous-question').disabled=conflict||currentIndex()===0;$('next-question').disabled=conflict;$('jump-question').disabled=conflict;
@@ -204,12 +182,6 @@
       tools.append(undo,reset);area.append(target,bank,tools);
     }
   }
-  function renderPassageToggle(){
-    $('passage-content').hidden=passageCollapsed;
-    $('toggle-passage').setAttribute('aria-expanded',String(!passageCollapsed));
-    $('toggle-passage').textContent=passageCollapsed?'📖 Xem nội dung đề ↓':'📖 Thu gọn nội dung đề ↑';
-  }
-  $('toggle-passage').onclick=()=>{passageCollapsed=!passageCollapsed;renderPassageToggle();};
   function addExplanation(title,content,html=false) {
     const item=document.createElement('div');item.className='explanation-item';item.append(text('h3',title));
     const body=document.createElement('div');if(html)body.innerHTML=content;else body.textContent=content;
@@ -256,12 +228,12 @@
     const {checked,correct,pending,wrong}=P.summary(source,state);
     $('result-total').textContent=questions.length;
     $('results-title').textContent=`${state.student.name}, em đang làm rất tốt!`;
-    $('result-description').textContent=checked===questions.length?'Em đã hoàn thành hành trình. Hãy ôn lại các câu cần luyện để hiểu bài hơn nhé.':`Em đã khám phá ${checked}/${questions.length} câu. Có thể tiếp tục bất cứ thử thách nào.`;
+    $('result-description').textContent=checked===questions.length?'Em đã hoàn thành hành trình. Hãy ôn lại các câu cần luyện để hiểu bài hơn nhé.':`Em đã khám phá ${checked}/${questions.length} câu. Em có thể tiếp tục làm đề.`;
     $('result-pending').textContent=pending;$('result-xp').textContent=correct*10;$('result-correct').textContent=correct;$('result-wrong').textContent=wrong;$('result-unanswered').textContent=questions.length-checked;
     $('result-breakdown').replaceChildren();
     sections.forEach(s=>{
       const group=bySection(s.id),done=group.filter(q=>!!state.answers[q.id].first).length,good=group.filter(q=>firstCorrect(state.answers[q.id])).length;
-      const button=document.createElement('button');button.append(text('strong',`${s.icon} ${s.title}`),text('span',`${done}/${group.length} đã luyện · ${good} đúng lần đầu · ${good*10} XP`));button.onclick=()=>openSection(s.id);$('result-breakdown').append(button);
+      const button=document.createElement('div');button.append(text('strong',`${s.icon} ${s.title}`),text('span',`${done}/${group.length} đã luyện · ${good} đúng lần đầu · ${good*10} XP`));$('result-breakdown').append(button);
     });
     const improved=questions.filter(q=>!!state.answers[q.id].first && !firstCorrect(state.answers[q.id]) && state.answers[q.id].review.result==='correct').length;
     $('review-summary').textContent=`${improved} câu đã làm đúng khi ôn lại. Kết quả lần đầu và XP được giữ nguyên.`;
@@ -271,7 +243,7 @@
   }
   function beginReview(){if(conflict||!P.beginReview(source,state))return;showPage('play');renderQuestion();}
   function leaveReview(){state.review=false;}
-  function routeSession(){if(state.view==='results')showResults();else if(state.view==='play'||state.mode==='ordered'){showPage('play');renderQuestion();}else showMenu();}
+  function routeSession(){showExam();}
   function persist(){
     if(!state||!store||conflict)return;
     const status=store.save(state);
@@ -279,11 +251,11 @@
     $('reload-progress').hidden=status!=='conflict';
     if(status==='conflict')freezeSession();
   }
-  function freezeSession(){sound?.stop();conflict=true;pauseAudio();$('reload-progress').hidden=false;document.querySelectorAll('#play button,#play input,#play textarea,#play select,#challenge-grid button').forEach(el=>el.disabled=true);$('play-mode').disabled=true;}
-  function freshSession(){sound?.stop();state=P.create(source,pendingStudent);P.setMode(source,state,pendingMode);state.view=pendingMode==='ordered'?'play':'challenges';$('resume-panel').hidden=true;$('start-form').hidden=false;conflict=false;$('play-mode').disabled=false;routeSession();}
+  function freezeSession(){sound?.stop();conflict=true;pauseAudio();$('reload-progress').hidden=false;document.querySelectorAll('#play button,#play input,#play textarea,#play select').forEach(el=>el.disabled=true);}
+  function freshSession(){sound?.stop();state=P.create(source,pendingStudent);$('resume-panel').hidden=true;$('start-form').hidden=false;conflict=false;routeSession();}
   function welcome(){
-    sound?.stop();persist();pauseAudio();state=null;store=null;pendingStudent=null;conflict=false;passageCollapsed=false;
-    for(const id of ['welcome','challenges','play','results'])$(id).hidden=id!=='welcome';
+    sound?.stop();persist();pauseAudio();state=null;store=null;pendingStudent=null;conflict=false;
+    for(const id of ['welcome','play','results'])$(id).hidden=id!=='welcome';
     $('session-tools').hidden=true;$('resume-panel').hidden=true;$('start-form').hidden=false;
     $('home-button').hidden=true;$('results-button').hidden=true;$('student-label').textContent='';$('xp-total').textContent='✦ 0 XP';
     $('answer-area').replaceChildren();$('explanation-content').replaceChildren();$('transcript-content').replaceChildren();$('save-message').textContent='';$('reload-progress').hidden=true;
@@ -292,28 +264,26 @@
   $('start-form').onsubmit=event=>{
     event.preventDefault();try{pendingStudent=P.identity($('student-name').value,$('student-code').value);}catch(error){$('name-error').textContent=error.message;$('student-name').focus();return;}
     HTDualStore.remember(pendingStudent);
-    pendingMode=document.querySelector('input[name="start-mode"]:checked').value;
     store=HTDualStore.open(source,pendingStudent);
     if(store.status==='empty'||store.status==='blocked'){freshSession();return;}
     $('start-form').hidden=true;$('resume-panel').hidden=false;
     $('resume-button').disabled=store.status!=='found';
-    $('resume-description').textContent=store.status==='found'?`${pendingStudent.name}: đã kiểm tra ${P.summary(source,store.state).checked}/${questions.length} câu · ${P.summary(source,store.state).xp} XP. Tiếp tục đúng chế độ và vị trí đã lưu.`:store.status==='incompatible'?'Đề đã được cập nhật. Bản lưu cũ vẫn được giữ; hãy xác nhận nếu em muốn bắt đầu lại.':'Bản lưu chưa đọc được. Hãy xác nhận nếu em muốn bắt đầu lại; các bài và học sinh khác được giữ nguyên.';
+    $('resume-description').textContent=store.status==='found'?`${pendingStudent.name}: đã kiểm tra ${P.summary(source,store.state).checked}/${questions.length} câu · ${P.summary(source,store.state).xp} XP. Tiếp tục làm toàn bộ đề tại vị trí đã lưu.`:store.status==='incompatible'?'Đề đã được cập nhật. Bản lưu cũ vẫn được giữ; hãy xác nhận nếu em muốn bắt đầu lại.':'Bản lưu chưa đọc được. Hãy xác nhận nếu em muốn bắt đầu lại; các bài và học sinh khác được giữ nguyên.';
   };
-  $('resume-button').onclick=()=>{if(!store.state)return;state=store.state;conflict=false;$('play-mode').disabled=false;$('resume-panel').hidden=true;routeSession();};
+  $('resume-button').onclick=()=>{if(!store.state)return;state=store.state;conflict=false;$('resume-panel').hidden=true;routeSession();};
   const restart=()=>{$('restart-name').textContent=state?.student.name||pendingStudent?.name||'';$('restart-dialog').showModal();};
   $('restart-button').onclick=$('restart-saved').onclick=restart;
   $('confirm-restart').onclick=()=>{
     if(store.reset()==='conflict'){$('restart-dialog').close();$('save-message').textContent='Tiến độ đã thay đổi ở tab khác. Tải lại trang để dùng bản mới nhất.';if(state)freezeSession();else{$('resume-button').disabled=true;$('reload-progress').hidden=false;}return;}
-    if(state){pendingStudent=state.student;pendingMode=state.mode;}freshSession();$('restart-dialog').close();
+    if(state){pendingStudent=state.student;}freshSession();$('restart-dialog').close();
   };
   $('cancel-restart').onclick=()=>$('restart-dialog').close();
   $('change-student').onclick=$('resume-other-student').onclick=welcome;
   $('reload-progress').onclick=()=>location.reload();
-  $('play-mode').onchange=()=>{if(!state||conflict)return;sound?.stop();P.setMode(source,state,$('play-mode').value);state.view='play';showPage('play');renderQuestion();};
   $('jump-question').onchange=()=>{P.go(source,state,$('jump-question').value);renderQuestion();};
-  $('home-button').onclick=$('back-menu').onclick=()=>{if(!state)return;leaveReview();showMenu();};
-  $('results-button').onclick=$('menu-summary').onclick=showResults;
-  $('continue-playing').onclick=()=>{leaveReview();if(state.mode==='ordered'){showPage('play');renderQuestion();}else showMenu();};
+  $('home-button').onclick=()=>{if(!state)return;leaveReview();showExam();};
+  $('results-button').onclick=showResults;
+  $('continue-playing').onclick=()=>{leaveReview();showExam();};
   $('review-wrong').onclick=beginReview;$('check-answer').onclick=checkAnswer;
   $('previous-question').onclick=()=>move(currentIndex()-1);$('next-question').onclick=()=>{if(currentIndex()<activeQuestions().length-1)move(currentIndex()+1);else showResults();};
   window.addEventListener('storage',event=>{if(state&&store&&event.key===store.key&&event.newValue!==store.lastRaw){$('save-message').textContent='Tiến độ đã thay đổi ở tab khác. Tải lại trang để dùng bản mới nhất.';freezeSession();}});
@@ -344,6 +314,6 @@
   audio.addEventListener('error',()=>{$('audio-message').textContent='Không tải được MP3. Em hãy kiểm tra kết nối hoặc báo giáo viên.';});
   $('source-info').textContent=[source.exam.school,source.exam.title].join(' · ')+(source.tracks.length?'':' · Đề gốc chưa có tệp MP3. Em hãy nhờ giáo viên cung cấp bài nghe.');
   const remembered=HTDualStore.profile();if(remembered){$('student-name').value=remembered.name;$('student-code').value=remembered.code;}
-  document.title=`${source.exam.school} · English Quest 8 | HT ENGLISH`;
+  document.title=`${source.exam.school} · English Quest ${source.exam.grade||8} | HT ENGLISH`;
   document.addEventListener('visibilitychange',()=>{if(document.hidden){sound?.stop();pauseAudio();persist();}});
 })();

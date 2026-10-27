@@ -53,7 +53,7 @@ def start(page,name='Học sinh A',code='8A-01',mode='ordered',resume=True):
  page.locator('#student-name').fill(name)
  if not page.locator('#student-code').is_visible():page.locator('.identity-options summary').click()
  page.locator('#student-code').fill(code)
- page.locator(f'input[name="start-mode"][value="{mode}"]').check();page.locator('#start-form button').click()
+ page.locator('#start-form button').click()
  if resume and page.locator('#resume-panel').is_visible():page.locator('#resume-button').click()
 def go(page,qid):page.locator('#jump-question').select_option(qid)
 def fill(page,q,wrong=False):
@@ -90,7 +90,7 @@ try:
   expect(page.locator('#question-dots button')).to_have_count(42)
   page.locator('#check-answer').click();expect(page.locator('#answer-error')).to_contain_text('đầy đủ')
   assert current_record(page)['state']['answers']['q1']['first'] is None
-  passed('welcome/name/mode selection, no writes before starting, 42-question ordered mode and responsive welcome')
+  passed('welcome/name confirmation, no writes before starting, 42-question ordered mode and responsive welcome')
   xp=0;wrongs={'q1','q31','q36'}
   for q in data['questions']:
    expect(page.locator('#question-card')).to_have_attribute('data-question-id',q['id'])
@@ -113,14 +113,14 @@ try:
     assert abs(page.locator('audio').evaluate('e=>e.currentTime/e.duration')-.25)<.02
    if q['id']=='q23':
     page.locator('#written-answer').fill('bản nháp trước khi tải lại')
-    page.locator('#play-mode').select_option('challenge');page.locator('#play-mode').select_option('ordered')
+    page.locator('#results-button').click();page.locator('#continue-playing').click()
     expect(page.locator('#written-answer')).to_have_value('bản nháp trước khi tải lại')
     page.reload();start(page)
     expect(page.locator('#written-answer')).to_have_value('bản nháp trước khi tải lại')
     expect(page.locator('#question-position')).to_have_text('Câu 23 / 42')
    if q['id']=='q36':
     for i in [0,3]:page.locator(f'#word-bank button[data-token-index="{i}"]').click()
-    page.locator('#play-mode').select_option('challenge');page.locator('#play-mode').select_option('ordered')
+    page.locator('#results-button').click();page.locator('#continue-playing').click()
     expect(page.locator('#word-target button')).to_have_count(2)
     page.reload();start(page);expect(page.locator('#word-target button')).to_have_count(2)
     page.locator('#undo-word').click();expect(page.locator('#word-target button')).to_have_count(1)
@@ -133,16 +133,16 @@ try:
    if q.get('track'):expect(page.locator('#transcript-panel')).to_be_visible()
    if q['id'] in ['q1','q13','q31','q36']:
     before=records(page);first=current_record(page)['state']['answers'][q['id']]['first']
-    page.locator('#play-mode').select_option('challenge')
+    page.locator('#results-button').click()
+    page.locator('#continue-playing').click()
     expect(page.locator('#question-card')).to_have_attribute('data-question-id',q['id'])
-    page.locator('#play-mode').select_option('ordered')
     expect(page.locator('#xp-total')).to_have_text(f'✦ {xp} XP')
     assert current_record(page)['state']['answers'][q['id']]['first']==first
    page.locator('#next-question').click()
   expect(page.locator('#results')).to_be_visible()
   for key,value in [('total',42),('xp',390),('correct',39),('wrong',3),('unanswered',0),('pending',0)]:expect(page.locator('#result-'+key)).to_have_text(str(value))
   expect(page.locator('#review-list button')).to_have_count(3)
-  passed('ALL 42 questions played in original order, all four source sections/types, exact contexts/options, real two-track audio/seek/speeds/transcript gating, mode switching and XP exactly once (390 XP)')
+  passed('ALL 42 questions played in original order, all four source sections/types, exact contexts/options, real two-track audio/seek/speeds/transcript gating, navigation and XP exactly once (390 XP)')
   firsts={k:v['first'] for k,v in current_record(page)['state']['answers'].items()}
   page.locator('#review-wrong').click()
   for q in [q for q in data['questions'] if q['id'] in wrongs]:
@@ -153,15 +153,15 @@ try:
    fill(page,q);page.locator('#check-answer').click();expect(page.locator('#xp-total')).to_have_text('✦ 390 XP');page.locator('#next-question').click()
   expect(page.locator('#review-summary')).to_contain_text('3 câu đã làm đúng')
   assert {k:v['first'] for k,v in current_record(page)['state']['answers'].items()}==firsts
-  page.reload();start(page);expect(page.locator('#result-xp')).to_have_text('390')
+  page.reload();start(page);expect(page.locator('#xp-total')).to_have_text('✦ 390 XP')
   passed('typed and builder drafts persist; reload restores ordered and review positions; wrong choice/text/builder review never changes first attempts or XP')
   page.locator('#change-student').click();expect(page.locator('#student-name')).to_have_value('')
-  start(page,'Học sinh B','8A-02','challenge');expect(page.locator('#challenges')).to_be_visible()
-  expect(page.locator('#journey-count')).to_have_text('0/42 câu đã luyện')
-  page.locator('#challenge-grid button').first.click();fill(page,data['questions'][0]);page.locator('#check-answer').click()
+  start(page,'Học sinh B','8A-02','challenge');expect(page.locator('#play')).to_be_visible()
+  expect(page.locator('#question-position')).to_have_text('Câu 1 / 42')
+  fill(page,data['questions'][0]);page.locator('#check-answer').click()
   expect(page.locator('#xp-total')).to_have_text('✦ 10 XP')
-  page.locator('#change-student').click();start(page,'Học sinh A','8A-99','challenge');expect(page.locator('#journey-count')).to_have_text('0/42 câu đã luyện')
-  page.locator('#change-student').click();start(page);expect(page.locator('#result-xp')).to_have_text('390')
+  page.locator('#change-student').click();start(page,'Học sinh A','8A-99','challenge');expect(page.locator('#question-position')).to_have_text('Câu 1 / 42')
+  page.locator('#change-student').click();start(page);expect(page.locator('#xp-total')).to_have_text('✦ 390 XP')
   passed('different learners and same-name learners with distinct codes keep independent progress without listing other profiles')
   page.locator('#change-student').click();start(page,'Học sinh B','8A-02',resume=False)
   page.locator('#restart-saved').click();expect(page.locator('#restart-dialog')).to_be_visible();page.locator('#cancel-restart').click()
@@ -177,8 +177,9 @@ try:
   assert current_record(other)['examId']=='fixture-other-exam';other.close();context.unroute('**/truc-tuan-dual-data.js',other_exam)
   passed('a separate exam identity cannot read or overwrite the original exam progress')
   page.locator('#change-student').click();start(page)
-  tab=page_for(context);start(tab);tab.locator('#play-mode').select_option('ordered')
-  expect(page.locator('#reload-progress')).to_be_visible();expect(page.locator('#play-mode')).to_be_disabled()
+  page.locator('#home-button').click()
+  tab=page_for(context);start(tab);go(tab,'q2')
+  expect(page.locator('#reload-progress')).to_be_visible();expect(page.locator('#jump-question')).to_be_disabled()
   assert current_record(tab)['state']['answers']['q1']['first']==firsts['q1']
   with page.expect_navigation(wait_until='load'):
    page.locator('#reload-progress').click()
@@ -194,15 +195,15 @@ try:
      if width in [390,1280]:page.screenshot(path=str(OUT/f'reading-{width}.png'),full_page=True)
   passed('all sections responsive at 360/390/768/820/1280px; reading remains available while answering')
   mobile=browser.new_context(viewport={'width':390,'height':844},is_mobile=True,has_touch=True,reduced_motion='reduce');mobile.route('**/*',route)
-  touch=page_for(mobile);start(touch,'Học sinh cảm ứng','touch','challenge');touch.locator('#challenge-grid button[data-section="writing"]').tap()
+  touch=page_for(mobile);start(touch,'Học sinh cảm ứng','touch','challenge');go(touch,'q36')
   q=data['questions'][35]
   for i in order(q):touch.locator(f'#word-bank button[data-token-index="{i}"]').tap()
   touch.locator('#check-answer').tap();expect(touch.locator('#xp-total')).to_have_text('✦ 10 XP')
-  go(touch,'q31');touch.locator('#toggle-passage').tap();expect(touch.locator('#passage-content')).to_be_hidden()
+  go(touch,'q31');expect(touch.locator('#toggle-passage')).to_have_count(0);expect(touch.locator('#passage-content')).to_be_visible()
   touch.locator('#written-answer').fill('nháp đọc hiểu');touch.reload();start(touch,'Học sinh cảm ứng','touch','challenge')
   expect(touch.locator('#written-answer')).to_have_value('nháp đọc hiểu')
   expect(touch.locator('#passage-content')).to_be_visible();mobile.close()
-  passed('real touch controls select a writing challenge, arrange all source tokens and check the answer')
+  passed('real touch controls open a writing question, arrange all source tokens and check the answer')
   # Corrupt/old-schema records stay intact until the learner confirms a reset.
   page.evaluate('localStorage.setItem(HTDualStore.keyFor(HT_PRACTICE_DATA,{name:"Hỏng dữ liệu",code:""}),"{broken")')
   page.reload();start(page,'Hỏng dữ liệu','',resume=False);expect(page.locator('#resume-button')).to_be_disabled()

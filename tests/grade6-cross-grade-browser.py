@@ -11,7 +11,7 @@ server=http.server.ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Handler
 paths=['grade-6/De_thi_GHK_1/3_THCS_Truc_Tuan/practice-dual-mode.html','grade-8/De_thi_GHK1/1_THCS Truc Tuan/truc-tuan-dual-mode.html'];checks=[];errors=[]
 def ready(page):expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','ready')
 def start(page):
- page.locator('input[name=start-mode][value=ordered]').check();page.locator('#start-form button').click()
+ page.locator('#start-form button').click()
  if page.locator('#resume-panel').is_visible():page.locator('#resume-button').click()
 def check(page):
  q=page.evaluate('HT_PRACTICE_DATA.questions[0]');page.locator(f'#answer-area input[value="{q["accepted"][0]}"]').check();page.locator('#check-answer').click();expect(page.locator('#xp-total')).to_have_text('✦ 10 XP')

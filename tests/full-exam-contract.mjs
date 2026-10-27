@@ -1,0 +1,2 @@
+// Explicit UI/runtime changes allowed by the full-exam upgrade. Source data stays protected.
+export const fullExamRuntime=new Set(['grade-8/De_thi_GHK1/shared-practice/dual-mode-engine.js', 'grade-8/De_thi_GHK1/shared-practice/dual-mode.css', 'grade-8/De_thi_GHK1/shared-practice/dual-progress.js', 'grade-8/De_thi_GHK1/shared-practice/engine.js', 'grade-8/De_thi_GHK1/shared-practice/game.css', 'grade-8/De_thi_GHK1/1_THCS Truc Tuan/truc-tuan-game/game.js', 'grade-8/De_thi_GHK1/1_THCS Truc Tuan/truc-tuan-game/game.css']);

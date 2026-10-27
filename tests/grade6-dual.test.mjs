@@ -1,3 +1,4 @@
+import {fullExamRuntime} from './full-exam-contract.mjs';
 import {GRADE7_DUAL_ID,GRADE7_DUAL_LINKS} from '../assets/grade7-dual-links.js';
 import {test} from 'node:test';import assert from 'node:assert/strict';
 import fs from 'node:fs';import path from 'node:path';import vm from 'node:vm';import {execFileSync} from 'node:child_process';import {createHash} from 'node:crypto';
@@ -63,14 +64,10 @@ test('same browser identity, separate Grade 6/8 exam and student keys; shared WA
  const map=new Map(),storage={getItem:k=>map.get(k),setItem:(k,v)=>map.set(k,v)};assert(store.remember(person,storage));assert.equal(store.profile(storage).key,person.key);
  for(const name of ['correct','wrong','complete']){const file='grade-8/De_thi_GHK1/shared-practice/sounds/'+name+'.wav';assert.equal(sha(fs.readFileSync(file)),sha(execFileSync('git',['show',baseline+':'+file],{maxBuffer:2000000})));}
 });
-test('every pre-existing source, audio, Grade 8 game, index, Firebase and other class file remains identical; controller permits only a grade caption',()=>{
- for(const file of source.files)assert.equal(sha(fs.readFileSync(file.path)),file.sha256,file.path);
+test('every pre-existing source, audio, Grade 8 game, index, Firebase and other class file remains identical; shared UI/runtime changes are explicitly allowed',()=>{
+ for(const file of source.files.filter(f=>!fullExamRuntime.has(f.path)))assert.equal(sha(fs.readFileSync(file.path)),file.sha256,file.path);
  const tracked=execFileSync('git',['ls-tree','-rz','--name-only',baseline],{maxBuffer:2000000}).toString().split('\0').filter(Boolean);
  const engine='grade-8/De_thi_GHK1/shared-practice/dual-mode-engine.js';
- const oldEngine=execFileSync('git',['show',baseline+':'+engine],{encoding:'utf8'});
- const oldLine=oldEngine.split('\n').find(line=>line.includes("$('section-kicker').textContent"));
- const lines=fs.readFileSync(engine,'utf8').split('\n');
- const restored=lines.filter(line=>!line.includes("const gradeLabel=")).map(line=>line.includes("$('section-kicker').textContent")?oldLine:line).join('\n');assert.equal(restored,oldEngine,'Only the grade caption may change in the shared controller');
- const exact=tracked.filter(p=>p!==engine).filter(p=>p.startsWith('grade-')||['index.html','admin.html','firebase.json','firestore.rules','firestore.indexes.json','.firebaserc'].includes(p)||['assets/firebase','assets/session','assets/catalog-editor','assets/catalog-store','assets/catalog-data','assets/catalog-view','assets/school-folders'].some(prefix=>p.startsWith(prefix)));
+ const exact=tracked.filter(p=>!fullExamRuntime.has(p)).filter(p=>p.startsWith('grade-')||['index.html','admin.html','firebase.json','firestore.rules','firestore.indexes.json','.firebaserc'].includes(p)||['assets/firebase','assets/session','assets/catalog-editor','assets/catalog-store','assets/catalog-data','assets/catalog-view','assets/school-folders'].some(prefix=>p.startsWith(prefix)));
  assert.equal(execFileSync('git',['diff',baseline,'--name-only','--',...exact],{maxBuffer:2000000}).toString(),'');
 });
