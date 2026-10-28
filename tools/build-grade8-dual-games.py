@@ -292,6 +292,8 @@ def main():
    data=finish(build(row,page,dom));folder=(ROOT/row['href']).parent
    emit(folder/'practice-dual-data.js','// Generated from original exam by tools/build-grade8-dual-games.py.\nwindow.HT_PRACTICE_DATA = '+json.dumps(data,ensure_ascii=False,indent=2)+';\n',args.verify)
    launcher=template.replace('THCS Trực Tuấn',row['school']).replace('truc-tuan-dual-data.js','practice-dual-data.js').replace('  <script defer src="truc-tuan-dual-support.js"></script>\n','').replace('1.%20THCS%20Truc%20Tuan.html',html.escape(Path(row['href']).name,quote=True)).replace('42',str(len(data['questions'])))
+   if row['folder']==3:
+    launcher=launcher.replace('content="width=device-width,initial-scale=1"','content="width=device-width,initial-scale=1,viewport-fit=cover,interactive-widget=resizes-content"').replace('<html lang="vi" data-practice="dual-mode">','<html lang="vi" data-practice="dual-mode" data-minimal-ui="trung-dong-1">').replace('</head>','  <link rel="stylesheet" href="minimal-ui.css?v=20261028">\n  <script defer src="minimal-ui.js?v=20261028"></script>\n</head>')
    emit(folder/'practice-dual-mode.html',launcher,args.verify)
    inventory.append({'school':row['school'],'examNumber':row['number'],'source':row['href'],'game':(folder/'practice-dual-mode.html').relative_to(ROOT).as_posix(),'questions':len(data['questions']),'autoGrade':sum(q['autoGrade'] for q in data['questions']),'maxXP':data['maxXP'],'tracks':[t['src'] for t in data['tracks']],'issues':data['issues'],'sourceSha256':data['exam']['sourceSha256']})
    print('PASS',row['school'],row['number'],len(data['questions']),'questions;',data['maxXP'],'XP;',len(data['tracks']),'audio')

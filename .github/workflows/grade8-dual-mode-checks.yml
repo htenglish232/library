@@ -18,6 +18,8 @@ on:
       - 'tools/grade6-*'
       - 'docs/grade6-dual-mode/**'
       - 'assets/grade8-dual-links.js'
+      - 'tests/trung-dong-*'
+      - 'tests/practice_browser_controls.py'
       - 'tests/full-exam-*'
       - 'tests/legacy-progress-fixtures.mjs'
       - 'tests/fixtures/legacy-dual-progress.js'
@@ -76,7 +78,9 @@ jobs:
       - run: python tests/grade6-all-dual-browser.py
       - run: python tests/grade6-catalog-browser.py
       - run: python tests/grade6-cross-grade-browser.py
-      - run: node --test tests/full-exam-migration.test.mjs
+      - run: node --test tests/full-exam-migration.test.mjs tests/trung-dong-minimal.test.mjs
+      - run: python tests/trung-dong-minimal-browser.py
+      - run: python tests/trung-dong-unaffected-browser.py
       - run: python tests/full-exam-migration-browser.py
       - run: python tests/full-exam-legacy-browser.py
       - run: python tests/dual-mode-wav-browser.py
@@ -105,6 +109,7 @@ jobs:
             /tmp/grade6-all-dual-browser.json
             /tmp/grade6-cross-grade-browser.json
             /tmp/ht-grade6-catalog
+            /tmp/trung-dong-minimal
             /tmp/full-exam-migration-browser.json
             /tmp/full-exam-legacy-browser.json
             /tmp/ht-shared-wav-tests
