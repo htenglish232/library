@@ -1,3 +1,4 @@
+from practice_browser_controls import control
 """Play every source question through the shared dual controller under /library/."""
 from pathlib import Path
 import argparse,functools,http.server,json,os,re,threading
@@ -40,6 +41,7 @@ try:
   saved={};total=0
   for idx,file in enumerate(files):
    url=BASE+'library/'+quote(file.relative_to(ROOT).as_posix());page.goto(url)
+   minimal=page.locator('html[data-minimal-ui]').count()>0
    data=page.evaluate('HT_PRACTICE_DATA');qs=data['questions'];assert page.evaluate('HTPracticeModel.validate(HT_PRACTICE_DATA)')
    if idx==0:
     page.locator('#student-name').fill('Học sinh cùng tên');page.locator('.identity-options summary').click();page.locator('#student-code').fill('8A-01')
@@ -48,12 +50,12 @@ try:
    page.locator('#start-form button').click();expect(page.locator('#play')).to_be_visible()
    expect(page.locator('#question-dots button')).to_have_count(len(qs));assert page.locator('.mode-options,#play-mode,#challenges,#section-tabs,#toggle-passage').count()==0;xp=0;pending=0;played_tracks=set()
    for q in qs:
-    page.locator('#jump-question').select_option(q['id']);expect(page.locator('#question-card')).to_have_attribute('data-question-id',q['id'])
+    control(page,'#jump-question').select_option(q['id']);expect(page.locator('#question-card')).to_have_attribute('data-question-id',q['id'])
     assert page.locator('#prompt').inner_html()==page.evaluate('(html)=>{const d=document.createElement("div");d.innerHTML=html;return d.innerHTML;}',q['promptHtml']),(file,q['id'])
     assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),(file,q['id'],'mobile overflow')
-    if q.get('context') is not None:assert page.locator('#passage-content').inner_html()==data['contexts'][q['context']]
-    if q.get('contextHtml'):assert page.locator('#passage-content').inner_html()==q['contextHtml']
-    if page.locator('#passage-content').text_content().strip() and (q.get('contextHtml') or (data['contexts'][q['context']] if q.get('context') is not None else '')):expect(page.locator('#passage-content')).to_be_visible()
+    if not minimal and q.get('context') is not None:assert page.locator('#passage-content').inner_html()==data['contexts'][q['context']]
+    if not minimal and q.get('contextHtml'):assert page.locator('#passage-content').inner_html()==q['contextHtml']
+    if not minimal and page.locator('#passage-content').text_content().strip() and (q.get('contextHtml') or (data['contexts'][q['context']] if q.get('context') is not None else '')):expect(page.locator('#passage-content')).to_be_visible()
     if q.get('track') and q['track'] not in played_tracks:
      page.wait_for_function('document.querySelector("audio").readyState>=1')
      track=next(t for t in data['tracks'] if t['id']==q['track']);assert unquote(page.locator('audio').evaluate('e=>new URL(e.currentSrc).pathname')).endswith(track['src'])
@@ -75,7 +77,7 @@ try:
      if q['autoGrade']:assert indices is not None,('Unreachable source answer',file,q['id'])
      for i in indices if indices is not None else range(len(q['tokens'])):page.locator(f'[data-token-index="{i}"]').click()
     # Draft and cursor survive results/continue navigation.
-    page.locator('#results-button').click();page.locator('#continue-playing').click()
+    control(page,'#results-button').click();page.locator('#continue-playing').click()
     page.locator('#check-answer').click();expect(page.locator('#feedback')).to_be_visible()
     if q['autoGrade']:xp+=10
     else:pending+=1
@@ -86,17 +88,17 @@ try:
      track=next(t for t in data['tracks'] if t['id']==q['track'])
      if track.get('transcriptHtml'):expect(page.locator('#transcript-panel')).to_be_visible()
     total+=1
-   page.locator('#results-button').click();expect(page.locator('#result-total')).to_have_text(str(len(qs)));expect(page.locator('#result-xp')).to_have_text(str(xp));expect(page.locator('#result-pending')).to_have_text(str(pending))
+   control(page,'#results-button').click();expect(page.locator('#result-total')).to_have_text(str(len(qs)));expect(page.locator('#result-xp')).to_have_text(str(xp));expect(page.locator('#result-pending')).to_have_text(str(pending))
    key=page.evaluate('HTDualStore.keyFor(HT_PRACTICE_DATA,{name:"Học sinh cùng tên",code:"8A-01"})');raw=page.evaluate('(key)=>localStorage.getItem(key)',key);saved[key]=raw
    page.reload();expect(page.locator('#student-code')).to_have_value('8A-01');page.locator('#start-form button').click();page.locator('#resume-button').click();expect(page.locator('#xp-total')).to_have_text(f'✦ {xp} XP')
    expect(page.locator('#question-card')).to_have_attribute('data-question-id',qs[-1]['id'])
    # Same name, different code is an independent student, then return to A.
-   page.locator('#change-student').click();expect(page.locator('#student-name')).to_have_value('');page.locator('#student-name').fill('Học sinh cùng tên')
+   control(page,'#change-student').click();expect(page.locator('#student-name')).to_have_value('');page.locator('#student-name').fill('Học sinh cùng tên')
    if not page.locator('#student-code').is_visible():page.locator('.identity-options summary').click()
    page.locator('#student-code').fill('8A-02');page.locator('#start-form button').click();expect(page.locator('#xp-total')).to_have_text('✦ 0 XP')
-   page.locator('#restart-button').click();page.locator('#cancel-restart').click();page.locator('#restart-button').click();page.locator('#confirm-restart').click();expect(page.locator('#xp-total')).to_have_text('✦ 0 XP')
+   control(page,'#restart-button').click();page.locator('#cancel-restart').click();control(page,'#restart-button').click();page.locator('#confirm-restart').click();expect(page.locator('#xp-total')).to_have_text('✦ 0 XP')
    assert page.evaluate('(key)=>JSON.parse(localStorage.getItem(key)).state.answers',key)==json.loads(raw)['state']['answers']
-   page.locator('#change-student').click();page.locator('#student-name').fill('Học sinh cùng tên');page.locator('#student-code').fill('8A-01');page.locator('#start-form button').click();page.locator('#resume-button').click()
+   control(page,'#change-student').click();page.locator('#student-name').fill('Học sinh cùng tên');page.locator('#student-code').fill('8A-01');page.locator('#start-form button').click();page.locator('#resume-button').click()
    for prior,record in saved.items():assert page.evaluate('(key)=>JSON.parse(localStorage.getItem(key)).state.answers',prior)==json.loads(record)['state']['answers']
    report.append({'school':data['exam']['school'],'exam':data['exam'].get('number',1),'questions':len(qs),'xp':xp,'pending':pending,'audio':len(played_tracks),'result':'PASS'})
    print('PASS',report[-1],flush=True)

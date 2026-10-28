@@ -1,3 +1,4 @@
+from practice_browser_controls import control
 """Real shared WAV decoding/playback: all Grade 6/7/8 games, fallback and Listening.
 Phone testing uses Chromium touch emulation, not physical devices/Safari.
 """
@@ -33,7 +34,7 @@ SPY='''(()=>{
 })();'''
 checks=[];errors=[];bad=[];responses=[]
 def passed(s):checks.append(s);print('PASS '+s,flush=True)
-def ready(page):expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','ready');page.wait_for_timeout(100)
+def ready(page):expect(control(page,'#sound-toggle')).to_have_attribute('data-sound-state','ready');page.wait_for_timeout(100)
 def count(page):return page.evaluate('wavLog.wavs.length')
 def expect_wavs(page,kinds):
  page.wait_for_function('(n)=>wavLog.wavs.length===n',arg=len(kinds));log=page.evaluate('wavLog');durations={'correct':1.06093,'wrong':1.73887,'complete':3.54224}
@@ -49,12 +50,12 @@ try:
     page.goto(BASE+'library/'+quote(row['html']));ready(page);assert page.evaluate('wavLog.contexts')==0
     data=page.evaluate('HT_PRACTICE_DATA');start(page,mobile);assert count(page)==0
     answer_choice(page,data['questions'][0],False,mobile);expect_wavs(page,['correct']);assert abs(page.evaluate('wavLog.gains[0]')-.7)<1e-6
-    page.locator('#jump-question').select_option(data['questions'][1]['id']);answer_choice(page,data['questions'][1],True,mobile);expect_wavs(page,['correct','wrong']);expect(page.locator('#xp-total')).to_have_text('✦ 10 XP')
-    page.locator('#jump-question').select_option(page.locator('#question-card').get_attribute('data-question-id'));page.evaluate('document.querySelector("#check-answer").click()');assert count(page)==2
-    page.locator('#sound-toggle').click();expect(page.locator('#sound-toggle')).to_have_text('🔇 Âm thanh: Tắt');page.reload();ready(page);expect(page.locator('#sound-toggle')).to_have_text('🔇 Âm thanh: Tắt');start(page,mobile);assert count(page)==0;expect(page.locator('#xp-total')).to_have_text('✦ 10 XP')
-    page.locator('#jump-question').select_option(data['questions'][2]['id']);answer_choice(page,data['questions'][2],False,mobile);assert count(page)==0;expect(page.locator('#xp-total')).to_have_text('✦ 20 XP');page.locator('#sound-toggle').click()
+    control(page,'#jump-question').select_option(data['questions'][1]['id']);answer_choice(page,data['questions'][1],True,mobile);expect_wavs(page,['correct','wrong']);expect(page.locator('#xp-total')).to_have_text('✦ 10 XP')
+    control(page,'#jump-question').select_option(page.locator('#question-card').get_attribute('data-question-id'));page.evaluate('document.querySelector("#check-answer").click()');assert count(page)==2
+    control(page,'#sound-toggle').click();expect(control(page,'#sound-toggle')).to_have_text('🔇 Âm thanh: Tắt');page.reload();ready(page);expect(control(page,'#sound-toggle')).to_have_text('🔇 Âm thanh: Tắt');start(page,mobile);assert count(page)==0;expect(page.locator('#xp-total')).to_have_text('✦ 10 XP')
+    control(page,'#jump-question').select_option(data['questions'][2]['id']);answer_choice(page,data['questions'][2],False,mobile);assert count(page)==0;expect(page.locator('#xp-total')).to_have_text('✦ 20 XP');control(page,'#sound-toggle').click()
     last=seed_completion(page);page.reload();ready(page);start(page,mobile);assert count(page)==0;answer_choice(page,last,False,mobile);expect_wavs(page,['correct','complete']);log=page.evaluate('wavLog');assert log['wavs'][1]['start']>=log['wavs'][0]['start']+log['wavs'][0]['duration']+.079
-    xp=page.locator('#xp-total').text_content();page.locator('#results-button').click();assert count(page)==2;page.reload();ready(page);start(page,mobile);assert count(page)==0;expect(page.locator('#xp-total')).to_have_text(xp)
+    xp=page.locator('#xp-total').text_content();control(page,'#results-button').click();assert count(page)==2;page.reload();ready(page);start(page,mobile);assert count(page)==0;expect(page.locator('#xp-total')).to_have_text(xp)
    c.close();passed(f'{len(rows)}/{len(rows)} {"mobile touch emulation" if mobile else "desktop"}: native WAV correct/wrong/completion, 70% volume, quiet restore/review/navigation, saved mute, unchanged XP, /library/ URLs')
   # Independent real listening + adjustable volume API without adding UI.
   c=b.new_context();c.add_init_script(SPY);page=c.new_page();page.goto(BASE+'library/'+quote(TT['game']));ready(page);data=page.evaluate('HT_PRACTICE_DATA');start(page);page.wait_for_function('document.querySelector("audio").readyState>=1');page.locator('#audio-toggle').click();page.wait_for_function('!document.querySelector("audio").paused');before=page.locator('audio').evaluate('e=>[e.currentSrc,e.volume,e.playbackRate,e.currentTime]');methods=page.evaluate('wavLog.media.slice()')
@@ -62,7 +63,7 @@ try:
   page.evaluate('''async()=>{const m=await import('../shared-practice/dual-sound.js?v=20261026-sound-fix');window.testSound=m.createGameSound();testSound.setVolume(.35);window.reloadedSound=m.createGameSound();}''');assert page.evaluate('reloadedSound.volume')==.35
   # A real trusted button gesture invokes exported controller.
   page.evaluate('''()=>{const button=document.createElement('button');button.id='test-wav';button.textContent='Test volume';button.onclick=e=>testSound.playFeedback('wrong',{event:e});document.body.append(button);}''');page.locator('#test-wav').click();page.wait_for_function('wavLog.wavs.length===2');assert abs(page.evaluate('wavLog.gains.at(-1)')-.35)<1e-6
-  page.locator('#sound-toggle').click();assert not page.locator('audio').evaluate('e=>e.paused');c.close();passed('Listening remains playing with unchanged media properties/method calls; ducked WAV gain; volume API persists separately')
+  control(page,'#sound-toggle').click();assert not page.locator('audio').evaluate('e=>e.paused');c.close();passed('Listening remains playing with unchanged media properties/method calls; ducked WAV gain; volume API persists separately')
   # Actual network/decode failures fallback; no delayed replay and mute cancels waits.
   for failure in ['404','corrupt','slow','decode-reject']:
    c=b.new_context();c.add_init_script(SPY);held=[]

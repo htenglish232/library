@@ -1,3 +1,4 @@
+from practice_browser_controls import control
 """Browser regression: real cached old JS, visible bootstrap, delayed/404 import,
 retry with currentScript=null, and every on-disk Grade 8 dual launcher. No production IO.
 Deliberately corrupt WAV bytes so the existing oscillator spy checks FALLBACK;
@@ -55,7 +56,7 @@ def start(page,touch=False):
  else:page.locator('#start-form button').click()
  if page.locator('#resume-panel').is_visible():page.locator('#resume-button').click()
 def check(page,q,wrong=False,touch=False):
- page.locator('#jump-question').select_option(q['id'])
+ control(page,'#jump-question').select_option(q['id'])
  value=next(o['value'] for o in q['options'] if o['value'] not in q['accepted']) if wrong else q['accepted'][0]
  if touch:page.locator(f'#answer-area input[value="{value}"]').tap();page.locator('#check-answer').tap()
  else:page.locator(f'#answer-area input[value="{value}"]').check();page.locator('#check-answer').click()
@@ -64,35 +65,35 @@ try:
   browser=p.chromium.launch(executable_path=os.environ.get('CHROMIUM_PATH') or shutil.which('chromium'),args=['--no-sandbox'])
   # Real HTTP cache: DO NOT register Playwright routes (routes disable caching).
   context=browser.new_context();page,record=page_for(context);url=BASE+quote(TT['html'])
-  phase['value']='old';page.goto(url+'?html=old');assert page.locator('#sound-toggle').count()==0;count=len(engine_requests)
-  phase['value']='main';page.goto(url+'?html=fresh-main');assert page.locator('#sound-toggle').count()==0;assert len(engine_requests)==count
+  phase['value']='old';page.goto(url+'?html=old');assert control(page,'#sound-toggle').count()==0;count=len(engine_requests)
+  phase['value']='main';page.goto(url+'?html=fresh-main');assert control(page,'#sound-toggle').count()==0;assert len(engine_requests)==count
   observations['staleEngine']={'oldButtonCount':0,'freshMainHtmlButtonCount':0,'newEngineRequests':0}
-  phase['value']='fixed';page.goto(url+'?html=fixed');expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','ready');expect(page.locator('#sound-toggle')).to_have_count(1)
+  phase['value']='fixed';page.goto(url+'?html=fixed');expect(control(page,'#sound-toggle')).to_have_attribute('data-sound-state','ready');expect(control(page,'#sound-toggle')).to_have_count(1)
   assert len(engine_requests)==count+1 and '?v=20261026-sound-fix' in engine_requests[-1]['url'];clean(record);context.close()
   passed('reproduced missing toggle with a genuinely cached pre-sound engine; fixed HTML fetches the versioned engine and restores one ready toggle')
   # Every real file was discovered on disk, not assumed from an old inventory.
   for touch in [False,True]:
    context=browser.new_context(viewport={'width':390 if touch else 1280,'height':844},has_touch=touch,is_mobile=touch,reduced_motion='reduce');context.add_init_script(spy);page,record=page_for(context)
    for row in rows:
-    assert row['staticSoundButtons']==1,row;page.goto(BASE+quote(row['html']));expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','ready');expect(page.locator('#sound-toggle')).to_have_count(1)
+    assert row['staticSoundButtons']==1,row;page.goto(BASE+quote(row['html']));expect(control(page,'#sound-toggle')).to_have_attribute('data-sound-state','ready');expect(control(page,'#sound-toggle')).to_have_count(1)
     assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),row
     data=page.evaluate('HT_PRACTICE_DATA');start(page,touch);check(page,data['questions'][0],touch=touch);page.wait_for_function('soundLog.notes.length===2')
     check(page,data['questions'][1],wrong=True,touch=touch);page.wait_for_function('soundLog.notes.length===4')
     notes=page.evaluate('soundLog.notes');assert notes[0]['frequency']<notes[1]['frequency'] and notes[2]['frequency']>notes[3]['frequency'];expect(page.locator('#xp-total')).to_have_text('✦ 10 XP')
-    page.locator('#jump-question').select_option(page.locator('#question-card').get_attribute('data-question-id'));assert len(page.evaluate('soundLog.notes'))==4
-    page.locator('#sound-toggle').click();expect(page.locator('#sound-toggle')).to_have_text('🔇 Âm thanh: Tắt')
-    page.reload();expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','ready');expect(page.locator('#sound-toggle')).to_have_text('🔇 Âm thanh: Tắt');assert page.evaluate('soundLog.notes.length')==0
-    start(page,touch);expect(page.locator('#xp-total')).to_have_text('✦ 10 XP');page.locator('#sound-toggle').click();expect(page.locator('#sound-toggle')).to_have_text('🔊 Âm thanh: Bật')
+    control(page,'#jump-question').select_option(page.locator('#question-card').get_attribute('data-question-id'));assert len(page.evaluate('soundLog.notes'))==4
+    control(page,'#sound-toggle').click();expect(control(page,'#sound-toggle')).to_have_text('🔇 Âm thanh: Tắt')
+    page.reload();expect(control(page,'#sound-toggle')).to_have_attribute('data-sound-state','ready');expect(control(page,'#sound-toggle')).to_have_text('🔇 Âm thanh: Tắt');assert page.evaluate('soundLog.notes.length')==0
+    start(page,touch);expect(page.locator('#xp-total')).to_have_text('✦ 10 XP');control(page,'#sound-toggle').click();expect(control(page,'#sound-toggle')).to_have_text('🔊 Âm thanh: Bật')
    clean(record);context.close();passed(f'{len(rows)}/{len(rows)} real games on '+('mobile touch' if touch else 'desktop')+': one ready toggle, correct/wrong sounds, navigation stays quiet, mute persists, resume keeps XP, no Console/404')
   # Static button is already visible even if the controller has not arrived.
   context=browser.new_context();held=[];context.route('**/dual-mode-engine.js*',lambda r:held.append(r));page,record=page_for(context)
-  page.goto(url,wait_until='commit');expect(page.locator('#sound-toggle')).to_be_visible();expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','loading');page.wait_for_function('!!window.HTDualStore');assert held
-  held.pop().fulfill(content_type='text/javascript',body=(ROOT/shared).read_text());expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','ready');expect(page.locator('#sound-toggle')).to_have_count(1);clean(record);context.close()
+  page.goto(url,wait_until='commit');expect(control(page,'#sound-toggle')).to_be_visible();expect(control(page,'#sound-toggle')).to_have_attribute('data-sound-state','loading');page.wait_for_function('!!window.HTDualStore');assert held
+  held.pop().fulfill(content_type='text/javascript',body=(ROOT/shared).read_text());expect(control(page,'#sound-toggle')).to_have_attribute('data-sound-state','ready');expect(control(page,'#sound-toggle')).to_have_count(1);clean(record);context.close()
   passed('static toggle is visible before the shared controller downloads; controller reuses it without a duplicate')
   # Slow sound module does not hide the button or hold up the exam/XP.
   context=browser.new_context();context.add_init_script(spy);held=[];context.route('**/dual-sound.js*',lambda r:held.append(r));page,record=page_for(context)
-  page.goto(url,wait_until='domcontentloaded');expect(page.locator('#sound-toggle')).to_be_visible();expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','loading');start(page);data=page.evaluate('HT_PRACTICE_DATA');check(page,data['questions'][0]);expect(page.locator('#xp-total')).to_have_text('✦ 10 XP');assert page.evaluate('soundLog.notes.length')==0
-  assert held;held.pop().fulfill(content_type='text/javascript',body=(ROOT/'grade-8/De_thi_GHK1/shared-practice/dual-sound.js').read_text());expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','ready');assert page.evaluate('soundLog.notes.length')==0
+  page.goto(url,wait_until='domcontentloaded');expect(control(page,'#sound-toggle')).to_be_visible();expect(control(page,'#sound-toggle')).to_have_attribute('data-sound-state','loading');start(page);data=page.evaluate('HT_PRACTICE_DATA');check(page,data['questions'][0]);expect(page.locator('#xp-total')).to_have_text('✦ 10 XP');assert page.evaluate('soundLog.notes.length')==0
+  assert held;held.pop().fulfill(content_type='text/javascript',body=(ROOT/'grade-8/De_thi_GHK1/shared-practice/dual-sound.js').read_text());expect(control(page,'#sound-toggle')).to_have_attribute('data-sound-state','ready');assert page.evaluate('soundLog.notes.length')==0
   check(page,data['questions'][1]);page.wait_for_function('soundLog.notes.length===2');clean(record);context.close()
   passed('delayed import leaves a visible busy toggle and working XP; readiness never replays the earlier answer')
   # A real failed module request has an explicit state and can be retried later,
@@ -101,8 +102,8 @@ try:
   def fail_once(route):
    if 'retry=' in route.request.url:route.continue_()
    else:route.fulfill(status=404,content_type='text/javascript',body='Module unavailable in fault-injection fixture')
-  context.route('**/dual-sound.js*',fail_once);page,record=page_for(context);page.goto(url);expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','error');expect(page.locator('#sound-toggle')).to_be_visible();expect(page.locator('#sound-toggle')).to_have_text('⚠ Âm thanh: Lỗi tải')
-  start(page);data=page.evaluate('HT_PRACTICE_DATA');check(page,data['questions'][0]);expect(page.locator('#xp-total')).to_have_text('✦ 10 XP');assert page.evaluate('document.currentScript===null');page.locator('#sound-toggle').click();expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','ready');assert page.evaluate('soundLog.notes.length')==0
+  context.route('**/dual-sound.js*',fail_once);page,record=page_for(context);page.goto(url);expect(control(page,'#sound-toggle')).to_have_attribute('data-sound-state','error');expect(control(page,'#sound-toggle')).to_be_visible();expect(control(page,'#sound-toggle')).to_have_text('⚠ Âm thanh: Lỗi tải')
+  start(page);data=page.evaluate('HT_PRACTICE_DATA');check(page,data['questions'][0]);expect(page.locator('#xp-total')).to_have_text('✦ 10 XP');assert page.evaluate('document.currentScript===null');control(page,'#sound-toggle').click();expect(control(page,'#sound-toggle')).to_have_attribute('data-sound-state','ready');assert page.evaluate('soundLog.notes.length')==0
   check(page,data['questions'][1]);page.wait_for_function('soundLog.notes.length===2');clean(record,expected404=True);context.close()
   passed('injected 404 shows an error/retry toggle, grading remains usable, retry captures the right URL with currentScript null and emits no late answer')
   # A late response after the timeout cannot silently replace the error state.
@@ -110,18 +111,18 @@ try:
   def slow_first(route):
    if 'retry=' in route.request.url:route.continue_()
    else:held.append(route)
-  context.route('**/dual-sound.js*',slow_first);page,record=page_for(context);page.clock.install();page.goto(url,wait_until='domcontentloaded');expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','loading')
-  page.clock.fast_forward(10001);expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','error');assert held
-  held.pop().fulfill(content_type='text/javascript',body=(ROOT/'grade-8/De_thi_GHK1/shared-practice/dual-sound.js').read_text());page.wait_for_load_state('networkidle');expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','error')
-  page.locator('#sound-toggle').click();expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','ready');clean(record);context.close()
+  context.route('**/dual-sound.js*',slow_first);page,record=page_for(context);page.clock.install();page.goto(url,wait_until='domcontentloaded');expect(control(page,'#sound-toggle')).to_have_attribute('data-sound-state','loading')
+  page.clock.fast_forward(10001);expect(control(page,'#sound-toggle')).to_have_attribute('data-sound-state','error');assert held
+  held.pop().fulfill(content_type='text/javascript',body=(ROOT/'grade-8/De_thi_GHK1/shared-practice/dual-sound.js').read_text());page.wait_for_load_state('networkidle');expect(control(page,'#sound-toggle')).to_have_attribute('data-sound-state','error')
+  control(page,'#sound-toggle').click();expect(control(page,'#sound-toggle')).to_have_attribute('data-sound-state','ready');clean(record);context.close()
   passed('timeout leaves a visible retry state; a late import cannot overwrite it; explicit retry succeeds')
   # Also support a null currentScript at initialization (module-style execution).
   context=browser.new_context();context.add_init_script(spy)
   def as_module(route):
    body=(ROOT/TT['html']).read_text().replace('<script defer src="../shared-practice/dual-mode-engine.js','<script type="module" src="../shared-practice/dual-mode-engine.js');route.fulfill(content_type='text/html',body=body)
-  context.route('**/truc-tuan-dual-mode.html',as_module);page,record=page_for(context);page.goto(url);expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','ready');start(page);check(page,page.evaluate('HT_PRACTICE_DATA.questions[0]'));page.wait_for_function('soundLog.notes.length===2');clean(record);context.close()
+  context.route('**/truc-tuan-dual-mode.html',as_module);page,record=page_for(context);page.goto(url);expect(control(page,'#sound-toggle')).to_have_attribute('data-sound-state','ready');start(page);check(page,page.evaluate('HT_PRACTICE_DATA.questions[0]'));page.wait_for_function('soundLog.notes.length===2');clean(record);context.close()
   passed('module-style initialization with currentScript=null resolves the existing script URL and plays sound without JavaScript errors')
-  context=browser.new_context();context.add_init_script(spy);context.add_init_script("Object.defineProperty(document,'currentScript',{get:()=>({src:'data:text/javascript,invalid-base'})});");page,record=page_for(context);page.goto(url);expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','error')
+  context=browser.new_context();context.add_init_script(spy);context.add_init_script("Object.defineProperty(document,'currentScript',{get:()=>({src:'data:text/javascript,invalid-base'})});");page,record=page_for(context);page.goto(url);expect(control(page,'#sound-toggle')).to_have_attribute('data-sound-state','error')
   start(page);check(page,page.evaluate('HT_PRACTICE_DATA.questions[0]'));expect(page.locator('#xp-total')).to_have_text('✦ 10 XP');assert page.evaluate('soundLog.notes.length')==0;clean(record);context.close()
   passed('unresolvable script URL reports a visible loader error and leaves grading/XP usable')
   report={'gamesFound':len(rows),'games':rows,'checks':checks,'observations':observations,'physicalPhoneTested':False,'browser':'Chromium desktop and mobile touch emulation','publicWebsiteTested':False}

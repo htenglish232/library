@@ -1,3 +1,4 @@
+from practice_browser_controls import control
 """Real Chromium sine FALLBACK, desktop/touch, default autoplay policy and OfflineAudioContext.
 
 Intentionally serve corrupt WAV bytes to test the original fallback contract.
@@ -43,7 +44,7 @@ SPY='''(() => {
 errors=[];external=[];bad=[];checks=[]
 def passed(msg):checks.append(msg);print('PASS '+msg,flush=True)
 def click(page,selector,touch=False):
- target=page.locator(selector)
+ target=control(page,selector)
  if touch:target.tap()
  else:target.click()
 def start(page,touch=False):
@@ -59,7 +60,7 @@ def answer_choice(page,q,wrong=False,touch=False):
  else:target.check()
  click(page,'#check-answer',touch)
 def open_game(page,row):
- page.goto(BASE+'library/'+quote(row['game']));expect(page.locator('#sound-toggle')).to_have_count(1);expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','ready');expect(page.locator('#sound-toggle')).to_be_enabled();return page.evaluate('HT_PRACTICE_DATA')
+ page.goto(BASE+'library/'+quote(row['game']));expect(control(page,'#sound-toggle')).to_have_count(1);expect(control(page,'#sound-toggle')).to_have_attribute('data-sound-state','ready');expect(control(page,'#sound-toggle')).to_be_enabled();return page.evaluate('HT_PRACTICE_DATA')
 def seed_completion(page,target_id=None):
  return page.evaluate('''targetId=>{
   const d=HT_PRACTICE_DATA,P=HTDualProgress,state=P.create(d,{name:'Sound Check',code:'8A'}),target=d.questions.find(q=>q.id===targetId)||d.questions[1];
@@ -90,10 +91,10 @@ try:
    assert log(page)['notes'][0]['frequency']<log(page)['notes'][1]['frequency']
    assert log(page)['contexts']==1
    # Each actual exam length (37/41/42/43) must trigger completion once.
-   last=seed_completion(page);page.reload();expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','ready');start(page);assert log(page)['contexts']==0
+   last=seed_completion(page);page.reload();expect(control(page,'#sound-toggle')).to_have_attribute('data-sound-state','ready');start(page);assert log(page)['contexts']==0
    answer_choice(page,last);page.wait_for_function('soundLog.notes.length===7');completion=log(page)['notes'][-5:];assert abs(completion[-1]['stop']-completion[0]['start']-1.51)<.001
    click(page,'#results-button');assert len(log(page)['notes'])==7
-   page.reload();expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','ready');start(page);assert log(page)['notes']==[]
+   page.reload();expect(control(page,'#sound-toggle')).to_have_attribute('data-sound-state','ready');start(page);assert log(page)['notes']==[]
   passed(f'{len(rows)}/{len(rows)} launchers load one shared module under /library/; no AudioContext before checking; each correct answer starts two ascending notes; every exam length completes once with the fanfare and stays quiet on restore')
   c.close()
   for label,options,touch in [
@@ -112,26 +113,26 @@ try:
    answer_choice(page,data['questions'][0],True,touch);page.wait_for_function('soundLog.notes.length===2')
    effect=log(page);assert effect['notes'][0]['frequency']>effect['notes'][1]['frequency'];assert max(effect['gains'])<=.025
    page.wait_for_timeout(450);assert not page.locator('audio').evaluate('e=>e.paused');assert page.locator('audio').evaluate('e=>e.currentTime')>time_before;assert log(page)['media']==media_before;assert page.locator('audio').evaluate('e=>[e.currentSrc,e.volume,e.playbackRate]')==media_settings
-   n=len(log(page)['notes']);page.locator('#jump-question').select_option(page.locator('#question-card').get_attribute('data-question-id'));assert len(log(page)['notes'])==n
+   n=len(log(page)['notes']);control(page,'#jump-question').select_option(page.locator('#question-card').get_attribute('data-question-id'));assert len(log(page)['notes'])==n
    # Old checked answers and disabled duplicate checks remain quiet.
    page.evaluate('document.querySelector("#check-answer").click()');assert len(log(page)['notes'])==n
-   page.locator('#jump-question').select_option(data['questions'][1]['id']);answer_choice(page,data['questions'][1],False,touch)
+   control(page,'#jump-question').select_option(data['questions'][1]['id']);answer_choice(page,data['questions'][1],False,touch)
    page.wait_for_function('(n)=>soundLog.notes.length===n+2',arg=n);n+=2
    assert log(page)['notes'][-2]['frequency']<log(page)['notes'][-1]['frequency'];expect(page.locator('#xp-total')).to_have_text('✦ 10 XP')
    key=page.evaluate('HTDualStore.keyFor(HT_PRACTICE_DATA,{name:"Sound Check",code:"8A"})');saved=page.evaluate('(k)=>localStorage.getItem(k)',key)
-   click(page,'#sound-toggle',touch);expect(page.locator('#sound-toggle')).to_have_attribute('aria-pressed','false');assert page.evaluate('(k)=>localStorage.getItem(k)',key)==saved
+   click(page,'#sound-toggle',touch);expect(control(page,'#sound-toggle')).to_have_attribute('aria-pressed','false');assert page.evaluate('(k)=>localStorage.getItem(k)',key)==saved
    assert not page.locator('audio').evaluate('e=>e.paused')
-   page.reload();expect(page.locator('#sound-toggle')).to_have_attribute('aria-pressed','false');start(page,touch);assert log(page)['contexts']==0
-   page.locator('#jump-question').select_option(data['questions'][2]['id']);answer_choice(page,data['questions'][2],False,touch);assert log(page)['notes']==[];expect(page.locator('#xp-total')).to_have_text('✦ 20 XP')
+   page.reload();expect(control(page,'#sound-toggle')).to_have_attribute('aria-pressed','false');start(page,touch);assert log(page)['contexts']==0
+   control(page,'#jump-question').select_option(data['questions'][2]['id']);answer_choice(page,data['questions'][2],False,touch);assert log(page)['notes']==[];expect(page.locator('#xp-total')).to_have_text('✦ 20 XP')
    click(page,'#sound-toggle',touch);assert log(page)['contexts']==0
-   page.locator('#jump-question').select_option(data['questions'][0]['id']);assert log(page)['notes']==[]
+   control(page,'#jump-question').select_option(data['questions'][0]['id']);assert log(page)['notes']==[]
    click(page,'#results-button',touch);assert log(page)['notes']==[]
    # Complete exactly once after the last unanswered question, across reload/resume.
-   page.close();page=page_for(c);open_game(page,TT);q=seed_completion(page);page.reload();expect(page.locator('#sound-toggle')).to_be_enabled();start(page,touch);assert log(page)['contexts']==0
+   page.close();page=page_for(c);open_game(page,TT);q=seed_completion(page);page.reload();expect(control(page,'#sound-toggle')).to_be_enabled();start(page,touch);assert log(page)['contexts']==0
    answer_choice(page,q,False,touch);page.wait_for_function('soundLog.notes.length===7');notes=log(page)['notes'];assert abs(notes[-1]['stop']-notes[-5]['start']-1.51)<.001
    click(page,'#results-button',touch);assert len(log(page)['notes'])==7
-   page.reload();expect(page.locator('#sound-toggle')).to_be_enabled();start(page,touch);assert log(page)['notes']==[]
-   click(page,'#home-button',touch);page.locator('#jump-question').select_option(page.locator('#question-card').get_attribute('data-question-id'));assert log(page)['notes']==[]
+   page.reload();expect(control(page,'#sound-toggle')).to_be_enabled();start(page,touch);assert log(page)['notes']==[]
+   click(page,'#home-button',touch);control(page,'#jump-question').select_option(page.locator('#question-card').get_attribute('data-question-id'));assert log(page)['notes']==[]
    # A new review attempt may get feedback, but never another completion fanfare/XP.
    click(page,'#results-button',touch);click(page,'#review-wrong',touch);q1=data['questions'][0];expect(page.locator('#question-card')).to_have_attribute('data-question-id',q1['id']);before_xp=page.locator('#xp-total').text_content()
    answer_choice(page,q1,False,touch);page.wait_for_function('soundLog.notes.length===2');expect(page.locator('#xp-total')).to_have_text(before_xp)
@@ -164,17 +165,17 @@ try:
   c.close()
   # Preference synchronizes across games/tabs without changing student progress.
   c=context();a=page_for(c);open_game(a,TT);start(a);bpage=page_for(c);open_game(bpage,rows[1]);assert log(bpage)['contexts']==0
-  click(a,'#sound-toggle');expect(bpage.locator('#sound-toggle')).to_have_attribute('aria-pressed','false')
-  bpage.reload();expect(bpage.locator('#sound-toggle')).to_have_attribute('aria-pressed','false')
+  click(a,'#sound-toggle');expect(bcontrol(page,'#sound-toggle')).to_have_attribute('aria-pressed','false')
+  bpage.reload();expect(bcontrol(page,'#sound-toggle')).to_have_attribute('aria-pressed','false')
   click(bpage,'#sound-toggle');expect(a.locator('#sound-toggle')).to_have_attribute('aria-pressed','true');assert log(bpage)['contexts']==0
   c.close();passed('one preference is shared across games and live tabs; enabling never auto-plays')
   # Pending answers are silent; the final pending check gets only congratulations.
   c=context();page=page_for(c);hung=next(r for r in rows if r['school']=='THCS Trực Hùng');hung_data=open_game(page,hung)
-  pending=next(q for q in hung_data['questions'] if not q['autoGrade'] and q['kind']=='text');start(page);page.locator('#jump-question').select_option(pending['id']);page.locator('#written-answer').fill('Giáo viên đối chiếu');click(page,'#check-answer');assert log(page)['contexts']==0;expect(page.locator('#xp-total')).to_have_text('✦ 0 XP')
-  seed_completion(page,pending['id']);page.reload();expect(page.locator('#sound-toggle')).to_be_enabled();start(page);xp=page.locator('#xp-total').text_content();page.locator('#written-answer').fill('Giáo viên đối chiếu');click(page,'#check-answer');page.wait_for_function('soundLog.notes.length===5');expect(page.locator('#xp-total')).to_have_text(xp)
+  pending=next(q for q in hung_data['questions'] if not q['autoGrade'] and q['kind']=='text');start(page);control(page,'#jump-question').select_option(pending['id']);page.locator('#written-answer').fill('Giáo viên đối chiếu');click(page,'#check-answer');assert log(page)['contexts']==0;expect(page.locator('#xp-total')).to_have_text('✦ 0 XP')
+  seed_completion(page,pending['id']);page.reload();expect(control(page,'#sound-toggle')).to_be_enabled();start(page);xp=page.locator('#xp-total').text_content();page.locator('#written-answer').fill('Giáo viên đối chiếu');click(page,'#check-answer');page.wait_for_function('soundLog.notes.length===5');expect(page.locator('#xp-total')).to_have_text(xp)
   c.close();passed('teacher-pending answers have no right/wrong cue or XP; a final pending answer triggers only the 1.5s fanfare')
   # No Web Audio support still leaves grading and progress fully functional.
-  c=context();c.add_init_script('window.AudioContext=undefined;window.webkitAudioContext=undefined;');page=page_for(c);page.goto(BASE+'library/'+quote(TT['game']));expect(page.locator('#sound-toggle')).to_be_disabled();start(page);answer_choice(page,data['questions'][0]);expect(page.locator('#xp-total')).to_have_text('✦ 10 XP');c.close()
+  c=context();c.add_init_script('window.AudioContext=undefined;window.webkitAudioContext=undefined;');page=page_for(c);page.goto(BASE+'library/'+quote(TT['game']));expect(control(page,'#sound-toggle')).to_be_disabled();start(page);answer_choice(page,data['questions'][0]);expect(page.locator('#xp-total')).to_have_text('✦ 10 XP');c.close()
   passed('missing Web Audio support degrades to a disabled toggle while checking and XP still work')
   assert not errors,errors;assert not bad,bad;assert not external,external
   passed('zero JS/console errors, broken resources or external requests')
