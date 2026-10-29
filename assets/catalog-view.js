@@ -7,6 +7,7 @@ const numberedSchools = new Map();
 // Verified from the original HTML h2 and school metadata, not inferred from a filename.
 const verifiedSchoolNames = {'grade-7/De_thi_GHK_1/13_Dao_Su_Tich/13 Dao Su Tich.html': 'THCS Đào Sư Tích'};
 function escape(value) { return value.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function searchText(value) { return value.toLowerCase().replace(/\bunit\s+0+(\d+)\b/g, 'unit $1'); }
 function updateStats() { const total=DATA.reduce((n,g)=>n+g.units.reduce((m,u)=>m+u.lessons.length,0),0); stats.textContent=`${total} bài học`; }
 function toggle(el){ el.classList.toggle('open'); }
 function unitNumber(u){ const m=u.name.match(/Unit\s+(\d+)/i); return m?Number(m[1]):999; }
@@ -17,9 +18,10 @@ export function render(q=''){
    b.onclick=()=>{current=gi;render(search.value)}; tabs.appendChild(b);
    const sec=document.createElement('section'); sec.className='grade-section'+(gi===current?' active':'');
    if(gi!==current){ content.appendChild(sec); return; }
-   const needle=q.toLowerCase();
+   const needle=searchText(q);
 
-   const grouped = (g.grade === 'Grade 4' || g.grade === 'Grade 5')
+   const grammarGrade = ['Grade 3', 'Grade 4', 'Grade 5'].includes(g.grade);
+   const grouped = grammarGrade
      ? g.units.every(u => u.name === 'Bổ trợ ngữ pháp')
      : g.units.every(u => u.type === 'exam-folder' || / · Unit \d+/i.test(u.name));
    if (!grouped) {
@@ -29,7 +31,7 @@ export function render(q=''){
          if (schoolFolder) {found = true; sec.append(schoolFolder);}
          continue;
        }
-       const lessons = u.lessons.filter(l => !q || `${g.grade} ${u.name} ${l.title}`.toLowerCase().includes(needle));
+       const lessons = u.lessons.filter(l => !q || searchText(`${g.grade} ${u.name} ${l.title}`).includes(needle));
        if (!lessons.length) continue;
        found = true;
        const folder = document.createElement('div'); folder.className = 'folder' + (q ? ' open' : '');
@@ -43,8 +45,8 @@ export function render(q=''){
        }
        sec.append(folder);
      }
-   } else if(g.grade==='Grade 4' || g.grade==='Grade 5'){
-     const all=g.units.flatMap(u=>u.lessons).filter(l=>!q || (g.grade+' Bổ trợ ngữ pháp '+l.title).toLowerCase().includes(needle));
+   } else if(grammarGrade){
+     const all=g.units.flatMap(u=>u.lessons).filter(l=>!q || searchText(g.grade+' Bổ trợ ngữ pháp '+l.title).includes(needle));
      if(all.length){
        found=true;
        all.sort((a,b)=>{const na=Number((a.title.match(/Unit\s+(\d+)/i)||[])[1]||999), nb=Number((b.title.match(/Unit\s+(\d+)/i)||[])[1]||999); return na-nb;});
@@ -58,7 +60,7 @@ export function render(q=''){
    } else {
      const categories=[...new Set(g.units.filter(u=>u.type!=='exam-folder').map(u=>u.name.split(' · ')[0]))];
      categories.forEach(category=>{
-       const matchingUnits=g.units.filter(u=>u.name.startsWith(category+' · ')).map(u=>({u,lessons:u.lessons.filter((l,li)=>!q || (g.grade+' '+category+' '+u.name+' '+l.title+' '+(li+1)).toLowerCase().includes(needle))})).filter(x=>x.lessons.length);
+       const matchingUnits=g.units.filter(u=>u.name.startsWith(category+' · ')).map(u=>({u,lessons:u.lessons.filter((l,li)=>!q || searchText(g.grade+' '+category+' '+u.name+' '+l.title+' '+(li+1)).includes(needle))})).filter(x=>x.lessons.length);
        if(!matchingUnits.length) return;
        found=true;
        matchingUnits.sort((a,b)=>unitNumber(a.u)-unitNumber(b.u));

@@ -3,6 +3,16 @@ import {GRADE6_DUAL_ID, GRADE6_DUAL_LINKS} from './grade6-dual-links.js';
 import {GRADE8_PILOT_DUAL_ID, GRADE8_PILOT_DUAL_LINKS, GRADE8_REMAINING_DUAL_ID, GRADE8_REMAINING_DUAL_LINKS} from './grade8-dual-links.js';
 import { storedCatalogData } from './catalog-data.js';
 export const RELEASE_ID = '946b05b6d128cd88ac8ba09431cb645ae80a453d';
+export const GRADE3_GRAMMAR_RELEASE_ID = '71a9780f0ff7ebb5a81c4ee9c84df4f971fbbaaa';
+export const GRADE3_GRAMMAR_ADDITION = {
+  grade: 'Grade 3',
+  beforeGrade: 'Grade 4',
+  unit: 'Bổ trợ ngữ pháp',
+  lesson: {
+    title: 'Unit 08 – These / Those',
+    href: 'grade-3/Bo_Tro_Ngu_Phap/unit_08_these_those.html'
+  }
+};
 // Newly published main-branch links; never writes to Firebase.
 // Existing server titles, visibility, custom items and ordering are preserved.
 const GRAMMAR_ADDITIONS = [
@@ -96,7 +106,8 @@ const RELEASE_BATCHES = [
   {id: GRADE8_PILOT_DUAL_ID, additions: GRADE8_PILOT_DUAL_LINKS},
   {id: GRADE8_REMAINING_DUAL_ID, additions: GRADE8_REMAINING_DUAL_LINKS},
   {id: GRADE6_DUAL_ID, additions: GRADE6_DUAL_LINKS},
-  {id: GRADE7_DUAL_ID, additions: GRADE7_DUAL_LINKS}
+  {id: GRADE7_DUAL_ID, additions: GRADE7_DUAL_LINKS},
+  {id: GRADE3_GRAMMAR_RELEASE_ID, additions: [GRADE3_GRAMMAR_ADDITION]}
 ];
 export const RELEASE_IDS = RELEASE_BATCHES.map(batch => batch.id);
 export const RELEASE_ADDITIONS = RELEASE_BATCHES.flatMap(batch => batch.additions);
@@ -121,7 +132,11 @@ export function addReleaseLessons(serverData, applied = []) {
       if (existing.has(lessonKey(patch.lesson.href))) continue; // Includes already-hidden lessons.
       const prefix = patch.lesson.href.slice(0, patch.lesson.href.lastIndexOf('/') + 1);
       let grade = data.find(g => g.grade === patch.grade) || data.find(g => g.units.some(u => u.lessons.some(l => lessonKey(l.href).startsWith(prefix))));
-      if (!grade) { grade = {grade: patch.grade, units: []}; data.push(grade); }
+      if (!grade) {
+        grade = {grade: patch.grade, units: []};
+        const beforeGrade = patch.beforeGrade ? data.findIndex(item => item.grade === patch.beforeGrade) : -1;
+        data.splice(beforeGrade < 0 ? data.length : beforeGrade, 0, grade);
+      }
       let unit = grade.units.find(u => u.name === patch.unit) || grade.units.find(u => u.lessons.some(l => lessonKey(l.href).startsWith(prefix)));
       if (!unit) { unit = {name: patch.unit, ...(patch.unitType ? {type: patch.unitType} : {}), lessons: []}; grade.units.push(unit); }
       const before = unit.lessons.findIndex(l => l.href === patch.before);

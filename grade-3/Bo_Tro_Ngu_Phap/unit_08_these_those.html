@@ -1,0 +1,2019 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unit 08: These / Those - HT English Center</title>
+  <!-- Nhúng font Noto Sans từ Google Fonts với font dự phòng an toàn -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #1976d2;
+      --primary-dark: #0d47a1;
+      --primary-light: #e3f2fd;
+      --accent: #ff9800;
+      --success: #2e7d32;
+      --success-bg: #e8f5e9;
+      --danger: #d32f2f;
+      --danger-bg: #ffebee;
+      --text: #2c3e50;
+      --text-muted: #546e7a;
+      --bg: #f4f8fb;
+      --card-bg: #ffffff;
+      --border: #cfd8dc;
+      --radius: 14px;
+      --shadow: 0 4px 12px rgba(25, 118, 210, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Noto Sans", Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 16px;
+      font-size: 16px;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* HEADER */
+    header {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: #ffffff;
+      padding: 24px;
+      border-radius: var(--radius);
+      box-shadow: 0 6px 18px rgba(13, 71, 161, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+      font-size: 0.95rem;
+    }
+
+    .brand-name {
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      font-size: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .brand-contact {
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.18);
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    .unit-title {
+      font-size: 1.8rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+    }
+
+    .unit-subtitle {
+      font-size: 1.05rem;
+      opacity: 0.95;
+      font-weight: 500;
+    }
+
+    /* SECTION CARD */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      border-bottom: 2px solid var(--primary-light);
+      padding-bottom: 12px;
+    }
+
+    .badge-letter {
+      background: var(--primary);
+      color: white;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    /* GRAMMAR POINT SUMMARY */
+    .grammar-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #bbdefb;
+    }
+
+    .grammar-table th {
+      background-color: #e3f2fd;
+      color: var(--primary-dark);
+      padding: 12px;
+      font-weight: 700;
+      text-align: left;
+      font-size: 1.05rem;
+    }
+
+    .grammar-table td {
+      padding: 12px;
+      border-top: 1px solid #e0e0e0;
+      vertical-align: top;
+      background: #fafafa;
+    }
+
+    .grammar-table tr:hover td {
+      background: #f1f8ff;
+    }
+
+    .ex-en {
+      font-weight: 700;
+      color: var(--primary-dark);
+    }
+
+    .ex-vi {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* QUESTION ITEM */
+    .q-item {
+      background: #ffffff;
+      border: 1.5px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 18px;
+      margin-bottom: 20px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .q-item:last-child {
+      margin-bottom: 0;
+    }
+
+    .q-item.correct {
+      border-color: var(--success);
+      background-color: #fcfdfc;
+    }
+
+    .q-item.incorrect {
+      border-color: var(--danger);
+      background-color: #fffdfd;
+    }
+
+    .q-content {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    @media (min-width: 640px) {
+      .q-content.row-layout {
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+
+    .q-illustration {
+      background: #f8fafc;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      min-width: 220px;
+      flex-shrink: 0;
+    }
+
+    .q-illustration svg {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .overview-scene-card {
+      background: #f0f7ff;
+      border: 2px dashed #90caf9;
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .overview-scene-card svg {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    .distance-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 8px;
+      border-radius: 4px;
+      margin-top: 6px;
+    }
+
+    .tag-near {
+      background: #e8f5e9;
+      color: #2e7d32;
+    }
+
+    .tag-far {
+      background: #fff3e0;
+      color: #ef6c00;
+    }
+
+    .q-main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .q-sentence {
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #1e293b;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    /* AUDIO SPEAKER BUTTON */
+    .btn-audio {
+      background: #e3f2fd;
+      border: 1px solid #90caf9;
+      border-radius: 50%;
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--primary-dark);
+      font-size: 1rem;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .btn-audio:hover {
+      background: #bbdefb;
+      transform: scale(1.08);
+    }
+
+    .btn-audio:active {
+      transform: scale(0.95);
+    }
+
+    /* INTERACTIVE CHOICES & INPUTS */
+    .choice-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .choice-btn {
+      background: #f8fafc;
+      border: 2px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 8px 18px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #334155;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.15s ease;
+    }
+
+    .choice-btn:hover:not(:disabled) {
+      border-color: var(--primary);
+      background-color: var(--primary-light);
+      color: var(--primary-dark);
+    }
+
+    .choice-btn.selected {
+      border-color: var(--primary);
+      background: var(--primary);
+      color: white;
+    }
+
+    .choice-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.9;
+    }
+
+    /* FORM SELECT / INPUT DROPDOWN */
+    .select-input {
+      padding: 8px 14px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      border: 2px solid #cbd5e1;
+      border-radius: 8px;
+      background: #ffffff;
+      color: #1e293b;
+      outline: none;
+      transition: border-color 0.2s;
+      cursor: pointer;
+    }
+
+    .select-input:focus {
+      border-color: var(--primary);
+    }
+
+    .select-input:disabled {
+      background: #f1f5f9;
+      cursor: not-allowed;
+      color: #334155;
+    }
+
+    /* FEEDBACK EXPLANATION BOX */
+    .explanation-box {
+      display: none;
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      font-size: 0.93rem;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .explanation-box.show {
+      display: block;
+    }
+
+    .explanation-box.is-correct {
+      background: var(--success-bg);
+      border-left: 4px solid var(--success);
+      color: #1b5e20;
+    }
+
+    .explanation-box.is-wrong {
+      background: var(--danger-bg);
+      border-left: 4px solid var(--danger);
+      color: #b71c1c;
+    }
+
+    .exp-title {
+      font-weight: 700;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .exp-body {
+      color: #37474f;
+      line-height: 1.5;
+    }
+
+    /* SCORE BAR & CONTROLS */
+    .control-panel {
+      position: sticky;
+      bottom: 16px;
+      z-index: 100;
+      background: #ffffff;
+      padding: 16px 20px;
+      border-radius: var(--radius);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      border: 2px solid var(--primary-light);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .score-badge {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .score-badge .score-label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .score-badge .score-val {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--primary-dark);
+    }
+
+    .btn-action {
+      background: var(--primary);
+      color: white;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 10px 22px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-action:hover {
+      background: var(--primary-dark);
+      transform: translateY(-1px);
+    }
+
+    .btn-reset {
+      background: #475569;
+    }
+
+    .btn-reset:hover {
+      background: #1e293b;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      padding: 16px;
+      border-top: 1px solid var(--border);
+      margin-top: 20px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- HEADER -->
+    <header>
+      <div class="brand-bar">
+        <div class="brand-name">
+          <span>🏫</span> HT ENGLISH CENTER
+        </div>
+        <div class="brand-contact">
+          📞 SĐT: 0962240866
+        </div>
+      </div>
+      <h1 class="unit-title">UNIT 08: THESE / THOSE</h1>
+      <p class="unit-subtitle">Phiếu bài tập tương tác tự động chấm & nghe phát âm chuẩn</p>
+    </header>
+
+    <!-- GRAMMAR POINT -->
+    <section class="card">
+      <div class="card-header">
+        <span class="badge-letter">★</span>
+        <h2 class="card-title">Grammar Point: Đại từ chỉ định số nhiều</h2>
+      </div>
+      <p style="font-size: 1rem; margin-bottom: 10px;">
+        • Đại từ chỉ định <strong>these</strong> dùng để chỉ người, địa điểm, đồ vật, động vật dạng <strong>số nhiều ở khoảng cách gần</strong> (dịch là <em>"những người này" / "những cái này"</em>).<br>
+        • Đại từ chỉ định <strong>those</strong> dùng để chỉ người, địa điểm, đồ vật, động vật dạng <strong>số nhiều ở khoảng cách xa</strong> (dịch là <em>"những người kia" / "những cái kia"</em>).
+      </p>
+
+      <table class="grammar-table">
+        <thead>
+          <tr>
+            <th style="width: 50%;">👉 These (Gần - Ở đây)</th>
+            <th style="width: 50%;">👉 Those (Xa - Ở kia)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <div class="ex-en">These are balls. <button class="btn-audio" onclick="speakText('These are balls.')" title="Nghe câu">🔊</button></div>
+              <div class="ex-vi">(Đây là những quả bóng.)</div>
+            </td>
+            <td>
+              <div class="ex-en">Those are balls. <button class="btn-audio" onclick="speakText('Those are balls.')" title="Nghe câu">🔊</button></div>
+              <div class="ex-vi">(Kia là những quả bóng.)</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="ex-en">These are cars. <button class="btn-audio" onclick="speakText('These are cars.')" title="Nghe câu">🔊</button></div>
+              <div class="ex-vi">(Đây là những chiếc ô tô.)</div>
+            </td>
+            <td>
+              <div class="ex-en">Those are cars. <button class="btn-audio" onclick="speakText('Those are cars.')" title="Nghe câu">🔊</button></div>
+              <div class="ex-vi">(Kia là những chiếc ô tô.)</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="ex-en">These are trees. <button class="btn-audio" onclick="speakText('These are trees.')" title="Nghe câu">🔊</button></div>
+              <div class="ex-vi">(Đây là những cái cây.)</div>
+            </td>
+            <td>
+              <div class="ex-en">Those are trees. <button class="btn-audio" onclick="speakText('Those are trees.')" title="Nghe câu">🔊</button></div>
+              <div class="ex-vi">(Kia là những cái cây.)</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="ex-en">These are benches. <button class="btn-audio" onclick="speakText('These are benches.')" title="Nghe câu">🔊</button></div>
+              <div class="ex-vi">(Đây là những cái ghế dài.)</div>
+            </td>
+            <td>
+              <div class="ex-en">Those are benches. <button class="btn-audio" onclick="speakText('Those are benches.')" title="Nghe câu">🔊</button></div>
+              <div class="ex-vi">(Kia là những cái ghế dài.)</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- PART A: LOOK AND MATCH -->
+    <section class="card">
+      <div class="card-header">
+        <span class="badge-letter">A</span>
+        <div>
+          <h2 class="card-title">Look and match (Quan sát và chọn These hoặc Those)</h2>
+          <small style="color: var(--text-muted);">Quan sát vị trí của người bạn nhỏ và các đồ vật để chọn đại từ đúng</small>
+        </div>
+      </div>
+
+      <!-- Item A1 -->
+      <div class="q-item" id="item-a1">
+        <div class="q-content row-layout">
+          <div class="q-illustration">
+            <svg width="220" height="120" viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="bgSkyA1" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#e0f2fe"/>
+                  <stop offset="100%" stop-color="#f8fafc"/>
+                </linearGradient>
+              </defs>
+              <rect width="220" height="120" rx="8" fill="url(#bgSkyA1)"/>
+              <rect y="82" width="220" height="38" fill="#e2e8f0"/>
+              <!-- Vạch đỗ xe sân bãi -->
+              <line x1="120" y1="88" x2="210" y2="88" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4,4"/>
+              
+              <!-- Bé gái tóc hai chùm đứng bên trái -->
+              <circle cx="36" cy="40" r="14" fill="#fed7aa"/>
+              <!-- Tóc đen hai chùm -->
+              <ellipse cx="23" cy="38" rx="6" ry="9" fill="#1e293b"/>
+              <ellipse cx="49" cy="38" rx="6" ry="9" fill="#1e293b"/>
+              <circle cx="36" cy="34" r="14" fill="#1e293b"/>
+              <circle cx="36" cy="41" r="12" fill="#fed7aa"/>
+              <circle cx="32" cy="40" r="1.5" fill="#0f172a"/>
+              <circle cx="40" cy="40" r="1.5" fill="#0f172a"/>
+              <path d="M 33 46 Q 36 49 39 46" stroke="#e11d48" stroke-width="1.5" fill="none"/>
+              <!-- Váy áo hồng -->
+              <path d="M 27 54 L 45 54 L 50 82 L 22 82 Z" fill="#f43f5e"/>
+              <line x1="28" y1="82" x2="28" y2="98" stroke="#0284c7" stroke-width="4"/>
+              <line x1="42" y1="82" x2="42" y2="98" stroke="#0284c7" stroke-width="4"/>
+              <!-- Cánh tay chỉ về phía trước -->
+              <path d="M 44 58 L 65 52" stroke="#fed7aa" stroke-width="4" stroke-linecap="round"/>
+
+              <!-- Mũi tên chỉ xa nét đứt màu đỏ cam -->
+              <path d="M 72 52 L 126 52" stroke="#ea580c" stroke-width="2.5" stroke-dasharray="4,3"/>
+              <polygon points="132,52 124,47 124,57" fill="#ea580c"/>
+
+              <!-- 2 Xe ô tô ở tít đằng xa -->
+              <g transform="translate(136, 44)">
+                <!-- Xe 1 (Màu đỏ xa) -->
+                <rect x="0" y="8" width="32" height="15" rx="3" fill="#ef4444"/>
+                <path d="M 5 8 L 9 2 L 23 2 L 27 8 Z" fill="#93c5fd"/>
+                <circle cx="7" cy="23" r="4" fill="#1e293b"/>
+                <circle cx="7" cy="23" r="1.5" fill="#94a3b8"/>
+                <circle cx="25" cy="23" r="4" fill="#1e293b"/>
+                <circle cx="25" cy="23" r="1.5" fill="#94a3b8"/>
+                <!-- Xe 2 (Màu xanh xa) -->
+                <rect x="38" y="6" width="34" height="17" rx="3" fill="#3b82f6"/>
+                <path d="M 43 6 L 48 0 L 62 0 L 67 6 Z" fill="#bfdbfe"/>
+                <circle cx="45" cy="23" r="4" fill="#1e293b"/>
+                <circle cx="45" cy="23" r="1.5" fill="#94a3b8"/>
+                <circle cx="65" cy="23" r="4" fill="#1e293b"/>
+                <circle cx="65" cy="23" r="1.5" fill="#94a3b8"/>
+              </g>
+            </svg>
+            <span class="distance-tag tag-far">Khoảng cách: Xa</span>
+          </div>
+          <div class="q-main">
+            <div class="q-sentence">
+              <span><strong>1.</strong> Xe ô tô ở <strong>xa</strong> người nói (cars)</span>
+            </div>
+            <div class="choice-group">
+              <button class="choice-btn" data-qid="a1" data-val="These" onclick="selectChoice('a1', 'These')">
+                These
+              </button>
+              <button class="btn-audio" onclick="speakText('These')" title="Nghe phát âm 'These'">🔊</button>
+              
+              <button class="choice-btn" data-qid="a1" data-val="Those" onclick="selectChoice('a1', 'Those')">
+                Those
+              </button>
+              <button class="btn-audio" onclick="speakText('Those')" title="Nghe phát âm 'Those'">🔊</button>
+            </div>
+            <div class="explanation-box" id="exp-a1"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item A2 -->
+      <div class="q-item" id="item-a2">
+        <div class="q-content row-layout">
+          <div class="q-illustration">
+            <svg width="220" height="120" viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg">
+              <rect width="220" height="120" rx="8" fill="#f0f9ff"/>
+              <rect y="84" width="220" height="36" fill="#e2e8f0"/>
+              
+              <!-- Bé gái đứng sát gần ô tô -->
+              <circle cx="28" cy="42" r="13" fill="#fed7aa"/>
+              <ellipse cx="17" cy="40" rx="5" ry="8" fill="#1e293b"/>
+              <ellipse cx="39" cy="40" rx="5" ry="8" fill="#1e293b"/>
+              <circle cx="28" cy="36" r="13" fill="#1e293b"/>
+              <circle cx="28" cy="43" r="11" fill="#fed7aa"/>
+              <circle cx="25" cy="42" r="1.5" fill="#0f172a"/>
+              <circle cx="32" cy="42" r="1.5" fill="#0f172a"/>
+              <path d="M 26 48 Q 29 51 32 48" stroke="#e11d48" stroke-width="1.5" fill="none"/>
+              <path d="M 20 56 L 36 56 L 40 84 L 16 84 Z" fill="#ec4899"/>
+              <line x1="22" y1="84" x2="22" y2="100" stroke="#0284c7" stroke-width="4"/>
+              <line x1="34" y1="84" x2="34" y2="100" stroke="#0284c7" stroke-width="4"/>
+              <!-- Tay chạm ngay xe -->
+              <path d="M 34 60 L 52 58" stroke="#fed7aa" stroke-width="4" stroke-linecap="round"/>
+
+              <!-- 2 Xe ô tô to lớn ngay bên cạnh người bạn nhỏ -->
+              <g transform="translate(56, 32)">
+                <!-- Xe 1 (Màu xanh dương to gần) -->
+                <rect x="0" y="20" width="70" height="34" rx="6" fill="#2563eb"/>
+                <path d="M 12 20 L 22 4 L 52 4 L 62 20 Z" fill="#93c5fd"/>
+                <circle cx="16" cy="54" r="9" fill="#1e293b"/>
+                <circle cx="16" cy="54" r="3.5" fill="#f8fafc"/>
+                <circle cx="54" cy="54" r="9" fill="#1e293b"/>
+                <circle cx="54" cy="54" r="3.5" fill="#f8fafc"/>
+                <rect x="64" y="26" width="6" height="8" rx="2" fill="#fbbf24"/>
+                
+                <!-- Xe 2 (Màu cam phía sau gần) -->
+                <g transform="translate(76, 4)">
+                  <rect x="0" y="16" width="68" height="34" rx="6" fill="#f97316"/>
+                  <path d="M 12 16 L 22 2 L 52 2 L 60 16 Z" fill="#fed7aa"/>
+                  <circle cx="16" cy="50" r="9" fill="#1e293b"/>
+                  <circle cx="16" cy="50" r="3.5" fill="#f8fafc"/>
+                  <circle cx="52" cy="50" r="9" fill="#1e293b"/>
+                  <circle cx="52" cy="50" r="3.5" fill="#f8fafc"/>
+                </g>
+              </g>
+            </svg>
+            <span class="distance-tag tag-near">Khoảng cách: Gần</span>
+          </div>
+          <div class="q-main">
+            <div class="q-sentence">
+              <span><strong>2.</strong> Xe ô tô ở <strong>ngay gần</strong> người nói (cars)</span>
+            </div>
+            <div class="choice-group">
+              <button class="choice-btn" data-qid="a2" data-val="These" onclick="selectChoice('a2', 'These')">
+                These
+              </button>
+              <button class="btn-audio" onclick="speakText('These')" title="Nghe phát âm 'These'">🔊</button>
+
+              <button class="choice-btn" data-qid="a2" data-val="Those" onclick="selectChoice('a2', 'Those')">
+                Those
+              </button>
+              <button class="btn-audio" onclick="speakText('Those')" title="Nghe phát âm 'Those'">🔊</button>
+            </div>
+            <div class="explanation-box" id="exp-a2"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item A3 -->
+      <div class="q-item" id="item-a3">
+        <div class="q-content row-layout">
+          <div class="q-illustration">
+            <svg width="220" height="120" viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg">
+              <rect width="220" height="120" rx="8" fill="#f0fdf4"/>
+              <rect y="86" width="220" height="34" fill="#dcfce7"/>
+              
+              <!-- Bé trai đứng sát hàng ghế -->
+              <circle cx="32" cy="38" r="13" fill="#fed7aa"/>
+              <!-- Tóc ngắn bé trai -->
+              <path d="M 19 36 C 20 22 44 22 45 36 Z" fill="#334155"/>
+              <circle cx="28" cy="39" r="1.5" fill="#0f172a"/>
+              <circle cx="35" cy="39" r="1.5" fill="#0f172a"/>
+              <path d="M 29 45 Q 32 48 35 45" stroke="#ea580c" stroke-width="1.5" fill="none"/>
+              <rect x="23" y="51" width="18" height="28" rx="4" fill="#0284c7"/>
+              <line x1="27" y1="79" x2="27" y2="98" stroke="#1e293b" stroke-width="4"/>
+              <line x1="37" y1="79" x2="37" y2="98" stroke="#1e293b" stroke-width="4"/>
+              <path d="M 37 57 L 54 55" stroke="#fed7aa" stroke-width="4" stroke-linecap="round"/>
+
+              <!-- Ghế dài công viên ngay cạnh bạn nam -->
+              <g transform="translate(60, 48)">
+                <!-- Ghế 1 -->
+                <rect x="0" y="0" width="65" height="16" rx="3" fill="#b45309"/>
+                <rect x="2" y="16" width="61" height="8" rx="2" fill="#d97706"/>
+                <line x1="8" y1="24" x2="8" y2="44" stroke="#451a03" stroke-width="4"/>
+                <line x1="56" y1="24" x2="56" y2="44" stroke="#451a03" stroke-width="4"/>
+                <!-- Ghế 2 -->
+                <g transform="translate(74, 0)">
+                  <rect x="0" y="0" width="65" height="16" rx="3" fill="#b45309"/>
+                  <rect x="2" y="16" width="61" height="8" rx="2" fill="#d97706"/>
+                  <line x1="8" y1="24" x2="8" y2="44" stroke="#451a03" stroke-width="4"/>
+                  <line x1="56" y1="24" x2="56" y2="44" stroke="#451a03" stroke-width="4"/>
+                </g>
+              </g>
+            </svg>
+            <span class="distance-tag tag-near">Khoảng cách: Gần</span>
+          </div>
+          <div class="q-main">
+            <div class="q-sentence">
+              <span><strong>3.</strong> Ghế dài ở <strong>ngay gần</strong> người nói (benches)</span>
+            </div>
+            <div class="choice-group">
+              <button class="choice-btn" data-qid="a3" data-val="These" onclick="selectChoice('a3', 'These')">
+                These
+              </button>
+              <button class="btn-audio" onclick="speakText('These')" title="Nghe phát âm 'These'">🔊</button>
+
+              <button class="choice-btn" data-qid="a3" data-val="Those" onclick="selectChoice('a3', 'Those')">
+                Those
+              </button>
+              <button class="btn-audio" onclick="speakText('Those')" title="Nghe phát âm 'Those'">🔊</button>
+            </div>
+            <div class="explanation-box" id="exp-a3"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item A4 -->
+      <div class="q-item" id="item-a4">
+        <div class="q-content row-layout">
+          <div class="q-illustration">
+            <svg width="220" height="120" viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg">
+              <rect width="220" height="120" rx="8" fill="#fefce8"/>
+              <rect y="86" width="220" height="34" fill="#fef08a"/>
+              
+              <!-- Cậu bé đứng chỉ tay sang ghế dài ở xa -->
+              <circle cx="30" cy="38" r="13" fill="#fed7aa"/>
+              <path d="M 17 36 C 18 22 42 22 43 36 Z" fill="#334155"/>
+              <circle cx="26" cy="39" r="1.5" fill="#0f172a"/>
+              <circle cx="33" cy="39" r="1.5" fill="#0f172a"/>
+              <path d="M 27 45 Q 30 48 33 45" stroke="#ea580c" stroke-width="1.5" fill="none"/>
+              <rect x="21" y="51" width="18" height="28" rx="4" fill="#10b981"/>
+              <line x1="25" y1="79" x2="25" y2="98" stroke="#1e293b" stroke-width="4"/>
+              <line x1="35" y1="79" x2="35" y2="98" stroke="#1e293b" stroke-width="4"/>
+              <path d="M 35 56 L 60 52" stroke="#fed7aa" stroke-width="4" stroke-linecap="round"/>
+
+              <!-- Mũi tên chỉ xa -->
+              <path d="M 68 52 L 122 52" stroke="#ea580c" stroke-width="2.5" stroke-dasharray="4,3"/>
+              <polygon points="128,52 120,47 120,57" fill="#ea580c"/>
+
+              <!-- 2 Ghế dài nhỏ ở xa -->
+              <g transform="translate(132, 58)">
+                <rect x="0" y="0" width="36" height="10" rx="2" fill="#92400e"/>
+                <line x1="4" y1="10" x2="4" y2="24" stroke="#451a03" stroke-width="2.5"/>
+                <line x1="32" y1="10" x2="32" y2="24" stroke="#451a03" stroke-width="2.5"/>
+                
+                <rect x="42" y="0" width="36" height="10" rx="2" fill="#92400e"/>
+                <line x1="46" y1="10" x2="46" y2="24" stroke="#451a03" stroke-width="2.5"/>
+                <line x1="74" y1="10" x2="74" y2="24" stroke="#451a03" stroke-width="2.5"/>
+              </g>
+            </svg>
+            <span class="distance-tag tag-far">Khoảng cách: Xa</span>
+          </div>
+          <div class="q-main">
+            <div class="q-sentence">
+              <span><strong>4.</strong> Ghế dài ở <strong>xa</strong> người nói (benches)</span>
+            </div>
+            <!-- UNIT8_REPAIR_START: the supplied file omitted A4 controls and closing elements. -->
+            <div class="choice-group">
+              <button class="choice-btn" data-qid="a4" data-val="These" onclick="selectChoice('a4', 'These')">
+                These
+              </button>
+              <button class="btn-audio" onclick="speakText('These')" title="Nghe phát âm 'These'">🔊</button>
+
+              <button class="choice-btn" data-qid="a4" data-val="Those" onclick="selectChoice('a4', 'Those')">
+                Those
+              </button>
+              <button class="btn-audio" onclick="speakText('Those')" title="Nghe phát âm 'Those'">🔊</button>
+            </div>
+            <div class="explanation-box" id="exp-a4"></div>
+            <!-- UNIT8_REPAIR_END -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Item B1 -->
+      <div class="q-item" id="item-b1">
+        <div class="q-content row-layout">
+          <div class="q-illustration">
+            <svg width="220" height="120" viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg">
+              <rect width="220" height="120" rx="8" fill="#fef3c7"/>
+              <rect y="88" width="220" height="32" fill="#fde68a"/>
+              <!-- Bé gái đứng cạnh khỉ mẹ khỉ con -->
+              <circle cx="36" cy="40" r="13" fill="#fed7aa"/>
+              <ellipse cx="24" cy="38" rx="5" ry="8" fill="#1e293b"/>
+              <ellipse cx="48" cy="38" rx="5" ry="8" fill="#1e293b"/>
+              <circle cx="36" cy="35" r="13" fill="#1e293b"/>
+              <circle cx="36" cy="42" r="11" fill="#fed7aa"/>
+              <circle cx="33" cy="41" r="1.5" fill="#0f172a"/>
+              <circle cx="40" cy="41" r="1.5" fill="#0f172a"/>
+              <path d="M 28 54 L 44 54 L 48 84 L 24 84 Z" fill="#ec4899"/>
+              <line x1="30" y1="84" x2="30" y2="100" stroke="#0284c7" stroke-width="3.5"/>
+              <line x1="42" y1="84" x2="42" y2="100" stroke="#0284c7" stroke-width="3.5"/>
+              <path d="M 44 58 L 68 56" stroke="#fed7aa" stroke-width="4" stroke-linecap="round"/>
+
+              <!-- Gia đình khỉ ở ngay gần bạn nhỏ -->
+              <!-- Khỉ lớn -->
+              <circle cx="112" cy="52" r="20" fill="#78350f"/>
+              <circle cx="112" cy="54" r="14" fill="#fcd34d"/>
+              <circle cx="106" cy="52" r="2.5" fill="#1e293b"/>
+              <circle cx="118" cy="52" r="2.5" fill="#1e293b"/>
+              <circle cx="92" cy="48" r="6" fill="#78350f"/>
+              <circle cx="132" cy="48" r="6" fill="#78350f"/>
+              <rect x="98" y="70" width="28" height="24" rx="10" fill="#78350f"/>
+              <!-- Khỉ nhỏ 1 -->
+              <circle cx="76" cy="68" r="12" fill="#92400e"/>
+              <circle cx="76" cy="69" r="8" fill="#fde68a"/>
+              <circle cx="73" cy="67" r="1.5" fill="#1e293b"/>
+              <circle cx="79" cy="67" r="1.5" fill="#1e293b"/>
+              <circle cx="65" cy="65" r="4" fill="#92400e"/>
+              <!-- Khỉ nhỏ 2 -->
+              <circle cx="150" cy="70" r="13" fill="#92400e"/>
+              <circle cx="150" cy="71" r="8" fill="#fde68a"/>
+              <circle cx="147" cy="69" r="1.5" fill="#1e293b"/>
+              <circle cx="153" cy="69" r="1.5" fill="#1e293b"/>
+              <circle cx="162" cy="67" r="4" fill="#92400e"/>
+            </svg>
+            <span class="distance-tag tag-near">Khoảng cách: Gần</span>
+          </div>
+          <div class="q-main">
+            <div class="q-sentence">
+              <span><strong>1.</strong></span>
+              <select class="select-input" id="sel-b1" onchange="checkSelectAnswer('b1')">
+                <option value="">-- Chọn --</option>
+                <option value="These">These</option>
+                <option value="Those">Those</option>
+              </select>
+              <span>are monkeys.</span>
+              <button class="btn-audio" onclick="speakText('monkeys')" title="Nghe từ 'monkeys'">🔊</button>
+            </div>
+            <div class="explanation-box" id="exp-b1"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item B2 -->
+      <div class="q-item" id="item-b2">
+        <div class="q-content row-layout">
+          <div class="q-illustration">
+            <svg width="220" height="120" viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg">
+              <rect width="220" height="120" rx="8" fill="#e0f2fe"/>
+              <rect y="92" width="220" height="28" fill="#bae6fd"/>
+              <!-- Cậu bé chỉ tay lên bầu trời xa -->
+              <circle cx="36" cy="52" r="13" fill="#fed7aa"/>
+              <path d="M 23 50 C 24 36 48 36 49 50 Z" fill="#334155"/>
+              <circle cx="32" cy="53" r="1.5" fill="#0f172a"/>
+              <circle cx="39" cy="53" r="1.5" fill="#0f172a"/>
+              <path d="M 33 59 Q 36 62 39 59" stroke="#ea580c" stroke-width="1.5" fill="none"/>
+              <rect x="27" y="65" width="18" height="24" rx="4" fill="#0284c7"/>
+              <line x1="31" y1="89" x2="31" y2="105" stroke="#1e293b" stroke-width="3.5"/>
+              <line x1="41" y1="89" x2="41" y2="105" stroke="#1e293b" stroke-width="3.5"/>
+              <!-- Cánh tay chỉ vểnh lên cao -->
+              <path d="M 42 68 L 68 44" stroke="#fed7aa" stroke-width="4" stroke-linecap="round"/>
+
+              <!-- Mũi tên hướng lên chim trên trời -->
+              <path d="M 74 40 L 118 25" stroke="#ea580c" stroke-width="2" stroke-dasharray="3,3"/>
+              <polygon points="124,23 115,22 118,29" fill="#ea580c"/>
+
+              <!-- Đàn chim chao liệng ở xa trên cao -->
+              <g transform="translate(130, 16)">
+                <!-- Chim 1 -->
+                <path d="M 0 10 Q 8 2 16 10 Q 24 2 32 10" stroke="#0f172a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                <!-- Chim 2 -->
+                <path d="M 36 24 Q 43 17 50 24 Q 57 17 64 24" stroke="#0f172a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+                <!-- Chim 3 -->
+                <path d="M 20 34 Q 26 28 32 34 Q 38 28 44 34" stroke="#0f172a" stroke-width="2" fill="none" stroke-linecap="round"/>
+              </g>
+            </svg>
+            <span class="distance-tag tag-far">Khoảng cách: Xa</span>
+          </div>
+          <div class="q-main">
+            <div class="q-sentence">
+              <span><strong>2.</strong></span>
+              <select class="select-input" id="sel-b2" onchange="checkSelectAnswer('b2')">
+                <option value="">-- Chọn --</option>
+                <option value="These">These</option>
+                <option value="Those">Those</option>
+              </select>
+              <span>are birds.</span>
+              <button class="btn-audio" onclick="speakText('birds')" title="Nghe từ 'birds'">🔊</button>
+            </div>
+            <div class="explanation-box" id="exp-b2"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item B3 -->
+      <div class="q-item" id="item-b3">
+        <div class="q-content row-layout">
+          <div class="q-illustration">
+            <svg width="220" height="120" viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg">
+              <rect width="220" height="120" rx="8" fill="#fdf2f8"/>
+              <rect y="88" width="220" height="32" fill="#fbcfe8"/>
+              <!-- Cô bé chỉ tay xa tới những búp bê trên ghế -->
+              <circle cx="34" cy="40" r="13" fill="#fed7aa"/>
+              <ellipse cx="22" cy="38" rx="5" ry="8" fill="#1e293b"/>
+              <ellipse cx="46" cy="38" rx="5" ry="8" fill="#1e293b"/>
+              <circle cx="34" cy="35" r="13" fill="#1e293b"/>
+              <circle cx="34" cy="42" r="11" fill="#fed7aa"/>
+              <path d="M 26 54 L 42 54 L 46 84 L 22 84 Z" fill="#a855f7"/>
+              <line x1="28" y1="84" x2="28" y2="100" stroke="#1e293b" stroke-width="3.5"/>
+              <line x1="40" y1="84" x2="40" y2="100" stroke="#1e293b" stroke-width="3.5"/>
+              <path d="M 42 58 L 68 56" stroke="#fed7aa" stroke-width="4" stroke-linecap="round"/>
+
+              <!-- Mũi tên nét đứt tới búp bê xa -->
+              <path d="M 74 56 L 126 56" stroke="#ea580c" stroke-width="2" stroke-dasharray="3,3"/>
+              <polygon points="132,56 124,52 124,60" fill="#ea580c"/>
+
+              <!-- 2 búp bê ngồi ở phía xa -->
+              <g transform="translate(138, 40)">
+                <!-- Búp bê 1 -->
+                <circle cx="16" cy="14" r="9" fill="#fde047"/>
+                <circle cx="16" cy="15" r="7" fill="#fed7aa"/>
+                <path d="M 10 24 L 22 24 L 26 44 L 6 44 Z" fill="#ec4899"/>
+                <!-- Búp bê 2 -->
+                <circle cx="44" cy="14" r="9" fill="#93c5fd"/>
+                <circle cx="44" cy="15" r="7" fill="#fed7aa"/>
+                <path d="M 38 24 L 50 24 L 54 44 L 34 44 Z" fill="#8b5cf6"/>
+              </g>
+            </svg>
+            <span class="distance-tag tag-far">Khoảng cách: Xa</span>
+          </div>
+          <div class="q-main">
+            <div class="q-sentence">
+              <span><strong>3.</strong></span>
+              <select class="select-input" id="sel-b3" onchange="checkSelectAnswer('b3')">
+                <option value="">-- Chọn --</option>
+                <option value="These">These</option>
+                <option value="Those">Those</option>
+              </select>
+              <span>are dolls.</span>
+              <button class="btn-audio" onclick="speakText('dolls')" title="Nghe từ 'dolls'">🔊</button>
+            </div>
+            <div class="explanation-box" id="exp-b3"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item B4 -->
+      <div class="q-item" id="item-b4">
+        <div class="q-content row-layout">
+          <div class="q-illustration">
+            <svg width="220" height="120" viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg">
+              <rect width="220" height="120" rx="8" fill="#f0fdfa"/>
+              <rect y="88" width="220" height="32" fill="#ccfbf1"/>
+              <!-- Cậu bé chỉ ra hồ cá sấu ở đằng xa -->
+              <circle cx="34" cy="42" r="13" fill="#fed7aa"/>
+              <path d="M 21 40 C 22 26 46 26 47 40 Z" fill="#334155"/>
+              <circle cx="30" cy="43" r="1.5" fill="#0f172a"/>
+              <circle cx="37" cy="43" r="1.5" fill="#0f172a"/>
+              <rect x="25" y="55" width="18" height="26" rx="4" fill="#0d9488"/>
+              <line x1="29" y1="81" x2="29" y2="100" stroke="#1e293b" stroke-width="3.5"/>
+              <line x1="39" y1="81" x2="39" y2="100" stroke="#1e293b" stroke-width="3.5"/>
+              <path d="M 39 60 L 65 58" stroke="#fed7aa" stroke-width="4" stroke-linecap="round"/>
+
+              <!-- Mũi tên nét đứt chỉ xa -->
+              <path d="M 72 58 L 118 58" stroke="#ea580c" stroke-width="2" stroke-dasharray="3,3"/>
+              <polygon points="124,58 116,54 116,62" fill="#ea580c"/>
+
+              <!-- Ao đầm với cá sấu ở xa -->
+              <g transform="translate(126, 42)">
+                <ellipse cx="44" cy="28" rx="42" ry="18" fill="#67e8f9" opacity="0.6"/>
+                <!-- Cá sấu 1 -->
+                <path d="M 14 26 Q 26 18 42 26 L 46 24 L 44 28 Z" stroke="#15803d" stroke-width="3" fill="#22c55e"/>
+                <circle cx="20" cy="22" r="1.5" fill="#000"/>
+                <!-- Cá sấu 2 -->
+                <path d="M 36 34 Q 48 26 64 34 L 68 32 L 66 36 Z" stroke="#15803d" stroke-width="3" fill="#22c55e"/>
+                <circle cx="42" cy="30" r="1.5" fill="#000"/>
+              </g>
+            </svg>
+            <span class="distance-tag tag-far">Khoảng cách: Xa</span>
+          </div>
+          <div class="q-main">
+            <div class="q-sentence">
+              <span><strong>4.</strong></span>
+              <select class="select-input" id="sel-b4" onchange="checkSelectAnswer('b4')">
+                <option value="">-- Chọn --</option>
+                <option value="These">These</option>
+                <option value="Those">Those</option>
+              </select>
+              <span>are alligators.</span>
+              <button class="btn-audio" onclick="speakText('alligators')" title="Nghe từ 'alligators'">🔊</button>
+            </div>
+            <div class="explanation-box" id="exp-b4"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item B5 -->
+      <div class="q-item" id="item-b5">
+        <div class="q-content row-layout">
+          <div class="q-illustration">
+            <svg width="220" height="120" viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg">
+              <rect width="220" height="120" rx="8" fill="#f8fafc"/>
+              <rect y="88" width="220" height="32" fill="#e2e8f0"/>
+              <!-- Cậu bé chỉ ra các ngôi nhà ở xa -->
+              <circle cx="34" cy="42" r="13" fill="#fed7aa"/>
+              <path d="M 21 40 C 22 26 46 26 47 40 Z" fill="#334155"/>
+              <circle cx="30" cy="43" r="1.5" fill="#0f172a"/>
+              <circle cx="37" cy="43" r="1.5" fill="#0f172a"/>
+              <rect x="25" y="55" width="18" height="26" rx="4" fill="#f59e0b"/>
+              <line x1="29" y1="81" x2="29" y2="100" stroke="#1e293b" stroke-width="3.5"/>
+              <line x1="39" y1="81" x2="39" y2="100" stroke="#1e293b" stroke-width="3.5"/>
+              <path d="M 39 60 L 65 56" stroke="#fed7aa" stroke-width="4" stroke-linecap="round"/>
+
+              <!-- Mũi tên nét đứt chỉ xa -->
+              <path d="M 72 56 L 126 52" stroke="#ea580c" stroke-width="2" stroke-dasharray="3,3"/>
+              <polygon points="132,52 124,48 124,56" fill="#ea580c"/>
+
+              <!-- Cụm ngôi nhà ở xa xôi -->
+              <g transform="translate(136, 36)">
+                <!-- Nhà 1 mái đỏ -->
+                <polygon points="16,0 2,14 30,14" fill="#ef4444"/>
+                <rect x="4" y="14" width="24" height="22" fill="#fef08a"/>
+                <rect x="13" y="24" width="6" height="12" fill="#78350f"/>
+                <!-- Nhà 2 mái tím -->
+                <polygon points="52,4 38,18 66,18" fill="#8b5cf6"/>
+                <rect x="40" y="18" width="24" height="20" fill="#bae6fd"/>
+                <rect x="49" y="26" width="6" height="12" fill="#78350f"/>
+              </g>
+            </svg>
+            <span class="distance-tag tag-far">Khoảng cách: Xa</span>
+          </div>
+          <div class="q-main">
+            <div class="q-sentence">
+              <span><strong>5.</strong></span>
+              <select class="select-input" id="sel-b5" onchange="checkSelectAnswer('b5')">
+                <option value="">-- Chọn --</option>
+                <option value="These">These</option>
+                <option value="Those">Those</option>
+              </select>
+              <span>are houses.</span>
+              <button class="btn-audio" onclick="speakText('houses')" title="Nghe từ 'houses'">🔊</button>
+            </div>
+            <div class="explanation-box" id="exp-b5"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item B6 -->
+      <div class="q-item" id="item-b6">
+        <div class="q-content row-layout">
+          <div class="q-illustration">
+            <svg width="220" height="120" viewBox="0 0 220 120" xmlns="http://www.w3.org/2000/svg">
+              <rect width="220" height="120" rx="8" fill="#f0f9ff"/>
+              <rect y="88" width="220" height="32" fill="#e0f2fe"/>
+              <!-- Bé gái đứng ngay cạnh bàn sách -->
+              <circle cx="36" cy="40" r="13" fill="#fed7aa"/>
+              <ellipse cx="24" cy="38" rx="5" ry="8" fill="#1e293b"/>
+              <ellipse cx="48" cy="38" rx="5" ry="8" fill="#1e293b"/>
+              <circle cx="36" cy="35" r="13" fill="#1e293b"/>
+              <circle cx="36" cy="42" r="11" fill="#fed7aa"/>
+              <path d="M 28 54 L 44 54 L 48 84 L 24 84 Z" fill="#06b6d4"/>
+              <line x1="30" y1="84" x2="30" y2="100" stroke="#1e293b" stroke-width="3.5"/>
+              <line x1="42" y1="84" x2="42" y2="100" stroke="#1e293b" stroke-width="3.5"/>
+              <path d="M 44 58 L 70 58" stroke="#fed7aa" stroke-width="4" stroke-linecap="round"/>
+
+              <!-- Bàn tròn với những cuốn sách ngay trước mặt -->
+              <g transform="translate(86, 44)">
+                <!-- Bàn tròn -->
+                <ellipse cx="50" cy="28" rx="46" ry="16" fill="#d97706"/>
+                <line x1="50" y1="28" x2="50" y2="58" stroke="#78350f" stroke-width="6"/>
+                <!-- Cuốn sách 1 (xanh) -->
+                <polygon points="26,14 48,10 52,22 30,26" fill="#3b82f6"/>
+                <polygon points="28,14 47,11 48,13 29,16" fill="#ffffff"/>
+                <!-- Cuốn sách 2 (đỏ) -->
+                <polygon points="50,16 72,12 76,24 54,28" fill="#ef4444"/>
+                <polygon points="52,16 71,13 72,15 53,18" fill="#ffffff"/>
+              </g>
+            </svg>
+            <span class="distance-tag tag-near">Khoảng cách: Gần</span>
+          </div>
+          <div class="q-main">
+            <div class="q-sentence">
+              <span><strong>6.</strong></span>
+              <select class="select-input" id="sel-b6" onchange="checkSelectAnswer('b6')">
+                <option value="">-- Chọn --</option>
+                <option value="These">These</option>
+                <option value="Those">Those</option>
+              </select>
+              <span>are books.</span>
+              <button class="btn-audio" onclick="speakText('books')" title="Nghe từ 'books'">🔊</button>
+            </div>
+            <div class="explanation-box" id="exp-b6"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PART C: LOOK, FOLLOW, AND WRITE -->
+    <section class="card">
+      <div class="card-header">
+        <span class="badge-letter">C</span>
+        <div>
+          <h2 class="card-title">Look, follow, and write (Quan sát đường nối và hoàn thành câu)</h2>
+          <small style="color: var(--text-muted);">
+            Từ vựng gợi ý: <strong>caps</strong>, <strong>pencils</strong>, <strong>shoes</strong>, <strong>books</strong>
+          </small>
+        </div>
+      </div>
+
+      <!-- Sơ đồ đường nối tổng quan Part C bám sát trang 28 -->
+      <div class="overview-scene-card">
+        <h4 style="color: var(--primary-dark); margin-bottom: 8px;">🗺️ Tranh chỉ dẫn đường nối (Look and follow)</h4>
+        <svg width="680" height="260" viewBox="0 0 680 260" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bgPartC" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#ffffff"/>
+              <stop offset="100%" stop-color="#f1f5f9"/>
+            </linearGradient>
+          </defs>
+          <rect width="680" height="260" rx="12" fill="url(#bgPartC)" stroke="#cbd5e1" stroke-width="2"/>
+
+          <!-- Khung trên: Câu 1 & 2 -->
+          <rect x="250" y="20" width="410" height="105" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+          <!-- Khung dưới: Câu 3 & 4 -->
+          <rect x="250" y="135" width="410" height="105" rx="10" fill="#f8fafc" stroke="#94a3b8" stroke-width="1.5"/>
+
+          <!-- Các điểm xuất phát của câu hỏi 1, 2, 3, 4 ở bên trái -->
+          <!-- Điểm 1 -->
+          <circle cx="50" cy="50" r="14" fill="#3b82f6"/>
+          <text x="50" y="55" fill="#fff" font-weight="bold" font-size="14" text-anchor="middle">1</text>
+          <!-- Đường nối câu 1 đi xa tới giày (shoes) -->
+          <path d="M 64 50 Q 150 10 270 45 T 480 30 T 570 60" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="6,4"/>
+
+          <!-- Điểm 2 -->
+          <circle cx="50" cy="95" r="14" fill="#3b82f6"/>
+          <text x="50" y="100" fill="#fff" font-weight="bold" font-size="14" text-anchor="middle">2</text>
+          <!-- Đường nối câu 2 đi gần tới mũ (caps) -->
+          <path d="M 64 95 Q 160 120 270 90 T 360 85" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-dasharray="6,4"/>
+
+          <!-- Đồ vật trong khung trên: -->
+          <!-- Mũ (caps) ở vị trí GẦN bên trái khung -->
+          <g transform="translate(370, 60)">
+            <ellipse cx="25" cy="26" rx="24" ry="7" fill="#1e293b"/>
+            <path d="M 8 26 C 8 10 36 10 36 26 Z" fill="#ef4444"/>
+            <circle cx="22" cy="11" r="3" fill="#fbbf24"/>
+            <ellipse cx="60" cy="26" rx="22" ry="7" fill="#1e293b"/>
+            <path d="M 44 26 C 44 10 70 10 70 26 Z" fill="#3b82f6"/>
+            <text x="44" y="44" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">caps (Gần)</text>
+          </g>
+
+          <!-- Giày (shoes) ở vị trí XA bên phải khung -->
+          <g transform="translate(560, 45)">
+            <ellipse cx="24" cy="22" rx="20" ry="10" fill="#1e293b"/>
+            <ellipse cx="46" cy="22" rx="20" ry="10" fill="#334155"/>
+            <text x="35" y="44" font-size="11" font-weight="bold" fill="#b91c1c" text-anchor="middle">shoes (Xa)</text>
+          </g>
+
+          <!-- Điểm 3 -->
+          <circle cx="50" cy="165" r="14" fill="#3b82f6"/>
+          <text x="50" y="170" fill="#fff" font-weight="bold" font-size="14" text-anchor="middle">3</text>
+          <!-- Đường nối câu 3 đi xa tới sách (books) -->
+          <path d="M 64 165 Q 160 135 280 170 T 480 150 T 570 175" fill="none" stroke="#dc2626" stroke-width="2.5" stroke-dasharray="6,4"/>
+
+          <!-- Điểm 4 -->
+          <circle cx="50" cy="210" r="14" fill="#3b82f6"/>
+          <text x="50" y="215" fill="#fff" font-weight="bold" font-size="14" text-anchor="middle">4</text>
+          <!-- Đường nối câu 4 đi gần tới bút chì (pencils) -->
+          <path d="M 64 210 Q 150 230 260 215 T 380 195" fill="none" stroke="#2563eb" stroke-width="2.5" stroke-dasharray="6,4"/>
+
+          <!-- Đồ vật trong khung dưới: -->
+          <!-- Bút chì (pencils) ở vị trí GẦN bên trái khung -->
+          <g transform="translate(390, 165)">
+            <line x1="10" y1="8" x2="28" y2="40" stroke="#f59e0b" stroke-width="7" stroke-linecap="round"/>
+            <line x1="28" y1="8" x2="46" y2="40" stroke="#10b981" stroke-width="7" stroke-linecap="round"/>
+            <text x="30" y="56" font-size="11" font-weight="bold" fill="#0369a1" text-anchor="middle">pencils (Gần)</text>
+          </g>
+
+          <!-- Sách (books) ở vị trí XA bên phải khung -->
+          <g transform="translate(560, 160)">
+            <rect x="0" y="10" width="30" height="20" rx="3" fill="#3b82f6"/>
+            <rect x="34" y="6" width="32" height="24" rx="3" fill="#f43f5e"/>
+            <text x="32" y="44" font-size="11" font-weight="bold" fill="#b91c1c" text-anchor="middle">books (Xa)</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Item C1 -->
+      <div class="q-item" id="item-c1">
+        <div class="q-sentence">
+          <span><strong>1.</strong></span>
+          <select class="select-input" id="sel-c1-d" onchange="checkPairAnswer('c1')">
+            <option value="">-- Đại từ --</option>
+            <option value="These">These</option>
+            <option value="Those">Those</option>
+          </select>
+          <span>are</span>
+          <select class="select-input" id="sel-c1-n" onchange="checkPairAnswer('c1')">
+            <option value="">-- Danh từ --</option>
+            <option value="caps">caps</option>
+            <option value="pencils">pencils</option>
+            <option value="shoes">shoes</option>
+            <option value="books">books</option>
+          </select>
+          <span>. (Đường nét đứt dẫn đến đôi giày ở xa)</span>
+          <button class="btn-audio" onclick="speakText('shoes')" title="Nghe từ 'shoes'">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp-c1"></div>
+      </div>
+
+      <!-- Item C2 -->
+      <div class="q-item" id="item-c2">
+        <div class="q-sentence">
+          <span><strong>2.</strong></span>
+          <select class="select-input" id="sel-c2-d" onchange="checkPairAnswer('c2')">
+            <option value="">-- Đại từ --</option>
+            <option value="These">These</option>
+            <option value="Those">Those</option>
+          </select>
+          <span>are</span>
+          <select class="select-input" id="sel-c2-n" onchange="checkPairAnswer('c2')">
+            <option value="">-- Danh từ --</option>
+            <option value="caps">caps</option>
+            <option value="pencils">pencils</option>
+            <option value="shoes">shoes</option>
+            <option value="books">books</option>
+          </select>
+          <span>. (Đường nét đứt dẫn đến những chiếc mũ lưỡi trai ở gần)</span>
+          <button class="btn-audio" onclick="speakText('caps')" title="Nghe từ 'caps'">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp-c2"></div>
+      </div>
+
+      <!-- Item C3 -->
+      <div class="q-item" id="item-c3">
+        <div class="q-sentence">
+          <span><strong>3.</strong></span>
+          <select class="select-input" id="sel-c3-d" onchange="checkPairAnswer('c3')">
+            <option value="">-- Đại từ --</option>
+            <option value="These">These</option>
+            <option value="Those">Those</option>
+          </select>
+          <span>are</span>
+          <select class="select-input" id="sel-c3-n" onchange="checkPairAnswer('c3')">
+            <option value="">-- Danh từ --</option>
+            <option value="caps">caps</option>
+            <option value="pencils">pencils</option>
+            <option value="shoes">shoes</option>
+            <option value="books">books</option>
+          </select>
+          <span>. (Đường nét đứt dẫn đến những cuốn sách ở xa)</span>
+          <button class="btn-audio" onclick="speakText('books')" title="Nghe từ 'books'">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp-c3"></div>
+      </div>
+
+      <!-- Item C4 -->
+      <div class="q-item" id="item-c4">
+        <div class="q-sentence">
+          <span><strong>4.</strong></span>
+          <select class="select-input" id="sel-c4-d" onchange="checkPairAnswer('c4')">
+            <option value="">-- Đại từ --</option>
+            <option value="These">These</option>
+            <option value="Those">Those</option>
+          </select>
+          <span>are</span>
+          <select class="select-input" id="sel-c4-n" onchange="checkPairAnswer('c4')">
+            <option value="">-- Danh từ --</option>
+            <option value="caps">caps</option>
+            <option value="pencils">pencils</option>
+            <option value="shoes">shoes</option>
+            <option value="books">books</option>
+          </select>
+          <span>. (Đường nét đứt dẫn đến những chiếc bút chì ở gần)</span>
+          <button class="btn-audio" onclick="speakText('pencils')" title="Nghe từ 'pencils'">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp-c4"></div>
+      </div>
+    </section>
+
+    <!-- PART D: LOOK AND WRITE (PHÒNG ĐỒ CHƠI) -->
+    <section class="card">
+      <div class="card-header">
+        <span class="badge-letter">D</span>
+        <div>
+          <h2 class="card-title">Look and write (Quan sát phòng đồ chơi và hoàn thành câu)</h2>
+          <small style="color: var(--text-muted);">
+            Từ vựng: <strong>balls</strong>, <strong>dolls</strong>, <strong>robots</strong>, <strong>blocks</strong>, <strong>toy cars</strong>, <strong>teddy bears</strong>
+          </small>
+        </div>
+      </div>
+
+      <!-- Tranh tổng thể phòng đồ chơi trang 29 vẽ lại bằng SVG chi tiết -->
+      <div class="overview-scene-card">
+        <h4 style="color: var(--primary-dark); margin-bottom: 8px;">🧸 Bức tranh toàn cảnh phòng đồ chơi (Toy Room Scene)</h4>
+        <svg width="680" height="340" viewBox="0 0 680 340" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="bgRoom" x1="0%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#fdf4ff"/>
+              <stop offset="100%" stop-color="#fef9c3"/>
+            </linearGradient>
+          </defs>
+          <!-- Nền phòng và sàn nhà ca rô -->
+          <rect width="680" height="340" rx="12" fill="url(#bgRoom)" stroke="#cbd5e1" stroke-width="2"/>
+          <line x1="0" y1="210" x2="680" y2="210" stroke="#fde047" stroke-width="2"/>
+          <line x1="220" y1="210" x2="160" y2="340" stroke="#fde047" stroke-width="2"/>
+          <line x1="460" y1="210" x2="520" y2="340" stroke="#fde047" stroke-width="2"/>
+
+          <!-- 1. Kệ gấu bông bên trái (trên cao / xa) -->
+          <g transform="translate(40, 20)">
+            <rect x="0" y="0" width="110" height="150" rx="6" fill="#fed7aa" stroke="#f97316" stroke-width="2"/>
+            <line x1="0" y1="50" x2="110" y2="50" stroke="#f97316" stroke-width="2"/>
+            <line x1="0" y1="100" x2="110" y2="100" stroke="#f97316" stroke-width="2"/>
+            <!-- Gấu bông trên kệ -->
+            <circle cx="55" cy="30" r="14" fill="#a16207"/>
+            <circle cx="43" cy="20" r="4.5" fill="#a16207"/>
+            <circle cx="67" cy="20" r="4.5" fill="#a16207"/>
+            <circle cx="55" cy="80" r="13" fill="#b45309"/>
+            <text x="55" y="130" font-size="11" font-weight="bold" fill="#92400e" text-anchor="middle">teddy bears</text>
+          </g>
+
+          <!-- 2. Kệ robot bên phải (trên cao / xa) -->
+          <g transform="translate(500, 20)">
+            <rect x="0" y="0" width="140" height="130" rx="6" fill="#e2e8f0" stroke="#64748b" stroke-width="2"/>
+            <line x1="0" y1="65" x2="140" y2="65" stroke="#64748b" stroke-width="2"/>
+            <!-- Các chú robot xếp trên kệ -->
+            <rect x="25" y="18" width="22" height="22" rx="3" fill="#0284c7"/>
+            <circle cx="36" cy="12" r="3" fill="#e11d48"/>
+            <rect x="60" y="16" width="24" height="24" rx="3" fill="#10b981"/>
+            <circle cx="72" cy="10" r="3" fill="#fbbf24"/>
+            <rect x="95" y="18" width="22" height="22" rx="3" fill="#8b5cf6"/>
+            <text x="70" y="105" font-size="11" font-weight="bold" fill="#334155" text-anchor="middle">robots</text>
+          </g>
+
+          <!-- BẠN SỐ 1: Chơi khối xếp hình (Gần ngay trước mặt) -->
+          <g transform="translate(70, 200)">
+            <!-- Số thứ tự 1 -->
+            <circle cx="0" cy="10" r="11" fill="#2563eb"/>
+            <text x="0" y="15" fill="#fff" font-weight="bold" font-size="12" text-anchor="middle">1</text>
+            <!-- Bạn nhỏ 1 -->
+            <circle cx="35" cy="20" r="14" fill="#fed7aa"/>
+            <rect x="23" y="34" width="24" height="30" rx="5" fill="#0284c7"/>
+            <!-- Hộp khối xếp hình ngay trước mặt (gần) -->
+            <rect x="65" y="35" width="45" height="25" fill="#f59e0b" rx="3"/>
+            <rect x="70" y="24" width="12" height="12" fill="#ef4444"/>
+            <rect x="88" y="24" width="12" height="12" fill="#3b82f6"/>
+            <text x="88" y="75" font-size="11" font-weight="bold" fill="#b45309" text-anchor="middle">blocks (Gần)</text>
+          </g>
+
+          <!-- BẠN SỐ 3: Ngồi chỉ tay sang kệ gấu bông (ở xa bên trái) -->
+          <g transform="translate(230, 90)">
+            <circle cx="0" cy="15" r="11" fill="#2563eb"/>
+            <text x="0" y="20" fill="#fff" font-weight="bold" font-size="12" text-anchor="middle">3</text>
+            <circle cx="35" cy="25" r="14" fill="#fed7aa"/>
+            <rect x="23" y="39" width="24" height="34" rx="5" fill="#10b981"/>
+            <!-- Tay chỉ xa sang bên trái -->
+            <path d="M 23 45 L -20 30" stroke="#ea580c" stroke-width="2.5" stroke-dasharray="4,3"/>
+            <polygon points="-24,28 -16,26 -18,34" fill="#ea580c"/>
+          </g>
+
+          <!-- BẠN SỐ 2: Bé gái chỉ tay sang kệ robot (ở xa bên phải) -->
+          <g transform="translate(320, 140)">
+            <circle cx="0" cy="15" r="11" fill="#2563eb"/>
+            <text x="0" y="20" fill="#fff" font-weight="bold" font-size="12" text-anchor="middle">2</text>
+            <circle cx="35" cy="25" r="13" fill="#fed7aa"/>
+            <rect x="23" y="38" width="24" height="34" rx="5" fill="#ec4899"/>
+            <!-- Tay chỉ xa sang bên phải -->
+            <path d="M 47 45 L 170 -15" stroke="#ea580c" stroke-width="2.5" stroke-dasharray="4,3"/>
+            <polygon points="175,-17 165,-20 168,-12" fill="#ea580c"/>
+          </g>
+
+          <!-- BẠN SỐ 4: Chơi búp bê ngay gần trước mặt -->
+          <g transform="translate(470, 125)">
+            <circle cx="0" cy="15" r="11" fill="#2563eb"/>
+            <text x="0" y="20" fill="#fff" font-weight="bold" font-size="12" text-anchor="middle">4</text>
+            <circle cx="35" cy="25" r="13" fill="#fed7aa"/>
+            <rect x="23" y="38" width="24" height="34" rx="5" fill="#f43f5e"/>
+            <!-- Búp bê ở ngay gần -->
+            <g transform="translate(65, 30)">
+              <circle cx="10" cy="10" r="8" fill="#fed7aa"/>
+              <path d="M 4 18 L 16 18 L 20 35 L 0 35 Z" fill="#a855f7"/>
+              <circle cx="32" cy="10" r="8" fill="#fed7aa"/>
+              <path d="M 26 18 L 38 18 L 42 35 L 22 35 Z" fill="#3b82f6"/>
+              <text x="21" y="47" font-size="10" font-weight="bold" fill="#7e22ce" text-anchor="middle">dolls (Gần)</text>
+            </g>
+          </g>
+
+          <!-- BẠN SỐ 5: Bé quỳ chỉ tay tới các quả bóng ở xa -->
+          <g transform="translate(190, 220)">
+            <circle cx="0" cy="15" r="11" fill="#2563eb"/>
+            <text x="0" y="20" fill="#fff" font-weight="bold" font-size="12" text-anchor="middle">5</text>
+            <circle cx="35" cy="22" r="13" fill="#fed7aa"/>
+            <rect x="23" y="35" width="24" height="28" rx="5" fill="#8b5cf6"/>
+            <!-- Tay chỉ tới những quả bóng ở xa góc dưới -->
+            <path d="M 47 45 L 180 55" stroke="#ea580c" stroke-width="2.5" stroke-dasharray="4,3"/>
+            <polygon points="186,55 178,51 178,59" fill="#ea580c"/>
+          </g>
+
+          <!-- Những quả bóng (balls) ở xa bạn số 5 -->
+          <g transform="translate(390, 260)">
+            <circle cx="20" cy="20" r="18" fill="#f97316"/>
+            <circle cx="48" cy="26" r="11" fill="#3b82f6"/>
+            <circle cx="68" cy="28" r="7" fill="#10b981"/>
+            <text x="40" y="48" font-size="11" font-weight="bold" fill="#c2410c" text-anchor="middle">balls (Xa)</text>
+          </g>
+
+          <!-- BẠN SỐ 6: Chơi xe ô tô đồ chơi ngay cạnh mình -->
+          <g transform="translate(540, 205)">
+            <circle cx="0" cy="15" r="11" fill="#2563eb"/>
+            <text x="0" y="20" fill="#fff" font-weight="bold" font-size="12" text-anchor="middle">6</text>
+            <circle cx="35" cy="25" r="14" fill="#fed7aa"/>
+            <rect x="23" y="39" width="24" height="32" rx="5" fill="#059669"/>
+            <!-- Ô tô đồ chơi ở ngay gần trước mặt -->
+            <g transform="translate(-40, 50)">
+              <rect x="0" y="6" width="28" height="14" rx="3" fill="#ef4444"/>
+              <circle cx="6" cy="20" r="3" fill="#000"/>
+              <circle cx="22" cy="20" r="3" fill="#000"/>
+              <rect x="36" y="4" width="30" height="16" rx="3" fill="#3b82f6"/>
+              <circle cx="42" cy="20" r="3" fill="#000"/>
+              <circle cx="60" cy="20" r="3" fill="#000"/>
+              <text x="32" y="32" font-size="10" font-weight="bold" fill="#1e293b" text-anchor="middle">toy cars (Gần)</text>
+            </g>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Item D1 -->
+      <div class="q-item" id="item-d1">
+        <div class="q-sentence">
+          <span><strong>1.</strong> [Bạn số 1 - Chơi khối xếp hình ngay trước mặt]:</span>
+          <select class="select-input" id="sel-d1-d" onchange="checkPairAnswer('d1')">
+            <option value="">-- Đại từ --</option>
+            <option value="These">These</option>
+            <option value="Those">Those</option>
+          </select>
+          <span>are</span>
+          <select class="select-input" id="sel-d1-n" onchange="checkPairAnswer('d1')">
+            <option value="">-- Danh từ --</option>
+            <option value="balls">balls</option>
+            <option value="dolls">dolls</option>
+            <option value="robots">robots</option>
+            <option value="blocks">blocks</option>
+            <option value="toy cars">toy cars</option>
+            <option value="teddy bears">teddy bears</option>
+          </select>
+          <span>.</span>
+          <button class="btn-audio" onclick="speakText('blocks')" title="Nghe từ 'blocks'">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp-d1"></div>
+      </div>
+
+      <!-- Item D2 -->
+      <div class="q-item" id="item-d2">
+        <div class="q-sentence">
+          <span><strong>2.</strong> [Bạn số 2 - Chỉ tay sang những con robot trên kệ đằng xa]:</span>
+          <select class="select-input" id="sel-d2-d" onchange="checkPairAnswer('d2')">
+            <option value="">-- Đại từ --</option>
+            <option value="These">These</option>
+            <option value="Those">Those</option>
+          </select>
+          <span>are</span>
+          <select class="select-input" id="sel-d2-n" onchange="checkPairAnswer('d2')">
+            <option value="">-- Danh từ --</option>
+            <option value="balls">balls</option>
+            <option value="dolls">dolls</option>
+            <option value="robots">robots</option>
+            <option value="blocks">blocks</option>
+            <option value="toy cars">toy cars</option>
+            <option value="teddy bears">teddy bears</option>
+          </select>
+          <span>.</span>
+          <button class="btn-audio" onclick="speakText('robots')" title="Nghe từ 'robots'">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp-d2"></div>
+      </div>
+
+      <!-- Item D3 -->
+      <div class="q-item" id="item-d3">
+        <div class="q-sentence">
+          <span><strong>3.</strong> [Bạn số 3 - Chỉ tay sang gấu bông trên kệ ở bên trái]:</span>
+          <select class="select-input" id="sel-d3-d" onchange="checkPairAnswer('d3')">
+            <option value="">-- Đại từ --</option>
+            <option value="These">These</option>
+            <option value="Those">Those</option>
+          </select>
+          <span>are</span>
+          <select class="select-input" id="sel-d3-n" onchange="checkPairAnswer('d3')">
+            <option value="">-- Danh từ --</option>
+            <option value="balls">balls</option>
+            <option value="dolls">dolls</option>
+            <option value="robots">robots</option>
+            <option value="blocks">blocks</option>
+            <option value="toy cars">toy cars</option>
+            <option value="teddy bears">teddy bears</option>
+          </select>
+          <span>.</span>
+          <button class="btn-audio" onclick="speakText('teddy bears')" title="Nghe từ 'teddy bears'">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp-d3"></div>
+      </div>
+
+      <!-- Item D4 -->
+      <div class="q-item" id="item-d4">
+        <div class="q-sentence">
+          <span><strong>4.</strong> [Bạn số 4 - Chơi búp bê ngay gần trước mặt]:</span>
+          <select class="select-input" id="sel-d4-d" onchange="checkPairAnswer('d4')">
+            <option value="">-- Đại từ --</option>
+            <option value="These">These</option>
+            <option value="Those">Those</option>
+          </select>
+          <span>are</span>
+          <select class="select-input" id="sel-d4-n" onchange="checkPairAnswer('d4')">
+            <option value="">-- Danh từ --</option>
+            <option value="balls">balls</option>
+            <option value="dolls">dolls</option>
+            <option value="robots">robots</option>
+            <option value="blocks">blocks</option>
+            <option value="toy cars">toy cars</option>
+            <option value="teddy bears">teddy bears</option>
+          </select>
+          <span>.</span>
+          <button class="btn-audio" onclick="speakText('dolls')" title="Nghe từ 'dolls'">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp-d4"></div>
+      </div>
+
+      <!-- Item D5 -->
+      <div class="q-item" id="item-d5">
+        <div class="q-sentence">
+          <span><strong>5.</strong> [Bạn số 5 - Chỉ tay tới những quả bóng ở đằng xa]:</span>
+          <select class="select-input" id="sel-d5-d" onchange="checkPairAnswer('d5')">
+            <option value="">-- Đại từ --</option>
+            <option value="These">These</option>
+            <option value="Those">Those</option>
+          </select>
+          <span>are</span>
+          <select class="select-input" id="sel-d5-n" onchange="checkPairAnswer('d5')">
+            <option value="">-- Danh từ --</option>
+            <option value="balls">balls</option>
+            <option value="dolls">dolls</option>
+            <option value="robots">robots</option>
+            <option value="blocks">blocks</option>
+            <option value="toy cars">toy cars</option>
+            <option value="teddy bears">teddy bears</option>
+          </select>
+          <span>.</span>
+          <button class="btn-audio" onclick="speakText('balls')" title="Nghe từ 'balls'">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp-d5"></div>
+      </div>
+
+      <!-- Item D6 -->
+      <div class="q-item" id="item-d6">
+        <div class="q-sentence">
+          <span><strong>6.</strong> [Bạn số 6 - Đang chơi xe ô tô đồ chơi ngay cạnh mình]:</span>
+          <select class="select-input" id="sel-d6-d" onchange="checkPairAnswer('d6')">
+            <option value="">-- Đại từ --</option>
+            <option value="These">These</option>
+            <option value="Those">Those</option>
+          </select>
+          <span>are</span>
+          <select class="select-input" id="sel-d6-n" onchange="checkPairAnswer('d6')">
+            <option value="">-- Danh từ --</option>
+            <option value="balls">balls</option>
+            <option value="dolls">dolls</option>
+            <option value="robots">robots</option>
+            <option value="blocks">blocks</option>
+            <option value="toy cars">toy cars</option>
+            <option value="teddy bears">teddy bears</option>
+          </select>
+          <span>.</span>
+          <button class="btn-audio" onclick="speakText('toy cars')" title="Nghe từ 'toy cars'">🔊</button>
+        </div>
+        <div class="explanation-box" id="exp-d6"></div>
+      </div>
+    </section>
+
+    <!-- CONTROL PANEL / SCORE -->
+    <div class="control-panel">
+      <div class="score-badge">
+        <span class="score-label">Điểm số hiện tại:</span>
+        <span class="score-val" id="total-score">0 / 20</span>
+      </div>
+      <div style="display: flex; gap: 10px;">
+        <button class="btn-action" id="btn-submit" onclick="submitWorksheet()">
+          <span>✓</span> Nộp Bài & Khóa Đáp Án
+        </button>
+        <button class="btn-action btn-reset" id="btn-reset" onclick="resetWorksheet()">
+          <span>↻</span> Làm Lại
+        </button>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <strong>HT English Center</strong> • Hotline hỗ trợ học tập: 0962240866<br>
+      Tài liệu học tập tương tác tiếng Anh tiểu học - Unit 08: These / Those.
+    </footer>
+  </div>
+
+  <script>
+    /* DỮ LIỆU ĐÁP ÁN & GIẢI THÍCH CHI TIẾT BẰNG TIẾNG VIỆT */
+    const questionsData = {
+      // PART A
+      a1: {
+        type: 'choice',
+        correct: 'Those',
+        explanation: 'Bạn nhỏ đứng ở khoảng cách <strong>XA</strong> so với những chiếc ô tô nên dùng <strong>Those</strong>.',
+        translation: 'Kia là những chiếc ô tô.'
+      },
+      a2: {
+        type: 'choice',
+        correct: 'These',
+        explanation: 'Những chiếc ô tô ở <strong>NGAY GẦN</strong> bạn nhỏ nên dùng đại từ <strong>These</strong>.',
+        translation: 'Đây là những chiếc ô tô.'
+      },
+      a3: {
+        type: 'choice',
+        correct: 'These',
+        explanation: 'Những chiếc ghế dài ở <strong>GẦN</strong> bạn nam nên dùng <strong>These</strong>.',
+        translation: 'Đây là những chiếc ghế dài.'
+      },
+      a4: {
+        type: 'choice',
+        correct: 'Those',
+        explanation: 'Bạn nam chỉ tay về phía những chiếc ghế dài ở <strong>XA</strong> nên dùng <strong>Those</strong>.',
+        translation: 'Kia là những chiếc ghế dài.'
+      },
+
+      // PART B
+      b1: {
+        type: 'single-select',
+        correct: 'These',
+        explanation: 'Những chú khỉ ở <strong>GẦN</strong> bạn nhỏ nên ta điền <strong>These</strong>.',
+        translation: 'Đây là những con khỉ.'
+      },
+      b2: {
+        type: 'single-select',
+        correct: 'Those',
+        explanation: 'Đàn chim đang bay ở trên trời <strong>XA</strong> nên ta điền <strong>Those</strong>.',
+        translation: 'Kia là những con chim.'
+      },
+      b3: {
+        type: 'single-select',
+        correct: 'Those',
+        explanation: 'Những con búp bê ở phía <strong>XA</strong> nên ta điền <strong>Those</strong>.',
+        translation: 'Kia là những con búp bê.'
+      },
+      b4: {
+        type: 'single-select',
+        correct: 'Those',
+        explanation: 'Đàn cá sấu ở dưới ao phía <strong>XA</strong> nên ta điền <strong>Those</strong>.',
+        translation: 'Kia là những con cá sấu.'
+      },
+      b5: {
+        type: 'single-select',
+        correct: 'Those',
+        explanation: 'Những ngôi nhà ở phía <strong>XA</strong> nên ta điền <strong>Those</strong>.',
+        translation: 'Kia là những ngôi nhà.'
+      },
+      b6: {
+        type: 'single-select',
+        correct: 'These',
+        explanation: 'Những cuốn sách ở ngay trên bàn <strong>GẦN</strong> bạn nhỏ nên ta điền <strong>These</strong>.',
+        translation: 'Đây là những quyển sách.'
+      },
+
+      // PART C
+      c1: {
+        type: 'pair',
+        correctPronoun: 'Those',
+        correctNoun: 'shoes',
+        explanation: 'Đường vẽ dẫn tới đôi giày ở vị trí <strong>XA</strong> nên ta điền: <strong>Those are shoes.</strong>',
+        translation: 'Kia là những đôi giày.'
+      },
+      c2: {
+        type: 'pair',
+        correctPronoun: 'These',
+        correctNoun: 'caps',
+        explanation: 'Đường vẽ dẫn tới những chiếc mũ ở vị trí <strong>GẦN</strong> nên ta điền: <strong>These are caps.</strong>',
+        translation: 'Đây là những chiếc mũ lưỡi trai.'
+      },
+      c3: {
+        type: 'pair',
+        correctPronoun: 'Those',
+        correctNoun: 'books',
+        explanation: 'Đường vẽ dẫn tới những cuốn sách ở vị trí <strong>XA</strong> nên ta điền: <strong>Those are books.</strong>',
+        translation: 'Kia là những quyển sách.'
+      },
+      c4: {
+        type: 'pair',
+        correctPronoun: 'These',
+        correctNoun: 'pencils',
+        explanation: 'Đường vẽ dẫn tới những chiếc bút chì ở vị trí <strong>GẦN</strong> nên ta điền: <strong>These are pencils.</strong>',
+        translation: 'Đây là những chiếc bút chì.'
+      },
+
+      // PART D
+      d1: {
+        type: 'pair',
+        correctPronoun: 'These',
+        correctNoun: 'blocks',
+        explanation: 'Bạn số 1 đang ngồi xếp những khối hình hộp <strong>GẦN</strong> ngay trước mặt nên điền: <strong>These are blocks.</strong>',
+        translation: 'Đây là những khối xếp hình.'
+      },
+      d2: {
+        type: 'pair',
+        correctPronoun: 'Those',
+        correctNoun: 'robots',
+        explanation: 'Bạn số 2 chỉ tay về những con robot trên kệ đồ chơi ở <strong>XA</strong> nên điền: <strong>Those are robots.</strong>',
+        translation: 'Kia là những con rô-bốt.'
+      },
+      d3: {
+        type: 'pair',
+        correctPronoun: 'Those',
+        correctNoun: 'teddy bears',
+        explanation: 'Bạn số 3 chỉ tay về phía những chú gấu bông trên giá ở <strong>XA</strong> nên điền: <strong>Those are teddy bears.</strong>',
+        translation: 'Kia là những con gấu bông.'
+      },
+      d4: {
+        type: 'pair',
+        correctPronoun: 'These',
+        correctNoun: 'dolls',
+        explanation: 'Bạn số 4 đang chơi với những con búp bê ở ngay <strong>GẦN</strong> mình nên điền: <strong>These are dolls.</strong>',
+        translation: 'Đây là những con búp bê.'
+      },
+      d5: {
+        type: 'pair',
+        correctPronoun: 'Those',
+        correctNoun: 'balls',
+        explanation: 'Bạn số 5 chỉ tay về phía những quả bóng lăn ở phía <strong>XA</strong> nên điền: <strong>Those are balls.</strong>',
+        translation: 'Kia là những quả bóng.'
+      },
+      d6: {
+        type: 'pair',
+        correctPronoun: 'These',
+        correctNoun: 'toy cars',
+        explanation: 'Bạn số 6 đang chơi những chiếc xe ô tô đồ chơi ở ngay <strong>GẦN</strong> mình nên điền: <strong>These are toy cars.</strong>',
+        translation: 'Đây là những chiếc ô tô đồ chơi.'
+      }
+    };
+
+    // Quản lý trạng thái bài làm
+    const userAnswers = {};
+    let isSubmitted = false;
+
+    // PHÁT ÂM ĐỘC LẬP - SpeechSynthesis API
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) {
+        return;
+      }
+      window.speechSynthesis.cancel(); // Dừng câu đang đọc nếu có
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      utterance.rate = 0.9; // Tốc độ vừa phải cho học sinh
+      window.speechSynthesis.speak(utterance);
+    }
+
+    // XỬ LÝ LỰA CHỌN PHẦN A (Multiple Choice)
+    function selectChoice(qid, value) {
+      if (isSubmitted) return;
+      userAnswers[qid] = value;
+
+      const buttons = document.querySelectorAll(`button[data-qid="${qid}"]`);
+      buttons.forEach(btn => {
+        if (btn.getAttribute('data-val') === value) {
+          btn.classList.add('selected');
+        } else {
+          btn.classList.remove('selected');
+        }
+      });
+
+      renderFeedback(qid);
+      updateTotalScore();
+    }
+
+    // XỬ LÝ CHỌN CHO PHẦN B (Single Select Dropdown)
+    function checkSelectAnswer(qid) {
+      if (isSubmitted) return;
+      const sel = document.getElementById(`sel-${qid}`);
+      userAnswers[qid] = sel.value;
+
+      renderFeedback(qid);
+      updateTotalScore();
+    }
+
+    // XỬ LÝ CHỌN CHO PHẦN C & D (Pair: Pronoun + Noun)
+    function checkPairAnswer(qid) {
+      if (isSubmitted) return;
+      const pronounSel = document.getElementById(`sel-${qid}-d`);
+      const nounSel = document.getElementById(`sel-${qid}-n`);
+
+      userAnswers[qid] = {
+        pronoun: pronounSel ? pronounSel.value : '',
+        noun: nounSel ? nounSel.value : ''
+      };
+
+      renderFeedback(qid);
+      updateTotalScore();
+    }
+
+    // HIỂN THỊ ĐÁP ÁN & LỜI GIẢI TỨC THÌ
+    function renderFeedback(qid) {
+      const data = questionsData[qid];
+      const itemElem = document.getElementById(`item-${qid}`);
+      const expElem = document.getElementById(`exp-${qid}`);
+      if (!expElem) return;
+
+      let isCorrect = false;
+      let hasAnswer = false;
+
+      if (data.type === 'choice' || data.type === 'single-select') {
+        const userVal = userAnswers[qid];
+        if (userVal) {
+          hasAnswer = true;
+          isCorrect = (userVal === data.correct);
+        }
+      } else if (data.type === 'pair') {
+        const pair = userAnswers[qid];
+        if (pair && (pair.pronoun || pair.noun)) {
+          hasAnswer = true;
+          isCorrect = (pair.pronoun === data.correctPronoun && pair.noun === data.correctNoun);
+        }
+      }
+
+      if (!hasAnswer) {
+        expElem.className = 'explanation-box';
+        expElem.innerHTML = '';
+        if (itemElem) itemElem.className = 'q-item';
+        return;
+      }
+
+      if (isCorrect) {
+        itemElem.className = 'q-item correct';
+        expElem.className = 'explanation-box show is-correct';
+        expElem.innerHTML = `
+          <div class="exp-title">✓ Chính xác! Em làm rất tốt.</div>
+          <div class="exp-body">
+            <strong>Dịch nghĩa:</strong> "${data.translation}"<br>
+            <strong>Giải thích:</strong> ${data.explanation}
+          </div>
+        `;
+      } else {
+        itemElem.className = 'q-item incorrect';
+        expElem.className = 'explanation-box show is-wrong';
+        const correctText = (data.type === 'pair') 
+          ? `<strong>${data.correctPronoun}</strong> are <strong>${data.correctNoun}</strong>`
+          : `<strong>${data.correct}</strong>`;
+
+        expElem.innerHTML = `
+          <div class="exp-title">✗ Chưa chính xác rồi!</div>
+          <div class="exp-body">
+            <strong>Đáp án đúng:</strong> ${correctText}<br>
+            <strong>Dịch nghĩa:</strong> "${data.translation}"<br>
+            <strong>Lý do:</strong> ${data.explanation}
+          </div>
+        `;
+      }
+    }
+
+    // TÍNH ĐIỂM TỔNG CỘNG
+    function calculateScore() {
+      let score = 0;
+      for (const [qid, data] of Object.entries(questionsData)) {
+        if (data.type === 'choice' || data.type === 'single-select') {
+          if (userAnswers[qid] === data.correct) score += 1;
+        } else if (data.type === 'pair') {
+          const pair = userAnswers[qid];
+          if (pair && pair.pronoun === data.correctPronoun && pair.noun === data.correctNoun) {
+            score += 1;
+          }
+        }
+      }
+      return score;
+    }
+
+    function updateTotalScore() {
+      const score = calculateScore();
+      const total = Object.keys(questionsData).length;
+      document.getElementById('total-score').innerText = `${score} / ${total}`;
+    }
+
+    // NỘP BÀI & KHÓA FORM
+    function submitWorksheet() {
+      if (isSubmitted) return;
+      isSubmitted = true;
+
+      // Khóa tất cả các nút và ô chọn
+      document.querySelectorAll('.choice-btn').forEach(btn => btn.disabled = true);
+      document.querySelectorAll('.select-input').forEach(sel => sel.disabled = true);
+
+      // Hiển thị đầy đủ chữa bài cho tất cả các câu
+      for (const qid of Object.keys(questionsData)) {
+        renderFeedback(qid);
+      }
+
+      const score = calculateScore();
+      const total = Object.keys(questionsData).length;
+
+      const submitBtn = document.getElementById('btn-submit');
+      submitBtn.disabled = true;
+      submitBtn.style.opacity = '0.5';
+      submitBtn.style.cursor = 'not-allowed';
+      submitBtn.innerHTML = 'Đã Nộp Bài';
+
+      // Thông báo nhẹ nhàng trong tiêu đề
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // LÀM LẠI PHIẾU BÀI TẬP
+    function resetWorksheet() {
+      isSubmitted = false;
+
+      // Xóa dữ liệu câu trả lời
+      for (const key of Object.keys(userAnswers)) {
+        delete userAnswers[key];
+      }
+
+      // Mở khóa các nút lựa chọn
+      document.querySelectorAll('.choice-btn').forEach(btn => {
+        btn.disabled = false;
+        btn.classList.remove('selected');
+      });
+
+      // Reset các dropdown
+      document.querySelectorAll('.select-input').forEach(sel => {
+        sel.disabled = false;
+        sel.value = '';
+      });
+
+      // Xóa giao diện giải thích và viền bài
+      document.querySelectorAll('.explanation-box').forEach(box => {
+        box.className = 'explanation-box';
+        box.innerHTML = '';
+      });
+
+      document.querySelectorAll('.q-item').forEach(item => {
+        item.className = 'q-item';
+      });
+
+      // Mở khóa nút Nộp bài
+      const submitBtn = document.getElementById('btn-submit');
+      submitBtn.disabled = false;
+      submitBtn.style.opacity = '1';
+      submitBtn.style.cursor = 'pointer';
+      submitBtn.innerHTML = '<span>✓</span> Nộp Bài & Khóa Đáp Án';
+
+      updateTotalScore();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

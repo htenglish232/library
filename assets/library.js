@@ -1,9 +1,9 @@
 import { db } from './firebase-client.js';
 import { doc, onSnapshot } from './firebase-sdk.js';
 import { setupLogin, observeAccess, showSession, explainAuthError } from './session.js';
-import { releaseCatalogView } from './catalog-release.js?v=20261024-all-dual';
+import { releaseCatalogView } from './catalog-release.js?v=20261029-grade3';
 import { decodeCatalog } from './catalog-data.js';
-import { setCatalog, clearCatalog } from './catalog-view.js?v=20261024-all-dual';
+import { setCatalog, clearCatalog } from './catalog-view.js?v=20261029-grade3';
 
 setupLogin();
 let generation = 0, loadedFor = null, stopCatalog = () => {};
