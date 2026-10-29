@@ -1,3 +1,4 @@
+from practice_browser_controls import control,assert_context
 """Keep the four earlier game URLs usable without challenge navigation."""
 from pathlib import Path
 from urllib.parse import quote,unquote
@@ -34,7 +35,7 @@ try:
    for i,q in enumerate(questions):
     expect(page.locator('#question-card')).to_have_attribute('data-question-id',q['id'])
     assert page.locator('#prompt').inner_html()==page.evaluate('html=>{const d=document.createElement("div");d.innerHTML=html;return d.innerHTML;}',q['promptHtml'])
-    if q['section']=='reading' and page.locator('#passage-content').text_content().strip():expect(page.locator('#passage-content')).to_be_visible()
+    assert_context(page,q,data)
     if q['kind']=='choice':
      value=next(o['value'] for o in q['options'] if o['value'] not in q['accepted']) if i==0 else q['accepted'][0] if q['accepted'] else q['options'][0]['value']
      page.locator('#answer-area input').evaluate_all('(els,v)=>{const e=els.find(e=>e.value===v);e.checked=true;e.dispatchEvent(new Event("change"));}',value)
@@ -51,7 +52,7 @@ try:
     page.locator('#next-question').click()
    expect(page.locator('#results')).to_be_visible();expect(page.locator('#result-xp')).to_have_text(str(xp))
    page.locator('#review-wrong').click();expect(page.locator('#play')).to_be_visible();expect(page.locator('#xp-total')).to_have_text(f'✦ {xp} XP')
-   page.locator('#home-button').click();expect(page.locator('#question-dots button')).to_have_count(len(questions))
+   control(page,'#home-button').click();expect(page.locator('#question-dots button')).to_have_count(len(questions))
    page.locator('#previous-question').click() if page.locator('#previous-question').is_enabled() else None
    assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1')
    report.append({'game':file.relative_to(ROOT).as_posix(),'questions':len(questions),'xp':xp,'pending':pending,'result':'PASS'});print('PASS',report[-1],flush=True)

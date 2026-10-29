@@ -18,6 +18,11 @@ on:
       - 'tools/grade6-*'
       - 'docs/grade6-dual-mode/**'
       - 'assets/grade8-dual-links.js'
+      - 'tests/minimal-exam-*'
+      - 'tests/minimal-reading-browser.py'
+      - 'tools/minimal-context-source.js'
+      - 'tools/build-minimal-contexts.py'
+      - 'docs/minimal-exam-ui/**'
       - 'tests/trung-dong-*'
       - 'tests/practice_browser_controls.py'
       - 'tests/full-exam-*'
@@ -78,9 +83,11 @@ jobs:
       - run: python tests/grade6-all-dual-browser.py
       - run: python tests/grade6-catalog-browser.py
       - run: python tests/grade6-cross-grade-browser.py
-      - run: node --test tests/full-exam-migration.test.mjs tests/trung-dong-minimal.test.mjs
+      - run: python tools/build-minimal-contexts.py --verify
+      - run: node --test tests/full-exam-migration.test.mjs tests/minimal-exam-ui.test.mjs
       - run: python tests/trung-dong-minimal-browser.py
-      - run: python tests/trung-dong-unaffected-browser.py
+      - run: python tests/minimal-exam-smoke-browser.py
+      - run: python tests/minimal-reading-browser.py
       - run: python tests/full-exam-migration-browser.py
       - run: python tests/full-exam-legacy-browser.py
       - run: python tests/dual-mode-wav-browser.py
@@ -109,6 +116,7 @@ jobs:
             /tmp/grade6-all-dual-browser.json
             /tmp/grade6-cross-grade-browser.json
             /tmp/ht-grade6-catalog
+            /tmp/all-minimal
             /tmp/trung-dong-minimal
             /tmp/full-exam-migration-browser.json
             /tmp/full-exam-legacy-browser.json

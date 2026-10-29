@@ -316,4 +316,17 @@
   const remembered=HTDualStore.profile();if(remembered){$('student-name').value=remembered.name;$('student-code').value=remembered.code;}
   document.title=`${source.exam.school} · English Quest ${source.exam.grade||8} | HT ENGLISH`;
   document.addEventListener('visibilitychange',()=>{if(document.hidden){sound?.stop();pauseAudio();persist();}});
+  // Presentation only; existing answer/progress/audio handlers remain owners.
+  let presentationURL=null;
+  try{if(engineScriptURL)presentationURL=new URL('./minimal-ui.js?v=20261028-all',engineScriptURL);}catch{ /* Preserve the core UI when no asset base can resolve. */ }
+  if(presentationURL){
+  document.documentElement.dataset.minimalUi='all-grades';
+  import(presentationURL.href)
+    .then(({setupMinimalUI})=>setupMinimalUI({data:source}))
+    .catch(()=>{
+      delete document.documentElement.dataset.minimalUi;
+      const message=$('save-message')||$('name-error');
+      if(message)message.textContent='Chưa tải được giao diện gọn. Em vẫn có thể làm bài và tải lại trang.';
+    });
+  }
 })();

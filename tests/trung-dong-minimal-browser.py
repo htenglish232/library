@@ -59,8 +59,7 @@ try:
    ctx.route('**/*',lambda r:r.continue_() if r.request.url.startswith(BASE) else (external.append(r.request.url),r.abort())[-1])
    page=ctx.new_page();page.on('pageerror',lambda e:errors.append(str(e)));page.on('console',lambda m:errors.append(m.text) if m.type=='error' else None)
    # Before/after use identical learner and viewport, and genuine main HTML.
-   page.goto(URL+'?baseline');start(page);page.screenshot(path=str(OUT/f'before-{name}.png'))
-   page.evaluate('localStorage.clear()');page.goto(URL);start(page)
+   page.goto(URL);page.wait_for_selector('html[data-minimal-ready="true"]',state='attached');start(page)
    expect(page.locator('#minimal-question-list')).not_to_have_attribute('open','')
    expect(page.locator('#question-dots')).to_be_hidden();expect(page.locator('#jump-question')).to_be_hidden()
    assert page.locator('#prompt').bounding_box()['y']<height*.4

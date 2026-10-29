@@ -165,8 +165,8 @@ try:
   c.close()
   # Preference synchronizes across games/tabs without changing student progress.
   c=context();a=page_for(c);open_game(a,TT);start(a);bpage=page_for(c);open_game(bpage,rows[1]);assert log(bpage)['contexts']==0
-  click(a,'#sound-toggle');expect(bcontrol(page,'#sound-toggle')).to_have_attribute('aria-pressed','false')
-  bpage.reload();expect(bcontrol(page,'#sound-toggle')).to_have_attribute('aria-pressed','false')
+  click(a,'#sound-toggle');expect(control(bpage,'#sound-toggle')).to_have_attribute('aria-pressed','false')
+  bpage.reload();expect(control(bpage,'#sound-toggle')).to_have_attribute('aria-pressed','false')
   click(bpage,'#sound-toggle');expect(a.locator('#sound-toggle')).to_have_attribute('aria-pressed','true');assert log(bpage)['contexts']==0
   c.close();passed('one preference is shared across games and live tabs; enabling never auto-plays')
   # Pending answers are silent; the final pending check gets only congratulations.

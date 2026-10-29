@@ -1,4 +1,4 @@
-from practice_browser_controls import control
+from practice_browser_controls import control,assert_context
 """Play every source question through the shared dual controller under /library/."""
 from pathlib import Path
 import argparse,functools,http.server,json,os,re,threading
@@ -53,9 +53,7 @@ try:
     control(page,'#jump-question').select_option(q['id']);expect(page.locator('#question-card')).to_have_attribute('data-question-id',q['id'])
     assert page.locator('#prompt').inner_html()==page.evaluate('(html)=>{const d=document.createElement("div");d.innerHTML=html;return d.innerHTML;}',q['promptHtml']),(file,q['id'])
     assert page.evaluate('document.documentElement.scrollWidth<=innerWidth+1'),(file,q['id'],'mobile overflow')
-    if not minimal and q.get('context') is not None:assert page.locator('#passage-content').inner_html()==data['contexts'][q['context']]
-    if not minimal and q.get('contextHtml'):assert page.locator('#passage-content').inner_html()==q['contextHtml']
-    if not minimal and page.locator('#passage-content').text_content().strip() and (q.get('contextHtml') or (data['contexts'][q['context']] if q.get('context') is not None else '')):expect(page.locator('#passage-content')).to_be_visible()
+    assert_context(page,q,data)
     if q.get('track') and q['track'] not in played_tracks:
      page.wait_for_function('document.querySelector("audio").readyState>=1')
      track=next(t for t in data['tracks'] if t['id']==q['track']);assert unquote(page.locator('audio').evaluate('e=>new URL(e.currentSrc).pathname')).endswith(track['src'])
