@@ -1810,6 +1810,26 @@
     const userAnswers = {};
     let isSubmitted = false;
 
+    function isQuestionComplete(qid) {
+      const data = questionsData[qid];
+      const answer = userAnswers[qid];
+      if (!data || !answer) return false;
+      if (data.type === 'pair') return Boolean(answer.pronoun && answer.noun);
+      return true;
+    }
+
+    function lockQuestion(qid) {
+      const data = questionsData[qid];
+      if (data.type === 'choice') {
+        document.querySelectorAll(`button[data-qid="${qid}"]`).forEach(btn => btn.disabled = true);
+      } else if (data.type === 'single-select') {
+        document.getElementById(`sel-${qid}`).disabled = true;
+      } else {
+        document.getElementById(`sel-${qid}-d`).disabled = true;
+        document.getElementById(`sel-${qid}-n`).disabled = true;
+      }
+    }
+
     // PHÁT ÂM ĐỘC LẬP - SpeechSynthesis API
     function speakText(text) {
       if (!('speechSynthesis' in window)) {
@@ -1824,7 +1844,7 @@
 
     // XỬ LÝ LỰA CHỌN PHẦN A (Multiple Choice)
     function selectChoice(qid, value) {
-      if (isSubmitted) return;
+      if (isSubmitted || isQuestionComplete(qid)) return;
       userAnswers[qid] = value;
 
       const buttons = document.querySelectorAll(`button[data-qid="${qid}"]`);
@@ -1838,21 +1858,23 @@
 
       renderFeedback(qid);
       updateTotalScore();
+      lockQuestion(qid);
     }
 
     // XỬ LÝ CHỌN CHO PHẦN B (Single Select Dropdown)
     function checkSelectAnswer(qid) {
-      if (isSubmitted) return;
+      if (isSubmitted || isQuestionComplete(qid)) return;
       const sel = document.getElementById(`sel-${qid}`);
       userAnswers[qid] = sel.value;
 
       renderFeedback(qid);
       updateTotalScore();
+      if (isQuestionComplete(qid)) lockQuestion(qid);
     }
 
     // XỬ LÝ CHỌN CHO PHẦN C & D (Pair: Pronoun + Noun)
     function checkPairAnswer(qid) {
-      if (isSubmitted) return;
+      if (isSubmitted || isQuestionComplete(qid)) return;
       const pronounSel = document.getElementById(`sel-${qid}-d`);
       const nounSel = document.getElementById(`sel-${qid}-n`);
 
@@ -1863,6 +1885,7 @@
 
       renderFeedback(qid);
       updateTotalScore();
+      if (isQuestionComplete(qid)) lockQuestion(qid);
     }
 
     // HIỂN THỊ ĐÁP ÁN & LỜI GIẢI TỨC THÌ
@@ -1883,7 +1906,7 @@
         }
       } else if (data.type === 'pair') {
         const pair = userAnswers[qid];
-        if (pair && (pair.pronoun || pair.noun)) {
+        if (pair && pair.pronoun && pair.noun) {
           hasAnswer = true;
           isCorrect = (pair.pronoun === data.correctPronoun && pair.noun === data.correctNoun);
         }

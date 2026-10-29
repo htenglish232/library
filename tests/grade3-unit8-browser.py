@@ -52,13 +52,24 @@ try:
         for qid, question in data.items():
             if question['type'] == 'choice':
                 page.locator(f'button[data-qid="{qid}"][data-val="{question["correct"]}"]').click()
+                expect(page.locator(f'button[data-qid="{qid}"]').first).to_be_disabled()
+                expect(page.locator(f'button[data-qid="{qid}"]').last).to_be_disabled()
             elif question['type'] == 'single-select':
                 page.locator(f'#sel-{qid}').select_option(question['correct'])
+                expect(page.locator(f'#sel-{qid}')).to_be_disabled()
             else:
                 page.locator(f'#sel-{qid}-d').select_option(question['correctPronoun'])
+                expect(page.locator(f'#sel-{qid}-d')).to_be_enabled()
+                expect(page.locator(f'#sel-{qid}-n')).to_be_enabled()
+                expect(page.locator(f'#exp-{qid}')).to_be_hidden()
                 page.locator(f'#sel-{qid}-n').select_option(question['correctNoun'])
+                expect(page.locator(f'#sel-{qid}-d')).to_be_disabled()
+                expect(page.locator(f'#sel-{qid}-n')).to_be_disabled()
             expect(page.locator(f'#exp-{qid}')).to_have_class(re.compile(r'is-correct'))
         expect(page.locator('#total-score')).to_have_text('20 / 20')
+        page.evaluate("selectChoice('a1','These')")
+        expect(page.locator('#total-score')).to_have_text('20 / 20')
+        expect(page.locator('#exp-a1')).to_have_class(re.compile(r'is-correct'))
         page.locator('#btn-submit').click()
         expect(page.locator('#btn-submit')).to_be_disabled()
         expect(page.locator('.choice-btn').first).to_be_disabled()
@@ -68,9 +79,14 @@ try:
         expect(page.locator('.choice-btn').first).to_be_enabled()
         expect(page.locator('.select-input').first).to_be_enabled()
         page.locator('button[data-qid="a1"][data-val="These"]').click()
+        expect(page.locator('button[data-qid="a1"]').first).to_be_disabled()
+        expect(page.locator('button[data-qid="a1"]').last).to_be_disabled()
         expect(page.locator('#exp-a1')).to_have_class(re.compile(r'is-wrong'))
         expect(page.locator('#exp-a1')).to_contain_text('Those')
         expect(page.locator('#exp-a1')).to_contain_text('Lý do')
+        page.evaluate("selectChoice('a1','Those')")
+        expect(page.locator('#exp-a1')).to_have_class(re.compile(r'is-wrong'))
+        expect(page.locator('#total-score')).to_have_text('0 / 20')
         page.locator('#item-a1 button[title*="Those"]').click()
         assert page.evaluate('window.__spoken') == [{'text': 'Those', 'lang': 'en-US', 'rate': 0.9}]
         page.screenshot(path=str(OUT/'unit8-mobile.png'), full_page=True)
@@ -103,9 +119,9 @@ try:
         assert urlsplit(page.url).path.endswith('/library/' + lesson)
         assert page.evaluate('document.documentElement.scrollWidth <= innerWidth + 1')
         assert not errors and not bad, (errors, bad)
-        (OUT/'report.json').write_text(json.dumps({'questions': 20, 'score': '20 / 20', 'catalogSearches': 3, 'errors': errors, 'bad': bad}, ensure_ascii=False, indent=2) + '\n')
+        (OUT/'report.json').write_text(json.dumps({'questions': 20, 'score': '20 / 20', 'answersLockedAfterCompletion': 20, 'catalogSearches': 3, 'errors': errors, 'bad': bad}, ensure_ascii=False, indent=2) + '\n')
         browser.close()
 finally:
     server.shutdown()
 
-print('PASS Grade 3 catalog folder/search/link and Unit 08: 20 questions, scoring, explanations, submit/reset, speech and mobile layout')
+print('PASS Grade 3 catalog folder/search/link and Unit 08: 20 answers lock after completion; scoring, explanations, submit/reset, speech and mobile layout')

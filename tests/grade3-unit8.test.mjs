@@ -15,16 +15,17 @@ const path = 'grade-3/Bo_Tro_Ngu_Phap/unit_08_these_those.html';
 const html = readFileSync(path, 'utf8');
 const current = JSON.parse(readFileSync('catalog/current-library-catalog.json', 'utf8')).data;
 const before = JSON.parse(execFileSync('git', ['show', 'd047dbe:catalog/current-library-catalog.json'])).data;
+const questionsMatch = html.match(/const questionsData = (\{[\s\S]*?\n    \});\n\n    \/\/ Quản lý trạng thái bài làm/);
 
 function questionData() {
-  const match = html.match(/const questionsData = (\{[\s\S]*?\n    \});\n\n    \/\/ Quản lý trạng thái bài làm/);
-  assert.ok(match, 'questionsData must remain readable');
-  return vm.runInNewContext(`(${match[1]})`);
+  assert.ok(questionsMatch, 'questionsData must remain readable');
+  return vm.runInNewContext(`(${questionsMatch[1]})`);
 }
 
-test('the supplied Unit 8 lesson only repairs the missing A4 controls and contains 20 complete questions', () => {
-  const original = html.replace(/            <\/div>\n            <!-- UNIT8_REPAIR_START:[\s\S]*?            <!-- UNIT8_REPAIR_END -->\n          <\/div>\n        <\/div>\n      <\/div>\n\n/, '').replace(/\n$/, '');
-  assert.equal(createHash('sha256').update(original).digest('hex'), '042ff42a58b1e2003dc321b8621afe980f4d208a7d76dcb4fa446be10b6d5a2b');
+test('the supplied Unit 8 academic data stays exact while A4 and answer locking are repaired', () => {
+  assert.equal(createHash('sha256').update(questionsMatch[1]).digest('hex'), '41ebaf1a83079725057c34905282cb457a7224f6b470722fba51c32d50841d86');
+  assert.match(html, /UNIT8_REPAIR_START/);
+  assert.match(html, /function lockQuestion\(qid\)/);
   const data = questionData();
   assert.deepEqual(Object.keys(data), [
     'a1','a2','a3','a4','b1','b2','b3','b4','b5','b6',
