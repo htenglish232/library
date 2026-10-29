@@ -1,6 +1,7 @@
 /* Standalone, in-memory learning game. No account, backend, analytics or storage. */
 (() => {
   'use strict';
+  const presentationScriptURL=document.currentScript.src;
   const $ = id => document.getElementById(id);
   document.querySelectorAll('#challenges,#back-menu,#section-tabs').forEach(el=>el.remove());
   $('home-button').textContent='Làm toàn bộ đề';
@@ -241,4 +242,13 @@
   for(const event of ['timeupdate','loadedmetadata','play','pause','ended'])audio.addEventListener(event,updateAudio);
   audio.addEventListener('error',()=>{$('audio-message').textContent='Không tải được MP3. Em hãy kiểm tra kết nối hoặc báo giáo viên.';});
   document.addEventListener('visibilitychange',()=>{if(document.hidden)pauseAudio();});
+  // Presentation only; existing answer/progress/audio handlers remain owners.
+  document.documentElement.dataset.minimalUi='all-grades';
+  import(new URL('../../shared-practice/minimal-ui.js?v=20261028-all',presentationScriptURL).href)
+    .then(({setupMinimalUI})=>setupMinimalUI({data:source,exam:{id:'legacy-truc-tuan',school:'THCS Trực Tuấn',number:1,grade:8}}))
+    .catch(()=>{
+      delete document.documentElement.dataset.minimalUi;
+      const message=$('save-message')||$('name-error');
+      if(message)message.textContent='Chưa tải được giao diện gọn. Em vẫn có thể làm bài và tải lại trang.';
+    });
 })();

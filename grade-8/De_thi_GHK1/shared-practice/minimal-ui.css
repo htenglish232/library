@@ -1,0 +1,105 @@
+/* Shared compact layout; rules are scoped to opted-in exam engines. */
+html[data-minimal-ui]{--minimal-nav-height: 76px; --minimal-keyboard-inset: 0px; scroll-padding-bottom: calc(var(--minimal-nav-height) + var(--minimal-keyboard-inset) + 24px);}
+html[data-minimal-ui] body{background: rgb(246, 248, 250); color: rgb(32, 51, 66);}
+html[data-minimal-ui] .topbar{min-height: 48px; padding: 8px max(16px, -500px + 50vw); border-bottom: 1px solid rgb(225, 231, 236);}
+html[data-minimal-ui] .topbar .brand,html[data-minimal-ui] #session-tools,html[data-minimal-ui] .play-heading,html[data-minimal-ui] .play-progress > span,html[data-minimal-ui] .question-meta,html[data-minimal-ui] .passage-panel > .eyebrow,html[data-minimal-ui] .passage-panel > h2,html[data-minimal-ui] #review-label,html[data-minimal-ui] footer{display: none !important;}
+html[data-minimal-ui] .header-actions{width: 100%; gap: 10px; justify-content: flex-start; max-width: none !important;}
+html[data-minimal-ui] #student-label{max-width: 45%; font-size: 12px;}
+html[data-minimal-ui] .xp-pill{font-size: 11px; padding: 4px 9px; background: rgb(240, 245, 248); border-color: rgb(217, 228, 235); color: rgb(56, 86, 107);}
+html[data-minimal-ui] #minimal-tools{margin-left: auto; position: relative; font-size: 12px;}
+html[data-minimal-ui] summary{cursor: pointer; list-style: none; min-height: 44px; display: flex; align-items: center; gap: 6px;}
+html[data-minimal-ui] summary::-webkit-details-marker{display: none;}
+html[data-minimal-ui] #minimal-tools > summary::after,html[data-minimal-ui] #minimal-question-list > summary::after{content: "⌄";}
+html[data-minimal-ui] #minimal-tools[open] > summary::after,html[data-minimal-ui] #minimal-question-list[open] > summary::after{content: "⌃";}
+html[data-minimal-ui] .minimal-tool-actions{position: absolute; right: 0px; top: 100%; z-index: 10; background: white; padding: 10px; border: 1px solid rgb(220, 229, 237); border-radius: 10px; box-shadow: rgba(25, 56, 77, 0.086) 0px 8px 24px; display: grid; gap: 8px; min-width: 190px;}
+html[data-minimal-ui] .minimal-tool-actions button{width: 100%; text-align: left; font-size: 12px;}
+html[data-minimal-ui] main{max-width: 1000px; min-height: 0px; padding: 18px 20px calc(var(--minimal-nav-height) + var(--minimal-keyboard-inset) + 28px);}
+html[data-minimal-ui] .save-bar{max-width: 1000px; padding: 0px 20px;}
+html[data-minimal-ui] .save-bar p{font-size: 11px; margin: 6px 0px;}
+html[data-minimal-ui] .save-bar:not(:has(#reload-progress:not([hidden]))) #save-message:not(:empty){color: rgb(105, 123, 136);}
+html[data-minimal-ui] .minimal-heading{display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px;}
+html[data-minimal-ui] .minimal-heading h1{font-size: 18px; letter-spacing: -0.025em; margin: 0px; line-height: 1.35;}
+html[data-minimal-ui] #minimal-question-count{font-size: 12px; color: rgb(84, 107, 123); white-space: nowrap;}
+html[data-minimal-ui] .play-progress{margin: 0px; display: block;}
+html[data-minimal-ui] .play-progress progress{display: block; width: 100%; height: 4px; border: 0px;}
+html[data-minimal-ui] #minimal-question-list{margin: 5px 0px 12px; font-size: 12px;}
+html[data-minimal-ui] #minimal-question-list > summary{width: max-content; color: rgb(82, 109, 128); min-height: 36px;}
+html[data-minimal-ui] #minimal-question-list:not([open]) .jump-control,html[data-minimal-ui] #minimal-question-list:not([open]) #question-dots{display: none;}
+html[data-minimal-ui] #minimal-question-list[open]{border-bottom: 1px solid rgb(224, 231, 237); padding-bottom: 12px;}
+html[data-minimal-ui] #question-dots{margin-bottom: 0px; gap: 6px;}
+html[data-minimal-ui] #question-dots button{height: 44px; min-width: 44px; font-size: 12px;}
+html[data-minimal-ui] .jump-control{font-size: 12px; margin: 8px 0px;}
+html[data-minimal-ui] .jump-control select{font-size: 12px;}
+html[data-minimal-ui] .question-layout.with-passage{display: grid; grid-template-columns: minmax(0px, 1fr) minmax(0px, 1fr); gap: 20px; align-items: start;}
+html[data-minimal-ui] .question-card{padding: 20px; border: 1px solid rgb(223, 231, 237); box-shadow: none; border-radius: 12px;}
+html[data-minimal-ui] #question-title{font-size: 13px; letter-spacing: 0px; color: rgb(91, 112, 128); margin-bottom: 10px;}
+html[data-minimal-ui] #prompt{font-size: 18px; line-height: 1.65; margin-bottom: 18px;}
+html[data-minimal-ui] .option{font-size: 15px; min-height: 48px; border-radius: 8px; padding: 12px 14px;}
+html[data-minimal-ui] .check-button{width: 100%; margin-top: 16px; box-shadow: none; min-height: 48px; border-radius: 8px; font-size: 14px;}
+html[data-minimal-ui] .passage-panel{position: sticky; top: 16px; max-height: calc(100dvh - var(--minimal-nav-height) - 48px); overflow: auto; margin: 0px; padding: 18px; border: 1px solid rgb(220, 229, 236); border-radius: 12px; background: rgb(255, 255, 255); box-shadow: none;}
+html[data-minimal-ui] #passage-content{max-height: none; overflow: visible; font-size: 15px; line-height: 1.8; margin: 0px;}
+html[data-minimal-ui] #passage-content p:last-child{margin-bottom: 0px;}
+html[data-minimal-ui] .feedback{margin-top: 14px; padding: 20px; background: rgb(255, 255, 255); border: 1px solid rgb(205, 223, 212); border-radius: 12px; box-shadow: none; animation: auto ease 0s 1 normal none running none !important;}
+html[data-minimal-ui] .feedback.is-wrong{background: rgb(255, 255, 255); border-color: rgb(226, 200, 173);}
+html[data-minimal-ui] .feedback h2{font-size: 16px; margin-bottom: 10px; letter-spacing: 0px;}
+html[data-minimal-ui] .explanation-item{font-size: 15px; line-height: 1.75; margin: 14px 0px;}
+html[data-minimal-ui] .explanation-item h3{font-size: 13px; color: rgb(82, 107, 123); margin-bottom: 6px; letter-spacing: 0px;}
+html[data-minimal-ui] .explanation-item p{margin-bottom: 10px;}
+html[data-minimal-ui] #your-answer{font-size: 13px; color: rgb(96, 115, 130);}
+html[data-minimal-ui] .teacher-note{font-size: 12px; line-height: 1.65;}
+html[data-minimal-ui] #minimal-audio-notice{font-size: 12px; color: rgb(101, 121, 135); line-height: 1.5; margin: 0px 0px 12px;}
+html[data-minimal-ui] .audio-panel{padding: 12px; margin: 0px 0px 14px; border-radius: 10px;}
+html[data-minimal-ui] .audio-caption{margin-bottom: 8px;}
+html[data-minimal-ui] .audio-caption span{display: none;}
+html[data-minimal-ui] .audio-controls{gap: 6px;}
+html[data-minimal-ui] .audio-controls > button{font-size: 12px; padding: 10px 12px; min-height: 44px;}
+html[data-minimal-ui] .audio-controls label{font-size: 12px;}
+html[data-minimal-ui] .question-navigation{position: fixed; bottom: var(--minimal-keyboard-inset); left: 0px; right: 0px; z-index: 20; margin: 0px; display: grid; grid-template-columns: minmax(0px, 1fr) auto minmax(0px, 1fr); align-items: center; gap: 8px; padding: 10px max(16px,calc((100vw - 960px)/2)) calc(10px + env(safe-area-inset-bottom,0px)); background: rgba(255, 255, 255, 0.96); border-top: 1px solid rgb(215, 225, 232); box-shadow: rgba(32, 51, 66, 0.03) 0px -3px 12px; backdrop-filter: blur(10px);}
+html[data-minimal-ui] .question-navigation button{min-height: 48px; padding: 10px 14px; font-size: 14px; border-radius: 8px; box-shadow: none; white-space: nowrap;}
+html[data-minimal-ui] .question-navigation .secondary{justify-self: start;}
+html[data-minimal-ui] .question-navigation .primary{justify-self: end;}
+html[data-minimal-ui] #minimal-nav-count{font-size: 13px; color: rgb(72, 99, 118); white-space: nowrap; font-variant-numeric: tabular-nums;}
+html[data-minimal-ui] #question-card,html[data-minimal-ui] #question-layout,html[data-minimal-ui] #feedback{scroll-margin-top: 14px; scroll-margin-bottom: calc(var(--minimal-nav-height) + var(--minimal-keyboard-inset) + 16px);}
+html[data-minimal-ui] .answer-input{font-size: 16px; min-height: 100px; scroll-margin-block: 90px calc(var(--minimal-nav-height) + var(--minimal-keyboard-inset) + 20px);}
+html[data-minimal-ui] .welcome{display: block; padding: 16px 0px;}
+html[data-minimal-ui] .welcome .eyebrow,html[data-minimal-ui] .welcome-copy > p:not(.privacy-note),html[data-minimal-ui] .welcome-tags,html[data-minimal-ui] .quest-illustration{display: none;}
+html[data-minimal-ui] .welcome h1{font-size: 24px; margin: 0px 0px 24px;}
+html[data-minimal-ui] .welcome-copy{max-width: 480px; margin: 0px auto;}
+html[data-minimal-ui] .privacy-note{font-size: 11px !important;}
+html[data-minimal-ui] .welcome .primary{box-shadow: none;}
+@media (max-width: 800px){html[data-minimal-ui] main{padding: 14px 14px calc(var(--minimal-nav-height) + var(--minimal-keyboard-inset) + 24px);}
+html[data-minimal-ui] .save-bar{padding-inline: 14px;}
+html[data-minimal-ui] .minimal-heading h1{font-size: 17px;}
+html[data-minimal-ui] .question-layout.with-passage{display: flex; flex-direction: column; gap: 14px;}
+html[data-minimal-ui] .answer-column,html[data-minimal-ui] .passage-panel{width: 100%; min-width: 0px;}
+html[data-minimal-ui] .passage-panel{position: static; max-height: none; padding: 16px;}
+html[data-minimal-ui] #passage-content{max-height: 36svh; overflow: auto; overscroll-behavior: contain; line-height: 1.75;}
+html[data-minimal-ui] .question-card,html[data-minimal-ui] .feedback{padding: 18px 16px;}
+html[data-minimal-ui] .question-navigation{padding-inline: 12px;}
+html[data-minimal-ui] .question-navigation button{font-size: 13px; padding: 10px 12px;}
+html[data-minimal-ui] #prompt{font-size: 17px;}
+html[data-minimal-ui] .option{font-size: 14px;}
+html[data-minimal-ui] .question-dots button{width: 44px;}}
+@media (prefers-reduced-motion: no-preference){html[data-minimal-ui] #play:not([hidden]),html[data-minimal-ui] #results:not([hidden]){animation: auto ease 0s 1 normal none running none;}}
+html[data-minimal-ui]:not([data-minimal-ready]) #question-dots{visibility:hidden;max-height:0;overflow:hidden;margin:0}
+html[data-minimal-ui] #sound-toggle{font-size:0;width:44px;height:44px;min-width:44px;padding:6px;flex:none}
+html[data-minimal-ui] #sound-toggle::after{content:"🔊";font-size:18px}
+html[data-minimal-ui] #sound-toggle[aria-pressed=false]::after{content:"🔇"}
+html[data-minimal-ui] #sound-toggle[data-sound-state=error]::after{content:"⚠"}
+html[data-minimal-ui] #student-label{flex:1;min-width:0;max-width:none}
+html[data-minimal-ui] #minimal-tools{margin-left:0}
+html[data-minimal-ui] .minimal-blank{background:#fff0ad;color:inherit;border-radius:3px;outline:2px solid #efcf64}
+html[data-minimal-ui] #passage-content table{display:block;max-width:100%;overflow:auto;border-collapse:collapse}
+html[data-minimal-ui] #passage-content img{max-width:100%;height:auto}
+
+
+html[data-minimal-ui]{font-family:"Noto Sans",sans-serif}
+
+html[data-minimal-ui] .audio-controls{display:grid;grid-template-columns:44px minmax(74px,1fr) 44px 78px;gap:6px;align-items:center}
+html[data-minimal-ui] .audio-controls>button{white-space:nowrap;min-width:0;min-height:44px;padding:8px;font-size:12px}
+html[data-minimal-ui] .audio-controls label{min-width:0;margin:0;font-size:0}
+html[data-minimal-ui] .audio-controls select{font-size:12px;width:100%;min-height:44px}
+html[data-minimal-ui] .audio-controls>span{grid-column:1/-1;font-size:10px;line-height:1.2;justify-self:end}
+html[data-minimal-ui] #audio-message{font-size:11px;line-height:1.4;margin:4px 0 0}
+html[data-minimal-ui] #audio-seek{height:18px;margin:6px 0 0}
+html[data-minimal-ui] .audio-caption strong{font-size:12px;line-height:1.5}
