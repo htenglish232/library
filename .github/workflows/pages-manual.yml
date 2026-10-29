@@ -32,8 +32,10 @@ jobs:
           python-version: '3.12'
       - run: npm ci
       - run: npm run build && npm run check:catalog && npm run test:prepare
+      - run: node --test tests/grade3-unit8.test.mjs
       - run: python3 -m pip install playwright==1.58.0
       - run: python3 -m playwright install --with-deps chromium
+      - run: python3 tests/grade3-unit8-browser.py
       - run: npm run test:emulators
       - run: node tools/prepare-site.mjs
       - uses: actions/upload-pages-artifact@v3
