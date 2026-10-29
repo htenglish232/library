@@ -1,3 +1,4 @@
+from practice_browser_controls import control,assert_context
 """Real browser identity sharing and progress separation across Grades 7, 6, 8."""
 from pathlib import Path
 from urllib.parse import quote
@@ -12,7 +13,7 @@ class Handler(http.server.SimpleHTTPRequestHandler):
  def translate_path(self,path):return super().translate_path(path[len('/library'):] if path.startswith('/library/') else path)
 server=http.server.ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Handler,directory=str(ROOT)));threading.Thread(target=server.serve_forever,daemon=True).start();BASE=f'http://127.0.0.1:{server.server_port}/library/'
 paths=[('grade-7/De_thi_GHK_1/1_THCS_Truc_Thai/practice-dual-mode.html',7),('grade-6/De_thi_GHK_1/3_THCS_Truc_Tuan/practice-dual-mode.html',6),('grade-8/De_thi_GHK1/1_THCS Truc Tuan/truc-tuan-dual-mode.html',8)];checks=[];errors=[]
-def ready(page):expect(page.locator('#sound-toggle')).to_have_attribute('data-sound-state','ready')
+def ready(page):expect(control(page,'#sound-toggle')).to_have_attribute('data-sound-state','ready')
 def start(page):
  page.locator('#start-form button').click()
  if page.locator('#resume-panel').is_visible():page.locator('#resume-button').click()
@@ -28,14 +29,14 @@ try:
    for i,(path,grade) in enumerate(paths):
     page.goto(BASE+quote(path));ready(page)
     if i==0:fill_identity(page,'Học sinh liên khối','HT-01')
-    else:expect(page.locator('#student-name')).to_have_value('Học sinh liên khối');expect(page.locator('#student-code')).to_have_value('HT-01');expect(page.locator('#sound-toggle')).to_have_text('🔇 Âm thanh: Tắt')
+    else:expect(page.locator('#student-name')).to_have_value('Học sinh liên khối');expect(page.locator('#student-code')).to_have_value('HT-01');expect(control(page,'#sound-toggle')).to_have_text('🔇 Âm thanh: Tắt')
     start(page);expect(page.locator('#section-kicker')).to_contain_text('GRADE '+str(grade));expect(page.locator('#xp-total')).to_have_text('✦ 0 XP');q=page.evaluate('HT_PRACTICE_DATA.questions[0]');page.locator(f'#answer-area input[value="{q["accepted"][0]}"]').check();page.locator('#check-answer').click();expect(page.locator('#xp-total')).to_have_text('✦ 10 XP')
-    if i==0:page.locator('#sound-toggle').click()
+    if i==0:control(page,'#sound-toggle').click()
     key=page.evaluate('HTDualStore.keyFor(HT_PRACTICE_DATA,{name:"Học sinh liên khối",code:"HT-01"})');saved[key]=page.evaluate('k=>localStorage.getItem(k)',key)
    assert len(saved)==3
    for path,grade in paths:
-    page.goto(BASE+quote(path));ready(page);start(page);expect(page.locator('#xp-total')).to_have_text('✦ 10 XP');page.locator('#results-button').click();page.locator('#continue-playing').click();expect(page.locator('#xp-total')).to_have_text('✦ 10 XP')
-   page.goto(BASE+quote(paths[0][0]));ready(page);start(page);page.locator('#change-student').click();fill_identity(page,'Học sinh khác','HT-02');start(page);expect(page.locator('#xp-total')).to_have_text('✦ 0 XP');page.locator('#restart-button').click();page.locator('#confirm-restart').click()
+    page.goto(BASE+quote(path));ready(page);start(page);expect(page.locator('#xp-total')).to_have_text('✦ 10 XP');control(page,'#results-button').click();page.locator('#continue-playing').click();expect(page.locator('#xp-total')).to_have_text('✦ 10 XP')
+   page.goto(BASE+quote(paths[0][0]));ready(page);start(page);control(page,'#change-student').click();fill_identity(page,'Học sinh khác','HT-02');start(page);expect(page.locator('#xp-total')).to_have_text('✦ 0 XP');control(page,'#restart-button').click();page.locator('#confirm-restart').click()
    for key,value in saved.items():assert json.loads(page.evaluate('k=>localStorage.getItem(k)',key))['state']['answers']==json.loads(value)['state']['answers']
    page.goto(BASE+quote(paths[1][0]));ready(page);expect(page.locator('#student-name')).to_have_value('Học sinh khác');expect(page.locator('#student-code')).to_have_value('HT-02');start(page);expect(page.locator('#xp-total')).to_have_text('✦ 0 XP');c.close();msg=('touch emulation' if touch else 'desktop')+': Grade 7→6→8 remembers identity/mute; grade labels correct; each exam/student has separate XP/progress; restore/navigation/reset preserve old records';checks.append(msg);print('PASS '+msg,flush=True)
   assert not errors,errors;Path('/tmp/grade7-cross-grade-browser.json').write_text(json.dumps(dict(checks=checks,errors=errors),ensure_ascii=False,indent=2)+'\n');b.close()

@@ -1,3 +1,4 @@
+from practice_browser_controls import control,assert_context
 """Real Chromium: 42 Truc Tuan questions, modes, persistence, profiles and local media."""
 from pathlib import Path
 import functools,hashlib,http.server,json,os,re,shutil,threading,subprocess,sys,tempfile
@@ -55,7 +56,7 @@ def start(page,name='Học sinh A',code='8A-01',mode='ordered',resume=True):
  page.locator('#student-code').fill(code)
  page.locator('#start-form button').click()
  if resume and page.locator('#resume-panel').is_visible():page.locator('#resume-button').click()
-def go(page,qid):page.locator('#jump-question').select_option(qid)
+def go(page,qid):control(page,'#jump-question').select_option(qid)
 def fill(page,q,wrong=False):
  if q['kind']=='choice':
   value=next(o['value'] for o in q['options'] if o['value'] not in q['accepted']) if wrong else q['accepted'][0]
@@ -96,7 +97,7 @@ try:
    expect(page.locator('#question-card')).to_have_attribute('data-question-id',q['id'])
    expect(page.locator('#question-position')).to_have_text(f'Câu {q["number"]} / 42')
    if q['kind']=='choice':assert page.locator('#answer-area input').evaluate_all('(els)=>els.map(e=>e.value)')==[o['value'] for o in q['options']]
-   if 'context' in q:assert page.locator('#passage-content').inner_html()==data['contexts'][q['context']]
+   assert_context(page,q,data)
    expect(page.locator('#transcript-panel')).to_be_hidden()
    assert page.locator('#transcript-content').inner_html()==''
    if q['id'] in ['q1','q7']:
@@ -113,14 +114,14 @@ try:
     assert abs(page.locator('audio').evaluate('e=>e.currentTime/e.duration')-.25)<.02
    if q['id']=='q23':
     page.locator('#written-answer').fill('bản nháp trước khi tải lại')
-    page.locator('#results-button').click();page.locator('#continue-playing').click()
+    control(page,'#results-button').click();page.locator('#continue-playing').click()
     expect(page.locator('#written-answer')).to_have_value('bản nháp trước khi tải lại')
     page.reload();start(page)
     expect(page.locator('#written-answer')).to_have_value('bản nháp trước khi tải lại')
     expect(page.locator('#question-position')).to_have_text('Câu 23 / 42')
    if q['id']=='q36':
     for i in [0,3]:page.locator(f'#word-bank button[data-token-index="{i}"]').click()
-    page.locator('#results-button').click();page.locator('#continue-playing').click()
+    control(page,'#results-button').click();page.locator('#continue-playing').click()
     expect(page.locator('#word-target button')).to_have_count(2)
     page.reload();start(page);expect(page.locator('#word-target button')).to_have_count(2)
     page.locator('#undo-word').click();expect(page.locator('#word-target button')).to_have_count(1)
@@ -133,7 +134,7 @@ try:
    if q.get('track'):expect(page.locator('#transcript-panel')).to_be_visible()
    if q['id'] in ['q1','q13','q31','q36']:
     before=records(page);first=current_record(page)['state']['answers'][q['id']]['first']
-    page.locator('#results-button').click()
+    control(page,'#results-button').click()
     page.locator('#continue-playing').click()
     expect(page.locator('#question-card')).to_have_attribute('data-question-id',q['id'])
     expect(page.locator('#xp-total')).to_have_text(f'✦ {xp} XP')
@@ -155,18 +156,18 @@ try:
   assert {k:v['first'] for k,v in current_record(page)['state']['answers'].items()}==firsts
   page.reload();start(page);expect(page.locator('#xp-total')).to_have_text('✦ 390 XP')
   passed('typed and builder drafts persist; reload restores ordered and review positions; wrong choice/text/builder review never changes first attempts or XP')
-  page.locator('#change-student').click();expect(page.locator('#student-name')).to_have_value('')
+  control(page,'#change-student').click();expect(page.locator('#student-name')).to_have_value('')
   start(page,'Học sinh B','8A-02','challenge');expect(page.locator('#play')).to_be_visible()
   expect(page.locator('#question-position')).to_have_text('Câu 1 / 42')
   fill(page,data['questions'][0]);page.locator('#check-answer').click()
   expect(page.locator('#xp-total')).to_have_text('✦ 10 XP')
-  page.locator('#change-student').click();start(page,'Học sinh A','8A-99','challenge');expect(page.locator('#question-position')).to_have_text('Câu 1 / 42')
-  page.locator('#change-student').click();start(page);expect(page.locator('#xp-total')).to_have_text('✦ 390 XP')
+  control(page,'#change-student').click();start(page,'Học sinh A','8A-99','challenge');expect(page.locator('#question-position')).to_have_text('Câu 1 / 42')
+  control(page,'#change-student').click();start(page);expect(page.locator('#xp-total')).to_have_text('✦ 390 XP')
   passed('different learners and same-name learners with distinct codes keep independent progress without listing other profiles')
-  page.locator('#change-student').click();start(page,'Học sinh B','8A-02',resume=False)
+  control(page,'#change-student').click();start(page,'Học sinh B','8A-02',resume=False)
   page.locator('#restart-saved').click();expect(page.locator('#restart-dialog')).to_be_visible();page.locator('#cancel-restart').click()
   assert current_record(page,'Học sinh B','8A-02')['state']['answers']['q1']['first']['result']=='correct'
-  page.locator('#resume-button').click();page.locator('#restart-button').click();page.locator('#confirm-restart').click()
+  page.locator('#resume-button').click();control(page,'#restart-button').click();page.locator('#confirm-restart').click()
   expect(page.locator('#xp-total')).to_have_text('✦ 0 XP');assert current_record(page)['state']['answers']['q1']['first'] is not None
   passed('cancel preserves progress; confirmed restart resets only the current learner/exam, leaving A and other profiles intact')
   # A second exam identity is an isolated fixture, never a published extra game.
@@ -176,10 +177,10 @@ try:
   other=page_for(context);start(other);expect(other.locator('#xp-total')).to_have_text('✦ 0 XP')
   assert current_record(other)['examId']=='fixture-other-exam';other.close();context.unroute('**/truc-tuan-dual-data.js',other_exam)
   passed('a separate exam identity cannot read or overwrite the original exam progress')
-  page.locator('#change-student').click();start(page)
-  page.locator('#home-button').click()
+  control(page,'#change-student').click();start(page)
+  control(page,'#home-button').click()
   tab=page_for(context);start(tab);go(tab,'q2')
-  expect(page.locator('#reload-progress')).to_be_visible();expect(page.locator('#jump-question')).to_be_disabled()
+  expect(page.locator('#reload-progress')).to_be_visible();expect(control(page,'#jump-question')).to_be_disabled()
   assert current_record(tab)['state']['answers']['q1']['first']==firsts['q1']
   with page.expect_navigation(wait_until='load'):
    page.locator('#reload-progress').click()

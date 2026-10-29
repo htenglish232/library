@@ -1,0 +1,58 @@
+
+> test:prepare
+> node --test tests/catalog.test.mjs tests/catalog-release.test.mjs tests/preflight.test.mjs tests/school-folders.test.mjs
+
+✔ legacy catalog gains exactly the main release additions without mutation (25.303357ms)
+✔ server edits, hidden grades/folders/lessons and renamed folders remain intact (8.899163ms)
+✔ adding new main links does not resurrect deleted legacy links (2.924057ms)
+✔ explicit release adoption round-trips and respects later Admin deletions (114.644061ms)
+✔ malformed release metadata is rejected without weakening legacy hashes (14.090646ms)
+✔ IELTS release preserves deletions from a previously adopted Grade 5 release (27.687901ms)
+✔ game link is inserted beside the original and respects prior release deletions (19.013187ms)
+✔ all three pilot links upgrade the previous release once and preserve Admin visibility and deletions (60.698545ms)
+✔ dual game adds exactly one href to an already adopted catalog and keeps the old exam/game (27.432045ms)
+✔ dual release preserves custom hidden titles and respects deletion after adoption (16.665598ms)
+✔ encoded relative and owned Pages URLs already in Firebase do not duplicate the dual game (9.650765ms)
+✔ original export and Firestore representation both validate (69.505127ms)
+✔ managed catalog is dynamic, preserves original content and validates backups (58.351687ms)
+✔ hidden items and folders affect visible count without deleting stored paths (1.393099ms)
+✔ unsafe links, duplicate links, malformed structure and excess byte size are rejected (90.632696ms)
+✔ changed path, title, lesson order, category order or grade order is rejected (31.170189ms)
+✔ wrong count, hash, schema, duplicate, omitted item and invalid JSON are rejected (14.002504ms)
+✔ preflight permits only expected project HTTPS reads and collection-ID enumeration (8.797609ms)
+✔ confirmed database and document 404 record absence; collections paginate; external use stays unconfirmed (2.804968ms)
+✔ 403 and missing database never mean the document is absent (1.227841ms)
+✔ Rules changed during collection prevent a complete backup (0.594466ms)
+✔ typed document backup preserves large integers, nanoseconds, bytes, maps, arrays and references; rollback is offline (194.535457ms)
+✔ originally absent catalog prepares only a conditional single-document deletion (255.102547ms)
+✔ all original exam and game URLs occur once, with unchanged titles, across school folders (24.824596ms)
+✔ Truc Tuan exam and game share one school and retain distinct resource types (0.59034ms)
+✔ multiple exams from the same school merge without conflating different schools or grades (0.496599ms)
+✔ game placed before exam uses exact school directory, including nested game paths (0.241154ms)
+✔ hidden lessons and folders stay absent when rendering the visible server catalog (14.015063ms)
+✔ unknown custom resources remain visible without inventing a school or game (0.707887ms)
+✔ Grade 8 real inventory has 17 schools, 19 numbered exams and 23 paired games (19 dual and four legacy) (4.224207ms)
+✔ both Truc Tuan games retain number 1 without the obsolete mode suffix even if the original exam is hidden (1.893514ms)
+✔ Admin can rename the dual-mode entry without changing it into a second exam (1.48602ms)
+✔ future explicit catalog titles pair multiple exams and games even in the same directory (0.649279ms)
+✔ games in nested directories pair by the nearest actual exam, independent of catalog order (0.34557ms)
+✔ hidden first exam retains its reserved number and does not relabel the second (0.372972ms)
+✔ ambiguous same-directory games and orphan resources never receive guessed exam numbers (1.318046ms)
+✔ duplicate explicit exam numbers stay unpaired instead of silently inventing numbering (0.223096ms)
+✔ Grade 6 has 16 actual exams and 16 paired games in 14 schools, with separate Hung and Liem Hai exams (2.21641ms)
+✔ Grade 7 Dao Su Tich has a verified THCS label without changing its stored title or href (2.09688ms)
+✔ unidentified Grade 6/7 schools form one unclassified folder, keep original titles and never infer a school from the URL (0.383558ms)
+✔ future Grade 6/7 games and exam sets use the same pairing rules with numbering isolated per grade (0.535928ms)
+ℹ tests 41
+ℹ suites 0
+ℹ pass 41
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 847.057306
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.1
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.1
+npm notice To update run: npm install -g npm@12.2.1
+npm notice
