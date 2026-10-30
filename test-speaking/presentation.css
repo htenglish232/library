@@ -198,3 +198,13 @@
 @media (prefers-reduced-motion: reduce) {
   #speaking-card { transform: none !important; }
 }
+
+/* Icon controls stay beside their own text in normal and fullscreen views. */
+#presentation .spoken-line { display: flex; align-items: center; justify-content: center; gap: clamp(10px, 1vw, 20px); width: 100%; min-width: 0; }
+#presentation .spoken-line > :first-child { min-width: 0; margin: 0; }
+#presentation .speaker-button { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; min-height: 56px; padding: 0; border-radius: 50%; font-size: 28px; background: #edf4ff; color: #174a91; transition: transform 120ms ease, background 120ms ease; }
+#presentation .speaker-button:hover { background: #dceaff; }
+#presentation .speaker-button:active { transform: scale(.92); }
+#presentation:fullscreen .speaker-button { width: 60px; height: 60px; min-height: 60px; font-size: 30px; }
+@media (orientation: portrait) { #presentation:fullscreen .speaker-button { width: 48px; height: 48px; min-height: 48px; font-size: 25px; } }
+@media (prefers-reduced-motion: reduce) { #presentation .speaker-button { transition: none; } }

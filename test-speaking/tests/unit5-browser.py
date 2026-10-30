@@ -31,7 +31,7 @@ def card_id(page): return page.locator('#speaking-card').get_attribute('data-car
 def check_card(page, practice=False):
     id = card_id(page); source = BY_ID[id]
     expect(page.locator('#question')).to_have_text(source['question'])
-    expect(page.locator('#sample-answer')).to_have_text(source['sampleAnswer'])
+    expect(page.locator('#sample-answer')).to_have_text(source['sampleAnswer'] if practice else '')
     if practice:expect(page.locator('#answer-panel')).to_be_visible()
     else:expect(page.locator('#answer-panel')).to_be_hidden()
     expect(page.locator('#card-group')).to_have_text({'review':'Review','extension':'Extension','unit5':'Unit 5 Core'}[source['category']])
@@ -74,7 +74,7 @@ navigator.mediaDevices.getUserMedia=()=>{micRequests++;throw Error('No microphon
         for i,source in enumerate(SOURCE['cards']):
             assert check_card(page,practice=True)==source['id']
             expect(page.locator('#sample-answer')).to_be_visible()
-            expect(page.locator('#toggle-answer')).to_be_hidden()
+            expect(page.locator('#toggle-answer')).to_have_count(0)
             page.locator('#play-audio').click()
             assert page.evaluate('speechCalls.at(-1)')=={'text':source['question'],'lang':'en-US'}
             if i<13:page.locator('#next-card').click()
@@ -105,7 +105,8 @@ navigator.mediaDevices.getUserMedia=()=>{micRequests++;throw Error('No microphon
                 actual=[]
                 for i in range(len(expected)):
                     actual.append(check_card(page))
-                    expect(page.locator('#toggle-answer')).to_have_text('Reveal Answer')
+                    expect(page.locator('#toggle-answer')).to_have_count(0)
+                    expect(page.locator('#sample-answer')).to_be_empty()
                     if i<len(expected)-1:page.locator('#next-card').click()
                 assert len(set(actual))==len(expected)
                 assert set(actual)==set(expected)

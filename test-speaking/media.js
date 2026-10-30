@@ -7,7 +7,10 @@ export class QuestionAudio {
     if (this.audio) { this.audio.pause(); this.audio.removeAttribute('src'); this.audio.load(); this.audio = null; }
     this.speech?.cancel();
   }
-  async play(card, rate) {
+  async play(card, rate, target = 'question') {
+    const answer = target === 'answer';
+    const text = answer ? card.sampleAnswer : card.question;
+    const source = answer ? card.answerAudio : card.audio;
     this.stop(); const token = this.token;
     const speak = () => {
       if (token !== this.token) return;
@@ -15,21 +18,21 @@ export class QuestionAudio {
       const voices = this.speech.getVoices();
       const voice = voices.find(v => /^en-US$/i.test(v.lang)) || voices.find(v => /^en-GB$/i.test(v.lang)) || voices.find(v => /^en[-_]/i.test(v.lang));
       if (voices.length && !voice) { this.status('Thiết bị chưa có giọng tiếng Anh. Hãy cài giọng English; thẻ vẫn dùng bình thường.'); return; }
-      const utterance = new this.Utterance(card.question);
+      const utterance = new this.Utterance(text);
       this.utterance = utterance; utterance.lang = voice?.lang || 'en-US'; if (voice) utterance.voice = voice;
       utterance.rate = rate;
       utterance.onend = () => { if (token === this.token) this.status(''); };
       utterance.onerror = () => { if (token === this.token) this.status('Không phát được giọng đọc. Kiểm tra giọng English hoặc âm lượng thiết bị.'); };
-      this.status('Đang đọc câu hỏi…');
+      this.status('');
       try { this.speech.speak(utterance); } catch { this.status('Không phát được giọng đọc trên trình duyệt này.'); }
     };
-    if (!card.audio) { speak(); return; }
-    const audio = new this.AudioClass(card.audio); this.audio = audio; audio.playbackRate = rate;
+    if (!source) { speak(); return; }
+    const audio = new this.AudioClass(source); this.audio = audio; audio.playbackRate = rate;
     let failed = false;
     const fallback = () => { if (failed || token !== this.token) return; failed = true; audio.pause(); this.status('Không tải được MP3, chuyển sang giọng đọc thiết bị.'); speak(); };
     audio.onerror = fallback;
     audio.onended = () => { if (token === this.token) this.status(''); };
-    this.status('Đang phát âm thanh câu hỏi…');
+    this.status('');
     try { await audio.play(); } catch { fallback(); }
   }
 }

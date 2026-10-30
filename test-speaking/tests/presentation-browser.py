@@ -1,5 +1,6 @@
 """Real Fullscreen API + full-motion/reduced-motion checks in a chosen browser."""
 from pathlib import Path
+import copy
 import argparse, functools, http.server, json, os, shutil, threading, time
 from playwright.sync_api import sync_playwright, expect
 
@@ -63,8 +64,9 @@ navigator.mediaDevices.getUserMedia=()=>{micRequests++;throw Error('No microphon
         page.evaluate('document.fonts.ready')
         assert page.evaluate('document.fonts.check(\'700 32px "Noto Sans"\',"Tiếng Việt")')
         assert page.evaluate('[...document.fonts].some(font=>font.family.includes("Noto Sans") && font.status === "loaded")')
-        expect(page.locator('#answer-panel')).to_be_visible();expect(page.locator('#toggle-answer')).to_be_hidden()
-        page.locator('#play-audio').click()
+        expect(page.locator('#answer-panel')).to_be_visible();expect(page.locator('#toggle-answer')).to_have_count(0)
+        page.locator('#play-answer').click();assert page.evaluate('speechCalls')==[SOURCE['cards'][0]['sampleAnswer']]
+        page.locator('#play-audio').click();assert page.evaluate('speechCalls')[-1]==SOURCE['cards'][0]['question']
         before=page.evaluate('cancels');started=time.monotonic()
         state=page.evaluate("""()=>{
           for(let i=0;i<12;i++)document.getElementById('next-card').click();
@@ -75,7 +77,7 @@ navigator.mediaDevices.getUserMedia=()=>{micRequests++;throw Error('No microphon
         settled(page)
         assert time.monotonic()-started>=.45
         assert id(page)=='unit5-card-02'
-        assert page.evaluate('speechCalls')==[SOURCE['cards'][0]['question']]
+        assert page.evaluate('speechCalls')==[SOURCE['cards'][0]['sampleAnswer'],SOURCE['cards'][0]['question']]
         assert page.evaluate('cancels')>before
         expect(page.locator('#answer-panel')).to_be_visible()
         page.locator('#question').focus();page.keyboard.press('a');expect(page.locator('#answer-panel')).to_be_visible()
@@ -86,6 +88,10 @@ navigator.mediaDevices.getUserMedia=()=>{micRequests++;throw Error('No microphon
 
         for width,height in [(1920,1080),(1366,768),(390,844)]:
             page.set_viewport_size({'width':width,'height':height});enter(page)
+            for control,key in [('play-audio','question'),('play-answer','sampleAnswer')]:
+                before=page.evaluate('cancels');page.locator('#'+control).click()
+                assert page.evaluate('speechCalls')[-1]==CARDS[id(page)][key]
+                assert page.evaluate('cancels')>before
             g=geometry(page)
             assert g['textScroll']<=g['textHeight']+2,g
             if width>height:assert g['image']['x']<g['question']['x']
@@ -97,20 +103,23 @@ navigator.mediaDevices.getUserMedia=()=>{micRequests++;throw Error('No microphon
             page.keyboard.press('ArrowLeft');settled(page);assert id(page)==old
             expect(page.locator('#answer-panel')).to_be_visible();geometry(page)
             exit(page)
+        page.locator('#question').focus();page.keyboard.press('f');page.wait_for_function('document.fullscreenElement?.id === "presentation"');geometry(page)
+        page.keyboard.press('f');page.wait_for_function('!document.fullscreenElement')
         passed('Real container fullscreen at 1920×1080, 1366×768 and portrait; large contain images, readable answers, visible non-overlapping navigation and keyboard arrows')
 
         page.set_viewport_size({'width':1920,'height':1080})
         page.locator('#exit-session').click();page.locator('#search').fill('Unit 5')
         page.get_by_role('button',name='Sequential Test',exact=True).click()
         page.locator('#setup-scope').select_option('all');page.get_by_role('button',name='Bắt đầu Test →').click()
-        expect(page.locator('#answer-panel')).to_be_hidden();expect(page.locator('#toggle-answer')).to_be_visible()
+        expect(page.locator('#answer-panel')).to_be_hidden();expect(page.locator('#toggle-answer')).to_have_count(0)
         page.screenshot(path=str(OUT/'test.png'),full_page=True)
         enter(page);geometry(page)
-        page.locator('#question').focus();page.keyboard.press('a');expect(page.locator('#answer-panel')).to_be_visible()
+        page.locator('#question').focus();page.keyboard.press('a');expect(page.locator('#answer-panel')).to_be_hidden()
+        expect(page.locator('#sample-answer')).to_be_empty();expect(page.locator('#play-answer')).to_be_hidden()
         next_card(page);expect(page.locator('#answer-panel')).to_be_hidden();assert id(page)=='unit5-card-02'
         page.screenshot(path=str(OUT/'fullscreen-test.png'))
         page.locator('#question').focus();page.keyboard.press('Escape');page.wait_for_function('!document.fullscreenElement')
-        passed('Sequential Test hides answers, teacher reveal works in fullscreen, next turn hides answer again and Escape exits')
+        passed('Sequential Test hides answers, A cannot reveal answers in fullscreen, answer text is empty and no reveal control exists and Escape exits')
 
         page.locator('#exit-session').click();page.locator('#search').fill('Unit 5')
         page.get_by_role('button',name='Random Test',exact=True).click()
@@ -128,8 +137,41 @@ navigator.mediaDevices.getUserMedia=()=>{micRequests++;throw Error('No microphon
         page.evaluate("document.getElementById('question').textContent='Tell your teacher about the things you enjoy doing with your friends at school. '.repeat(4);dispatchEvent(new Event('resize'))")
         g=geometry(page);assert g['textScroll']<=g['textHeight']+2,g
         assert page.evaluate('micRequests')==0
-        assert len(page.evaluate('speechCalls'))==1
+        expect(page.locator('#play-answer')).to_be_hidden();expect(page.locator('#sample-answer')).to_be_empty()
+        page.locator('#question').focus();page.keyboard.press('a');expect(page.locator('#answer-panel')).to_be_hidden()
         passed('Random Core order stays fixed through 3D Previous/Next; reduced motion disables turns; long text fits and no microphone/audio autoplay')
+        exit(page)
+        # Real HTMLAudioElement decodes local audio fixtures; only speech is spied
+        # because a headless browser has no audible classroom output.
+        pack=copy.deepcopy(SOURCE)
+        pack['cards'][0].update(audio='question.mp3',answerAudio='answer.mp3')
+        clip=(ROOT/'test-speaking/tests/fixtures/silence.mp3').read_bytes()
+        media=context.new_page()
+        media.route('**/unit5_speaking_cards.json',lambda r:r.fulfill(json=pack))
+        media.route('**/*.mp3',lambda r:r.fulfill(body=clip,content_type='audio/mpeg'))
+        media.add_init_script("""window.clips=[];const OriginalAudio=window.Audio;
+          window.Audio=function(src){const a=new OriginalAudio(src);clips.push(a);return a};""")
+        media.goto(BASE+'/library/test-speaking/index.html#grade=Grade+3&textbook=Global+Success&unit=Unit+5')
+        media.get_by_role('button',name='Practice →',exact=True).click()
+        media.locator('#first-card').click()
+        for full in [False,True]:
+            if full:enter(media)
+            for button,filename in [('play-audio','question.mp3'),('play-answer','answer.mp3')]:
+                media.locator('#'+button).click()
+                media.wait_for_function('clips.at(-1)?.readyState >= 2 && !clips.at(-1).paused')
+                assert media.evaluate('clips.at(-1).src').endswith(filename)
+                assert media.evaluate('clips.slice(0,-1).every(a=>a.paused)')
+                assert media.evaluate('speechCalls.length')==0
+        next_card(media);assert media.evaluate('clips.every(a=>a.paused)')
+        exit(media)
+        media.locator('#previous-card').click();settled(media)
+        media.route('**/answer.mp3',lambda r:r.fulfill(status=404,body='missing'))
+        media.locator('#play-answer').click()
+        media.wait_for_function('speechCalls.length === 1')
+        assert media.evaluate('speechCalls')==[SOURCE['cards'][0]['sampleAnswer']]
+        media.evaluate('document.getElementById("presentation").requestFullscreen=undefined')
+        media.locator('#fullscreen').click();expect(media.locator('#toast')).to_contain_text('chưa hỗ trợ')
+        passed('Real MP3 decoding for both icons in normal/fullscreen, exclusive playback, stop on turn, answer-only speech fallback and unsupported Fullscreen notice')
         assert not errors,errors;assert not external,external
         (OUT/'report.json').write_text(json.dumps({'browser':args.name,'version':version,'checks':checks,'errors':errors,'externalRequests':external,'nativeFullscreen':True,'actualSpeechOutputVerified':False},ensure_ascii=False,indent=2))
         browser.close()
