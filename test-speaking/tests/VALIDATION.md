@@ -12,7 +12,7 @@
 | Yêu cầu nghiệm thu | Bằng chứng tự động |
 | --- | --- |
 | Practice Next/Previous | Kiểm tra câu 1/2 và chặn vượt giới hạn |
-| Ẩn đáp án khi chuyển câu | Kiểm tra đáp án và từ khóa ẩn sau Next và reload |
+| Đáp án theo chế độ | Practice luôn hiện; Test ẩn mặc định và ẩn lại sau Next |
 | Sequential đúng thứ tự | So sánh đủ 15 ID theo thứ tự nguồn; browser kiểm tra câu 1/2 |
 | Random không lặp | Đi hết 15 câu duy nhất; unit test lặp 30 lượt |
 | Previous giữ thứ tự Random | So sánh câu trước/sau, giữ số thẻ đã xem |
@@ -29,3 +29,11 @@ Kiểm tra thêm: xuất tệp JSON thực và nhập phục hồi, CSV, xác nh
 Ảnh/báo cáo Unit 5 tại `/tmp/ht-speaking-unit5/`. Bộ gốc 15 câu vẫn ở `data/sets.json`, không thay đổi; bộ Unit 5 dùng JSON/ảnh riêng trong `data/global3-unit5/`. Ảnh Unit 5 được giữ nguyên tệp và hiển thị contain, không crop hoặc vẽ lại.
 
 Đã được chủ dự án cho phép tích hợp lối vào Library và tạo PR trên nhánh `feature/test-speaking-library`. Chưa được phép merge main hoặc deploy production. Thêm 7 nhóm kiểm tra Library → Test Speaking → Grade → giáo trình → Unit và đường dẫn quay lại; chạy cả trên mã nguồn và artifact đóng gói. Kiểm thử đăng nhập/thư viện dùng fixture cục bộ để không gọi production Firebase; không khẳng định kiểm thử end-to-end Firebase production.
+
+## Tối ưu trình chiếu trên lớp
+
+Đã chạy native Fullscreen API trên Chrome 156.0.8078.79 và Edge 142.0.3595.94 (bản Linux chính thức, kiểm tra signed Release và SHA-256 khi cài trong workspace). Mỗi trình duyệt đạt 4 nhóm kiểm thử trình chiếu: Practice luôn hiện đáp án, khóa thao tác trong chuyển động 520 ms; fullscreen container và điều hướng; Test reveal/reset đáp án; Random Core và reduced motion/văn bản dài.
+
+Kích thước fullscreen: 1920×1080, 1366×768, 390×844. Kiểm tra ảnh contain, ảnh trái/chữ phải trên ngang và ảnh trên/chữ dưới trên dọc, thanh điều hướng không chồng nội dung, không tràn khung, keyboard ArrowLeft/ArrowRight/F/Escape. Đã tải và kiểm tra Noto Sans local; không gọi Google Fonts, không autoplay hoặc truy cập micro. Đây là kiểm thử trình duyệt headless, không thay thế thử tivi/máy chiếu vật lý hoặc nghe giọng thiết bị thực.
+
+Ảnh Practice, Test, Fullscreen và báo cáo: `/tmp/ht-speaking-presentation/chrome/` và `/tmp/ht-speaking-presentation/edge/`. CI chạy cùng kịch bản bằng Chromium và lưu ảnh trong artifact browser reports. Giữ nguyên toàn bộ byte của 14 PNG/JSON/CSV/README nguồn Unit 5.

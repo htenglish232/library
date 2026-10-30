@@ -6,6 +6,8 @@
   <meta name="theme-color" content="#2563eb">
   <title>Test Speaking · HT English Library</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="fonts.css">
+  <link rel="stylesheet" href="presentation.css">
 </head>
 <body>
   <header class="site-header">
@@ -28,10 +30,15 @@
       <div class="session-header"><div><p id="session-mode" class="eyebrow"></p><h1 id="session-title"></h1><p id="session-meta" class="muted"></p></div><div class="toolbar"><button id="fullscreen" aria-label="Bật hoặc tắt toàn màn hình">⛶ <span>Toàn màn hình</span></button><button id="session-grades">← <span>Danh sách Grade</span></button><button id="exit-session">← <span>Danh sách Unit</span></button></div></div>
       <div class="session-options"><label>Tốc độ đọc<select id="speech-rate"><option value="0.75">0.75×</option><option value="1">1×</option><option value="1.25">1.25×</option></select></label><label class="check"><input id="show-images" type="checkbox" checked> Hình minh họa</label><div id="practice-options" class="toolbar"><button id="shuffle-practice">⇄ Trộn câu</button><button id="first-card">↤ Câu đầu</button></div><div id="test-options" class="toolbar" hidden><button id="restart-test">Restart &amp; Reshuffle</button><label class="check"><input id="timer-enabled" type="checkbox"> Bộ đếm giờ</label><label><span class="sr-only">Thời gian mỗi câu</span><select id="timer-duration"><option value="15">15 giây</option><option value="30">30 giây</option><option value="45">45 giây</option><option value="60">60 giây</option></select></label></div></div>
       <div id="timer-panel" class="timer-panel" hidden><span id="timer-readout" role="timer">30s</span><button id="timer-pause">Tạm dừng</button><button id="timer-reset">Đặt lại giờ</button><span id="timer-message" role="status"></span></div>
-      <article class="speaking-card" id="speaking-card"><div class="card-topline"><span id="card-category"></span><span id="card-group" class="category-badge" hidden></span><span class="card-mark" aria-hidden="true">✦</span></div><figure id="question-figure" hidden><img id="question-image" alt=""></figure><div class="question-body"><p class="question-label">LET’S TALK</p><h2 id="question" lang="en" tabindex="-1"></h2><button id="play-audio" class="audio-button" aria-label="Đọc lại câu hỏi tiếng Anh"><span aria-hidden="true">◖))</span> Listen to the question</button><p id="audio-status" role="status" class="muted"></p><button id="toggle-answer" class="answer-toggle" aria-expanded="false" aria-controls="answer-panel">Show Answer</button><div id="answer-panel" class="answer-panel" hidden><p class="eyebrow">A LITTLE INSPIRATION</p><p id="sample-answer" lang="en"></p><p id="keywords" lang="en"></p></div></div><div class="card-bottomline"><span>Take your time. You’ve got this.</span><span>HT ENGLISH</span></div></article>
+      <section id="presentation" aria-label="Trình chiếu Speaking Card">
+        <div class="presentation-topbar"><span id="presentation-label"></span><button id="exit-fullscreen" type="button">✕ Thoát toàn màn hình</button></div>
+        <div id="card-stage">
+      <article class="speaking-card" id="speaking-card"><div class="card-topline"><span id="card-category"></span><span id="card-group" class="category-badge" hidden></span><span class="card-mark" aria-hidden="true">✦</span></div><figure id="question-figure" hidden><img id="question-image" alt=""></figure><div class="question-body"><p class="question-label">LET’S TALK</p><h2 id="question" lang="en" tabindex="-1"></h2><div id="answer-panel" class="answer-panel" hidden><p class="eyebrow">A LITTLE INSPIRATION</p><p id="sample-answer" lang="en"></p><p id="keywords" lang="en"></p></div><button id="play-audio" class="audio-button" aria-label="Đọc lại câu hỏi tiếng Anh"><span aria-hidden="true">◖))</span> Listen to the question</button><p id="audio-status" role="status" class="muted"></p><button id="toggle-answer" class="answer-toggle" aria-expanded="false" aria-controls="answer-panel">Show Answer</button></div><div class="card-bottomline"><span>Take your time. You’ve got this.</span><span>HT ENGLISH</span></div></article>
+        </div>
+      <nav class="player-nav" aria-label="Điều hướng câu hỏi"><button id="previous-card">← <span>Previous</span></button><div><strong id="card-position"></strong><span id="test-progress"></span><span id="presentation-timer" class="fullscreen-only" role="timer" hidden></span><progress id="session-progress" value="1" max="15" aria-label="Tiến độ bộ thẻ"></progress></div><button id="next-card" class="primary"><span>Next</span> →</button></nav>
+      </section>
       <p id="session-notice" class="session-notice" role="status"></p>
-      <p class="keyboard-hint">← → Chuyển câu · Space Nghe · A Đáp án · F Toàn màn hình · Esc Thoát toàn màn hình</p>
-      <nav class="player-nav" aria-label="Điều hướng câu hỏi"><button id="previous-card">← <span>Previous</span></button><div><strong id="card-position"></strong><span id="test-progress"></span><progress id="session-progress" value="1" max="15" aria-label="Tiến độ bộ thẻ"></progress></div><button id="next-card" class="primary"><span>Next</span> →</button></nav>
+      <p class="keyboard-hint">← → Chuyển câu · Space Nghe câu hỏi · A Đáp án Test · F Toàn màn hình · Esc Thoát</p>
     </section>
   </main>
   <footer id="site-footer">Made for meaningful conversations. <strong>HT English</strong></footer>

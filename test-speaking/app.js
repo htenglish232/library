@@ -40,11 +40,13 @@ function resetFilters() {
 function allGrades() { resetFilters(); setBrowse({grade: null, textbook: null, unit: null}); }
 window.addEventListener('hashchange', () => { browse = readBrowse(); renderLibrary(); });
 let toastTimeout, confirmAction = null, beepContext;
+let turning = false, turnVersion = 0, turnAnimation = null;
 const audio = new QuestionAudio({status: message => { $('audio-status').textContent = message; }});
 const timer = new QuestionTimer((seconds, running) => {
   $('timer-readout').textContent = `${seconds}s`;
   $('timer-pause').textContent = running ? 'Tạm dừng' : 'Tiếp tục';
   $('timer-pause').disabled = seconds === 0;
+  $('presentation-timer').textContent = seconds ? ` · ${seconds}s` : ' · Hết giờ';
 }, () => {
   $('timer-panel').classList.add('expired');
   $('timer-message').textContent = 'Hết giờ! Giáo viên chọn thời điểm chuyển câu.';
@@ -158,12 +160,14 @@ function syncSettingsUI() {
   $('timer-duration').disabled = !settings.timer;
 }
 function startSession(set, mode, order = 'sequential', scope = 'all') {
+  cancelTurn();
   try { session = createSession(set, mode, order, Object.hasOwn(progress, set.id) ? progress[set.id] : null, scope); }
   catch (error) { toast(error.message); return; }
   $('library-view').hidden = true; $('player-view').hidden = false; document.body.classList.add('playing');
   $('session-title').textContent = set.title;
   $('session-mode').textContent = mode === 'practice' ? 'PRACTICE · LITTLE STEPS, BIG CONFIDENCE' : order === 'random' ? 'RANDOM TEST · KIỂM TRA NGẪU NHIÊN' : 'SEQUENTIAL TEST · KIỂM TRA THEO THỨ TỰ';
   $('session-meta').textContent = `${set.grade} · ${set.textbook} · ${set.unit}${scope === 'unit5' ? ' · Chỉ Unit 5 Core' : ''}`;
+  $('presentation-label').textContent = `${mode === 'practice' ? 'Practice' : order === 'random' ? 'Random Test' : 'Sequential Test'} · ${set.unit}`;
   $('practice-options').hidden = mode !== 'practice'; $('test-options').hidden = mode !== 'test';
   $('restart-test').textContent = order === 'random' ? 'Restart & Reshuffle' : 'Bắt đầu lại lượt';
   syncSettingsUI(); window.scrollTo(0, 0); renderCard();
@@ -180,18 +184,20 @@ function renderCard() {
   $('sample-answer').textContent = card.sampleAnswer;
   $('keywords').textContent = card.keywords.length ? `Useful words: ${card.keywords.join(' · ')}` : '';
   $('keywords').hidden = card.keywords.length === 0;
-  $('answer-panel').hidden = true; $('toggle-answer').setAttribute('aria-expanded', 'false');
-  $('toggle-answer').textContent = isTest ? 'Reveal Answer' : 'Show Answer';
+  $('answer-panel').hidden = isTest;
+  $('toggle-answer').hidden = !isTest;
+  $('toggle-answer').setAttribute('aria-expanded', String(!isTest));
+  $('toggle-answer').textContent = 'Reveal Answer';
   renderImage();
   $('card-position').textContent = `Câu ${session.cursor + 1} / ${session.sequence.length}`;
-  $('previous-card').disabled = session.cursor === 0;
-  $('next-card').disabled = session.cursor === session.sequence.length - 1;
+  syncNavigation();
   $('test-progress').textContent = isTest ? `Đã xem ${session.seen.size} · Còn ${session.sequence.length - session.seen.size}` : 'Một câu hỏi, một chút tự tin.';
   $('session-progress').max = session.sequence.length; $('session-progress').value = isTest ? session.seen.size : session.cursor + 1;
   if (session.cursor === session.sequence.length - 1) $('session-notice').textContent = isTest ? 'Đây là câu cuối của lượt kiểm tra. Có thể quay lại hoặc bắt đầu lượt mới.' : 'Bạn đã đến câu cuối. Thật tuyệt!';
-  resetTimer(); saveProgress();
+  resetTimer(); if (turning) timer.stop(); saveProgress();
   if (!card.audio && !window.speechSynthesis) $('audio-status').textContent = 'Thiết bị không hỗ trợ giọng đọc. Bạn vẫn có thể dùng thẻ bình thường.';
-  $('question').focus({preventScroll: true});
+  if (!turning) $('question').focus({preventScroll: true});
+  fitPresentation();
 }
 function renderImage() {
   const card = currentCard(session), img = $('question-image');
@@ -202,23 +208,86 @@ function renderImage() {
 }
 $('question-image').onerror = () => { $('question-figure').hidden = true; $('session-notice').textContent = 'Không tải được hình minh họa. Bạn vẫn có thể trả lời câu hỏi.'; };
 function toggleAnswer() {
+  if (session?.mode !== 'test' || turning) return;
   const reveal = $('answer-panel').hidden;
   $('answer-panel').hidden = !reveal; $('toggle-answer').setAttribute('aria-expanded', String(reveal));
   $('toggle-answer').textContent = reveal ? 'Hide Answer' : session.mode === 'test' ? 'Reveal Answer' : 'Show Answer';
+  fitPresentation();
 }
 function resetTimer() {
   const enabled = session?.mode === 'test' && settings.timer;
   $('timer-panel').hidden = !enabled; $('timer-message').textContent = ''; $('timer-panel').classList.remove('expired');
+  $('presentation-timer').hidden = !enabled;
   timer.reset(settings.duration, enabled);
 }
 async function fullscreen() {
   try {
     if (document.fullscreenElement) await document.exitFullscreen();
-    else if (document.documentElement.requestFullscreen) await document.documentElement.requestFullscreen();
+    else if ($('presentation').requestFullscreen) await $('presentation').requestFullscreen();
     else toast('Trình duyệt chưa hỗ trợ toàn màn hình. Có thể dùng chế độ trình chiếu của thiết bị.');
   } catch { toast('Không mở được toàn màn hình. Hãy thử nút toàn màn hình của trình duyệt.'); }
 }
-function navigate(delta) { if (move(session, delta)) renderCard(); }
+function syncNavigation() {
+  $('previous-card').disabled = turning || !session || session.cursor === 0;
+  $('next-card').disabled = turning || !session || session.cursor === session.sequence.length - 1;
+  for (const id of ['first-card', 'shuffle-practice', 'restart-test']) $(id).disabled = turning;
+}
+function cancelTurn() {
+  turnVersion++; turnAnimation?.cancel(); turnAnimation = null; turning = false;
+  $('card-stage').inert = false; $('card-stage').setAttribute('aria-busy', 'false');
+}
+async function navigate(delta) {
+  if (!session || turning || session.cursor + delta < 0 || session.cursor + delta >= session.sequence.length) return;
+  const version = ++turnVersion, activeSession = session;
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches || !$('speaking-card').animate;
+  turning = true; syncNavigation(); audio.stop(); $('audio-status').textContent = ''; timer.stop();
+  $('card-stage').inert = true; $('card-stage').setAttribute('aria-busy', 'true');
+  // Warm the next image without changing the visible card or playing audio.
+  const next = session.set.cards.find(card => card.id === session.sequence[session.cursor + delta]);
+  if (next.image && settings.images) { const preload = new Image(); preload.src = next.image; }
+  const animate = async (from, to) => {
+    turnAnimation = $('speaking-card').animate([{transform:`rotateY(${from}deg)`},{transform:`rotateY(${to}deg)`}],
+      {duration:260,easing:'cubic-bezier(.45, 0, .55, 1)',fill:'both'});
+    await turnAnimation.finished;
+  };
+  try {
+    if (!reduced) await animate(0, delta > 0 ? -90 : 90);
+    if (version !== turnVersion || session !== activeSession) return;
+    move(session, delta); renderCard();
+    if (!reduced) {
+      const outgoing = turnAnimation;
+      // Start the incoming face at the opposite edge before dropping the old
+      // animation, so the content swap is never painted facing the audience.
+      const incoming = animate(delta > 0 ? 90 : -90, 0);
+      outgoing.cancel();
+      await incoming;
+    }
+  } catch (error) {
+    if (version === turnVersion && error.name !== 'AbortError') toast('Không chạy được hiệu ứng trên thiết bị này. Bạn vẫn có thể chuyển câu.');
+  } finally {
+    if (version === turnVersion) {
+      turnAnimation?.cancel(); turnAnimation = null; turning = false;
+      $('card-stage').inert = false; $('card-stage').setAttribute('aria-busy', 'false'); syncNavigation();
+      resetTimer(); $('question').focus({preventScroll:true}); fitPresentation();
+    }
+  }
+}
+function fitPresentation() {
+  const question = $('question'), answer = $('sample-answer');
+  question.style.removeProperty('font-size'); answer.style.removeProperty('font-size');
+  if (document.fullscreenElement !== $('presentation')) return;
+  const body = $('question').closest('.question-body');
+  // Preserve readable large type for normal cards; shrink unusually long
+  // teacher text to fit, with a scrollable text area as the final fallback.
+  let q = parseFloat(getComputedStyle(question).fontSize), a = parseFloat(getComputedStyle(answer).fontSize);
+  for (let i=0; i<18 && body.scrollHeight > body.clientHeight + 2 && q>22; i++) {
+    q = Math.max(22,q*.93); a = Math.max(20,a*.93);
+    question.style.fontSize = `${q}px`; answer.style.fontSize = `${a}px`;
+  }
+}
+new ResizeObserver(() => { if (session) fitPresentation(); }).observe($('presentation'));
+document.fonts.ready.then(() => { if (session) fitPresentation(); });
+window.addEventListener('resize', () => { if (session) fitPresentation(); });
 function confirmChange(message, callback) { confirmAction = callback; $('confirm-message').textContent = message; $('confirm-dialog').showModal(); }
 $('confirm-accept').onclick = () => { const callback = confirmAction; confirmAction = null; $('confirm-dialog').close(); callback?.(); };
 $('confirm-cancel').onclick = () => { confirmAction = null; $('confirm-dialog').close(); };
@@ -315,6 +384,7 @@ $('test-form').onsubmit = event => {
   $('test-dialog').close(); startSession(pendingSet, 'test', new FormData($('test-form')).get('test-order'), $('setup-scope').value);
 };
 function leaveSession(toGrades = false) {
+  cancelTurn();
   const set = session.set;
   saveProgress(); audio.stop(); timer.stop(); session = null;
   $('player-view').hidden = true; $('library-view').hidden = false; document.body.classList.remove('playing');
@@ -329,7 +399,11 @@ $('previous-card').onclick = () => navigate(-1); $('next-card').onclick = () => 
 $('toggle-answer').onclick = toggleAnswer;
 $('play-audio').onclick = () => audio.play(currentCard(session), settings.rate);
 $('fullscreen').onclick = fullscreen;
-document.addEventListener('fullscreenchange', () => { $('fullscreen').setAttribute('aria-pressed', String(!!document.fullscreenElement)); });
+$('exit-fullscreen').onclick = () => { if (document.fullscreenElement) document.exitFullscreen().catch(() => {}); };
+document.addEventListener('fullscreenchange', () => {
+  $('fullscreen').setAttribute('aria-pressed', String(document.fullscreenElement === $('presentation')));
+  fitPresentation();
+});
 $('speech-rate').onchange = () => { settings.rate = Number($('speech-rate').value); saveSettings(); audio.stop(); $('audio-status').textContent = ''; };
 $('show-images').onchange = () => { settings.images = $('show-images').checked; saveSettings(); renderImage(); };
 $('timer-enabled').onchange = () => { settings.timer = $('timer-enabled').checked; if (settings.timer) unlockBeep(); saveSettings(); syncSettingsUI(); resetTimer(); };
@@ -341,13 +415,14 @@ $('shuffle-practice').onclick = () => { session.sequence = shuffle(session.seque
 $('restart-test').onclick = () => confirmChange('Bắt đầu một lượt kiểm tra mới? Lượt hiện tại sẽ kết thúc.', () => { const {set, mode, order, scope} = session; startSession(set, mode, order, scope); if (settings.timer) unlockBeep(); });
 document.addEventListener('keydown', event => {
   if (!session || event.repeat || event.altKey || event.ctrlKey || event.metaKey || document.querySelector('dialog[open]')) return;
-  if (event.target.closest('input,textarea,select,button,a,[contenteditable="true"]')) return;
+  if (event.target.closest('input,textarea,select,[contenteditable="true"]')) return;
   const key = event.key.toLowerCase();
-  const shortcuts = {'arrowright': () => navigate(1), 'arrowleft': () => navigate(-1), ' ': () => audio.play(currentCard(session), settings.rate), a: toggleAnswer, f: fullscreen,
+  if (key === ' ' && event.target.closest('button,a')) return;
+  const shortcuts = {'arrowright': () => navigate(1), 'arrowleft': () => navigate(-1), ' ': () => { if (!turning) audio.play(currentCard(session), settings.rate); }, a: toggleAnswer, f: fullscreen,
     escape: () => { if (document.fullscreenElement) document.exitFullscreen().catch(() => {}); }};
   if (shortcuts[key]) { event.preventDefault(); shortcuts[key](); }
 });
-window.addEventListener('pagehide', () => { saveProgress(); audio.stop(); timer.stop(); });
+window.addEventListener('pagehide', () => { cancelTurn(); saveProgress(); audio.stop(); timer.stop(); });
 window.addEventListener('pageshow', event => { if (event.persisted && session) renderCard(); });
 document.addEventListener('visibilitychange', () => { if (document.hidden) audio.stop(); else if (session) timer.tick(); });
 

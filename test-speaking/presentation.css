@@ -1,0 +1,200 @@
+/* Classroom presentation; all rules are scoped to the Speaking application. */
+#card-stage {
+  perspective: 1800px;
+  min-width: 0;
+}
+#speaking-card {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transform-origin: center;
+  will-change: auto;
+}
+#card-stage[aria-busy="true"] #speaking-card { will-change: transform; }
+.presentation-topbar, .fullscreen-only { display: none; }
+#presentation #question {
+  font-family: inherit;
+  font-weight: 800;
+  font-size: clamp(32px, 3.6vw, 64px);
+  overflow-wrap: anywhere;
+  line-height: 1.25;
+}
+#presentation #sample-answer {
+  font-size: clamp(25px, 2.6vw, 44px);
+  font-weight: 600;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+#presentation .question-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  min-width: 0;
+}
+#presentation .question-body > * { flex-shrink: 0; order: 0; }
+#presentation .question-body #question,
+#presentation .question-body .question-label { margin: 0; }
+#presentation .answer-panel { margin: 0; width: 100%; }
+#presentation .answer-toggle { margin: 0; }
+#presentation .audio-button { margin: 0; }
+#presentation #audio-status { margin: 0; }
+#presentation #audio-status:empty { display: none; }
+#presentation .card-bottomline { display: none; }
+
+@media (orientation: portrait) {
+  #presentation .speaking-card.has-image {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+  #presentation .has-image .card-topline { grid-row: 1; }
+  #presentation .has-image #question-figure { grid-row: 2; padding: 18px; }
+  #presentation .has-image #question-image {
+    width: 100%;
+    height: auto;
+    max-height: 46vh;
+    object-fit: contain;
+  }
+  #presentation .has-image .question-body { grid-row: 3; padding: 20px; }
+}
+@media (orientation: landscape) {
+  #presentation .speaking-card.has-image {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  }
+  #presentation .has-image #question-figure { grid-column: 1; padding: 22px; }
+  #presentation .has-image .question-body { grid-column: 2; padding: 25px; }
+}
+
+/* The Fullscreen API selects this container, never the document root. */
+#presentation:fullscreen {
+  display: grid;
+  grid-template-rows: 58px minmax(0, 1fr) 100px;
+  gap: 0;
+  width: 100vw;
+  height: 100dvh;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+  background: #f5f8ff;
+  color: var(--ink);
+  font-family: "Noto Sans", "Segoe UI", Arial, sans-serif;
+}
+#presentation::backdrop { background: #f5f8ff; }
+#presentation:fullscreen .presentation-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 22px;
+  gap: 15px;
+  border-bottom: 1px solid #dce5f1;
+}
+#presentation-label { font-size: clamp(11px, 1vw, 17px); color: #4b638a; }
+#exit-fullscreen {
+  background: #183b70;
+  border-color: #183b70;
+  color: white;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+#exit-fullscreen:hover { background: #2456a0; }
+#presentation:fullscreen #card-stage {
+  min-height: 0;
+  overflow: hidden;
+  padding: 12px 20px;
+}
+#presentation:fullscreen #speaking-card {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  border: 0;
+  border-radius: 20px;
+  box-shadow: none;
+  grid-template-rows: minmax(0, 1fr);
+}
+#presentation:fullscreen .card-topline,
+#presentation:fullscreen .card-bottomline,
+#presentation:fullscreen .question-label { display: none; }
+#presentation:fullscreen #question-figure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  min-width: 0;
+  padding: clamp(8px, 1.2vw, 24px);
+  margin: 0;
+  grid-row: 1;
+}
+#presentation:fullscreen #question-image {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  min-height: 0;
+  object-fit: contain;
+  border-radius: 15px;
+}
+#presentation:fullscreen .question-body {
+  min-height: 0;
+  height: 100%;
+  max-width: 100%;
+  padding: clamp(14px, 2.5vw, 50px);
+  gap: clamp(12px, 1.5vh, 24px);
+  justify-content: safe center;
+  grid-row: 1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+#presentation:fullscreen #question {
+  font-size: clamp(34px, 4.7vw, 92px);
+  margin: 0;
+}
+#presentation:fullscreen #sample-answer { font-size: clamp(26px, 3.2vw, 62px); }
+#presentation:fullscreen .answer-panel { padding: clamp(15px, 2vw, 30px); }
+#presentation:fullscreen .answer-panel .eyebrow { display: none; }
+#presentation:fullscreen .audio-button { min-height: 48px; font-size: clamp(12px, 1vw, 18px); }
+#presentation:fullscreen:not(:has(.has-image)) #speaking-card { display: flex; justify-content: center; }
+#presentation:fullscreen:not(:has(.has-image)) .question-body { width: min(1300px, 100%); }
+#presentation:fullscreen .player-nav {
+  position: static;
+  width: 100%;
+  height: 100%;
+  padding: 12px 28px max(12px, env(safe-area-inset-bottom));
+  background: white;
+  border-top: 1px solid #dce5f1;
+  backdrop-filter: none;
+}
+#presentation:fullscreen .player-nav button {
+  min-height: 60px;
+  min-width: 160px;
+  padding: 15px 28px;
+  font-size: clamp(17px, 1.5vw, 24px);
+}
+#presentation:fullscreen .player-nav strong { font-size: clamp(20px, 1.6vw, 30px); }
+#presentation:fullscreen #test-progress { font-size: 12px; }
+#presentation:fullscreen .fullscreen-only:not([hidden]) { display: inline; font-weight: 700; font-size: 13px; }
+#presentation:fullscreen #session-progress { margin-top: 7px; }
+@media (orientation: portrait) {
+  #presentation:fullscreen { grid-template-rows: 58px minmax(0, 1fr) 90px; }
+  #presentation:fullscreen #card-stage { padding: 8px 10px; }
+  #presentation:fullscreen #speaking-card.has-image {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(0, 1.1fr) minmax(0, 1fr);
+  }
+  #presentation:fullscreen #question-figure { grid-column: 1; grid-row: 1; padding: 5px; }
+  #presentation:fullscreen .has-image .question-body { grid-column: 1; grid-row: 2; padding: 10px 15px; gap: 10px; }
+  #presentation:fullscreen #question { font-size: clamp(27px, 4.5vh, 52px); }
+  #presentation:fullscreen #sample-answer { font-size: clamp(22px, 3.2vh, 38px); }
+  #presentation:fullscreen .answer-panel { padding: 12px; }
+  #presentation:fullscreen .player-nav { gap: 10px; padding: 10px; }
+  #presentation:fullscreen .player-nav button { min-width: 0; min-height: 55px; padding: 12px; font-size: 15px; }
+  #presentation:fullscreen .presentation-topbar { padding: 6px 10px; }
+  #presentation:fullscreen #exit-fullscreen { font-size: 11px; padding: 10px; }
+  #presentation:fullscreen #test-progress { font-size: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #speaking-card { transform: none !important; }
+}

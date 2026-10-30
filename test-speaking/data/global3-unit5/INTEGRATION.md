@@ -14,7 +14,7 @@ Câu hỏi/đáp án thẻ 09–14 giữ nguyên “What's his/her hobby?” và
 
 Trong Library chọn Test Speaking → Grade 3 → Global Success → Unit 5:
 
-- **Practice**: đủ 14 thẻ; Show/Hide Answer; chuyển câu sẽ ẩn đáp án. Ghi nhớ vị trí luyện tập trên thiết bị.
+- **Practice**: đủ 14 thẻ; câu trả lời mẫu luôn hiện ngay dưới câu hỏi, kể cả khi chuyển câu; không có nút Reveal Answer. Ghi nhớ vị trí luyện tập trên thiết bị.
 - **Sequential Test / Random Test**: chọn “Toàn bộ 14 thẻ” hoặc “Unit 5 Core · 5 thẻ”, rồi chọn Sequential hoặc Random. Không ghi âm, không tự chấm điểm và không tự hiện đáp án.
 - **Random**: Fisher–Yates trên đúng phạm vi đã chọn. Không lặp thẻ mới trong lượt. Previous giữ nguyên thứ tự; Restart & Reshuffle giữ nguyên phạm vi 14/5 thẻ và tạo lượt mới.
 - **Âm thanh**: bấm Listen to the question để đọc câu hỏi bằng SpeechSynthesis, ưu tiên English US/UK; không có MP3 trong gói nguồn. Không tự phát và không yêu cầu micro.
