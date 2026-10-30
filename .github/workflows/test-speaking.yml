@@ -30,6 +30,7 @@ jobs:
       - run: python test-speaking/tests/browser.py
       - run: python test-speaking/tests/unit5-browser.py
       - run: python test-speaking/tests/library-navigation.py
+      - run: python test-speaking/tests/presentation-browser.py --name ci-chromium
       - run: node tools/prepare-site.mjs
       - name: Verify packaged navigation
         run: HT_LIBRARY_SERVE_ROOT="$PWD/.site" python test-speaking/tests/library-navigation.py
@@ -46,3 +47,4 @@ jobs:
             /tmp/ht-speaking-cards
             /tmp/ht-speaking-unit5
             /tmp/ht-test-speaking-library
+            /tmp/ht-speaking-presentation

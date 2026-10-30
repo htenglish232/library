@@ -28,11 +28,12 @@ def deck(page):
     page.locator('#search').fill('Unit 5')
     return page.locator(f'[data-set-id="{DECK_ID}"]')
 def card_id(page): return page.locator('#speaking-card').get_attribute('data-card-id')
-def check_card(page):
+def check_card(page, practice=False):
     id = card_id(page); source = BY_ID[id]
     expect(page.locator('#question')).to_have_text(source['question'])
     expect(page.locator('#sample-answer')).to_have_text(source['sampleAnswer'])
-    expect(page.locator('#answer-panel')).to_be_hidden()
+    if practice:expect(page.locator('#answer-panel')).to_be_visible()
+    else:expect(page.locator('#answer-panel')).to_be_hidden()
     expect(page.locator('#card-group')).to_have_text({'review':'Review','extension':'Extension','unit5':'Unit 5 Core'}[source['category']])
     expect(page.locator('#question-image')).to_have_attribute('src','./data/global3-unit5/'+source['image'])
     page.wait_for_function('document.getElementById("question-image").complete && document.getElementById("question-image").naturalWidth > 0')
@@ -71,9 +72,9 @@ navigator.mediaDevices.getUserMedia=()=>{micRequests++;throw Error('No microphon
 
         deck(page).get_by_role('button',name='Practice →',exact=True).click()
         for i,source in enumerate(SOURCE['cards']):
-            assert check_card(page)==source['id']
-            page.locator('#toggle-answer').click();expect(page.locator('#sample-answer')).to_be_visible()
-            page.locator('#toggle-answer').click();expect(page.locator('#answer-panel')).to_be_hidden()
+            assert check_card(page,practice=True)==source['id']
+            expect(page.locator('#sample-answer')).to_be_visible()
+            expect(page.locator('#toggle-answer')).to_be_hidden()
             page.locator('#play-audio').click()
             assert page.evaluate('speechCalls.at(-1)')=={'text':source['question'],'lang':'en-US'}
             if i<13:page.locator('#next-card').click()
@@ -87,7 +88,7 @@ navigator.mediaDevices.getUserMedia=()=>{micRequests++;throw Error('No microphon
             assert image_box['height']>=200,(width,image_box)
             if width<=800:
                 question_box=page.locator('#question').bounding_box()
-                assert question_box['y']<image_box['y']
+                assert image_box['y']<question_box['y']
             for position in ['0','document.body.scrollHeight']:
                 page.evaluate(f'scrollTo(0,{position})')
                 nav=page.locator('.player-nav').bounding_box();assert abs(nav['y']+nav['height']-height)<2
@@ -95,7 +96,7 @@ navigator.mediaDevices.getUserMedia=()=>{micRequests++;throw Error('No microphon
             page.screenshot(path=str(OUT/f'unit5-practice-{width}.png'),full_page=True)
         page.set_viewport_size({'width':1440,'height':1000})
         page.locator('#exit-session').click()
-        passed('Practice checks all 14 image/question/answer associations, English speech calls, answer toggles and large responsive images with fixed navigation')
+        passed('Practice checks all 14 image/question/answer associations, always-visible answers, English speech calls and large responsive images with fixed navigation')
 
         for scope in ['all','unit5']:
             expected=[c['id'] for c in SOURCE['cards'] if scope=='all' or c['category']=='unit5']
