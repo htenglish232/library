@@ -181,13 +181,10 @@ function renderCard() {
   $('card-group').textContent = CATEGORY_LABELS[card.category] || '';
   $('card-group').className = `category-badge ${card.category || ''}`;
   $('card-group').hidden = !card.category;
-  $('sample-answer').textContent = card.sampleAnswer;
-  $('keywords').textContent = card.keywords.length ? `Useful words: ${card.keywords.join(' · ')}` : '';
+  $('sample-answer').textContent = isTest ? '' : card.sampleAnswer;
+  $('keywords').textContent = !isTest && card.keywords.length ? `Useful words: ${card.keywords.join(' · ')}` : '';
   $('keywords').hidden = card.keywords.length === 0;
   $('answer-panel').hidden = isTest;
-  $('toggle-answer').hidden = !isTest;
-  $('toggle-answer').setAttribute('aria-expanded', String(!isTest));
-  $('toggle-answer').textContent = 'Reveal Answer';
   renderImage();
   $('card-position').textContent = `Câu ${session.cursor + 1} / ${session.sequence.length}`;
   syncNavigation();
@@ -207,13 +204,6 @@ function renderImage() {
   if (card.image && settings.images) { img.referrerPolicy = 'no-referrer'; img.alt = `Minh họa: ${card.question}`; img.src = card.image; }
 }
 $('question-image').onerror = () => { $('question-figure').hidden = true; $('session-notice').textContent = 'Không tải được hình minh họa. Bạn vẫn có thể trả lời câu hỏi.'; };
-function toggleAnswer() {
-  if (session?.mode !== 'test' || turning) return;
-  const reveal = $('answer-panel').hidden;
-  $('answer-panel').hidden = !reveal; $('toggle-answer').setAttribute('aria-expanded', String(reveal));
-  $('toggle-answer').textContent = reveal ? 'Hide Answer' : session.mode === 'test' ? 'Reveal Answer' : 'Show Answer';
-  fitPresentation();
-}
 function resetTimer() {
   const enabled = session?.mode === 'test' && settings.timer;
   $('timer-panel').hidden = !enabled; $('timer-message').textContent = ''; $('timer-panel').classList.remove('expired');
@@ -315,7 +305,7 @@ function selectCard(id) {
   editingCardId = id; const card = editingSet()?.cards.find(c => c.id === id);
   $('card-form-title').textContent = card ? 'Chỉnh sửa thẻ' : 'Thêm thẻ';
   $('edit-question').value = card?.question || ''; $('edit-answer').value = card?.sampleAnswer || '';
-  $('edit-keywords').value = card?.keywords.join(' | ') || ''; $('edit-image').value = card?.image || ''; $('edit-audio').value = card?.audio || '';
+  $('edit-keywords').value = card?.keywords.join(' | ') || ''; $('edit-image').value = card?.image || ''; $('edit-audio').value = card?.audio || ''; $('edit-answer-audio').value = card?.answerAudio || '';
   $('edit-category').value = card?.category || '';
   $('delete-card').hidden = !card;
   if (editingSet()) $('editor-error').textContent = '';
@@ -339,7 +329,7 @@ $('set-form').onsubmit = event => {
 $('card-form').onsubmit = event => {
   event.preventDefault(); const set = editingSet(); if (!set) return;
   try {
-    const card = {id: editingCardId || newId('card'), question: $('edit-question').value, sampleAnswer: $('edit-answer').value, ...($('edit-category').value ? {category: $('edit-category').value} : {}), keywords: $('edit-keywords').value.split('|').map(k => k.trim()).filter(Boolean), image: $('edit-image').value.trim(), audio: $('edit-audio').value.trim()};
+    const card = {id: editingCardId || newId('card'), question: $('edit-question').value, sampleAnswer: $('edit-answer').value, ...($('edit-category').value ? {category: $('edit-category').value} : {}), keywords: $('edit-keywords').value.split('|').map(k => k.trim()).filter(Boolean), image: $('edit-image').value.trim(), audio: $('edit-audio').value.trim(), ...($('edit-answer-audio').value.trim() ? {answerAudio: $('edit-answer-audio').value.trim()} : {})};
     const cards = [...set.cards]; const index = cards.findIndex(c => c.id === card.id);
     if (index < 0) cards.push(card); else cards[index] = card;
     saveSets(sets.map(s => s.id === set.id ? {...s, cards} : s)); selectCard(card.id);
@@ -396,8 +386,8 @@ function leaveSession(toGrades = false) {
 $('exit-session').onclick = () => leaveSession();
 $('session-grades').onclick = () => leaveSession(true);
 $('previous-card').onclick = () => navigate(-1); $('next-card').onclick = () => navigate(1);
-$('toggle-answer').onclick = toggleAnswer;
-$('play-audio').onclick = () => audio.play(currentCard(session), settings.rate);
+$('play-audio').onclick = () => { if (!turning && session) audio.play(currentCard(session), settings.rate); };
+$('play-answer').onclick = () => { if (!turning && session?.mode === 'practice') audio.play(currentCard(session), settings.rate, 'answer'); };
 $('fullscreen').onclick = fullscreen;
 $('exit-fullscreen').onclick = () => { if (document.fullscreenElement) document.exitFullscreen().catch(() => {}); };
 document.addEventListener('fullscreenchange', () => {
@@ -418,7 +408,7 @@ document.addEventListener('keydown', event => {
   if (event.target.closest('input,textarea,select,[contenteditable="true"]')) return;
   const key = event.key.toLowerCase();
   if (key === ' ' && event.target.closest('button,a')) return;
-  const shortcuts = {'arrowright': () => navigate(1), 'arrowleft': () => navigate(-1), ' ': () => { if (!turning) audio.play(currentCard(session), settings.rate); }, a: toggleAnswer, f: fullscreen,
+  const shortcuts = {'arrowright': () => navigate(1), 'arrowleft': () => navigate(-1), ' ': () => { if (!turning) audio.play(currentCard(session), settings.rate); }, f: fullscreen,
     escape: () => { if (document.fullscreenElement) document.exitFullscreen().catch(() => {}); }};
   if (shortcuts[key]) { event.preventDefault(); shortcuts[key](); }
 });

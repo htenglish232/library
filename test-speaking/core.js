@@ -41,7 +41,7 @@ export function validateSets(input) {
         if (card.category && !Object.hasOwn(CATEGORY_LABELS, card.category)) throw new Error(`${cardId}: nhóm thẻ không hợp lệ.`);
         return {id: cardId, question: text(card.question, 'Câu hỏi', 2000), sampleAnswer: text(card.sampleAnswer, 'Câu trả lời mẫu', 4000),
           ...(card.category ? {category: card.category} : {}),
-          keywords: keywords.map(k => text(k, 'Từ khóa', 200)), image: mediaPath(card.image), audio: mediaPath(card.audio)};
+          keywords: keywords.map(k => text(k, 'Từ khóa', 200)), image: mediaPath(card.image), audio: mediaPath(card.audio), ...(card.answerAudio ? {answerAudio: mediaPath(card.answerAudio)} : {})};
       })
     };
   });
@@ -82,7 +82,7 @@ export function parseCSV(source) {
     let set = sets.get(r.setId);
     if (!set) { set = {id: r.setId, title: r.title, grade: r.grade, textbook: r.textbook, unit: r.unit, cards: []}; sets.set(r.setId, set); }
     for (const key of ['title', 'grade', 'textbook', 'unit']) if (set[key] !== r[key]) throw new Error(`CSV dòng ${i + 2}: thông tin bộ ${r.setId} không thống nhất.`);
-    set.cards.push({id: r.id, question: r.question, sampleAnswer: r.sampleAnswer, ...(r.category ? {category: r.category} : {}), keywords: (r.keywords || '').split('|').map(k => k.trim()).filter(Boolean), image: r.image || '', audio: r.audio || ''});
+    set.cards.push({id: r.id, question: r.question, sampleAnswer: r.sampleAnswer, ...(r.category ? {category: r.category} : {}), keywords: (r.keywords || '').split('|').map(k => k.trim()).filter(Boolean), image: r.image || '', audio: r.audio || '', ...(r.answerAudio ? {answerAudio: r.answerAudio} : {})});
   });
   return validateSets([...sets.values()]);
 }
@@ -123,9 +123,13 @@ export function currentCard(session) { return session.set.cards.find(c => c.id =
 // Source packs retain their original JSON and media names. Only the in-memory
 // media URLs are resolved relative to the pack rather than the app document.
 export function loadPack(raw, directory) {
+  const resolve = value => {
+    const path = mediaPath(value);
+    return path && !/^(?:https?:|\/)/i.test(path) ? directory + path : path;
+  };
   return validateSets({...raw, cards: raw.cards.map(card => ({...card,
-    image: card.image ? directory + card.image : '',
-    audio: card.audio ? directory + card.audio : ''
+    image: resolve(card.image), audio: resolve(card.audio),
+    ...(card.answerAudio ? {answerAudio: resolve(card.answerAudio)} : {})
   }))})[0];
 }
 export function addNewPacks(existing, packs, knownIds) {

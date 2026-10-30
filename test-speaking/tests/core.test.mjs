@@ -1,7 +1,7 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
-import {validateSets, parseCSV, importText, shuffle, createSession, move, currentCard, LocalRepository, mediaPath} from '../core.js';
+import {validateSets, parseCSV, importText, shuffle, createSession, move, currentCard, LocalRepository, mediaPath, loadPack} from '../core.js';
 import {QuestionAudio, QuestionTimer} from '../media.js';
 const demo = JSON.parse(readFileSync(new URL('../data/sets.json', import.meta.url)));
 
@@ -98,4 +98,31 @@ test('unsupported or non-English voices leave the card usable with an explicit m
   await audio.play(demo[0].cards[0], 1); assert.match(message, /không hỗ trợ/);
   const other = new QuestionAudio({speech: {cancel() {}, getVoices: () => [{lang: 'vi-VN'}]}, Utterance: class {}, status: text => {message = text;}});
   await other.play(demo[0].cards[0], 1); assert.match(message, /chưa có giọng tiếng Anh/);
+});
+
+test('answerAudio survives JSON/CSV and pack resolution with safe media validation', () => {
+  const set = structuredClone(demo[0]);
+  set.cards[0].answerAudio = 'audio/answer.mp3';
+  assert.equal(importText(JSON.stringify(set), 'set.json')[0].cards[0].answerAudio, 'audio/answer.mp3');
+  assert.equal(loadPack(set, './pack/').cards[0].answerAudio, './pack/audio/answer.mp3');
+  set.cards[0].audio = 'https://example.test/question.mp3';
+  assert.equal(loadPack(set, './pack/').cards[0].audio, set.cards[0].audio);
+  const csv = 'setId,title,grade,textbook,unit,id,question,sampleAnswer,answerAudio\ns,Set,Grade 3,Book,Unit 5,c,Question?,Answer.,answer.mp3';
+  assert.equal(parseCSV(csv)[0].cards[0].answerAudio, 'answer.mp3');
+  set.cards[0].answerAudio = 'javascript:alert(1)';
+  assert.throws(() => loadPack(set, './pack/'));
+});
+test('answer playback uses its own MP3/text and stale answer failures never restart speech', async () => {
+  const spoken = [], clips = [];
+  class Clip {
+    constructor(src) {this.src=src; clips.push(this);}
+    async play() {} pause() {this.paused=true;} removeAttribute() {} load() {}
+  }
+  const player = new QuestionAudio({speech:{cancel(){},getVoices:()=>[],speak:u=>spoken.push(u.text)}, Utterance:class {constructor(text){this.text=text;}},AudioClass:Clip});
+  const card = {...demo[0].cards[0],audio:'question.mp3',answerAudio:'answer.mp3'};
+  await player.play(card,1,'answer');assert.equal(clips[0].src,'answer.mp3');
+  await player.play(card,1);assert.equal(clips[1].src,'question.mp3');assert.ok(clips[0].paused);
+  clips[0].onerror();assert.deepEqual(spoken,[]);
+  await player.play({...card,answerAudio:''},1,'answer');assert.deepEqual(spoken,[card.sampleAnswer]);
+  assert.ok(clips[1].paused);
 });
