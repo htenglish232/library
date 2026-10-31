@@ -244,7 +244,7 @@ function renderResults() {
   $('result-translation').textContent=state.answers.translation || 'Chưa có bài dịch.';
   $('translation-status').textContent=`${wordCount(state.answers.translation)} từ · ${state.answers.translation.trim()?'Chờ giáo viên đánh giá':'Bỏ trống phần tự luận'}`;
   $('reference-content').replaceChildren();appendReference($('reference-content'));
-  $('source-notes').replaceChildren(el('p','Hai lưu ý Summary dưới đây cần giáo viên xác nhận trước khi dùng chính thức. Bản thử nghiệm giữ nguyên đề và đáp án.','notice'),el('p',key.sourceNote),el('p',unit.source.credit));
+  $('source-notes').replaceChildren(el('p','Theo xác nhận của giáo viên: giữ nguyên đề và đáp án nguồn, đồng thời giữ hai lưu ý Summary dưới đây.','notice'),el('p',key.sourceNote),el('p',unit.source.credit));
   window.scrollTo(0,0);$('results-title').focus({preventScroll:true});
 }
 function openSubmit() {

@@ -1,6 +1,6 @@
 # Đối chiếu nguồn — IELTS Unit 2: Individuals and Families
 
-Trạng thái học thuật: **giữ nguyên nguồn; hai lưu ý Summary cần giáo viên xác nhận trước khi dùng chính thức**. Không hiệu đính câu hỏi, không tự thêm lời giải. Các tài liệu PDF chỉ là nguồn nội dung; yêu cầu triển khai lấy từ văn bản nhiệm vụ của giáo viên.
+Trạng thái học thuật: **giáo viên đã xác nhận giữ nguyên nguồn và giữ cả hai lưu ý Summary trong phiên giao việc này**. Không hiệu đính câu hỏi, không tự thêm lời giải. Các tài liệu PDF chỉ là nguồn nội dung; yêu cầu triển khai lấy từ văn bản nhiệm vụ của giáo viên.
 
 ## Tài liệu đã đọc đầy đủ
 
@@ -65,10 +65,10 @@ Toàn bộ 10 giải thích tiếng Việt MCQ lấy nguyên văn từ trang 1 c
 
 Word Bank giữ đúng: **support – behavior – traditions – wisdom – balance – distance – energy – conflicts – relationships – assistance**.
 
-## Hai điểm cần giáo viên xác nhận
+## Hai điểm giáo viên đã xác nhận giữ nguyên
 
-1. **Ô 2 và 3 đều là `support`**, nhưng Word Bank chỉ liệt kê từ này một lần. Giữ nguyên Word Bank, cho nhập lại cùng từ tại nhiều ô, không áp dụng cơ chế dùng một lần. Cần giáo viên xác nhận tiếp tục dùng nguyên đề/đáp án này trước khi phát hành chính thức.
-2. **Ô 4 tạo cụm `reduced family relationships`**. File đáp án ghi chú cụm này chưa tự nhiên và gợi ý hai cách hiệu đính; ứng dụng không áp dụng các gợi ý vào đề. Giữ `relationships` làm đáp án theo tài liệu. Cần giáo viên xác nhận giữ nguyên hoặc cung cấp đề hiệu đính riêng.
+1. **Ô 2 và 3 đều là `support`**, nhưng Word Bank chỉ liệt kê từ này một lần. Giữ nguyên Word Bank, cho nhập lại cùng từ tại nhiều ô, không áp dụng cơ chế dùng một lần. Giáo viên đã xác nhận tiếp tục giữ nguyên đề/đáp án và giữ lưu ý này.
+2. **Ô 4 tạo cụm `reduced family relationships`**. File đáp án ghi chú cụm này chưa tự nhiên và gợi ý hai cách hiệu đính; ứng dụng không áp dụng các gợi ý vào đề. Giữ `relationships` làm đáp án theo tài liệu. Giáo viên đã xác nhận giữ nguyên nội dung nguồn và giữ lưu ý này; chưa áp dụng bản hiệu đính.
 
 Ghi chú khác từ nguồn: ô 7 dùng `cultural traditions`, phù hợp Word Bank; cách diễn đạt trong Reading không giống hoàn toàn. Giữ nguyên, không suy diễn thành đáp án khác. Từ `assistance` trong Word Bank không được dùng trong đáp án; không loại bỏ.
 

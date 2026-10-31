@@ -41,4 +41,4 @@ Báo cáo Chrome/Edge ở `tests/reports/`. Ảnh full-page có thể vẽ thanh
 
 Đây là Chrome/Edge thật chạy headless với viewport mô phỏng, không phải kiểm tra điện thoại/tablet vật lý hoặc bàn phím Safari/iOS. Không chạy emulator Firebase trong nhiệm vụ này vì không thay Firebase; kiểm tra đường dẫn Library dùng auth fixture cục bộ. Bản HTML mở trực tiếp đã thử trên Chrome; chưa khẳng định hành vi `localStorage` của mọi trình duyệt với `file://`.
 
-Chưa có URL preview công khai tự động cho nhánh. File HTML xem thử tải xuống và GitHub Actions artifact là các bản review, không triển khai website chính. Không merge `main`, không kích hoạt workflow Pages production. Hai lưu ý học thuật Summary vẫn chờ giáo viên xác nhận theo [báo cáo nguồn](source-audit.md).
+Chưa có URL preview công khai tự động cho nhánh. File HTML xem thử tải xuống và GitHub Actions artifact là các bản review, không triển khai website chính. Không merge `main`, không kích hoạt workflow Pages production. Giáo viên đã xác nhận giữ nguyên nguồn và giữ hai lưu ý học thuật Summary theo [báo cáo nguồn](source-audit.md).

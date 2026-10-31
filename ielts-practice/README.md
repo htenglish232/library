@@ -36,7 +36,7 @@ Lưu tự động dùng duy nhất namespace `ht-ielts:worksheet:v1:unit-2-indiv
 - `shared/worksheet.js`, `model.js`, `worksheet.css`: controller, mô hình chấm/lưu và giao diện dùng chung.
 - `unit-2-individuals-and-families/unit.json`: chỉ nội dung đề; `answers.json`: đáp án và nội dung sau nộp.
 - `sources/`: hai PDF nguyên bản, văn bản trích xuất và hash.
-- `docs/source-audit.md`: đối chiếu từng phần và hai điểm cần giáo viên xác nhận.
+- `docs/source-audit.md`: đối chiếu từng phần và hai lưu ý giáo viên đã xác nhận giữ nguyên.
 - `tests/`: kiểm thử nguồn, mô hình, trình duyệt và công cụ tạo preview; không đóng gói lên site.
 
 Unit sau có thể thêm thư mục với cùng hợp đồng dữ liệu và HTML trỏ tới `shared/`, thêm thẻ ở `ielts-practice/index.html`; không hiển thị Unit trống. Engine hiện triển khai đúng cấu trúc 10 MCQ + 10 ô Summary của Unit 2; nếu số lượng hoặc loại câu khác cần mở rộng schema/kiểm thử tương ứng, không đoán nội dung.
