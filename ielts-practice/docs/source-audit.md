@@ -81,3 +81,9 @@ Theo yêu cầu tiếp theo của giáo viên, bổ sung nút kiểm tra giống
 `support.json` lưu 20 mục Keywords/dẫn chứng (10 MCQ + 10 Summary). Đây là **phần chọn lọc bổ sung để trình bày**, không nhận là danh sách Keywords có sẵn trong PDF. Tất cả từ khóa đều là chuỗi nguyên văn trong dẫn chứng; mỗi dẫn chứng là câu/nhóm câu liền nhau từ `reading` hoặc `completedSummary`, có số đoạn và nguồn rõ ràng. `build-support.py --verify` kiểm tra việc trích chọn; model test đối chiếu từng từ/câu với dữ liệu nguồn đã xác minh.
 
 MCQ giữ nguyên giải thích tiếng Việt, bổ sung trích dẫn Reading có tô sáng Keywords. Summary không sáng tác thêm lời giải tiếng Việt; dùng đúng câu Summary đã điền từ file đáp án để đối chiếu và hiển thị Keywords trong đó. Những ô Summary chưa kiểm tra vẫn được che trong câu dẫn chứng; bản hoàn chỉnh đầy đủ chỉ mở sau nộp. Hai lưu ý `support` và `relationships` đã được giáo viên xác nhận tiếp tục giữ nguyên. Translation vẫn là tự luận, không thêm chấm tự động.
+
+## Cập nhật cách trình bày phần A thành tài liệu
+
+Đã đọc lại trực tiếp toàn bộ `sources/worksheet.pdf` theo yêu cầu mới. Phần A hiện trình bày liên tục đúng thứ tự Passage 1–10, với đoạn văn đầy đủ và danh sách Vocabulary ngay bên dưới; 33 mục nghĩa/synonym và 33 dòng Vocabulary Summary hiện sẵn, không cần mở thu gọn. Không có câu hỏi/chấm điểm hoặc hiệu ứng game trong tài liệu.
+
+Chỉ thay đổi DOM/CSS và điều hướng; `unit.json`, `answers.json`, `support.json` cùng các PDF/văn bản nguồn không đổi byte. Browser test đối chiếu toàn bộ văn bản từng passage và `sourceText` của mỗi mục Vocabulary, kể cả dấu câu và synonym, với dữ liệu đã xác minh từ PDF.

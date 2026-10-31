@@ -4,9 +4,9 @@ import {readFileSync} from 'node:fs';
 import {newState,restore,stepsFor,storageKey,wordCount,grade,markChecked,hasChecks} from '../shared/model.js';
 const unit=JSON.parse(readFileSync(new URL('../unit-2-individuals-and-families/unit.json',import.meta.url)));
 const key=JSON.parse(readFileSync(new URL('../unit-2-individuals-and-families/answers.json',import.meta.url)));
-test('single course sequence has ten review passages, original reading and ten MCQs followed by summary and translation',()=>{
-  assert.equal(stepsFor(unit).length,23);
-  assert.deepEqual(stepsFor(unit).map(s=>s.kind),[...Array(10).fill('passage'),'reading',...Array(10).fill('mcq'),'summary','translation']);
+test('single course sequence has one complete Vocabulary document, original Reading and unchanged exercises',()=>{
+  assert.equal(stepsFor(unit).length,14);
+  assert.deepEqual(stepsFor(unit).map(s=>s.kind),['vocabulary','reading',...Array(10).fill('mcq'),'summary','translation']);
   assert.match(storageKey(unit),/^ht-ielts:/);
 });
 test('all source answers score 20/20; support can be repeated and case/edge whitespace are ignored',()=>{
@@ -32,12 +32,12 @@ test('translation never changes automatic score or completion and is not assigne
   assert.ok(!('band' in before));
 });
 test('round-trip preserves all answers, translation and cursor without touching GHK1 or another unit',()=>{
-  const state=newState(unit);state.started=true;state.name='Nguyễn An';state.step=22;state.view='work';
+  const state=newState(unit);state.started=true;state.name='Nguyễn An';state.step=13;state.view='work';
   state.answers.translation='My draft.\nAnother line.';state.answers.summary[3]='relationships';
   assert.deepEqual(restore(unit,JSON.parse(JSON.stringify(state))),state);
   assert.deepEqual(restore(unit,{...state,unit:'unit-3'}),newState(unit));
   const bounded=restore(unit,{...state,step:900,readingMark:100,answers:{mcq:['Z'],summary:[{},42],translation:{bad:true}}});
-  assert.equal(bounded.step,22);assert.equal(bounded.readingMark,-1);assert.equal(bounded.answers.translation,'');
+  assert.equal(bounded.step,13);assert.equal(bounded.readingMark,-1);assert.equal(bounded.answers.translation,'');
   assert.equal(bounded.answers.mcq[0],'');assert.equal(bounded.answers.summary[0],'');
 });
 test('submission grading is pure, so wrong-answer review cannot rewrite the submitted result',()=>{
@@ -70,4 +70,24 @@ test('each keyword and evidence excerpt exists literally in the source; canonica
       for(const word of item.keywords)assert.ok(item.quotes.some(quote=>quote.text.toLowerCase().includes(word.toLowerCase())));
     });
   }
+});
+
+test('legacy 23-step cursors migrate without changing any saved answers, checks or submitted result',()=>{
+  for(let oldStep=0;oldStep<23;oldStep++){
+    const raw=newState(unit);delete raw.navigationVersion;
+    raw.step=oldStep;raw.started=true;raw.name='Bài đang làm';raw.view='work';
+    raw.answers.mcq[4]='B';raw.checked.mcq[4]=true;raw.answers.summary[3]='relationships';raw.answers.translation='My saved translation.';
+    const before=JSON.stringify(raw),migrated=restore(unit,raw);
+    assert.equal(migrated.step,oldStep<10?0:oldStep-9);
+    assert.deepEqual(migrated.answers,raw.answers);assert.deepEqual(migrated.checked,raw.checked);
+    assert.equal(migrated.navigationVersion,2);assert.equal(JSON.stringify(raw),before);
+    assert.deepEqual(restore(unit,migrated),migrated);
+    raw.submittedAt='2026-10-31T00:00:00Z';raw.view='results';
+    assert.deepEqual(grade(restore(unit,raw),key),grade(raw,key));
+  }
+});
+test('Vocabulary can be read without starting a scored session and survives reload',()=>{
+  const state=newState(unit);state.view='vocabulary';
+  assert.deepEqual(restore(unit,state),state);
+  assert.equal(state.started,false);assert.equal(grade(state,key).completion,0);
 });

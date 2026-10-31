@@ -6,7 +6,7 @@
 | --- | --- |
 | `source-pdf.py` | Đọc lại đủ 5 + 2 trang PDF; khớp bản trích xuất và dữ liệu có cấu trúc |
 | `extract-source.py --verify` | 10 passage, 33 Vocabulary kèm nghĩa/synonym, 33 từ tổng hợp, 5 đoạn Reading, 10×4 lựa chọn, 10 ô Summary, 10 từ Word Bank, đoạn dịch và toàn bộ nội dung đáp án |
-| `node --test ielts-practice/tests/model.test.mjs` | 8 đạt: thứ tự, chấm điểm, hai ô support, trim/case, từ đồng nghĩa bị từ chối, lưu/phục hồi, Translation tách riêng, không thay điểm khi ôn |
+| `node --test ielts-practice/tests/model.test.mjs` | 10 đạt: thứ tự, chấm điểm, hai ô support, trim/case, từ đồng nghĩa bị từ chối, lưu/phục hồi, Translation tách riêng, không thay điểm khi ôn |
 | Chrome Linux 156.0.8078.79 | 5 nhóm nghiệm thu đạt; đủ 1440×1000, 768×1024, 390×844, 375×812 |
 | Edge Linux 142.0.3595.94 | 5 nhóm nghiệm thu đạt, cùng 4 viewport |
 | `navigation-preview.py` trên source và `.site` | Library → IELTS Practice → Unit 2 và quay lại; JSON/PDF; bản HTML tự chứa mở `file://` và làm/nộp được |
@@ -50,3 +50,13 @@ Bổ sung theo yêu cầu tiếp theo: MCQ có nút kiểm tra, lời giải ti�
 Chrome và Edge: mỗi trình duyệt đạt 4 nhóm mới ở 1440×1000 và 390×844: đúng/sai; không lộ trước kiểm tra; câu/ô kiểm tra lưu qua chuyển phần/reload; che ô Summary chưa kiểm tra trong dẫn chứng; dữ liệu cũ tiếp tục dùng được; ôn sai không thay điểm lần đầu; lỗi tải dẫn chứng không khóa nhầm đáp án, thử lại được; chuyển câu trong lúc chờ tải dẫn chứng chỉ kiểm tra câu gốc, không chấm nhầm câu mới. Bộ 5 nhóm nghiệm thu gốc chạy lại trên Chrome, gồm đủ 1440, 768, 390, 375px.
 
 Ảnh mới: [MCQ desktop](screenshots/check-mcq-1440.png), [MCQ mobile](screenshots/check-mcq-390.png), [Summary mobile](screenshots/check-summary-390.png). Báo cáo mới trong `tests/reports/checks-chrome.json` và `checks-edge.json`.
+
+## Vocabulary là tài liệu cuộn liên tục
+
+Theo yêu cầu mới, phần A là một tài liệu trắng duy nhất: 10 tiêu đề Passage màu xanh, đủ đoạn văn, Vocabulary dạng bullet hiện sẵn và Vocabulary Summary ở cuối. Không có accordion, flashcard, bài trắc nghiệm, XP, tiến độ chấm điểm hoặc thanh Previous/Next trong phần tài liệu. Nút sang Reading ở đầu/cuối; mục Vocabulary & Passages mở trực tiếp từ màn hình đầu không cần tên, và vẫn mở đúng tài liệu sau reload.
+
+`vocabulary-browser.py` đạt 5 nhóm trên Chrome/Edge: bốn viewport 1440, 768, 390, 375px và kiểm tra migration bản lưu cũ. Xác minh đọc tới dòng cuối `Peace`, không tràn ngang, toàn bộ 10 passage/33 mục Vocabulary với nghĩa/synonym/33 dòng Summary khớp nguồn và hiển thị cùng lúc trong một DOM. Không cần chuyển từng passage.
+
+Model tests: 10 đạt, bao gồm chuyển đủ 23 vị trí điều hướng cũ sang 14 bước mới mà không thay đáp án, cờ kiểm tra, bài dịch hoặc điểm. Browser xác nhận một bài đang làm ở MCQ 4 vẫn mở đúng MCQ 4, giữ đáp án đã khóa, Summary và bản dịch; bài đã nộp 20/20 vẫn giữ kết quả sau chuyển đổi. Bộ nghiệm thu gốc trên Chrome (4 viewport), kiểm tra đáp án ngay và ôn sai được chạy lại; các phần B–E giữ nguyên hành vi.
+
+Ảnh: [Vocabulary desktop](screenshots/vocabulary-document-1440.png) · [Vocabulary mobile](screenshots/vocabulary-document-390.png). Báo cáo: `tests/reports/vocabulary-chrome.json`, `vocabulary-edge.json`. Đây là trình duyệt headless với viewport mô phỏng, không phải điện thoại vật lý.

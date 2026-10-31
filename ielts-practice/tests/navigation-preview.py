@@ -46,6 +46,8 @@ try:
             page.goto(PREVIEW.as_uri())
             expect(page.locator('#welcome')).to_be_visible()
             page.locator('#student-name').fill('Xem thử HTML');page.locator('#start-form button').click()
+            expect(page.locator('.passage-section')).to_have_count(10)
+            page.locator('#vocabulary-reading-top').click()
             page.locator('#step-picker').evaluate('e=>e.open=true')
             page.get_by_role('button',name='C · Câu 1',exact=True).click()
             page.locator('input[value=B]').check();page.locator('#check-answer').click()

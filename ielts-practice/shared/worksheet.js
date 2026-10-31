@@ -8,7 +8,7 @@ const el = (tag, text, className) => {
   return node;
 };
 const sections = [
-  'Vocabulary & Passage Review', 'Reading Practice', 'Multiple Choice', 'Summary Completion', 'Translation'
+  'Vocabulary & Passages', 'Reading Practice', 'Multiple Choice', 'Summary Completion', 'Translation'
 ];
 let unit, key, support, keyPromise, state, steps, review = null, submitting = false, checking = false;
 const statusLabels = {correct:'Đúng', wrong:'Sai', blank:'Bỏ trống'};
@@ -40,13 +40,14 @@ function updateProgress() {
 }
 function view(name) {
   state.view = name;
-  for (const id of ['welcome','work','results']) $(id).hidden = id !== name;
+  for (const id of ['welcome','work','results']) $(id).hidden = id==='work'?!['work','vocabulary'].includes(name):id!==name;
+  document.documentElement.classList.toggle('vocabulary-document-open',name==='vocabulary');
   $('navigation').hidden = name !== 'work';
   $('student-label').textContent = state.name;
   save();
 }
 function stepLabel(step) {
-  if (step.kind === 'passage') return `A · Passage ${step.index+1}`;
+  if (step.kind === 'vocabulary') return 'A · Vocabulary & Passages';
   if (step.kind === 'reading') return 'B · Reading';
   if (step.kind === 'mcq') return `C · Câu ${step.index+1}`;
   if (step.kind === 'summary') return review ? `D · Ô ${step.index+1}` : 'D · Summary';
@@ -57,6 +58,9 @@ function go(index, focus = true) {
   if (review) review.cursor = Math.max(0,Math.min(review.items.length-1,index));
   else state.step = Math.max(0,Math.min(steps.length-1,index));
   $('step-picker').open = false;
+  if(!state.started && activeStep().kind!=='vocabulary') {
+    view('welcome');window.scrollTo(0,0);$('student-name').focus();return;
+  }
   renderWork();
   if (focus) { window.scrollTo(0,0); $('task-title').focus({preventScroll:true}); }
 }
@@ -83,25 +87,33 @@ function reading() {
     p.querySelector('button').setAttribute('aria-pressed',String(state.readingMark===index));
   });
 }
-function passage(step) {
-  const source = unit.passages[step.index];
-  $('task-title').textContent = source.title;
-  const p = el('p',source.text,'passage-copy'); p.lang = 'en';
-  const vocabulary = el('details',undefined,'vocabulary');
-  vocabulary.append(el('summary',`Vocabulary · ${source.vocabulary.length} từ/cụm từ`));
-  const list = el('dl');
-  source.vocabulary.forEach(word => {
-    const term = el('dt',word.term); term.lang = 'en';
-    const definition = el('dd',word.meaning);
-    if (word.synonyms) { const synonym = el('span',`synonym: ${word.synonyms}`,'synonyms'); synonym.lang='en'; definition.append(synonym); }
-    list.append(term,definition);
+function vocabularyDocument() {
+  $('task-title').textContent='Vocabulary & Passages';
+  const actions=el('nav',undefined,'document-actions');actions.setAttribute('aria-label','Điều hướng tài liệu');
+  const overview=el('button','← Tổng quan Unit 2','quiet');overview.id='vocabulary-overview';
+  overview.onclick=()=>{view('welcome');window.scrollTo(0,0);};
+  const reading=el('button','Reading Practice →','primary');reading.id='vocabulary-reading-top';reading.onclick=()=>go(1);
+  actions.append(overview,reading);$('task-content').append(actions);
+  const content=el('div',undefined,'vocabulary-document');content.id='vocabulary-document';
+  unit.passages.forEach(source=>{
+    const section=el('section',undefined,'passage-section');section.id=`passage-${source.number}`;
+    const title=el('h3',`Passage ${source.number}: ${source.title}`);title.lang='en';
+    const p=el('p',source.text,'passage-copy');p.lang='en';
+    const heading=el('h4','Vocabulary:');heading.lang='en';
+    const words=el('ul',undefined,'vocabulary-list');
+    source.vocabulary.forEach(word=>{
+      const item=el('li'),term=el('strong',word.term);term.lang='en';
+      item.append(term,document.createTextNode(` – ${word.meaning}${word.synonyms?` (synonym: ${word.synonyms})`:''}`));
+      words.append(item);
+    });
+    section.append(title,p,heading,words);content.append(section);
   });
-  vocabulary.append(list); $('task-content').append(p,vocabulary);
-  if (step.index === unit.passages.length-1) {
-    const summary = el('details',undefined,'vocabulary'); summary.append(el('summary','Vocabulary Summary · 33 từ/cụm từ'));
-    const words = el('ul',undefined,'vocabulary-summary'); words.lang='en';
-    unit.vocabularySummary.forEach(word=>words.append(el('li',word))); summary.append(words); $('task-content').append(summary);
-  }
+  const summary=el('section',undefined,'vocabulary-summary-section');summary.id='vocabulary-summary';
+  const heading=el('h3','Vocabulary Summary');heading.lang='en';
+  const list=el('ul');list.lang='en';unit.vocabularySummary.forEach(word=>list.append(el('li',word)));
+  summary.append(heading,list);content.append(summary);$('task-content').append(content);
+  const next=el('button','Chuyển sang Reading Practice →','primary');next.id='vocabulary-reading';next.onclick=()=>go(1);
+  $('task-content').append(next);
 }
 function answerChanged(kind,index,value) {
   if (state.submittedAt && !review) return;
@@ -276,17 +288,20 @@ function translation() {
   if(state.submittedAt)appendReference($('task-content'));
 }
 function renderWork() {
-  const step=activeStep();view('work');updateProgress();renderSteps();
+  const step=activeStep(),isDocument=step.kind==='vocabulary';view(isDocument?'vocabulary':'work');updateProgress();renderSteps();
   $('task-content').replaceChildren();$('feedback').replaceChildren();$('feedback').hidden=true;
   $('task-title').lang='vi';$('task-kicker').textContent=review?`ÔN LẠI · ${stepLabel(step)}`:`${step.section} · ${sections['ABCDE'.indexOf(step.section)]}`;
+  if(isDocument)$('task-kicker').textContent=`UNIT ${unit.number} · ${unit.title}`;
+  $('task').classList.toggle('document-paper',isDocument);
+  $('step-picker').hidden=isDocument;document.querySelector('.progress-line').hidden=isDocument;
   $('reading-panel').hidden=!['mcq','reading'].includes(step.kind);
   $('task').hidden=step.kind==='reading';
   $('workspace').classList.toggle('with-reading',step.kind==='mcq');
   $('workspace').classList.toggle('reading-only',step.kind==='reading');
   $('review-banner').hidden=!review;
-  $('submit-open').hidden=!!state.submittedAt;$('results-open').hidden=!state.submittedAt;
+  $('submit-open').hidden=isDocument || !!state.submittedAt;$('results-open').hidden=isDocument || !state.submittedAt;
   if(['mcq','reading'].includes(step.kind))reading();
-  if(step.kind==='passage')passage(step);
+  if(isDocument)vocabularyDocument();
   if(step.kind==='mcq')multipleChoice(step);
   if(step.kind==='summary')summaryCompletion(step);
   if(step.kind==='translation')translation();
@@ -388,10 +403,15 @@ async function init(){
     catch{storageWarning('Không đọc được bản lưu cũ. Phiếu vẫn dùng được; tiến độ chỉ được giữ khi trình duyệt cho phép lưu.');}
     state=restore(unit,raw);
     $('student-name').value=state.name;
-    sections.forEach(section=>$('welcome-sections').append(el('li',section)));
+    sections.forEach((section,index)=>{
+      const item=el('li');
+      if(index===0){const button=el('button',section,'welcome-document-link');button.id='open-vocabulary';button.onclick=()=>go(0);item.append(button);}
+      else item.textContent=section;
+      $('welcome-sections').append(item);
+    });
     $('load-message').hidden=true;
-    if(state.submittedAt || hasChecks(state)){await loadKey();if(state.submittedAt && state.view!=='work')renderResults();else renderWork();}
-    else if(state.started)renderWork();else view('welcome');
+    if(state.submittedAt || hasChecks(state)){await loadKey();if(state.submittedAt && !['work','vocabulary'].includes(state.view))renderResults();else renderWork();}
+    else if(state.started || state.view==='vocabulary')renderWork();else view('welcome');
     keyboardInset();
   } catch(error){$('load-message').hidden=false;$('load-message').textContent=`Không mở được phiếu. ${error.message} Hãy tải lại trang để thử lại.`;}
 }

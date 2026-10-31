@@ -25,6 +25,7 @@ BASE=f'http://127.0.0.1:{server.server_port}'
 URL=BASE+'/library/ielts-practice/unit-2-individuals-and-families/index.html'
 def passed(text):checks.append(text);print('PASS',args.name,text,flush=True)
 def jump(page,name):
+    if page.locator('#vocabulary-reading-top').is_visible():page.locator('#vocabulary-reading-top').click()
     page.locator('#step-picker').evaluate('(e)=>e.open=true')
     page.locator('#step-list').get_by_role('button',name=name,exact=True).click()
 def layout(page):
@@ -62,17 +63,23 @@ try:
             if width in [1440,390]:page.screenshot(path=str(OUT/f'welcome-{width}.png'),full_page=True)
             page.locator('#student-name').fill('Nguyễn An')
             page.get_by_role('button',name='Bắt đầu làm bài →',exact=True).click()
-            expect(page.locator('#task-title')).to_have_text(unit['passages'][0]['title'])
+            expect(page.locator('#task-title')).to_have_text('Vocabulary & Passages')
+            expect(page.locator('.passage-section')).to_have_count(10)
+            assert page.locator('.passage-section h3').all_text_contents()==[f"Passage {p['number']}: {p['title']}" for p in unit['passages']]
+            assert page.locator('.passage-copy').all_text_contents()==[p['text'] for p in unit['passages']]
             for index,passage in enumerate(unit['passages']):
-                expect(page.locator('#task-title')).to_have_text(passage['title'])
-                expect(page.locator('.passage-copy')).to_have_text(passage['text'])
-                page.locator('.vocabulary').first.locator('summary').click()
-                assert page.locator('.vocabulary dt').all_text_contents()==[v['term'] for v in passage['vocabulary']]
-                assert [t.split('synonym:')[0].strip() for t in page.locator('.vocabulary dd').all_text_contents()]==[v['meaning'] for v in passage['vocabulary']]
-                if index==9:
-                    page.locator('.vocabulary').last.locator('summary').click()
-                    assert page.locator('.vocabulary-summary li').all_text_contents()==unit['vocabularySummary']
-                page.locator('#next').click()
+                block=page.locator('.passage-section').nth(index)
+                assert block.locator('.vocabulary-list li').all_text_contents()==[v['sourceText'] for v in passage['vocabulary']]
+                expect(block.locator('.vocabulary-list')).to_be_visible()
+            assert page.locator('#vocabulary-summary li').all_text_contents()==unit['vocabularySummary']
+            assert page.locator('#vocabulary-document details,#vocabulary-document input,#vocabulary-document button').count()==0
+            expect(page.locator('#navigation')).to_be_hidden();expect(page.locator('.progress-line')).to_be_hidden()
+            expect(page.locator('#submit-open')).to_be_hidden()
+            page.locator('#vocabulary-summary li').last.scroll_into_view_if_needed()
+            expect(page.locator('#vocabulary-summary li').last).to_be_in_viewport()
+            page.evaluate('scrollTo(0,0)')
+            if width in [1440,390]:page.screenshot(path=str(OUT/f'vocabulary-document-{width}.png'),full_page=True)
+            page.locator('#vocabulary-reading').click()
             assert page.locator('#reading-text p').count()==5
             assert page.locator('#reading-text p').evaluate_all("ps=>ps.map(p=>p.lastChild.textContent)")==unit['reading']
             page.get_by_role('button',name='Đánh dấu đoạn 3',exact=True).click()

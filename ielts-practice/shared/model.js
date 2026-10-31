@@ -3,13 +3,13 @@ export const cleanAnswer = value => String(value ?? '').trim().toLowerCase();
 export const wordCount = text => (String(text).trim().match(/\S+/gu) || []).length;
 export const storageKey = unit => `ht-ielts:worksheet:v1:${unit.id}`;
 export function stepsFor(unit) {
-  return [...unit.passages.map((_, index) => ({kind:'passage', index, section:'A'})),
+  return [{kind:'vocabulary', section:'A'},
     {kind:'reading', section:'B'},
     ...unit.multipleChoice.map((_, index) => ({kind:'mcq', index, section:'C'})),
     {kind:'summary', section:'D'}, {kind:'translation', section:'E'}];
 }
 export function newState(unit) {
-  return {schema:1, unit:unit.id, version:unit.version, name:'', started:false, view:'welcome', step:0,
+  return {schema:1, navigationVersion:2, unit:unit.id, version:unit.version, name:'', started:false, view:'welcome', step:0,
     readingMark:-1, submittedAt:null, checked:{mcq:Array(unit.multipleChoice.length).fill(false),summary:Array(10).fill(false)},
     answers:{mcq:Array(unit.multipleChoice.length).fill(''), summary:Array(10).fill(''), translation:''}};
 }
@@ -18,10 +18,17 @@ export function restore(unit, raw) {
   if (!raw || raw.schema !== 1 || raw.unit !== unit.id || raw.version !== unit.version) return state;
   const safe = (text, max) => typeof text === 'string' ? text.slice(0,max) : '';
   state.name = safe(raw.name,120); state.started = !!raw.started && !!state.name.trim();
-  state.step = Number.isInteger(raw.step) ? Math.max(0, Math.min(stepsFor(unit).length-1,raw.step)) : 0;
+  if (Number.isInteger(raw.step)) {
+    // Legacy navigation used ten separate Passage screens (23 steps). Keep
+    // every saved exercise cursor on the same question after merging Part A.
+    const legacy = raw.navigationVersion !== 2;
+    const position = Math.max(0,Math.min(legacy?22:stepsFor(unit).length-1,raw.step));
+    state.step = legacy ? (position<10?0:position-9) : position;
+  }
   state.readingMark = Number.isInteger(raw.readingMark) && raw.readingMark >= 0 && raw.readingMark < unit.reading.length ? raw.readingMark : -1;
   state.submittedAt = typeof raw.submittedAt === 'string' && Number.isFinite(Date.parse(raw.submittedAt)) ? raw.submittedAt : null;
-  state.view = !state.started ? 'welcome' : state.submittedAt && raw.view !== 'work' ? 'results' : 'work';
+  state.view = raw.view==='vocabulary' && state.step===0 ? 'vocabulary' :
+    !state.started ? 'welcome' : state.submittedAt && raw.view !== 'work' ? 'results' : 'work';
   state.answers.mcq = state.answers.mcq.map((_,i) => /^[ABCD]$/.test(raw.answers?.mcq?.[i]) ? raw.answers.mcq[i] : '');
   state.answers.summary = state.answers.summary.map((_,i) => safe(raw.answers?.summary?.[i],100));
   state.answers.translation = safe(raw.answers?.translation,20000);

@@ -24,7 +24,7 @@ Workflow **IELTS Unit 2 checks and downloadable preview** chạy trên nhánh/PR
 
 ## Sử dụng
 
-Nhập tên, bắt đầu với phần A; chọn từng phần/câu qua danh sách đóng mặc định hoặc dùng Previous/Next. Nút **Kiểm tra đáp án ✓** hiện đúng/sai, lời giải và Keywords ngay trong lúc làm. Câu trắc nghiệm đã kiểm tra giữ đáp án lần đầu; Summary kiểm tra các ô đã nhập, giữ các ô trống để làm tiếp. Kết quả kiểm tra được lưu khi đổi câu hoặc tải lại. Bản dịch tham khảo chỉ mở sau nộp. Summary cho nhập lại từ; chấm sau khi trim và chuyển chữ thường, không chấp nhận synonym. Kết quả tách đúng/sai/bỏ trống trên 20 câu; tỷ lệ hoàn thành tính số câu MCQ/Summary đã trả lời. Translation có đếm từ, lưu nháp, giữ nguyên khi chuyển phần và không tự chấm.
+Từ màn hình đầu có thể mở **Vocabulary & Passages** để đọc ngay, không cần nhập tên. Phần A là một tài liệu trắng cuộn liên tục gồm đủ 10 passage, Vocabulary và Vocabulary Summary hiện sẵn; không có accordion, flashcard, XP, câu hỏi hoặc thanh chuyển từng câu. Nút Reading Practice có ở đầu/cuối tài liệu; trước khi bắt đầu luồng bài tập, học sinh nhập tên. Các phần B–E vẫn dùng danh sách phần/câu và Previous/Next như trước. Nút **Kiểm tra đáp án ✓** hiện đúng/sai, lời giải và Keywords ngay trong lúc làm. Câu trắc nghiệm đã kiểm tra giữ đáp án lần đầu; Summary kiểm tra các ô đã nhập, giữ các ô trống để làm tiếp. Kết quả kiểm tra được lưu khi đổi câu hoặc tải lại. Bản dịch tham khảo chỉ mở sau nộp. Summary cho nhập lại từ; chấm sau khi trim và chuyển chữ thường, không chấp nhận synonym. Kết quả tách đúng/sai/bỏ trống trên 20 câu; tỷ lệ hoàn thành tính số câu MCQ/Summary đã trả lời. Translation có đếm từ, lưu nháp, giữ nguyên khi chuyển phần và không tự chấm.
 
 Ôn câu cần luyện tạo bản nháp riêng trong phiên, gồm cả câu bỏ trống, không ghi đè bài nộp hay điểm lần đầu. Có thể xem lại toàn bộ bài làm đã khóa, lời giải MCQ, đoạn Summary hoàn chỉnh, lưu ý nguồn và bản dịch tham khảo. Lượt mới yêu cầu xác nhận vì thay thế bản lưu hiện tại.
 
@@ -50,6 +50,7 @@ python3 ielts-practice/tests/source-pdf.py
 python3 ielts-practice/tests/build-support.py --verify
 node --test ielts-practice/tests/model.test.mjs
 python3 ielts-practice/tests/browser.py
+python3 ielts-practice/tests/vocabulary-browser.py
 python3 ielts-practice/tests/check-answer-browser.py
 python3 ielts-practice/tests/build-preview.py
 python3 ielts-practice/tests/navigation-preview.py
@@ -60,3 +61,5 @@ npm run check:catalog
 Cần Poppler (`pdfinfo`, `pdftotext`), Node, Python Playwright 1.58.0 và Chromium; `CHROMIUM_PATH` hoặc `browser.py --browser-path` chọn binary đã cài. Không cần quyền Firebase hay token API.
 
 Bằng chứng nghiệm thu, ảnh chụp và giới hạn: [docs/validation.md](docs/validation.md).
+
+Điều hướng hiện có 14 bước: một tài liệu Vocabulary, Reading, 10 MCQ, Summary, Translation. `navigationVersion: 2` tự chuyển bản lưu 23 bước cũ về đúng câu đang làm; giữ nguyên tên, đáp án, cờ đã kiểm tra, bài dịch và kết quả đã nộp. Schema nội dung/namespace lưu trữ không đổi.

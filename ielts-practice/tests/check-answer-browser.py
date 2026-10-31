@@ -16,6 +16,7 @@ server=http.server.ThreadingHTTPServer(('127.0.0.1',0),functools.partial(Handler
 threading.Thread(target=server.serve_forever,daemon=True).start();BASE=f'http://127.0.0.1:{server.server_port}'
 URL=BASE+'/library/ielts-practice/unit-2-individuals-and-families/index.html'
 def jump(page,label):
+ if page.locator('#vocabulary-reading-top').is_visible():page.locator('#vocabulary-reading-top').click()
  page.locator('#step-picker').evaluate('e=>e.open=true');page.get_by_role('button',name=label,exact=True).click()
 def passed(text):checks.append(text);print('PASS',args.name,text,flush=True)
 try:
