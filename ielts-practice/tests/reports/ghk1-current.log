@@ -1,0 +1,74 @@
+✔ 42 real questions, four source sections and source-only accepted variants validate (6.771218ms)
+✔ navigation and repeated checks share immutable first attempts and never duplicate XP (0.587255ms)
+✔ full exam always uses original order and rejects starting a challenge (0.538421ms)
+✔ wrong choice/text/builder review and reload preserve first-score 390 XP (3.259859ms)
+✔ partial drafts, token indices and review drafts survive round-trip independently (1.443394ms)
+✔ full text matching rejects missing meaning and negation, accepts only explicit Yes variant (0.695607ms)
+✔ corrupt/tampered snapshots, different learner/exam and stale source are rejected (1.708874ms)
+✔ each exam and learner/code gets a distinct key; normalized same identity resumes (2.530911ms)
+✔ reset only removes the selected learner/exam and invalid records require explicit reset (3.322955ms)
+✔ stale tab cannot overwrite or reset a newer persisted session (2.082236ms)
+✔ blocked and quota-exceeded storage return a recoverable status without altering in-memory progress (0.812474ms)
+✔ a confirmed reset can recover a corrupt record after a temporary storage denial ends (1.16827ms)
+✔ grade 8 remembers the complete identity/code without enumerating or changing progress (1.203583ms)
+✔ pending choice answers need no invented key or transcript and never award XP (1.136762ms)
+✔ loading/toggling, untrusted events and teacher-pending answers never unlock audio (33.10776ms)
+✔ two ascending/descending sine notes have bounded gain and 0.5/0.4 second envelopes (0.659604ms)
+✔ completion is a separate 1.5-second phrase, after the answer or on a final pending question (0.746915ms)
+✔ resume is requested within the gesture, context is reused, and a later cue stops old nodes (1.038544ms)
+✔ mute persists only its own key and a reloaded instance respects it; blocked storage stays playable (0.512311ms)
+✔ muting/background/slow resume cancel pending audio without a late surprise (0.390468ms)
+✔ unavailable context, construction/resume failure and background calls never reject grading (0.940246ms)
+✔ Listening uses lower effect gain; muting does not create or close audio devices (0.323797ms)
+✖ index, legacy catalog, all source/data/answers/storage keys/Firebase files match merged main outside the reviewed runtime changes; game HTML permits only the sound button and asset versions (77.528539ms)
+✔ legacy webkitAudioContext fallback remains lazy and works from a trusted check (1.415582ms)
+✔ all 49 games read genuine pre-upgrade challenge/ordered/review records losslessly (710.779311ms)
+✔ fresh inventory finds 53 existing game URLs and 2212 questions across all three runtime families (8.480572ms)
+✖ all academic payloads/source HTML/audio/WAV, XP/storage models, index/catalog/Firebase stay byte-identical (4178.107501ms)
+✔ the three controllers only add presentation loading; existing scoring/navigation/storage bodies are preserved (12.107293ms)
+✔ every source Reading question maps to one of two intact source passages; only exact labelled blanks are highlighted (3.4065ms)
+ℹ tests 29
+ℹ suites 0
+ℹ pass 27
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4377.758182
+
+✖ failing tests:
+
+test at tests/dual-mode-sound.test.mjs:72:1
+✖ index, legacy catalog, all source/data/answers/storage keys/Firebase files match merged main outside the reviewed runtime changes; game HTML permits only the sound button and asset versions (77.528539ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+
+  'index.html\n' !== ''
+
+      at TestContext.<anonymous> (file:///workspace/library/tests/dual-mode-sound.test.mjs:83:9)
+      at async Test.run (node:internal/test_runner/test:1389:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:960:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'index.html\n',
+    expected: '',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at tests/minimal-exam-ui.test.mjs:21:1
+✖ all academic payloads/source HTML/audio/WAV, XP/storage models, index/catalog/Firebase stay byte-identical (4178.107501ms)
+  AssertionError [ERR_ASSERTION]: index.html
+      at TestContext.<anonymous> (file:///workspace/library/tests/minimal-exam-ui.test.mjs:25:35)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1382:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+      at Test.postRun (node:internal/test_runner/test:1522:19)
+      at Test.run (node:internal/test_runner/test:1447:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

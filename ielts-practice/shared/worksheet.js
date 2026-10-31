@@ -1,0 +1,313 @@
+import {newState, restore, stepsFor, storageKey, completed, grade, cleanAnswer, wordCount} from './model.js';
+
+const $ = id => document.getElementById(id);
+const el = (tag, text, className) => {
+  const node = document.createElement(tag);
+  if (text !== undefined) node.textContent = text;
+  if (className) node.className = className;
+  return node;
+};
+const sections = [
+  'Vocabulary & Passage Review', 'Reading Practice', 'Multiple Choice', 'Summary Completion', 'Translation'
+];
+let unit, key, state, steps, review = null, submitting = false;
+const statusLabels = {correct:'Đúng', wrong:'Sai', blank:'Bỏ trống'};
+function storageWarning(message) { $('storage-message').hidden = false; $('storage-message').textContent = message; }
+function save() {
+  try { localStorage.setItem(storageKey(unit),JSON.stringify(state)); }
+  catch { storageWarning('Trình duyệt không lưu được tiến độ. Hãy giữ trang mở và sao chép bài dịch trước khi rời trang.'); }
+}
+async function json(url) {
+  const response = await fetch(url);
+  if (!response.ok) throw new Error(`Không tải được ${url} (${response.status}).`);
+  return response.json();
+}
+async function loadKey() {
+  if (!key) key = window.HT_IELTS_PREVIEW?.answers || await json('./answers.json');
+  return key;
+}
+function activeStep() { return review ? review.items[review.cursor] : steps[state.step]; }
+function activeAnswers() { return review ? review.drafts : state.answers; }
+function updateProgress() {
+  const done = completed(state);
+  $('completion-label').textContent = `${done}/20 câu đã trả lời`;
+  $('completion-progress').value = done;
+}
+function view(name) {
+  state.view = name;
+  for (const id of ['welcome','work','results']) $(id).hidden = id !== name;
+  $('navigation').hidden = name !== 'work';
+  $('student-label').textContent = state.name;
+  save();
+}
+function stepLabel(step) {
+  if (step.kind === 'passage') return `A · Passage ${step.index+1}`;
+  if (step.kind === 'reading') return 'B · Reading';
+  if (step.kind === 'mcq') return `C · Câu ${step.index+1}`;
+  if (step.kind === 'summary') return review ? `D · Ô ${step.index+1}` : 'D · Summary';
+  return 'E · Translation';
+}
+function go(index, focus = true) {
+  window.speechSynthesis?.cancel();
+  if (review) review.cursor = Math.max(0,Math.min(review.items.length-1,index));
+  else state.step = Math.max(0,Math.min(steps.length-1,index));
+  $('step-picker').open = false;
+  renderWork();
+  if (focus) { window.scrollTo(0,0); $('task-title').focus({preventScroll:true}); }
+}
+function renderSteps() {
+  $('step-list').replaceChildren();
+  (review ? review.items : steps).forEach((step,index) => {
+    const button = el('button',stepLabel(step));
+    button.setAttribute('aria-current',String(index === (review ? review.cursor : state.step)));
+    button.onclick = () => go(index);
+    $('step-list').append(button);
+  });
+}
+function reading() {
+  if (!$('reading-text').childElementCount) {
+    unit.reading.forEach((text,index) => {
+      const p = el('p'); const mark = el('button',String(index+1),'paragraph-mark');
+      mark.setAttribute('aria-label',`Đánh dấu đoạn ${index+1}`);
+      mark.onclick = () => { state.readingMark = state.readingMark === index ? -1 : index; save(); reading(); };
+      p.append(mark,document.createTextNode(text)); $('reading-text').append(p);
+    });
+  }
+  [...$('reading-text').children].forEach((p,index) => {
+    p.classList.toggle('marked',state.readingMark===index);
+    p.querySelector('button').setAttribute('aria-pressed',String(state.readingMark===index));
+  });
+}
+function passage(step) {
+  const source = unit.passages[step.index];
+  $('task-title').textContent = source.title;
+  const p = el('p',source.text,'passage-copy'); p.lang = 'en';
+  const vocabulary = el('details',undefined,'vocabulary');
+  vocabulary.append(el('summary',`Vocabulary · ${source.vocabulary.length} từ/cụm từ`));
+  const list = el('dl');
+  source.vocabulary.forEach(word => {
+    const term = el('dt',word.term); term.lang = 'en';
+    const definition = el('dd',word.meaning);
+    if (word.synonyms) { const synonym = el('span',`synonym: ${word.synonyms}`,'synonyms'); synonym.lang='en'; definition.append(synonym); }
+    list.append(term,definition);
+  });
+  vocabulary.append(list); $('task-content').append(p,vocabulary);
+  if (step.index === unit.passages.length-1) {
+    const summary = el('details',undefined,'vocabulary'); summary.append(el('summary','Vocabulary Summary · 33 từ/cụm từ'));
+    const words = el('ul',undefined,'vocabulary-summary'); words.lang='en';
+    unit.vocabularySummary.forEach(word=>words.append(el('li',word))); summary.append(words); $('task-content').append(summary);
+  }
+}
+function answerChanged(kind,index,value) {
+  if (state.submittedAt && !review) return;
+  activeAnswers()[kind][index] = value;
+  if (review) {
+    delete review.checked[`${kind}-${index}`];
+    $('review-result')?.remove();
+  } else { save(); updateProgress(); }
+}
+function resultFor(kind,index) { return grade(state,key).items.find(item=>item.kind===kind && item.index===index); }
+function feedbackFor(kind,index) {
+  const box = $('feedback'); box.hidden=false;
+  const result = resultFor(kind,index);
+  box.append(el('h3',`${statusLabels[result.status]} · Đáp án: ${result.expected}`,result.status==='correct'?'correct-label':'wrong-label'));
+  box.append(el('p',`Bài làm đã nộp: ${result.value.trim() || 'Chưa trả lời'}`,'muted'));
+  if (kind==='mcq') box.append(el('p',key.multipleChoice[index].explanation));
+}
+function multipleChoice(step) {
+  const q=unit.multipleChoice[step.index]; $('task-title').textContent=q.question;
+  $('task-title').lang='en';
+  const options=el('fieldset',undefined,'options'); options.append(el('legend','Chọn một đáp án'));
+  q.options.forEach(option => {
+    const label=el('label',undefined,'option');
+    const input=el('input');input.type='radio';input.name=`mcq-${step.index}`;input.value=option.value;
+    input.checked=activeAnswers().mcq[step.index]===option.value;input.disabled=!!state.submittedAt && !review;
+    input.onchange=()=>answerChanged('mcq',step.index,input.value);
+    const text=el('span');text.lang='en';text.append(el('b',option.value+'.'),document.createTextNode(option.text));
+    if (state.submittedAt && !review) {
+      label.classList.toggle('correct',option.value===key.multipleChoice[step.index].answer);
+      label.classList.toggle('wrong',input.checked && option.value!==key.multipleChoice[step.index].answer);
+    }
+    label.append(input,text);options.append(label);
+  });
+  $('task-content').append(options);
+  if (review) reviewCheck('mcq',step.index); else if (state.submittedAt) feedbackFor('mcq',step.index);
+}
+function summaryCompletion(step) {
+  $('task-title').textContent='Summary Completion';
+  const instructions=el('p',unit.summary.instructions);instructions.lang='en';
+  const bank=el('section',undefined,'word-bank');bank.setAttribute('aria-label','Word Bank');bank.append(el('h3','WORD BANK'));
+  const words=el('p',unit.summary.wordBankText);words.lang='en';bank.append(words,el('p','Có thể dùng lại một từ trong nhiều chỗ trống.','muted'));
+  $('task-content').append(instructions,bank);
+  unit.summary.paragraphs.forEach(text => {
+    const p=el('p',undefined,'summary-copy');p.lang='en';
+    const chunks=text.split(/__________\((\d+)\)/g);
+    chunks.forEach((chunk,index)=>{
+      if(index%2===0) {p.append(document.createTextNode(chunk));return;}
+      const n=Number(chunk)-1, wrapper=el('label',undefined,'summary-blank'), input=el('input');
+      input.type='text';input.id=`blank-${n+1}`;input.maxLength=100;input.autocomplete='off';input.spellcheck=false;
+      input.setAttribute('aria-label',`Summary ô ${n+1}`);input.value=activeAnswers().summary[n];
+      input.disabled=!!state.submittedAt && (!review || n!==step.index);
+      input.oninput=()=>answerChanged('summary',n,input.value);
+      if (state.submittedAt && !review) input.classList.add(resultFor('summary',n).status);
+      wrapper.append(input,el('span',`(${n+1})`));p.append(wrapper);
+    });
+    $('task-content').append(p);
+  });
+  if(review) reviewCheck('summary',step.index);
+  else if(state.submittedAt) {
+    const box=$('feedback');box.hidden=false;box.append(el('h3','Đối chiếu theo đáp án nguồn'));
+    key.summary.forEach((answer,index)=>{
+      const q=resultFor('summary',index);
+      box.append(el('p',`Ô ${index+1} · ${statusLabels[q.status]} · ${q.value.trim() || 'Chưa trả lời'} → ${answer}`));
+    });
+    const original=el('details');original.append(el('summary','Đoạn văn hoàn chỉnh theo file đáp án'));
+    key.completedSummary.forEach(text=>{const p=el('p',text);p.lang='en';original.append(p);});box.append(original);
+    box.append(el('p',key.sourceNote,'notice'));
+  }
+}
+function reviewCheck(kind,index) {
+  const button=el('button','Kiểm tra lại','primary');button.id='review-check';
+  button.onclick=()=>{
+    const expected=kind==='mcq'?key.multipleChoice[index].answer:key.summary[index];
+    const correct=cleanAnswer(review.drafts[kind][index])===cleanAnswer(expected);
+    review.checked[`${kind}-${index}`]=correct;
+    $('review-result')?.remove();const text=el('p',correct?'Đúng rồi.':`Đáp án nguồn: ${expected}`,correct?'correct-label':'wrong-label');
+    text.id='review-result';text.setAttribute('role','status');button.after(text);
+    if(kind==='mcq')text.append(el('span',' '+key.multipleChoice[index].explanation));
+  };
+  $('task-content').append(button);
+}
+function translation() {
+  $('task-title').textContent=unit.translation.instruction;
+  const prompt=el('p',unit.translation.text,'translation-prompt');prompt.lang='vi';
+  const label=el('label','Bài dịch của em');label.htmlFor='translation-input';
+  const area=el('textarea');area.id='translation-input';area.lang='en';area.maxLength=20000;area.value=state.answers.translation;
+  area.disabled=!!state.submittedAt;area.setAttribute('aria-describedby','translation-note');
+  const count=el('span',`${wordCount(area.value)} từ`);count.id='word-count';count.setAttribute('role','status');
+  area.oninput=()=>{state.answers.translation=area.value;save();count.textContent=`${wordCount(area.value)} từ`;};
+  const note=el('p','Bài tự luận do giáo viên đánh giá; không chấm bằng so khớp văn bản, không gán IELTS Band Score.','muted small');note.id='translation-note';
+  $('task-content').append(prompt,label,area,count,note);
+  if(state.submittedAt)appendReference($('task-content'));
+}
+function renderWork() {
+  const step=activeStep();view('work');updateProgress();renderSteps();
+  $('task-content').replaceChildren();$('feedback').replaceChildren();$('feedback').hidden=true;
+  $('task-title').lang='vi';$('task-kicker').textContent=review?`ÔN LẠI · ${stepLabel(step)}`:`${step.section} · ${sections['ABCDE'.indexOf(step.section)]}`;
+  $('reading-panel').hidden=!['mcq','reading'].includes(step.kind);
+  $('task').hidden=step.kind==='reading';
+  $('workspace').classList.toggle('with-reading',step.kind==='mcq');
+  $('workspace').classList.toggle('reading-only',step.kind==='reading');
+  $('review-banner').hidden=!review;
+  $('submit-open').hidden=!!state.submittedAt;$('results-open').hidden=!state.submittedAt;
+  if(['mcq','reading'].includes(step.kind))reading();
+  if(step.kind==='passage')passage(step);
+  if(step.kind==='mcq')multipleChoice(step);
+  if(step.kind==='summary')summaryCompletion(step);
+  if(step.kind==='translation')translation();
+  const position=review?review.cursor:state.step, length=review?review.items.length:steps.length;
+  $('previous').disabled=position===0;
+  $('position').textContent=review?`Ôn ${position+1}/${length}`:stepLabel(step);
+  $('next').textContent=position===length-1?(state.submittedAt?'Kết quả →':'Nộp bài →'):'Next →';
+  save();
+}
+function appendReference(target) {
+  const p=el('p',key.referenceTranslation,'reference-translation');p.lang='en';
+  const heading=el('h3','Reference Translation – Bài dịch tham khảo');
+  const note=el('p','Một cách dịch tham khảo, không phải đáp án duy nhất.','muted small');
+  const terms=el('dl');
+  key.translationGlossary.forEach(term=>{const en=el('dd',term.en);en.lang='en';terms.append(el('dt',term.vi),en);});
+  target.append(heading,note,p,terms);
+}
+function renderResults() {
+  review=null;window.speechSynthesis?.cancel();view('results');
+  const result=grade(state,key);
+  $('result-student').textContent=`${state.name} · Unit ${unit.number} – ${unit.title}`;
+  $('result-stats').replaceChildren();
+  for(const [value,label] of [[result.total,'Câu tự chấm'],[result.correct,'Đúng'],[result.wrong,'Sai'],[result.blank,'Bỏ trống']]) {
+    const stat=el('div',undefined,'stat');stat.append(el('strong',String(value)),el('span',label));$('result-stats').append(stat);
+  }
+  $('result-completion').textContent=`Đã trả lời ${completed(state)}/${result.total} câu · Hoàn thành ${result.completion}%. Điểm tự động: ${result.correct}/${result.total}.`;
+  $('review-wrong').disabled=result.needsReview.length===0;
+  $('review-wrong').textContent=result.needsReview.length?`Ôn ${result.needsReview.length} câu cần luyện`:'Tất cả 20 câu đều đúng ✓';
+  $('result-list').replaceChildren();
+  result.items.forEach(q=>{
+    const button=el('button',`${q.kind==='mcq'?'C · Câu':'D · Ô'} ${q.index+1} · ${statusLabels[q.status]}`,q.status);
+    button.onclick=()=>{
+      review=null;state.step=q.kind==='mcq'?steps.findIndex(s=>s.kind==='mcq'&&s.index===q.index):steps.findIndex(s=>s.kind==='summary');
+      renderWork();window.scrollTo(0,0);
+      if(q.kind==='summary')$(`blank-${q.index+1}`).scrollIntoView({block:'center'});
+      else $('task-title').focus({preventScroll:true});
+    };
+    $('result-list').append(button);
+  });
+  $('result-translation').textContent=state.answers.translation || 'Chưa có bài dịch.';
+  $('translation-status').textContent=`${wordCount(state.answers.translation)} từ · ${state.answers.translation.trim()?'Chờ giáo viên đánh giá':'Bỏ trống phần tự luận'}`;
+  $('reference-content').replaceChildren();appendReference($('reference-content'));
+  $('source-notes').replaceChildren(el('p','Hai lưu ý Summary dưới đây cần giáo viên xác nhận trước khi dùng chính thức. Bản thử nghiệm giữ nguyên đề và đáp án.','notice'),el('p',key.sourceNote),el('p',unit.source.credit));
+  window.scrollTo(0,0);$('results-title').focus({preventScroll:true});
+}
+function openSubmit() {
+  $('submit-description').textContent=`Em đã trả lời ${completed(state)}/20 câu; còn ${20-completed(state)} câu bỏ trống. Bài dịch: ${wordCount(state.answers.translation)} từ.`;
+  $('submit-error').textContent='';$('submit-dialog').showModal();
+}
+$('start-form').onsubmit=event=>{
+  event.preventDefault();const name=$('student-name').value.trim();
+  if(!name){$('student-name').setCustomValidity('Vui lòng nhập họ và tên.');$('student-name').reportValidity();return;}
+  state.name=name;state.started=true;renderWork();window.scrollTo(0,0);
+};
+$('student-name').oninput=()=>{$('student-name').setCustomValidity('');state.name=$('student-name').value;save();};
+$('previous').onclick=()=>go((review?review.cursor:state.step)-1);
+$('next').onclick=()=>{
+  const position=review?review.cursor:state.step,length=review?review.items.length:steps.length;
+  if(position===length-1){if(state.submittedAt)renderResults();else openSubmit();}
+  else go(position+1);
+};
+$('submit-open').onclick=openSubmit;
+$('submit-cancel').onclick=()=>$('submit-dialog').close();
+$('submit-confirm').onclick=async()=>{
+  if(submitting)return;
+  submitting=true;$('submit-confirm').disabled=true;
+  try { await loadKey();state.submittedAt=new Date().toISOString();save();$('submit-dialog').close();renderResults(); }
+  catch { $('submit-error').textContent='Chưa tải được đáp án. Bài làm vẫn được giữ nguyên; em hãy thử nộp lại khi kết nối ổn định.'; }
+  finally{submitting=false;$('submit-confirm').disabled=false;}
+};
+$('results-open').onclick=renderResults;
+$('view-solutions').onclick=()=>{review=null;go(steps.findIndex(s=>s.kind==='mcq'));};
+$('review-wrong').onclick=()=>{
+  review={items:grade(state,key).needsReview.map(q=>({...q,section:q.kind==='mcq'?'C':'D'})),cursor:0,drafts:structuredClone(state.answers),checked:{}};
+  if(review.items.length)go(0);
+};
+$('restart').onclick=()=>$('restart-dialog').showModal();
+$('restart-cancel').onclick=()=>$('restart-dialog').close();
+$('restart-confirm').onclick=()=>{
+  $('restart-dialog').close();state=newState(unit);review=null;key=null;save();
+  $('student-name').value='';$('reference-details').open=false;view('welcome');window.scrollTo(0,0);$('student-name').focus();
+};
+// Match the useful GHK1 navigation behavior without importing its grading/XP model.
+new ResizeObserver(()=>document.documentElement.style.setProperty('--nav-height',`${$('navigation').getBoundingClientRect().height || 80}px`)).observe($('navigation'));
+function keyboardInset(){
+  const viewport=window.visualViewport;
+  const inset=viewport && viewport.scale===1?Math.max(0,innerHeight-viewport.height-viewport.offsetTop):0;
+  document.documentElement.style.setProperty('--keyboard-inset',`${inset}px`);
+}
+window.visualViewport?.addEventListener('resize',keyboardInset);
+window.visualViewport?.addEventListener('scroll',keyboardInset);
+window.addEventListener('resize',keyboardInset);
+window.addEventListener('pagehide',()=>{if(state)save();});
+async function init(){
+  try {
+    unit=window.HT_IELTS_PREVIEW?.unit || await json('./unit.json');steps=stepsFor(unit);
+    let raw=null;
+    try {const text=localStorage.getItem(storageKey(unit));if(text)raw=JSON.parse(text);}
+    catch{storageWarning('Không đọc được bản lưu cũ. Phiếu vẫn dùng được; tiến độ chỉ được giữ khi trình duyệt cho phép lưu.');}
+    state=restore(unit,raw);
+    $('student-name').value=state.name;
+    sections.forEach(section=>$('welcome-sections').append(el('li',section)));
+    $('load-message').hidden=true;
+    if(state.submittedAt){await loadKey();if(state.view==='work')renderWork();else renderResults();}
+    else if(state.started)renderWork();else view('welcome');
+    keyboardInset();
+  } catch(error){$('load-message').hidden=false;$('load-message').textContent=`Không mở được phiếu. ${error.message} Hãy tải lại trang để thử lại.`;}
+}
+init();

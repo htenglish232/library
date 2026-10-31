@@ -1,0 +1,45 @@
+name: IELTS Unit 2 checks and downloadable preview
+on:
+  push:
+    branches: [feature/ielts-unit2-worksheet]
+  pull_request:
+    paths: ['ielts-practice/**', 'index.html', 'tools/prepare-site.mjs', '.github/workflows/ielts-unit2.yml']
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - run: python ielts-practice/tests/source-pdf.py
+      - run: node --test ielts-practice/tests/model.test.mjs
+      - run: npm run test:prepare && npm run check:catalog
+      - run: python -m pip install playwright==1.58.0
+      - run: python -m playwright install --with-deps chromium
+      - name: Find Chromium
+        run: python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print("CHROMIUM_PATH="+p.chromium.executable_path); p.stop()' >> "$GITHUB_ENV"
+      - run: python ielts-practice/tests/browser.py --name ci-chromium
+      - run: python ielts-practice/tests/build-preview.py
+      - run: python ielts-practice/tests/navigation-preview.py
+      - run: node tools/prepare-site.mjs
+      - run: python ielts-practice/tests/navigation-preview.py --root .site
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ielts-unit2-preview-open-in-browser
+          path: /tmp/ielts-unit2-preview.html
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ielts-unit2-browser-reports
+          path: |
+            /tmp/ht-ielts-unit2
+            /tmp/ht-ielts-preview
