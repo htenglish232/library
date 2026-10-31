@@ -3,6 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "build:student": "node tools/build-student-portal.mjs --emulator",
+    "test:student:unit": "node --test student-portal/tests/unit.test.mjs student-portal/tests/delivery.test.mjs",
+    "test:student:emulators": "python3 tools/test-student-portal.py",
     "build": "node tools/build.mjs",
     "check:catalog": "node tools/check-catalog.mjs",
     "test:prepare": "node --test tests/catalog.test.mjs tests/catalog-release.test.mjs tests/preflight.test.mjs tests/school-folders.test.mjs",

@@ -1,0 +1,28 @@
+{
+  "functions": [{"source":"student-portal/functions","codebase":"student-portal","runtime":"nodejs22"}],
+  "firestore": {"rules":"student-portal/firestore.rules","indexes":"student-portal/firestore.indexes.json"},
+  "hosting": {
+    "site":"ht-english-student-staging",
+    "public":"student-portal/dist",
+    "ignore":["**/.*","**/node_modules/**"],
+    "rewrites":[{"source":"/api/**","function":{"functionId":"studentApi","region":"asia-southeast1"}}],
+    "headers":[
+      {"source":"**","headers":[
+        {"key":"X-Content-Type-Options","value":"nosniff"},
+        {"key":"Referrer-Policy","value":"no-referrer"},
+        {"key":"Permissions-Policy","value":"camera=(), microphone=(), geolocation=()"},
+        {"key":"Content-Security-Policy","value":"default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self' blob:; frame-src 'self'; connect-src 'self' https://identitytoolkit.googleapis.com https://securetoken.googleapis.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'"}
+      ]},
+      {"source":"**/*.html","headers":[{"key":"Cache-Control","value":"no-store"}]},
+      {"source":"/portal-config.json","headers":[{"key":"Cache-Control","value":"no-store"}]}
+    ]
+  },
+  "emulators": {
+    "auth":{"host":"127.0.0.1","port":9099},
+    "firestore":{"host":"127.0.0.1","port":8080},
+    "functions":{"host":"127.0.0.1","port":5001},
+    "hosting":{"host":"127.0.0.1","port":5000},
+    "ui":{"enabled":false},
+    "singleProjectMode":false
+  }
+}

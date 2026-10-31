@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function student(uid) {
+      return request.auth != null && request.auth.uid == uid
+        && get(/databases/$(database)/documents/portalPrincipals/$(uid)).data.role == 'student'
+        && get(/databases/$(database)/documents/portalPrincipals/$(uid)).data.status == 'active'
+        && get(/databases/$(database)/documents/students/$(uid)).data.status == 'active';
+    }
+    match /students/{uid} {
+      allow get: if student(uid);
+      allow list, write: if false;
+      match /{sub}/{id} {
+        allow read: if student(uid) && sub in ['assignments','attempts','starTransactions','studentRewards'];
+        allow write: if false;
+      }
+    }
+    // Students use the backend resolver; no global assignment or roster queries.
+    match /{document=**} { allow read, write: if false; }
+  }
+}
