@@ -6,7 +6,7 @@
 | --- | --- |
 | `source-pdf.py` | Đọc lại đủ 5 + 2 trang PDF; khớp bản trích xuất và dữ liệu có cấu trúc |
 | `extract-source.py --verify` | 10 passage, 33 Vocabulary kèm nghĩa/synonym, 33 từ tổng hợp, 5 đoạn Reading, 10×4 lựa chọn, 10 ô Summary, 10 từ Word Bank, đoạn dịch và toàn bộ nội dung đáp án |
-| `node --test ielts-practice/tests/model.test.mjs` | 6 đạt: thứ tự, chấm điểm, hai ô support, trim/case, từ đồng nghĩa bị từ chối, lưu/phục hồi, Translation tách riêng, không thay điểm khi ôn |
+| `node --test ielts-practice/tests/model.test.mjs` | 8 đạt: thứ tự, chấm điểm, hai ô support, trim/case, từ đồng nghĩa bị từ chối, lưu/phục hồi, Translation tách riêng, không thay điểm khi ôn |
 | Chrome Linux 156.0.8078.79 | 5 nhóm nghiệm thu đạt; đủ 1440×1000, 768×1024, 390×844, 375×812 |
 | Edge Linux 142.0.3595.94 | 5 nhóm nghiệm thu đạt, cùng 4 viewport |
 | `navigation-preview.py` trên source và `.site` | Library → IELTS Practice → Unit 2 và quay lại; JSON/PDF; bản HTML tự chứa mở `file://` và làm/nộp được |
@@ -16,7 +16,7 @@
 
 Mỗi viewport kiểm tra nguyên văn cả 10 passage/Vocabulary, 5 đoạn Reading, 10 câu và đủ lựa chọn, Word Bank và nội dung Summary có số ô, đoạn Việt và bản dịch tham khảo. Lựa chọn/điền từ/bài dịch được lưu rồi tải lại, chuyển phần, nộp/hủy nộp, xem giải thích, ôn đúng 4 câu cần luyện và kiểm tra kết quả lần nộp không đổi. Kịch bản chấm gồm **16 đúng, 2 sai, 2 bỏ trống, hoàn thành 90%**; mô hình kiểm tra thêm trường hợp 20/20 và 0/20.
 
-Không tải `answers.json` trong luồng chính trước khi nộp, không có feedback trước nộp. Sau nộp bài bị khóa, mới mở lời giải/bản dịch. Bản HTML review nhúng dữ liệu để chạy không cần server, vẫn chỉ trình bày đáp án sau nộp. Đây là phiếu luyện tập client, không tuyên bố bảo mật đáp án khỏi người đọc mã nguồn.
+Không tải `answers.json`/`support.json` trước thao tác kiểm tra hợp lệ hoặc nộp bài. Đáp án và feedback chỉ mở cho câu/ô đã kiểm tra, hoặc toàn bộ khi nộp. Câu đã kiểm tra giữ đáp án lần đầu. Bản dịch tham khảo vẫn chỉ mở sau nộp. Bản HTML review nhúng dữ liệu để chạy không cần server, áp dụng cùng quy tắc hiển thị. Đây là phiếu luyện tập client, không tuyên bố bảo mật đáp án khỏi người đọc mã nguồn.
 
 Không lỗi JavaScript, không HTTP lỗi hoặc yêu cầu dịch vụ ngoài trong luồng bình thường. Kiểm tra chủ động lỗi storage/quota và HTTP 503 của file đáp án: giữ bài đang nhập, cảnh báo đúng, nộp lại thành công. Không gọi Firebase production. Điều hướng có khoảng đệm đáy; nội dung cuối trang cuộn tới được, nút tối thiểu 44px, không tràn ngang. Mobile/tablet đưa câu hỏi trước bài đọc, desktop Reading bên trái/câu hỏi bên phải. Đánh dấu đoạn đọc không làm đổi nội dung nguồn.
 
@@ -42,3 +42,11 @@ Báo cáo Chrome/Edge ở `tests/reports/`. Ảnh full-page có thể vẽ thanh
 Đây là Chrome/Edge thật chạy headless với viewport mô phỏng, không phải kiểm tra điện thoại/tablet vật lý hoặc bàn phím Safari/iOS. Không chạy emulator Firebase trong nhiệm vụ này vì không thay Firebase; kiểm tra đường dẫn Library dùng auth fixture cục bộ. Bản HTML mở trực tiếp đã thử trên Chrome; chưa khẳng định hành vi `localStorage` của mọi trình duyệt với `file://`.
 
 Chưa có URL preview công khai tự động cho nhánh. File HTML xem thử tải xuống và GitHub Actions artifact là các bản review, không triển khai website chính. Không merge `main`, không kích hoạt workflow Pages production. Giáo viên đã xác nhận giữ nguyên nguồn và giữ hai lưu ý học thuật Summary theo [báo cáo nguồn](source-audit.md).
+
+## Kiểm tra đáp án ngay khi làm
+
+Bổ sung theo yêu cầu tiếp theo: MCQ có nút kiểm tra, lời giải tiếng Việt nguồn, Keywords và câu dẫn chứng tô sáng. Summary kiểm tra các ô đã nhập; ô đã kiểm tra bị khóa, ô trống vẫn điền tiếp được. 20 mục dẫn chứng trích từ nguồn được kiểm tra nguyên văn. Không tự tạo lời giải Summary, không đổi đề/đáp án, không đổi chấm Translation.
+
+Chrome và Edge: mỗi trình duyệt đạt 4 nhóm mới ở 1440×1000 và 390×844: đúng/sai; không lộ trước kiểm tra; câu/ô kiểm tra lưu qua chuyển phần/reload; che ô Summary chưa kiểm tra trong dẫn chứng; dữ liệu cũ tiếp tục dùng được; ôn sai không thay điểm lần đầu; lỗi tải dẫn chứng không khóa nhầm đáp án, thử lại được; chuyển câu trong lúc chờ tải dẫn chứng chỉ kiểm tra câu gốc, không chấm nhầm câu mới. Bộ 5 nhóm nghiệm thu gốc chạy lại trên Chrome, gồm đủ 1440, 768, 390, 375px.
+
+Ảnh mới: [MCQ desktop](screenshots/check-mcq-1440.png), [MCQ mobile](screenshots/check-mcq-390.png), [Summary mobile](screenshots/check-summary-390.png). Báo cáo mới trong `tests/reports/checks-chrome.json` và `checks-edge.json`.

@@ -10,7 +10,7 @@ export function stepsFor(unit) {
 }
 export function newState(unit) {
   return {schema:1, unit:unit.id, version:unit.version, name:'', started:false, view:'welcome', step:0,
-    readingMark:-1, submittedAt:null,
+    readingMark:-1, submittedAt:null, checked:{mcq:Array(unit.multipleChoice.length).fill(false),summary:Array(10).fill(false)},
     answers:{mcq:Array(unit.multipleChoice.length).fill(''), summary:Array(10).fill(''), translation:''}};
 }
 export function restore(unit, raw) {
@@ -25,7 +25,13 @@ export function restore(unit, raw) {
   state.answers.mcq = state.answers.mcq.map((_,i) => /^[ABCD]$/.test(raw.answers?.mcq?.[i]) ? raw.answers.mcq[i] : '');
   state.answers.summary = state.answers.summary.map((_,i) => safe(raw.answers?.summary?.[i],100));
   state.answers.translation = safe(raw.answers?.translation,20000);
+  for (const kind of ['mcq','summary']) state.checked[kind] = state.checked[kind].map((_,i)=>raw.checked?.[kind]?.[i]===true && !!cleanAnswer(state.answers[kind][i]));
   return state;
+}
+export const hasChecks = state => [...state.checked.mcq,...state.checked.summary].some(Boolean);
+export function markChecked(state, kind, indexes) {
+  if (state.submittedAt) return;
+  for (const index of indexes) if (Number.isInteger(index) && index >= 0 && index < state.checked[kind].length && cleanAnswer(state.answers[kind][index])) state.checked[kind][index]=true;
 }
 export function completed(state) {
   return [...state.answers.mcq,...state.answers.summary].filter(value=>String(value).trim()).length;

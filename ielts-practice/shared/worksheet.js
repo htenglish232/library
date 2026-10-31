@@ -1,4 +1,4 @@
-import {newState, restore, stepsFor, storageKey, completed, grade, cleanAnswer, wordCount} from './model.js';
+import {newState, restore, stepsFor, storageKey, completed, grade, cleanAnswer, wordCount, hasChecks, markChecked} from './model.js';
 
 const $ = id => document.getElementById(id);
 const el = (tag, text, className) => {
@@ -10,7 +10,7 @@ const el = (tag, text, className) => {
 const sections = [
   'Vocabulary & Passage Review', 'Reading Practice', 'Multiple Choice', 'Summary Completion', 'Translation'
 ];
-let unit, key, state, steps, review = null, submitting = false;
+let unit, key, support, keyPromise, state, steps, review = null, submitting = false, checking = false;
 const statusLabels = {correct:'Đúng', wrong:'Sai', blank:'Bỏ trống'};
 function storageWarning(message) { $('storage-message').hidden = false; $('storage-message').textContent = message; }
 function save() {
@@ -23,14 +23,19 @@ async function json(url) {
   return response.json();
 }
 async function loadKey() {
-  if (!key) key = window.HT_IELTS_PREVIEW?.answers || await json('./answers.json');
-  return key;
+  if (key && support) return key;
+  if (!keyPromise) keyPromise = Promise.all([
+    window.HT_IELTS_PREVIEW?.answers || json('./answers.json'),
+    window.HT_IELTS_PREVIEW?.support || json('./support.json')
+  ]).then(([answers, notes])=>{key=answers;support=notes;return key;}).finally(()=>{keyPromise=null;});
+  return keyPromise;
 }
 function activeStep() { return review ? review.items[review.cursor] : steps[state.step]; }
 function activeAnswers() { return review ? review.drafts : state.answers; }
 function updateProgress() {
   const done = completed(state);
-  $('completion-label').textContent = `${done}/20 câu đã trả lời`;
+  const checked=[...state.checked.mcq,...state.checked.summary].filter(Boolean).length;
+  $('completion-label').textContent = `${done}/20 câu đã trả lời${checked?` · ${checked} đã kiểm tra`:''}`;
   $('completion-progress').value = done;
 }
 function view(name) {
@@ -100,10 +105,12 @@ function passage(step) {
 }
 function answerChanged(kind,index,value) {
   if (state.submittedAt && !review) return;
+  if (!review && state.checked[kind][index]) return;
   activeAnswers()[kind][index] = value;
   if (review) {
     delete review.checked[`${kind}-${index}`];
     $('review-result')?.remove();
+    $('review-support')?.remove();
   } else { save(); updateProgress(); }
 }
 function resultFor(kind,index) { return grade(state,key).items.find(item=>item.kind===kind && item.index===index); }
@@ -111,8 +118,74 @@ function feedbackFor(kind,index) {
   const box = $('feedback'); box.hidden=false;
   const result = resultFor(kind,index);
   box.append(el('h3',`${statusLabels[result.status]} · Đáp án: ${result.expected}`,result.status==='correct'?'correct-label':'wrong-label'));
-  box.append(el('p',`Bài làm đã nộp: ${result.value.trim() || 'Chưa trả lời'}`,'muted'));
-  if (kind==='mcq') box.append(el('p',key.multipleChoice[index].explanation));
+  box.append(el('p',`${state.submittedAt?'Bài làm đã nộp':'Đáp án lần kiểm tra đầu'}: ${result.value.trim() || 'Chưa trả lời'}`,'muted'));
+  if (kind==='mcq') {
+    const correctOption=unit.multipleChoice[index].options.find(option=>option.value===result.expected);
+    const answer=el('p',`${result.expected}. ${correctOption.text}`);answer.lang='en';box.append(answer);
+    box.append(el('h4','Giải thích từ file đáp án'),el('p',key.multipleChoice[index].explanation));
+  }
+  appendSupport(box,kind,index);
+}
+function highlighted(text, words) {
+  const fragment=document.createDocumentFragment();let offset=0;
+  while(offset<text.length) {
+    const next=words.map(word=>({word,index:text.toLowerCase().indexOf(word.toLowerCase(),offset)}))
+      .filter(match=>match.index>=0).sort((a,b)=>a.index-b.index || b.word.length-a.word.length)[0];
+    if(!next){fragment.append(document.createTextNode(text.slice(offset)));break;}
+    fragment.append(document.createTextNode(text.slice(offset,next.index)),el('mark',text.slice(next.index,next.index+next.word.length)));
+    offset=next.index+next.word.length;
+  }
+  return fragment;
+}
+function appendSupport(target,kind,index) {
+  const item=support[kind][index],section=el('section',undefined,'answer-support');
+  section.append(el('h4','Keywords · Từ khóa trong nguồn'));
+  const words=el('div',undefined,'keyword-list');words.lang='en';
+  item.keywords.forEach(word=>words.append(el('span',word)));section.append(words);
+  section.append(el('h4',kind==='mcq'?'Dẫn chứng trong Reading':'Đối chiếu câu Summary theo file đáp án'));
+  item.quotes.forEach(quote=>{
+    let text=quote.text;
+    // Keep unrelated, unchecked Summary answers concealed in shared sentences.
+    if(kind==='summary' && !state.submittedAt) key.summary.forEach((answer,n)=>{
+      if(!state.checked.summary[n])text=text.split(`${answer} (${n+1})`).join(`__________(${n+1})`);
+    });
+    const block=el('blockquote'),p=el('p');p.lang='en';p.append(highlighted(text,item.keywords));
+    block.append(p,el('cite',`${quote.source==='reading'?'Reading Practice':'Summary — file đáp án'} · Đoạn ${quote.paragraph}`));section.append(block);
+  });
+  if(kind==='summary' && [1,2,3].includes(index)) {
+    const note=index===3?'Lưu ý giáo viên: giữ nguyên “reduced family relationships” và đáp án “relationships” theo nguồn đã xác nhận.':
+      state.submittedAt || state.checked.summary[1] && state.checked.summary[2] ? 'Lưu ý giáo viên: từ “support” được dùng cho cả ô 2 và 3 theo đáp án nguồn.' :
+      'Lưu ý giáo viên: Word Bank cho phép dùng lại một từ theo nguồn đã xác nhận.';
+    section.append(el('p',note,'notice'));
+  }
+  target.append(section);
+}
+function renderCheck(kind,index) {
+  const indexes=kind==='mcq'?[index]:state.checked.summary.map((_,i)=>i);
+  const allChecked=indexes.every(i=>state.checked[kind][i]);
+  const button=el('button',allChecked?'Đã kiểm tra ✓':checking?'Đang kiểm tra…':'Kiểm tra đáp án ✓','primary check-answer');
+  button.id='check-answer';button.disabled=checking || allChecked;
+  const error=el('p',undefined,'check-error');error.id='check-error';error.setAttribute('role','alert');
+  const hint=el('p',kind==='summary'?'Kiểm tra các ô đã nhập; ô trống có thể điền tiếp. Ô đã kiểm tra giữ đáp án lần đầu.':'Sau khi kiểm tra, câu này giữ đáp án lần đầu. Em có thể ôn lại sau khi nộp bài.','muted small');
+  button.onclick=async()=>{
+    const target=state,pending=indexes.filter(i=>!target.checked[kind][i] && cleanAnswer(target.answers[kind][i]));
+    if(!pending.length){error.textContent=kind==='mcq'?'Em hãy chọn một đáp án trước khi kiểm tra.':'Em hãy nhập ít nhất một ô chưa kiểm tra.';return;}
+    const snapshot=pending.map(i=>target.answers[kind][i]);
+    checking=true;button.disabled=true;button.textContent='Đang kiểm tra…';
+    try {
+      await loadKey();
+      if(state===target && !state.submittedAt) {
+        markChecked(state,kind,pending.filter((i,n)=>state.answers[kind][i]===snapshot[n]));save();
+      }
+    } catch {error.textContent='Chưa tải được đáp án hoặc dẫn chứng. Bài làm vẫn được giữ nguyên; em hãy thử lại.';}
+    finally {
+      checking=false;
+      if(state===target && state.view==='work' && key && support) {
+        renderWork();if(activeStep().kind===kind)$('feedback').scrollIntoView({block:'nearest'});
+      } else {button.disabled=false;button.textContent='Kiểm tra đáp án ✓';}
+    }
+  };
+  $('task-content').append(button,hint,error);
 }
 function multipleChoice(step) {
   const q=unit.multipleChoice[step.index]; $('task-title').textContent=q.question;
@@ -121,17 +194,21 @@ function multipleChoice(step) {
   q.options.forEach(option => {
     const label=el('label',undefined,'option');
     const input=el('input');input.type='radio';input.name=`mcq-${step.index}`;input.value=option.value;
-    input.checked=activeAnswers().mcq[step.index]===option.value;input.disabled=!!state.submittedAt && !review;
+    input.checked=activeAnswers().mcq[step.index]===option.value;input.disabled=!review && (!!state.submittedAt || state.checked.mcq[step.index]);
     input.onchange=()=>answerChanged('mcq',step.index,input.value);
     const text=el('span');text.lang='en';text.append(el('b',option.value+'.'),document.createTextNode(option.text));
-    if (state.submittedAt && !review) {
+    if (!review && (state.submittedAt || state.checked.mcq[step.index])) {
       label.classList.toggle('correct',option.value===key.multipleChoice[step.index].answer);
       label.classList.toggle('wrong',input.checked && option.value!==key.multipleChoice[step.index].answer);
     }
     label.append(input,text);options.append(label);
   });
   $('task-content').append(options);
-  if (review) reviewCheck('mcq',step.index); else if (state.submittedAt) feedbackFor('mcq',step.index);
+  if (review) reviewCheck('mcq',step.index);
+  else {
+    if(!state.submittedAt)renderCheck('mcq',step.index);
+    if(state.submittedAt || state.checked.mcq[step.index])feedbackFor('mcq',step.index);
+  }
 }
 function summaryCompletion(step) {
   $('task-title').textContent='Summary Completion';
@@ -147,20 +224,27 @@ function summaryCompletion(step) {
       const n=Number(chunk)-1, wrapper=el('label',undefined,'summary-blank'), input=el('input');
       input.type='text';input.id=`blank-${n+1}`;input.maxLength=100;input.autocomplete='off';input.spellcheck=false;
       input.setAttribute('aria-label',`Summary ô ${n+1}`);input.value=activeAnswers().summary[n];
-      input.disabled=!!state.submittedAt && (!review || n!==step.index);
+      input.disabled=review?n!==step.index:!!state.submittedAt || state.checked.summary[n];
       input.oninput=()=>answerChanged('summary',n,input.value);
-      if (state.submittedAt && !review) input.classList.add(resultFor('summary',n).status);
+      if (!review && (state.submittedAt || state.checked.summary[n])) input.classList.add(resultFor('summary',n).status);
       wrapper.append(input,el('span',`(${n+1})`));p.append(wrapper);
     });
     $('task-content').append(p);
   });
   if(review) reviewCheck('summary',step.index);
-  else if(state.submittedAt) {
+  else {
+    if(!state.submittedAt)renderCheck('summary');
+    if(!state.submittedAt && !state.checked.summary.some(Boolean))return;
     const box=$('feedback');box.hidden=false;box.append(el('h3','Đối chiếu theo đáp án nguồn'));
     key.summary.forEach((answer,index)=>{
+      if(!state.submittedAt && !state.checked.summary[index])return;
       const q=resultFor('summary',index);
-      box.append(el('p',`Ô ${index+1} · ${statusLabels[q.status]} · ${q.value.trim() || 'Chưa trả lời'} → ${answer}`));
+      const detail=el('details',undefined,'summary-feedback');
+      detail.open=index===(state.submittedAt?0:state.checked.summary.findIndex(Boolean));
+      detail.append(el('summary',`Ô ${index+1} · ${statusLabels[q.status]} · ${q.value.trim() || 'Chưa trả lời'} → ${answer}`));
+      appendSupport(detail,'summary',index);box.append(detail);
     });
+    if(!state.submittedAt)return;
     const original=el('details');original.append(el('summary','Đoạn văn hoàn chỉnh theo file đáp án'));
     key.completedSummary.forEach(text=>{const p=el('p',text);p.lang='en';original.append(p);});box.append(original);
     box.append(el('p',key.sourceNote,'notice'));
@@ -175,6 +259,7 @@ function reviewCheck(kind,index) {
     $('review-result')?.remove();const text=el('p',correct?'Đúng rồi.':`Đáp án nguồn: ${expected}`,correct?'correct-label':'wrong-label');
     text.id='review-result';text.setAttribute('role','status');button.after(text);
     if(kind==='mcq')text.append(el('span',' '+key.multipleChoice[index].explanation));
+    $('review-support')?.remove();const evidence=el('div');evidence.id='review-support';appendSupport(evidence,kind,index);text.after(evidence);
   };
   $('task-content').append(button);
 }
@@ -281,7 +366,7 @@ $('review-wrong').onclick=()=>{
 $('restart').onclick=()=>$('restart-dialog').showModal();
 $('restart-cancel').onclick=()=>$('restart-dialog').close();
 $('restart-confirm').onclick=()=>{
-  $('restart-dialog').close();state=newState(unit);review=null;key=null;save();
+  $('restart-dialog').close();state=newState(unit);review=null;save();
   $('student-name').value='';$('reference-details').open=false;view('welcome');window.scrollTo(0,0);$('student-name').focus();
 };
 // Match the useful GHK1 navigation behavior without importing its grading/XP model.
@@ -305,7 +390,7 @@ async function init(){
     $('student-name').value=state.name;
     sections.forEach(section=>$('welcome-sections').append(el('li',section)));
     $('load-message').hidden=true;
-    if(state.submittedAt){await loadKey();if(state.view==='work')renderWork();else renderResults();}
+    if(state.submittedAt || hasChecks(state)){await loadKey();if(state.submittedAt && state.view!=='work')renderResults();else renderWork();}
     else if(state.started)renderWork();else view('welcome');
     keyboardInset();
   } catch(error){$('load-message').hidden=false;$('load-message').textContent=`Không mở được phiếu. ${error.message} Hãy tải lại trang để thử lại.`;}

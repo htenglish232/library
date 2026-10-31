@@ -33,7 +33,7 @@ try:
         assert '/library/ielts-practice/unit-2-individuals-and-families/index.html' in page.url
         page.locator('.library-link').click();assert page.url==BASE+'/library/index.html'
         print('PASS Library → IELTS Practice → Unit 2 and back under /library/; Firebase fixture only')
-        for path in ['unit.json','answers.json','sources/worksheet.pdf','sources/answer-key.pdf']:
+        for path in ['unit.json','answers.json','support.json','sources/worksheet.pdf','sources/answer-key.pdf']:
             response=context.request.get(BASE+'/library/ielts-practice/unit-2-individuals-and-families/'+path)
             assert response.status==200,(response.status,path)
         print('PASS worksheet/key JSON and original PDF paths')
@@ -47,12 +47,17 @@ try:
             expect(page.locator('#welcome')).to_be_visible()
             page.locator('#student-name').fill('Xem thử HTML');page.locator('#start-form button').click()
             page.locator('#step-picker').evaluate('e=>e.open=true')
+            page.get_by_role('button',name='C · Câu 1',exact=True).click()
+            page.locator('input[value=B]').check();page.locator('#check-answer').click()
+            expect(page.locator('#feedback .keyword-list')).to_be_visible()
+            page.reload();expect(page.locator('input[value=B]')).to_be_disabled()
+            page.locator('#step-picker').evaluate('e=>e.open=true')
             page.get_by_role('button',name='E · Translation',exact=True).click()
             page.locator('#translation-input').fill('This is a preview draft.');page.reload()
             expect(page.locator('#translation-input')).to_have_value('This is a preview draft.')
             page.locator('#submit-open').click();page.locator('#submit-confirm').click()
             expect(page.locator('#results')).to_be_visible()
-            assert page.locator('#result-stats strong').all_text_contents()==['20','0','0','20']
+            assert page.locator('#result-stats strong').all_text_contents()==['20','1','0','19']
             page.locator('#reference-details summary').click()
             expect(page.locator('.reference-translation')).to_have_text(key['referenceTranslation'])
             assert not requests,requests

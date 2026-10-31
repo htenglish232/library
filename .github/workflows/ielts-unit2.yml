@@ -23,6 +23,7 @@ jobs:
       - run: npm ci
       - run: sudo apt-get update && sudo apt-get install -y poppler-utils
       - run: python ielts-practice/tests/source-pdf.py
+      - run: python ielts-practice/tests/build-support.py --verify
       - run: node --test ielts-practice/tests/model.test.mjs
       - run: npm run test:prepare && npm run check:catalog
       - run: python -m pip install playwright==1.58.0
@@ -30,6 +31,7 @@ jobs:
       - name: Find Chromium
         run: python -c 'from playwright.sync_api import sync_playwright; p=sync_playwright().start(); print("CHROMIUM_PATH="+p.chromium.executable_path); p.stop()' >> "$GITHUB_ENV"
       - run: python ielts-practice/tests/browser.py --name ci-chromium
+      - run: python ielts-practice/tests/check-answer-browser.py --name ci-chromium
       - run: python ielts-practice/tests/build-preview.py
       - run: python ielts-practice/tests/navigation-preview.py
       - run: node tools/prepare-site.mjs

@@ -48,7 +48,7 @@ Tổng cộng **33 mục Vocabulary** với nghĩa tiếng Việt và toàn bộ
 
 ## Đáp án và giải thích
 
-Toàn bộ 10 giải thích tiếng Việt MCQ lấy nguyên văn từ trang 1 của PDF đáp án. Không thêm lời giải mới cho Summary, vì tài liệu chỉ có bảng đáp án, đoạn hoàn chỉnh và lưu ý. Sau nộp, Summary hiển thị chính các nội dung đó. Trang 2 của PDF đáp án cung cấp bản dịch tham khảo và đủ 10 cặp cụm từ Việt–Anh, chỉ mở sau khi nộp.
+Toàn bộ 10 giải thích tiếng Việt MCQ lấy nguyên văn từ trang 1 của PDF đáp án. Không thêm lời giải mới cho Summary, vì tài liệu chỉ có bảng đáp án, đoạn hoàn chỉnh và lưu ý. Sau kiểm tra từng ô hoặc sau nộp, Summary đối chiếu chính câu trong đáp án nguồn; đoạn hoàn chỉnh đầy đủ và lưu ý gốc vẫn mở sau nộp. Trang 2 của PDF đáp án cung cấp bản dịch tham khảo và đủ 10 cặp cụm từ Việt–Anh, chỉ mở sau khi nộp.
 
 | Câu / Ô | MCQ | Summary |
 | ---: | :---: | --- |
@@ -73,3 +73,11 @@ Word Bank giữ đúng: **support – behavior – traditions – wisdom – bal
 Ghi chú khác từ nguồn: ô 7 dùng `cultural traditions`, phù hợp Word Bank; cách diễn đạt trong Reading không giống hoàn toàn. Giữ nguyên, không suy diễn thành đáp án khác. Từ `assistance` trong Word Bank không được dùng trong đáp án; không loại bỏ.
 
 Không còn khác biệt giữa dữ liệu JSON và hai PDF ngoài việc bỏ ngắt dòng dàn trang. Không tự chấp nhận synonym, không chấm Translation bằng so khớp, không quy đổi band. Nộp bài được chấm theo **20 câu xác định**; bài dịch được trình bày riêng để giáo viên đọc và đánh giá.
+
+## Bổ sung kiểm tra ngay khi làm và Keywords
+
+Theo yêu cầu tiếp theo của giáo viên, bổ sung nút kiểm tra giống game đề trường; yêu cầu này thay cho cách chỉ hiện đáp án sau nộp trước đây. Không sửa `unit.json`, `answers.json` hoặc PDF nguồn.
+
+`support.json` lưu 20 mục Keywords/dẫn chứng (10 MCQ + 10 Summary). Đây là **phần chọn lọc bổ sung để trình bày**, không nhận là danh sách Keywords có sẵn trong PDF. Tất cả từ khóa đều là chuỗi nguyên văn trong dẫn chứng; mỗi dẫn chứng là câu/nhóm câu liền nhau từ `reading` hoặc `completedSummary`, có số đoạn và nguồn rõ ràng. `build-support.py --verify` kiểm tra việc trích chọn; model test đối chiếu từng từ/câu với dữ liệu nguồn đã xác minh.
+
+MCQ giữ nguyên giải thích tiếng Việt, bổ sung trích dẫn Reading có tô sáng Keywords. Summary không sáng tác thêm lời giải tiếng Việt; dùng đúng câu Summary đã điền từ file đáp án để đối chiếu và hiển thị Keywords trong đó. Những ô Summary chưa kiểm tra vẫn được che trong câu dẫn chứng; bản hoàn chỉnh đầy đủ chỉ mở sau nộp. Hai lưu ý `support` và `relationships` đã được giáo viên xác nhận tiếp tục giữ nguyên. Translation vẫn là tự luận, không thêm chấm tự động.

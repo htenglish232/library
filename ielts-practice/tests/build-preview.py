@@ -17,7 +17,7 @@ css=re.sub(r'url\(([^)]+\.woff2)\)',font,css)
 model=(APP/'shared/model.js').read_text().replace('export ','')
 engine=(APP/'shared/worksheet.js').read_text()
 engine=re.sub(r'^import .*?;\n','',engine,count=1)
-payload=json.dumps({'unit':json.loads((UNIT/'unit.json').read_text()),'answers':json.loads((UNIT/'answers.json').read_text())},ensure_ascii=False).replace('<','\\u003c')
+payload=json.dumps({'unit':json.loads((UNIT/'unit.json').read_text()),'answers':json.loads((UNIT/'answers.json').read_text()),'support':json.loads((UNIT/'support.json').read_text())},ensure_ascii=False).replace('<','\\u003c')
 script='window.HT_IELTS_PREVIEW='+payload+';\n'+model+'\n'+engine
 assert '</script' not in script.lower()
 html=html.replace('<link rel="stylesheet" href="../shared/worksheet.css">','<style>'+css+'</style>')
