@@ -17,6 +17,38 @@ export function render(q=''){
    b.onclick=()=>{current=gi;render(search.value)}; tabs.appendChild(b);
    const sec=document.createElement('section'); sec.className='grade-section'+(gi===current?' active':'');
    if(gi!==current){ content.appendChild(sec); return; }
+   // Grade 6: three top-level folders; preserve all original Unit lessons inside them.
+   if (g.grade === 'Grade 6') {
+     const groups = [
+       {name:'Semester 1', units:g.units.filter(u=>u.name.startsWith('Semester 1 · '))},
+       {name:'HTBT', units:g.units.filter(u=>u.name.startsWith('HTBT · '))},
+       {name:'Viết lại câu', units:g.units.filter(u=>u.name==='Viết lại câu')}
+     ];
+     for (const group of groups) {
+       const matched=group.units.map(u=>({u,lessons:u.lessons.filter(l=>!q || (g.grade+' '+group.name+' '+u.name+' '+l.title).toLowerCase().includes(q.toLowerCase()))})).filter(x=>x.lessons.length);
+       if(!matched.length) continue;
+       found=true;
+       const folder=document.createElement('div'); folder.className='folder'+(q?' open':'');
+       const count=matched.reduce((n,x)=>n+x.lessons.length,0);
+       folder.innerHTML=`<div class="folder-head"><div class="folder-title"><span class="folder-icon">📁</span><h3>${escape(group.name)}</h3></div><div><span class="badge">${count} bài</span> <span class="chev">›</span></div></div><div class="folder-body"></div>`;
+       folder.querySelector('.folder-head').onclick=()=>toggle(folder);
+       const body=folder.querySelector('.folder-body');
+       for(const {u,lessons} of matched){
+         const num=(u.name.match(/Unit\\s+(\\d+)/i)||[])[1];
+         if(!num){const grid=document.createElement('div');grid.className='grammar-list';for(const l of lessons){const a=document.createElement('a');a.className='lesson';a.href=l.href;const strong=document.createElement('strong');strong.textContent=l.title;a.append(strong);grid.append(a);}body.append(grid);continue;}
+         const box=document.createElement('div');box.className='unit nested-unit'+(q?' open':'');
+         box.innerHTML=`<div class="unit-head"><h3>Unit ${num}</h3><div><span class="badge">${lessons.length} bài</span> <span class="chev">›</span></div></div>`;
+         box.querySelector('.unit-head').onclick=()=>toggle(box);
+         const grid=document.createElement('div');grid.className='lessons';
+         for(const l of lessons){const a=document.createElement('a');a.className='lesson';a.href=l.href;const strong=document.createElement('strong');strong.textContent=l.title;a.append(strong);grid.append(a);}
+         box.append(grid);body.append(box);
+       }
+       sec.append(folder);
+     }
+     // Keep examination content available without displaying dozens of separate Unit folders.
+     for(const u of g.units.filter(u=>u.type==='exam-folder')){const f=examSchoolFolder(g,u,q);if(f){found=true;sec.append(f);}}
+     content.appendChild(sec);return;
+   }
    const needle=q.toLowerCase();
 
    const grouped = (g.grade === 'Grade 4' || g.grade === 'Grade 5')
