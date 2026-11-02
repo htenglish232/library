@@ -17,11 +17,12 @@ export function render(q=''){
    b.onclick=()=>{current=gi;render(search.value)}; tabs.appendChild(b);
    const sec=document.createElement('section'); sec.className='grade-section'+(gi===current?' active':'');
    if(gi!==current){ content.appendChild(sec); return; }
-   // Grade 6: three top-level folders; preserve all original Unit lessons inside them.
+   // Grade 6: four top-level folders; preserve all original Unit lessons inside them.
    if (g.grade === 'Grade 6') {
      const groups = [
-       {name:'Semester 1', units:g.units.filter(u=>u.name.startsWith('Semester 1 · ') || u.type==='exam-folder')},
-       {name:'HTBT', units:g.units.filter(u=>u.name.startsWith('HTBT · '))},
+       {name:'Semester 1', units:g.units.filter(u=>u.name.startsWith('Semester 1 · '))},
+       {name:'HTBT Grammar', units:g.units.filter(u=>u.name.startsWith('HTBT · '))},
+       {name:'Đề thi GHK 1', units:g.units.filter(u=>u.type==='exam-folder')},
        {name:'Viết lại câu', units:g.units.filter(u=>u.name==='Viết lại câu')}
      ];
      for (const group of groups) {
