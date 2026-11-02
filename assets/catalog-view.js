@@ -20,7 +20,7 @@ export function render(q=''){
    // Grade 6: three top-level folders; preserve all original Unit lessons inside them.
    if (g.grade === 'Grade 6') {
      const groups = [
-       {name:'Semester 1', units:g.units.filter(u=>u.name.startsWith('Semester 1 · '))},
+       {name:'Semester 1', units:g.units.filter(u=>u.name.startsWith('Semester 1 · ') || u.type==='exam-folder')},
        {name:'HTBT', units:g.units.filter(u=>u.name.startsWith('HTBT · '))},
        {name:'Viết lại câu', units:g.units.filter(u=>u.name==='Viết lại câu')}
      ];
@@ -34,6 +34,7 @@ export function render(q=''){
        folder.querySelector('.folder-head').onclick=()=>toggle(folder);
        const body=folder.querySelector('.folder-body');
        for(const {u,lessons} of matched){
+         if(u.type==='exam-folder'){const f=examSchoolFolder(g,{...u,lessons},q);if(f)body.append(f);continue;}
          const num=(u.name.match(/Unit\\s+(\\d+)/i)||[])[1];
          if(!num){const grid=document.createElement('div');grid.className='grammar-list';for(const l of lessons){const a=document.createElement('a');a.className='lesson';a.href=l.href;const strong=document.createElement('strong');strong.textContent=l.title;a.append(strong);grid.append(a);}body.append(grid);continue;}
          const box=document.createElement('div');box.className='unit nested-unit'+(q?' open':'');
@@ -45,8 +46,6 @@ export function render(q=''){
        }
        sec.append(folder);
      }
-     // Keep examination content available without displaying dozens of separate Unit folders.
-     for(const u of g.units.filter(u=>u.type==='exam-folder')){const f=examSchoolFolder(g,u,q);if(f){found=true;sec.append(f);}}
      content.appendChild(sec);return;
    }
    const needle=q.toLowerCase();
