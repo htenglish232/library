@@ -80,7 +80,13 @@ export const PILOT_GAME_ADDITIONS = [
   lesson: {title: `Game luyện đề · THCS ${school} (${count} câu)`, href: `grade-8/De_thi_GHK1/${folder}/practice-game-pilot.html`},
   before: `grade-8/De_thi_GHK1/${before}`,
 }));
+const GRADE6_REWRITE_RELEASE_ID = '0e09c55a34116a27ba5f16c4a055da32e5b558f1';
+const GRADE6_REWRITE_ADDITIONS = [{
+  grade: 'Grade 6', unit: 'Viết lại câu',
+  lesson: {title: 'Game Chém Hoa Quả – Viết lại câu (70 câu)', href: 'grade-6/viet-lai-cau/game-chem-hoa-qua.html'}
+}];
 const RELEASE_BATCHES = [
+  {id: GRADE6_REWRITE_RELEASE_ID, additions: GRADE6_REWRITE_ADDITIONS},
   {id: RELEASE_ID, additions: GRAMMAR_ADDITIONS},
   {id: IELTS_RELEASE_ID, additions: [{
     grade: 'Apps for IELTS', unit: 'IELTS Writing',
