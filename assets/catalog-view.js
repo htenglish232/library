@@ -140,6 +140,11 @@ export function setCatalog(data, schemaVersion = 1) {
     for (const lesson of unit.lessons) numberedSchools.set(lesson.href, schools);
   }
   DATA = visibleCatalog(data);
+  const gradeOrder = ['Grade 3', 'Grade 4', 'Grade 5', 'Grade 6', 'Grade 7', 'Grade 8', 'Apps for IELTS'];
+  DATA.sort((a, b) => {
+    const x = gradeOrder.indexOf(a.grade), y = gradeOrder.indexOf(b.grade);
+    return (x < 0 ? gradeOrder.length : x) - (y < 0 ? gradeOrder.length : y);
+  });
   current = Math.max(0, DATA.findIndex(g => g.grade === selected));
   search.value = selected ? query : ''; updateStats(); render(search.value.trim());
 }
