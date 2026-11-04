@@ -85,7 +85,13 @@ const GRADE6_REWRITE_ADDITIONS = [{
   grade: 'Grade 6', unit: 'Viết lại câu',
   lesson: {title: 'Game Chém Hoa Quả – Viết lại câu (70 câu)', href: 'grade-6/viet-lai-cau/game-chem-hoa-qua.html'}
 }];
+const GRADE3_EXAM_RELEASE_ID = 'ht-grade3-ghk1-de1-20261105';
+const GRADE3_EXAM_ADDITIONS = [{
+  grade: 'Grade 3', unit: 'ĐỀ THI GHK 1',
+  lesson: {title: 'Đề 1 – Global Success 3', href: 'grade-3/De_thi_GHK_1/de-1.html'}
+}];
 const RELEASE_BATCHES = [
+  {id: GRADE3_EXAM_RELEASE_ID, additions: GRADE3_EXAM_ADDITIONS},
   {id: GRADE6_REWRITE_RELEASE_ID, additions: GRADE6_REWRITE_ADDITIONS},
   {id: RELEASE_ID, additions: GRAMMAR_ADDITIONS},
   {id: IELTS_RELEASE_ID, additions: [{
