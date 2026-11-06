@@ -90,7 +90,13 @@ const GRADE3_EXAM_ADDITIONS = [{
   grade: 'Grade 3', unit: 'ĐỀ THI GHK 1',
   lesson: {title: 'Đề 1 – Global Success 3', href: 'grade-3/De_thi_GHK_1/de-1.html'}
 }];
+const GRADE3_GHK1_DE4_RELEASE_ID = 'ht-grade3-ghk1-de4-20261106';
+const GRADE3_GHK1_DE4_ADDITIONS = [{
+  grade: 'Grade 3', unit: 'ĐỀ THI GHK 1',
+  lesson: {title: 'Đề 4 – Global Success 3', href: 'grade-3/De_thi_GHK_1/de-4.html'}
+}];
 const RELEASE_BATCHES = [
+  {id: GRADE3_GHK1_DE4_RELEASE_ID, additions: GRADE3_GHK1_DE4_ADDITIONS},
   {id: GRADE3_EXAM_RELEASE_ID, additions: GRADE3_EXAM_ADDITIONS},
   {id: GRADE6_REWRITE_RELEASE_ID, additions: GRADE6_REWRITE_ADDITIONS},
   {id: RELEASE_ID, additions: GRAMMAR_ADDITIONS},
