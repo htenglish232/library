@@ -101,7 +101,13 @@ const GRADE3_GHK1_MORE_ADDITIONS = [
   {grade: 'Grade 3', unit: 'ĐỀ THI GHK 1', lesson: {title: 'Đề 3 – Global Success 3', href: 'grade-3/De_thi_GHK_1/de-3.html'}, before: 'grade-3/De_thi_GHK_1/de-4.html'},
   {grade: 'Grade 3', unit: 'ĐỀ THI GHK 1', lesson: {title: 'Đề 5 – Global Success 3', href: 'grade-3/De_thi_GHK_1/de-5.html'}}
 ];
+const GRADE5_HKI_RELEASE_ID = 'ht-grade5-hki-de1-de5-20261107';
+const GRADE5_HKI_ADDITIONS = [1, 2, 3, 4, 5].map(n => ({
+  grade: 'Grade 5', unit: 'Đề thi HK I Grade 5',
+  lesson: {title: `Đề ${n} – Học kỳ I · Global Success 5`, href: `grade-5/De_Thi_HK1/de-${n}.html`}
+}));
 const RELEASE_BATCHES = [
+  {id: GRADE5_HKI_RELEASE_ID, additions: GRADE5_HKI_ADDITIONS},
   {id: GRADE3_EXAM_RELEASE_ID, additions: GRADE3_EXAM_ADDITIONS},
   {id: GRADE3_GHK1_DE4_RELEASE_ID, additions: GRADE3_GHK1_DE4_ADDITIONS},
   {id: GRADE3_GHK1_MORE_RELEASE_ID, additions: GRADE3_GHK1_MORE_ADDITIONS},
