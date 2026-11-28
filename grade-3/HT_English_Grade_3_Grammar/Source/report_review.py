@@ -9,14 +9,7 @@ SAMPLE_DETAILS = """text('h3','Giải thích các phần cần sửa');for(const
 def with_report_review(html, sample=False):
     old_details = SAMPLE_DETAILS if sample else GENERATED_DETAILS
     explanation = 'EXPLANATIONS[q.id]' if sample else 'q.explanation'
-    details = (
-        "if(STATE.mode==='test'){"
-        "const wrong=QUESTIONS.filter(q=>STATE.answers[q.id]&&!correct(q,STATE.answers[q.id]));"
-        "appendWrongAnswerReview(body,wrong.map(q=>q.id+' – '+STATE.answers[q.id]"
-        r"+'\nĐáp án: '+(Array.isArray(q.ans)?q.ans.join(' / '):q.ans)+'\n'+"
-        f"{explanation}));"
-        "}"
-    )
+    details = f"if(STATE.mode==='test')appendAnswerReview(body,q=>{explanation});"
     for old, new in [
         (old_details, details),
         ("$('report').showModal();$('report').scrollTop=0", "openWorksheetReport(STATE.mode)"),

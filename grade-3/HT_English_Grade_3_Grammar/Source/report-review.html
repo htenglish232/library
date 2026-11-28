@@ -1,12 +1,12 @@
 <style>
 #reportReviewBar{position:sticky;top:0;z-index:4;display:flex;flex-wrap:wrap;gap:6px;padding:8px 12px;background:#f5faff;border-bottom:1px solid #cbddeb}
-#reportReviewBar[hidden],#wrongAnswerReview[hidden]{display:none}
+#reportReviewBar[hidden],#answerReview[hidden]{display:none}
 #reportReviewBar button{min-height:40px;padding:6px 10px;border:1px solid #1767b5;border-radius:8px;background:#fff;color:#144a78;font:600 13px system-ui,sans-serif;cursor:pointer}
 #reportReviewBar button[aria-pressed="true"]{background:#1767b5;color:#fff}
 #report[data-review-view]>.action{display:none}
 #report[data-review-view] .reportHead{position:static}
-#report[data-review-view="answers"] #reportBody>:not(#wrongAnswerReview){display:none}
-#wrongAnswerReview p{white-space:pre-line;line-height:1.5}
+#report[data-review-view="answers"] #reportBody>:not(#answerReview){display:none}
+#answerReview p{white-space:pre-line;line-height:1.5}
 </style>
 <script>
 const reviewDialog = document.getElementById('report');
@@ -14,7 +14,7 @@ const reportReviewBar = document.createElement('div');
 reportReviewBar.id = 'reportReviewBar';
 reportReviewBar.hidden = true;
 reportReviewBar.innerHTML = '<button type="button" aria-pressed="true">Kết quả</button>'
-  + '<button type="button" aria-pressed="false">Giải thích câu sai</button>'
+  + '<button type="button" aria-pressed="false">Xem lời giải</button>'
   + '<button type="button">Xem lại bài làm</button>';
 reviewDialog.prepend(reportReviewBar);
 reviewDialog.setAttribute('aria-label', 'Kết quả bài làm');
@@ -23,7 +23,7 @@ const [reportScoresButton, reportAnswersButton, reportCloseButton] = reportRevie
 function selectReportView(view) {
   const showAnswers = view === 'answers';
   reviewDialog.dataset.reviewView = view;
-  document.getElementById('wrongAnswerReview').hidden = !showAnswers;
+  document.getElementById('answerReview').hidden = !showAnswers;
   reportScoresButton.setAttribute('aria-pressed', String(!showAnswers));
   reportAnswersButton.setAttribute('aria-pressed', String(showAnswers));
   reviewDialog.scrollTop = 0;
@@ -33,17 +33,26 @@ reportScoresButton.addEventListener('click', () => selectReportView('scores'));
 reportAnswersButton.addEventListener('click', () => selectReportView('answers'));
 reportCloseButton.addEventListener('click', () => reviewDialog.close());
 
-function appendWrongAnswerReview(body, rows) {
+function appendAnswerReview(body, explain) {
   const section = document.createElement('section');
-  section.id = 'wrongAnswerReview';
+  section.id = 'answerReview';
   section.hidden = true;
   const title = document.createElement('h3');
-  title.textContent = 'Giải thích câu sai';
+  title.textContent = 'Giải thích câu sai và câu chưa làm';
   section.append(title);
-  for (const row of rows.length ? rows : ['Em không có câu trả lời sai.']) {
+  for (const q of QUESTIONS) {
+    const value = STATE.answers[q.id];
+    if (value && correct(q, value)) continue;
     const item = document.createElement('p');
-    item.textContent = row;
+    const status = value ? `Sai (Em trả lời: ${value})` : 'Chưa làm';
+    const answer = Array.isArray(q.ans) ? q.ans.join(' / ') : q.ans;
+    item.textContent = `${q.id} – ${status}\nĐáp án: ${answer}\n${explain(q)}`;
     section.append(item);
+  }
+  if (section.childElementCount === 1) {
+    const message = document.createElement('p');
+    message.textContent = 'Em đã trả lời đúng tất cả các câu.';
+    section.append(message);
   }
   body.append(section);
 }

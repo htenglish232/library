@@ -143,6 +143,7 @@ async function answer(page,q,value,mode){
         if(manualSlots.length)await page.reload();
         await page.locator('#submit').click();
         assert.equal(await page.locator('.gradeInk').innerText(),'10');
+        assert.equal(await page.locator('#answerReview').count(),0);
         if(manualSlots.length)assert((await page.locator('#reportBody').innerText()).includes('Câu trả lời để giáo viên xem'));
         assert((await page.locator('#reportBody').innerText()).includes('Đúng: '+choices.length+' | Sai: 0 | Chưa làm: 0'));
         await page.locator('#report').evaluate(el=>el.scrollTop=el.scrollHeight);
@@ -160,6 +161,11 @@ async function answer(page,q,value,mode){
         assert(!(await page.locator('#feedback').isVisible()));
         await page.locator('#submit').click();
         assert.equal(await page.locator('.gradeInk').innerText(),String(Number((10/choices.length).toFixed(1))).replace('.',','));
+        await page.getByRole('button',{name:'Xem lời giải',exact:true}).click();
+        const review=await page.locator('#answerReview p').allTextContents();
+        assert.equal(review.length,choices.length-1);
+        assert.deepEqual(review.map(row=>row.split('\n')[0]),choices.slice(1).map(item=>item.id+' – Chưa làm'));
+        assert(review.every(row=>row.includes('\nĐáp án: ')));
         assert.deepEqual(errors,[]);
         assert(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
         await context.close();
