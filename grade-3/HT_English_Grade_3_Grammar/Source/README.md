@@ -1,6 +1,6 @@
 # Tạo lại phiếu bài tập HT English Grade 3
 
-Thư mục HTML_Output chứa 30 bài HTML độc lập. Trong Library, mở danh mục ở Grade 3 → Grammar sau khi đăng nhập.
+Thư mục HTML_Output chứa 30 bài HTML độc lập và index.html. Có thể mở trực tiếp bằng trình duyệt hoặc dùng thư mục này làm nội dung của GitHub Pages.
 
 ## Thành phần mã nguồn
 

@@ -55,6 +55,30 @@ def html_file(prefix,label,source):
         stem='Unit_03_The_Noun'
     return f'{prefix:02}_{stem}.html'
 
+def write_index(records, logo, out):
+    cards=[]
+    for i in range(6):
+        items=[]
+        for r in records[i*5:i*5+5]:
+            name=escape(r['label']+(' – '+r['topic'] if r['topic'] else ''))
+            if r['status']=='Completed':
+                items.append(f"<li><a href=\"{r['file']}\">{name}</a></li>")
+            elif r['file'] and r.get('generated'):
+                items.append(f"<li><a href=\"{r['file']}\">{name}</a> <small>{'Mẫu gốc · cần đối chiếu' if r['label']=='Unit 01' else 'Cần kiểm tra'}</small></li>")
+            else:
+                items.append(f'<li>{name} <small>Đang chuẩn bị</small></li>')
+        cards.append(f'<section><h2>Units {i*4+1:02}–{i*4+4:02}</h2><ul>{"".join(items)}</ul></section>')
+    out.write_text(f"""<!doctype html>
+<html lang="vi"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HT English Center – Grade 3 Grammar Practice</title>
+<style>
+*{{box-sizing:border-box}}body{{margin:0;background:#eaf2fa;color:#163653;font:16px system-ui}}
+header{{text-align:center;padding:24px 12px 8px}}img{{width:150px}}h1{{font-size:clamp(19px,4vw,28px)}}
+p{{margin:4px}}main{{max-width:970px;margin:auto;display:grid;gap:12px;padding:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,275px),1fr))}}
+section{{background:white;border:1px solid #d5e3f0;border-radius:12px;padding:16px}}h2{{margin:0 0 10px;font-size:16px}}ul{{padding:0;list-style:none;margin:0}}li{{padding:8px 0;border-top:1px solid #eaf2fa}}a{{color:#1767b5}}small{{display:inline-block;color:#526784}}
+</style><header><img alt="HT English Center" src="{logo}"><p><strong>HT English Center</strong></p><p>SĐT 0962240866</p><h1>GRADE 3 – GRAMMAR PRACTICE</h1></header>
+<main>{"".join(cards)}</main></html>""",encoding='utf-8')
+
 TOPICS={
     'Unit 01':'Person / Place / Thing / Animal','Unit 04':'Noun + -s / -es',
     'Unit 05':'I / You / He / She / It','Unit 06':'We / You / They','Unit 07':'This / That','Unit 08':'These / Those',
@@ -124,6 +148,7 @@ def main():
     save()
     template=TEMPLATE.read_text(encoding='utf-8')
     sample=next(b for n,b in files.items() if n.endswith('.html'))
+    logo=re.search(r'id="brandLogo"[^>]+src="([^"]+)"',sample.decode('utf-8-sig')).group(1)
     for r in records:
         label=r['label']
         if (args.only and label not in args.only) or r['status']=='Completed' or (label!='Unit 01' and label not in lessons):
@@ -161,6 +186,7 @@ def main():
             r['status']='Failed'
             r['notes']=[str(error)]
         save()
+    write_index(records,logo,out/'index.html')
 
 if __name__=='__main__':
     main()

@@ -60,6 +60,6 @@ Unit 01 giữ nguyên từng byte. 5 ô có mâu thuẫn hoặc thiếu đáp á
 - Kiểm tra trực quan ảnh đề và vùng tương tác trên từng trang. Đối chiếu số trang, câu mẫu và từng thành phần chấm với PDF và Answer Key.
 - Chạy thử trong Chrome với khung nhìn máy tính 1440 × 900 và điện thoại 390 × 844. Đối với 29 bài mới, điền toàn bộ đáp án, kiểm tra điểm 10, thử điểm làm tròn với bài làm dở, đổi trang, tải lại, làm lại và kiểm tra thời điểm hiện lời giải ở cả hai chế độ. Unit 01 được kiểm tra riêng vì dùng nguyên HTML mẫu.
 - Ô nhập trực tiếp chuẩn hóa khoảng trắng, chữ hoa, dấu nháy thẳng và cong. Dạng sắp xếp cho phép chạm từ đã chọn để bỏ từ và xác nhận khi đủ số từ.
-- Trong Library, chọn Grade 3 → Grammar sau khi đăng nhập. Khi làm việc cục bộ, có thể mở riêng từng file bài. Mỗi bài đã nhúng hình ảnh, logo, CSS, JavaScript và phông điểm viết tay.
+- Mở [index.html](HTML_Output/index.html) hoặc mở riêng một file bài. Để dùng GitHub Pages, đưa nội dung thư mục HTML_Output lên nơi phục vụ tệp tĩnh. Mỗi bài đã nhúng hình ảnh, logo, CSS, JavaScript và phông điểm viết tay.
 - Tiến độ lưu trên trình duyệt và theo bài. Một bài mở bằng địa chỉ GitHub Pages có vùng lưu riêng so với bản mở bằng đường dẫn cục bộ.
 - [Manifest](HTML_Output/manifest.json), [bảng đáp án phục vụ bảo trì](Source/answer-key.json) và [hướng dẫn tạo lại](Source/README.md).
