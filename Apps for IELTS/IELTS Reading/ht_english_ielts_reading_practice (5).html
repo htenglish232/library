@@ -1,0 +1,3139 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HT ENGLISH – IELTS Reading Practice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-blue: #1976D2;
+      --dark-blue: #1256A0;
+      --light-blue: #EAF3FF;
+      --bg-color: #F4F7FB;
+      --white: #FFFFFF;
+      --text-primary: #172B4D;
+      --text-secondary: #64748B;
+      --border-color: #DCE5F0;
+      --success: #16A36A;
+      --success-bg: #ECFDF5;
+      --error: #DC3545;
+      --error-bg: #FEF2F2;
+      --warning: #F2A900;
+      --warning-bg: #FFFBEB;
+      --highlight-yellow: #FEF08A;
+      --highlight-green: #BBF7D0;
+      --highlight-blue: #BAE6FD;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Noto Sans', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-primary);
+      overflow: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* HEADER */
+    .app-header {
+      height: 64px;
+      background: linear-gradient(90deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      box-shadow: 0 2px 6px rgba(18, 86, 160, 0.2);
+      z-index: 30;
+      position: relative;
+      gap: 12px;
+    }
+
+    .brand-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 240px;
+    }
+
+    .brand-logo {
+      width: 38px;
+      height: 38px;
+      background: var(--white);
+      color: var(--primary-blue);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: -0.5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+      flex-shrink: 0;
+    }
+
+    .brand-titles {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .brand-main {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+    }
+
+    .brand-sub {
+      font-size: 11px;
+      font-weight: 600;
+      opacity: 0.9;
+      letter-spacing: 0.6px;
+    }
+
+    .exam-title-center {
+      flex: 1;
+      text-align: center;
+      overflow: hidden;
+      padding: 0 8px;
+    }
+
+    .exam-title-text {
+      font-size: 14px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background: rgba(255, 255, 255, 0.14);
+      padding: 6px 14px;
+      border-radius: 6px;
+      display: inline-block;
+      max-width: 100%;
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    /* Mode Switcher */
+    .mode-switch {
+      display: flex;
+      background: rgba(0, 0, 0, 0.22);
+      padding: 3px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .mode-btn {
+      border: none;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.85);
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 5px 11px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .mode-btn.active {
+      background: var(--white);
+      color: var(--primary-blue);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    }
+
+    .header-stat {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.14);
+      padding: 6px 12px;
+      border-radius: 7px;
+      font-size: 13px;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+    }
+
+    .timer-box.warning {
+      background: var(--warning);
+      color: #172B4D;
+    }
+
+    .timer-box.danger {
+      background: var(--error);
+      color: var(--white);
+    }
+
+    .btn-header {
+      border: none;
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 7px 14px;
+      border-radius: 7px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    .btn-header:active {
+      transform: translateY(1px);
+    }
+
+    .btn-submit {
+      background: var(--white);
+      color: var(--primary-blue);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.12);
+    }
+
+    .btn-submit:hover {
+      background: var(--light-blue);
+    }
+
+    .btn-secondary-header {
+      background: rgba(255, 255, 255, 0.16);
+      color: var(--white);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+    }
+
+    .btn-secondary-header:hover {
+      background: rgba(255, 255, 255, 0.26);
+    }
+
+    /* TOOLBAR SUBHEADER */
+    .sub-toolbar {
+      height: 44px;
+      background: var(--white);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      font-size: 12.5px;
+      gap: 12px;
+    }
+
+    .toolbar-left, .toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tool-group {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--bg-color);
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--border-color);
+    }
+
+    .tool-label {
+      color: var(--text-secondary);
+      font-weight: 600;
+      font-size: 11.5px;
+      margin-right: 2px;
+    }
+
+    .tool-btn {
+      border: 1px solid var(--border-color);
+      background: var(--white);
+      color: var(--text-primary);
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 5px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .tool-btn:hover {
+      background: var(--light-blue);
+      border-color: var(--primary-blue);
+      color: var(--primary-blue);
+    }
+
+    .swatch-btn {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      border: 1px solid rgba(0,0,0,0.2);
+      cursor: pointer;
+    }
+
+    .candidate-inputs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .candidate-inputs input {
+      border: 1px solid var(--border-color);
+      border-radius: 5px;
+      padding: 4px 8px;
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 12px;
+      color: var(--text-primary);
+      width: 145px;
+      outline: none;
+    }
+
+    .candidate-inputs input:focus {
+      border-color: var(--primary-blue);
+      background: var(--light-blue);
+    }
+
+    /* TOAST BANNER (NON-BLOCKING FEEDBACK) */
+    .toast-notice {
+      position: fixed;
+      top: 74px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-16px);
+      background: var(--text-primary);
+      color: var(--white);
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 200;
+    }
+
+    .toast-notice.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* MAIN SPLIT WORKSPACE */
+    .workspace {
+      display: flex;
+      height: calc(100vh - 64px - 44px - 54px);
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .pane {
+      height: 100%;
+      overflow-y: auto;
+      padding: 22px 26px 40px 26px;
+      scroll-behavior: smooth;
+    }
+
+    .pane::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .pane::-webkit-scrollbar-track {
+      background: #EDF2F7;
+    }
+
+    .pane::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 4px;
+    }
+
+    .pane::-webkit-scrollbar-thumb:hover {
+      background: #94A3B8;
+    }
+
+    .passage-pane {
+      width: 50%;
+      min-width: 300px;
+      background: var(--white);
+      border-right: 1px solid var(--border-color);
+      position: relative;
+    }
+
+    .resizer {
+      width: 8px;
+      background: #E2E8F0;
+      cursor: col-resize;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      user-select: none;
+      transition: background 0.15s;
+      border-left: 1px solid var(--border-color);
+      border-right: 1px solid var(--border-color);
+    }
+
+    .resizer:hover, .resizer.dragging {
+      background: var(--primary-blue);
+    }
+
+    .resizer-grip {
+      width: 2px;
+      height: 28px;
+      background: #94A3B8;
+      border-radius: 2px;
+    }
+
+    .resizer:hover .resizer-grip, .resizer.dragging .resizer-grip {
+      background: var(--white);
+    }
+
+    .questions-pane {
+      flex: 1;
+      min-width: 320px;
+      background: var(--bg-color);
+    }
+
+    /* SMART PASSAGE DISPLAY: FULL-WIDTH SINGLE COLUMN MODE */
+    .workspace.single-column-mode .passage-pane,
+    .workspace.single-column-mode .resizer {
+      display: none !important;
+    }
+
+    .workspace.single-column-mode .questions-pane {
+      width: 100% !important;
+      max-width: 100%;
+      padding: 26px 40px 48px 40px;
+    }
+
+    .workspace.single-column-mode #activePartView {
+      max-width: 1040px;
+      margin: 0 auto;
+    }
+
+    .workspace.single-column-mode .summary-paragraph-card {
+      font-size: 16px;
+      line-height: 2.25;
+      padding: 24px 28px;
+    }
+
+    /* PASSAGE CONTENT */
+    .passage-header-card {
+      background: var(--light-blue);
+      border: 1px solid #C6DDFB;
+      border-left: 4px solid var(--primary-blue);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .passage-header-info {
+      flex: 1;
+      min-width: 220px;
+    }
+
+    .passage-zoom-box {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--white);
+      padding: 4px 8px;
+      border-radius: 7px;
+      border: 1px solid #C6DDFB;
+      flex-shrink: 0;
+    }
+
+    .passage-part-tag {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--primary-blue);
+      letter-spacing: 0.7px;
+      margin-bottom: 4px;
+    }
+
+    .passage-main-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .passage-instruction {
+      font-size: 12.5px;
+      color: var(--text-secondary);
+      margin-top: 4px;
+    }
+
+    .passage-content {
+      font-size: 15.5px;
+      line-height: 1.75;
+      color: var(--text-primary);
+    }
+
+    .passage-block {
+      margin-bottom: 18px;
+      padding: 14px 16px;
+      border-radius: 8px;
+      border: 1px solid #EEF2F6;
+      background: #FAFBFD;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .passage-block.active-evidence {
+      border-color: var(--primary-blue);
+      background: #F0F7FF;
+      box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.12);
+    }
+
+    .passage-block-title {
+      font-weight: 700;
+      color: var(--dark-blue);
+      margin-bottom: 6px;
+      font-size: 1.02em;
+    }
+
+    .passage-block p {
+      text-align: justify;
+    }
+
+    mark.user-hl-yellow { background-color: var(--highlight-yellow); padding: 1px 0; border-radius: 2px; }
+    mark.user-hl-green { background-color: var(--highlight-green); padding: 1px 0; border-radius: 2px; }
+    mark.user-hl-blue { background-color: var(--highlight-blue); padding: 1px 0; border-radius: 2px; }
+
+    /* BOTTOM NAVIGATION PART CONTROLS & QUESTIONS CONTENT */
+    .nav-part-label {
+      font-size: 11.5px;
+      font-weight: 800;
+      color: var(--dark-blue);
+      background: var(--light-blue);
+      border: 1px solid #BFDBFE;
+      padding: 5px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .nav-part-switch-btn {
+      height: 32px;
+      padding: 0 12px;
+      border-radius: 6px;
+      border: 1.5px solid var(--primary-blue);
+      background: var(--light-blue);
+      color: var(--primary-blue);
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: all 0.15s;
+    }
+
+    .nav-part-switch-btn:hover {
+      background: var(--primary-blue);
+      color: var(--white);
+    }
+
+    .summary-feedback-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .summary-fb-card {
+      background: var(--white);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 14px 16px;
+      box-shadow: 0 1px 3px rgba(23, 43, 77, 0.04);
+    }
+
+    .summary-fb-card.focused-card {
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.14);
+    }
+
+    .summary-fb-card .feedback-panel {
+      margin-left: 0;
+      margin-top: 10px;
+    }
+
+    .blank-wrapper-highlight {
+      border-radius: 6px;
+      padding: 2px 3px;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+
+    .blank-wrapper-highlight.focused-blank {
+      background: #DBEAFE;
+      box-shadow: 0 0 0 2px var(--primary-blue);
+    }
+
+    .question-group-header {
+      background: var(--white);
+      border: 1px solid var(--border-color);
+      border-top: 3px solid var(--primary-blue);
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 16px;
+    }
+
+    .group-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .group-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+
+    .teacher-alert-banner {
+      background: var(--warning-bg);
+      border: 1px solid #FCD34D;
+      border-left: 4px solid var(--warning);
+      border-radius: 8px;
+      padding: 12px 15px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: #78350F;
+      line-height: 1.5;
+    }
+
+    .teacher-alert-banner strong {
+      color: #92400E;
+    }
+
+    .question-card {
+      background: var(--white);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 18px 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 3px rgba(23, 43, 77, 0.04);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .question-card.focused-card {
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.14);
+    }
+
+    .question-card.state-correct {
+      border-color: var(--success);
+      background: #FAFFFC;
+    }
+
+    .question-card.state-incorrect {
+      border-color: var(--error);
+      background: #FFFAFA;
+    }
+
+    .question-card.state-unverified {
+      border-color: var(--warning);
+      background: #FFFDF7;
+    }
+
+    .q-top-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .q-number-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 28px;
+      padding: 0 8px;
+      border-radius: 6px;
+      background: var(--light-blue);
+      color: var(--primary-blue);
+      font-weight: 800;
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-right: 10px;
+    }
+
+    .q-prompt-wrap {
+      display: flex;
+      align-items: flex-start;
+      flex: 1;
+    }
+
+    .q-prompt-text {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+      line-height: 1.55;
+      padding-top: 2px;
+    }
+
+    .q-actions-right {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .source-flag-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 5px;
+      background: var(--warning-bg);
+      color: #92400E;
+      border: 1px solid #FDE68A;
+      white-space: nowrap;
+    }
+
+    .source-flag-badge.inferred {
+      background: #EFF6FF;
+      color: var(--dark-blue);
+      border-color: #BFDBFE;
+    }
+
+    .flag-btn {
+      border: 1px solid var(--border-color);
+      background: var(--white);
+      color: var(--text-secondary);
+      border-radius: 6px;
+      padding: 4px 9px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-family: 'Noto Sans', sans-serif;
+    }
+
+    .flag-btn:hover {
+      border-color: var(--warning);
+      color: #B45309;
+    }
+
+    .flag-btn.flagged {
+      background: var(--warning-bg);
+      border-color: var(--warning);
+      color: #B45309;
+    }
+
+    /* OPTIONS (MCQ) */
+    .options-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-left: 38px;
+    }
+
+    .option-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      background: var(--white);
+      cursor: pointer;
+      font-size: 14px;
+      transition: background 0.15s, border-color 0.15s;
+      user-select: none;
+    }
+
+    .option-item:hover:not(.locked) {
+      background: var(--light-blue);
+      border-color: var(--primary-blue);
+    }
+
+    .option-item.selected {
+      background: var(--light-blue);
+      border-color: var(--primary-blue);
+      font-weight: 600;
+    }
+
+    .option-item.opt-correct {
+      background: var(--success-bg);
+      border-color: var(--success);
+      color: #065F46;
+      font-weight: 700;
+    }
+
+    .option-item.opt-wrong {
+      background: var(--error-bg);
+      border-color: var(--error);
+      color: #991B1B;
+      font-weight: 600;
+    }
+
+    .option-item.locked {
+      cursor: default;
+    }
+
+    .opt-key {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      border: 1.5px solid #94A3B8;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      flex-shrink: 0;
+      background: var(--white);
+      color: var(--text-primary);
+    }
+
+    .option-item.selected .opt-key {
+      background: var(--primary-blue);
+      border-color: var(--primary-blue);
+      color: var(--white);
+    }
+
+    .option-item.opt-correct .opt-key {
+      background: var(--success);
+      border-color: var(--success);
+      color: var(--white);
+    }
+
+    .option-item.opt-wrong .opt-key {
+      background: var(--error);
+      border-color: var(--error);
+      color: var(--white);
+    }
+
+    /* SUMMARY COMPLETION & WORD BANK */
+    .word-bank-box {
+      background: #F8FAFC;
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 16px;
+    }
+
+    .word-bank-title {
+      font-size: 12.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: var(--dark-blue);
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+
+    .word-bank-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .word-chip {
+      background: var(--white);
+      border: 1px solid #CBD5E1;
+      border-radius: 6px;
+      padding: 5px 11px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+      transition: all 0.15s;
+    }
+
+    .word-chip.used {
+      background: #EDF2F7;
+      color: #94A3B8;
+      border-color: #E2E8F0;
+      text-decoration: line-through;
+    }
+
+    .summary-paragraph-card {
+      background: var(--white);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 18px 22px;
+      margin-bottom: 18px;
+      font-size: 15px;
+      line-height: 2.15;
+      color: var(--text-primary);
+      box-shadow: 0 1px 3px rgba(23, 43, 77, 0.04);
+    }
+
+    .summary-paragraph-card p {
+      margin-bottom: 12px;
+    }
+
+    .summary-paragraph-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .inline-blank-slot {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      vertical-align: baseline;
+      margin: 0 3px;
+    }
+
+    .blank-num-tag {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--primary-blue);
+      color: var(--white);
+      font-size: 11px;
+      font-weight: 800;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 5px;
+      border-radius: 4px;
+    }
+
+    .summary-select {
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-primary);
+      background: var(--light-blue);
+      border: 1.5px solid #93C5FD;
+      border-radius: 6px;
+      padding: 3px 8px;
+      cursor: pointer;
+      outline: none;
+      min-width: 175px;
+      transition: all 0.15s;
+    }
+
+    .summary-select:focus {
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.16);
+    }
+
+    .summary-select.sel-correct {
+      background: var(--success-bg);
+      border-color: var(--success);
+      color: #065F46;
+    }
+
+    .summary-select.sel-wrong {
+      background: var(--error-bg);
+      border-color: var(--error);
+      color: #991B1B;
+    }
+
+    .summary-select:disabled {
+      cursor: default;
+      opacity: 1;
+    }
+
+    /* FEEDBACK BOX */
+    .feedback-panel {
+      margin-top: 14px;
+      margin-left: 38px;
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 13.5px;
+      line-height: 1.6;
+      border: 1px solid var(--border-color);
+    }
+
+    .feedback-panel.fb-correct {
+      background: var(--success-bg);
+      border-color: #A7F3D0;
+    }
+
+    .feedback-panel.fb-incorrect {
+      background: var(--error-bg);
+      border-color: #FECACA;
+    }
+
+    .feedback-panel.fb-unverified {
+      background: var(--warning-bg);
+      border-color: #FDE68A;
+    }
+
+    .fb-status-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 800;
+      font-size: 14px;
+      margin-bottom: 10px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .fb-correct .fb-status-header { color: var(--success); }
+    .fb-incorrect .fb-status-header { color: var(--error); }
+    .fb-unverified .fb-status-header { color: #B45309; }
+
+    .fb-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .fb-row {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .fb-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+    }
+
+    .fb-val {
+      color: var(--text-primary);
+    }
+
+    .fb-evidence-quote {
+      background: rgba(255, 255, 255, 0.78);
+      border-left: 3px solid var(--primary-blue);
+      padding: 7px 11px;
+      border-radius: 4px;
+      font-style: italic;
+      color: #1E293B;
+      margin-top: 2px;
+      white-space: pre-line;
+    }
+
+    .btn-locate-passage {
+      background: var(--white);
+      border: 1px solid var(--primary-blue);
+      color: var(--primary-blue);
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .btn-locate-passage:hover {
+      background: var(--primary-blue);
+      color: var(--white);
+    }
+
+    /* BOTTOM NAVIGATION BAR */
+    .bottom-nav {
+      height: 54px;
+      background: var(--white);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      gap: 14px;
+      z-index: 25;
+      position: relative;
+    }
+
+    .nav-questions-strip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 4px 0;
+    }
+
+    .nav-q-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      border: 1.5px solid var(--border-color);
+      background: var(--white);
+      color: var(--text-primary);
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      position: relative;
+      flex-shrink: 0;
+      transition: all 0.12s;
+    }
+
+    .nav-q-btn:hover {
+      border-color: var(--primary-blue);
+    }
+
+    .nav-q-btn.answered {
+      background: var(--primary-blue);
+      border-color: var(--primary-blue);
+      color: var(--white);
+    }
+
+    .nav-q-btn.res-correct {
+      background: var(--success);
+      border-color: var(--success);
+      color: var(--white);
+    }
+
+    .nav-q-btn.res-incorrect {
+      background: var(--error);
+      border-color: var(--error);
+      color: var(--white);
+    }
+
+    .nav-q-btn.res-unverified {
+      background: var(--warning);
+      border-color: var(--warning);
+      color: var(--text-primary);
+    }
+
+    .nav-q-btn.flagged::after {
+      content: "";
+      position: absolute;
+      top: -3px;
+      right: -3px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--warning);
+      border: 1.5px solid var(--white);
+    }
+
+    .nav-legend {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 12px;
+      color: var(--text-secondary);
+      flex-shrink: 0;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .legend-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 3px;
+      border: 1px solid var(--border-color);
+    }
+
+    /* MODAL OVERLAY (RESULTS, HISTORY & CONFIRMATIONS) */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      padding: 20px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-card {
+      background: var(--white);
+      border-radius: 12px;
+      width: 100%;
+      max-width: 820px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.22);
+      overflow: hidden;
+    }
+
+    .modal-card.modal-sm {
+      max-width: 440px;
+    }
+
+    .modal-header {
+      background: var(--primary-blue);
+      color: var(--white);
+      padding: 16px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .modal-header h2 {
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .modal-close {
+      background: rgba(255,255,255,0.18);
+      border: none;
+      color: var(--white);
+      width: 30px;
+      height: 30px;
+      border-radius: 6px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    .modal-body {
+      padding: 22px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .stat-box {
+      background: var(--bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: 9px;
+      padding: 12px 14px;
+      text-align: center;
+    }
+
+    .stat-val {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--primary-blue);
+    }
+
+    .stat-val.green { color: var(--success); }
+    .stat-val.red { color: var(--error); }
+    .stat-val.amber { color: #B45309; }
+
+    .stat-lbl {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .progress-bar-container {
+      background: var(--bg-color);
+      border: 1px solid var(--border-color);
+      border-radius: 9px;
+      padding: 14px 16px;
+    }
+
+    .progress-bar-track {
+      height: 14px;
+      background: #E2E8F0;
+      border-radius: 999px;
+      overflow: hidden;
+      display: flex;
+      margin-top: 8px;
+    }
+
+    .seg-correct { background: var(--success); height: 100%; }
+    .seg-incorrect { background: var(--error); height: 100%; }
+    .seg-unverified { background: var(--warning); height: 100%; }
+
+    .review-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+
+    .review-table th {
+      background: var(--light-blue);
+      color: var(--dark-blue);
+      text-align: left;
+      padding: 10px 12px;
+      border-bottom: 2px solid var(--border-color);
+      font-weight: 700;
+    }
+
+    .review-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .review-table tr {
+      cursor: pointer;
+    }
+
+    .review-table tr:hover {
+      background: #F8FAFC;
+    }
+
+    .badge-pill {
+      display: inline-block;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+
+    .pill-pass { background: var(--success-bg); color: var(--success); }
+    .pill-fail { background: var(--error-bg); color: var(--error); }
+    .pill-skip { background: #F1F5F9; color: var(--text-secondary); }
+    .pill-warn { background: var(--warning-bg); color: #B45309; }
+
+    .modal-footer {
+      padding: 14px 22px;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      background: #F8FAFC;
+    }
+
+    .btn-primary {
+      background: var(--primary-blue);
+      color: var(--white);
+      border: none;
+      padding: 9px 16px;
+      border-radius: 7px;
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover { background: var(--dark-blue); }
+
+    .btn-outline {
+      background: var(--white);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      padding: 9px 16px;
+      border-radius: 7px;
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-outline:hover { background: var(--bg-color); }
+
+    .btn-danger-outline {
+      background: var(--white);
+      color: var(--error);
+      border: 1px solid #FECACA;
+      padding: 9px 16px;
+      border-radius: 7px;
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn-danger-outline:hover { background: var(--error-bg); }
+
+    /* RESPONSIVE */
+    @media (max-width: 960px) {
+      html, body {
+        overflow: auto;
+        height: auto;
+      }
+      .app-header {
+        flex-wrap: wrap;
+        height: auto;
+        padding: 10px 14px;
+      }
+      .exam-title-center {
+        order: 3;
+        width: 100%;
+        flex: none;
+      }
+      .sub-toolbar {
+        height: auto;
+        flex-wrap: wrap;
+        padding: 8px 14px;
+      }
+      .workspace {
+        flex-direction: column;
+        height: auto;
+        overflow: visible;
+      }
+      .passage-pane {
+        width: 100% !important;
+        max-height: 52vh;
+        border-right: none;
+        border-bottom: 2px solid var(--border-color);
+      }
+      .resizer {
+        display: none;
+      }
+      .questions-pane {
+        width: 100%;
+        overflow: visible;
+      }
+      .bottom-nav {
+        position: sticky;
+        bottom: 0;
+        height: auto;
+        flex-wrap: wrap;
+        padding: 8px 14px;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NON-BLOCKING TOAST NOTIFICATION -->
+  <div class="toast-notice" id="toastNotice" role="status" aria-live="polite"></div>
+
+  <!-- HEADER -->
+  <header class="app-header">
+    <div class="brand-box">
+      <div class="brand-logo">HT</div>
+      <div class="brand-titles">
+        <span class="brand-main">HT ENGLISH</span>
+        <span class="brand-sub">IELTS READING PRACTICE</span>
+      </div>
+    </div>
+
+    <div class="exam-title-center">
+      <div class="exam-title-text" id="examTitleDisplay">READING COMPREHENSION – URBAN AND RURAL LIVING</div>
+    </div>
+
+    <div class="header-controls">
+      <div class="mode-switch" role="group" aria-label="Chế độ làm bài">
+        <button type="button" class="mode-btn active" id="btnModePractice" onclick="switchMode('practice')">Practice Mode</button>
+        <button type="button" class="mode-btn" id="btnModeExam" onclick="switchMode('exam')">Exam Mode</button>
+      </div>
+
+      <div class="header-stat timer-box" id="timerBox" title="Thời gian làm bài">
+        <span>⏱</span>
+        <span id="timerDisplay">15:00</span>
+      </div>
+
+      <div class="header-stat" title="Tiến độ hoàn thành">
+        <span>✓</span>
+        <span id="progressDisplay">0/18</span>
+      </div>
+
+      <button type="button" class="btn-header btn-secondary-header" onclick="openHistoryModal()" title="Lịch sử làm bài">Lịch sử</button>
+      <button type="button" class="btn-header btn-submit" id="btnSubmitTop" onclick="handleSubmitTest()">SUBMIT TEST</button>
+    </div>
+  </header>
+
+  <!-- SUB-TOOLBAR -->
+  <div class="sub-toolbar">
+    <div class="toolbar-left">
+      <div class="tool-group">
+        <span class="tool-label">Highlight Passage:</span>
+        <button type="button" class="swatch-btn" style="background:#FEF08A" onclick="applyHighlight('yellow')" title="Tô vàng đoạn văn đang bôi đen"></button>
+        <button type="button" class="swatch-btn" style="background:#BBF7D0" onclick="applyHighlight('green')" title="Tô xanh lá đoạn văn đang bôi đen"></button>
+        <button type="button" class="swatch-btn" style="background:#BAE6FD" onclick="applyHighlight('blue')" title="Tô xanh dương đoạn văn đang bôi đen"></button>
+        <button type="button" class="tool-btn" onclick="clearHighlights()" title="Xóa toàn bộ highlight">Xóa HL</button>
+      </div>
+    </div>
+
+    <div class="toolbar-right">
+      <div class="candidate-inputs">
+        <input type="text" id="studentNameInput" placeholder="Name (Họ và tên)..." oninput="saveCandidateInfo()" />
+        <input type="text" id="studentClassInput" placeholder="Class (Lớp)..." oninput="saveCandidateInfo()" />
+      </div>
+      <button type="button" class="tool-btn" onclick="resetCurrentAttempt()" title="Làm lại bài từ đầu">↻ Làm lại</button>
+    </div>
+  </div>
+
+  <!-- MAIN WORKSPACE -->
+  <main class="workspace" id="workspace">
+    <!-- LEFT PANE: READING PASSAGE -->
+    <section class="pane passage-pane" id="passagePane">
+      <div class="passage-header-card">
+        <div class="passage-header-info">
+          <div class="passage-part-tag">PART A. READING PASSAGES</div>
+          <h1 class="passage-main-title">READING COMPREHENSION – URBAN AND RURAL LIVING</h1>
+          <div class="passage-instruction">Bôi đen văn bản bất kỳ trong bài đọc và chọn màu ở thanh công cụ phía trên để đánh dấu dẫn chứng.</div>
+        </div>
+        <div class="passage-zoom-box" aria-label="Điều chỉnh cỡ chữ bài đọc">
+          <span class="tool-label">Cỡ chữ:</span>
+          <button type="button" class="tool-btn" onclick="changeFontSize(-1)" title="Thu nhỏ chữ">A-</button>
+          <button type="button" class="tool-btn" onclick="resetFontSize()" title="Cỡ chữ mặc định">100%</button>
+          <button type="button" class="tool-btn" onclick="changeFontSize(1)" title="Phóng to chữ">A+</button>
+        </div>
+      </div>
+
+      <div class="passage-content" id="passageContainer"></div>
+    </section>
+
+    <!-- DRAGGABLE RESIZER -->
+    <div class="resizer" id="paneResizer" title="Kéo để thay đổi độ rộng hai cột">
+      <div class="resizer-grip"></div>
+    </div>
+
+    <!-- RIGHT PANE: QUESTIONS -->
+    <section class="pane questions-pane" id="questionsPane">
+      <div id="activePartView"></div>
+    </section>
+  </main>
+
+  <!-- BOTTOM QUESTION NAVIGATION -->
+  <footer class="bottom-nav">
+    <div class="nav-questions-strip" id="navQuestionsStrip"></div>
+
+    <div class="nav-legend">
+      <div class="legend-item"><span class="legend-dot" style="background:#FFFFFF"></span> Chưa làm</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#1976D2"></span> Đã chọn</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#16A36A"></span> Đúng</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#DC3545"></span> Sai</div>
+      <div class="legend-item"><span class="legend-dot" style="background:#F2A900"></span> Đánh dấu / Cần rà soát</div>
+    </div>
+  </footer>
+
+  <!-- RESULT MODAL -->
+  <div class="modal-backdrop" id="resultModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>KẾT QUẢ BÀI LÀM – HT ENGLISH IELTS READING</h2>
+        <button type="button" class="modal-close" onclick="closeModal('resultModal')">&times;</button>
+      </div>
+      <div class="modal-body" id="resultModalBody"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn-outline" onclick="closeModal('resultModal')">Review Answers</button>
+        <button type="button" class="btn-primary" onclick="closeModal('resultModal'); resetCurrentAttempt(true);">Retry Test</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORY MODAL -->
+  <div class="modal-backdrop" id="historyModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h2>LỊCH SỬ LUYỆN TẬP (LƯU TRÊN TRÌNH DUYỆT)</h2>
+        <button type="button" class="modal-close" onclick="closeModal('historyModal')">&times;</button>
+      </div>
+      <div class="modal-body" id="historyModalBody"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn-danger-outline" onclick="clearAllHistory()">Xóa lịch sử luyện tập</button>
+        <button type="button" class="btn-primary" onclick="closeModal('historyModal')">Đóng</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CUSTOM CONFIRMATION MODAL -->
+  <div class="modal-backdrop" id="confirmModal">
+    <div class="modal-card modal-sm">
+      <div class="modal-header">
+        <h2 id="confirmModalTitle">Xác nhận thao tác</h2>
+        <button type="button" class="modal-close" onclick="closeModal('confirmModal')">&times;</button>
+      </div>
+      <div class="modal-body" id="confirmModalMessage"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn-outline" onclick="closeModal('confirmModal')">Hủy bỏ</button>
+        <button type="button" class="btn-primary" id="confirmModalOkBtn">Xác nhận</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. EXAM DATA (100% VERBATIM FROM PROVIDED DOCUMENT)
+    // =========================================================================
+    const EXAM_DATA = {
+      id: "ht_ielts_reading_urban_rural_v2",
+      title: "READING COMPREHENSION – URBAN AND RURAL LIVING",
+      defaultDurationSeconds: 20 * 60,
+      passages: [
+        {
+          id: "p1",
+          title: "Passage 1: The Advantages of City Life",
+          text: "Living in a city provides people with numerous employment opportunities, high-quality healthcare, and excellent educational institutions. Cities are centers of economic growth, technological innovation, and cultural diversity, attracting people from different backgrounds. In addition, a well-developed public transportation system makes daily commuting more convenient. However, urban residents often face traffic congestion, air pollution, high living costs, and a fast-paced lifestyle, which may negatively affect their quality of life."
+        },
+        {
+          id: "p2",
+          title: "Passage 2: The Peacefulness of the Countryside",
+          text: "The countryside offers a peaceful environment with clean air, open spaces, and beautiful natural landscapes. Many people enjoy the slower pace of life, which helps reduce stress levels and improve overall well-being. Rural communities usually have a strong sense of community, where neighbors support one another. Nevertheless, people living in rural areas may experience limited access to healthcare services, educational facilities, and stable employment."
+        },
+        {
+          id: "p3",
+          title: "Passage 3: Urbanization",
+          text: "Rapid urbanization has transformed many countries by creating more economic opportunities and improving infrastructure. However, the rapid expansion of cities often causes overpopulation, housing shortages, and increased environmental pollution. Governments must adopt sustainable urban planning to balance development with environmental conservation."
+        },
+        {
+          id: "p4",
+          title: "Passage 4: Rural Development",
+          text: "Improving rural infrastructure is essential for promoting economic development in the countryside. Better road networks, internet connectivity, and public services encourage businesses to invest in rural communities. As a result, local residents can enjoy improved living standards without migrating to large cities."
+        },
+        {
+          id: "p5",
+          title: "Passage 5: Smart Cities",
+          text: "Many governments are investing in smart cities, where digital technologies improve public safety, traffic management, and energy efficiency. Smart systems also reduce carbon emissions by encouraging the use of renewable energy and electric vehicles. Such innovations help create more sustainable communities."
+        },
+        {
+          id: "p6",
+          title: "Passage 6: Green Spaces",
+          text: "Urban green spaces such as parks, gardens, and tree-lined streets improve people's mental health and encourage physical activity. These areas also reduce air pollution and lower urban temperatures. Therefore, protecting green spaces is an important part of sustainable urban development."
+        },
+        {
+          id: "p7",
+          title: "Passage 7: Migration to Cities",
+          text: "Many young people migrate from rural areas to cities in search of better career prospects and higher salaries. Although cities provide more opportunities, migrants often struggle with high accommodation costs and work-life balance. Some eventually return to the countryside to enjoy a healthier lifestyle."
+        },
+        {
+          id: "p8",
+          title: "Passage 8: Tourism in Rural Areas",
+          text: "The countryside has become a popular destination for ecotourism because of its biodiversity, traditional culture, and picturesque scenery. Tourism creates employment opportunities for local people while encouraging the preservation of local traditions and the natural environment."
+        },
+        {
+          id: "p9",
+          title: "Passage 9: Housing in Cities",
+          text: "Finding affordable housing has become increasingly difficult in many large cities. Rapid population growth and limited housing supply have pushed up property prices and rental costs. Governments are trying to solve this problem by constructing more public housing and encouraging sustainable development."
+        },
+        {
+          id: "p10",
+          title: "Passage 10: The Future of Urban and Rural Living",
+          text: "Advances in technology are narrowing the gap between cities and the countryside. Improved digital infrastructure, remote working, and high-speed internet allow people to enjoy rural life without sacrificing career opportunities. In the future, both urban and rural areas are expected to become more sustainable, inclusive, and environmentally friendly."
+        }
+      ],
+      summaryCompletion: {
+        wordList: [
+          "Innovation",
+          "community spirit",
+          "urbanization",
+          "transportation system",
+          "green spaces",
+          "economic growth",
+          "migration",
+          "qualified teachers",
+          "traffic congestion",
+          "traditional values",
+          "smart cities",
+          "pollution"
+        ],
+        paragraphs: [
+          "People choose where to live based on different priorities. Cities often attract residents because they provide better employment, advanced infrastructure, and encourage [[1]]. Their efficient [[2]] allows people to travel conveniently, although [[3]] remains a serious challenge.",
+          "By contrast, rural areas are valued for their peaceful environment and strong [[4]]. However, economic differences between urban and rural regions encourage [[5]] to cities in search of better careers.",
+          "To improve the quality of urban life, governments are creating more [[6]], which benefit both physical and mental health. In the future, many cities are expected to become [[7]], while rural regions will receive better infrastructure without losing their [[8]]."
+        ]
+      },
+      questions: [
+        // PART 1: MULTIPLE CHOICE (Questions 1–10)
+        {
+          number: 1,
+          part: 1,
+          type: "mcq",
+          passageId: "p1",
+          prompt: "1. According to Passage 1, one advantage of living in cities is that they provide ________.",
+          options: [
+            { key: "A", text: "better employment opportunities" },
+            { key: "B", text: "cleaner air than rural areas" },
+            { key: "C", text: "lower living costs" },
+            { key: "D", text: "stronger community spirit" }
+          ],
+          status: "verified",
+          correctAnswer: "A",
+          docNote: "Question 1: A — Passage 1 nêu employment opportunities.",
+          explanation: "Đáp án đúng là A. Ngay câu đầu tiên của Passage 1 khẳng định cuộc sống ở thành phố mang lại nhiều cơ hội việc làm ('numerous employment opportunities'). Các phương án B, C, D trái ngược với nội dung bài đọc.",
+          evidence: "Living in a city provides people with numerous employment opportunities, high-quality healthcare, and excellent educational institutions.",
+          vocabulary: "numerous (adj): nhiều, đông đảo; employment opportunities (n.phr): cơ hội việc làm; living costs (n.phr): chi phí sinh hoạt.",
+          tip: "Gạch chân từ khóa 'advantage' và đối chiếu từng phương án với câu chủ đề đầu đoạn."
+        },
+        {
+          number: 2,
+          part: 1,
+          type: "mcq",
+          passageId: "p2",
+          prompt: "2. Which feature of the countryside is mentioned in Passage 2?",
+          options: [
+            { key: "A", text: "Advanced transportation systems" },
+            { key: "B", text: "Strong community relationships" },
+            { key: "C", text: "Numerous entertainment centers" },
+            { key: "D", text: "High salaries" }
+          ],
+          status: "verified",
+          correctAnswer: "B",
+          docNote: "Question 2: B — Passage 2 nêu strong sense of community.",
+          explanation: "Đáp án đúng là B. Passage 2 nêu rõ các cộng đồng nông thôn có tinh thần cộng đồng gắn kết cao ('strong sense of community, where neighbors support one another'), tương đương với 'Strong community relationships'.",
+          evidence: "Rural communities usually have a strong sense of community, where neighbors support one another.",
+          vocabulary: "sense of community (n.phr): tinh thần cộng đồng, sự gắn kết làng xóm.",
+          tip: "Chú ý cách diễn đạt lại (paraphrase): 'strong sense of community' = 'strong community relationships'."
+        },
+        {
+          number: 3,
+          part: 1,
+          type: "mcq",
+          passageId: "p3",
+          prompt: "3. According to Passage 3, one negative consequence of urbanization is ________.",
+          options: [
+            { key: "A", text: "declining economic growth" },
+            { key: "B", text: "reduced technological innovation" },
+            { key: "C", text: "overcrowding" },
+            { key: "D", text: "decreasing infrastructure" }
+          ],
+          status: "verified",
+          correctAnswer: "C",
+          docNote: "Question 3: C — Passage 3 nêu overpopulation.",
+          explanation: "Đáp án đúng là C. Passage 3 chỉ ra sự mở rộng nhanh chóng của các đô thị thường gây ra quá tải dân số ('overpopulation'), đồng nghĩa với 'overcrowding'.",
+          evidence: "However, the rapid expansion of cities often causes overpopulation, housing shortages, and increased environmental pollution.",
+          vocabulary: "overpopulation (n): sự quá tải dân số; overcrowding (n): tình trạng đông đúc quá mức.",
+          tip: "Từ nối 'However' báo hiệu hệ quả tiêu cực ('negative consequence') nằm ngay phía sau."
+        },
+        {
+          number: 4,
+          part: 1,
+          type: "mcq",
+          passageId: "p4",
+          prompt: "4. Passage 4 suggests that choosing between city and countryside mainly depends on ________.",
+          options: [
+            { key: "A", text: "income level" },
+            { key: "B", text: "family size" },
+            { key: "C", text: "government policy" },
+            { key: "D", text: "personal preferences" }
+          ],
+          status: "unsupported",
+          correctAnswer: null,
+          docNote: "Question 4: — Passage 4 nói về rural development, không nói lựa chọn dựa vào personal preferences.",
+          explanation: "CÂU HỎI CẦN GIÁO VIÊN KIỂM TRA (Needs Teacher Review): Passage 4 chỉ bàn về việc nâng cấp cơ sở hạ tầng nông thôn giúp thu hút đầu tư và nâng cao mức sống, không đề cập việc lựa chọn giữa thành phố và nông thôn phụ thuộc vào yếu tố nào.",
+          evidence: "Improving rural infrastructure is essential for promoting economic development in the countryside. Better road networks, internet connectivity, and public services encourage businesses to invest in rural communities.",
+          vocabulary: "infrastructure (n): cơ sở hạ tầng; living standards (n.phr): mức sống.",
+          tip: "Không tự suy đoán đáp án khi tài liệu gốc không có căn cứ trực tiếp."
+        },
+        {
+          number: 5,
+          part: 1,
+          type: "mcq",
+          passageId: "p5",
+          prompt: "5. Which technology is mentioned as helping reduce traffic congestion?",
+          options: [
+            { key: "A", text: "Solar panels" },
+            { key: "B", text: "Ride-sharing applications" },
+            { key: "C", text: "Satellite systems" },
+            { key: "D", text: "High-speed railways" }
+          ],
+          status: "unsupported",
+          correctAnswer: null,
+          docNote: "Question 5: — Không passage nào đề cập ride-sharing applications hay công nghệ trong các phương án để giảm ùn tắc.",
+          explanation: "CÂU HỎI CẦN GIÁO VIÊN KIỂM TRA (Needs Teacher Review): Passage 5 chỉ nhắc chung 'digital technologies improve public safety, traffic management, and energy efficiency', không đề cập bất kỳ công nghệ nào trong 4 phương án A, B, C, D.",
+          evidence: "Many governments are investing in smart cities, where digital technologies improve public safety, traffic management, and energy efficiency.",
+          vocabulary: "traffic management (n.phr): quản lý giao thông; energy efficiency (n.phr): hiệu quả năng lượng.",
+          tip: "Đối chiếu chính xác danh từ xuất hiện trong Passage trước khi chọn."
+        },
+        {
+          number: 6,
+          part: 1,
+          type: "mcq",
+          passageId: "p6",
+          prompt: "6. According to Passage 6, green spaces improve residents' well-being because they ________.",
+          options: [
+            { key: "A", text: "create more industries" },
+            { key: "B", text: "reduce housing prices" },
+            { key: "C", text: "provide recreational opportunities" },
+            { key: "D", text: "increase urban sprawl" }
+          ],
+          status: "inferred",
+          correctAnswer: "C",
+          docNote: "Question 6: C* Passage 6 nhắc parks, gardens và physical activity; recreational opportunities là suy luận hợp lý, không nêu nguyên văn.",
+          explanation: "Đáp án theo tài liệu đối chiếu là C (*Đáp án suy luận). Passage 6 nêu không gian xanh như công viên, vườn hoa cải thiện sức khỏe tinh thần và khuyến khích hoạt động thể chất ('improve people's mental health and encourage physical activity'), suy luận hợp lý thành 'recreational opportunities'.",
+          evidence: "Urban green spaces such as parks, gardens, and tree-lined streets improve people's mental health and encourage physical activity.",
+          vocabulary: "mental health (n.phr): sức khỏe tinh thần; physical activity (n.phr): hoạt động thể chất.",
+          tip: "Loại trừ các phương án sai lệch hoàn toàn (A, B, D) để tìm phương án diễn giải hợp lý nhất."
+        },
+        {
+          number: 7,
+          part: 1,
+          type: "mcq",
+          passageId: "p7",
+          prompt: "7. What is one drawback of rural life mentioned in Passage 7?",
+          options: [
+            { key: "A", text: "Heavy traffic" },
+            { key: "B", text: "Air pollution" },
+            { key: "C", text: "Limited employment opportunities" },
+            { key: "D", text: "Expensive housing" }
+          ],
+          status: "unsupported",
+          correctAnswer: null,
+          docNote: "Question 7: — Passage 7 nói về migration to cities; limited employment opportunities nằm ở Passage 2.",
+          explanation: "CÂU HỎI CẦN GIÁO VIÊN KIỂM TRA (Needs Teacher Review): Passage 7 nói về việc người trẻ di cư lên thành phố và gặp khó khăn về chi phí chỗ ở cao; chi tiết thiếu việc làm ổn định ở nông thôn thực chất nằm ở Passage 2.",
+          evidence: "Many young people migrate from rural areas to cities in search of better career prospects and higher salaries.",
+          vocabulary: "career prospects (n.phr): triển vọng nghề nghiệp; accommodation costs (n.phr): chi phí chỗ ở.",
+          tip: "Luôn kiểm tra đúng số thứ tự Passage được hỏi."
+        },
+        {
+          number: 8,
+          part: 1,
+          type: "mcq",
+          passageId: "p8",
+          prompt: "8. Passage 8 states that rural economies mainly depend on ________.",
+          options: [
+            { key: "A", text: "tourism" },
+            { key: "B", text: "manufacturing" },
+            { key: "C", text: "agriculture" },
+            { key: "D", text: "technology" }
+          ],
+          status: "unsupported",
+          correctAnswer: null,
+          docNote: "Question 8: — Passage 8 nói du lịch tạo việc làm, không khẳng định kinh tế nông thôn chủ yếu phụ thuộc vào lĩnh vực nào.",
+          explanation: "CÂU HỎI CẦN GIÁO VIÊN KIỂM TRA (Needs Teacher Review): Passage 8 nêu du lịch sinh thái tạo việc làm cho người dân địa phương, nhưng không khẳng định kinh tế nông thôn chủ yếu phụ thuộc ('mainly depend on') vào lĩnh vực nào.",
+          evidence: "Tourism creates employment opportunities for local people while encouraging the preservation of local traditions and the natural environment.",
+          vocabulary: "ecotourism (n): du lịch sinh thái; preservation (n): sự bảo tồn.",
+          tip: "Cảnh giác với các từ chỉ mức độ tuyệt đối hoặc chủ yếu như 'mainly'."
+        },
+        {
+          number: 9,
+          part: 1,
+          type: "mcq",
+          passageId: "p9",
+          prompt: "9. According to Passage 9, urban schools generally have ________.",
+          options: [
+            { key: "A", text: "fewer qualified teachers" },
+            { key: "B", text: "better educational facilities" },
+            { key: "C", text: "fewer academic subjects" },
+            { key: "D", text: "smaller class sizes" }
+          ],
+          status: "unsupported",
+          correctAnswer: null,
+          docNote: "Question 9: — Passage 9 nói housing, không đề cập trường học hay educational facilities.",
+          explanation: "CÂU HỎI CẦN GIÁO VIÊN KIỂM TRA (Needs Teacher Review): Passage 9 thảo luận về nhà ở giá rẻ và chi phí thuê nhà tại các thành phố lớn, hoàn toàn không nhắc tới trường học đô thị.",
+          evidence: "Finding affordable housing has become increasingly difficult in many large cities. Rapid population growth and limited housing supply have pushed up property prices and rental costs.",
+          vocabulary: "affordable housing (n.phr): nhà ở giá cả phải chăng; property prices (n.phr): giá bất động sản.",
+          tip: "Báo rà soát đề khi đoạn văn được chỉ định bàn về chủ đề khác hẳn câu hỏi."
+        },
+        {
+          number: 10,
+          part: 1,
+          type: "mcq",
+          passageId: "p10",
+          prompt: "10. What is predicted for the future countryside in Passage 10?",
+          options: [
+            { key: "A", text: "Traditional values will disappear." },
+            { key: "B", text: "Job opportunities will decline." },
+            { key: "C", text: "Infrastructure will improve." },
+            { key: "D", text: "People will completely move to cities." }
+          ],
+          status: "inferred",
+          correctAnswer: "C",
+          docNote: "Question 10: C* Passage 10 đề cập improved digital infrastructure ở hiện tại, không khẳng định rõ đó là dự đoán tương lai.",
+          explanation: "Đáp án theo tài liệu đối chiếu là C (*Đáp án suy luận). Passage 10 nêu hạ tầng số được cải thiện ('Improved digital infrastructure') giúp người dân tận hưởng cuộc sống nông thôn mà không hy sinh cơ hội nghề nghiệp, và tương lai cả thành thị lẫn nông thôn đều bền vững hơn.",
+          evidence: "Improved digital infrastructure, remote working, and high-speed internet allow people to enjoy rural life without sacrificing career opportunities.",
+          vocabulary: "narrow the gap (v.phr): thu hẹp khoảng cách; remote working (n.phr): làm việc từ xa.",
+          tip: "Chú ý thì của động từ khi làm các câu hỏi dự đoán tương lai."
+        },
+
+        // PART 2: SUMMARY COMPLETION (Questions 11–18 mapped to blanks 1–8)
+        {
+          number: 11,
+          part: 2,
+          blankNumber: 1,
+          type: "summary",
+          passageId: "p1",
+          prompt: "Summary Blank (1) — Question 11",
+          status: "verified",
+          correctAnswer: "economic growth",
+          docNote: "Part 2 Blank (1): economic growth. Teacher note: 'innovation' is also grammatically possible, but 'economic growth' is the closer thematic fit.",
+          explanation: "Đáp án chính xác là 'economic growth'. Passage 1 nêu rõ các thành phố là trung tâm tăng trưởng kinh tế, đổi mới công nghệ và đa dạng văn hóa ('centers of economic growth, technological innovation, and cultural diversity'). Lưu ý của giáo viên: từ 'Innovation' cũng hợp về ngữ pháp, nhưng 'economic growth' sát chủ đề phát triển kinh tế - việc làm của câu này hơn.",
+          evidence: "Cities are centers of economic growth, technological innovation, and cultural diversity, attracting people from different backgrounds.",
+          vocabulary: "economic growth (n.phr): tăng trưởng kinh tế; technological innovation (n.phr): đổi mới công nghệ.",
+          tip: "Khi có hai danh từ cùng phù hợp ngữ pháp trong Word List, hãy ưu tiên từ bám sát trực tiếp cụm từ trọng tâm của mạch văn."
+        },
+        {
+          number: 12,
+          part: 2,
+          blankNumber: 2,
+          type: "summary",
+          passageId: "p1",
+          prompt: "Summary Blank (2) — Question 12",
+          status: "verified",
+          correctAnswer: "transportation system",
+          docNote: "Part 2 Blank (2): transportation system",
+          explanation: "Đáp án chính xác là 'transportation system'. Passage 1 khẳng định hệ thống giao thông công cộng phát triển tốt giúp việc đi lại hằng ngày thuận tiện hơn ('a well-developed public transportation system makes daily commuting more convenient').",
+          evidence: "In addition, a well-developed public transportation system makes daily commuting more convenient.",
+          vocabulary: "transportation system (n.phr): hệ thống giao thông; daily commuting (n.phr): việc đi lại hằng ngày.",
+          tip: "Tính từ 'efficient' đứng trước chỗ trống gợi ý một danh từ chỉ hệ thống vận hành."
+        },
+        {
+          number: 13,
+          part: 2,
+          blankNumber: 3,
+          type: "summary",
+          passageId: "p1",
+          prompt: "Summary Blank (3) — Question 13",
+          status: "verified",
+          correctAnswer: "traffic congestion",
+          docNote: "Part 2 Blank (3): traffic congestion",
+          explanation: "Đáp án chính xác là 'traffic congestion'. Sau từ nối tương phản 'although', đoạn tóm tắt nêu thách thức nghiêm trọng ở đô thị, khớp với chi tiết cư dân thành phố thường xuyên đối mặt với ùn tắc giao thông ('urban residents often face traffic congestion') trong Passage 1.",
+          evidence: "However, urban residents often face traffic congestion, air pollution, high living costs, and a fast-paced lifestyle...",
+          vocabulary: "traffic congestion (n.phr): ùn tắc giao thông.",
+          tip: "Động từ chia số ít 'remains' sau chỗ trống giúp loại trừ các danh từ số nhiều."
+        },
+        {
+          number: 14,
+          part: 2,
+          blankNumber: 4,
+          type: "summary",
+          passageId: "p2",
+          prompt: "Summary Blank (4) — Question 14",
+          status: "verified",
+          correctAnswer: "community spirit",
+          docNote: "Part 2 Blank (4): community spirit",
+          explanation: "Đáp án chính xác là 'community spirit'. Passage 2 mô tả nông thôn có môi trường yên bình và tinh thần cộng đồng gắn kết ('a strong sense of community, where neighbors support one another'), tương đương với 'strong community spirit'.",
+          evidence: "Rural communities usually have a strong sense of community, where neighbors support one another.",
+          vocabulary: "community spirit (n.phr): tinh thần cộng đồng.",
+          tip: "Tính từ 'strong' kết hợp tự nhiên với danh từ 'community spirit'."
+        },
+        {
+          number: 15,
+          part: 2,
+          blankNumber: 5,
+          type: "summary",
+          passageId: "p7",
+          prompt: "Summary Blank (5) — Question 15",
+          status: "verified",
+          correctAnswer: "migration",
+          docNote: "Part 2 Blank (5): migration",
+          explanation: "Đáp án chính xác là 'migration'. Passage 7 nêu nhiều người trẻ di cư từ nông thôn ra thành thị để tìm triển vọng nghề nghiệp tốt hơn ('Many young people migrate from rural areas to cities in search of better career prospects'), tương ứng với 'encourage migration to cities in search of better careers'.",
+          evidence: "Many young people migrate from rural areas to cities in search of better career prospects and higher salaries.",
+          vocabulary: "migration (n): sự di cư; career prospects (n.phr): triển vọng nghề nghiệp.",
+          tip: "Giới từ 'to cities' ngay sau chỗ trống là dấu hiệu nhận biết danh từ chỉ sự di chuyển ('migration')."
+        },
+        {
+          number: 16,
+          part: 2,
+          blankNumber: 6,
+          type: "summary",
+          passageId: "p6",
+          prompt: "Summary Blank (6) — Question 16",
+          status: "verified",
+          correctAnswer: "green spaces",
+          docNote: "Part 2 Blank (6): green spaces",
+          explanation: "Đáp án chính xác là 'green spaces'. Passage 6 khẳng định không gian xanh đô thị giúp cải thiện sức khỏe tinh thần và khuyến khích hoạt động thể chất ('Urban green spaces ... improve people's mental health and encourage physical activity'), khớp hoàn toàn với 'benefit both physical and mental health'.",
+          evidence: "Urban green spaces such as parks, gardens, and tree-lined streets improve people's mental health and encourage physical activity.",
+          vocabulary: "green spaces (n.phr): không gian xanh.",
+          tip: "Động từ 'benefit' ở dạng số nhiều trong mệnh đề quan hệ 'which benefit' cho thấy danh từ cần điền là số nhiều ('green spaces')."
+        },
+        {
+          number: 17,
+          part: 2,
+          blankNumber: 7,
+          type: "summary",
+          passageId: "p5",
+          prompt: "Summary Blank (7) — Question 17",
+          status: "verified",
+          correctAnswer: "smart cities",
+          docNote: "Part 2 Blank (7): smart cities. Teacher note: Blank (7) is awkward in the original wording ('become smart cities'); the exercise has been preserved as supplied.",
+          explanation: "Đáp án chính xác theo tài liệu là 'smart cities'. Passage 5 đề cập nhiều chính phủ đang đầu tư vào các thành phố thông minh ('Many governments are investing in smart cities'). Ghi chú giáo viên: cách diễn đạt 'cities are expected to become smart cities' trong đề gốc hơi lặp từ nhưng được giữ nguyên bản theo tài liệu.",
+          evidence: "Many governments are investing in smart cities, where digital technologies improve public safety, traffic management, and energy efficiency.",
+          vocabulary: "smart cities (n.phr): các thành phố thông minh.",
+          tip: "Chủ ngữ số nhiều 'many cities' đi với cấu trúc 'become + danh từ số nhiều' ('smart cities')."
+        },
+        {
+          number: 18,
+          part: 2,
+          blankNumber: 8,
+          type: "summary",
+          passageId: "p8",
+          prompt: "Summary Blank (8) — Question 18",
+          status: "verified",
+          correctAnswer: "traditional values",
+          docNote: "Part 2 Blank (8): traditional values",
+          explanation: "Đáp án chính xác là 'traditional values'. Passage 8 nhấn mạnh việc phát triển ở vùng nông thôn đi đôi với gìn giữ truyền thống địa phương ('encouraging the preservation of local traditions'), tương ứng với 'without losing their traditional values'.",
+          evidence: "Tourism creates employment opportunities for local people while encouraging the preservation of local traditions and the natural environment.",
+          vocabulary: "traditional values (n.phr): các giá trị truyền thống; preservation (n): sự gìn giữ, bảo tồn.",
+          tip: "Tính từ sở hữu 'their' (của các vùng nông thôn) cần một cụm danh từ phía sau ('traditional values')."
+        }
+      ]
+    };
+
+    // =========================================================================
+    // 2. APPLICATION STATE & LOCALSTORAGE
+    // =========================================================================
+    const STORAGE_KEY_STATE = "ht_english_ielts_reading_state_v2";
+    const STORAGE_KEY_HISTORY = "ht_english_ielts_reading_history_v2";
+
+    let appState = {
+      mode: "practice", // 'practice' | 'exam'
+      currentPart: 1,   // 1 | 2
+      answers: {},      // { qNum: "A" | "economic growth" }
+      locked: {},       // { qNum: true }
+      flagged: {},      // { qNum: true }
+      submitted: false,
+      remainingSeconds: EXAM_DATA.defaultDurationSeconds,
+      elapsedSeconds: 0,
+      fontSize: 15.5,
+      studentName: "",
+      studentClass: "",
+      passageHtmlSnapshot: null
+    };
+
+    let timerInterval = null;
+    let toastTimeout = null;
+
+    function loadStateFromStorage() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY_STATE);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          appState = { ...appState, ...parsed };
+        }
+      } catch (e) {
+        console.warn("Could not read state from LocalStorage:", e);
+      }
+    }
+
+    function saveStateToStorage() {
+      try {
+        const passageEl = document.getElementById("passageContainer");
+        if (passageEl && passageEl.innerHTML.trim() !== "") {
+          appState.passageHtmlSnapshot = passageEl.innerHTML;
+        }
+        localStorage.setItem(STORAGE_KEY_STATE, JSON.stringify(appState));
+      } catch (e) {
+        console.warn("Could not save state to LocalStorage:", e);
+      }
+    }
+
+    function getHistoryFromStorage() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY_HISTORY);
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveAttemptToHistory(summary) {
+      try {
+        const history = getHistoryFromStorage();
+        history.unshift(summary);
+        localStorage.setItem(STORAGE_KEY_HISTORY, JSON.stringify(history.slice(0, 30)));
+      } catch (e) {
+        console.warn("Could not save history:", e);
+      }
+    }
+
+    // =========================================================================
+    // 3. SMART PASSAGE ANALYSIS & RENDERING PASSAGES, QUESTIONS & NAVIGATION
+    // =========================================================================
+    function analyzePartPassageRequirement(partNum) {
+      const partQuestions = EXAM_DATA.questions.filter(q => (partNum === 2 ? q.part === 2 || q.number >= 11 : (q.part === 1 || q.number <= 10)));
+      if (!partQuestions.length) {
+        return { needsPassage: true, passageIds: EXAM_DATA.passages.map(p => p.id) };
+      }
+
+      // Check explicit standalone flag if configured on all questions in a Part
+      const allExplicitStandalone = partQuestions.every(q => q.standalone === true);
+      if (allExplicitStandalone) {
+        return { needsPassage: false, passageIds: [] };
+      }
+
+      // Analyze referenced passageIds, evidence links, and prompt references
+      const validPassageIdSet = new Set(EXAM_DATA.passages.map(p => p.id));
+      const referencedIds = [];
+      const seen = new Set();
+
+      partQuestions.forEach(q => {
+        const pid = q.passageId;
+        const hasValidPid = pid && validPassageIdSet.has(pid);
+        const mentionsPassageInPrompt = /passage\s*\d+/i.test(q.prompt || "");
+        const hasPassageEvidence = Boolean(q.evidence && q.evidence.trim().length > 0);
+
+        if (hasValidPid && !seen.has(pid)) {
+          seen.add(pid);
+          referencedIds.push(pid);
+        } else if ((mentionsPassageInPrompt || hasPassageEvidence) && seen.size === 0) {
+          EXAM_DATA.passages.forEach(p => {
+            if (!seen.has(p.id)) {
+              seen.add(p.id);
+              referencedIds.push(p.id);
+            }
+          });
+        }
+      });
+
+      // Preserve chronological order of passages from EXAM_DATA
+      const orderedIds = EXAM_DATA.passages
+        .map(p => p.id)
+        .filter(id => seen.has(id));
+
+      if (orderedIds.length === 0) {
+        // Fallback safety: if insufficient metadata to prove standalone, keep passages
+        const hasAnyReferenceHint = partQuestions.some(q => q.passageId !== null || /passage|text|article|paragraph/i.test(q.prompt || ""));
+        if (!hasAnyReferenceHint && partQuestions.every(q => q.passageId === null)) {
+          return { needsPassage: false, passageIds: [] };
+        }
+        return { needsPassage: true, passageIds: EXAM_DATA.passages.map(p => p.id) };
+      }
+
+      return {
+        needsPassage: true,
+        passageIds: orderedIds
+      };
+    }
+
+    function applySmartLayoutForCurrentPart() {
+      const workspace = document.getElementById("workspace");
+      const highlightToolGroup = document.querySelector(".sub-toolbar .toolbar-left .tool-group");
+      if (!workspace) return;
+
+      const analysis = analyzePartPassageRequirement(appState.currentPart || 1);
+
+      if (analysis.needsPassage) {
+        workspace.classList.remove("single-column-mode");
+        if (highlightToolGroup) highlightToolGroup.style.display = "flex";
+        renderPassages(analysis.passageIds);
+      } else {
+        workspace.classList.add("single-column-mode");
+        if (highlightToolGroup) highlightToolGroup.style.display = "none";
+      }
+    }
+
+    function renderPassages(allowedPassageIds = null) {
+      const container = document.getElementById("passageContainer");
+      const instructionEl = document.querySelector(".passage-instruction");
+      if (!container) return;
+      container.style.fontSize = appState.fontSize + "px";
+
+      const targetIds = allowedPassageIds || analyzePartPassageRequirement(appState.currentPart || 1).passageIds;
+      const targetSet = new Set(targetIds);
+
+      if (appState.passageHtmlSnapshot) {
+        container.innerHTML = appState.passageHtmlSnapshot;
+      } else {
+        container.innerHTML = EXAM_DATA.passages.map(p => `
+          <article class="passage-block" id="block-${p.id}">
+            <div class="passage-block-title">${escapeHtml(p.title)}</div>
+            <p>${escapeHtml(p.text)}</p>
+          </article>
+        `).join("");
+      }
+
+      // Show only passages relevant to the current Part while preserving user highlights in DOM
+      let visibleCount = 0;
+      container.querySelectorAll(".passage-block").forEach(block => {
+        const pid = block.id.replace("block-", "");
+        if (targetSet.has(pid)) {
+          block.style.display = "";
+          visibleCount++;
+        } else {
+          block.style.display = "none";
+        }
+      });
+
+      if (instructionEl) {
+        const totalPassages = EXAM_DATA.passages.length;
+        const scopeNote = visibleCount < totalPassages
+          ? `Đang hiển thị ${visibleCount}/${totalPassages} đoạn văn liên quan trực tiếp đến Part ${appState.currentPart || 1}. `
+          : "";
+        instructionEl.textContent = `${scopeNote}Bôi đen văn bản bất kỳ trong bài đọc và chọn màu ở thanh công cụ phía trên để đánh dấu dẫn chứng.`;
+      }
+    }
+
+    function renderQuestions() {
+      if (appState.currentPart === 2) {
+        renderPart2SummaryView();
+      } else {
+        renderPart1View();
+      }
+    }
+
+    function renderPart1View() {
+      const container = document.getElementById("activePartView");
+      const part1Questions = EXAM_DATA.questions.filter(q => q.type === "mcq");
+
+      const cardsHtml = part1Questions.map(q => {
+        const userAns = appState.answers[q.number] || null;
+        const isLocked = (appState.mode === "practice" && !!appState.locked[q.number]) || appState.submitted;
+        const isFlagged = !!appState.flagged[q.number];
+
+        let cardStateClass = "";
+        if (isLocked && userAns !== null) {
+          if (q.status === "unsupported") {
+            cardStateClass = "state-unverified";
+          } else if (userAns === q.correctAnswer) {
+            cardStateClass = "state-correct";
+          } else {
+            cardStateClass = "state-incorrect";
+          }
+        } else if (appState.submitted && userAns === null && q.status === "unsupported") {
+          cardStateClass = "state-unverified";
+        }
+
+        let sourceBadgeHtml = "";
+        if (q.status === "unsupported") {
+          sourceBadgeHtml = `<span class="source-flag-badge" title="${escapeHtml(q.docNote)}">⚠ Needs Teacher Review</span>`;
+        } else if (q.status === "inferred") {
+          sourceBadgeHtml = `<span class="source-flag-badge inferred" title="${escapeHtml(q.docNote)}">* Đáp án suy luận</span>`;
+        }
+
+        const optionsHtml = q.options.map(opt => {
+          let optClasses = ["option-item"];
+          if (isLocked) optClasses.push("locked");
+
+          if (userAns === opt.key) {
+            optClasses.push("selected");
+          }
+
+          if (isLocked) {
+            if (q.status !== "unsupported" && opt.key === q.correctAnswer) {
+              optClasses.push("opt-correct");
+            } else if (userAns === opt.key && q.status !== "unsupported" && userAns !== q.correctAnswer) {
+              optClasses.push("opt-wrong");
+            }
+          }
+
+          return `
+            <div class="${optClasses.join(" ")}" onmouseenter="previewQuestionPassage('${q.passageId || ""}')" onclick="selectOption(${q.number}, '${opt.key}')">
+              <span class="opt-key">${opt.key}</span>
+              <span>${escapeHtml(opt.text)}</span>
+            </div>
+          `;
+        }).join("");
+
+        const showFeedback = (appState.mode === "practice" && !!appState.locked[q.number]) || appState.submitted;
+        const feedbackHtml = showFeedback ? buildFeedbackHtml(q, userAns) : "";
+
+        return `
+          <div class="question-card ${cardStateClass}" id="q-card-${q.number}" onclick="highlightRelatedPassageSilently('${q.passageId || ""}')">
+            <div class="q-top-row">
+              <div class="q-prompt-wrap">
+                <span class="q-number-badge">${q.number}</span>
+                <div class="q-prompt-text">${escapeHtml(q.prompt.replace(/^\d+\.\s*/, ""))}</div>
+              </div>
+              <div class="q-actions-right">
+                ${sourceBadgeHtml}
+                <button type="button" class="flag-btn ${isFlagged ? "flagged" : ""}" onclick="toggleFlag(${q.number})">
+                  ${isFlagged ? "⚑ Đã đánh dấu" : "⚐ Đánh dấu"}
+                </button>
+              </div>
+            </div>
+
+            <div class="options-list">
+              ${optionsHtml}
+            </div>
+
+            ${feedbackHtml}
+          </div>
+        `;
+      }).join("");
+
+      container.innerHTML = `
+        <div class="question-group-header" id="part1Header">
+          <div class="group-title">PART 1 – MULTIPLE CHOICE (QUESTIONS 1–10)</div>
+          <div class="group-desc">Choose the correct answer A, B, C or D.</div>
+        </div>
+
+        <div class="teacher-alert-banner">
+          <strong>Lưu ý đối chiếu tài liệu gốc (Answer Key &amp; Source Check):</strong> Tài liệu gốc ghi nhận <strong>5 câu chưa được Passage tương ứng hỗ trợ trực tiếp</strong> (Câu 4, 5, 7, 8, 9) và <strong>2 câu mang tính suy luận</strong> (Câu 6, 10). Hệ thống giữ nguyên 100% nội dung gốc, gắn nhãn <strong>Needs Teacher Review</strong> và loại các câu chưa có căn cứ khỏi mẫu số tính điểm cho đến khi giáo viên duyệt đáp án.
+        </div>
+
+        ${cardsHtml}
+      `;
+    }
+
+    function renderPart2SummaryView() {
+      const container = document.getElementById("activePartView");
+      const part2Questions = EXAM_DATA.questions.filter(q => q.type === "summary");
+      const wordList = EXAM_DATA.summaryCompletion.wordList;
+
+      const selectedWordsLower = new Set(
+        part2Questions
+          .map(q => appState.answers[q.number])
+          .filter(Boolean)
+          .map(w => w.toLowerCase())
+      );
+
+      const wordChipsHtml = wordList.map(word => {
+        const isUsed = selectedWordsLower.has(word.toLowerCase());
+        return `<span class="word-chip ${isUsed ? "used" : ""}">${escapeHtml(word)}</span>`;
+      }).join("");
+
+      const summaryHtml = EXAM_DATA.summaryCompletion.paragraphs.map(para => {
+        const renderedPara = escapeHtml(para).replace(/\[\[(\d+)\]\]/g, (_, blankStr) => {
+          const blankNum = Number(blankStr);
+          const q = part2Questions.find(item => item.blankNumber === blankNum);
+          if (!q) return `(${blankNum})`;
+
+          const userAns = appState.answers[q.number] || "";
+          const isLocked = (appState.mode === "practice" && !!appState.locked[q.number]) || appState.submitted;
+
+          let selectClass = "summary-select";
+          if (isLocked) {
+            if (userAns.toLowerCase() === q.correctAnswer.toLowerCase()) {
+              selectClass += " sel-correct";
+            } else {
+              selectClass += " sel-wrong";
+            }
+          }
+
+          const optionsHtml = [`<option value="">(${blankNum}) — Chọn từ (Q${q.number}) —</option>`]
+            .concat(wordList.map(w => {
+              const selectedAttr = userAns.toLowerCase() === w.toLowerCase() ? "selected" : "";
+              return `<option value="${escapeHtml(w)}" ${selectedAttr}>${escapeHtml(w)}</option>`;
+            }))
+            .join("");
+
+          return `
+            <span class="inline-blank-slot blank-wrapper-highlight" id="blank-slot-${q.number}" onmouseenter="previewQuestionPassage('${q.passageId || ""}')">
+              <span class="blank-num-tag" title="Câu ${q.number} — Chỗ trống (${blankNum}) trong Summary">(${blankNum}) Q${q.number}</span>
+              <select class="${selectClass}" ${isLocked ? "disabled" : ""} onfocus="highlightRelatedPassageSilently('${q.passageId || ""}')" onchange="selectSummaryWord(${q.number}, this.value)" aria-label="Câu ${q.number} - Ô trống ${blankNum}">
+                ${optionsHtml}
+              </select>
+            </span>
+          `;
+        });
+        return `<p>${renderedPara}</p>`;
+      }).join("");
+
+      const answeredPart2Feedbacks = part2Questions.filter(q => {
+        return (appState.mode === "practice" && !!appState.locked[q.number]) || appState.submitted;
+      });
+
+      const feedbacksSectionHtml = answeredPart2Feedbacks.length > 0 ? `
+        <div class="summary-feedback-list" style="margin-top: 16px;">
+          <div style="font-size:13.5px; font-weight:800; color:var(--dark-blue);">GIẢI THÍCH &amp; DẪN CHỨNG CHI TIẾT (PART 2 – QUESTIONS 11–18)</div>
+          ${answeredPart2Feedbacks.map(q => {
+            const userAns = appState.answers[q.number] || null;
+            const isFlagged = !!appState.flagged[q.number];
+            return `
+              <div class="summary-fb-card" id="q-card-${q.number}">
+                <div class="q-top-row" style="margin-bottom:0;">
+                  <div class="q-prompt-wrap">
+                    <span class="q-number-badge">${q.number}</span>
+                    <div class="q-prompt-text">Question ${q.number} — Chỗ trống (${q.blankNumber}) trong đoạn Summary</div>
+                  </div>
+                  <div class="q-actions-right">
+                    <button type="button" class="flag-btn ${isFlagged ? "flagged" : ""}" onclick="toggleFlag(${q.number})">
+                      ${isFlagged ? "⚑ Đã đánh dấu" : "⚐ Đánh dấu"}
+                    </button>
+                  </div>
+                </div>
+                ${buildFeedbackHtml(q, userAns)}
+              </div>
+            `;
+          }).join("")}
+        </div>
+      ` : "";
+
+      container.innerHTML = `
+        <div class="question-group-header" id="part2Header">
+          <div class="group-title">PART 2 – SUMMARY COMPLETION (QUESTIONS 11–18)</div>
+          <div class="group-desc">Complete the summary using the words below. Nhấn vào từng ô trống (1)–(8) trong đoạn Summary để chọn từ phù hợp từ Word List (tương ứng Câu 11–18 trên thanh điều hướng).</div>
+        </div>
+
+        <div class="word-bank-box">
+          <div class="word-bank-title">Word List</div>
+          <div class="word-bank-grid">${wordChipsHtml}</div>
+        </div>
+
+        <div class="summary-paragraph-card">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:10px; flex-wrap:wrap; gap:8px;">
+            <span class="word-bank-title" style="margin-bottom:0;">Summary</span>
+            <div style="display:flex; gap:6px; flex-wrap:wrap;">
+              ${part2Questions.map(q => {
+                const isFlagged = !!appState.flagged[q.number];
+                return `<button type="button" class="flag-btn ${isFlagged ? "flagged" : ""}" onclick="toggleFlag(${q.number})" title="Đánh dấu xem lại Câu ${q.number} (Ô ${q.blankNumber})">${isFlagged ? "⚑" : "⚐"} Q${q.number}</button>`;
+              }).join("")}
+            </div>
+          </div>
+          ${summaryHtml}
+        </div>
+
+        ${feedbacksSectionHtml}
+      `;
+    }
+
+    function buildFeedbackHtml(q, userAns) {
+      const optText = q.type === "mcq" && userAns ? ` (${getOptionText(q, userAns)})` : "";
+      const displayUserAns = userAns ? `${userAns}${optText}` : "Chưa trả lời";
+
+      if (q.status === "unsupported") {
+        return `
+          <div class="feedback-panel fb-unverified">
+            <div class="fb-status-header">
+              <span>⚠ NEEDS TEACHER REVIEW (CHƯA ĐƯỢC PASSAGE HỖ TRỢ ĐẦY ĐỦ)</span>
+              <button type="button" class="btn-locate-passage" onclick="locatePassage('${q.passageId}')">Xem ${q.passageId.toUpperCase()}</button>
+            </div>
+            <div class="fb-grid">
+              <div class="fb-row">
+                <span class="fb-label">YOUR ANSWER:</span>
+                <span class="fb-val"><strong>${escapeHtml(displayUserAns)}</strong></span>
+              </div>
+              <div class="fb-row">
+                <span class="fb-label">CORRECT ANSWER:</span>
+                <span class="fb-val"><strong>Needs Teacher Review (Loại khỏi mẫu số tính điểm cho đến khi giáo viên duyệt đáp án)</strong></span>
+              </div>
+              <div class="fb-row">
+                <span class="fb-label">EXPLANATION:</span>
+                <span class="fb-val">${escapeHtml(q.explanation)}</span>
+              </div>
+              <div class="fb-row">
+                <span class="fb-label">EVIDENCE (ĐOẠN VĂN LIÊN QUAN):</span>
+                <div class="fb-evidence-quote">${escapeHtml(q.evidence)}</div>
+              </div>
+              <div class="fb-row">
+                <span class="fb-label">VOCABULARY:</span>
+                <span class="fb-val">${escapeHtml(q.vocabulary)}</span>
+              </div>
+              <div class="fb-row">
+                <span class="fb-label">IELTS TIP:</span>
+                <span class="fb-val">${escapeHtml(q.tip)}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      const isCorrect = userAns !== null && userAns.toLowerCase() === q.correctAnswer.toLowerCase();
+      const panelClass = isCorrect ? "fb-correct" : "fb-incorrect";
+      const statusTitle = isCorrect
+        ? "✓ CORRECT ANSWER"
+        : (userAns === null ? "✕ UNANSWERED (CHƯA TRẢ LỜI)" : "✕ INCORRECT ANSWER");
+
+      const corrOptText = q.type === "mcq" ? ` (${getOptionText(q, q.correctAnswer)})` : "";
+      const displayCorrectAns = `${q.correctAnswer}${corrOptText}${q.status === "inferred" ? " — *Đáp án suy luận theo tài liệu" : ""}`;
+
+      return `
+        <div class="feedback-panel ${panelClass}">
+          <div class="fb-status-header">
+            <span>${statusTitle}</span>
+            <button type="button" class="btn-locate-passage" onclick="locatePassage('${q.passageId}')">Dẫn chứng tại ${q.passageId.toUpperCase()}</button>
+          </div>
+          <div class="fb-grid">
+            <div class="fb-row">
+              <span class="fb-label">YOUR ANSWER:</span>
+              <span class="fb-val"><strong>${escapeHtml(displayUserAns)}</strong></span>
+            </div>
+            <div class="fb-row">
+              <span class="fb-label">CORRECT ANSWER:</span>
+              <span class="fb-val"><strong>${escapeHtml(displayCorrectAns)}</strong></span>
+            </div>
+            <div class="fb-row">
+              <span class="fb-label">EXPLANATION:</span>
+              <span class="fb-val">${escapeHtml(q.explanation)}</span>
+            </div>
+            <div class="fb-row">
+              <span class="fb-label">EVIDENCE:</span>
+              <div class="fb-evidence-quote">"${escapeHtml(q.evidence)}"</div>
+            </div>
+            <div class="fb-row">
+              <span class="fb-label">VOCABULARY:</span>
+              <span class="fb-val">${escapeHtml(q.vocabulary)}</span>
+            </div>
+            <div class="fb-row">
+              <span class="fb-label">IELTS TIP:</span>
+              <span class="fb-val">${escapeHtml(q.tip)}</span>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderBottomNav() {
+      const strip = document.getElementById("navQuestionsStrip");
+      const currentPartNum = appState.currentPart || 1;
+      const partQuestions = EXAM_DATA.questions.filter(q => (currentPartNum === 2 ? q.number >= 11 : q.number <= 10));
+
+      const qButtonsHtml = partQuestions.map(q => {
+        const userAns = appState.answers[q.number] || null;
+        const isLocked = (appState.mode === "practice" && !!appState.locked[q.number]) || appState.submitted;
+        const isFlagged = !!appState.flagged[q.number];
+
+        let classes = ["nav-q-btn"];
+        if (isFlagged) classes.push("flagged");
+
+        if (isLocked) {
+          if (q.status === "unsupported") {
+            classes.push("res-unverified");
+          } else if (userAns !== null && userAns.toLowerCase() === q.correctAnswer.toLowerCase()) {
+            classes.push("res-correct");
+          } else if (userAns !== null) {
+            classes.push("res-incorrect");
+          }
+        } else if (userAns !== null) {
+          classes.push("answered");
+        }
+
+        return `<button type="button" class="${classes.join(" ")}" onclick="scrollToQuestion(${q.number})">${q.number}</button>`;
+      }).join("");
+
+      if (currentPartNum === 1) {
+        strip.innerHTML = `
+          <span class="nav-part-label">PART 1 – MULTIPLE CHOICE</span>
+          ${qButtonsHtml}
+          <button type="button" class="nav-part-switch-btn" onclick="switchPart(2)">Next Part →</button>
+        `;
+      } else {
+        strip.innerHTML = `
+          <span class="nav-part-label">PART 2 – SUMMARY COMPLETION</span>
+          <button type="button" class="nav-part-switch-btn" onclick="switchPart(1)">← Previous Part</button>
+          ${qButtonsHtml}
+        `;
+      }
+
+      const answeredCount = Object.keys(appState.answers).filter(k => appState.answers[k] !== null && appState.answers[k] !== "").length;
+      document.getElementById("progressDisplay").textContent = `${answeredCount}/${EXAM_DATA.questions.length}`;
+    }
+
+    // =========================================================================
+    // 4. INTERACTIONS: SELECT ANSWER, PRACTICE LOCK, FLAG, NAVIGATION
+    // =========================================================================
+    function selectOption(qNum, optionKey) {
+      if (appState.submitted) return;
+      if (appState.mode === "practice" && appState.locked[qNum]) {
+        showToast("Trong Practice Mode, mỗi câu chỉ được chọn đáp án một lần.");
+        return;
+      }
+
+      appState.answers[qNum] = optionKey;
+
+      if (appState.mode === "practice") {
+        appState.locked[qNum] = true;
+      }
+
+      saveStateToStorage();
+      renderQuestions();
+      renderBottomNav();
+    }
+
+    function selectSummaryWord(qNum, wordValue) {
+      if (appState.submitted) return;
+      if (appState.mode === "practice" && appState.locked[qNum]) {
+        showToast("Trong Practice Mode, mỗi chỗ trống chỉ được chọn đáp án một lần.");
+        return;
+      }
+
+      if (!wordValue) {
+        delete appState.answers[qNum];
+      } else {
+        appState.answers[qNum] = wordValue;
+        if (appState.mode === "practice") {
+          appState.locked[qNum] = true;
+        }
+      }
+
+      saveStateToStorage();
+      renderQuestions();
+      renderBottomNav();
+    }
+
+    function toggleFlag(qNum) {
+      appState.flagged[qNum] = !appState.flagged[qNum];
+      saveStateToStorage();
+      renderQuestions();
+      renderBottomNav();
+    }
+
+    function switchPart(partNum) {
+      if (appState.currentPart === partNum) return;
+      appState.currentPart = partNum;
+      saveStateToStorage();
+      applySmartLayoutForCurrentPart();
+      renderQuestions();
+      renderBottomNav();
+      const qPane = document.getElementById("questionsPane");
+      if (qPane) qPane.scrollTop = 0;
+    }
+
+    function highlightRelatedPassageSilently(passageId) {
+      if (!passageId) return;
+      const block = document.getElementById(`block-${passageId}`);
+      if (!block || block.style.display === "none") return;
+      document.querySelectorAll(".passage-block.active-evidence").forEach(el => el.classList.remove("active-evidence"));
+      block.classList.add("active-evidence");
+    }
+
+    function previewQuestionPassage(passageId) {
+      highlightRelatedPassageSilently(passageId);
+    }
+
+    function scrollToQuestion(qNum) {
+      const targetPart = qNum >= 11 ? 2 : 1;
+      if (appState.currentPart !== targetPart) {
+        appState.currentPart = targetPart;
+        saveStateToStorage();
+        applySmartLayoutForCurrentPart();
+        renderQuestions();
+        renderBottomNav();
+      }
+
+      const qObj = EXAM_DATA.questions.find(item => item.number === qNum);
+      if (qObj && qObj.passageId) {
+        highlightRelatedPassageSilently(qObj.passageId);
+      }
+
+      if (targetPart === 2) {
+        const blankSlot = document.getElementById(`blank-slot-${qNum}`);
+        if (blankSlot) {
+          document.querySelectorAll(".blank-wrapper-highlight.focused-blank").forEach(el => el.classList.remove("focused-blank"));
+          blankSlot.classList.add("focused-blank");
+          blankSlot.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        const fbCard = document.getElementById(`q-card-${qNum}`);
+        if (fbCard) {
+          document.querySelectorAll(".summary-fb-card.focused-card").forEach(el => el.classList.remove("focused-card"));
+          fbCard.classList.add("focused-card");
+        }
+        return;
+      }
+
+      const card = document.getElementById(`q-card-${qNum}`);
+      if (!card) return;
+      document.querySelectorAll(".question-card.focused-card").forEach(el => el.classList.remove("focused-card"));
+      card.classList.add("focused-card");
+      card.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    function locatePassage(passageId) {
+      const workspace = document.getElementById("workspace");
+      if (workspace && workspace.classList.contains("single-column-mode")) {
+        workspace.classList.remove("single-column-mode");
+        renderPassages([passageId]);
+      }
+      const block = document.getElementById(`block-${passageId}`);
+      if (!block) return;
+      if (block.style.display === "none") {
+        block.style.display = "";
+      }
+      document.querySelectorAll(".passage-block.active-evidence").forEach(el => el.classList.remove("active-evidence"));
+      block.classList.add("active-evidence");
+      block.scrollIntoView({ behavior: "smooth", block: "center" });
+    }
+
+    // =========================================================================
+    // 5. MODE SWITCHING & TIMER
+    // =========================================================================
+    function switchMode(newMode) {
+      if (appState.mode === newMode) return;
+
+      const doSwitch = () => {
+        appState.mode = newMode;
+        resetStateVariables();
+        updateModeButtonsUI();
+        saveStateToStorage();
+        renderQuestions();
+        renderBottomNav();
+        startTimer();
+        showToast(`Đã chuyển sang ${newMode === "practice" ? "Practice Mode (Phản hồi tức thì)" : "Exam Mode (Thi thử bấm giờ)"}.`);
+      };
+
+      const hasProgress = Object.keys(appState.answers).length > 0;
+      if (hasProgress && !appState.submitted) {
+        openConfirmModal(
+          "Chuyển chế độ làm bài",
+          `Chuyển sang ${newMode === "practice" ? "Practice Mode" : "Exam Mode"} sẽ làm mới phiên làm bài hiện tại để đảm bảo tính công bằng chấm điểm. Bạn có muốn tiếp tục?`,
+          doSwitch
+        );
+        return;
+      }
+
+      doSwitch();
+    }
+
+    function updateModeButtonsUI() {
+      document.getElementById("btnModePractice").classList.toggle("active", appState.mode === "practice");
+      document.getElementById("btnModeExam").classList.toggle("active", appState.mode === "exam");
+    }
+
+    function startTimer() {
+      if (timerInterval) clearInterval(timerInterval);
+      updateTimerUI();
+
+      timerInterval = setInterval(() => {
+        if (appState.submitted) {
+          clearInterval(timerInterval);
+          return;
+        }
+
+        if (appState.remainingSeconds > 0) {
+          appState.remainingSeconds--;
+          appState.elapsedSeconds++;
+          updateTimerUI();
+          if (appState.elapsedSeconds % 5 === 0) {
+            saveStateToStorage();
+          }
+        } else {
+          clearInterval(timerInterval);
+          finalizeSubmission(true);
+        }
+      }, 1000);
+    }
+
+    function updateTimerUI() {
+      const mins = Math.floor(appState.remainingSeconds / 60);
+      const secs = appState.remainingSeconds % 60;
+      const formatted = `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+      const display = document.getElementById("timerDisplay");
+      const box = document.getElementById("timerBox");
+
+      display.textContent = formatted;
+      box.classList.remove("warning", "danger");
+      if (appState.remainingSeconds <= 60) {
+        box.classList.add("danger");
+      } else if (appState.remainingSeconds <= 180) {
+        box.classList.add("warning");
+      }
+    }
+
+    // =========================================================================
+    // 6. GRADING, SUBMIT & RESULTS MODAL
+    // =========================================================================
+    function handleSubmitTest() {
+      if (appState.submitted) {
+        const stats = calculateResults();
+        showResultModal(stats, false);
+        return;
+      }
+
+      const unanswered = EXAM_DATA.questions.length - Object.keys(appState.answers).length;
+      const msg = unanswered > 0
+        ? `Bạn còn ${unanswered} câu chưa chọn đáp án. Bạn có chắc chắn muốn nộp bài không?`
+        : "Bạn có chắc chắn muốn nộp bài và xem tổng kết kết quả không?";
+
+      openConfirmModal("Nộp bài & Chấm điểm", msg, () => finalizeSubmission(false));
+    }
+
+    function finalizeSubmission(isAutoTimeUp) {
+      const wasAlreadySubmitted = appState.submitted;
+      appState.submitted = true;
+      if (timerInterval) clearInterval(timerInterval);
+
+      EXAM_DATA.questions.forEach(q => {
+        appState.locked[q.number] = true;
+      });
+
+      saveStateToStorage();
+      renderQuestions();
+      renderBottomNav();
+
+      const stats = calculateResults();
+      if (!wasAlreadySubmitted) {
+        saveAttemptToHistory({
+          timestamp: new Date().toLocaleString("vi-VN"),
+          studentName: appState.studentName || "Học sinh HT English",
+          studentClass: appState.studentClass || "—",
+          mode: appState.mode === "practice" ? "Practice Mode" : "Exam Mode",
+          ...stats
+        });
+      }
+
+      showResultModal(stats, isAutoTimeUp);
+    }
+
+    function calculateResults() {
+      const totalQuestions = EXAM_DATA.questions.length;
+      let scorableQuestions = 0;
+      let correctCount = 0;
+      let incorrectCount = 0;
+      let unansweredCount = 0;
+      let unverifiedCount = 0;
+
+      let part1Correct = 0;
+      let part1Scorable = 0;
+      let part2Correct = 0;
+      let part2Scorable = 0;
+
+      EXAM_DATA.questions.forEach(q => {
+        const userAns = appState.answers[q.number] || null;
+        if (q.status === "unsupported") {
+          unverifiedCount++;
+          if (userAns === null) unansweredCount++;
+          return;
+        }
+
+        scorableQuestions++;
+        if (q.number <= 10) part1Scorable++;
+        else part2Scorable++;
+
+        if (userAns === null) {
+          unansweredCount++;
+        } else if (userAns.toLowerCase() === q.correctAnswer.toLowerCase()) {
+          correctCount++;
+          if (q.number <= 10) part1Correct++;
+          else part2Correct++;
+        } else {
+          incorrectCount++;
+        }
+      });
+
+      const accuracyRate = scorableQuestions > 0
+        ? Math.round((correctCount / scorableQuestions) * 100)
+        : 0;
+
+      const mins = Math.floor(appState.elapsedSeconds / 60);
+      const secs = appState.elapsedSeconds % 60;
+      const completionTime = `${mins} phút ${String(secs).padStart(2, "0")} giây`;
+
+      return {
+        totalQuestions,
+        scorableQuestions,
+        correctCount,
+        incorrectCount,
+        unansweredCount,
+        unverifiedCount,
+        part1Correct,
+        part1Scorable,
+        part2Correct,
+        part2Scorable,
+        accuracyRate,
+        completionTime
+      };
+    }
+
+    function showResultModal(stats, isAutoTimeUp) {
+      const body = document.getElementById("resultModalBody");
+      const pctCorrect = Math.round((stats.correctCount / stats.totalQuestions) * 100);
+      const pctIncorrect = Math.round((stats.incorrectCount / stats.totalQuestions) * 100);
+      const pctUnverified = Math.round((stats.unverifiedCount / stats.totalQuestions) * 100);
+
+      const rowsHtml = EXAM_DATA.questions.map(q => {
+        const userAns = appState.answers[q.number] || "—";
+        const qLabel = q.type === "summary" ? `Part 2 — Question ${q.number} (Blank ${q.blankNumber})` : `Part 1 — Question ${q.number}`;
+        let corrText = q.correctAnswer ? `${q.correctAnswer}${q.status === "inferred" ? "*" : ""}` : "Needs Teacher Review";
+        let badgeHtml = "";
+
+        if (q.status === "unsupported") {
+          badgeHtml = `<span class="badge-pill pill-warn">Needs Teacher Review</span>`;
+        } else if (!appState.answers[q.number]) {
+          badgeHtml = `<span class="badge-pill pill-skip">Chưa làm</span>`;
+        } else if (appState.answers[q.number].toLowerCase() === q.correctAnswer.toLowerCase()) {
+          badgeHtml = `<span class="badge-pill pill-pass">Đúng</span>`;
+        } else {
+          badgeHtml = `<span class="badge-pill pill-fail">Sai</span>`;
+        }
+
+        return `
+          <tr onclick="closeModal('resultModal'); scrollToQuestion(${q.number});">
+            <td><strong>${qLabel}</strong></td>
+            <td>${escapeHtml(userAns)}</td>
+            <td><strong>${escapeHtml(corrText)}</strong></td>
+            <td>${badgeHtml}</td>
+          </tr>
+        `;
+      }).join("");
+
+      body.innerHTML = `
+        ${isAutoTimeUp ? `<div class="teacher-alert-banner"><strong>Hết giờ làm bài!</strong> Hệ thống đã tự động nộp bài và tổng hợp kết quả của bạn.</div>` : ""}
+
+        <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; font-size:13.5px; color:var(--text-secondary);">
+          <span><strong>Học viên:</strong> ${escapeHtml(appState.studentName || "Chưa nhập tên")}</span>
+          <span><strong>Lớp:</strong> ${escapeHtml(appState.studentClass || "—")}</span>
+          <span><strong>Chế độ:</strong> ${appState.mode === "practice" ? "Practice Mode" : "Exam Mode"}</span>
+          <span><strong>Thời gian hoàn thành:</strong> ${stats.completionTime}</span>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-box">
+            <div class="stat-val green">${stats.part1Correct} / ${stats.part1Scorable}</div>
+            <div class="stat-lbl">Part 1: Multiple Choice (5 câu chờ GV duyệt)</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val green">${stats.part2Correct} / ${stats.part2Scorable}</div>
+            <div class="stat-lbl">Part 2: Summary Completion</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val">${stats.correctCount} / ${stats.scorableQuestions} (${stats.accuracyRate}%)</div>
+            <div class="stat-lbl">Tổng điểm hợp lệ &amp; Tỷ lệ chính xác</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val red">${stats.incorrectCount}</div>
+            <div class="stat-lbl">Incorrect Answers</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val">${stats.unansweredCount}</div>
+            <div class="stat-lbl">Unanswered Questions</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-val amber">${stats.unverifiedCount}</div>
+            <div class="stat-lbl">Needs Teacher Review</div>
+          </div>
+        </div>
+
+        <div class="progress-bar-container">
+          <div style="display:flex; justify-content:space-between; font-size:12.5px; font-weight:700;">
+            <span>Biểu đồ phân bổ kết quả (${stats.totalQuestions} câu — tỷ lệ tính trên ${stats.scorableQuestions} câu có đáp án hợp lệ)</span>
+            <span>${stats.accuracyRate}% chính xác</span>
+          </div>
+          <div class="progress-bar-track">
+            <div class="seg-correct" style="width:${pctCorrect}%" title="Đúng: ${stats.correctCount}"></div>
+            <div class="seg-incorrect" style="width:${pctIncorrect}%" title="Sai: ${stats.incorrectCount}"></div>
+            <div class="seg-unverified" style="width:${pctUnverified}%" title="Needs Teacher Review: ${stats.unverifiedCount}"></div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-weight:800; font-size:14.5px; margin-bottom:8px;">Review Answers (Nhấn vào từng dòng để chuyển tới Part &amp; câu tương ứng)</div>
+          <table class="review-table">
+            <thead>
+              <tr>
+                <th>Question</th>
+                <th>Your Answer</th>
+                <th>Correct Answer</th>
+                <th>Result</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${rowsHtml}
+            </tbody>
+          </table>
+        </div>
+      `;
+
+      document.getElementById("resultModal").classList.add("open");
+    }
+
+    function openHistoryModal() {
+      const history = getHistoryFromStorage();
+      const body = document.getElementById("historyModalBody");
+
+      if (!history.length) {
+        body.innerHTML = `<p style="color:var(--text-secondary); text-align:center; padding:24px 0;">Chưa có lịch sử nộp bài nào được lưu trên trình duyệt này.</p>`;
+      } else {
+        body.innerHTML = `
+          <table class="review-table">
+            <thead>
+              <tr>
+                <th>Thời gian nộp</th>
+                <th>Học viên / Lớp</th>
+                <th>Chế độ</th>
+                <th>Điểm thực tế</th>
+                <th>Tỷ lệ đúng</th>
+                <th>Thời gian làm</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${history.map(item => `
+                <tr>
+                  <td>${escapeHtml(item.timestamp)}</td>
+                  <td><strong>${escapeHtml(item.studentName)}</strong> (${escapeHtml(item.studentClass)})</td>
+                  <td>${escapeHtml(item.mode)}</td>
+                  <td><strong>${item.correctCount}/${item.scorableQuestions}</strong></td>
+                  <td>${item.accuracyRate}%</td>
+                  <td>${escapeHtml(item.completionTime)}</td>
+                </tr>
+              `).join("")}
+            </tbody>
+          </table>
+        `;
+      }
+
+      document.getElementById("historyModal").classList.add("open");
+    }
+
+    function clearAllHistory() {
+      openConfirmModal(
+        "Xóa lịch sử luyện tập",
+        "Bạn có chắc chắn muốn xóa toàn bộ lịch sử luyện tập đã lưu trên trình duyệt này?",
+        () => {
+          localStorage.removeItem(STORAGE_KEY_HISTORY);
+          openHistoryModal();
+          showToast("Đã xóa toàn bộ lịch sử luyện tập.");
+        }
+      );
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove("open");
+    }
+
+    // =========================================================================
+    // 7. RESET, FONT SIZE, HIGHLIGHT & RESIZER
+    // =========================================================================
+    function resetStateVariables() {
+      appState.currentPart = 1;
+      appState.answers = {};
+      appState.locked = {};
+      appState.flagged = {};
+      appState.submitted = false;
+      appState.remainingSeconds = EXAM_DATA.defaultDurationSeconds;
+      appState.elapsedSeconds = 0;
+    }
+
+    function resetCurrentAttempt(skipConfirm = false) {
+      const doReset = () => {
+        resetStateVariables();
+        saveStateToStorage();
+        applySmartLayoutForCurrentPart();
+        renderQuestions();
+        renderBottomNav();
+        startTimer();
+        showToast("Đã làm mới bài thi. Chúc bạn làm bài tốt!");
+      };
+
+      if (skipConfirm) {
+        doReset();
+      } else {
+        openConfirmModal(
+          "Làm lại bài từ đầu",
+          "Toàn bộ đáp án đã chọn trong lượt làm bài hiện tại sẽ được đặt lại. Bạn có muốn tiếp tục?",
+          doReset
+        );
+      }
+    }
+
+    function saveCandidateInfo() {
+      appState.studentName = document.getElementById("studentNameInput").value;
+      appState.studentClass = document.getElementById("studentClassInput").value;
+      saveStateToStorage();
+    }
+
+    function changeFontSize(delta) {
+      appState.fontSize = Math.min(22, Math.max(13, appState.fontSize + delta));
+      document.getElementById("passageContainer").style.fontSize = appState.fontSize + "px";
+      saveStateToStorage();
+    }
+
+    function resetFontSize() {
+      appState.fontSize = 15.5;
+      document.getElementById("passageContainer").style.fontSize = appState.fontSize + "px";
+      saveStateToStorage();
+    }
+
+    function applyHighlight(color) {
+      const selection = window.getSelection();
+      if (!selection || selection.isCollapsed) {
+        showToast("Hãy bôi đen một đoạn văn bản trong Passage bên trái trước khi chọn màu.");
+        return;
+      }
+
+      const range = selection.getRangeAt(0);
+      const passageContainer = document.getElementById("passageContainer");
+      if (!passageContainer.contains(range.commonAncestorContainer)) {
+        showToast("Chức năng Highlight chỉ áp dụng cho nội dung bài đọc bên cột trái.");
+        return;
+      }
+
+      try {
+        const mark = document.createElement("mark");
+        mark.className = `user-hl-${color}`;
+        range.surroundContents(mark);
+        selection.removeAllRanges();
+        saveStateToStorage();
+      } catch (e) {
+        showToast("Vui lòng bôi đen văn bản trong cùng một đoạn để đánh dấu.");
+      }
+    }
+
+    function clearHighlights() {
+      appState.passageHtmlSnapshot = null;
+      applySmartLayoutForCurrentPart();
+      saveStateToStorage();
+      showToast("Đã xóa toàn bộ vùng highlight trên bài đọc.");
+    }
+
+    function initResizer() {
+      const resizer = document.getElementById("paneResizer");
+      const leftPane = document.getElementById("passagePane");
+      const workspace = document.getElementById("workspace");
+      let isDragging = false;
+
+      resizer.addEventListener("mousedown", (e) => {
+        isDragging = true;
+        resizer.classList.add("dragging");
+        document.body.style.cursor = "col-resize";
+        e.preventDefault();
+      });
+
+      document.addEventListener("mousemove", (e) => {
+        if (!isDragging) return;
+        const rect = workspace.getBoundingClientRect();
+        let newWidth = e.clientX - rect.left;
+        const minW = 280;
+        const maxW = rect.width - 320;
+        if (newWidth < minW) newWidth = minW;
+        if (newWidth > maxW) newWidth = maxW;
+        leftPane.style.width = newWidth + "px";
+      });
+
+      document.addEventListener("mouseup", () => {
+        if (isDragging) {
+          isDragging = false;
+          resizer.classList.remove("dragging");
+          document.body.style.cursor = "";
+        }
+      });
+    }
+
+    // =========================================================================
+    // 8. HELPERS & INIT
+    // =========================================================================
+    function showToast(message) {
+      const toast = document.getElementById("toastNotice");
+      if (!toast) return;
+      toast.textContent = message;
+      toast.classList.add("show");
+      if (toastTimeout) clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 3000);
+    }
+
+    function openConfirmModal(title, message, onConfirm) {
+      const modal = document.getElementById("confirmModal");
+      const titleEl = document.getElementById("confirmModalTitle");
+      const msgEl = document.getElementById("confirmModalMessage");
+      const okBtn = document.getElementById("confirmModalOkBtn");
+      if (!modal || !titleEl || !msgEl || !okBtn) return;
+
+      titleEl.textContent = title;
+      msgEl.textContent = message;
+      okBtn.onclick = () => {
+        closeModal("confirmModal");
+        if (typeof onConfirm === "function") {
+          onConfirm();
+        }
+      };
+      modal.classList.add("open");
+    }
+
+    function getOptionText(q, key) {
+      if (!q.options) return "";
+      const found = q.options.find(o => o.key === key);
+      return found ? found.text : "";
+    }
+
+    function escapeHtml(str) {
+      if (str === null || str === undefined) return "";
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    window.addEventListener("DOMContentLoaded", () => {
+      loadStateFromStorage();
+
+      document.getElementById("studentNameInput").value = appState.studentName || "";
+      document.getElementById("studentClassInput").value = appState.studentClass || "";
+      updateModeButtonsUI();
+
+      applySmartLayoutForCurrentPart();
+      renderQuestions();
+      renderBottomNav();
+      initResizer();
+
+      if (!appState.submitted) {
+        startTimer();
+      } else {
+        updateTimerUI();
+      }
+    });
+  </script>
+</body>
+</html>
