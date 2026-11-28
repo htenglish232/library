@@ -38,7 +38,20 @@ function allowed(){return STATE.started && !STATE.submitted}
 function closeMenu(){if(menu){menu.remove();menu=null}}
 document.addEventListener('click',e=>{if(menu&&!menu.contains(e.target))closeMenu()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
-window.addEventListener('resize',closeMenu);
+// Keep the active text input mounted when the mobile keyboard changes the viewport.
+function keepTypingMenuVisible(){
+  if(!menu?.querySelector('input:focus'))return false;
+  const viewport=window.visualViewport;
+  const left=viewport?.offsetLeft ?? 0, top=viewport?.offsetTop ?? 0;
+  const right=left+(viewport?.width ?? innerWidth), bottom=top+(viewport?.height ?? innerHeight);
+  const rect=menu.getBoundingClientRect();
+  menu.style.left=Math.max(left+8,Math.min(rect.left,right-rect.width-8))+'px';
+  menu.style.top=Math.max(top+8,Math.min(rect.top,bottom-rect.height-8))+'px';
+  return true;
+}
+window.addEventListener('resize',()=>{if(!keepTypingMenuVisible())closeMenu()});
+window.visualViewport?.addEventListener('resize',keepTypingMenuVisible);
+window.visualViewport?.addEventListener('scroll',keepTypingMenuVisible);
 
 function hideFeedback(){
   $('feedback').hidden = true;

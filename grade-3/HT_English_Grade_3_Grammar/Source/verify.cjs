@@ -4,7 +4,7 @@ const path = require('node:path');
 const {pathToFileURL} = require('node:url');
 const assert = require('node:assert/strict');
 const {chromium} = require(process.env.PLAYWRIGHT_MODULE || 'playwright');
-const folder = path.resolve('outputs/HTML_Output');
+const folder = path.join(__dirname,'../HTML_Output');
 const all = JSON.parse(fs.readFileSync(path.join(folder,'manifest.json'),'utf8'));
 const checked = [];
 const chrome = process.env.CHROME_EXECUTABLE;
@@ -58,7 +58,30 @@ async function answer(page,q,value,mode){
     assert(!(await page.locator('#feedback').isVisible()));
     await page.locator('.menu').getByRole('button',{name:'Xác nhận',exact:true}).click({timeout:4500});
   }else if(q.kind==='entry'){
-    await page.locator('.menu input').fill(value);
+    const input=page.locator('.menu input');
+    const viewport=page.viewportSize();
+    if(viewport.width<500){
+      const typed=value.slice(0,1);
+      await input.fill(typed);
+      await page.evaluate(()=>window.addEventListener('resize',()=>{
+        document.body.dataset.entryResize='observed';
+      },{once:true}));
+      await page.setViewportSize({...viewport,height:viewport.height-320});
+      try {
+        await page.waitForFunction(()=>document.body.dataset.entryResize==='observed');
+        assert(await input.evaluate(el=>document.activeElement===el),q.id+' lost focus on resize');
+        assert.equal(await input.inputValue(),typed);
+        assert(await page.locator('.menu').evaluate(el=>{
+          const viewport=window.visualViewport;
+          const {bottom,top}=el.getBoundingClientRect();
+          return top>=viewport.offsetTop && bottom<=viewport.offsetTop+viewport.height;
+        }),q.id+' entry menu left the visible viewport');
+      } finally {
+        await page.setViewportSize(viewport);
+        await page.evaluate(()=>delete document.body.dataset.entryResize);
+      }
+    }
+    await input.fill(value);
     await page.locator('.menu button').click({timeout:4500});
   }
 }
