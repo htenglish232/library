@@ -10,6 +10,7 @@ function escape(value) { return value.replace(/[&<>"']/g, c => ({'&':'&amp;','<'
 function updateStats() { const total=DATA.reduce((n,g)=>n+g.units.reduce((m,u)=>m+u.lessons.length,0),0); stats.textContent=`${total} bài học`; }
 function toggle(el){ el.classList.toggle('open'); }
 function unitNumber(u){ const m=u.name.match(/Unit\s+(\d+)/i); return m?Number(m[1]):999; }
+function compareLessonUnits(a,b){ return unitNumber({name:a.title})-unitNumber({name:b.title}); }
 export function render(q=''){
  tabs.innerHTML=''; content.innerHTML=''; let found=false;
  DATA.forEach((g,gi)=>{
@@ -63,6 +64,7 @@ export function render(q=''){
        }
        const lessons = u.lessons.filter(l => !q || `${g.grade} ${u.name} ${l.title}`.toLowerCase().includes(needle));
        if (!lessons.length) continue;
+       if ((g.grade === 'Grade 4' || g.grade === 'Grade 5') && u.name === 'Bổ trợ ngữ pháp') lessons.sort(compareLessonUnits);
        found = true;
        const folder = document.createElement('div'); folder.className = 'folder' + (q ? ' open' : '');
        folder.innerHTML = `<div class="folder-head"><div class="folder-title"><span class="folder-icon">📁</span><h3>${escape(u.name)}</h3></div><div><span class="badge">${lessons.length} bài</span> <span class="chev">›</span></div></div><div class="folder-body"><div class="grammar-list"></div></div>`;
@@ -79,7 +81,7 @@ export function render(q=''){
      const all=g.units.flatMap(u=>u.lessons).filter(l=>!q || (g.grade+' Bổ trợ ngữ pháp '+l.title).toLowerCase().includes(needle));
      if(all.length){
        found=true;
-       all.sort((a,b)=>{const na=Number((a.title.match(/Unit\s+(\d+)/i)||[])[1]||999), nb=Number((b.title.match(/Unit\s+(\d+)/i)||[])[1]||999); return na-nb;});
+       all.sort(compareLessonUnits);
        const folder=document.createElement('div'); folder.className='folder'+(q?' open':'');
        folder.innerHTML=`<div class="folder-head"><div class="folder-title"><span class="folder-icon">📁</span><h3>Bổ trợ ngữ pháp</h3></div><div><span class="badge">${all.length} bài</span> <span class="chev">›</span></div></div><div class="folder-body"><div class="grammar-list"></div></div>`;
        folder.querySelector('.folder-head').onclick=()=>toggle(folder);

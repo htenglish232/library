@@ -2,6 +2,7 @@
 import re, base64, functools, http.server, json, os, secrets, shutil, subprocess, threading, urllib.request
 from pathlib import Path
 from playwright.sync_api import sync_playwright, expect
+from practice_browser_controls import control
 
 ROOT = Path(__file__).resolve().parents[1]
 assert os.environ.get('FIRESTORE_EMULATOR_HOST') == '127.0.0.1:8080'
@@ -120,6 +121,7 @@ with sync_playwright() as p:
             expect(grammar.locator('a.lesson:visible')).to_have_count(30)
             manifest=json.loads((ROOT/'grade-3/HT_English_Grade_3_Grammar/HTML_Output/manifest.json').read_text(encoding='utf-8'))
             assert grammar.locator('a.lesson').evaluate_all('(els)=>els.map(e=>e.getAttribute("href").split("/").at(-1))')==[record['file'] for record in manifest]
+            print('PASS authenticated Grade 3 Grammar shows all 30 worksheets in manifest order',flush=True)
         if grade['grade']=='Grade 8':
             schools=teacher.locator('.exam-school-folder .school-folder')
             assert schools.count()==17
@@ -168,10 +170,10 @@ with sync_playwright() as p:
     expect(teacher.locator('#question-position')).to_have_text('Câu 1 / 42')
     teacher.locator('#answer-area input[value="C"]').check();teacher.locator('#check-answer').click()
     expect(teacher.locator('#xp-total')).to_have_text('✦ 10 XP')
-    teacher.locator('#results-button').click();teacher.locator('#continue-playing').click()
+    control(teacher,'#results-button').click();teacher.locator('#continue-playing').click()
     expect(teacher.locator('#xp-total')).to_have_text('✦ 10 XP')
     for qid in ['q1','q7']:
-        teacher.locator('#jump-question').select_option(qid)
+        control(teacher,'#jump-question').select_option(qid)
         teacher.wait_for_function('document.querySelector("audio").readyState>=1')
         teacher.locator('#audio-toggle').click();teacher.wait_for_function('!document.querySelector("audio").paused')
         teacher.locator('#audio-toggle').click()
