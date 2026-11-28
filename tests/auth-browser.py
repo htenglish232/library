@@ -40,7 +40,7 @@ release=json.loads((ROOT/'catalog/current-library-catalog.json').read_text())
 legacy_count=json.loads((ROOT/'catalog/library-catalog.json').read_text())['count']
 release_additions=release['count']-legacy_count
 release_ids=json.loads(subprocess.check_output(['node','--input-type=module','-e',"import {RELEASE_IDS} from './assets/catalog-release.js'; console.log(JSON.stringify(RELEASE_IDS));"],cwd=ROOT,text=True))
-original_html=subprocess.check_output(['git','show',baseline+':index.html'],cwd=ROOT,text=True)
+original_html=subprocess.check_output(['git','show',baseline+':index.html'],cwd=ROOT,encoding='utf-8')
 blocked=[]
 sdk_probes=[]
 
@@ -101,8 +101,11 @@ with sync_playwright() as p:
     for grade in data:
         if grade['grade']=='Apps for IELTS': continue
         teacher.get_by_role('button',name=grade['grade'],exact=True).click()
-        baseline_page.get_by_role('button',name=grade['grade'],exact=True).click()
-        expected=baseline_page.locator('a.lesson').evaluate_all('(els)=>els.map(e=>e.getAttribute("href"))')
+        baseline_grade=baseline_page.get_by_role('button',name=grade['grade'],exact=True)
+        expected=[]
+        if baseline_grade.count():
+            baseline_grade.click()
+            expected=baseline_page.locator('a.lesson').evaluate_all('(els)=>els.map(e=>e.getAttribute("href"))')
         actual=teacher.locator('a.lesson').evaluate_all('(els)=>els.map(e=>e.getAttribute("href"))')
         game_href='grade-8/De_thi_GHK1/1_THCS Truc Tuan/truc-tuan-game-test.html'
         without_game=[href for href in actual if href!=game_href and not href.endswith('/practice-game-pilot.html')]
@@ -111,6 +114,12 @@ with sync_playwright() as p:
         assert set(actual)==approved,(grade['grade'],'only approved recovered links added')
         exam_hrefs={l['href'] for u in grade['units'] if u.get('type')=='exam-folder' for l in u['lessons']}
         assert [h for h in without_game if h in expected and h not in exam_hrefs]==[h for h in expected if h not in exam_hrefs],(grade['grade'],'current non-exam order')
+        if grade['grade']=='Grade 3':
+            grammar=teacher.locator('.folder').filter(has=teacher.get_by_role('heading',name='Grammar',exact=True))
+            grammar.locator('.folder-head').click()
+            expect(grammar.locator('a.lesson:visible')).to_have_count(30)
+            manifest=json.loads((ROOT/'grade-3/HT_English_Grade_3_Grammar/HTML_Output/manifest.json').read_text(encoding='utf-8'))
+            assert grammar.locator('a.lesson').evaluate_all('(els)=>els.map(e=>e.getAttribute("href").split("/").at(-1))')==[record['file'] for record in manifest]
         if grade['grade']=='Grade 8':
             schools=teacher.locator('.exam-school-folder .school-folder')
             assert schools.count()==17

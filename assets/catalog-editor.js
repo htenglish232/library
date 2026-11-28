@@ -1,9 +1,9 @@
-import { addReleaseLessons, RELEASE_IDS } from './catalog-release.js?v=20261024-all-dual';
+import { addReleaseLessons, RELEASE_IDS } from './catalog-release.js?v=20261128-grade3-review';
 import { db, auth } from './firebase-client.js';
 import { ADMIN_UID, firebaseConfig, useEmulators } from './firebase-config.js';
 import { collection, doc, getDocsFromServer, getDocFromServer } from './firebase-sdk.js';
-import { inspectCatalog, managedPayload, validateBackup, decodeCatalog, storedCatalogData, MAX_CATALOG_BYTES } from './catalog-data.js';
-import { loadCatalog, saveCatalog, catalogRevision } from './catalog-store.js';
+import { inspectCatalog, managedPayload, validateBackup, decodeCatalog, storedCatalogData, MAX_CATALOG_BYTES } from './catalog-data.js?v=20261128-grade3-review';
+import { loadCatalog, saveCatalog, catalogRevision } from './catalog-store.js?v=20261128-grade3-review';
 import { explainAuthError } from './session.js';
 
 const $ = id => document.getElementById(id);

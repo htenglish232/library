@@ -68,7 +68,7 @@ test('typed document backup preserves large integers, nanoseconds, bytes, maps, 
     const result = await collectPreflight(fixture({ status: 200 }).request);
     await savePreflight(result, folder);
     assert.deepEqual(JSON.parse(await readFile(join(folder, 'preflight.json'), 'utf8')).catalog.document, originalDoc);
-    assert.equal((await stat(join(folder, 'preflight.json'))).mode & 0o777, 0o600);
+    if (process.platform !== 'win32') assert.equal((await stat(join(folder, 'preflight.json'))).mode & 0o777, 0o600);
     execFileSync(process.execPath, ['tools/prepare-firebase-rollback.mjs', folder]);
     const plan = JSON.parse(await readFile(join(folder, 'rollback-plan.json'), 'utf8'));
     assert.equal(plan.execute, false); assert.deepEqual(plan.firestoreCommitTemplate.writes[0].update.fields, originalDoc.fields);

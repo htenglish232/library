@@ -1,7 +1,7 @@
 import { db, auth } from './firebase-client.js';
 import { ADMIN_UID } from './firebase-config.js';
 import { doc, getDocFromServer, runTransaction, serverTimestamp } from './firebase-sdk.js';
-import { decodeCatalog, managedPayload, storedCatalogData, encodeCatalogData } from './catalog-data.js';
+import { decodeCatalog, managedPayload, storedCatalogData, encodeCatalogData } from './catalog-data.js?v=20261128-grade3-review';
 
 export function catalogRevision(fields) {
   if (fields.schemaVersion === 1) return 0;

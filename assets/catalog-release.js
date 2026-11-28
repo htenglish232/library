@@ -1,7 +1,7 @@
 import {GRADE7_DUAL_ID,GRADE7_DUAL_LINKS} from './grade7-dual-links.js';
 import {GRADE6_DUAL_ID, GRADE6_DUAL_LINKS} from './grade6-dual-links.js';
 import {GRADE8_PILOT_DUAL_ID, GRADE8_PILOT_DUAL_LINKS, GRADE8_REMAINING_DUAL_ID, GRADE8_REMAINING_DUAL_LINKS} from './grade8-dual-links.js';
-import { storedCatalogData } from './catalog-data.js';
+import { LEGACY_RELEASE_IDS, storedCatalogData } from './catalog-data.js?v=20261128-grade3-review';
 export const RELEASE_ID = '946b05b6d128cd88ac8ba09431cb645ae80a453d';
 // Newly published main-branch links; never writes to Firebase.
 // Existing server titles, visibility, custom items and ordering are preserved.
@@ -85,23 +85,23 @@ const GRADE6_REWRITE_ADDITIONS = [{
   grade: 'Grade 6', unit: 'Viết lại câu',
   lesson: {title: 'Game Chém Hoa Quả – Viết lại câu (70 câu)', href: 'grade-6/viet-lai-cau/game-chem-hoa-qua.html'}
 }];
-const GRADE3_EXAM_RELEASE_ID = 'ht-grade3-ghk1-de1-20261105';
+const GRADE3_EXAM_RELEASE_ID = LEGACY_RELEASE_IDS.grade3Exam;
 const GRADE3_EXAM_ADDITIONS = [{
   grade: 'Grade 3', unit: 'ĐỀ THI GHK 1',
   lesson: {title: 'Đề 1 – Global Success 3', href: 'grade-3/De_thi_GHK_1/de-1.html'}
 }];
-const GRADE3_GHK1_DE4_RELEASE_ID = 'ht-grade3-ghk1-de4-20261106';
+const GRADE3_GHK1_DE4_RELEASE_ID = LEGACY_RELEASE_IDS.grade3Exam4;
 const GRADE3_GHK1_DE4_ADDITIONS = [{
   grade: 'Grade 3', unit: 'ĐỀ THI GHK 1',
   lesson: {title: 'Đề 4 – Global Success 3', href: 'grade-3/De_thi_GHK_1/de-4.html'}
 }];
-const GRADE3_GHK1_MORE_RELEASE_ID = 'ht-grade3-ghk1-de2-de5-20261106';
+const GRADE3_GHK1_MORE_RELEASE_ID = LEGACY_RELEASE_IDS.grade3MoreExams;
 const GRADE3_GHK1_MORE_ADDITIONS = [
   {grade: 'Grade 3', unit: 'ĐỀ THI GHK 1', lesson: {title: 'Đề 2 – Global Success 3', href: 'grade-3/De_thi_GHK_1/de-2.html'}, before: 'grade-3/De_thi_GHK_1/de-4.html'},
   {grade: 'Grade 3', unit: 'ĐỀ THI GHK 1', lesson: {title: 'Đề 3 – Global Success 3', href: 'grade-3/De_thi_GHK_1/de-3.html'}, before: 'grade-3/De_thi_GHK_1/de-4.html'},
   {grade: 'Grade 3', unit: 'ĐỀ THI GHK 1', lesson: {title: 'Đề 5 – Global Success 3', href: 'grade-3/De_thi_GHK_1/de-5.html'}}
 ];
-const GRADE5_HKI_RELEASE_ID = 'ht-grade5-hki-de1-de5-20261107';
+const GRADE5_HKI_RELEASE_ID = LEGACY_RELEASE_IDS.grade5Hki;
 const GRADE5_HKI_ADDITIONS = [1, 2, 3, 4, 5].map(n => ({
   grade: 'Grade 5', unit: 'Đề thi HK I Grade 5',
   lesson: {title: `Đề ${n} – Học kỳ I · Global Success 5`, href: `grade-5/De_Thi_HK1/de-${n}.html`}

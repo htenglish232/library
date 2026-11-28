@@ -9,6 +9,7 @@ import tempfile
 import zipfile
 from hashlib import sha256
 from lessons import lessons
+from report_review import with_report_review
 
 ROOT=Path(__file__).resolve().parent
 TEMPLATE=ROOT/'worksheet.template.html'
@@ -157,8 +158,7 @@ def main():
         try:
             path=out/r['file']
             if label=='Unit 01':
-                path.write_bytes(sample)
-                r['sha256']=sha256(sample).hexdigest()
+                path.write_bytes(with_report_review(sample.decode('utf-8'), sample=True).encode('utf-8'))
                 r['notes']=[SAMPLE_NOTE]
             else:
                 lesson=lessons[label]
@@ -175,9 +175,11 @@ def main():
                     'DATA':safely_embed(dict(title=title,key='HT_ENGLISH_GRAMMAR_'+label.upper().replace(' ','_')+'_V1',
                                           pages=pages,questions=questions,targets=lesson.targets,reviewSlots=lesson.review_slots))
                 }
-                path.write_text(re.sub(r'%%([A-Z_]+)%%',lambda m:substitutions[m[1]],template),encoding='utf-8')
+                html = re.sub(r'%%([A-Z_]+)%%',lambda m:substitutions[m[1]],template)
+                path.write_bytes(with_report_review(html).encode('utf-8'))
                 r['notes']=lesson.notes[:]
                 r['teacherGradedSlots']=[slot['id'] for slot in lesson.review_slots]
+            r['sha256']=sha256(path.read_bytes()).hexdigest()
             r['generated']=True
             r['status']='Needs review'
         except Exception as error:

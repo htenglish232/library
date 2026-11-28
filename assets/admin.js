@@ -2,8 +2,8 @@ import { auth, db } from './firebase-client.js';
 import { ADMIN_UID, firebaseConfig, useEmulators } from './firebase-config.js';
 import { collection, onSnapshot, doc, setDoc, serverTimestamp, getDocFromServer, runTransaction } from './firebase-sdk.js';
 import { setupLogin, observeAccess, showSession, explainAuthError } from './session.js';
-import { validateCatalog, decodeCatalog } from './catalog-data.js';
-import { setEditorSession } from './catalog-editor.js?v=20261024-all-dual';
+import { validateCatalog, decodeCatalog } from './catalog-data.js?v=20261128-grade3-review';
+import { setEditorSession } from './catalog-editor.js?v=20261128-grade3-review';
 
 setupLogin();
 let stopMembers = () => {}, candidate = null, catalogBeforeImport = null, epoch = 0, busy = false;

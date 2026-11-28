@@ -84,6 +84,14 @@ export function visibleCatalog(data) {
   return data.filter(g => !g.hidden).map(g => ({ ...g, units: g.units.filter(u => !u.hidden).map(u => ({ ...u, lessons: u.lessons.filter(l => !l.hidden) })) }));
 }
 
+export const LEGACY_RELEASE_IDS = Object.freeze({
+  grade5Hki: 'ht-grade5-hki-de1-de5-20261107',
+  grade3Exam: 'ht-grade3-ghk1-de1-20261105',
+  grade3Exam4: 'ht-grade3-ghk1-de4-20261106',
+  grade3MoreExams: 'ht-grade3-ghk1-de2-de5-20261106',
+});
+const legacyReleaseIds = new Set(Object.values(LEGACY_RELEASE_IDS));
+
 // v1/v2 legacy arrays remain valid. Release adoption metadata stays inside dataJson,
 // so the existing Firestore fields and Rules do not need to change.
 export function storedCatalogData(fields) {
@@ -92,7 +100,7 @@ export function storedCatalogData(fields) {
   if (fields.schemaVersion !== 2 || !encoded || typeof encoded !== 'object'
     || Object.keys(encoded).some(key => !['data', 'releaseApplied'].includes(key))
     || !Array.isArray(encoded.data) || !Array.isArray(encoded.releaseApplied)
-    || encoded.releaseApplied.some(id => typeof id !== 'string' || !/^[0-9a-f]{40}$/.test(id))) throw new Error('Thông tin bản phát hành danh mục không hợp lệ.');
+    || encoded.releaseApplied.some(id => typeof id !== 'string' || (!legacyReleaseIds.has(id) && !/^[0-9a-f]{40}$/.test(id)))) throw new Error('Thông tin bản phát hành danh mục không hợp lệ.');
   return encoded;
 }
 export function encodeCatalogData(data, releaseApplied = []) {

@@ -31,7 +31,7 @@ function init(){PAGE_IMAGES.forEach((src,i)=>{let p=document.createElement('sect
 function update(q){let v=views[q.id],a=STATE.answers[q.id],graded=STATE.submitted||STATE.mode==='practice',color=graded?(correct(q,a)?'good':'bad'):'';v.buttons.forEach(b=>b.disabled=STATE.submitted);if(v.line){v.line.style.display=a?'':'none';if(a&&targets[a]){v.line.setAttribute('x2',targets[a][0]);v.line.setAttribute('y2',targets[a][1]);v.line.setAttribute('stroke',graded?(correct(q,a)?'#13803c':'#d32936'):'#1767b5')}return}v.marks.forEach((m,i)=>{let selected=!!a&&(q.kind==='word'||q.opts[i][0]===a);m.hidden=!selected;m.className='mark '+q.kind+' '+(selected?color:'');m.textContent=selected?({tick:'✓',cross:'×',word:a,circle:''}[q.kind]||''):''})}
 function progress(){let n=QUESTIONS.filter(q=>STATE.answers[q.id]).length;$('count').textContent=n+'/32';$('progress').value=n}function screen(){const show=(STATE.started||STATE.submitted)&&!!(STATE.teacher||'').trim(); $('welcome').hidden=show;document.body.classList.toggle('welcome-active',!show);for(const el of [$('studyHeader'),document.querySelector('main'),document.querySelector('footer'),$('studySide')])el.hidden=!show;}
 function refresh(){QUESTIONS.forEach(update);progress();$('name').value=STATE.name;$('cls').value=STATE.cls;$('teacher').value=STATE.teacher||'';document.querySelectorAll('[name=studyMode]').forEach(e=>{e.checked=e.value===STATE.mode;e.disabled=false});$('start').textContent=(STATE.started||STATE.submitted)?'Tiếp tục làm bài':'Bắt đầu làm bài';$('submit').disabled=STATE.submitted;$('result').hidden=!STATE.submitted;screen()}
-function score(){let right=0,wrong=0,blank=0,sections={A:[0,0,0],B:[0,0,0],C:[0,0,0],D:[0,0,0]};for(const q of QUESTIONS){let a=STATE.answers[q.id],i=!a?2:correct(q,a)?0:1;sections[q.id[0]][i]++;if(i===0)right++;else if(i===1)wrong++;else blank++}return {right,wrong,blank,sections,grade:(right/32*10).toFixed(1)}}function report(animate=false){let r=score(),body=$('reportBody');body.replaceChildren();function text(tag,t){let e=document.createElement(tag);e.textContent=t;body.append(e)}const head=document.createElement('section');head.className='reportHead';const identity=document.createElement('div');identity.className='reportIdentity';const logo=$('brandLogo').cloneNode();logo.removeAttribute('id');logo.className='';identity.append(logo);const brand=document.createElement('div');brand.innerHTML='<strong>HT English Center</strong><p>SĐT: 0962240866</p>';identity.append(brand);head.append(identity);const unit=document.createElement('h2');unit.className='reportUnit';unit.textContent='Unit 01 – Person / Place / Thing / Animal';head.append(unit);const grid=document.createElement('div');grid.className='reportGrid';const info=document.createElement('div');info.className='reportInfo';for(const [label,value] of [['Học sinh',STATE.name],['Lớp',STATE.cls],['Giáo viên chủ nhiệm',STATE.teacher||'Chưa cập nhật']]){const p=document.createElement('p');p.textContent=label+': '+value;info.append(p)}grid.append(info);const grade=document.createElement('div');grade.className='redGrade'+(animate===true?' writeOnce':'');const ink=document.createElement('div');ink.className='gradeInk';const n=Number(r.grade);ink.textContent=String(n).replace('.',',');grade.setAttribute('aria-label','Điểm '+ink.textContent+' trên 10');grade.append(ink);grade.insertAdjacentHTML('beforeend','<svg viewBox="0 0 120 22" aria-hidden="true"><path d="M5 8 Q52 1 115 5"/><path d="M10 18 Q62 9 110 14"/></svg>');grid.append(grade);head.append(grid);const comment=document.createElement('p');comment.className='teacherComment';comment.textContent=n>=9?'Excellent! Well done!':n>=8?'Very good!':n>=7?'Good job!':n>=5?'Keep practicing!':'Keep trying! You can do it!';head.append(comment);body.append(head);if(r.right===32)text('p','Tuyệt vời! Em đã trả lời đúng tất cả các câu hỏi.');text('p',`Đúng: ${r.right} | Sai: ${r.wrong} | Chưa làm: ${r.blank}`);let table=document.createElement('table');for(const row of [['Bài','Đúng','Sai','Chưa làm'],...Object.entries(r.sections).map(([k,v])=>[k,...v])]){let tr=table.insertRow();row.forEach(x=>tr.insertCell().textContent=x)}body.append(table);text('h3','Giải thích các phần cần sửa');for(const q of QUESTIONS){let a=STATE.answers[q.id];if(!correct(q,a))text('p',q.id+' – '+(a||'Chưa trả lời')+'. Đáp án: '+(Array.isArray(q.ans)?q.ans.join(' / '):q.ans)+'. '+EXPLANATIONS[q.id])}$('report').showModal();$('report').scrollTop=0}
+function score(){let right=0,wrong=0,blank=0,sections={A:[0,0,0],B:[0,0,0],C:[0,0,0],D:[0,0,0]};for(const q of QUESTIONS){let a=STATE.answers[q.id],i=!a?2:correct(q,a)?0:1;sections[q.id[0]][i]++;if(i===0)right++;else if(i===1)wrong++;else blank++}return {right,wrong,blank,sections,grade:(right/32*10).toFixed(1)}}function report(animate=false){let r=score(),body=$('reportBody');body.replaceChildren();function text(tag,t){let e=document.createElement(tag);e.textContent=t;body.append(e)}const head=document.createElement('section');head.className='reportHead';const identity=document.createElement('div');identity.className='reportIdentity';const logo=$('brandLogo').cloneNode();logo.removeAttribute('id');logo.className='';identity.append(logo);const brand=document.createElement('div');brand.innerHTML='<strong>HT English Center</strong><p>SĐT: 0962240866</p>';identity.append(brand);head.append(identity);const unit=document.createElement('h2');unit.className='reportUnit';unit.textContent='Unit 01 – Person / Place / Thing / Animal';head.append(unit);const grid=document.createElement('div');grid.className='reportGrid';const info=document.createElement('div');info.className='reportInfo';for(const [label,value] of [['Học sinh',STATE.name],['Lớp',STATE.cls],['Giáo viên chủ nhiệm',STATE.teacher||'Chưa cập nhật']]){const p=document.createElement('p');p.textContent=label+': '+value;info.append(p)}grid.append(info);const grade=document.createElement('div');grade.className='redGrade'+(animate===true?' writeOnce':'');const ink=document.createElement('div');ink.className='gradeInk';const n=Number(r.grade);ink.textContent=String(n).replace('.',',');grade.setAttribute('aria-label','Điểm '+ink.textContent+' trên 10');grade.append(ink);grade.insertAdjacentHTML('beforeend','<svg viewBox="0 0 120 22" aria-hidden="true"><path d="M5 8 Q52 1 115 5"/><path d="M10 18 Q62 9 110 14"/></svg>');grid.append(grade);head.append(grid);const comment=document.createElement('p');comment.className='teacherComment';comment.textContent=n>=9?'Excellent! Well done!':n>=8?'Very good!':n>=7?'Good job!':n>=5?'Keep practicing!':'Keep trying! You can do it!';head.append(comment);body.append(head);if(r.right===32)text('p','Tuyệt vời! Em đã trả lời đúng tất cả các câu hỏi.');text('p',`Đúng: ${r.right} | Sai: ${r.wrong} | Chưa làm: ${r.blank}`);let table=document.createElement('table');for(const row of [['Bài','Đúng','Sai','Chưa làm'],...Object.entries(r.sections).map(([k,v])=>[k,...v])]){let tr=table.insertRow();row.forEach(x=>tr.insertCell().textContent=x)}body.append(table);if(STATE.mode==='test'){const wrong=QUESTIONS.filter(q=>STATE.answers[q.id]&&!correct(q,STATE.answers[q.id]));appendWrongAnswerReview(body,wrong.map(q=>q.id+' – '+STATE.answers[q.id]+'\nĐáp án: '+(Array.isArray(q.ans)?q.ans.join(' / '):q.ans)+'\n'+EXPLANATIONS[q.id]));}openWorksheetReport(STATE.mode)}
 for(const id of ['name','cls','teacher'])$(id).oninput=e=>{STATE[id]=e.target.value;save()};document.querySelectorAll('[name=studyMode]').forEach(e=>e.onchange=()=>{if(e.checked){if(e.value!==STATE.mode&&(STATE.submitted||Object.keys(STATE.answers).length)){if(!confirm('Đổi chế độ sẽ bắt đầu bài mới và xóa đáp án cũ. Em có đồng ý không?')){document.querySelectorAll('[name=studyMode]').forEach(r=>r.checked=r.value===STATE.mode);return}const {name,cls,teacher}=STATE;STATE={...fresh(),name,cls,teacher,mode:e.value};hideFeedback();pending=null;closeMenu();showPage(0,false);refresh()}else STATE.mode=e.value;save()}});$('welcomeForm').onsubmit=e=>{e.preventDefault();if(!STATE.name.trim()||!STATE.cls.trim()||!STATE.teacher.trim()){notify('Vui lòng nhập đầy đủ họ tên, lớp và giáo viên chủ nhiệm.');return}STATE.started=true;save();refresh();document.querySelector('main').classList.add('study-enter');window.scrollTo(0,0)};$('submit').onclick=()=>{if(!allowed())return;let r=score();if(!confirm((r.blank?'Còn '+r.blank+' phần chưa làm. ':'')+'Bạn có chắc muốn nộp bài?'))return;hideFeedback();STATE.submitted=true;STATE.result=r;pending=null;closeMenu();save();refresh();report(true)};$('result').onclick=()=>report(false);$('reset').onclick=()=>{if(!confirm('Xóa bài làm và kết quả cũ để làm lại?'))return;hideFeedback();let {name,cls,teacher,mode}=STATE;STATE={...fresh(),name,cls,teacher,mode};pending=null;closeMenu();document.querySelectorAll('.pending').forEach(e=>e.classList.remove('pending'));save();refresh();showPage(0,false);window.scrollTo(0,0)};
 let visiblePage=-1, pageAnimation=null;
 function showPage(index,animate=true){
@@ -43,4 +43,63 @@ function showPage(index,animate=true){
  if(animate&&old!==index&&old>=0){if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&pages[index].animate){const direction=index>old?1:-1;pageAnimation=pages[index].animate([{transform:`translateX(${direction*32}px)`,opacity:.35},{transform:'translateX(0)',opacity:1}],{duration:300,easing:'ease-out'});} $('pages').scrollIntoView({block:'start',behavior:'instant'});}
 }
 $('prevPage').onclick=()=>showPage(visiblePage-1);$('nextPage').onclick=()=>showPage(visiblePage+1);document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>showPage(Number(b.dataset.page)));init();
-</script></html>
+</script>
+<style>
+#reportReviewBar{position:sticky;top:0;z-index:4;display:flex;flex-wrap:wrap;gap:6px;padding:8px 12px;background:#f5faff;border-bottom:1px solid #cbddeb}
+#reportReviewBar[hidden],#wrongAnswerReview[hidden]{display:none}
+#reportReviewBar button{min-height:40px;padding:6px 10px;border:1px solid #1767b5;border-radius:8px;background:#fff;color:#144a78;font:600 13px system-ui,sans-serif;cursor:pointer}
+#reportReviewBar button[aria-pressed="true"]{background:#1767b5;color:#fff}
+#report[data-review-view]>.action{display:none}
+#report[data-review-view] .reportHead{position:static}
+#report[data-review-view="answers"] #reportBody>:not(#wrongAnswerReview){display:none}
+#wrongAnswerReview p{white-space:pre-line;line-height:1.5}
+</style>
+<script>
+const reviewDialog = document.getElementById('report');
+const reportReviewBar = document.createElement('div');
+reportReviewBar.id = 'reportReviewBar';
+reportReviewBar.hidden = true;
+reportReviewBar.innerHTML = '<button type="button" aria-pressed="true">Kết quả</button>'
+  + '<button type="button" aria-pressed="false">Giải thích câu sai</button>'
+  + '<button type="button">Xem lại bài làm</button>';
+reviewDialog.prepend(reportReviewBar);
+reviewDialog.setAttribute('aria-label', 'Kết quả bài làm');
+const [reportScoresButton, reportAnswersButton, reportCloseButton] = reportReviewBar.children;
+
+function selectReportView(view) {
+  const showAnswers = view === 'answers';
+  reviewDialog.dataset.reviewView = view;
+  document.getElementById('wrongAnswerReview').hidden = !showAnswers;
+  reportScoresButton.setAttribute('aria-pressed', String(!showAnswers));
+  reportAnswersButton.setAttribute('aria-pressed', String(showAnswers));
+  reviewDialog.scrollTop = 0;
+}
+
+reportScoresButton.addEventListener('click', () => selectReportView('scores'));
+reportAnswersButton.addEventListener('click', () => selectReportView('answers'));
+reportCloseButton.addEventListener('click', () => reviewDialog.close());
+
+function appendWrongAnswerReview(body, rows) {
+  const section = document.createElement('section');
+  section.id = 'wrongAnswerReview';
+  section.hidden = true;
+  const title = document.createElement('h3');
+  title.textContent = 'Giải thích câu sai';
+  section.append(title);
+  for (const row of rows.length ? rows : ['Em không có câu trả lời sai.']) {
+    const item = document.createElement('p');
+    item.textContent = row;
+    section.append(item);
+  }
+  body.append(section);
+}
+
+function openWorksheetReport(mode) {
+  reportReviewBar.hidden = mode !== 'test';
+  if (mode === 'test') selectReportView('scores');
+  else delete reviewDialog.dataset.reviewView;
+  reviewDialog.showModal();
+  reviewDialog.scrollTop = 0;
+}
+</script>
+</html>

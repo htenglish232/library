@@ -5,6 +5,7 @@ import {addReleaseLessons, RELEASE_ADDITIONS, RELEASE_ID, RELEASE_IDS, IELTS_REL
 import {decodeCatalog, managedPayload, encodeCatalogData} from '../assets/catalog-data.js';
 const legacy=JSON.parse(readFileSync('catalog/library-catalog.json','utf8')).data;
 const current=JSON.parse(readFileSync('catalog/current-library-catalog.json','utf8')).data;
+const grammarPatch=RELEASE_ADDITIONS.find(p=>p.lesson.href==='grade-5/Bo_Tro_Ngu_Phap/unit_13_future_will.html');
 test('legacy catalog gains exactly the main release additions without mutation',()=>{
  const original=structuredClone(legacy),result=addReleaseLessons(legacy);
  assert.deepEqual(result.data,current);assert.deepEqual(legacy,original);
@@ -14,7 +15,7 @@ test('legacy catalog gains exactly the main release additions without mutation',
 test('server edits, hidden grades/folders/lessons and renamed folders remain intact',()=>{
  const data=structuredClone(legacy),grade=data.find(g=>g.grade==='Grade 5');
  grade.grade='Khối 5';grade.hidden=true;grade.units[0].name='Ngữ pháp lớp 5';grade.units[0].hidden=true;
- const patch=RELEASE_ADDITIONS[0];grade.units[0].lessons.push({...patch.lesson,title:'Tên Admin đã sửa',hidden:true});
+ const patch=grammarPatch;grade.units[0].lessons.push({...patch.lesson,title:'Tên Admin đã sửa',hidden:true});
  data.push({grade:'Grade 9',units:[{name:'Thư mục Admin',lessons:[{title:'Bài riêng',href:'grade-9/new.html'}]}]});
  const result=addReleaseLessons(data);
  const preserved=result.data.find(g=>g.grade==='Khối 5');
@@ -33,7 +34,7 @@ test('adding new main links does not resurrect deleted legacy links',()=>{
 
 test('explicit release adoption round-trips and respects later Admin deletions',async()=>{
  const data=structuredClone(current);const group=data.find(g=>g.grade==='Grade 5');
- group.units[0].lessons=group.units[0].lessons.filter(l=>l.href!==RELEASE_ADDITIONS[0].lesson.href);
+ group.units[0].lessons=group.units[0].lessons.filter(l=>l.href!==grammarPatch.lesson.href);
  const payload=await managedPayload(data);
  const fields={...payload,dataJson:encodeCatalogData(data,[RELEASE_ID])};
  assert.deepEqual(await decodeCatalog(fields),data);
@@ -51,12 +52,14 @@ test('IELTS release preserves deletions from a previously adopted Grade 5 releas
  const data=structuredClone(current);
  const lessons=data.find(g=>g.grade==='Grade 5').units[0].lessons;
  const removed=lessons.shift().href;
- lessons.splice(lessons.findIndex(l=>l.href===RELEASE_ADDITIONS[0].lesson.href),1);
- data.pop();
+ const grammarIndex=lessons.findIndex(l=>l.href===grammarPatch.lesson.href);
+ assert.ok(grammarIndex>=0);
+ lessons.splice(grammarIndex,1);
+ data.splice(data.findIndex(g=>g.grade==='Apps for IELTS'),1);
  const fields={...await managedPayload(data),dataJson:encodeCatalogData(data,[RELEASE_ID])};
  const result=releaseCatalogView(fields,data);
  assert.equal(result.at(-1).grade,'Apps for IELTS');
- assert.ok(!result.flatMap(g=>g.units.flatMap(u=>u.lessons)).some(l=>[removed,RELEASE_ADDITIONS[0].lesson.href].includes(l.href)));
+ assert.ok(!result.flatMap(g=>g.units.flatMap(u=>u.lessons)).some(l=>[removed,grammarPatch.lesson.href].includes(l.href)));
  const adopted=result.filter(g=>g.grade!=='Apps for IELTS');
  assert.deepEqual(releaseCatalogView({...fields,dataJson:encodeCatalogData(adopted,RELEASE_IDS)},adopted),adopted);
  assert.ok(RELEASE_IDS.includes(IELTS_RELEASE_ID));

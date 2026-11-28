@@ -19,6 +19,9 @@ if (JSON.stringify(addReleaseLessons(legacy.data).data) !== JSON.stringify(paylo
 const links = payload.data.flatMap(g => g.units.flatMap(u => u.lessons.map(l => l.href)));
 if (links.length !== payload.count || new Set(links).size !== payload.count || !links.every(href => existsSync(href))) throw new Error('Duplicate or missing local lesson links.');
 // Source exams/audio stay immutable. Shared exercise controllers/styles may evolve.
-const protectedChanges = execFileSync('git', ['diff', baseline.commit, '--name-only', '--diff-filter=DMRTUXB', '--', 'grade-*', 'home-button.js', 'assets/submission-identity.js', 'assets/submission-identity.css'], {encoding:'utf8'}).trim().split('\n').filter(Boolean).filter(file => !['dual-mode-engine.js','dual-store.js','model.js','dual-progress.js','dual-mode.css','engine.js','game.css'].map(name=>'grade-8/De_thi_GHK1/shared-practice/'+name).includes(file)).join('\n');
-if (protectedChanges) throw new Error(`Protected current-main files changed: ${protectedChanges}`);
+const normalizedWorksheet = 'grade-4/Bo_Tro_Ngu_Phap/unit_14_present_continuous_negatives.html';
+const approvedNormalization = '9e546356115450620475241ac2c23c7837d05645';
+const protectedChanges = execFileSync('git', ['diff', baseline.commit, '--name-only', '--diff-filter=DMRTUXB', '--', 'grade-*', 'home-button.js', 'assets/submission-identity.js', 'assets/submission-identity.css', `:(exclude)${normalizedWorksheet}`], {encoding:'utf8'}).trim().split('\n').filter(Boolean).filter(file => !['dual-mode-engine.js','dual-store.js','model.js','dual-progress.js','dual-mode.css','engine.js','game.css'].map(name=>'grade-8/De_thi_GHK1/shared-practice/'+name).includes(file));
+if (execFileSync('git', ['diff', approvedNormalization, '--name-only', '--', normalizedWorksheet], {encoding:'utf8'}).trim()) protectedChanges.push(normalizedWorksheet);
+if (protectedChanges.length) throw new Error(`Protected current-main files changed: ${protectedChanges.join('\n')}`);
 console.log(`PASS: ${payload.count} unique existing paths; reviewed main catalog/order preserved with release additions; legacy v1 supported; exam/audio/grading/personalization files unchanged.`);
