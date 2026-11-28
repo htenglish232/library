@@ -106,11 +106,48 @@ const GRADE5_HKI_ADDITIONS = [1, 2, 3, 4, 5].map(n => ({
   grade: 'Grade 5', unit: 'Đề thi HK I Grade 5',
   lesson: {title: `Đề ${n} – Học kỳ I · Global Success 5`, href: `grade-5/De_Thi_HK1/de-${n}.html`}
 }));
+const GRADE3_GRAMMAR_RELEASE_ID = 'a4c23839593d66f5fc64dbb54bb265222a0d2fd0';
+const GRADE3_GRAMMAR_ADDITIONS = [
+  ["Unit 01 – Person / Place / Thing / Animal", '01_Unit_01_Person_Place_Thing_Animal.html'],
+  ["Unit 02 – A / An + Noun", '02_Unit_02_A_An_Noun.html'],
+  ["Unit 03 – The + Noun", '03_Unit_03_The_Noun.html'],
+  ["Unit 04 – Noun + -s / -es", '04_Unit_04_Noun_s_es.html'],
+  ["Review 01 – Units 01–04", '05_Review_01.html'],
+  ["Unit 05 – I / You / He / She / It", '06_Unit_05_I_You_He_She_It.html'],
+  ["Unit 06 – We / You / They", '07_Unit_06_We_You_They.html'],
+  ["Unit 07 – This / That", '08_Unit_07_This_That.html'],
+  ["Unit 08 – These / Those", '09_Unit_08_These_Those.html'],
+  ["Review 02 – Units 05–08", '10_Review_02.html'],
+  ["Unit 09 – Pronoun + Be", '11_Unit_09_Pronoun_Be.html'],
+  ["Unit 10 – Pronoun + Be + Not", '12_Unit_10_Pronoun_Be_Not.html'],
+  ["Unit 11 – Am / Are / Is …?", '13_Unit_11_Am_Are_Is.html'],
+  ["Unit 12 – Who / What + Be …?", '14_Unit_12_Who_What_Be.html'],
+  ["Review 03 – Units 09–12", '15_Review_03.html'],
+  ["Unit 13 – Adjective + Noun", '16_Unit_13_Adjective_Noun.html'],
+  ["Unit 14 – Be + Adjective", '17_Unit_14_Be_Adjective.html'],
+  ["Unit 15 – Adjective + Noun = Be + Adjective", '18_Unit_15_Adjective_Noun_Be_Adjective.html'],
+  ["Unit 16 – Numbers", '19_Unit_16_Numbers.html'],
+  ["Review 04 – Units 13–16", '20_Review_04.html'],
+  ["Unit 17 – Like / Likes", '21_Unit_17_Like_Likes.html'],
+  ["Unit 18 – Have / Has", '22_Unit_18_Have_Has.html'],
+  ["Unit 19 – Don’t / Doesn’t + Like", '23_Unit_19_Dont_Doesnt_Like.html'],
+  ["Unit 20 – Do / Does + Like …?", '24_Unit_20_Do_Does_Like.html'],
+  ["Review 05 – Units 17–20", '25_Review_05.html'],
+  ["Unit 21 – What + Do / Does + Like?", '26_Unit_21_What_Do_Does_Like.html'],
+  ["Unit 22 – Can / Can’t", '27_Unit_22_Can_Cant.html'],
+  ["Unit 23 – Can …?", '28_Unit_23_Can_Questions.html'],
+  ["Unit 24 – It Is + Time / Weather / Season", '29_Unit_24_Time_Weather_Season.html'],
+  ["Review 06 – Units 22–24", '30_Review_06.html'],
+].map(([title, file]) => ({
+  grade: 'Grade 3', unit: 'Grammar',
+  lesson: {title, href: `grade-3/HT_English_Grade_3_Grammar/HTML_Output/${file}`}
+}));
 const RELEASE_BATCHES = [
   {id: GRADE5_HKI_RELEASE_ID, additions: GRADE5_HKI_ADDITIONS},
   {id: GRADE3_EXAM_RELEASE_ID, additions: GRADE3_EXAM_ADDITIONS},
   {id: GRADE3_GHK1_DE4_RELEASE_ID, additions: GRADE3_GHK1_DE4_ADDITIONS},
   {id: GRADE3_GHK1_MORE_RELEASE_ID, additions: GRADE3_GHK1_MORE_ADDITIONS},
+  {id: GRADE3_GRAMMAR_RELEASE_ID, additions: GRADE3_GRAMMAR_ADDITIONS},
   {id: GRADE6_REWRITE_RELEASE_ID, additions: GRADE6_REWRITE_ADDITIONS},
   {id: RELEASE_ID, additions: GRAMMAR_ADDITIONS},
   {id: IELTS_RELEASE_ID, additions: [{
