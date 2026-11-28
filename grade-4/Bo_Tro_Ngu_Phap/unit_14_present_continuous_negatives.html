@@ -1444,6 +1444,9 @@
   function normalizeText(str) {
     if (!str) return "";
     return str
+      .replace(/[\u200B-\u200D\uFEFF]/g, '') // Remove zero-width spaces
+      .replace(/[’‘`´]/g, "'") // Normalize curly apostrophes
+      .replace(/\s*'\s*/g, "'") // Normalize spaces around apostrophe
       .trim()
       .toLowerCase()
       .replace(/\s+/g, ' ')
